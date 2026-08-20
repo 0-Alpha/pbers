@@ -104,8 +104,10 @@
       sliceStart.push(acc); sliceFrac.push(frac); acc += frac;
     });
 
-    /* legend */
-    legend.innerHTML = ''; chips = [];
+    /* legend: top 10 shown, the rest collapsed into a tappable "その他" */
+    legend.innerHTML = ''; legend.classList.remove('expanded'); chips = [];
+    var TOP = 10;
+    var more = document.createElement('div'); more.className = 'legend-more';
     DATA.forEach(function (d, i) {
       var el = document.createElement('span');
       el.className = 'chip';
@@ -114,8 +116,20 @@
         '<span class="cv">' + (val(d) ? jp(val(d)) : '—') + '</span>';
       el.addEventListener('mouseenter', function () { focus(i); });
       el.addEventListener('mouseleave', unfocus);
-      legend.appendChild(el); chips.push(el);
+      chips.push(el);
+      (i < TOP ? legend : more).appendChild(el);
     });
+    if (DATA.length > TOP) {
+      var tog = document.createElement('span');
+      tog.className = 'chip more-toggle';
+      tog.innerHTML = '<span class="sw"></span><span class="cn">その他 ' + (DATA.length - TOP) + 'ch</span><span class="arw">▾</span>';
+      tog.addEventListener('click', function () {
+        var open = more.classList.toggle('open');
+        legend.classList.toggle('expanded', open);
+      });
+      legend.appendChild(tog);
+      legend.appendChild(more);
+    }
 
     /* columns */
     cols.innerHTML = ''; colEls = []; colBars = [];
@@ -125,7 +139,7 @@
       col.innerHTML =
         '<div class="col-bararea">' +
           '<div class="col-val" style="color:' + d.color + '">' + (val(d) ? jp(val(d)) : '—') + '</div>' +
-          '<div class="col-bar" style="background:' + d.color + '" data-h="' + (val(d) / max * MAXBAR) + '"></div>' +
+          '<div class="col-bar" style="background:' + d.color + '" data-frac="' + (max ? val(d) / max : 0) + '"></div>' +
         '</div>' +
         '<div class="col-foot"><div class="col-rank num">' + (i + 1) + '</div>' +
         '<div class="col-name">' + esc(d.name) + '</div></div>';
@@ -162,7 +176,12 @@
     circles.forEach(function (c) { c.setAttribute('stroke-dasharray', on ? (c.dataset.len + ' ' + (C - c.dataset.len)) : ('0 ' + C)); });
   }
   function playCols(on) {
-    colBars.forEach(function (b, k) { b.style.transitionDelay = on ? (k * 0.03) + 's' : '0s'; b.style.height = on ? (b.dataset.h + 'px') : '0px'; });
+    var area = document.querySelector('.col-bararea');
+    var avail = area ? Math.max(60, area.clientHeight - 30) : 220;   // fit whatever height CSS gives (desktop/mobile)
+    colBars.forEach(function (b, k) {
+      b.style.transitionDelay = on ? (k * 0.03) + 's' : '0s';
+      b.style.height = on ? (parseFloat(b.dataset.frac) * avail) + 'px' : '0px';
+    });
     colEls.forEach(function (co) { co.classList.toggle('shown', on); });
   }
   function inView(el) { var r = el.getBoundingClientRect(); return r.top < innerHeight * 0.65 && r.bottom > innerHeight * 0.2; }
@@ -174,10 +193,10 @@
     }); });
   }
   function observe(el, play) {
-    if (!('IntersectionObserver' in window)) { play(true); return; }
+    if (!el || !('IntersectionObserver' in window)) { play(true); return; }
     new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) requestAnimationFrame(function () { play(true); }); else play(false); });
-    }, { threshold: 0.35 }).observe(el);
+    }, { threshold: 0.2 }).observe(el);
   }
 
   /* ---- toggle wiring ---- */
@@ -249,5 +268,5 @@
   moveInd(document.querySelector('.tg.on'));
   window.addEventListener('resize', function () { moveInd(document.querySelector('.tg.on')); showTotal(); });
   observe(document.querySelector('.donut-stage'), playDonut);
-  observe(cols, playCols);
+  observe(document.getElementById('col-scroll'), playCols);   // observe the viewport-width container, not the wide flex
 })();
