@@ -5,8 +5,9 @@ import json, colorsys, re, os, csv, datetime
 
 BASE = os.path.dirname(os.path.abspath(__file__))   # works on Windows and on CI (Linux)
 JST = datetime.timezone(datetime.timedelta(hours=9))
-# 更新日は日本時間の当日
-UPDATED = datetime.datetime.now(JST).strftime("%Y-%m-%d")
+# データの基準日 = 前日(JST 0時取得を前日分とみなす)
+ASOF = (datetime.datetime.now(JST) - datetime.timedelta(days=1)).date()
+UPDATED = ASOF.strftime("%Y-%m-%d")
 
 # マイルストーンの刻み: 登録者=1万, 総再生=1000万, 投稿=100
 STEPS = {
@@ -111,8 +112,7 @@ def build_news(colors):
                 }
                 names[cid] = row["name"]
 
-    today = datetime.datetime.now(JST).date()
-    window = [today - datetime.timedelta(days=i) for i in range(7)]   # 当日〜6日前
+    window = [ASOF - datetime.timedelta(days=i) for i in range(7)]   # 基準日(前日)〜6日前
     by_date = {d.isoformat(): [] for d in window}
 
     shown = set(colors.keys())                          # 引退者以外

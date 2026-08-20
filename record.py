@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""data.json の当日スナップショットを history.csv に追記(上書きせず蓄積)。
+"""data.json のスナップショットを history.csv に追記(上書きせず蓄積)。
 
-- 日付は日本時間(JST)の当日。
+- 日付は「前日」(JST当日の1日前)。JST 0時に取得した値は前日の最終値とみなすため。
 - 1日1回分のみ。同じ日付が既にあれば追記しない(手動再実行しても重複しない)。
 - 列: date, id, name, subs, views, videos
 """
@@ -13,8 +13,9 @@ HIST = os.path.join(BASE, "history.csv")
 
 JST = datetime.timezone(datetime.timedelta(hours=9))
 
-def jst_today():
-    return datetime.datetime.now(JST).strftime("%Y-%m-%d")
+def as_of_date():
+    # JST 0時の取得を前日分として記録する
+    return (datetime.datetime.now(JST) - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
 
 def existing_dates():
     dates = set()
@@ -26,7 +27,7 @@ def existing_dates():
     return dates
 
 def main():
-    date = jst_today()
+    date = as_of_date()
     if date in existing_dates():
         print("history.csv already has %s — skip" % date)
         return
