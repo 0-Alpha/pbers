@@ -1,0 +1,143 @@
+/* =========================================================
+   PBers — Polandball channel analytics
+   Flat dark UI. bg #151515. Chart colors are per-channel.
+   Numbers: Montserrat ExtraBold/Black (Gilroy-style geometric sans)
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+:root{
+  --bg:#151515;
+  --panel:#1c1c1c;
+  --panel-2:#1f1f1f;
+  --line:#2b2b2b;
+  --line-2:#363636;
+  --red:#ac1c1c;
+  --text:#f5f3f1;
+  --muted:#8d8986;
+  --muted-2:#6a6663;
+
+  --num:'Montserrat',system-ui,sans-serif;      /* Gilroy-like */
+  --jp:'Noto Sans JP','Montserrat',system-ui,sans-serif;
+  --maxw:1200px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--jp);
+  color:var(--text);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+.num{font-family:var(--num);font-feature-settings:"tnum" 1;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.eng{font-family:var(--num)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.kicker{font-family:var(--num);font-weight:700;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- header ---------- */
+.topbar{position:sticky;top:0;z-index:40;background:rgba(21,21,21,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--num);font-weight:800;font-size:21px;letter-spacing:.01em}
+.brand .dot{width:24px;height:24px;border-radius:50%;background:#550089;box-shadow:0 0 0 2px #151515,0 0 0 3px #333}
+.brand b{color:var(--red)}
+.topbar nav{display:flex;gap:26px;font-family:var(--num);font-weight:600;font-size:13px;color:var(--muted)}
+.topbar nav a:hover{color:var(--text)}
+
+/* ---------- hero: total + giant donut ---------- */
+.hero{padding:60px 0 24px;text-align:center}
+.hero .kicker{display:inline-block;margin-bottom:22px;color:var(--red)}
+/* metric toggle (segmented) */
+.toggle{position:relative;display:inline-flex;gap:4px;padding:4px;margin-bottom:26px;
+  background:var(--panel);border:1px solid var(--line);border-radius:999px}
+.toggle .tg{position:relative;z-index:2;border:0;background:transparent;cursor:pointer;
+  font-family:var(--jp);font-weight:700;font-size:13.5px;color:var(--muted);
+  padding:9px 22px;border-radius:999px;transition:color .25s ease}
+.toggle .tg.on{color:#fff}
+.toggle .tg-ind{position:absolute;z-index:1;top:4px;bottom:4px;border-radius:999px;
+  background:var(--red);transition:left .28s cubic-bezier(.22,1,.36,1),width .28s cubic-bezier(.22,1,.36,1)}
+
+.total-cap{font-family:var(--num);font-weight:700;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.total{font-family:var(--num);font-weight:900;font-size:clamp(52px,11vw,120px);line-height:.92;letter-spacing:-.03em;margin:10px 0 4px}
+.total .u{font-size:.32em;font-weight:800;color:var(--muted);letter-spacing:0;margin-left:.15em}
+.total-sub{font-family:var(--num);font-weight:600;color:var(--muted);font-size:14px}
+
+.donut-stage{margin:38px auto 8px;position:relative;width:min(78vw,460px);aspect-ratio:1}
+.donut-stage svg{width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
+.donut-stage circle{cursor:pointer;transition:opacity .2s ease,stroke-width .2s ease}
+.donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;padding:0 12%}
+.dc-name{font-family:var(--jp);font-weight:700;font-size:14px;color:var(--text);max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:20px}
+.dc-num{font-family:var(--num);font-weight:900;font-size:40px;line-height:1;margin:6px 0 2px;letter-spacing:-.02em;
+  max-width:100%;white-space:nowrap;overflow:hidden}
+.dc-cap{font-family:var(--num);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.dc-pct{font-family:var(--num);font-weight:800;font-size:13px;color:var(--muted);margin-top:4px;min-height:16px}
+
+/* legend under donut */
+.legend{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;max-width:860px;margin:26px auto 0}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:7px 12px 7px 10px;border:1px solid var(--line);border-radius:999px;
+  font-size:12.5px;cursor:default;transition:border-color .18s,background .18s}
+.chip:hover{border-color:var(--line-2);background:var(--panel)}
+.chip.dim{opacity:.4}
+.chip .sw{width:11px;height:11px;border-radius:3px;flex:none}
+.chip .cn{max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip .cv{font-family:var(--num);font-weight:800;color:var(--muted)}
+
+/* ---------- sections ---------- */
+section.block{padding:46px 0}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;border-bottom:1px solid var(--line);padding-bottom:14px}
+.sec-head h2{font-family:var(--jp);font-weight:900;font-size:clamp(20px,3vw,28px)}
+.sec-head .en{font-family:var(--num);font-weight:800;color:var(--red);font-size:12px;letter-spacing:.22em;text-transform:uppercase}
+.sec-head .note{color:var(--muted);font-size:12.5px;margin-left:auto;font-family:var(--num);font-weight:600}
+
+/* ---------- vertical column chart ---------- */
+.col-hint{font-family:var(--num);font-weight:600;font-size:11.5px;color:var(--muted-2);margin-bottom:8px;
+  display:flex;align-items:center;gap:6px}
+.col-scroll{overflow-x:auto;overflow-y:hidden;padding-bottom:10px;cursor:grab;
+  scroll-behavior:smooth;overscroll-behavior-x:contain}
+.col-scroll.drag{cursor:grabbing;scroll-behavior:auto}
+.col-scroll.drag *{pointer-events:none}
+.col-scroll::-webkit-scrollbar{height:10px}
+.col-scroll::-webkit-scrollbar-track{background:#202020;border-radius:8px}
+.col-scroll::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:8px}
+.col-scroll::-webkit-scrollbar-thumb:hover{background:#4a4a4a}
+.col-chart{display:flex;align-items:flex-end;gap:14px;min-width:min-content;padding-top:10px}
+.col{display:flex;flex-direction:column;align-items:center;flex:1 0 58px;max-width:88px}
+.col-bararea{height:300px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;width:100%}
+.col-val{font-family:var(--num);font-weight:800;font-size:12.5px;margin-bottom:8px;white-space:nowrap;transition:opacity .3s ease .3s;opacity:0}
+.col.shown .col-val{opacity:1}
+.col-bar{width:100%;max-width:56px;height:0;border-radius:2px;
+  transition:height .9s cubic-bezier(.22,1,.36,1);align-self:center}
+.col-foot{margin-top:12px;display:flex;flex-direction:column;align-items:center;gap:6px;width:100%}
+.col-rank{font-family:var(--num);font-weight:900;font-size:13px;color:var(--muted-2)}
+.col.top .col-rank{color:var(--text)}
+.col-name{font-size:11px;color:var(--muted);line-height:1.3;height:2.6em;overflow:hidden;text-align:center;
+  width:100%;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word}
+.col:hover .col-name{color:var(--text)}
+
+/* ---------- directory ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:12px}
+.card{display:flex;align-items:center;gap:13px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 15px;
+  transition:transform .16s ease,border-color .16s ease}
+.card:hover{transform:translateY(-2px)}
+.card .rk{font-family:var(--num);font-weight:900;font-size:18px;color:var(--muted-2);width:28px;text-align:center;flex:none}
+.card .av{width:48px;height:48px;border-radius:50%;object-fit:cover;flex:none;background:#222;border:2px solid var(--line-2);align-self:flex-start}
+.card .meta{min-width:0;flex:1}
+.card .cn{font-size:13.5px;font-weight:600;line-height:1.3;word-break:break-word;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .cstats{display:flex;flex-direction:column;gap:1px;margin-top:5px}
+.card .cstat{font-family:var(--num);font-weight:800;font-size:12.5px;color:var(--text);white-space:nowrap}
+.card .cstat i{font-style:normal;font-family:var(--jp);font-weight:600;font-size:10.5px;color:var(--muted);margin-right:7px;letter-spacing:.02em}
+.card .go{color:var(--muted-2);font-family:var(--num);flex:none;align-self:flex-start;transition:color .16s}
+.card:hover .go{color:var(--text)}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);margin-top:20px;padding:32px 0;color:var(--muted);font-size:12.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer .brand{font-size:16px}
+
+@media(max-width:760px){
+  .topbar nav{display:none}
+  .legend .chip .cv{display:none}
+}

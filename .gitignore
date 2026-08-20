@@ -1,0 +1,6 @@
+# local preview bundle (generated for review, not part of the site)
+_preview_standalone.html
+
+# OS / editor cruft
+Thumbs.db
+.DS_Store
