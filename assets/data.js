@@ -123,9 +123,9 @@ window.PBERS_DATA = [
   {
     "name": "かにたる",
     "subs": 30900,
-    "views": 10942588,
+    "views": 10942863,
     "subsLabel": "チャンネル登録者数 3.09万人",
-    "viewsLabel": "10,942,588回視聴",
+    "viewsLabel": "10,942,863回視聴",
     "videos": 84,
     "url": "https://www.youtube.com/channel/UCajUGvWXtYUcTHD3E3y138w",
     "avatar": "https://yt3.googleusercontent.com/7JW64uDPyTgm2LjJdDoj8B-aIJJa972rNgZLoStNU9Y-QGi44RcpGo-8jEfE9nTSczMQafX_sJ0=s900-c-k-c0x00ffffff-no-rj",
@@ -154,6 +154,17 @@ window.PBERS_DATA = [
     "color": "#8f2f2f"
   },
   {
+    "name": "うずまき🌀",
+    "subs": 28700,
+    "views": 7839922,
+    "subsLabel": "チャンネル登録者数 2.87万人",
+    "viewsLabel": "7,839,922回視聴",
+    "videos": 182,
+    "url": "https://www.youtube.com/channel/UCpOhdzl-CTUQ8xHonbVWsZw",
+    "avatar": "https://yt3.googleusercontent.com/LkRrW7onGMeTLMUJrz7kkIrH0s24TKAC_bpYBQGYSVDe_V_mde3xmj8zE5mVKHtXTKDArtwGaU4=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#3ecc9a"
+  },
+  {
     "name": "Schokoladen Ball",
     "subs": 28100,
     "views": 19743594,
@@ -162,7 +173,7 @@ window.PBERS_DATA = [
     "videos": 117,
     "url": "https://www.youtube.com/channel/UCFUXbdaOpvcbuC0zQMjS1Rw",
     "avatar": "https://yt3.googleusercontent.com/AlFPad8pRVrfeIto9rOiwJjZaJNUmdMQekXAnHSIOOvCA5cEG_VlryXtlSx0oylMukqi3lVbYg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3ecc9a"
+    "color": "#5e95d4"
   },
   {
     "name": "日本ボール",
@@ -195,7 +206,7 @@ window.PBERS_DATA = [
     "videos": 144,
     "url": "https://www.youtube.com/channel/UCzHHAy2xN6Vy0wwZPbUZkSA",
     "avatar": "https://yt3.googleusercontent.com/psef_ue--gNaBgLl-zOqXHns6BWfEF54h8FFXb5TdVgFEFi5iBsoBWkRJTK0ZXoOunYefwoPpA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5e95d4"
+    "color": "#793ecc"
   },
   {
     "name": "すいかぼーる",
@@ -206,7 +217,7 @@ window.PBERS_DATA = [
     "videos": 180,
     "url": "https://www.youtube.com/channel/UCy46bv4oPol4XOzKIbiw1LQ",
     "avatar": "https://yt3.googleusercontent.com/bDvE2BnwRg6dRlxeBdzO-nNMsUNBS8ZL952Aoog1ENFH0TYSZXmJ04xCq00TaYHRrW6BZpPyaJY=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#793ecc"
+    "color": "#d45eb1"
   },
   {
     "name": "りょうデス",
@@ -217,7 +228,7 @@ window.PBERS_DATA = [
     "videos": 893,
     "url": "https://www.youtube.com/channel/UCfe4nCMqfTwoiMmIGqAolcQ",
     "avatar": "https://yt3.googleusercontent.com/3JZIEM7UfdCSG6s6ge7iysnTTyLWldBvHduFzlEyA2KMqsUWqUxtWKy6sL2EIlMdFlPzzJ2FlQ=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d45eb1"
+    "color": "#cc583e"
   },
   {
     "name": "日帝ボール",
@@ -228,7 +239,7 @@ window.PBERS_DATA = [
     "videos": 26,
     "url": "https://www.youtube.com/channel/UCYNJQu0hhJFT36rCVfFpRXA",
     "avatar": "https://yt3.googleusercontent.com/xXeQaK6fg2pfljWrgaMI_wG8G9HGyAgb8G_W1BU67gH5NiOQRd7-4wK7PdQlOFRUPCQKvjVHBuQ=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc583e"
+    "color": "#ccd45e"
   },
   {
     "name": "カルノ  ムックル教",
@@ -239,7 +250,7 @@ window.PBERS_DATA = [
     "videos": 37,
     "url": "https://www.youtube.com/channel/UCD9mEEJypdqQZeSeTotItbg",
     "avatar": "https://yt3.googleusercontent.com/Fh9i2Sa-ySgm9PDZL5ktPlJ4llYP4yHzoIy7klMJuDHk1QuO_iLMXSDkJHCNcQ9r_gORYb0QbEc=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#ccd45e"
+    "color": "#45cc3e"
   },
   {
     "name": "ぱふball",
@@ -250,7 +261,7 @@ window.PBERS_DATA = [
     "videos": 103,
     "url": "https://www.youtube.com/channel/UC5wPmYUt7bVpzfhnehpTdaw",
     "avatar": "https://yt3.googleusercontent.com/PGTvcj4FN_eQ8Cvs9-f17837doHi0C9Zvctb1JF5kSBUPfQsvHq3dGziIdetTDDBOxAklbz5V0E=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#45cc3e"
+    "color": "#5ed4c0"
   },
   {
     "name": "マルルさん",
@@ -261,7 +272,7 @@ window.PBERS_DATA = [
     "videos": 78,
     "url": "https://www.youtube.com/channel/UCnZ3-DYNoF3sdpWIj2Tr59Q",
     "avatar": "https://yt3.googleusercontent.com/QfACL0DhK6yHf9vMZ3kj03349mMW_meIXAfcpQFSbqQVa3loFzTuxEx4yBpDDo5i2b-xK_Hi4w=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5ed4c0"
+    "color": "#3e66cc"
   },
   {
     "name": "こゆまる_koyumaru908",
@@ -272,7 +283,7 @@ window.PBERS_DATA = [
     "videos": 186,
     "url": "https://www.youtube.com/channel/UCZJGdkej48qsbPf7ZBBJlKQ",
     "avatar": "https://yt3.googleusercontent.com/7E1EME20oj2j5h8bBf7K618lZ7fAEN6hB6j_l8zaxWbyH-8VK49BLcM0uS38ZvsRtELNy8Hp5g=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3e66cc"
+    "color": "#a55ed4"
   },
   {
     "name": "ｺﾏ",
@@ -283,7 +294,7 @@ window.PBERS_DATA = [
     "videos": 22,
     "url": "https://www.youtube.com/channel/UCHJrlfd5kaoF7hx_KjfwZxQ",
     "avatar": "https://yt3.googleusercontent.com/qfIMUcBcGCqbLGk6dZfwDM1ITBKnaYjIMF7mCqKncuWK8lA1JBya8wfa2f9evEE_mbpWj-67=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#a55ed4"
+    "color": "#cc3e87"
   },
   {
     "name": "ねこボール",
@@ -294,18 +305,359 @@ window.PBERS_DATA = [
     "videos": 64,
     "url": "https://www.youtube.com/channel/UCxt74h6chRpTlHWKqG2KHOg",
     "avatar": "https://yt3.googleusercontent.com/vs0mdcPR3R_OnPIC5sEBR4uKQsFXDVuJR6FWVi9LxuvcpgfBWwOuY76hfgX7PAaOLIHqJ8cPqZo=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc3e87"
+    "color": "#d4895e"
   },
   {
     "name": " ゼリョーヌィボール　活停中",
     "subs": 20400,
-    "views": 5750338,
+    "views": 5755591,
     "subsLabel": "チャンネル登録者数 2.04万人",
-    "viewsLabel": "5,750,338回視聴",
+    "viewsLabel": "5,755,591回視聴",
     "videos": 88,
     "url": "https://www.youtube.com/channel/UCl4efTdPPsQWpj6jXmE9Azg",
     "avatar": "https://yt3.googleusercontent.com/h212WQooy6cDooAN4i3o7utLAZzgAV5nNo9ofNaIrQDAETaqLFxtL8sXOGoJpuJXjVkQ4h_LUYs=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d4895e"
+    "color": "#a8cc3e"
+  },
+  {
+    "name": "炭火焼き",
+    "subs": 18800,
+    "views": 14067493,
+    "subsLabel": "チャンネル登録者数 1.88万人",
+    "viewsLabel": "14,067,493回視聴",
+    "videos": 59,
+    "url": "https://www.youtube.com/channel/UCKCAWr6aCfgm9lLWmM7yEKQ",
+    "avatar": "https://yt3.googleusercontent.com/gk9_UdLk_1Ljo0YtH3dFvFZfdywxlXC1l1XfJ2zA054iHW7UdOLMIYWg4VsmDK1UI2rlHaDC2HE=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#5ed46e"
+  },
+  {
+    "name": "ジャスティンピーバー - ポーランドボール",
+    "subs": 18600,
+    "views": 56410097,
+    "subsLabel": "チャンネル登録者数 1.86万人",
+    "viewsLabel": "56,410,097回視聴",
+    "videos": 524,
+    "url": "https://www.youtube.com/channel/UCdrDC3QVzRjxHcS7m3EDPxg",
+    "avatar": "https://yt3.googleusercontent.com/dD1lw5k4kT5wkJaJ8eWioiFbnt-aSVbpv0utpqC4n4e8Xnyzv5mvAolsGqYg5cxEsx3oqat8xA=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#3ec9cc"
+  },
+  {
+    "name": "きままボール",
+    "subs": 17800,
+    "views": 12639560,
+    "subsLabel": "チャンネル登録者数 1.78万人",
+    "viewsLabel": "12,639,560回視聴",
+    "videos": 153,
+    "url": "https://www.youtube.com/channel/UCCQEhe-wXZCSb843x92YDzQ",
+    "avatar": "https://yt3.googleusercontent.com/UNN2H1cHicFgf_Ou5Hu4-4nU5jbr7H-xWB0XvFqJ24doYP4sJcEYQQR1Y5qNxMLocKsD9z90pA=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#5e6ad4"
+  },
+  {
+    "name": "ミルー帝国-はんぺん[PB]",
+    "subs": 17300,
+    "views": 8641001,
+    "subsLabel": "チャンネル登録者数 1.73万人",
+    "viewsLabel": "8,641,001回視聴",
+    "videos": 250,
+    "url": "https://www.youtube.com/channel/UCYhJeY5hQxjCB5onai17ExA",
+    "avatar": "https://yt3.googleusercontent.com/Ky8R9pg8h7UvmF53F7Bv9forW3gIMrGUzI2JuRlUaX_Lzf19_45Sif5nf5BqRdQy0WDtPvGvLw=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#ad3ecc"
+  },
+  {
+    "name": "パプさん",
+    "subs": 17200,
+    "views": 16377511,
+    "subsLabel": "チャンネル登録者数 1.72万人",
+    "viewsLabel": "16,377,511回視聴",
+    "videos": 337,
+    "url": "https://www.youtube.com/channel/UCPgo3vhueVGcmxye8KXomag",
+    "avatar": "https://yt3.googleusercontent.com/0b2IgtgzK5mrUu4ZQwqBnw5XCvQ6JjQMW72YqTmoCqzAFJYpZwUXvSIQlIfEYiLdNc3Subi9kg=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#d45e85"
+  },
+  {
+    "name": "アオアオカントリー",
+    "subs": 16900,
+    "views": 2197077,
+    "subsLabel": "チャンネル登録者数 1.69万人",
+    "viewsLabel": "2,197,077回視聴",
+    "videos": 18,
+    "url": "https://www.youtube.com/channel/UCmWcMMH94uzxqJpB_vrxRKQ",
+    "avatar": "https://yt3.googleusercontent.com/bkPPCcevoRKHMXyk4MzSH9s7MWSv-oI3n6DOPjx_FtUqqm6ALXRBjPWV5tgk5Rv3k-DcbXrV8g=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#cc8c3e"
+  },
+  {
+    "name": "ユウセイボール",
+    "subs": 16800,
+    "views": 6245611,
+    "subsLabel": "チャンネル登録者数 1.68万人",
+    "viewsLabel": "6,245,611回視聴",
+    "videos": 76,
+    "url": "https://www.youtube.com/channel/UCDlKmulWHerASMS8t2rIrYg",
+    "avatar": "https://yt3.googleusercontent.com/I-XKa9a7xFyQ68pS0xm8J6IycdiDn-j1196mgQvxmvRV7H-_2139nR8BHonZYBdazkIVXeSMZGg=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#a1d45e"
+  },
+  {
+    "name": "なぽりたんぼーる!!",
+    "subs": 16400,
+    "views": 8519600,
+    "subsLabel": "チャンネル登録者数 1.64万人",
+    "viewsLabel": "8,519,600回視聴",
+    "videos": 284,
+    "url": "https://www.youtube.com/channel/UCJnnOU3J61-6fC2RKWEsAxA",
+    "avatar": "https://yt3.googleusercontent.com/cgKkkofz-kGsbqVy2T6imA2bHpnVt2dT5fWXi8lePnlHa6p_KyhQCJ63Al_qjzB09nAGRrcOpg=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#3ecc6b"
+  },
+  {
+    "name": "マスカットボール",
+    "subs": 16100,
+    "views": 4574100,
+    "subsLabel": "チャンネル登録者数 1.61万人",
+    "viewsLabel": "4,574,100回視聴",
+    "videos": 45,
+    "url": "https://www.youtube.com/channel/UCzRXkYhS5YbXshAHUm8kUyg",
+    "avatar": "https://yt3.googleusercontent.com/0LFy0gzQnjYCPHXvDJpUTOtKyZoSi6UGXTRQs1_FWE2Or_MqTKViIHNrO7cK33ob-lq5snr_xCE=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#5ebcd4"
+  },
+  {
+    "name": "渋谷区のペンギン",
+    "subs": 15000,
+    "views": 3386362,
+    "subsLabel": "チャンネル登録者数 1.5万人",
+    "viewsLabel": "3,386,362回視聴",
+    "videos": 53,
+    "url": "https://www.youtube.com/channel/UCw4mBghvckZ6kRp1KF3PP2g",
+    "avatar": "https://yt3.googleusercontent.com/UzSRTPeQjShkDU9fW2m2meYmivDymiYdGJUdfMhxQGeFCqEaGeVO3Bkvo0X-AgvDhLC_VqWRV3M=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#493ecc"
+  },
+  {
+    "name": "ほわさん",
+    "subs": 14200,
+    "views": 3795508,
+    "subsLabel": "チャンネル登録者数 1.42万人",
+    "viewsLabel": "3,795,508回視聴",
+    "videos": 88,
+    "url": "https://www.youtube.com/channel/UCqJGrZl5WavKUk1sz1R34cQ",
+    "avatar": "https://yt3.googleusercontent.com/o_UU1jTdSppc-PeIiGPVGWVzy-mIJZNObIdpmqvGRjQJPMHKsPqU1oPhqE4ryLzVocO-2vgx=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#d05ed4"
+  },
+  {
+    "name": "MIKUボール",
+    "subs": 14000,
+    "views": 3375929,
+    "subsLabel": "チャンネル登録者数 1.4万人",
+    "viewsLabel": "3,375,929回視聴",
+    "videos": 207,
+    "url": "https://www.youtube.com/channel/UCP8Ycdrev3FBUVFH-PMxQNQ",
+    "avatar": "https://yt3.googleusercontent.com/6w7QBnmhG0QOmG33OrGsxQR2cM7u-_izyc_BizYXJzvu-1MbSW2UC3X8T15rWcyY9TTgmRuYZQ=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#cc3e53"
+  },
+  {
+    "name": "ソビエト・カチューシャボール☭\n\n",
+    "subs": 13800,
+    "views": 4844511,
+    "subsLabel": "チャンネル登録者数 1.38万人",
+    "viewsLabel": "4,844,511回視聴",
+    "videos": 350,
+    "url": "https://www.youtube.com/channel/UCeVN-gQR83mALrvJ-fwd7Ig",
+    "avatar": "https://yt3.googleusercontent.com/6JoYS-SVAtxks_NujxGVoLu7GhB-S9QqtUKOVraRMoSH61_yiCLncK4jPGsPaUhlMjxTTlpfGw=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#d4b55e"
+  },
+  {
+    "name": "TKG ball",
+    "subs": 13700,
+    "views": 4151967,
+    "subsLabel": "チャンネル登録者数 1.37万人",
+    "viewsLabel": "4,151,967回視聴",
+    "videos": 48,
+    "url": "https://www.youtube.com/channel/UClK8Y5AOaRrsc-Hh0bY024w",
+    "avatar": "https://yt3.googleusercontent.com/oxylJVp7qpG34Iwi5JSBppcMHIFt1QVunG7zhgj2cSvFti3pz7FTDU0kQQ1bqKAiYcbCielnpQ=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#74cc3e"
+  },
+  {
+    "name": "マロー",
+    "subs": 13500,
+    "views": 3218998,
+    "subsLabel": "チャンネル登録者数 1.35万人",
+    "viewsLabel": "3,218,998回視聴",
+    "videos": 48,
+    "url": "https://www.youtube.com/channel/UC0Qa8bCyRfJSBVp2LdEk1Ag",
+    "avatar": "https://yt3.googleusercontent.com/K-dVUHe9Ae8W_t9cegcDqeqfSNbX-pDfSaWEg9ObKADfEOrgf7rktFymc0zl-_qWHrTw1BlQGg=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#5ed499"
+  },
+  {
+    "name": "まるぼーるch ",
+    "subs": 13000,
+    "views": 18786519,
+    "subsLabel": "チャンネル登録者数 1.3万人",
+    "viewsLabel": "18,786,519回視聴",
+    "videos": 121,
+    "url": "https://www.youtube.com/channel/UCkSwKF9fslUtFRiaA-Oto6Q",
+    "avatar": "https://yt3.googleusercontent.com/plXugBe_yne07EdTN2A5rq-5NpdGZp33xpvpmlwkItY6AH-tPC0sjllPf2WK6wcwBL2quhIOFw=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#3e95cc"
+  },
+  {
+    "name": "やよいどき",
+    "subs": 13000,
+    "views": 1292110,
+    "subsLabel": "チャンネル登録者数 1.3万人",
+    "viewsLabel": "1,292,110回視聴",
+    "videos": 21,
+    "url": "https://www.youtube.com/channel/UCLflWIARKMxRiQDu7OIGGyg",
+    "avatar": "https://yt3.googleusercontent.com/fhtCfO2IcgGcnMPcdxsX4HNtMMm6AOWJYVqI2MoElr2NQJSGgJrq3zBNpHEc7mt_qUHs1RIs=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#7d5ed4"
+  },
+  {
+    "name": "ケエレビQ!",
+    "subs": 12400,
+    "views": 5400147,
+    "subsLabel": "チャンネル登録者数 1.24万人",
+    "viewsLabel": "5,400,147回視聴",
+    "videos": 100,
+    "url": "https://www.youtube.com/channel/UC7TqXiAikWw_Xh4Xbam1Faw",
+    "avatar": "https://yt3.googleusercontent.com/T7210hEFAOEDsDIQv46XXCo2mYDBeI9SShL4A4ZIo-qJE5eURzK5jy6rFAOWk2orvXdsnt-r=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#cc3eb6"
+  },
+  {
+    "name": "Acgelent",
+    "subs": 12300,
+    "views": 7760527,
+    "subsLabel": "チャンネル登録者数 1.23万人",
+    "viewsLabel": "7,760,527回視聴",
+    "videos": 66,
+    "url": "https://www.youtube.com/channel/UCSdgLDAnBGMBNkJvTztGUbQ",
+    "avatar": "https://yt3.googleusercontent.com/tub0fEMv1kKO-pJ0jRCL-8uvuTIe-u_edpXhyRsR9MYdmqDvPABiWXdwSF5eHRxPEGr6VcXe=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#d4625e"
+  },
+  {
+    "name": "ちまちもヒエナ ",
+    "subs": 12300,
+    "views": 5414678,
+    "subsLabel": "チャンネル登録者数 1.23万人",
+    "viewsLabel": "5,414,678回視聴",
+    "videos": 80,
+    "url": "https://www.youtube.com/channel/UCaZ6KZVlP5hts3SH54o-3rg",
+    "avatar": "https://yt3.googleusercontent.com/1PHK2GcjaoI7T3lY9QSzv0fHXDKeupVL2xkXG97XANZ1YNzOCjWsk16o0dUnpsbmWklPJpWb4w=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#ccc03e"
+  },
+  {
+    "name": "ぽぱい",
+    "subs": 12300,
+    "views": 4219291,
+    "subsLabel": "チャンネル登録者数 1.23万人",
+    "viewsLabel": "4,219,291回視聴",
+    "videos": 32,
+    "url": "https://www.youtube.com/channel/UCaMxGSc7gfuS8YRuSzr_nuQ",
+    "avatar": "https://yt3.googleusercontent.com/MksIU96BJUaPxSVQoRJDlxvXjPIe0cDmD70CaujSB0nstsAFYIzoDylPLYe5-MzPUm4pMGM9Mg=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#76d45e"
+  },
+  {
+    "name": "SEKKI98",
+    "subs": 12200,
+    "views": 8533441,
+    "subsLabel": "チャンネル登録者数 1.22万人",
+    "viewsLabel": "8,533,441回視聴",
+    "videos": 791,
+    "url": "https://www.youtube.com/channel/UCmjY1OXynztjoCn9Lb4w7Ag",
+    "avatar": "https://yt3.googleusercontent.com/n7RskwBn8eLp8MACtbTciWLvA53zE11jWpQ0ukoJT4NCRFB4GH8_xAQ6o7Y3GRc91XSC2NPBz50=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#3ecc9f"
+  },
+  {
+    "name": "カミヤ kamiya【ポーランドボール】",
+    "subs": 12100,
+    "views": 3435670,
+    "subsLabel": "チャンネル登録者数 1.21万人",
+    "viewsLabel": "3,435,670回視聴",
+    "videos": 79,
+    "url": "https://www.youtube.com/channel/UCO94y0dm-m5LjY3OHywSifw",
+    "avatar": "https://yt3.googleusercontent.com/owf5QKUnNYr0ZfO_AtXo6uyQCTIcpT6-ih6SZkmUdtSOFBx5eiDlRZlDOxeQd04kHlirE4HRQA=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#5e91d4"
+  },
+  {
+    "name": "ユラミア連邦共和国",
+    "subs": 11900,
+    "views": 9087890,
+    "subsLabel": "チャンネル登録者数 1.19万人",
+    "viewsLabel": "9,087,890回視聴",
+    "videos": 92,
+    "url": "https://www.youtube.com/channel/UCwRXtk8XSKXepmobDPuhoLQ",
+    "avatar": "https://yt3.googleusercontent.com/zb3DJtqgEv4eDPHRmrgrZ9ZrOKPoVfym9o0Q0cO0HzerM2-br1DD7-qR8YWYGmTcklK81tqq4g=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#7e3ecc"
+  },
+  {
+    "name": "ひかるボール　Hikaru ball",
+    "subs": 11800,
+    "views": 1552482,
+    "subsLabel": "チャンネル登録者数 1.18万人",
+    "viewsLabel": "1,552,482回視聴",
+    "videos": 157,
+    "url": "https://www.youtube.com/channel/UCkUsTywsJ86m7U4wbknNXQQ",
+    "avatar": "https://yt3.googleusercontent.com/lMrwVsNlRIEQ33xWghCURT11JZQo7GawkJ0drtWKJ8uq5Xm9O34MI7djJonM5eZBq3n6y60dHNI=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#d45ead"
+  },
+  {
+    "name": "わーるどボール【ポーランドボール】",
+    "subs": 11300,
+    "views": 2171197,
+    "subsLabel": "チャンネル登録者数 1.13万人",
+    "viewsLabel": "2,171,197回視聴",
+    "videos": 98,
+    "url": "https://www.youtube.com/channel/UCVLAvD5h6wz97dxzwy28Q6g",
+    "avatar": "https://yt3.googleusercontent.com/6gVVVw-moV268fxv9p9C-RAHunkNQ2F6T9_k_Kmu8hZ_CvP93ry95Q9gHkuX00mq7kifxCE7CQ=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#cc5c3e"
+  },
+  {
+    "name": "ほたて",
+    "subs": 10900,
+    "views": 3732358,
+    "subsLabel": "チャンネル登録者数 1.09万人",
+    "viewsLabel": "3,732,358回視聴",
+    "videos": 235,
+    "url": "https://www.youtube.com/channel/UCAUMzXLzsiUdYFG-1DELB3w",
+    "avatar": "https://yt3.googleusercontent.com/7xp7KrSaNpFTWbPZNWdCFPi79x14NHca1YBqAhyPrTOvvqOLZm9TkScMlOx2hv6_8NNOEz6tOg=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#c8d45e"
+  },
+  {
+    "name": "レメラボール / 🌈🌙【えるめす】",
+    "subs": 10900,
+    "views": 5841192,
+    "subsLabel": "チャンネル登録者数 1.09万人",
+    "viewsLabel": "5,841,192回視聴",
+    "videos": 179,
+    "url": "https://www.youtube.com/channel/UCnzJL5YTjaPHTkkll5BHukQ",
+    "avatar": "https://yt3.googleusercontent.com/PgMT_pQ_UrNxFF8c66TxiZAc14EW2SJikKgha9sBh6PlKPTkW6Evdg8exa07dWNyAVQYenXUNg=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#40cc3e"
+  },
+  {
+    "name": "lemon_Ball",
+    "subs": 10700,
+    "views": 984555,
+    "subsLabel": "チャンネル登録者数 1.07万人",
+    "viewsLabel": "984,555回視聴",
+    "videos": 117,
+    "url": "https://www.youtube.com/channel/UC3N1ZsVd8KkOmSryri0AesA",
+    "avatar": "https://yt3.googleusercontent.com/LibMAGPV5ah6ENHwbAzVSek6GVaOhu0MBeupoPGW6l_e6lSZChJjDGadIqPbiAc1rGRzTLHr=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#5ed4c4"
+  },
+  {
+    "name": "練乳=ソビエト共和国ぼーる",
+    "subs": 10500,
+    "views": 1730283,
+    "subsLabel": "チャンネル登録者数 1.05万人",
+    "viewsLabel": "1,730,283回視聴",
+    "videos": 91,
+    "url": "https://www.youtube.com/channel/UCXn5jlX_q9OtdFqDgC7fj8Q",
+    "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#3e61cc"
+  },
+  {
+    "name": "ĜÇ_Z3RØくん",
+    "subs": 10100,
+    "views": 6378427,
+    "subsLabel": "チャンネル登録者数 1.01万人",
+    "viewsLabel": "6,378,427回視聴",
+    "videos": 167,
+    "url": "https://www.youtube.com/channel/UCZiElwYajEL91UWMkBpSU-w",
+    "avatar": "https://yt3.googleusercontent.com/7WE5sNZbcP-UYFH-XZdHMPoBvQ1ii12Fm1a71RFJnbL7qLvLcLos63sQg8v91sGjN3nwvDiX=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#a95ed4"
   },
   {
     "name": "レイアルファ",

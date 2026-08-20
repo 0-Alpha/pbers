@@ -28,10 +28,15 @@
     <div class="wrap">
       <span class="kicker">Polandball Analytics</span>
 
-      <div class="toggle" id="toggle" role="tablist">
-        <button class="tg on" data-metric="subs">登録者数</button>
-        <button class="tg" data-metric="views">総再生数</button>
-        <span class="tg-ind" id="tg-ind"></span>
+      <div class="controls">
+        <div class="toggle" id="toggle" role="tablist">
+          <button class="tg on" data-metric="subs">登録者数</button>
+          <button class="tg" data-metric="views">総再生数</button>
+          <span class="tg-ind" id="tg-ind"></span>
+        </div>
+        <button class="filter" id="filter-big" aria-pressed="false">
+          <span class="box"></span>登録者10万人以上を除外
+        </button>
       </div>
 
       <div class="total-cap" id="total-cap">合計登録者数 / Total Subscribers</div>

@@ -9,6 +9,8 @@
     views: { key: 'views', unit: '回', cap: '合計総再生数 / Total Views',        ccap: 'Total Views' }
   };
   var metric = 'subs';
+  var hideBig = false;         // 登録者10万人以上を除外
+  var BIG = 100000;
   var DATA = [];               // current sorted view
   var total = 0;
 
@@ -80,7 +82,8 @@
 
   /* ---- (re)build everything for current metric ---- */
   function build() {
-    DATA = ALL.slice().sort(function (a, b) { return val(b) - val(a); });
+    var base = hideBig ? ALL.filter(function (d) { return (d.subs || 0) < BIG; }) : ALL;
+    DATA = base.slice().sort(function (a, b) { return val(b) - val(a); });
     total = DATA.reduce(function (s, d) { return s + val(d); }, 0);
     var max = val(DATA[0]) || 1;
 
@@ -283,6 +286,15 @@
       wrap.appendChild(el);
     });
   }
+
+  /* ---- exclude-big filter ---- */
+  var fbtn = document.getElementById('filter-big');
+  if (fbtn) fbtn.addEventListener('click', function () {
+    hideBig = !hideBig;
+    fbtn.setAttribute('aria-pressed', hideBig ? 'true' : 'false');
+    build();
+    replay();
+  });
 
   /* ---- init ---- */
   build();

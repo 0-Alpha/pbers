@@ -32,6 +32,10 @@ RETIRED = {
     "UCkAgeT1zuPieZCmlCl47htA",  # 緑玉
     "UCSmj0fs41NTFbDZYyEZsoQw",  # すこるある
     "UCJgwnMYDdnyskJ7zsSXuVfw",  # スターボール
+    "UC96ekumgW3ymYIz1T_3ZmVw",  # 引退
+    "UCksVp34yDXswzafRM_HfO0w",  # 引退
+    "UCSzLt1x0-MwXF35nP23nsVA",  # 引退
+    "UCvf-UiLQzKEGKYoMvwCGYbA",  # 引退
 }
 
 # 指定の固定カラー(チャンネルID -> hex)
