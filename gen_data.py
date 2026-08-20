@@ -25,11 +25,31 @@ def milestone_label(metric, v):
         return "総再生数 %d万回 突破" % (v // 10000)
     return "投稿数 %d本 突破" % v
 
+# 引退者: データ取得・記録は続けるが、グラフ・一覧・ニュースには載せない
+RETIRED = {
+    "UCxtGe9mRTjabQjwvmhqc5nw",  # 引退募集
+    "UCH3w-77t9kRWVNqKwQPIq_A",  # リアイオ
+    "UCkAgeT1zuPieZCmlCl47htA",  # 緑玉
+    "UCSmj0fs41NTFbDZYyEZsoQw",  # すこるある
+    "UCJgwnMYDdnyskJ7zsSXuVfw",  # スターボール
+}
+
 # 指定の固定カラー(チャンネルID -> hex)
 FIXED = {
     "UCkjdTrE4hiJ4qNOV7NPGSSw": "#9b51e0",  # フヒフム
     "UCRCQ3G1d0DM2krO-Fx5LOuQ": "#eba864",  # みかんぼーる
     "UC6BwO1hK3hHd-Hr43jokcyg": "#2f80ed",  # 田中MID
+    "UC_qD8VahU0Fr3q1SKg6kYtg": "#e01e26",  # さとボール (b00008 の見やすい赤)
+    "UCnaMFejTyu396-R4GYhXD_Q": "#7a62d2",  # エッバ (紫)
+    "UC8BA486HqgHSLO82YlPNFfw": "#c62f2f",  # はなひに (さとに近い赤)
+    "UCxKNMaOOdi32HNUFTOCw-8w": "#e35d52",  # ナユ (赤系・コーラル)
+    "UCGo_IzKD2-TooYrTGFt2fDA": "#ecc233",  # ゆずボール (黄)
+    "UC9SB9xRrmdZ9Jt0aXkWuCOg": "#46b6e0",  # BALL420 (水色)
+    "UCajUGvWXtYUcTHD3E3y138w": "#40a86a",  # かにたる (緑)
+    "UC-fbc__tWFtZSnyBSvTP7vg": "#8f2f2f",  # Yukkuri ball (赤系・暗)
+    "UC0kY7Nwjt8qkErtdxl3iuIw": "#b5382f",  # 日本ボール (赤系・レンガ)
+    "UCVxwV9hTI2DVS0exkZ-Mqww": "#3a72d6",  # 作 (青)
+    "UCVYMXYU6j0M5Gj1xwywKDyg": "#db4f57",  # 新規 (赤系・ローズ)
 }
 
 def hsl(h, s, l):
@@ -44,7 +64,8 @@ def vids(label):
 
 def main():
     data = json.load(open(BASE + "/data.json", encoding="utf-8"))
-    order = sorted(data, key=lambda x: (x.get("subs") or 0), reverse=True)
+    shown = [d for d in data if d["id"] not in RETIRED]   # 引退者はサイトに載せない
+    order = sorted(shown, key=lambda x: (x.get("subs") or 0), reverse=True)
 
     colors, pi = {}, 0
     for d in order:
@@ -91,6 +112,8 @@ def build_news(colors):
     by_date = {d.isoformat(): [] for d in window}
 
     for cid, dmap in series.items():
+        if cid in RETIRED:            # 引退者はニュースに載せない
+            continue
         dates = sorted(dmap.keys())
         for idx, dt in enumerate(dates):
             if dt not in wstr or idx == 0:

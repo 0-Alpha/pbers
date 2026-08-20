@@ -27,8 +27,14 @@ python gen_data.py   # data.json -> assets/data.js(固有色つきの表示用�
 ```
 
 チャンネルを追加/削除する場合は `channels.txt` を編集してから上記を実行する。
-固定カラー(フヒフム/みかんぼーる/田中MID)は `gen_data.py` の `FIXED` で管理。
+チャンネル固有カラーは `gen_data.py` の `FIXED`(ID→hex)で管理。未指定は自動配色。
 更新日(`data.js` の `PBERS_UPDATED`)は日本時間の当日を自動設定。
+
+### 引退者の扱い
+
+`gen_data.py` の `RETIRED`(チャンネルID集合)に入れたチャンネルは、
+**データ取得・`history.csv` への記録は続けるが、グラフ・チャンネル一覧・ニュースには載せない**
+(`data.js` と `news.js` から除外)。復帰時は `RETIRED` から外すだけでよい。
 
 ## 自動記録(GitHub Actions)
 
