@@ -262,8 +262,31 @@
     sc.addEventListener('pointercancel', end);
   }
 
+  /* ---- news (milestones over the last 7 days) ---- */
+  function renderNews() {
+    var wrap = document.getElementById('news-list');
+    if (!wrap) return;
+    var NEWS = window.PBERS_NEWS || [];
+    wrap.innerHTML = '';
+    NEWS.forEach(function (day) {
+      var el = document.createElement('div');
+      el.className = 'news-day';
+      var items = day.items && day.items.length
+        ? day.items.map(function (n) {
+            return '<div class="news-item">' +
+              '<span class="dot" style="background:' + n.color + '"></span>' +
+              '<span class="ml"><span class="nm" style="color:' + n.color + '">' + esc(n.name) + '</span> が ' + esc(n.label) + '</span>' +
+            '</div>';
+          }).join('')
+        : '<span class="news-none">特になし</span>';
+      el.innerHTML = '<div class="news-date">' + esc(day.label) + '</div><div class="news-items">' + items + '</div>';
+      wrap.appendChild(el);
+    });
+  }
+
   /* ---- init ---- */
   build();
+  renderNews();
   setupDonutHover();
   setupColScroll();
   moveInd(document.querySelector('.tg.on'));

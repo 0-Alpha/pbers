@@ -1,5 +1,5 @@
-# local preview bundle (generated for review, not part of the site)
-_preview_standalone.html
+# local preview bundles (generated for review, not part of the site)
+_preview*.html
 
 # OS / editor cruft
 Thumbs.db
