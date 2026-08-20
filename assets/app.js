@@ -46,8 +46,9 @@
       dcCap = document.getElementById('dc-cap'), dcPct = document.getElementById('dc-pct');
 
   var R = 76, SW = 30, C = 2 * Math.PI * R, GAP = 0.006 * C, MAXBAR = 250;
+  var TOPD = 30, OTHER_COLOR = '#4c4c4c';   // donut shows top 30 + "その他"
   var circles = [], chips = [], colEls = [], colBars = [];
-  var sliceStart = [], sliceFrac = [];   // cumulative fractions for angle hit-testing
+  var sliceStart = [], sliceFrac = [], donutSegs = [], otherSeg = null;
 
   /* ---- center overlay ---- */
   function showTotal() {
@@ -65,13 +66,34 @@
     dcCap.textContent = METRICS[metric].ccap;
     dcPct.textContent = total ? (val(d) / total * 100).toFixed(1) + '%' : '';
   }
+  function showOther() {
+    if (!otherSeg) return;
+    dcName.textContent = 'その他';
+    fitNum(dcNum, jp(otherSeg.value) + METRICS[metric].unit);
+    dcNum.style.color = '#c9c5c2';
+    dcCap.textContent = otherSeg.count + ' channels';
+    dcPct.textContent = total ? (otherSeg.value / total * 100).toFixed(1) + '%' : '';
+  }
 
-  /* ---- shared hover focus ---- */
+  /* ---- shared hover focus (i = index into DATA) ---- */
   function focus(i) {
-    circles.forEach(function (c, j) { c.style.opacity = j === i ? '1' : '0.25'; c.setAttribute('stroke-width', j === i ? SW + 8 : SW); });
+    circles.forEach(function (c, k) {
+      var s = donutSegs[k];
+      var on = s.type === 'ch' ? s.idx === i : i >= TOPD;   // channel is its own slice, or inside "その他"
+      c.style.opacity = on ? '1' : '0.25'; c.setAttribute('stroke-width', on ? SW + 8 : SW);
+    });
     chips.forEach(function (ch, j) { ch.classList.toggle('dim', j !== i); });
     colEls.forEach(function (co, j) { co.style.opacity = j === i ? '1' : '0.4'; });
     showChannel(i);
+  }
+  function focusOther() {
+    circles.forEach(function (c, k) {
+      var on = donutSegs[k].type === 'other';
+      c.style.opacity = on ? '1' : '0.25'; c.setAttribute('stroke-width', on ? SW + 8 : SW);
+    });
+    chips.forEach(function (ch, j) { ch.classList.toggle('dim', j < TOPD); });
+    colEls.forEach(function (co, j) { co.style.opacity = j < TOPD ? '0.4' : '1'; });
+    showOther();
   }
   function unfocus() {
     circles.forEach(function (c) { c.style.opacity = '1'; c.setAttribute('stroke-width', SW); });
@@ -91,19 +113,27 @@
     document.getElementById('total').innerHTML = fmt(total) + '<span class="u">' + METRICS[metric].unit + '</span>';
     document.getElementById('total-man').textContent = jp(total) + METRICS[metric].unit;
 
-    /* donut (hover is handled at stage level by angle — see setupDonutHover) */
-    svg.innerHTML = ''; circles = []; sliceStart = []; sliceFrac = []; var acc = 0;
-    DATA.forEach(function (d, i) {
-      var frac = total ? val(d) / total : 0;
+    /* donut: top 30 individual + "その他" aggregate (hover via setupDonutHover) */
+    svg.innerHTML = ''; circles = []; sliceStart = []; sliceFrac = []; donutSegs = []; otherSeg = null;
+    var segs = [];
+    DATA.slice(0, TOPD).forEach(function (d, i) { segs.push({ type: 'ch', idx: i, value: val(d), color: d.color }); });
+    var rest = DATA.slice(TOPD);
+    if (rest.length) {
+      otherSeg = { type: 'other', value: rest.reduce(function (a, d) { return a + val(d); }, 0), color: OTHER_COLOR, count: rest.length };
+      segs.push(otherSeg);
+    }
+    var acc = 0;
+    segs.forEach(function (sg) {
+      var frac = total ? sg.value / total : 0;
       var len = Math.max(frac * C - GAP, 0);
       var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       c.setAttribute('cx', 100); c.setAttribute('cy', 100); c.setAttribute('r', R);
-      c.setAttribute('fill', 'none'); c.setAttribute('stroke', d.color); c.setAttribute('stroke-width', SW);
+      c.setAttribute('fill', 'none'); c.setAttribute('stroke', sg.color); c.setAttribute('stroke-width', SW);
       c.setAttribute('stroke-dasharray', '0 ' + C); c.setAttribute('stroke-dashoffset', -acc * C);
       c.style.transition = 'stroke-dasharray .9s cubic-bezier(.22,1,.36,1), opacity .2s ease, stroke-width .2s ease';
       c.style.pointerEvents = 'none';
       c.dataset.len = len;
-      svg.appendChild(c); circles.push(c);
+      svg.appendChild(c); circles.push(c); donutSegs.push(sg);
       sliceStart.push(acc); sliceFrac.push(frac); acc += frac;
     });
 
@@ -236,7 +266,12 @@
       for (var i = 0; i < sliceFrac.length; i++) {
         if (sliceFrac[i] > 0 && frac >= sliceStart[i] && frac < sliceStart[i] + sliceFrac[i]) { hit = i; break; }
       }
-      if (hit !== cur) { cur = hit; hit === -1 ? unfocus() : focus(hit); }
+      if (hit !== cur) {
+        cur = hit;
+        if (hit === -1) unfocus();
+        else if (donutSegs[hit].type === 'other') focusOther();
+        else focus(donutSegs[hit].idx);
+      }
     }
     stage.addEventListener('mousemove', at);
     stage.addEventListener('mouseleave', function () { cur = -1; unfocus(); });
