@@ -101,9 +101,9 @@ window.PBERS_DATA = [
   {
     "name": "ゆずボール🎣",
     "subs": 34400,
-    "views": 16835927,
+    "views": 16856769,
     "subsLabel": "チャンネル登録者数 3.44万人",
-    "viewsLabel": "16,835,927回視聴",
+    "viewsLabel": "16,856,769回視聴",
     "videos": 193,
     "url": "https://www.youtube.com/channel/UCGo_IzKD2-TooYrTGFt2fDA",
     "avatar": "https://yt3.googleusercontent.com/88pDjPAKENvTaKmGmwXqEHlWts-pFETX_IXmcQRIZ7mP46T-VX3O76ph6QOS1S25WKgpCE0EP68=s900-c-k-c0x00ffffff-no-rj",
@@ -363,4 +363,4 @@ window.PBERS_DATA = [
     "color": "#74cc3e"
   }
 ];
-window.PBERS_UPDATED = "2026-08-20";
+window.PBERS_UPDATED = "2026-08-21";

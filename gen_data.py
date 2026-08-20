@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-"""data.json -> assets/data.js (登録者数・総再生数・固有色つき)"""
-import json, colorsys, re
+"""data.json -> assets/data.js (登録者数・総再生数・投稿数・固有色つき)"""
+import json, colorsys, re, os, datetime
 
-BASE = "D:/aPB\u7528\u30d5\u30a1\u30a4\u30eb/movie/!tool/pbers"
-UPDATED = "2026-08-20"
+BASE = os.path.dirname(os.path.abspath(__file__))   # works on Windows and on CI (Linux)
+# 更新日は日本時間の当日
+UPDATED = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).strftime("%Y-%m-%d")
 
 # 指定の固定カラー(チャンネルID -> hex)
 FIXED = {

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-import urllib.request, re, json, time, html, sys
+import urllib.request, re, json, time, html, sys, os
 
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-BASE = "D:/aPB\u7528\u30d5\u30a1\u30a4\u30eb/movie/!tool/pbers"
+BASE = os.path.dirname(os.path.abspath(__file__))   # works on Windows and on CI (Linux)
 
 def fetch(url, tries=3):
     for i in range(tries):
@@ -38,6 +38,13 @@ def parse_views(label):
     m = re.search(r'([\d,]+)', label)
     return int(m.group(1).replace(",", "")) if m else None
 
+def parse_videos(label):
+    # label like "918 \u672c\u306e\u52d5\u753b" or "918 videos"
+    if not label:
+        return None
+    m = re.search(r'([\d,]+)', label)
+    return int(m.group(1).replace(",", "")) if m else None
+
 def main():
     with open(BASE + "/channels.txt", encoding="utf-8") as f:
         urls = [l.strip() for l in f if l.strip()]
@@ -65,11 +72,12 @@ def main():
         avatar = av_m.group(1) if av_m else ""
         subs = parse_subs(subs_label)
         views = parse_views(views_label)
+        videos = parse_videos(videos_label)
         out.append({"id": cid, "url": url, "name": name,
                     "subsLabel": subs_label, "subs": subs,
                     "viewsLabel": views_label, "views": views,
-                    "videosLabel": videos_label, "avatar": avatar})
-        sys.stderr.write("%-28s subs=%-9s views=%s\n" % (name[:28], subs, views))
+                    "videosLabel": videos_label, "videos": videos, "avatar": avatar})
+        sys.stderr.write("%-24s subs=%-8s views=%-11s videos=%s\n" % (name[:24], subs, views, videos))
         time.sleep(0.5)
     with open(BASE + "/data.json", "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)

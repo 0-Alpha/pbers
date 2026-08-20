@@ -12,19 +12,32 @@ YouTubeチャンネルの登録者数を集計し、ランキング(棒グラフ
 | `assets/app.js` | 棒グラフ・円グラフ・一覧の描画 |
 | `assets/data.js` | 表示用データ(自動生成) |
 | `channels.txt` | 集計対象チャンネルURL一覧 |
-| `fetch.py` | 各チャンネルの登録者数を取得して `data.json` を出力 |
-| `data.json` | 取得結果(生データ) |
+| `fetch.py` | 各チャンネルの登録者数・総再生数・投稿数を取得して `data.json` を出力 |
+| `data.json` | 取得結果(最新スナップショット・毎回上書き) |
+| `record.py` | `data.json` の当日分を `history.csv` に追記(蓄積) |
+| `history.csv` | **日次の記録(上書きせず蓄積)**。列: date, id, name, subs, views, videos |
+| `.github/workflows/daily.yml` | 毎日 JST 0時に自動取得・記録・push |
 
 ## データ更新の手順
 
 ```bash
-python fetch.py      # channels.txt を読み、登録者数・総再生数を data.json に保存
+python fetch.py      # channels.txt を読み、登録者数・総再生数・投稿数を data.json に保存
+python record.py     # 当日分を history.csv に追記(既に当日分があればスキップ)
 python gen_data.py   # data.json -> assets/data.js(固有色つきの表示用データ)
 ```
 
 チャンネルを追加/削除する場合は `channels.txt` を編集してから上記を実行する。
 固定カラー(フヒフム/みかんぼーる/田中MID)は `gen_data.py` の `FIXED` で管理。
-更新日は `gen_data.py` の `UPDATED` を変更する。
+更新日(`data.js` の `PBERS_UPDATED`)は日本時間の当日を自動設定。
+
+## 自動記録(GitHub Actions)
+
+`.github/workflows/daily.yml` が **毎日 15:00 UTC(= JST 0時)** に上記3コマンドを実行し、
+`history.csv` に1日1行ずつ蓄積して push する(`workflow_dispatch` で手動実行も可)。
+`history.csv` は追記のみで**過去の記録は上書きしない**。同じ日付が既にあれば追記しない。
+
+> Cloudflare Pages を GitHub 連携にしている場合、この毎日の push で自動再デプロイされる。
+> Direct Upload の場合は別途アップロードが必要。
 
 ## 表示モード
 

@@ -1,0 +1,44 @@
+name: Daily stats
+
+on:
+  schedule:
+    # 15:00 UTC = 00:00 JST（毎日）。GitHub側の混雑で数十分ずれる場合があります。
+    - cron: '0 15 * * *'
+  workflow_dispatch:        # 手動実行も可
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-stats
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONUTF8: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch stats, append history, rebuild data.js
+        run: |
+          python fetch.py
+          python record.py
+          python gen_data.py
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Daily stats: $(TZ=Asia/Tokyo date +'%Y-%m-%d')"
+            git push
+          fi
