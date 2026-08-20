@@ -312,7 +312,7 @@
       var items = day.items && day.items.length
         ? day.items.map(function (n) {
             return '<div class="news-item">' +
-              '<span class="dot" style="background:' + n.color + '"></span>' +
+              (n.icon ? '<span class="ico">' + n.icon + '</span>' : '<span class="dot" style="background:' + n.color + '"></span>') +
               '<span class="ml"><span class="nm" style="color:' + n.color + '">' + esc(n.name) + '</span> が ' + esc(n.label) + '</span>' +
             '</div>';
           }).join('')

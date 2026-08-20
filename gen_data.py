@@ -14,6 +14,7 @@ STEPS = {
     "views":  (10000000, "総再生数"),
     "videos": (100,      "投稿数"),
 }
+METRICWORD = {"subs": "登録者数", "views": "総再生数", "videos": "投稿数"}
 WD = ["月", "火", "水", "木", "金", "土", "日"]  # date.weekday(): Mon=0
 
 def milestone_label(metric, v):
@@ -112,33 +113,54 @@ def build_news(colors):
 
     today = datetime.datetime.now(JST).date()
     window = [today - datetime.timedelta(days=i) for i in range(7)]   # 当日〜6日前
-    wstr = set(d.isoformat() for d in window)
     by_date = {d.isoformat(): [] for d in window}
 
-    for cid, dmap in series.items():
-        if cid in RETIRED:            # 引退者はニュースに載せない
+    shown = set(colors.keys())                          # 引退者以外
+    all_dates = sorted({d for m in series.values() for d in m})
+    prev_of = {all_dates[i]: all_dates[i - 1] for i in range(1, len(all_dates))}
+
+    def gv(cid, d, metric):
+        rec = series.get(cid, {}).get(d)
+        return rec[metric] if rec else None
+
+    for D in sorted(by_date.keys()):
+        if D not in prev_of:                            # 前日がなければ比較不可
             continue
-        dates = sorted(dmap.keys())
-        for idx, dt in enumerate(dates):
-            if dt not in wstr or idx == 0:
-                continue
-            prev = dates[idx - 1]                      # 直前の記録日
-            for metric, (step, _label) in STEPS.items():
-                cur, pv = dmap[dt][metric], dmap[prev][metric]
+        P = prev_of[D]
+        for metric in STEPS:
+            step = STEPS[metric][0]
+            # (1) マイルストーン突破
+            for cid in shown:
+                cur, pv = gv(cid, D, metric), gv(cid, P, metric)
                 if cur is None or pv is None:
                     continue
-                if cur // step > pv // step:            # 刻みを跨いだ
-                    reached = (cur // step) * step      # 到達した最上位のキリ番
-                    by_date[dt].append({
-                        "name": names[cid], "color": colors.get(cid, "#8d8986"),
-                        "kind": metric, "label": milestone_label(metric, reached),
-                        "value": reached,
+                if cur // step > pv // step:
+                    reached = (cur // step) * step
+                    by_date[D].append({
+                        "type": "milestone", "kind": metric, "name": names[cid],
+                        "color": colors[cid], "icon": "🎉",
+                        "label": milestone_label(metric, reached), "value": reached,
                     })
+            # (2) 追い越し（Aが前日はBの下、当日はBの上）
+            elig = [c for c in shown if gv(c, D, metric) is not None and gv(c, P, metric) is not None]
+            for a in elig:
+                ca, pa = gv(a, D, metric), gv(a, P, metric)
+                for b in elig:
+                    if a == b:
+                        continue
+                    if pa < gv(b, P, metric) and ca > gv(b, D, metric):
+                        by_date[D].append({
+                            "type": "overtake", "kind": metric, "name": names[a],
+                            "color": colors[a], "icon": "⤴️",
+                            "label": "%sで %s を追い越し" % (METRICWORD[metric], names[b]),
+                            "value": ca,
+                        })
 
-    order = {"subs": 0, "views": 1, "videos": 2}
+    korder = {"subs": 0, "views": 1, "videos": 2}
+    torder = {"milestone": 0, "overtake": 1}
     news = []
     for d in sorted(by_date.keys(), reverse=True):     # 新しい日が上
-        items = sorted(by_date[d], key=lambda x: (order[x["kind"]], -x["value"]))
+        items = sorted(by_date[d], key=lambda x: (torder[x["type"]], korder[x["kind"]], -x["value"]))
         dd = datetime.date.fromisoformat(d)
         news.append({"date": d, "label": "%d月%d日(%s)" % (dd.month, dd.day, WD[dd.weekday()]), "items": items})
 

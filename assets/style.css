@@ -164,6 +164,7 @@ section.block{padding:46px 0}
 .news-items{display:flex;flex-direction:column;gap:9px;min-width:0}
 .news-item{display:flex;align-items:baseline;gap:10px;font-size:14px;line-height:1.5}
 .news-item .dot{width:9px;height:9px;border-radius:50%;flex:none;transform:translateY(1px)}
+.news-item .ico{flex:none;font-size:14px;line-height:1;width:18px;text-align:center}
 .news-item .nm{font-weight:700}
 .news-item .ml{color:var(--text)}
 .news-item .ml b{font-family:var(--num);font-weight:800}
