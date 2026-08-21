@@ -19,10 +19,12 @@
 
   /* ---- formatting ---- */
   function fmt(n) { return n.toLocaleString('en-US'); }
+  // 3 significant figures: 1万〜10万 は小数2桁(例 2.34万), 10万〜100万 は1桁(例 38.4万)
+  function sig3(x) { var dec = x < 10 ? 2 : (x < 100 ? 1 : 0); return parseFloat(x.toFixed(dec)).toString(); }
   function jp(n) {
     if (n == null) return '—';
-    if (n >= 1e8) { var o = n / 1e8; return (o >= 100 ? Math.round(o) : o.toFixed(o % 1 ? 1 : 0)) + '億'; }
-    if (n >= 1e4) { var m = n / 1e4; return (m >= 100 ? Math.round(m) : m.toFixed(m % 1 ? 1 : 0)) + '万'; }
+    if (n >= 1e8) return sig3(n / 1e8) + '億';
+    if (n >= 1e4) return sig3(n / 1e4) + '万';
     return fmt(n);
   }
   function val(d) { return d[metric] || 0; }
