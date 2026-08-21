@@ -229,7 +229,7 @@
   }
 
   /* ---- toggle wiring ---- */
-  var tgBtns = Array.prototype.slice.call(document.querySelectorAll('.tg'));
+  var tgBtns = Array.prototype.slice.call(document.querySelectorAll('#toggle .tg'));
   var ind = document.getElementById('tg-ind');
   function moveInd(btn) { ind.style.left = btn.offsetLeft + 'px'; ind.style.width = btn.offsetWidth + 'px'; }
   tgBtns.forEach(function (btn) {
@@ -272,9 +272,9 @@
     stage.addEventListener('mouseleave', function () { cur = -1; unfocus(); });
   }
 
-  /* ---- easier horizontal scroll for the column chart (wheel + drag) ---- */
-  function setupColScroll() {
-    var sc = document.getElementById('col-scroll');
+  /* ---- easier horizontal scroll for column-style charts (wheel + drag) ---- */
+  function setupColScroll() { ['col-scroll', 'grow-scroll'].forEach(function (id) { var el = document.getElementById(id); if (el) setupScroll(el); }); }
+  function setupScroll(sc) {
     sc.addEventListener('wheel', function (e) {
       if (sc.scrollWidth <= sc.clientWidth) return;
       var d = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
@@ -345,32 +345,56 @@
 
   /* ---- growth ranking (increase over the available window) ---- */
   function shortDate(s) { if (!s) return ''; var p = s.split('-'); return (+p[1]) + '/' + (+p[2]); }
+  var GROW_H = 270;   // px, plot height (shared up+down range)
   function renderGrowth() {
     var host = document.getElementById('grow-list'); if (!host) return;
     var note = document.getElementById('growth-span');
+    var hint = document.getElementById('grow-hint');
     var span = GROWTH.span || { days: 0 };
     var list = GROWTH[gmetric] || [];
     if (!span.days || !list.length) {
       if (note) note.textContent = '';
+      if (hint) hint.style.display = 'none';
       host.innerHTML = '<div class="grow-empty">成長ランキングは履歴が2日分たまると表示されます（明日以降に自動反映）。</div>';
       return;
     }
+    if (hint) hint.style.display = '';
     if (note) note.textContent = '過去' + span.days + '日間（' + shortDate(span.from) + '→' + shortDate(span.to) + '）の増減';
-    var max = 1; list.forEach(function (x) { if (Math.abs(x.delta) > max) max = Math.abs(x.delta); });
+
+    var maxUp = 0, maxDown = 0;
+    list.forEach(function (x) { if (x.delta > maxUp) maxUp = x.delta; if (-x.delta > maxDown) maxDown = -x.delta; });
+    var range = (maxUp + maxDown) || 1;
+    var perPx = GROW_H / range;
+    var baseFromBottom = maxDown * perPx;     // zero-line height from the plot bottom
+    var baseFromTop = GROW_H - baseFromBottom;
+
     host.innerHTML = '';
     list.forEach(function (x, i) {
       var dir = x.delta > 0 ? 'up' : (x.delta < 0 ? 'down' : 'flat');
-      var arw = x.delta > 0 ? '↑' : (x.delta < 0 ? '↓' : '→');
+      var barPx = Math.abs(x.delta) * perPx;
       var sign = x.delta > 0 ? '+' : (x.delta < 0 ? '−' : '±');
-      var row = document.createElement('div'); row.className = 'grow-row';
-      row.innerHTML =
-        '<div class="grow-rank num">' + (i + 1) + '</div>' +
-        '<div class="grow-main">' +
-          '<div class="grow-label"><span class="grow-name">' + esc(x.name) + '</span>' +
-          '<span class="grow-delta ' + dir + '"><span class="arw">' + arw + '</span>' + sign + fmt(Math.abs(x.delta)) + GUNIT[gmetric] + '</span></div>' +
-          '<div class="grow-track"><div class="grow-fill ' + dir + '" data-w="' + (Math.abs(x.delta) / max * 100) + '"></div></div>' +
-        '</div>';
-      host.appendChild(row);
+      var col = document.createElement('div'); col.className = 'grow-col';
+
+      var bar = '';
+      if (dir === 'up') {
+        bar = '<div class="gbar up" data-h="' + barPx + '" style="bottom:' + baseFromBottom + 'px">' +
+                '<div class="ghead up"></div><div class="gshaft"></div></div>' +
+              '<div class="gval up" style="bottom:' + (baseFromBottom + barPx + 6) + 'px">' + sign + fmt(x.delta) + GUNIT[gmetric] + '</div>';
+      } else if (dir === 'down') {
+        bar = '<div class="gbar down" data-h="' + barPx + '" style="top:' + baseFromTop + 'px">' +
+                '<div class="gshaft"></div><div class="ghead down"></div></div>' +
+              '<div class="gval down" style="top:' + (baseFromTop + barPx + 6) + 'px">' + sign + fmt(Math.abs(x.delta)) + GUNIT[gmetric] + '</div>';
+      } else {
+        bar = '<div class="gval flat" style="bottom:' + (baseFromBottom + 6) + 'px">±0' + GUNIT[gmetric] + '</div>';
+      }
+
+      col.innerHTML =
+        '<div class="grow-plot">' +
+          '<div class="gbaseline" style="bottom:' + baseFromBottom + 'px"></div>' + bar +
+        '</div>' +
+        '<div class="grow-foot"><div class="grow-crank num">' + (i + 1) + '</div>' +
+        '<div class="grow-cname">' + esc(x.name) + '</div></div>';
+      host.appendChild(col);
     });
   }
   function playGrowth() {
@@ -378,9 +402,11 @@
     var on = tog && tog.querySelector('.tg.on');
     var gind = document.getElementById('gtg-ind');
     if (on && gind) { gind.style.left = on.offsetLeft + 'px'; gind.style.width = on.offsetWidth + 'px'; }
-    document.querySelectorAll('#grow-list .grow-fill').forEach(function (f, k) {
-      f.style.transitionDelay = (k * 0.02) + 's'; f.style.width = (f.dataset.w || 0) + '%';
+    var cols = document.querySelectorAll('#grow-list .grow-col');
+    document.querySelectorAll('#grow-list .gbar').forEach(function (b, k) {
+      b.style.transitionDelay = (k * 0.02) + 's'; b.style.height = (b.dataset.h || 0) + 'px';
     });
+    cols.forEach(function (c) { c.classList.add('shown'); });
   }
   function setupGrowth() {
     var gtabs = [].slice.call(document.querySelectorAll('#growth-toggle .tg'));
@@ -453,8 +479,8 @@
   setupTabs();
   setupDonutHover();
   setupColScroll();
-  moveInd(document.querySelector('.tg.on'));
-  window.addEventListener('resize', function () { moveInd(document.querySelector('.tg.on')); showTotal(); });
+  moveInd(document.querySelector('#toggle .tg.on'));
+  window.addEventListener('resize', function () { moveInd(document.querySelector('#toggle .tg.on')); showTotal(); });
   observe(document.querySelector('.donut-stage'), playDonut);
   observe(document.getElementById('col-scroll'), playCols);   // observe the viewport-width container, not the wide flex
 })();

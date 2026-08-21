@@ -165,24 +165,30 @@ section.block{padding:46px 0}
 .card .go{color:var(--muted-2);font-family:var(--num);flex:none;align-self:flex-start;transition:color .16s}
 .card:hover .go{color:var(--text)}
 
-/* ---------- growth ranking ---------- */
-.grow{display:flex;flex-direction:column;gap:13px;max-width:840px}
+/* ---------- growth ranking (vertical arrow bars, diverging from baseline) ---------- */
 .grow-empty{color:var(--muted);font-size:14px;padding:10px 0}
-.grow-row{display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:center}
-.grow-rank{font-family:var(--num);font-weight:900;font-size:16px;color:var(--muted-2);text-align:right}
-.grow-row:nth-child(-n+3) .grow-rank{color:var(--text)}
-.grow-main{min-width:0}
-.grow-label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
-.grow-name{font-size:13.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.grow-delta{font-family:var(--num);font-weight:800;font-size:14px;flex:none;display:inline-flex;align-items:center;gap:5px}
-.grow-delta.up{color:#39c07a}
-.grow-delta.down{color:#e0574c}
-.grow-delta.flat{color:var(--muted-2)}
-.grow-delta .arw{font-size:15px;line-height:1}
-.grow-track{height:13px;background:#242424;border-radius:3px;overflow:hidden}
-.grow-fill{height:100%;width:0;border-radius:3px;transition:width .9s cubic-bezier(.22,1,.36,1)}
-.grow-fill.up{background:linear-gradient(90deg,#268a55,#39c07a);box-shadow:0 0 12px rgba(57,192,122,.35) inset}
-.grow-fill.down{background:linear-gradient(90deg,#a83a34,#e0574c)}
+.grow-chart{display:flex;align-items:flex-end;gap:16px;min-width:min-content;padding-top:26px}
+.grow-col{display:flex;flex-direction:column;align-items:center;flex:1 0 56px;max-width:84px}
+.grow-plot{position:relative;width:100%;height:270px}
+.gbaseline{position:absolute;left:-6px;right:-6px;height:2px;background:var(--line-2);border-radius:2px}
+.gbar{position:absolute;left:0;right:0;margin:0 auto;width:100%;display:flex;flex-direction:column;align-items:center;
+  height:0;overflow:visible;transition:height .8s cubic-bezier(.22,1,.36,1)}
+.gshaft{width:13px;flex:1 1 auto;min-height:0}
+.gbar.up .gshaft{background:linear-gradient(180deg,#4ad088,#268a55)}
+.gbar.down .gshaft{background:linear-gradient(180deg,#e0574c,#a83a34)}
+.ghead{width:0;height:0;flex:none}
+.ghead.up{border-left:11px solid transparent;border-right:11px solid transparent;border-bottom:13px solid #4ad088}
+.ghead.down{border-left:11px solid transparent;border-right:11px solid transparent;border-top:13px solid #e0574c}
+.gval{position:absolute;left:-6px;right:-6px;text-align:center;font-family:var(--num);font-weight:800;font-size:12px;
+  white-space:nowrap;opacity:0;transition:opacity .3s ease .35s}
+.grow-col.shown .gval{opacity:1}
+.gval.up{color:#4ad088}
+.gval.down{color:#e0574c}
+.gval.flat{color:var(--muted)}
+.grow-foot{margin-top:14px;display:flex;flex-direction:column;align-items:center;gap:6px;width:100%}
+.grow-crank{font-family:var(--num);font-weight:900;font-size:13px;color:var(--muted-2)}
+.grow-cname{font-size:11px;color:var(--muted);line-height:1.3;height:2.6em;overflow:hidden;text-align:center;width:100%;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word}
 
 /* "その他" card that jumps to the channel-list tab */
 .card.more-card{justify-content:center;text-align:center;color:var(--muted);font-family:var(--jp);font-weight:700;
