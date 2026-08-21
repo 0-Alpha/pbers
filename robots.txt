@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pbers.com/sitemap.xml
+Sitemap: https://pbers.pages.dev/sitemap.xml
