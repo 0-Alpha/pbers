@@ -464,9 +464,13 @@
     growth:    document.getElementById('view-growth'),
     channels:  document.getElementById('view-channels')
   };
+  var currentView = 'dashboard';
   function switchTab(v) {
+    if (!VIEWS[v]) v = 'dashboard';
+    currentView = v;
     document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x.dataset.view === v); });
     Object.keys(VIEWS).forEach(function (k) { if (VIEWS[k]) VIEWS[k].hidden = (k !== v); });
+    if (location.hash.slice(1) !== v) location.hash = v;   // reflect in the URL (#dashboard / #growth / #channels)
     window.scrollTo(0, 0);
     if (v === 'dashboard') replay();
     if (v === 'growth') playGrowth();
@@ -475,6 +479,12 @@
     document.querySelectorAll('.tab').forEach(function (t) {
       t.addEventListener('click', function () { switchTab(t.dataset.view); });
     });
+    window.addEventListener('hashchange', function () {
+      var v = location.hash.slice(1);
+      if (VIEWS[v] && v !== currentView) switchTab(v);
+    });
+    var initial = location.hash.slice(1);   // deep-link on load
+    if (VIEWS[initial] && initial !== 'dashboard') switchTab(initial);
   }
 
   /* ---- settings: genre visibility ---- */
