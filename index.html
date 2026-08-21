@@ -25,6 +25,7 @@
 <div class="tabs">
   <div class="wrap">
     <button class="tab on" data-view="dashboard">ダッシュボード</button>
+    <button class="tab" data-view="growth">成長</button>
     <button class="tab" data-view="channels">チャンネル一覧</button>
   </div>
 </div>
@@ -99,6 +100,27 @@
   </section>
 </main>
 
+<!-- GROWTH view -->
+<main id="view-growth" hidden>
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>成長ランキング <span class="en">Growth</span></h2>
+        <span class="note" id="growth-span"></span>
+      </div>
+      <div class="controls" style="justify-content:flex-start">
+        <div class="toggle" id="growth-toggle">
+          <button class="tg on" data-gm="subs">登録者</button>
+          <button class="tg" data-gm="views">総再生数</button>
+          <button class="tg" data-gm="videos">投稿数</button>
+          <span class="tg-ind" id="gtg-ind"></span>
+        </div>
+      </div>
+      <div class="grow" id="grow-list"></div>
+    </div>
+  </section>
+</main>
+
 <!-- CHANNELS (by-tier) view -->
 <main id="view-channels" hidden>
   <section class="block" style="padding-top:40px">
@@ -121,6 +143,7 @@
 
 <script src="assets/data.js"></script>
 <script src="assets/news.js"></script>
+<script src="assets/growth.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>

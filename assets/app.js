@@ -11,6 +11,9 @@
   var metric = 'subs';
   var hideBig = false;         // 登録者10万人以上を除外
   var BIG = 100000;
+  var gmetric = 'subs';        // 成長タブの指標
+  var GROWTH = window.PBERS_GROWTH || { span: { days: 0 }, subs: [], views: [], videos: [] };
+  var GUNIT = { subs: '人', views: '回', videos: '本' };
   var DATA = [];               // current sorted view
   var total = 0;
 
@@ -182,9 +185,17 @@
       cols.appendChild(col); colEls.push(col); colBars.push(col.querySelector('.col-bar'));
     });
 
-    /* directory */
+    /* directory: top 20 + "その他" card linking to the channel-list tab */
     grid.innerHTML = '';
-    DATA.forEach(function (d, i) { grid.appendChild(cardEl(d, i + 1)); });
+    var DIRTOP = 20;
+    DATA.slice(0, DIRTOP).forEach(function (d, i) { grid.appendChild(cardEl(d, i + 1)); });
+    if (DATA.length > DIRTOP) {
+      var more = document.createElement('a');
+      more.className = 'card more-card'; more.href = '#';
+      more.innerHTML = 'その他 ' + (DATA.length - DIRTOP) + '件を見る <span class="arrow">→</span>';
+      more.addEventListener('click', function (e) { e.preventDefault(); switchTab('channels'); });
+      grid.appendChild(more);
+    }
 
     showTotal();
   }
@@ -314,7 +325,8 @@
       { title: '10万人以上',   min: 100000 },
       { title: '5万〜10万人',  min: 50000, max: 100000 },
       { title: '3万〜5万人',   min: 30000, max: 50000 },
-      { title: '1万〜3万人',   min: 10000, max: 30000 },
+      { title: '2万〜3万人',   min: 20000, max: 30000 },
+      { title: '1万〜2万人',   min: 10000, max: 20000 },
       { title: '5000〜1万人',  min: 5000,  max: 10000 },
       { title: '5000人未満',   min: 0,     max: 5000 }
     ];
@@ -328,6 +340,57 @@
       var g = document.createElement('div'); g.className = 'grid';
       inb.forEach(function (d) { g.appendChild(cardEl(d, rankOf[d.url])); });
       band.appendChild(h); band.appendChild(g); host.appendChild(band);
+    });
+  }
+
+  /* ---- growth ranking (increase over the available window) ---- */
+  function shortDate(s) { if (!s) return ''; var p = s.split('-'); return (+p[1]) + '/' + (+p[2]); }
+  function renderGrowth() {
+    var host = document.getElementById('grow-list'); if (!host) return;
+    var note = document.getElementById('growth-span');
+    var span = GROWTH.span || { days: 0 };
+    var list = GROWTH[gmetric] || [];
+    if (!span.days || !list.length) {
+      if (note) note.textContent = '';
+      host.innerHTML = '<div class="grow-empty">成長ランキングは履歴が2日分たまると表示されます（明日以降に自動反映）。</div>';
+      return;
+    }
+    if (note) note.textContent = '過去' + span.days + '日間（' + shortDate(span.from) + '→' + shortDate(span.to) + '）の増減';
+    var max = 1; list.forEach(function (x) { if (Math.abs(x.delta) > max) max = Math.abs(x.delta); });
+    host.innerHTML = '';
+    list.forEach(function (x, i) {
+      var dir = x.delta > 0 ? 'up' : (x.delta < 0 ? 'down' : 'flat');
+      var arw = x.delta > 0 ? '↑' : (x.delta < 0 ? '↓' : '→');
+      var sign = x.delta > 0 ? '+' : (x.delta < 0 ? '−' : '±');
+      var row = document.createElement('div'); row.className = 'grow-row';
+      row.innerHTML =
+        '<div class="grow-rank num">' + (i + 1) + '</div>' +
+        '<div class="grow-main">' +
+          '<div class="grow-label"><span class="grow-name">' + esc(x.name) + '</span>' +
+          '<span class="grow-delta ' + dir + '"><span class="arw">' + arw + '</span>' + sign + fmt(Math.abs(x.delta)) + GUNIT[gmetric] + '</span></div>' +
+          '<div class="grow-track"><div class="grow-fill ' + dir + '" data-w="' + (Math.abs(x.delta) / max * 100) + '"></div></div>' +
+        '</div>';
+      host.appendChild(row);
+    });
+  }
+  function playGrowth() {
+    var tog = document.getElementById('growth-toggle');
+    var on = tog && tog.querySelector('.tg.on');
+    var gind = document.getElementById('gtg-ind');
+    if (on && gind) { gind.style.left = on.offsetLeft + 'px'; gind.style.width = on.offsetWidth + 'px'; }
+    document.querySelectorAll('#grow-list .grow-fill').forEach(function (f, k) {
+      f.style.transitionDelay = (k * 0.02) + 's'; f.style.width = (f.dataset.w || 0) + '%';
+    });
+  }
+  function setupGrowth() {
+    var gtabs = [].slice.call(document.querySelectorAll('#growth-toggle .tg'));
+    gtabs.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.dataset.gm === gmetric) return;
+        gmetric = b.dataset.gm;
+        gtabs.forEach(function (x) { x.classList.toggle('on', x === b); });
+        renderGrowth(); playGrowth();
+      });
     });
   }
 
@@ -362,18 +425,22 @@
     replay();
   });
 
-  /* ---- top tabs (dashboard / channels-by-tier) ---- */
+  /* ---- top tabs (dashboard / growth / channels) ---- */
+  var VIEWS = {
+    dashboard: document.getElementById('view-dashboard'),
+    growth:    document.getElementById('view-growth'),
+    channels:  document.getElementById('view-channels')
+  };
+  function switchTab(v) {
+    document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x.dataset.view === v); });
+    Object.keys(VIEWS).forEach(function (k) { if (VIEWS[k]) VIEWS[k].hidden = (k !== v); });
+    window.scrollTo(0, 0);
+    if (v === 'dashboard') replay();
+    if (v === 'growth') playGrowth();
+  }
   function setupTabs() {
-    var tabs = [].slice.call(document.querySelectorAll('.tab'));
-    var views = { dashboard: document.getElementById('view-dashboard'), channels: document.getElementById('view-channels') };
-    tabs.forEach(function (t) {
-      t.addEventListener('click', function () {
-        var v = t.dataset.view;
-        tabs.forEach(function (x) { x.classList.toggle('on', x === t); });
-        Object.keys(views).forEach(function (k) { if (views[k]) views[k].hidden = (k !== v); });
-        window.scrollTo(0, 0);
-        if (v === 'dashboard') replay();   // re-run chart animations after unhide
-      });
+    document.querySelectorAll('.tab').forEach(function (t) {
+      t.addEventListener('click', function () { switchTab(t.dataset.view); });
     });
   }
 
@@ -381,6 +448,8 @@
   build();
   renderNews();
   renderTiers();
+  renderGrowth();
+  setupGrowth();
   setupTabs();
   setupDonutHover();
   setupColScroll();

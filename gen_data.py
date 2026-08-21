@@ -95,6 +95,56 @@ def main():
     print("wrote assets/data.js (%d channels)" % len(out))
 
     build_news(colors)
+    build_growth(colors)
+
+def load_history():
+    path = BASE + "/history.csv"
+    series, names = {}, {}
+    if os.path.exists(path):
+        with open(path, encoding="utf-8", newline="") as f:
+            for row in csv.DictReader(f):
+                def num(x):
+                    x = (x or "").strip()
+                    return int(x) if x.lstrip("-").isdigit() else None
+                cid, d = row["id"], row["date"]
+                series.setdefault(cid, {})[d] = {
+                    "subs": num(row["subs"]), "views": num(row["views"]), "videos": num(row["videos"])
+                }
+                names[cid] = row["name"]
+    return series, names
+
+def build_growth(colors):
+    """直近7日（貯まっていなければある範囲）の増加数ランキングを growth.js に出力。"""
+    series, names = load_history()
+    shown = set(colors.keys())
+    all_dates = sorted({d for m in series.values() for d in m})
+    lo = (ASOF - datetime.timedelta(days=6)).isoformat()
+    hi = ASOF.isoformat()
+    win = [d for d in all_dates if lo <= d <= hi]
+
+    result = {"span": {"from": None, "to": None, "days": 0}, "subs": [], "views": [], "videos": []}
+    if win:
+        earliest, latest = win[0], win[-1]
+        span = (datetime.date.fromisoformat(latest) - datetime.date.fromisoformat(earliest)).days
+        result["span"] = {"from": earliest, "to": latest, "days": span}
+
+        def gv(cid, d, m):
+            rec = series.get(cid, {}).get(d)
+            return rec[m] if rec else None
+
+        for metric in ("subs", "views", "videos"):
+            arr = []
+            for cid in shown:
+                a, b = gv(cid, earliest, metric), gv(cid, latest, metric)
+                if a is None or b is None:
+                    continue
+                arr.append({"name": names[cid], "color": colors[cid], "delta": b - a, "latest": b})
+            arr.sort(key=lambda x: -x["delta"])
+            result[metric] = arr
+
+    with open(BASE + "/assets/growth.js", "w", encoding="utf-8") as f:
+        f.write("window.PBERS_GROWTH = " + json.dumps(result, ensure_ascii=False, indent=2) + ";\n")
+    print("wrote assets/growth.js (span %s days)" % result["span"]["days"])
 
 def build_news(colors):
     """history.csv から直近7日（当日含む）のマイルストーン突破を検出して news.js を出力。
