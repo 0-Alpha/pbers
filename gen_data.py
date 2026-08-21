@@ -38,6 +38,7 @@ RETIRED = {
     "UCksVp34yDXswzafRM_HfO0w",  # 引退
     "UCSzLt1x0-MwXF35nP23nsVA",  # 引退
     "UCvf-UiLQzKEGKYoMvwCGYbA",  # 引退
+    "UCPpw3ZMnEraWpMPSrwCzOog",  # 引退済み
 }
 
 # 指定の固定カラー(チャンネルID -> hex)

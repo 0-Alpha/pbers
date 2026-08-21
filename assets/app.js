@@ -5,8 +5,8 @@
   var UPDATED = window.PBERS_UPDATED || '';
 
   var METRICS = {
-    subs:  { key: 'subs',  unit: '人', cap: '合計登録者数 / Total Subscribers', ccap: 'Subscribers' },
-    views: { key: 'views', unit: '回', cap: '合計総再生数 / Total Views',        ccap: 'Total Views' }
+    subs:  { key: 'subs',  unit: '人', word: '登録者',   cap: '合計登録者数 / Total Subscribers', ccap: 'Subscribers' },
+    views: { key: 'views', unit: '回', word: '総再生数', cap: '合計総再生数 / Total Views',        ccap: 'Total Views' }
   };
   var metric = 'subs';
   var hideBig = false;         // 登録者10万人以上を除外
@@ -110,6 +110,7 @@
     var max = val(DATA[0]) || 1;
 
     setText('total-cap', METRICS[metric].cap);
+    setText('rank-title', METRICS[metric].word + 'ランキング');
     document.getElementById('total').innerHTML = fmt(total) + '<span class="u">' + METRICS[metric].unit + '</span>';
     document.getElementById('total-man').textContent = jp(total) + METRICS[metric].unit;
 
@@ -183,24 +184,7 @@
 
     /* directory */
     grid.innerHTML = '';
-    DATA.forEach(function (d, i) {
-      var a = document.createElement('a');
-      a.className = 'card'; a.href = d.url; a.target = '_blank'; a.rel = 'noopener';
-      a.style.borderColor = 'var(--line)';
-      a.addEventListener('mouseenter', function () { a.style.borderColor = d.color; });
-      a.addEventListener('mouseleave', function () { a.style.borderColor = 'var(--line)'; });
-      a.innerHTML =
-        '<span class="rk num">' + (i + 1) + '</span>' +
-        '<img class="av" loading="lazy" src="' + d.avatar + '" alt="" style="border-color:' + d.color + '" onerror="this.style.visibility=\'hidden\'">' +
-        '<span class="meta"><span class="cn">' + esc(d.name) + '</span>' +
-        '<span class="cstats">' +
-          '<span class="cstat"><i>登録者</i>' + (d.subs != null ? jp(d.subs) + '人' : '非公開') + '</span>' +
-          '<span class="cstat"><i>総再生</i>' + (d.views != null ? jp(d.views) + '回' : '非公開') + '</span>' +
-          '<span class="cstat"><i>投稿数</i>' + (d.videos != null ? fmt(d.videos) + '本' : '—') + '</span>' +
-        '</span></span>' +
-        '<span class="go">↗</span>';
-      grid.appendChild(a);
-    });
+    DATA.forEach(function (d, i) { grid.appendChild(cardEl(d, i + 1)); });
 
     showTotal();
   }
@@ -300,6 +284,53 @@
     sc.addEventListener('pointercancel', end);
   }
 
+  /* ---- channel card (used by directory + tier list) ---- */
+  function cardEl(d, rankNum) {
+    var a = document.createElement('a');
+    a.className = 'card'; a.href = d.url; a.target = '_blank'; a.rel = 'noopener';
+    a.style.borderColor = 'var(--line)';
+    a.addEventListener('mouseenter', function () { a.style.borderColor = d.color; });
+    a.addEventListener('mouseleave', function () { a.style.borderColor = 'var(--line)'; });
+    a.innerHTML =
+      '<span class="rk num">' + rankNum + '</span>' +
+      '<img class="av" loading="lazy" src="' + d.avatar + '" alt="" style="border-color:' + d.color + '" onerror="this.style.visibility=\'hidden\'">' +
+      '<span class="meta"><span class="cn">' + esc(d.name) + '</span>' +
+      '<span class="cstats">' +
+        '<span class="cstat"><i>登録者</i>' + (d.subs != null ? jp(d.subs) + '人' : '非公開') + '</span>' +
+        '<span class="cstat"><i>総再生</i>' + (d.views != null ? jp(d.views) + '回' : '非公開') + '</span>' +
+        '<span class="cstat"><i>投稿数</i>' + (d.videos != null ? fmt(d.videos) + '本' : '—') + '</span>' +
+      '</span></span>' +
+      '<span class="go">↗</span>';
+    return a;
+  }
+
+  /* ---- channels-by-tier view (subscriber bands) ---- */
+  function renderTiers() {
+    var host = document.getElementById('tiers');
+    if (!host) return;
+    var list = ALL.slice().sort(function (a, b) { return (b.subs || 0) - (a.subs || 0); });
+    var rankOf = {}; list.forEach(function (d, i) { rankOf[d.url] = i + 1; });
+    var bands = [
+      { title: '10万人以上',   min: 100000 },
+      { title: '5万〜10万人',  min: 50000, max: 100000 },
+      { title: '3万〜5万人',   min: 30000, max: 50000 },
+      { title: '1万〜3万人',   min: 10000, max: 30000 },
+      { title: '5000〜1万人',  min: 5000,  max: 10000 },
+      { title: '5000人未満',   min: 0,     max: 5000 }
+    ];
+    host.innerHTML = '';
+    bands.forEach(function (b) {
+      var inb = list.filter(function (d) { var s = d.subs || 0; return s >= b.min && (b.max == null || s < b.max); });
+      if (!inb.length) return;
+      var band = document.createElement('div'); band.className = 'tier-band';
+      var h = document.createElement('h3');
+      h.innerHTML = '<span class="bar"></span>' + b.title + '<span class="cnt">' + inb.length + ' ch</span>';
+      var g = document.createElement('div'); g.className = 'grid';
+      inb.forEach(function (d) { g.appendChild(cardEl(d, rankOf[d.url])); });
+      band.appendChild(h); band.appendChild(g); host.appendChild(band);
+    });
+  }
+
   /* ---- news (milestones over the last 7 days) ---- */
   function renderNews() {
     var wrap = document.getElementById('news-list');
@@ -331,9 +362,26 @@
     replay();
   });
 
+  /* ---- top tabs (dashboard / channels-by-tier) ---- */
+  function setupTabs() {
+    var tabs = [].slice.call(document.querySelectorAll('.tab'));
+    var views = { dashboard: document.getElementById('view-dashboard'), channels: document.getElementById('view-channels') };
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        var v = t.dataset.view;
+        tabs.forEach(function (x) { x.classList.toggle('on', x === t); });
+        Object.keys(views).forEach(function (k) { if (views[k]) views[k].hidden = (k !== v); });
+        window.scrollTo(0, 0);
+        if (v === 'dashboard') replay();   // re-run chart animations after unhide
+      });
+    });
+  }
+
   /* ---- init ---- */
   build();
   renderNews();
+  renderTiers();
+  setupTabs();
   setupDonutHover();
   setupColScroll();
   moveInd(document.querySelector('.tg.on'));

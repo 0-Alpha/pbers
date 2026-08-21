@@ -22,7 +22,14 @@
   </div>
 </header>
 
-<main>
+<div class="tabs">
+  <div class="wrap">
+    <button class="tab on" data-view="dashboard">ダッシュボード</button>
+    <button class="tab" data-view="channels">チャンネル一覧</button>
+  </div>
+</div>
+
+<main id="view-dashboard">
   <!-- HERO : total + giant donut -->
   <section class="hero">
     <div class="wrap">
@@ -61,7 +68,7 @@
   <section class="block" id="ranking">
     <div class="wrap">
       <div class="sec-head">
-        <h2>登録者ランキング <span class="en">Ranking</span></h2>
+        <h2><span id="rank-title">登録者ランキング</span> <span class="en">Ranking</span></h2>
         <span class="note">更新 <span id="updated"></span></span>
       </div>
       <div class="col-hint">↔ ドラッグ / ホイールで横スクロール</div>
@@ -88,6 +95,19 @@
         <span class="note">直近7日間のマイルストーン突破</span>
       </div>
       <div class="news" id="news-list"></div>
+    </div>
+  </section>
+</main>
+
+<!-- CHANNELS (by-tier) view -->
+<main id="view-channels" hidden>
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>チャンネル一覧 <span class="en">By Tier</span></h2>
+        <span class="note">登録者数の帯別 / クリックでYouTubeへ</span>
+      </div>
+      <div id="tiers"></div>
     </div>
   </section>
 </main>
