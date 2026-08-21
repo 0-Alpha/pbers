@@ -16,6 +16,21 @@ STEPS = {
     "videos": (100,      "投稿数"),
 }
 METRICWORD = {"subs": "登録者数", "views": "総再生数", "videos": "投稿数"}
+
+# ジャンル分け。未指定は通常のポーランドボーラー。
+DEFAULT_GENRE = "ポーランドボーラー"
+GENRE = {
+    "UCmzj8pO1YtKLmcmaMPf9wbQ": "ポーランドボーラーのようなもの",
+    "UCnZNY63Txhu4ot3l2lbicOA": "PBerer",
+}
+# 設定パネルの並び順と初期表示（通常のみ表示、その他は非表示）
+GENRES = [
+    {"label": DEFAULT_GENRE,                 "on": True},
+    {"label": "ポーランドボーラーのようなもの", "on": False},
+    {"label": "PBerer",                      "on": False},
+]
+def genre_of(cid):
+    return GENRE.get(cid, DEFAULT_GENRE)
 WD = ["月", "火", "水", "木", "金", "土", "日"]  # date.weekday(): Mon=0
 
 def milestone_label(metric, v):
@@ -86,11 +101,12 @@ def main():
         "name": d["name"], "subs": d.get("subs"), "views": d.get("views"),
         "subsLabel": d.get("subsLabel"), "viewsLabel": d.get("viewsLabel"),
         "videos": vids(d.get("videosLabel")), "url": d["url"],
-        "avatar": d["avatar"], "color": colors[d["id"]],
+        "avatar": d["avatar"], "color": colors[d["id"]], "genre": genre_of(d["id"]),
     } for d in order]
 
     with open(BASE + "/assets/data.js", "w", encoding="utf-8") as f:
         f.write("window.PBERS_DATA = " + json.dumps(out, ensure_ascii=False, indent=2) + ";\n")
+        f.write("window.PBERS_GENRES = " + json.dumps(GENRES, ensure_ascii=False) + ";\n")
         f.write('window.PBERS_UPDATED = "%s";\n' % UPDATED)
     print("wrote assets/data.js (%d channels)" % len(out))
 
@@ -138,7 +154,7 @@ def build_growth(colors):
                 a, b = gv(cid, earliest, metric), gv(cid, latest, metric)
                 if a is None or b is None:
                     continue
-                arr.append({"name": names[cid], "color": colors[cid], "delta": b - a, "latest": b})
+                arr.append({"name": names[cid], "color": colors[cid], "delta": b - a, "latest": b, "genre": genre_of(cid)})
             arr.sort(key=lambda x: -x["delta"])
             result[metric] = arr
 
@@ -189,7 +205,7 @@ def build_news(colors):
                     reached = (cur // step) * step
                     by_date[D].append({
                         "type": "milestone", "kind": metric, "name": names[cid],
-                        "color": colors[cid], "icon": "🎉",
+                        "color": colors[cid], "icon": "🎉", "genre": genre_of(cid),
                         "label": milestone_label(metric, reached), "value": reached,
                     })
             # (2) 追い越し（Aが前日はBの下、当日はBの上）
@@ -202,7 +218,7 @@ def build_news(colors):
                     if pa < gv(b, P, metric) and ca > gv(b, D, metric):
                         by_date[D].append({
                             "type": "overtake", "kind": metric, "name": names[a],
-                            "color": colors[a], "icon": "⤴️",
+                            "color": colors[a], "icon": "⤴️", "genre": genre_of(a),
                             "label": "%sで %s を追い越し" % (METRICWORD[metric], names[b]),
                             "value": ca,
                         })

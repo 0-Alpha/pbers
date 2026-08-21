@@ -14,6 +14,9 @@
   var gmetric = 'subs';        // 成長タブの指標
   var GROWTH = window.PBERS_GROWTH || { span: { days: 0 }, subs: [], views: [], videos: [] };
   var GUNIT = { subs: '人', views: '回', videos: '本' };
+  var GENRES = window.PBERS_GENRES || [];
+  var genreOn = {}; GENRES.forEach(function (g) { genreOn[g.label] = !!g.on; });
+  function genreVisible(x) { return x.genre == null || genreOn[x.genre] !== false; }
   var DATA = [];               // current sorted view
   var total = 0;
 
@@ -109,7 +112,8 @@
 
   /* ---- (re)build everything for current metric ---- */
   function build() {
-    var base = hideBig ? ALL.filter(function (d) { return (d.subs || 0) < BIG; }) : ALL;
+    var base = ALL.filter(genreVisible);
+    if (hideBig) base = base.filter(function (d) { return (d.subs || 0) < BIG; });
     DATA = base.slice().sort(function (a, b) { return val(b) - val(a); });
     total = DATA.reduce(function (s, d) { return s + val(d); }, 0);
     var max = val(DATA[0]) || 1;
@@ -321,7 +325,7 @@
   function renderTiers() {
     var host = document.getElementById('tiers');
     if (!host) return;
-    var list = ALL.slice().sort(function (a, b) { return (b.subs || 0) - (a.subs || 0); });
+    var list = ALL.filter(genreVisible).sort(function (a, b) { return (b.subs || 0) - (a.subs || 0); });
     var rankOf = {}; list.forEach(function (d, i) { rankOf[d.url] = i + 1; });
     var bands = [
       { title: '10万人以上',   min: 100000 },
@@ -353,7 +357,7 @@
     var note = document.getElementById('growth-span');
     var hint = document.getElementById('grow-hint');
     var span = GROWTH.span || { days: 0 };
-    var list = GROWTH[gmetric] || [];
+    var list = (GROWTH[gmetric] || []).filter(genreVisible);
     if (!span.days || !list.length) {
       if (note) note.textContent = '';
       if (hint) hint.style.display = 'none';
@@ -431,8 +435,9 @@
     NEWS.forEach(function (day) {
       var el = document.createElement('div');
       el.className = 'news-day';
-      var items = day.items && day.items.length
-        ? day.items.map(function (n) {
+      var dayItems = (day.items || []).filter(genreVisible);
+      var items = dayItems.length
+        ? dayItems.map(function (n) {
             return '<div class="news-item">' +
               (n.icon ? '<span class="ico">' + n.icon + '</span>' : '<span class="dot" style="background:' + n.color + '"></span>') +
               '<span class="ml"><span class="nm" style="color:' + n.color + '">' + esc(n.name) + '</span> が ' + esc(n.label) + '</span>' +
@@ -472,10 +477,47 @@
     });
   }
 
+  /* ---- settings: genre visibility ---- */
+  function applyGenre() { build(); renderTiers(); renderGrowth(); renderNews(); replay(); playGrowth(); }
+  function updateGenreCounts() {
+    var counts = {}; ALL.forEach(function (d) { counts[d.genre] = (counts[d.genre] || 0) + 1; });
+    document.querySelectorAll('.g-count').forEach(function (el) { el.textContent = (counts[el.dataset.genre] || 0) + ' ch'; });
+  }
+  function setupSettings() {
+    var gear = document.getElementById('gear');
+    var panel = document.getElementById('settings');
+    var listEl = document.getElementById('genre-list');
+    if (!gear || !panel || !listEl) return;
+    GENRES.forEach(function (g) {
+      var it = document.createElement('div');
+      it.className = 'genre-item' + (genreOn[g.label] ? ' on' : '');
+      it.innerHTML = '<span class="box"></span><span class="g-label">' + esc(g.label) + '</span>' +
+        '<span class="g-count" data-genre="' + esc(g.label) + '"></span>';
+      it.addEventListener('click', function () {
+        genreOn[g.label] = !genreOn[g.label];
+        it.classList.toggle('on', genreOn[g.label]);
+        applyGenre();
+      });
+      listEl.appendChild(it);
+    });
+    updateGenreCounts();
+    gear.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var willOpen = panel.hidden; panel.hidden = !willOpen;
+      gear.setAttribute('aria-expanded', String(willOpen));
+    });
+    document.addEventListener('click', function (e) {
+      if (!panel.hidden && !panel.contains(e.target) && e.target !== gear) {
+        panel.hidden = true; gear.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
   /* ---- init ---- */
   build();
   renderNews();
   renderTiers();
+  setupSettings();
   renderGrowth();
   setupGrowth();
   setupTabs();

@@ -14,11 +14,13 @@
 <header class="topbar">
   <div class="wrap">
     <div class="brand"><span class="dot"></span><span>PB<b>ers</b></span></div>
-    <nav>
-      <a href="#share">シェア</a>
-      <a href="#ranking">ランキング</a>
-      <a href="#channels">チャンネル</a>
-    </nav>
+    <div class="settings-wrap">
+      <button class="gear" id="gear" aria-label="設定" aria-expanded="false">⚙</button>
+      <div class="settings" id="settings" hidden>
+        <div class="settings-title">表示するジャンル</div>
+        <div id="genre-list"></div>
+      </div>
+    </div>
   </div>
 </header>
 
