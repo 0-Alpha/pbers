@@ -167,23 +167,23 @@ section.block{padding:46px 0}
 
 /* ---------- growth ranking (vertical arrow bars, diverging from baseline) ---------- */
 .grow-empty{color:var(--muted);font-size:14px;padding:10px 0}
-.grow-chart{display:flex;align-items:flex-end;gap:16px;min-width:min-content;padding-top:26px}
-.grow-col{display:flex;flex-direction:column;align-items:center;flex:1 0 56px;max-width:84px}
+.grow-chart{display:flex;align-items:flex-end;gap:12px;min-width:min-content;padding-top:26px}
+.grow-col{display:flex;flex-direction:column;align-items:center;flex:1 0 46px;max-width:66px}
 .grow-plot{position:relative;width:100%;height:270px}
 .gbaseline{position:absolute;left:-6px;right:-6px;height:2px;background:var(--line-2);border-radius:2px}
 .gbar{position:absolute;left:0;right:0;margin:0 auto;width:100%;display:flex;flex-direction:column;align-items:center;
   height:0;overflow:visible;transition:height .8s cubic-bezier(.22,1,.36,1)}
-.gshaft{width:13px;flex:1 1 auto;min-height:0}
-.gbar.up .gshaft{background:linear-gradient(180deg,#4ad088,#268a55)}
-.gbar.down .gshaft{background:linear-gradient(180deg,#e0574c,#a83a34)}
+.gshaft{width:28px;flex:1 1 auto;min-height:0}
+.gbar.up .gshaft{background:#33bb74}
+.gbar.down .gshaft{background:#e0554b}
 .ghead{width:0;height:0;flex:none}
-.ghead.up{border-left:11px solid transparent;border-right:11px solid transparent;border-bottom:13px solid #4ad088}
-.ghead.down{border-left:11px solid transparent;border-right:11px solid transparent;border-top:13px solid #e0574c}
+.ghead.up{border-left:21px solid transparent;border-right:21px solid transparent;border-bottom:18px solid #33bb74}
+.ghead.down{border-left:21px solid transparent;border-right:21px solid transparent;border-top:18px solid #e0554b}
 .gval{position:absolute;left:-6px;right:-6px;text-align:center;font-family:var(--num);font-weight:800;font-size:12px;
   white-space:nowrap;opacity:0;transition:opacity .3s ease .35s}
 .grow-col.shown .gval{opacity:1}
-.gval.up{color:#4ad088}
-.gval.down{color:#e0574c}
+.gval.up{color:#33bb74}
+.gval.down{color:#e0554b}
 .gval.flat{color:var(--muted)}
 .grow-foot{margin-top:14px;display:flex;flex-direction:column;align-items:center;gap:6px;width:100%}
 .grow-crank{font-family:var(--num);font-weight:900;font-size:13px;color:var(--muted-2)}
