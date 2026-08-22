@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """data.json -> assets/data.js（登録者数・総再生数・投稿数・固有色つき）
    history.csv -> assets/news.js（直近7日のマイルストーン突破ニュース）"""
-import json, colorsys, re, os, csv, datetime
+import json, colorsys, re, os, csv, datetime, urllib.parse
 
 BASE = os.path.dirname(os.path.abspath(__file__))   # works on Windows and on CI (Linux)
 JST = datetime.timezone(datetime.timedelta(hours=9))
@@ -85,10 +85,29 @@ def vids(label):
     m = re.search(r"([\d,\.]+)", label)
     return int(float(m.group(1).replace(",", ""))) if m else None
 
+def slugify(name, cid):
+    """チャンネル名から URL 用スラッグを作る（日本語はそのまま、絵文字/記号は除去）。"""
+    s = name.replace("Æž!", "").strip()
+    s = re.sub(r"\s+", "-", s)                 # 空白 -> ハイフン
+    s = re.sub(r"[^\w\-]", "", s, flags=re.UNICODE)  # 絵文字・記号を除去（日本語/英数字/_/-は残す）
+    s = re.sub(r"[-_]{2,}", "-", s).strip("-_").lower()
+    return s or cid.lower()
+
+def assign_slugs(order):
+    used = {}
+    for d in order:
+        base = slugify(d["name"], d["id"])
+        slug, n = base, 2
+        while slug in used:
+            slug = base + "-" + str(n); n += 1
+        used[slug] = True
+        d["_slug"] = slug
+
 def main():
     data = json.load(open(BASE + "/data.json", encoding="utf-8"))
     shown = [d for d in data if d["id"] not in RETIRED]   # 引退者はサイトに載せない
     order = sorted(shown, key=lambda x: (x.get("subs") or 0), reverse=True)
+    assign_slugs(order)   # d["_slug"] を付与
 
     colors, pi = {}, 0
     for d in order:
@@ -103,6 +122,7 @@ def main():
         "subsLabel": d.get("subsLabel"), "viewsLabel": d.get("viewsLabel"),
         "videos": vids(d.get("videosLabel")), "url": d["url"],
         "avatar": d["avatar"], "color": colors[d["id"]], "genre": genre_of(d["id"]),
+        "slug": d["_slug"],
     } for d in order]
 
     with open(BASE + "/assets/data.js", "w", encoding="utf-8") as f:
@@ -124,13 +144,13 @@ CH_TPL = '''<!doctype html>
 <title>{{TITLE}} の登録者数・再生数・投稿数｜PBers</title>
 <meta name="description" content="{{TITLE}}（ポーランドボーラー）の登録者数・総再生数・投稿数の推移とデータ。PBers調べ、毎日更新。">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="{{SITE}}/c/{{ID}}/">
+<link rel="canonical" href="{{SITE}}/c/{{SLUG}}/">
 <link rel="icon" type="image/png" href="../../favicon.png">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="PBers">
 <meta property="og:title" content="{{TITLE}}｜登録者数・再生数まとめ｜PBers">
 <meta property="og:description" content="{{TITLE}}の登録者数・総再生数・投稿数の推移。">
-<meta property="og:url" content="{{SITE}}/c/{{ID}}/">
+<meta property="og:url" content="{{SITE}}/c/{{SLUG}}/">
 <meta property="og:image" content="{{AVATAR}}">
 <meta name="twitter:card" content="summary">
 <script>
@@ -138,7 +158,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250824">
+<link rel="stylesheet" href="../../assets/style.css?v=250825">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -154,7 +174,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250824"></script>
+<script src="../../assets/channel.js?v=250825"></script>
 </body>
 </html>
 '''
@@ -168,7 +188,7 @@ def build_channel_pages(order, colors):
     os.makedirs(cdir, exist_ok=True)
     total = len(order)
     for i, d in enumerate(order):
-        cid = d["id"]
+        cid = d["id"]; slug = d["_slug"]
         hist = series.get(cid, {})
         hd = sorted(hist.keys())
         HH = {"dates": hd,
@@ -181,18 +201,18 @@ def build_channel_pages(order, colors):
               "genre": genre_of(cid), "rank": i + 1, "total": total}
         page = (CH_TPL
                 .replace("{{TITLE}}", _html.escape(d["name"]))
-                .replace("{{ID}}", cid)
+                .replace("{{SLUG}}", urllib.parse.quote(slug))
                 .replace("{{AVATAR}}", _html.escape(d["avatar"]))
                 .replace("{{SITE}}", SITE)
                 .replace("{{CH}}", json.dumps(ch, ensure_ascii=False))
                 .replace("{{HIST}}", json.dumps(HH, ensure_ascii=False)))
-        os.makedirs(os.path.join(cdir, cid), exist_ok=True)
-        with open(os.path.join(cdir, cid, "index.html"), "w", encoding="utf-8") as f:
+        os.makedirs(os.path.join(cdir, slug), exist_ok=True)
+        with open(os.path.join(cdir, slug, "index.html"), "w", encoding="utf-8") as f:
             f.write(page)
     print("wrote %d channel pages" % total)
 
 def build_sitemap(order):
-    urls = [SITE + "/"] + [SITE + "/c/" + d["id"] + "/" for d in order]
+    urls = [SITE + "/"] + [SITE + "/c/" + urllib.parse.quote(d["_slug"]) + "/" for d in order]
     body = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     for u in urls:
         body += '  <url><loc>%s</loc><changefreq>daily</changefreq></url>\n' % u

@@ -1,6 +1,10 @@
 # local preview bundles (generated for review, not part of the site)
 _preview*.html
 
+# local-only / sensitive notes (never publish)
+pbersbottaisetsujouhou.txt
+icon
+
 # OS / editor cruft
 Thumbs.db
 .DS_Store

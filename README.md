@@ -113,7 +113,8 @@ python -m http.server 8823
 
 ## チャンネル個別ページ / シェア
 
-- `gen_data.py` が各チャンネルの個別ページ `c/<channelId>/index.html` を生成
+- `gen_data.py` が各チャンネルの個別ページ `c/<スラッグ>/index.html` を生成
+  (スラッグはチャンネル名ベース＝検索しやすいURL。例 `/c/フヒフム/`。`slugify` で生成、重複時は連番)
   (`assets/channel.js` が描画。登録者/総再生/投稿の推移ステップ折れ線・YouTubeリンク・
   シェアボタン)。SEO用に固有の title/description/canonical を付与し、`sitemap.xml` にも全ページを列挙。
 - 一覧のカードは **本体クリック=個別ページ / 「YouTube」ボタン=YouTube** に分離。

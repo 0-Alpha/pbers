@@ -310,7 +310,7 @@
     wrap.addEventListener('mouseenter', function () { wrap.style.borderColor = d.color; });
     wrap.addEventListener('mouseleave', function () { wrap.style.borderColor = 'var(--line)'; });
     wrap.innerHTML =
-      '<a class="card-main" href="c/' + chId(d) + '/">' +
+      '<a class="card-main" href="c/' + encodeURIComponent(d.slug || chId(d)) + '/">' +
         '<span class="rk num">' + rankNum + '</span>' +
         '<img class="av" loading="lazy" src="' + d.avatar + '" alt="" style="border-color:' + d.color + '" onerror="this.style.visibility=\'hidden\'">' +
         '<span class="meta"><span class="cn">' + esc(d.name) + '</span>' +
