@@ -180,6 +180,12 @@ section.block{padding:46px 0}
 .card .go{color:var(--muted-2);font-family:var(--num);flex:none;align-self:flex-start;transition:color .16s}
 .card:hover .go{color:var(--text)}
 
+/* zoom control */
+.zoom{display:inline-flex;align-items:center;gap:2px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px}
+.zbtn{width:30px;height:30px;border:0;background:transparent;color:var(--text);cursor:pointer;font-family:var(--num);font-weight:800;font-size:16px;border-radius:999px;line-height:1}
+.zbtn:hover{background:#2a2a2a}
+.zval{font-weight:700;font-size:12px;color:var(--muted);min-width:46px;text-align:center}
+
 /* ---------- growth ranking (vertical arrow bars, diverging from baseline) ---------- */
 .grow-empty{color:var(--muted);font-size:14px;padding:10px 0}
 .grow-chart{display:flex;align-items:flex-end;gap:12px;min-width:min-content;padding-top:26px}

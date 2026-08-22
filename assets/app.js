@@ -351,7 +351,11 @@
 
   /* ---- growth ranking (increase over the available window) ---- */
   function shortDate(s) { if (!s) return ''; var p = s.split('-'); return (+p[1]) + '/' + (+p[2]); }
-  var GROW_H = 270;   // px, plot height (shared up+down range)
+  var BASE_GROW_H = 270, growZoom = 1;   // plot height (shared up+down range), zoom multiplier
+  var GC = { UP: '#33bb74', DOWN: '#e0554b' };
+  function _mean(a) { return a.length ? a.reduce(function (s, v) { return s + v; }, 0) / a.length : 0; }
+  function _std(a) { if (!a.length) return 0; var m = _mean(a); return Math.sqrt(_mean(a.map(function (v) { return (v - m) * (v - m); }))); }
+
   function renderGrowth() {
     var host = document.getElementById('grow-list'); if (!host) return;
     var note = document.getElementById('growth-span');
@@ -367,35 +371,60 @@
     if (hint) hint.style.display = '';
     if (note) note.textContent = '過去' + span.days + '日間（' + shortDate(span.from) + '→' + shortDate(span.to) + '）の増減';
 
+    /* zoomed dimensions */
+    var H = Math.round(BASE_GROW_H * growZoom);
+    var PADV = Math.round(30 * growZoom);                 // reserve at top & bottom for labels/heads
+    var usable = Math.max(40, H - 2 * PADV);
+    var colBasis = Math.round(46 * growZoom), colMax = Math.round(66 * growZoom), gap = Math.round(12 * growZoom);
+    host.style.gap = gap + 'px';
+
     var maxUp = 0, maxDown = 0;
     list.forEach(function (x) { if (x.delta > maxUp) maxUp = x.delta; if (-x.delta > maxDown) maxDown = -x.delta; });
     var range = (maxUp + maxDown) || 1;
-    var perPx = GROW_H / range;
-    var baseFromBottom = maxDown * perPx;     // zero-line height from the plot bottom
-    var baseFromTop = GROW_H - baseFromBottom;
+    var perPx = usable / range;
+    var baseFromBottom = PADV + maxDown * perPx;          // zero-line height from the plot bottom
+    var baseFromTop = H - baseFromBottom;
+
+    /* deviation (z-score) → arrow thickness & head size */
+    var absv = list.map(function (x) { return Math.abs(x.delta); });
+    var mu = _mean(absv), sd = _std(absv);
+    function sizeFor(v) {
+      var z = sd ? (v - mu) / sd : 0;
+      var t = Math.max(0, Math.min(1, (z + 1.2) / 3.2));
+      var shaftW = Math.round((8 + t * 22) * growZoom);          // 8〜30 * zoom
+      var headHalf = Math.round((shaftW * 0.6 + 8));             // head always wider than shaft
+      var headH = Math.round(headHalf * 0.9);
+      return { shaftW: shaftW, headHalf: headHalf, headH: headH };
+    }
 
     host.innerHTML = '';
     list.forEach(function (x, i) {
       var dir = x.delta > 0 ? 'up' : (x.delta < 0 ? 'down' : 'flat');
       var barPx = Math.abs(x.delta) * perPx;
       var sign = x.delta > 0 ? '+' : (x.delta < 0 ? '−' : '±');
+      var s = sizeFor(Math.abs(x.delta));
+      var headH = Math.max(4, Math.min(s.headH, barPx));         // never let the head exceed the bar length
       var col = document.createElement('div'); col.className = 'grow-col';
+      col.style.flex = '1 0 ' + colBasis + 'px'; col.style.maxWidth = colMax + 'px';
 
+      var shaftCss = 'width:' + s.shaftW + 'px;';
       var bar = '';
       if (dir === 'up') {
+        var headCssU = 'border-left:' + s.headHalf + 'px solid transparent;border-right:' + s.headHalf + 'px solid transparent;border-bottom:' + headH + 'px solid ' + GC.UP + ';';
         bar = '<div class="gbar up" data-h="' + barPx + '" style="bottom:' + baseFromBottom + 'px">' +
-                '<div class="ghead up"></div><div class="gshaft"></div></div>' +
+                '<div class="ghead" style="' + headCssU + '"></div><div class="gshaft" style="' + shaftCss + 'background:' + GC.UP + '"></div></div>' +
               '<div class="gval up" style="bottom:' + (baseFromBottom + barPx + 6) + 'px">' + sign + fmt(x.delta) + GUNIT[gmetric] + '</div>';
       } else if (dir === 'down') {
+        var headCssD = 'border-left:' + s.headHalf + 'px solid transparent;border-right:' + s.headHalf + 'px solid transparent;border-top:' + headH + 'px solid ' + GC.DOWN + ';';
         bar = '<div class="gbar down" data-h="' + barPx + '" style="top:' + baseFromTop + 'px">' +
-                '<div class="gshaft"></div><div class="ghead down"></div></div>' +
+                '<div class="gshaft" style="' + shaftCss + 'background:' + GC.DOWN + '"></div><div class="ghead" style="' + headCssD + '"></div></div>' +
               '<div class="gval down" style="top:' + (baseFromTop + barPx + 6) + 'px">' + sign + fmt(Math.abs(x.delta)) + GUNIT[gmetric] + '</div>';
       } else {
         bar = '<div class="gval flat" style="bottom:' + (baseFromBottom + 6) + 'px">±0' + GUNIT[gmetric] + '</div>';
       }
 
       col.innerHTML =
-        '<div class="grow-plot">' +
+        '<div class="grow-plot" style="height:' + H + 'px">' +
           '<div class="gbaseline" style="bottom:' + baseFromBottom + 'px"></div>' + bar +
         '</div>' +
         '<div class="grow-foot"><div class="grow-crank num">' + (i + 1) + '</div>' +
@@ -413,6 +442,12 @@
       b.style.transitionDelay = (k * 0.02) + 's'; b.style.height = (b.dataset.h || 0) + 'px';
     });
     cols.forEach(function (c) { c.classList.add('shown'); });
+  }
+  function setupGrowthZoom() {
+    var out = document.getElementById('gz-out'), inn = document.getElementById('gz-in'), val = document.getElementById('gz-val');
+    function upd() { if (val) val.textContent = Math.round(growZoom * 100) + '%'; renderGrowth(); playGrowth(); }
+    if (out) out.addEventListener('click', function () { growZoom = Math.max(0.5, Math.round((growZoom - 0.25) * 100) / 100); upd(); });
+    if (inn) inn.addEventListener('click', function () { growZoom = Math.min(2, Math.round((growZoom + 0.25) * 100) / 100); upd(); });
   }
   function setupGrowth() {
     var gtabs = [].slice.call(document.querySelectorAll('#growth-toggle .tg'));
@@ -530,6 +565,7 @@
   setupSettings();
   renderGrowth();
   setupGrowth();
+  setupGrowthZoom();
   setupTabs();
   setupDonutHover();
   setupColScroll();
