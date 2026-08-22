@@ -160,8 +160,53 @@ def main():
 
     build_news(colors)
     build_growth(colors)
+    build_live(colors)
     build_channel_pages(order, colors)
     build_sitemap(order)
+
+def build_live(colors):
+    """登録者が接戦(隣接との差が1%以内)のチャンネルを2〜3件ずつグループ化し、
+       各メンバーの登録者推移とともに live.js に出力。"""
+    series, names = load_history()
+    by_id = {}
+    amap = {}
+    try:
+        for d in json.load(open(BASE + "/data.json", encoding="utf-8")):
+            by_id[d["id"]] = d; amap[d["id"]] = d.get("avatar", "")
+    except Exception:
+        pass
+    items = [(cid, (by_id[cid].get("subs") or 0)) for cid in colors
+             if genre_of(cid) == DEFAULT_GENRE and cid in by_id and (by_id[cid].get("subs"))]
+    items.sort(key=lambda x: -x[1])
+
+    groups, i = [], 0
+    while i < len(items):
+        j = i
+        while j + 1 < len(items) and (j - i + 1) < 3:
+            hi = items[j][1]
+            if hi > 0 and (hi - items[j + 1][1]) <= hi / 100.0:
+                j += 1
+            else:
+                break
+        if j > i:
+            groups.append([items[k][0] for k in range(i, j + 1)])
+            i = j + 1
+        else:
+            i += 1
+
+    out = []
+    for g in groups:
+        members = []
+        for cid in g:
+            hist = series.get(cid, {})
+            pts = [{"d": d, "s": hist[d]["subs"]} for d in sorted(hist) if hist[d]["subs"] is not None]
+            members.append({"name": names.get(cid, ""), "color": colors[cid], "avatar": amap.get(cid, ""),
+                            "subs": by_id[cid].get("subs"), "history": pts})
+        out.append({"members": members})
+
+    with open(BASE + "/assets/live.js", "w", encoding="utf-8") as f:
+        f.write("window.PBERS_LIVE = " + json.dumps(out, ensure_ascii=False, indent=2) + ";\n")
+    print("wrote assets/live.js (%d close races)" % len(out))
 
 CH_TPL = '''<!doctype html>
 <html lang="ja">
@@ -185,7 +230,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250834">
+<link rel="stylesheet" href="../../assets/style.css?v=250835">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -201,7 +246,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250834"></script>
+<script src="../../assets/channel.js?v=250835"></script>
 </body>
 </html>
 '''
