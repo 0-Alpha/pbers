@@ -66,6 +66,14 @@ python gen_data.py   # data.json -> assets/data.js(固有色つきの表示用�
 > Cloudflare Pages を GitHub 連携にしている場合、この毎日の push で自動再デプロイされる。
 > Direct Upload の場合は別途アップロードが必要。
 
+## X 自動投稿(任意)
+
+`post_x.py` がその日のニュース(突破・追い越し)を1ツイートにまとめて投稿する。
+毎日のワークフロー末尾で best-effort 実行(失敗してもジョブは止めない)。
+GitHub の **Secrets** に以下4つを設定すると有効化される（未設定ならスキップ）:
+`X_API_KEY` / `X_API_SECRET` / `X_ACCESS_TOKEN` / `X_ACCESS_SECRET`
+(X Developer Portal でアプリを作成し、権限を Read and write にしてトークンを発行)。
+
 ## 表示モード
 
 ヒーローのトグルで **登録者数 / 総再生数** を切り替え可能。円グラフ・棒グラフ・

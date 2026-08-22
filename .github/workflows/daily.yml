@@ -42,3 +42,16 @@ jobs:
             git commit -m "Daily stats: $(TZ=Asia/Tokyo date +'%Y-%m-%d')"
             git push
           fi
+
+      # --- X (Twitter) auto-post: best effort, never fails the job ---
+      - name: Install X deps
+        run: pip install requests requests-oauthlib
+
+      - name: Post today's news to X
+        continue-on-error: true
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+        run: python post_x.py
