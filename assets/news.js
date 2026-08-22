@@ -2,7 +2,35 @@ window.PBERS_NEWS = [
   {
     "date": "2026-08-22",
     "label": "8月22日(土)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "レイアルファ",
+        "color": "#db4f57",
+        "avatar": "https://yt3.googleusercontent.com/i-3zcDugOBC0BsV7k8-06wQY125k3kMWPiaVTXQt96XHKdrN-V7iocfwUrLRnEBskVJ0dyiCYZ0=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 300万回 突破",
+        "value": 3000000
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "ばかわたし",
+        "color": "#4e3ecc",
+        "avatar": "https://yt3.googleusercontent.com/8Q3AkB3SLb49XqB1aR0hp3jyCVu5hS_YrBkjoYn-0FkHttGhP6gadqK2oaOqadgMcjYFYhR1=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "PBerer",
+        "opp": {
+          "name": "空白ボール",
+          "color": "#b23ecc",
+          "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で 空白ボール を追い越し",
+        "value": 4569016
+      }
+    ]
   },
   {
     "date": "2026-08-21",
