@@ -320,7 +320,8 @@
           '<span class="cstat"><i>投稿数</i>' + (d.videos != null ? fmt(d.videos) + '本' : '—') + '</span>' +
         '</span></span>' +
       '</a>' +
-      '<a class="card-yt" href="' + d.url + '" target="_blank" rel="noopener">YouTube ↗</a>';
+      '<a class="card-yt" href="' + d.url + '" target="_blank" rel="noopener" title="YouTubeで開く" aria-label="YouTubeで開く">' +
+        '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></a>';
     return wrap;
   }
 
