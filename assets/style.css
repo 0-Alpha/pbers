@@ -220,12 +220,13 @@ section.block{padding:46px 0}
 /* total trend (stepped line chart) */
 .trend{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 14px}
 .trend svg{width:100%;height:auto;display:block}
-.trend .t-empty{color:var(--muted);font-size:14px;padding:20px 6px}
-.trend .t-grid{stroke:#2e2e2e;stroke-width:1}
-.trend .t-axis{fill:var(--muted-2);font-family:var(--num);font-weight:700;font-size:11px}
-.trend .t-line{fill:none;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
-.trend .t-dot{stroke:var(--panel);stroke-width:2}
-.trend .t-val{fill:var(--text);font-family:var(--num);font-weight:800;font-size:12px}
+/* chart axis/grid/line — shared by trend, channel history, race charts */
+.t-empty{color:var(--muted);font-size:14px;padding:20px 6px}
+.t-grid{stroke:#2e2e2e;stroke-width:1}
+.t-axis{fill:var(--muted);font-family:var(--jp);font-weight:700;font-size:12px}
+.t-line{fill:none;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.t-dot{stroke:var(--panel);stroke-width:2}
+.t-val{fill:var(--text);font-family:var(--jp);font-weight:800;font-size:12.5px}
 
 /* "その他" card that jumps to the channel-list tab */
 .card.more-card{justify-content:center;text-align:center;color:var(--muted);font-family:var(--jp);font-weight:700;
