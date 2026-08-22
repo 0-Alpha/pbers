@@ -9,7 +9,21 @@
   function fmt(n) { return n == null ? '—' : n.toLocaleString('en-US'); }
   function sig3(x) { var d = x < 10 ? 2 : (x < 100 ? 1 : 0); return parseFloat(x.toFixed(d)).toString(); }
   function jp(n) { if (n == null) return '—'; if (n >= 1e8) return sig3(n / 1e8) + '億'; if (n >= 1e4) return sig3(n / 1e4) + '万'; return fmt(n); }
-  function shortDate(s) { var p = s.split('-'); return (+p[1]) + '/' + (+p[2]); }
+  function shortDate(s) {
+    if (!s) return '';
+    s = String(s);
+    var y = +s.slice(0, 4), mo = +s.slice(5, 7), da = +s.slice(8, 10);
+    var t = s.length > 10 ? s.slice(11, 16) : '';
+    if (t === '00:00') { var dt = new Date(y, mo - 1, da); dt.setDate(dt.getDate() - 1); return (dt.getMonth() + 1) + '/' + dt.getDate(); }
+    return mo + '/' + da;
+  }
+  function dayOf(s) {
+    s = String(s);
+    if (s.length <= 10) return s;
+    var t = s.slice(11, 16);
+    if (t === '00:00') { var dt = new Date(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10)); dt.setDate(dt.getDate() - 1); return dt.toISOString().slice(0, 10); }
+    return s.slice(0, 10);
+  }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (m) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[m]; }); }
 
   var root = document.getElementById('ch-root'); if (!root) return;
@@ -59,7 +73,7 @@
     var pts = [];
     for (var i = 0; i < dates.length; i++) if (vals[i] != null) pts.push({ d: dates[i], v: vals[i] });
     if (pts.length < 1) { host.innerHTML = '<div class="t-empty">まだ推移データがありません（記録が増えると表示されます）。</div>'; if (note) note.textContent = ''; return; }
-    if (note) note.textContent = pts.length + '日分（' + shortDate(pts[0].d) + '〜' + shortDate(pts[pts.length - 1].d) + '）';
+    if (note) { var dset = {}; pts.forEach(function (p) { dset[dayOf(p.d)] = 1; }); note.textContent = Object.keys(dset).length + '日分（' + shortDate(pts[0].d) + '〜' + shortDate(pts[pts.length - 1].d) + '）'; }
     var W = Math.max(300, (host.clientWidth || 720) - 28), Hh = 240, padL = 54, padR = 16, padT = 18, padB = 30;
     var iW = W - padL - padR, iH = Hh - padT - padB, n = pts.length;
     var mn = Math.min.apply(null, pts.map(function (p) { return p.v; })), mx = Math.max.apply(null, pts.map(function (p) { return p.v; }));

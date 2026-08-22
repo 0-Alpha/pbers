@@ -5,9 +5,22 @@ import json, colorsys, re, os, csv, datetime, urllib.parse
 
 BASE = os.path.dirname(os.path.abspath(__file__))   # works on Windows and on CI (Linux)
 JST = datetime.timezone(datetime.timedelta(hours=9))
-# データの基準日 = 前日(JST 0時取得を前日分とみなす)
-ASOF = (datetime.datetime.now(JST) - datetime.timedelta(days=1)).date()
-UPDATED = ASOF.strftime("%Y-%m-%d")
+
+def day_of(ts):
+    """記録スロット(YYYY-MM-DD HH:MM)が属する「日」を返す。
+       0時分は前日(=前日24時)として扱う。旧形式(日付のみ)はその日。"""
+    ts = str(ts)
+    if len(ts) <= 10:            # 旧形式(日付のみ) = その日
+        return ts
+    d, t = ts[:10], ts[11:16]
+    if t == "00:00":
+        return (datetime.date.fromisoformat(d) - datetime.timedelta(days=1)).isoformat()
+    return d
+
+# データの基準日 = 直近スロットが属する日(JST 0時取得は前日分とみなす)
+_now = datetime.datetime.now(JST)
+ASOF = (_now.date() - datetime.timedelta(days=1)) if (_now.hour // 6) * 6 == 0 else _now.date()
+UPDATED = ASOF.strftime("%Y-%m-%d")   # main() で実データの最新日に更新
 SITE = "https://pbers.pages.dev"   # 独自ドメイン接続後は https://pbers.com に変更
 
 # マイルストーンの刻み: 登録者=1万, 総再生=1000万, 投稿=100
@@ -131,6 +144,13 @@ def assign_slugs(order):
         d["_slug"] = slug
 
 def main():
+    global UPDATED
+    # 実データの最新スロットが属する日を「更新日」にする
+    _series, _ = load_history()
+    _all_ts = sorted({t for m in _series.values() for t in m})
+    if _all_ts:
+        UPDATED = day_of(_all_ts[-1])
+
     data = json.load(open(BASE + "/data.json", encoding="utf-8"))
     shown = [d for d in data if d["id"] not in RETIRED]   # 引退者はサイトに載せない
     order = sorted(shown, key=lambda x: (x.get("subs") or 0), reverse=True)
@@ -230,7 +250,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250837">
+<link rel="stylesheet" href="../../assets/style.css?v=250838">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -246,7 +266,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250837"></script>
+<script src="../../assets/channel.js?v=250838"></script>
 </body>
 </html>
 '''
@@ -313,16 +333,16 @@ def build_growth(colors):
     """直近7日（貯まっていなければある範囲）の増加数ランキングを growth.js に出力。"""
     series, names = load_history()
     shown = set(colors.keys())
-    all_dates = sorted({d for m in series.values() for d in m})
+    all_ts = sorted({t for m in series.values() for t in m})
     lo = (ASOF - datetime.timedelta(days=6)).isoformat()
     hi = ASOF.isoformat()
-    win = [d for d in all_dates if lo <= d <= hi]
+    win = [t for t in all_ts if lo <= day_of(t) <= hi]
 
     result = {"span": {"from": None, "to": None, "days": 0}, "subs": [], "views": [], "videos": []}
     if win:
         earliest, latest = win[0], win[-1]
-        span = (datetime.date.fromisoformat(latest) - datetime.date.fromisoformat(earliest)).days
-        result["span"] = {"from": earliest, "to": latest, "days": span}
+        span = (datetime.date.fromisoformat(day_of(latest)) - datetime.date.fromisoformat(day_of(earliest))).days
+        result["span"] = {"from": day_of(earliest), "to": day_of(latest), "days": span}
 
         def gv(cid, d, m):
             rec = series.get(cid, {}).get(d)
@@ -338,7 +358,7 @@ def build_growth(colors):
             arr.sort(key=lambda x: -x["delta"])
             result[metric] = arr
 
-    # 界隈全体の推移: 通常ジャンル(引退除く)の日別合計を全履歴ぶん
+    # 界隈全体の推移: 通常ジャンル(引退除く)のスロット別合計を全履歴ぶん
     main_ids = [cid for cid in series if cid not in RETIRED and genre_of(cid) == DEFAULT_GENRE]
     tdates = sorted({d for cid in main_ids for d in series[cid]})
     totals = {"dates": tdates, "subs": [], "views": [], "videos": []}
@@ -373,12 +393,12 @@ def build_news(colors):
                 }
                 names[cid] = row["name"]
 
-    window = [ASOF - datetime.timedelta(days=i) for i in range(7)]   # 基準日(前日)〜6日前
+    window = [ASOF - datetime.timedelta(days=i) for i in range(7)]   # 基準日〜6日前
     by_date = {d.isoformat(): [] for d in window}
 
     shown = set(colors.keys())                          # 引退者以外
-    all_dates = sorted({d for m in series.values() for d in m})
-    prev_of = {all_dates[i]: all_dates[i - 1] for i in range(1, len(all_dates))}
+    all_ts = sorted({t for m in series.values() for t in m})   # 6時間ごとのスロット
+    prev_of = {all_ts[i]: all_ts[i - 1] for i in range(1, len(all_ts))}
 
     amap = {}   # id -> avatar
     try:
@@ -391,14 +411,17 @@ def build_news(colors):
         rec = series.get(cid, {}).get(d)
         return rec[metric] if rec else None
 
-    for D in sorted(by_date.keys()):
-        if D not in prev_of:                            # 前日がなければ比較不可
+    for T in all_ts:                                    # 各スロットを直前スロットと比較
+        if T not in prev_of:                            # 直前がなければ比較不可
             continue
-        P = prev_of[D]
+        D = day_of(T)                                   # この記録が属する「日」
+        if D not in by_date:                            # 直近7日の枠外はスキップ
+            continue
+        P = prev_of[T]
         for metric in STEPS:
             # (1) マイルストーン突破（段階式）
             for cid in shown:
-                reached = milestone_reached(metric, gv(cid, P, metric), gv(cid, D, metric))
+                reached = milestone_reached(metric, gv(cid, P, metric), gv(cid, T, metric))
                 if reached is not None:
                     by_date[D].append({
                         "type": "milestone", "kind": metric, "name": names[cid],
@@ -406,14 +429,14 @@ def build_news(colors):
                         "genre": genre_of(cid), "label": milestone_label(metric, reached),
                         "value": reached,
                     })
-            # (2) 追い越し（Aが前日はBの下、当日はBの上）
-            elig = [c for c in shown if gv(c, D, metric) is not None and gv(c, P, metric) is not None]
+            # (2) 追い越し（Aが直前はBの下、今回はBの上）
+            elig = [c for c in shown if gv(c, T, metric) is not None and gv(c, P, metric) is not None]
             for a in elig:
-                ca, pa = gv(a, D, metric), gv(a, P, metric)
+                ca, pa = gv(a, T, metric), gv(a, P, metric)
                 for b in elig:
                     if a == b:
                         continue
-                    if pa < gv(b, P, metric) and ca > gv(b, D, metric):
+                    if pa < gv(b, P, metric) and ca > gv(b, T, metric):
                         by_date[D].append({
                             "type": "overtake", "kind": metric, "name": names[a],
                             "color": colors[a], "avatar": amap.get(a, ""), "icon": "⤴️",
@@ -425,9 +448,26 @@ def build_news(colors):
 
     korder = {"subs": 0, "views": 1, "videos": 2}
     torder = {"milestone": 0, "overtake": 1}
+
+    def dedup(items):
+        # 同じ日に6時間ごとで重複しうる同一ニュースを1件にまとめる
+        seen, out = {}, []
+        for it in items:
+            if it["type"] == "milestone":
+                key = ("milestone", it["kind"], it["name"], it["value"])
+            else:
+                key = ("overtake", it["kind"], it["name"], it["opp"]["name"])
+            if key in seen:
+                if it["value"] > seen[key]["value"]:
+                    seen[key].update(value=it["value"])
+                continue
+            seen[key] = it
+            out.append(it)
+        return out
+
     news = []
     for d in sorted(by_date.keys(), reverse=True):     # 新しい日が上
-        items = sorted(by_date[d], key=lambda x: (torder[x["type"]], korder[x["kind"]], -x["value"]))
+        items = sorted(dedup(by_date[d]), key=lambda x: (torder[x["type"]], korder[x["kind"]], -x["value"]))
         dd = datetime.date.fromisoformat(d)
         news.append({"date": d, "label": "%d月%d日(%s)" % (dd.month, dd.day, WD[dd.weekday()]), "items": items})
 

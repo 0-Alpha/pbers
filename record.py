@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 """data.json のスナップショットを history.csv に追記(上書きせず蓄積)。
 
-- 日付は「前日」(JST当日の1日前)。JST 0時に取得した値は前日の最終値とみなすため。
-- 1日1回分のみ。同じ日付が既にあれば追記しない(手動再実行しても重複しない)。
-- 列: date, id, name, subs, views, videos
+- JST 6時間ごと(0/6/12/18時)のスロットで記録する。
+- 記録キーは「YYYY-MM-DD HH:MM」(JST スロット時刻)。0時分を前日24時とみなす扱いは
+  表示側(gen_data.py の day_of)で行う。
+- 同じスロットが既にあれば追記しない(手動再実行しても重複しない)。
+- 列: date(=スロット時刻), id, name, subs, views, videos
 """
 import os, csv, json, datetime
 
@@ -13,23 +15,25 @@ HIST = os.path.join(BASE, "history.csv")
 
 JST = datetime.timezone(datetime.timedelta(hours=9))
 
-def as_of_date():
-    # JST 0時の取得を前日分として記録する
-    return (datetime.datetime.now(JST) - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+def slot_ts():
+    # 現在時刻(JST)を直近の6時間スロット(0/6/12/18時)に丸める
+    n = datetime.datetime.now(JST)
+    hour = (n.hour // 6) * 6
+    return n.replace(hour=hour, minute=0, second=0, microsecond=0).strftime("%Y-%m-%d %H:%M")
 
-def existing_dates():
-    dates = set()
+def existing_ts():
+    ts = set()
     if os.path.exists(HIST):
         with open(HIST, encoding="utf-8", newline="") as f:
             for row in csv.reader(f):
                 if row and row[0] != "date":
-                    dates.add(row[0])
-    return dates
+                    ts.add(row[0])
+    return ts
 
 def main():
-    date = as_of_date()
-    if date in existing_dates():
-        print("history.csv already has %s — skip" % date)
+    ts = slot_ts()
+    if ts in existing_ts():
+        print("history.csv already has %s — skip" % ts)
         return
 
     data = json.load(open(DATA, encoding="utf-8"))
@@ -39,8 +43,8 @@ def main():
         if new:
             w.writerow(["date", "id", "name", "subs", "views", "videos"])
         for d in data:
-            w.writerow([date, d.get("id"), d.get("name"),
+            w.writerow([ts, d.get("id"), d.get("name"),
                         d.get("subs"), d.get("views"), d.get("videos")])
-    print("appended %d rows for %s to history.csv" % (len(data), date))
+    print("appended %d rows for %s to history.csv" % (len(data), ts))
 
 main()

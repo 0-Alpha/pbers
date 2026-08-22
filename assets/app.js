@@ -380,7 +380,14 @@
   }
 
   /* ---- growth ranking (increase over the available window) ---- */
-  function shortDate(s) { if (!s) return ''; var p = s.split('-'); return (+p[1]) + '/' + (+p[2]); }
+  function shortDate(s) {
+    if (!s) return '';
+    s = String(s);
+    var y = +s.slice(0, 4), mo = +s.slice(5, 7), da = +s.slice(8, 10);
+    var t = s.length > 10 ? s.slice(11, 16) : '';
+    if (t === '00:00') { var dt = new Date(y, mo - 1, da); dt.setDate(dt.getDate() - 1); return (dt.getMonth() + 1) + '/' + dt.getDate(); }
+    return mo + '/' + da;
+  }
   var BASE_GROW_H = 270, growZoom = 1;   // plot height (shared up+down range), zoom multiplier
   var GC = { UP: '#33bb74', DOWN: '#e0554b' };
   function _mean(a) { return a.length ? a.reduce(function (s, v) { return s + v; }, 0) / a.length : 0; }

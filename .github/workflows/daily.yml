@@ -2,8 +2,8 @@ name: Daily stats
 
 on:
   schedule:
-    # 15:00 UTC = 00:00 JST（毎日）。GitHub側の混雑で数十分ずれる場合があります。
-    - cron: '0 15 * * *'
+    # 6時間ごと: UTC 15/21/3/9 = JST 0/6/12/18時。GitHub側の混雑で数十分ずれる場合があります。
+    - cron: '0 3,9,15,21 * * *'
   workflow_dispatch:        # 手動実行も可
 
 permissions:
