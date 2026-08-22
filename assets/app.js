@@ -302,23 +302,26 @@
   }
 
   /* ---- channel card (used by directory + tier list) ---- */
+  function chId(d) { return (d.url || '').split('/channel/')[1] || ''; }
   function cardEl(d, rankNum) {
-    var a = document.createElement('a');
-    a.className = 'card'; a.href = d.url; a.target = '_blank'; a.rel = 'noopener';
-    a.style.borderColor = 'var(--line)';
-    a.addEventListener('mouseenter', function () { a.style.borderColor = d.color; });
-    a.addEventListener('mouseleave', function () { a.style.borderColor = 'var(--line)'; });
-    a.innerHTML =
-      '<span class="rk num">' + rankNum + '</span>' +
-      '<img class="av" loading="lazy" src="' + d.avatar + '" alt="" style="border-color:' + d.color + '" onerror="this.style.visibility=\'hidden\'">' +
-      '<span class="meta"><span class="cn">' + esc(d.name) + '</span>' +
-      '<span class="cstats">' +
-        '<span class="cstat"><i>登録者</i>' + (d.subs != null ? jp(d.subs) + '人' : '非公開') + '</span>' +
-        '<span class="cstat"><i>総再生</i>' + (d.views != null ? jp(d.views) + '回' : '非公開') + '</span>' +
-        '<span class="cstat"><i>投稿数</i>' + (d.videos != null ? fmt(d.videos) + '本' : '—') + '</span>' +
-      '</span></span>' +
-      '<span class="go">↗</span>';
-    return a;
+    var wrap = document.createElement('div');
+    wrap.className = 'card';
+    wrap.style.borderColor = 'var(--line)';
+    wrap.addEventListener('mouseenter', function () { wrap.style.borderColor = d.color; });
+    wrap.addEventListener('mouseleave', function () { wrap.style.borderColor = 'var(--line)'; });
+    wrap.innerHTML =
+      '<a class="card-main" href="c/' + chId(d) + '/">' +
+        '<span class="rk num">' + rankNum + '</span>' +
+        '<img class="av" loading="lazy" src="' + d.avatar + '" alt="" style="border-color:' + d.color + '" onerror="this.style.visibility=\'hidden\'">' +
+        '<span class="meta"><span class="cn">' + esc(d.name) + '</span>' +
+        '<span class="cstats">' +
+          '<span class="cstat"><i>登録者</i>' + (d.subs != null ? jp(d.subs) + '人' : '非公開') + '</span>' +
+          '<span class="cstat"><i>総再生</i>' + (d.views != null ? jp(d.views) + '回' : '非公開') + '</span>' +
+          '<span class="cstat"><i>投稿数</i>' + (d.videos != null ? fmt(d.videos) + '本' : '—') + '</span>' +
+        '</span></span>' +
+      '</a>' +
+      '<a class="card-yt" href="' + d.url + '" target="_blank" rel="noopener">YouTube ↗</a>';
+    return wrap;
   }
 
   /* ---- channels-by-tier view (subscriber bands) ---- */
@@ -600,9 +603,20 @@
     });
   }
 
+  /* ---- share (X / copy) ---- */
+  function setupShare() {
+    var url = location.origin + location.pathname;
+    var text = document.title;
+    var x = document.querySelector('#share-home [data-share="x"]');
+    var c = document.querySelector('#share-home [data-share="copy"]');
+    if (x) x.addEventListener('click', function () { window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url), '_blank', 'noopener'); });
+    if (c) c.addEventListener('click', function () { if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { c.textContent = 'コピーしました'; setTimeout(function () { c.textContent = 'リンクをコピー'; }, 1500); }); });
+  }
+
   /* ---- init ---- */
   build();
   renderNews();
+  setupShare();
   renderTiers();
   setupSettings();
   renderGrowth();

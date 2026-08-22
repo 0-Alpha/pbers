@@ -8,6 +8,7 @@ JST = datetime.timezone(datetime.timedelta(hours=9))
 # データの基準日 = 前日(JST 0時取得を前日分とみなす)
 ASOF = (datetime.datetime.now(JST) - datetime.timedelta(days=1)).date()
 UPDATED = ASOF.strftime("%Y-%m-%d")
+SITE = "https://pbers.pages.dev"   # 独自ドメイン接続後は https://pbers.com に変更
 
 # マイルストーンの刻み: 登録者=1万, 総再生=1000万, 投稿=100
 STEPS = {
@@ -112,6 +113,93 @@ def main():
 
     build_news(colors)
     build_growth(colors)
+    build_channel_pages(order, colors)
+    build_sitemap(order)
+
+CH_TPL = '''<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}} の登録者数・再生数・投稿数｜PBers</title>
+<meta name="description" content="{{TITLE}}（ポーランドボーラー）の登録者数・総再生数・投稿数の推移とデータ。PBers調べ、毎日更新。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="{{SITE}}/c/{{ID}}/">
+<link rel="icon" type="image/png" href="../../favicon.png">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="PBers">
+<meta property="og:title" content="{{TITLE}}｜登録者数・再生数まとめ｜PBers">
+<meta property="og:description" content="{{TITLE}}の登録者数・総再生数・投稿数の推移。">
+<meta property="og:url" content="{{SITE}}/c/{{ID}}/">
+<meta property="og:image" content="{{AVATAR}}">
+<meta name="twitter:card" content="summary">
+<script>
+(function(){var u=location.origin+location.pathname;var c=document.querySelector('link[rel=canonical]');if(c)c.href=u;var o=document.querySelector('meta[property="og:url"]');if(o)o.setAttribute('content',u);})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="../../"><span class="dot"></span><span>PB<b>ers</b></span></a>
+</div></header>
+<main class="ch-page"><div class="wrap">
+  <a class="ch-back" href="../../">← 一覧へ戻る</a>
+  <div id="ch-root"></div>
+</div></main>
+<footer><div class="wrap">
+  <a class="brand" href="../../"><span class="dot"></span><span>PB<b>ers</b></span></a>
+  <div>データ出典: YouTube 各チャンネル公開情報</div>
+</div></footer>
+<script>window.CH = {{CH}};</script>
+<script>window.CH_HISTORY = {{HIST}};</script>
+<script src="../../assets/channel.js"></script>
+</body>
+</html>
+'''
+
+def build_channel_pages(order, colors):
+    import shutil, html as _html
+    series, _ = load_history()
+    cdir = os.path.join(BASE, "c")
+    if os.path.isdir(cdir):
+        shutil.rmtree(cdir)
+    os.makedirs(cdir, exist_ok=True)
+    total = len(order)
+    for i, d in enumerate(order):
+        cid = d["id"]
+        hist = series.get(cid, {})
+        hd = sorted(hist.keys())
+        HH = {"dates": hd,
+              "subs": [hist[x]["subs"] for x in hd],
+              "views": [hist[x]["views"] for x in hd],
+              "videos": [hist[x]["videos"] for x in hd]}
+        ch = {"id": cid, "name": d["name"], "subs": d.get("subs"), "views": d.get("views"),
+              "videos": d.get("videos") if d.get("videos") is not None else vids(d.get("videosLabel")),
+              "url": d["url"], "avatar": d["avatar"], "color": colors[cid],
+              "genre": genre_of(cid), "rank": i + 1, "total": total}
+        page = (CH_TPL
+                .replace("{{TITLE}}", _html.escape(d["name"]))
+                .replace("{{ID}}", cid)
+                .replace("{{AVATAR}}", _html.escape(d["avatar"]))
+                .replace("{{SITE}}", SITE)
+                .replace("{{CH}}", json.dumps(ch, ensure_ascii=False))
+                .replace("{{HIST}}", json.dumps(HH, ensure_ascii=False)))
+        os.makedirs(os.path.join(cdir, cid), exist_ok=True)
+        with open(os.path.join(cdir, cid, "index.html"), "w", encoding="utf-8") as f:
+            f.write(page)
+    print("wrote %d channel pages" % total)
+
+def build_sitemap(order):
+    urls = [SITE + "/"] + [SITE + "/c/" + d["id"] + "/" for d in order]
+    body = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    for u in urls:
+        body += '  <url><loc>%s</loc><changefreq>daily</changefreq></url>\n' % u
+    body += '</urlset>\n'
+    with open(os.path.join(BASE, "sitemap.xml"), "w", encoding="utf-8") as f:
+        f.write(body)
+    print("wrote sitemap.xml (%d urls)" % len(urls))
 
 def load_history():
     path = BASE + "/history.csv"

@@ -103,6 +103,15 @@ python -m http.server 8823
 ブラウザで <http://127.0.0.1:8823/> を開く。`index.html` を直接開いてもデータは表示される
 (データは `data.js` に埋め込み済みのため)。
 
+## チャンネル個別ページ / シェア
+
+- `gen_data.py` が各チャンネルの個別ページ `c/<channelId>/index.html` を生成
+  (`assets/channel.js` が描画。登録者/総再生/投稿の推移ステップ折れ線・YouTubeリンク・
+  シェアボタン)。SEO用に固有の title/description/canonical を付与し、`sitemap.xml` にも全ページを列挙。
+- 一覧のカードは **本体クリック=個別ページ / 「YouTube」ボタン=YouTube** に分離。
+- ヒーローと個別ページに **X / リンクコピー** のシェアボタン。
+- 公開ドメインを変える場合は `gen_data.py` の `SITE` を変更(現状 `https://pbers.pages.dev`)。
+
 ## 取得ロジックの注意点
 
 登録者数・総再生数は各チャンネルの **`/about` ページ**に含まれる
