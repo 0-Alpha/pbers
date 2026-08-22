@@ -541,6 +541,7 @@
   var VIEWS = {
     dashboard: document.getElementById('view-dashboard'),
     growth:    document.getElementById('view-growth'),
+    news:      document.getElementById('view-news'),
     channels:  document.getElementById('view-channels')
   };
   var currentView = 'dashboard';
@@ -553,6 +554,7 @@
     window.scrollTo(0, 0);
     if (v === 'dashboard') replay();
     if (v === 'growth') { renderTrend(); playGrowth(); }
+    if (v === 'news') renderNewsFeed();
   }
   function setupTabs() {
     document.querySelectorAll('.tab').forEach(function (t) {
@@ -564,6 +566,86 @@
     });
     var initial = location.hash.slice(1);   // deep-link on load
     if (VIEWS[initial] && initial !== 'dashboard') switchTab(initial);
+  }
+
+  /* ---- news feed (animated: 3D milestone bars + crossing overtakes) ---- */
+  var NF_OBS = null;
+  var MWORD = { subs: '登録者数', views: '総再生数', videos: '投稿数' };
+  function shade(hex, amt) {
+    var h = (hex || '#888888').replace('#', '');
+    if (h.length === 3) h = h.split('').map(function (c) { return c + c; }).join('');
+    var r = parseInt(h.substr(0, 2), 16), g = parseInt(h.substr(2, 2), 16), b = parseInt(h.substr(4, 2), 16);
+    function f(x) { return Math.max(0, Math.min(255, Math.round(amt >= 0 ? x + (255 - x) * amt : x * (1 + amt)))); }
+    return 'rgb(' + f(r) + ',' + f(g) + ',' + f(b) + ')';
+  }
+  function bigNum(kind, v) {
+    if (kind === 'subs') return { n: (v / 1e4) + '', u: '万人' };
+    if (kind === 'videos') return { n: v + '', u: '本' };
+    if (v >= 1e8) return { n: (Math.round(v / 1e8 * 10) / 10) + '', u: '億回' };
+    return { n: (v / 1e4) + '', u: '万回' };
+  }
+  function buildOvChart(el) {
+    var W = Math.max(300, el.clientWidth || 620), H = 210, pad = 24, iconR = 24;
+    var xL = pad + iconR, xR = W - pad - iconR, yT = pad + iconR, yB = H - pad - iconR;
+    var cA = el.dataset.a, cB = el.dataset.b, ai = el.dataset.ai, bi = el.dataset.bi, id = el.dataset.clip;
+    function cubic(x0, y0, x1, y1) { var dx = (x1 - x0) * 0.4; return 'M' + x0 + ',' + y0 + ' C' + (x0 + dx) + ',' + y0 + ' ' + (x1 - dx) + ',' + y1 + ' ' + x1 + ',' + y1; }
+    var pA = cubic(xL, yB, xR, yT), pB = cubic(xL, yT, xR, yB);
+    el.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet">' +
+      '<defs><clipPath id="ca' + id + '"><circle cx="' + xR + '" cy="' + yT + '" r="' + iconR + '"/></clipPath>' +
+      '<clipPath id="cb' + id + '"><circle cx="' + xR + '" cy="' + yB + '" r="' + iconR + '"/></clipPath></defs>' +
+      '<path class="ov-line" d="' + pB + '" stroke="' + cB + '"/>' +
+      '<path class="ov-line" d="' + pA + '" stroke="' + cA + '"/>' +
+      '<image href="' + bi + '" x="' + (xR - iconR) + '" y="' + (yB - iconR) + '" width="' + (iconR * 2) + '" height="' + (iconR * 2) + '" clip-path="url(#cb' + id + ')" preserveAspectRatio="xMidYMid slice"/>' +
+      '<circle cx="' + xR + '" cy="' + yB + '" r="' + iconR + '" fill="none" stroke="' + cB + '" stroke-width="3"/>' +
+      '<image href="' + ai + '" x="' + (xR - iconR) + '" y="' + (yT - iconR) + '" width="' + (iconR * 2) + '" height="' + (iconR * 2) + '" clip-path="url(#ca' + id + ')" preserveAspectRatio="xMidYMid slice"/>' +
+      '<circle cx="' + xR + '" cy="' + yT + '" r="' + iconR + '" fill="none" stroke="' + cA + '" stroke-width="3"/>' +
+      '</svg>';
+    el.querySelectorAll('.ov-line').forEach(function (p) { var L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+  }
+  function renderNewsFeed() {
+    var host = document.getElementById('news-feed'); if (!host) return;
+    var NEWS = window.PBERS_NEWS || [];
+    host.className = 'news-feed'; host.innerHTML = '';
+    var any = false, clip = 0;
+    NEWS.forEach(function (day) {
+      var items = (day.items || []).filter(genreVisible);
+      if (!items.length) return;
+      any = true;
+      var sep = document.createElement('div'); sep.className = 'nf-daysep'; sep.textContent = day.label; host.appendChild(sep);
+      items.forEach(function (n) {
+        var st = document.createElement('div'); st.className = 'nf-story ' + n.type;
+        if (n.type === 'milestone') {
+          var bn = bigNum(n.kind, n.value);
+          st.innerHTML =
+            '<div class="ms">' +
+              '<div class="ms-metric">' + MWORD[n.kind] + ' 突破</div>' +
+              '<div class="ms-num" style="color:' + n.color + '">' + esc(bn.n) + '<small>' + bn.u + '</small></div>' +
+              '<div class="mbar-stage"><div class="mbar" style="--c:' + n.color + ';--ct:' + shade(n.color, .35) + ';--cs:' + shade(n.color, -.32) + ';--h:210px">' +
+                '<div class="mbar-top"></div><div class="mbar-side"></div>' +
+                '<img class="mbar-icon" src="' + n.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
+              '</div></div>' +
+              '<div class="ms-name" style="color:' + n.color + '">' + esc(n.name) + '</div>' +
+            '</div>';
+        } else {
+          var opp = n.opp || { name: '', color: '#888', avatar: '' };
+          st.innerHTML =
+            '<div class="ov">' +
+              '<div class="ov-title"><b style="color:' + n.color + '">' + esc(n.name) + '</b> が <b style="color:' + opp.color + '">' + esc(opp.name) + '</b> を ' + MWORD[n.kind] + 'で追い越し</div>' +
+              '<div class="ov-chart" data-a="' + n.color + '" data-b="' + opp.color + '" data-ai="' + esc(n.avatar) + '" data-bi="' + esc(opp.avatar) + '" data-clip="' + (clip++) + '"></div>' +
+            '</div>';
+        }
+        host.appendChild(st);
+      });
+    });
+    if (!any) { host.innerHTML = '<div class="nf-none">まだニュースがありません（記録が2日分たまると出はじめます）。</div>'; return; }
+    host.querySelectorAll('.ov-chart').forEach(buildOvChart);
+    if (NF_OBS) NF_OBS.disconnect();
+    if ('IntersectionObserver' in window) {
+      NF_OBS = new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle('in', e.isIntersecting); }); }, { threshold: 0.3 });
+      host.querySelectorAll('.nf-story').forEach(function (s) { NF_OBS.observe(s); });
+    } else {
+      host.querySelectorAll('.nf-story').forEach(function (s) { s.classList.add('in'); });
+    }
   }
 
   /* ---- settings: genre visibility ---- */
@@ -634,7 +716,10 @@
   var _rz;
   window.addEventListener('resize', function () {
     moveInd(document.querySelector('#toggle .tg.on')); showTotal();
-    clearTimeout(_rz); _rz = setTimeout(function () { if (!VIEWS.growth.hidden) renderTrend(); }, 200);
+    clearTimeout(_rz); _rz = setTimeout(function () {
+      if (!VIEWS.growth.hidden) renderTrend();
+      if (VIEWS.news && !VIEWS.news.hidden) document.querySelectorAll('#news-feed .ov-chart').forEach(buildOvChart);
+    }, 200);
   });
   observe(document.querySelector('.donut-stage'), playDonut);
   observe(document.getElementById('col-scroll'), playCols);   // observe the viewport-width container, not the wide flex

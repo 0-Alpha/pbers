@@ -31,7 +31,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="assets/style.css?v=250827">
+<link rel="stylesheet" href="assets/style.css?v=250828">
 </head>
 <body>
 
@@ -52,6 +52,7 @@
   <div class="wrap">
     <button class="tab on" data-view="dashboard">ダッシュボード</button>
     <button class="tab" data-view="growth">成長</button>
+    <button class="tab" data-view="news">ニュース</button>
     <button class="tab" data-view="channels">チャンネル一覧</button>
   </div>
 </div>
@@ -119,12 +120,12 @@
     </div>
   </section>
 
-  <!-- NEWS -->
-  <section class="block" id="news">
+  <!-- NEWS (summary) -->
+  <section class="block" id="dash-news">
     <div class="wrap">
       <div class="sec-head">
         <h2>ニュース <span class="en">News</span></h2>
-        <span class="note">直近7日間のマイルストーン突破</span>
+        <a class="note more-link" href="#news">詳細を見る →</a>
       </div>
       <div class="news" id="news-list"></div>
     </div>
@@ -140,6 +141,7 @@
         <div class="log-item">
           <div class="log-date">2026-08-22</div>
           <ul>
+            <li>アニメーション付き「ニュース」タブを追加(3D突破演出・順位交差演出)</li>
             <li>チャンネル個別ページを追加(推移グラフ・検索しやすいURL)</li>
             <li>成長タブを追加(登録者・再生数・投稿数の増減ランキング＋界隈全体の推移グラフ)</li>
             <li>設定(⚙)からジャンルの表示/非表示を切り替え可能に</li>
@@ -200,6 +202,19 @@
   </section>
 </main>
 
+<!-- NEWS feed view (animated) -->
+<main id="view-news" hidden>
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>ニュース <span class="en">News Feed</span></h2>
+        <span class="note">下にスクロールで再生 / 直近7日</span>
+      </div>
+      <div id="news-feed"></div>
+    </div>
+  </section>
+</main>
+
 <!-- CHANNELS (by-tier) view -->
 <main id="view-channels" hidden>
   <section class="block" style="padding-top:40px">
@@ -220,9 +235,9 @@
   </div>
 </footer>
 
-<script src="assets/data.js?v=250827"></script>
-<script src="assets/news.js?v=250827"></script>
-<script src="assets/growth.js?v=250827"></script>
-<script src="assets/app.js?v=250827"></script>
+<script src="assets/data.js?v=250828"></script>
+<script src="assets/news.js?v=250828"></script>
+<script src="assets/growth.js?v=250828"></script>
+<script src="assets/app.js?v=250828"></script>
 </body>
 </html>

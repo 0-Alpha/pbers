@@ -43,6 +43,33 @@ def milestone_label(metric, v):
         return "総再生数 %d万回 突破" % (v // 10000)
     return "投稿数 %d本 突破" % v
 
+def view_milestone(cur):
+    # 1億以上=5000万毎 / 1000万以上=1000万毎 / 100万以上=100万毎 / 100万未満=対象外
+    if cur >= 100000000:
+        step = 50000000
+    elif cur >= 10000000:
+        step = 10000000
+    elif cur >= 1000000:
+        step = 1000000
+    else:
+        return None
+    return (cur // step) * step
+
+def milestone_reached(metric, pv, cur):
+    """前回値 pv から当日値 cur で新たに到達した最上位のキリ番。無ければ None。"""
+    if pv is None or cur is None:
+        return None
+    if metric == "subs":
+        s = 10000
+        return (cur // s) * s if cur // s > pv // s else None
+    if metric == "videos":
+        s = 100
+        return (cur // s) * s if cur // s > pv // s else None
+    if metric == "views":
+        m = view_milestone(cur)
+        return m if (m is not None and m > pv) else None
+    return None
+
 # 引退者: データ取得・記録は続けるが、グラフ・一覧・ニュースには載せない
 RETIRED = {
     "UCxtGe9mRTjabQjwvmhqc5nw",  # 引退募集
@@ -158,7 +185,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250827">
+<link rel="stylesheet" href="../../assets/style.css?v=250828">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -174,7 +201,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250827"></script>
+<script src="../../assets/channel.js?v=250828"></script>
 </body>
 </html>
 '''
@@ -308,6 +335,13 @@ def build_news(colors):
     all_dates = sorted({d for m in series.values() for d in m})
     prev_of = {all_dates[i]: all_dates[i - 1] for i in range(1, len(all_dates))}
 
+    amap = {}   # id -> avatar
+    try:
+        for d in json.load(open(BASE + "/data.json", encoding="utf-8")):
+            amap[d["id"]] = d.get("avatar", "")
+    except Exception:
+        pass
+
     def gv(cid, d, metric):
         rec = series.get(cid, {}).get(d)
         return rec[metric] if rec else None
@@ -317,18 +351,15 @@ def build_news(colors):
             continue
         P = prev_of[D]
         for metric in STEPS:
-            step = STEPS[metric][0]
-            # (1) マイルストーン突破
+            # (1) マイルストーン突破（段階式）
             for cid in shown:
-                cur, pv = gv(cid, D, metric), gv(cid, P, metric)
-                if cur is None or pv is None:
-                    continue
-                if cur // step > pv // step:
-                    reached = (cur // step) * step
+                reached = milestone_reached(metric, gv(cid, P, metric), gv(cid, D, metric))
+                if reached is not None:
                     by_date[D].append({
                         "type": "milestone", "kind": metric, "name": names[cid],
-                        "color": colors[cid], "icon": "🎉", "genre": genre_of(cid),
-                        "label": milestone_label(metric, reached), "value": reached,
+                        "color": colors[cid], "avatar": amap.get(cid, ""), "icon": "🎉",
+                        "genre": genre_of(cid), "label": milestone_label(metric, reached),
+                        "value": reached,
                     })
             # (2) 追い越し（Aが前日はBの下、当日はBの上）
             elig = [c for c in shown if gv(c, D, metric) is not None and gv(c, P, metric) is not None]
@@ -340,7 +371,9 @@ def build_news(colors):
                     if pa < gv(b, P, metric) and ca > gv(b, D, metric):
                         by_date[D].append({
                             "type": "overtake", "kind": metric, "name": names[a],
-                            "color": colors[a], "icon": "⤴️", "genre": genre_of(a),
+                            "color": colors[a], "avatar": amap.get(a, ""), "icon": "⤴️",
+                            "genre": genre_of(a),
+                            "opp": {"name": names[b], "color": colors.get(b, "#8d8986"), "avatar": amap.get(b, "")},
                             "label": "%sで %s を追い越し" % (METRICWORD[metric], names[b]),
                             "value": ca,
                         })
