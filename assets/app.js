@@ -620,10 +620,10 @@
             '<div class="ms">' +
               '<div class="ms-metric">' + MWORD[n.kind] + ' 突破</div>' +
               '<div class="ms-num" style="color:' + n.color + '">' + esc(bn.n) + '<small>' + bn.u + '</small></div>' +
-              '<div class="mbar-stage"><div class="mbar" style="--c:' + n.color + ';--ct:' + shade(n.color, .35) + ';--cs:' + shade(n.color, -.32) + ';--h:210px">' +
-                '<div class="mbar-top"></div><div class="mbar-side"></div>' +
+              '<div class="mbar-stage" style="--c:' + n.color + ';--h:220px">' +
+                '<div class="mbar"></div>' +
                 '<img class="mbar-icon" src="' + n.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
-              '</div></div>' +
+              '</div>' +
               '<div class="ms-name" style="color:' + n.color + '">' + esc(n.name) + '</div>' +
             '</div>';
         } else {
