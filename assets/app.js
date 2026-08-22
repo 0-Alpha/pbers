@@ -51,7 +51,9 @@
     if (n >= 1e4) return sig3(n / 1e4) + '万';
     return fmt(n);
   }
-  function val(d) { return d[metric] || 0; }
+  // 「リアル予測」モードでは円グラフ・棒グラフ・一覧は登録者ベースで描画する
+  function bm() { return metric === 'predict' ? 'subs' : metric; }
+  function val(d) { return d[bm()] || 0; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (m) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[m]; }); }
   function setText(id, t) { var e = document.getElementById(id); if (e) e.textContent = t; }
   // fit the donut-center number so long values (e.g. 総再生数) never hit the ring
@@ -82,7 +84,7 @@
   /* ---- center overlay ---- */
   function showTotal() {
     dcName.textContent = '';
-    fitNum(dcNum, jp(total) + METRICS[metric].unit);
+    fitNum(dcNum, jp(total) + METRICS[bm()].unit);
     dcNum.style.color = 'var(--text)';
     dcCap.textContent = 'Total ・ ' + DATA.length + 'ch';
     dcPct.textContent = '';
@@ -92,13 +94,13 @@
     dcName.textContent = d.name;
     fitNum(dcNum, (val(d) ? fmt(val(d)) : '非公開'));
     dcNum.style.color = d.color;
-    dcCap.textContent = METRICS[metric].ccap;
+    dcCap.textContent = METRICS[bm()].ccap;
     dcPct.textContent = total ? (val(d) / total * 100).toFixed(1) + '%' : '';
   }
   function showOther() {
     if (!otherSeg) return;
     dcName.textContent = 'その他';
-    fitNum(dcNum, jp(otherSeg.value) + METRICS[metric].unit);
+    fitNum(dcNum, jp(otherSeg.value) + METRICS[bm()].unit);
     dcNum.style.color = '#c9c5c2';
     dcCap.textContent = otherSeg.count + ' channels';
     dcPct.textContent = total ? (otherSeg.value / total * 100).toFixed(1) + '%' : '';
@@ -139,10 +141,10 @@
     total = DATA.reduce(function (s, d) { return s + val(d); }, 0);
     var max = val(DATA[0]) || 1;
 
-    setText('total-cap', METRICS[metric].cap);
-    setText('rank-title', METRICS[metric].word + 'ランキング');
-    document.getElementById('total').innerHTML = fmt(total) + '<span class="u">' + METRICS[metric].unit + '</span>';
-    document.getElementById('total-man').textContent = jp(total) + METRICS[metric].unit;
+    setText('total-cap', METRICS[bm()].cap);
+    setText('rank-title', METRICS[bm()].word + 'ランキング');
+    document.getElementById('total').innerHTML = fmt(total) + '<span class="u">' + METRICS[bm()].unit + '</span>';
+    document.getElementById('total-man').textContent = jp(total) + METRICS[bm()].unit;
 
     /* donut: top 30 individual + "その他" aggregate (hover via setupDonutHover) */
     svg.innerHTML = ''; circles = []; sliceStart = []; sliceFrac = []; donutSegs = []; otherSeg = null;
@@ -225,6 +227,37 @@
     }
 
     showTotal();
+    if (metric === 'predict') enterPredictUI(); else exitPredictUI();
+  }
+
+  /* ---- リアル予測: サーバ側(gen_data)で算出したモデルから現在値を推定し自動カウントアップ ----
+     モデルはチャンネル単位・過去7日・直近ほど加重・総再生数の減少は除外(名簿変更の影響を受けない)。 */
+  var predictRAF = null, predictT0 = 0;
+  var PREDICT_REVEAL = 1600;   // reveal(0→現在値)の時間(ms)
+  var PREDICT = window.PBERS_PREDICT || { asOfMs: Date.now(), subs: { base: 0, rate: 0 }, views: { base: 0, rate: 0 } };
+  function liveVal(key) {
+    var m = PREDICT[key] || { base: 0, rate: 0 };
+    return m.base + m.rate * (Date.now() - (PREDICT.asOfMs || Date.now()));
+  }
+  function predictFrame(now) {
+    if (metric !== 'predict' || (VIEWS.dashboard && VIEWS.dashboard.hidden)) { predictRAF = null; return; }
+    var e = Math.min(1, (now - predictT0) / PREDICT_REVEAL); e = 1 - Math.pow(1 - e, 3);   // easeOut
+    var subsN = Math.round(liveVal('subs') * e);
+    var viewsN = Math.round(liveVal('views') * e);
+    var t = document.getElementById('total'); if (t) t.innerHTML = fmt(subsN) + '<span class="u">人</span>';
+    var pv = document.getElementById('predict-views'); if (pv) pv.textContent = fmt(viewsN);
+    predictRAF = requestAnimationFrame(predictFrame);
+  }
+  function enterPredictUI() {
+    setText('total-cap', 'リアル予測 合計登録者数 / Live Estimate');
+    var ts = document.querySelector('.total-sub'); if (ts) ts.hidden = true;
+    var ps = document.getElementById('predict-sub'); if (ps) ps.hidden = false;
+    if (!predictRAF) { predictT0 = performance.now(); predictRAF = requestAnimationFrame(predictFrame); }
+  }
+  function exitPredictUI() {
+    if (predictRAF) { cancelAnimationFrame(predictRAF); predictRAF = null; }
+    var ts = document.querySelector('.total-sub'); if (ts) ts.hidden = false;
+    var ps = document.getElementById('predict-sub'); if (ps) ps.hidden = true;
   }
 
   /* ---- animations (replay on view + on metric change) ---- */
@@ -594,7 +627,7 @@
     Object.keys(VIEWS).forEach(function (k) { if (VIEWS[k]) VIEWS[k].hidden = (k !== v); });
     if (location.hash.slice(1) !== v) location.hash = v;   // reflect in the URL (#dashboard / #growth / #channels)
     window.scrollTo(0, 0);
-    if (v === 'dashboard') replay();
+    if (v === 'dashboard') { replay(); if (metric === 'predict') enterPredictUI(); }
     if (v === 'growth') { renderTrend(); playGrowth(); }
     if (v === 'news') renderNewsFeed();
     if (v === 'race') renderRace();

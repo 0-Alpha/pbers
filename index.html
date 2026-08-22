@@ -31,7 +31,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="assets/style.css?v=250839">
+<link rel="stylesheet" href="assets/style.css?v=250840">
 </head>
 <body>
 
@@ -69,6 +69,7 @@
           <button class="tg on" data-metric="subs">登録者数</button>
           <button class="tg" data-metric="views">総再生数</button>
           <button class="tg" data-metric="videos">投稿数</button>
+          <button class="tg" data-metric="predict">リアル予測</button>
           <span class="tg-ind" id="tg-ind"></span>
         </div>
         <button class="filter" id="filter-big" aria-pressed="false">
@@ -79,6 +80,7 @@
       <div class="total-cap" id="total-cap">合計登録者数 / Total Subscribers</div>
       <div class="total num" id="total">—</div>
       <div class="total-sub"><span class="num" id="total-man"></span> ・ <span class="num" id="ch-count"></span> channels</div>
+      <div class="predict-sub" id="predict-sub" hidden>推定 総再生数 <span class="num" id="predict-views">—</span> 回 <span class="predict-tag">● LIVE 推定・自動更新</span></div>
 
       <div class="share" id="share-home" style="justify-content:center;margin-top:22px">
         <button class="sh sh-x" data-share="x">𝕏 でシェア</button>
@@ -140,6 +142,13 @@
         <h2>アップデート履歴 <span class="en">Changelog</span></h2>
       </div>
       <div class="log">
+        <div class="log-item">
+          <div class="log-date">2026-08-23</div>
+          <ul>
+            <li>円グラフに「リアル予測」を追加(過去7日の推移=直近ほど加重・総再生数の減少は除外 から現在値を推定し自動カウントアップ)</li>
+            <li>データ取得の時刻を微調整(スケジュール混雑を避けるため分をずらした)</li>
+          </ul>
+        </div>
         <div class="log-item">
           <div class="log-date">2026-08-22</div>
           <ul>
@@ -262,10 +271,10 @@
   </div>
 </footer>
 
-<script src="assets/data.js?v=250839"></script>
-<script src="assets/news.js?v=250839"></script>
-<script src="assets/growth.js?v=250839"></script>
-<script src="assets/race.js?v=250839"></script>
-<script src="assets/app.js?v=250839"></script>
+<script src="assets/data.js?v=250840"></script>
+<script src="assets/news.js?v=250840"></script>
+<script src="assets/growth.js?v=250840"></script>
+<script src="assets/race.js?v=250840"></script>
+<script src="assets/app.js?v=250840"></script>
 </body>
 </html>

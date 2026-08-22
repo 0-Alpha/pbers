@@ -176,6 +176,7 @@ def main():
         f.write("window.PBERS_DATA = " + json.dumps(out, ensure_ascii=False, indent=2) + ";\n")
         f.write("window.PBERS_GENRES = " + json.dumps(GENRES, ensure_ascii=False) + ";\n")
         f.write('window.PBERS_UPDATED = "%s";\n' % UPDATED)
+        f.write("window.PBERS_PREDICT = " + json.dumps(compute_predict(colors), ensure_ascii=False) + ";\n")
     print("wrote assets/data.js (%d channels)" % len(out))
 
     build_news(colors)
@@ -250,7 +251,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250839">
+<link rel="stylesheet" href="../../assets/style.css?v=250840">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -266,7 +267,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250839"></script>
+<script src="../../assets/channel.js?v=250840"></script>
 </body>
 </html>
 '''
@@ -312,6 +313,72 @@ def build_sitemap(order):
     with open(os.path.join(BASE, "sitemap.xml"), "w", encoding="utf-8") as f:
         f.write(body)
     print("wrote sitemap.xml (%d urls)" % len(urls))
+
+def ts_to_ms(s):
+    """記録スロット文字列(JSTの壁時計)を絶対時刻(epoch ms)にする。"""
+    s = str(s)
+    y, mo, da = int(s[:4]), int(s[5:7]), int(s[8:10])
+    hh = int(s[11:13]) if len(s) > 10 else 0
+    mm = int(s[14:16]) if len(s) > 10 else 0
+    return int(datetime.datetime(y, mo, da, hh, mm, tzinfo=JST).timestamp() * 1000)
+
+def compute_predict(colors):
+    """「リアル予測」用モデル: 各チャンネルの過去7日の推移から増加率を出して合算。
+       - チャンネル単位で算出するので、集計対象チャンネルの増減(名簿変更)が偽の増加にならない。
+       - 直近ほど重い加重平均(半減期2日)。総再生数の減少区間は無視する。
+       返り値: {asOfMs, subs:{base,rate}, views:{base,rate}}  rateは1msあたり。"""
+    series, _ = load_history()
+    try:
+        cur = {d["id"]: d for d in json.load(open(BASE + "/data.json", encoding="utf-8"))}
+    except Exception:
+        cur = {}
+    main_ids = [cid for cid in colors if cid not in RETIRED and genre_of(cid) == DEFAULT_GENRE]
+    all_ts = sorted({t for cid in main_ids for t in series.get(cid, {})})
+    as_of_ms = ts_to_ms(all_ts[-1]) if all_ts else int(datetime.datetime.now(JST).timestamp() * 1000)
+
+    DAY = 86400000.0
+    HALF = 2.0
+    WEEK = 7 * DAY
+
+    def ch_rate(cid, metric, exclude_neg):
+        h = series.get(cid, {})
+        ts = sorted(h)
+        if not ts:
+            return 0.0
+        latest = ts_to_ms(ts[-1])
+        pts = [(ts_to_ms(x), h[x][metric]) for x in ts
+               if h[x][metric] is not None and (latest - ts_to_ms(x)) <= WEEK]
+        if len(pts) < 2:
+            return 0.0
+        num = den = 0.0
+        for i in range(1, len(pts)):
+            dt = pts[i][0] - pts[i - 1][0]
+            if dt <= 0:
+                continue
+            dv = pts[i][1] - pts[i - 1][1]
+            if exclude_neg and dv < 0:      # 総再生数の減少は含めない
+                continue
+            r = dv / dt
+            age = (latest - (pts[i][0] + pts[i - 1][0]) / 2) / DAY
+            w = 0.5 ** (age / HALF)         # 直近ほど重い
+            num += w * r
+            den += w
+        rate = (num / den) if den else 0.0
+        return rate if rate > 0 else 0.0    # ライブ表示は下がらない
+
+    sb = vb = 0
+    sr = vr = 0.0
+    for cid in main_ids:
+        c = cur.get(cid, {})
+        if c.get("subs"):
+            sb += c["subs"]
+        if c.get("views"):
+            vb += c["views"]
+        sr += ch_rate(cid, "subs", False)
+        vr += ch_rate(cid, "views", True)
+    return {"asOfMs": as_of_ms,
+            "subs":  {"base": sb, "rate": sr},
+            "views": {"base": vb, "rate": vr}}
 
 def load_history():
     path = BASE + "/history.csv"
