@@ -307,12 +307,14 @@ section.block{padding:46px 0}
 .ms-num{font-family:var(--num);font-weight:900;font-size:clamp(52px,13vw,96px);line-height:1;letter-spacing:-.03em;margin:6px 0 2px}
 .ms-num small{font-size:.32em;font-weight:800;color:var(--muted);margin-left:.12em}
 /* 本物のCSS 3D：四角柱を見下ろすカメラで描画。下(遠く)へ perspective で縮み、面はフェード */
-/* 正面視点の台形の塔：下が広く上が狭い。上にアイコン */
+/* 正面視点の直方体：まっすぐな長方形。上は不透明、下へ透明にフェード。上にアイコン */
 .mbar-stage{position:relative;height:270px;display:flex;align-items:flex-end;justify-content:center;margin-top:18px}
-.mbar{width:160px;height:0;background:linear-gradient(to bottom, var(--cl) 0%, var(--c) 24%, var(--c) 100%);
-  clip-path:polygon(35% 0, 65% 0, 100% 100%, 0 100%)}
+.mbar{width:132px;height:0;border-radius:5px 5px 0 0;
+  background:linear-gradient(to bottom, var(--cl) 0%, var(--c) 12%, var(--c) 100%);
+  -webkit-mask:linear-gradient(to bottom,#000 30%,transparent 100%);
+          mask:linear-gradient(to bottom,#000 30%,transparent 100%)}
 .nf-story.in .mbar{height:var(--h);transition:height 1.15s cubic-bezier(.22,1,.36,1) .12s}
-.mbar-icon{position:absolute;left:50%;bottom:calc(var(--h) - 8px);transform:translateX(-50%);width:54px;height:54px;
+.mbar-icon{position:absolute;left:50%;bottom:calc(var(--h) - 10px);transform:translateX(-50%);width:56px;height:56px;
   border-radius:50%;object-fit:cover;border:3px solid var(--cl);background:#222;box-shadow:0 6px 16px rgba(0,0,0,.5);z-index:2}
 .ms-name{font-family:var(--jp);font-weight:800;font-size:15px;margin-top:12px}
 
