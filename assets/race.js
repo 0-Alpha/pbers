@@ -382,15 +382,11 @@ window.PBERS_RACE = [
         ]
       },
       {
-        "name": "Acgelent",
+        "name": "まるッとわかる地理の裏話",
         "color": "#3ecc9f",
-        "avatar": "https://yt3.googleusercontent.com/tub0fEMv1kKO-pJ0jRCL-8uvuTIe-u_edpXhyRsR9MYdmqDvPABiWXdwSF5eHRxPEGr6VcXe=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 12300,
+        "avatar": "https://yt3.googleusercontent.com/OKTvYCqWkuYG-s3iq1dydM6YDas44QIY_hQxl1bPLPQbGzbLUe-ljaKZ4AoJu1kb1r2PI0GPXnI=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 12400,
         "history": [
-          {
-            "d": "2026-08-21",
-            "s": 12300
-          },
           {
             "d": "2026-08-23 00:00",
             "s": 12300
@@ -402,11 +398,15 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "まるッとわかる地理の裏話",
+        "name": "Acgelent",
         "color": "#5e91d4",
-        "avatar": "https://yt3.googleusercontent.com/OKTvYCqWkuYG-s3iq1dydM6YDas44QIY_hQxl1bPLPQbGzbLUe-ljaKZ4AoJu1kb1r2PI0GPXnI=s900-c-k-c0x00ffffff-no-rj",
+        "avatar": "https://yt3.googleusercontent.com/tub0fEMv1kKO-pJ0jRCL-8uvuTIe-u_edpXhyRsR9MYdmqDvPABiWXdwSF5eHRxPEGr6VcXe=s900-c-k-c0x00ffffff-no-rj",
         "subs": 12300,
         "history": [
+          {
+            "d": "2026-08-21",
+            "s": 12300
+          },
           {
             "d": "2026-08-23 00:00",
             "s": 12300
@@ -689,7 +689,7 @@ window.PBERS_RACE = [
         "name": "ikasumi帝国",
         "color": "#823ecc",
         "avatar": "https://yt3.googleusercontent.com/pXavDBoQWleJO0X1Cd7TrS5BP9DduNyqd0CtSqENd7k-YW0UwYkREQdZAE0mthqG4mUSPcMS8Q=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5520,
+        "subs": 5530,
         "history": [
           {
             "d": "2026-08-23 00:00",
