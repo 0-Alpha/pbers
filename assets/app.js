@@ -5,8 +5,9 @@
   var UPDATED = window.PBERS_UPDATED || '';
 
   var METRICS = {
-    subs:  { key: 'subs',  unit: '人', word: '登録者',   cap: '合計登録者数 / Total Subscribers', ccap: 'Subscribers' },
-    views: { key: 'views', unit: '回', word: '総再生数', cap: '合計総再生数 / Total Views',        ccap: 'Total Views' }
+    subs:   { key: 'subs',   unit: '人', word: '登録者',   cap: '合計登録者数 / Total Subscribers', ccap: 'Subscribers' },
+    views:  { key: 'views',  unit: '回', word: '総再生数', cap: '合計総再生数 / Total Views',        ccap: 'Total Views' },
+    videos: { key: 'videos', unit: '本', word: '投稿数',   cap: '合計投稿数 / Total Videos',         ccap: 'Videos' }
   };
   var metric = 'subs';
   var hideBig = false;         // 登録者10万人以上を除外
@@ -239,18 +240,24 @@
     });
     colEls.forEach(function (co) { co.classList.toggle('shown', on); });
   }
-  function inView(el) { var r = el.getBoundingClientRect(); return r.top < innerHeight * 0.65 && r.bottom > innerHeight * 0.2; }
+  // replay() is only called from deliberate actions (metric/filter/genre change,
+  // switching to the dashboard). Always play so the donut/columns are guaranteed
+  // visible afterward — do NOT gate on scroll position (that could leave the arcs
+  // stuck invisible on shorter/mobile viewports).
   function replay() {
     playDonut(false); playCols(false);
     requestAnimationFrame(function () { requestAnimationFrame(function () {
-      if (inView(document.querySelector('.donut-stage'))) playDonut(true);
-      if (inView(cols)) playCols(true);
+      playDonut(true); playCols(true);
     }); });
   }
   function observe(el, play) {
     if (!el || !('IntersectionObserver' in window)) { play(true); return; }
     new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) requestAnimationFrame(function () { play(true); }); else play(false); });
+      es.forEach(function (e) {
+        if (e.isIntersecting) { requestAnimationFrame(function () { play(true); }); return; }
+        var r = e.boundingClientRect;
+        if (r.width || r.height) play(false);   // genuine scroll-out only; ignore tab-hidden (0-size) to avoid a stale false wiping the arcs
+      });
     }, { threshold: 0.2 }).observe(el);
   }
 
