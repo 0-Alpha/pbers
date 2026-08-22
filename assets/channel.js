@@ -86,7 +86,8 @@
 
   // share
   var shareUrl = location.origin + location.pathname;
-  var shareText = CH.name + ' の登録者数・再生数・投稿数｜PBers';
+  var shareText = CH.name + ' の登録者数は' + jp(CH.subs) + '人、総再生数は' + jp(CH.views) + '回、投稿数は' +
+    (CH.videos == null ? '—' : fmt(CH.videos)) + '本です！ #ポーランドボール';
   var bx = document.getElementById('sh-x'); if (bx) bx.addEventListener('click', function () { window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(shareUrl), '_blank', 'noopener'); });
   var bc = document.getElementById('sh-copy'); if (bc) bc.addEventListener('click', function () { navigator.clipboard && navigator.clipboard.writeText(shareUrl).then(function () { bc.textContent = 'コピーしました'; setTimeout(function () { bc.textContent = 'リンクをコピー'; }, 1500); }); });
 

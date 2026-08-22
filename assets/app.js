@@ -604,12 +604,17 @@
   }
 
   /* ---- share (X / copy) ---- */
+  function shareText() {
+    var vis = ALL.filter(genreVisible);
+    var ss = vis.reduce(function (s, d) { return s + (d.subs || 0); }, 0);
+    var vv = vis.reduce(function (s, d) { return s + (d.views || 0); }, 0);
+    return '現在のポーランドボーラー界隈の合計登録者数は' + jp(ss) + '人、総再生数は' + jp(vv) + '回です！ #ポーランドボール';
+  }
   function setupShare() {
     var url = location.origin + location.pathname;
-    var text = document.title;
     var x = document.querySelector('#share-home [data-share="x"]');
     var c = document.querySelector('#share-home [data-share="copy"]');
-    if (x) x.addEventListener('click', function () { window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url), '_blank', 'noopener'); });
+    if (x) x.addEventListener('click', function () { window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText()) + '&url=' + encodeURIComponent(url), '_blank', 'noopener'); });
     if (c) c.addEventListener('click', function () { if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { c.textContent = 'コピーしました'; setTimeout(function () { c.textContent = 'リンクをコピー'; }, 1500); }); });
   }
 
