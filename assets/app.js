@@ -12,6 +12,25 @@
   var hideBig = false;         // 登録者10万人以上を除外
   var BIG = 100000;
   var gmetric = 'subs';        // 成長タブの指標
+  var tierMetric = 'subs';     // チャンネル一覧タブの指標
+  var TIER_BANDS = {
+    subs: [
+      { t: '10万人以上', min: 100000 }, { t: '5万〜10万人', min: 50000, max: 100000 },
+      { t: '3万〜5万人', min: 30000, max: 50000 }, { t: '2万〜3万人', min: 20000, max: 30000 },
+      { t: '1万〜2万人', min: 10000, max: 20000 }, { t: '5000〜1万人', min: 5000, max: 10000 },
+      { t: '5000人未満', min: 0, max: 5000 }
+    ],
+    views: [
+      { t: '1億回以上', min: 100000000 }, { t: '3000万〜1億回', min: 30000000, max: 100000000 },
+      { t: '1000万〜3000万回', min: 10000000, max: 30000000 }, { t: '500万〜1000万回', min: 5000000, max: 10000000 },
+      { t: '100万〜500万回', min: 1000000, max: 5000000 }, { t: '100万回未満', min: 0, max: 1000000 }
+    ],
+    videos: [
+      { t: '1000本以上', min: 1000 }, { t: '500〜1000本', min: 500, max: 1000 },
+      { t: '300〜500本', min: 300, max: 500 }, { t: '100〜300本', min: 100, max: 300 },
+      { t: '100本未満', min: 0, max: 100 }
+    ]
+  };
   var GROWTH = window.PBERS_GROWTH || { span: { days: 0 }, subs: [], views: [], videos: [] };
   var GUNIT = { subs: '人', views: '回', videos: '本' };
   var GENRES = window.PBERS_GENRES || [];
@@ -326,27 +345,33 @@
   }
 
   /* ---- channels-by-tier view (subscriber bands) ---- */
+  function moveTierInd() {
+    var on = document.querySelector('#tier-toggle .tg.on'), ind = document.getElementById('ttg-ind');
+    if (on && ind) { ind.style.left = on.offsetLeft + 'px'; ind.style.width = on.offsetWidth + 'px'; }
+  }
+  function setupTierToggle() {
+    var tabs = [].slice.call(document.querySelectorAll('#tier-toggle .tg'));
+    tabs.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.dataset.tm === tierMetric) return;
+        tierMetric = b.dataset.tm;
+        tabs.forEach(function (x) { x.classList.toggle('on', x === b); });
+        moveTierInd(); renderTiers();
+      });
+    });
+  }
   function renderTiers() {
-    var host = document.getElementById('tiers');
-    if (!host) return;
-    var list = ALL.filter(genreVisible).sort(function (a, b) { return (b.subs || 0) - (a.subs || 0); });
+    var host = document.getElementById('tiers'); if (!host) return;
+    var m = tierMetric;
+    var list = ALL.filter(genreVisible).sort(function (a, b) { return (b[m] || 0) - (a[m] || 0); });
     var rankOf = {}; list.forEach(function (d, i) { rankOf[d.url] = i + 1; });
-    var bands = [
-      { title: '10万人以上',   min: 100000 },
-      { title: '5万〜10万人',  min: 50000, max: 100000 },
-      { title: '3万〜5万人',   min: 30000, max: 50000 },
-      { title: '2万〜3万人',   min: 20000, max: 30000 },
-      { title: '1万〜2万人',   min: 10000, max: 20000 },
-      { title: '5000〜1万人',  min: 5000,  max: 10000 },
-      { title: '5000人未満',   min: 0,     max: 5000 }
-    ];
     host.innerHTML = '';
-    bands.forEach(function (b) {
-      var inb = list.filter(function (d) { var s = d.subs || 0; return s >= b.min && (b.max == null || s < b.max); });
+    TIER_BANDS[m].forEach(function (b) {
+      var inb = list.filter(function (d) { var s = d[m] || 0; return s >= b.min && (b.max == null || s < b.max); });
       if (!inb.length) return;
       var band = document.createElement('div'); band.className = 'tier-band';
       var h = document.createElement('h3');
-      h.innerHTML = '<span class="bar"></span>' + b.title + '<span class="cnt">' + inb.length + ' ch</span>';
+      h.innerHTML = '<span class="bar"></span>' + b.t + '<span class="cnt">' + inb.length + ' ch</span>';
       var g = document.createElement('div'); g.className = 'grid';
       inb.forEach(function (d) { g.appendChild(cardEl(d, rankOf[d.url])); });
       band.appendChild(h); band.appendChild(g); host.appendChild(band);
@@ -555,6 +580,7 @@
     if (v === 'dashboard') replay();
     if (v === 'growth') { renderTrend(); playGrowth(); }
     if (v === 'news') renderNewsFeed();
+    if (v === 'channels') moveTierInd();
   }
   function setupTabs() {
     document.querySelectorAll('.tab').forEach(function (t) {
@@ -620,8 +646,9 @@
             '<div class="ms">' +
               '<div class="ms-metric">' + MWORD[n.kind] + ' 突破</div>' +
               '<div class="ms-num" style="color:' + n.color + '">' + esc(bn.n) + '<small>' + bn.u + '</small></div>' +
-              '<div class="mbar-stage" style="--c:' + n.color + ';--h:220px">' +
+              '<div class="mbar-stage" style="--c:' + n.color + ';--cl:' + shade(n.color, .42) + ';--cd:' + shade(n.color, -.4) + ';--h:220px">' +
                 '<div class="mbar"></div>' +
+                '<div class="mbar-roof"></div>' +
                 '<img class="mbar-icon" src="' + n.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
               '</div>' +
               '<div class="ms-name" style="color:' + n.color + '">' + esc(n.name) + '</div>' +
@@ -704,6 +731,7 @@
   renderNews();
   setupShare();
   renderTiers();
+  setupTierToggle();
   setupSettings();
   renderGrowth();
   renderTrend();

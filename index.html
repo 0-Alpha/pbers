@@ -31,7 +31,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="assets/style.css?v=250829">
+<link rel="stylesheet" href="assets/style.css?v=250830">
 </head>
 <body>
 
@@ -142,6 +142,7 @@
           <div class="log-date">2026-08-22</div>
           <ul>
             <li>アニメーション付き「ニュース」タブを追加(3D突破演出・順位交差演出)</li>
+            <li>チャンネル一覧を登録者数/総再生数/投稿数の帯別で切替可能に</li>
             <li>チャンネル個別ページを追加(推移グラフ・検索しやすいURL)</li>
             <li>成長タブを追加(登録者・再生数・投稿数の増減ランキング＋界隈全体の推移グラフ)</li>
             <li>設定(⚙)からジャンルの表示/非表示を切り替え可能に</li>
@@ -221,7 +222,15 @@
     <div class="wrap">
       <div class="sec-head">
         <h2>チャンネル一覧 <span class="en">By Tier</span></h2>
-        <span class="note">登録者数の帯別 / クリックでYouTubeへ</span>
+        <span class="note">数の帯別</span>
+      </div>
+      <div class="controls" style="justify-content:flex-start">
+        <div class="toggle" id="tier-toggle">
+          <button class="tg on" data-tm="subs">登録者</button>
+          <button class="tg" data-tm="views">総再生数</button>
+          <button class="tg" data-tm="videos">投稿数</button>
+          <span class="tg-ind" id="ttg-ind"></span>
+        </div>
       </div>
       <div id="tiers"></div>
     </div>
@@ -235,9 +244,9 @@
   </div>
 </footer>
 
-<script src="assets/data.js?v=250829"></script>
-<script src="assets/news.js?v=250829"></script>
-<script src="assets/growth.js?v=250829"></script>
-<script src="assets/app.js?v=250829"></script>
+<script src="assets/data.js?v=250830"></script>
+<script src="assets/news.js?v=250830"></script>
+<script src="assets/growth.js?v=250830"></script>
+<script src="assets/app.js?v=250830"></script>
 </body>
 </html>

@@ -306,14 +306,18 @@ section.block{padding:46px 0}
 .ms-metric{font-family:var(--jp);font-weight:700;font-size:14px;color:var(--muted);letter-spacing:.02em}
 .ms-num{font-family:var(--num);font-weight:900;font-size:clamp(52px,13vw,96px);line-height:1;letter-spacing:-.03em;margin:6px 0 2px}
 .ms-num small{font-size:.32em;font-weight:800;color:var(--muted);margin-left:.12em}
-/* 上空から見下ろす塔：上(手前)が広く不透明、下(遠く)へすぼんで透明にフェード */
-.mbar-stage{position:relative;height:280px;display:flex;align-items:flex-end;justify-content:center;margin-top:20px}
-.mbar{width:138px;height:0;
-  background:linear-gradient(to bottom, var(--c) 0%, var(--c) 14%, transparent 96%);
-  clip-path:polygon(0% 0%, 100% 0%, 66% 100%, 34% 100%)}
+/* 上空から見下ろす四角柱：上面(屋根)＋前面の平らな面、下(遠く)へすぼんで透明にフェード */
+.mbar-stage{position:relative;height:300px;display:flex;align-items:flex-end;justify-content:center;margin-top:20px}
+.mbar{width:150px;height:0;background:var(--c);
+  -webkit-mask:linear-gradient(to bottom,#000 14%,transparent 98%);
+          mask:linear-gradient(to bottom,#000 14%,transparent 98%);
+  clip-path:polygon(0 0, 100% 0, 60% 100%, 40% 100%)}
 .nf-story.in .mbar{height:var(--h);transition:height 1.15s cubic-bezier(.22,1,.36,1) .12s}
-.mbar-icon{position:absolute;left:50%;bottom:calc(var(--h) - 24px);transform:translateX(-50%);width:62px;height:62px;
-  border-radius:50%;object-fit:cover;border:3px solid var(--c);background:#222;box-shadow:0 8px 22px rgba(0,0,0,.55);z-index:2}
+/* 屋根(上面): 手前(下)が広く奥(上)が狭い台形 = 見下ろした天面 */
+.mbar-roof{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(var(--h) - 18px);width:150px;height:40px;
+  background:var(--cl);clip-path:polygon(0 100%, 100% 100%, 82% 0, 18% 0);z-index:1;filter:drop-shadow(0 3px 14px rgba(0,0,0,.4))}
+.mbar-icon{position:absolute;left:50%;bottom:calc(var(--h) - 16px);transform:translateX(-50%);width:58px;height:58px;
+  border-radius:50%;object-fit:cover;border:3px solid var(--cl);background:#222;box-shadow:0 6px 18px rgba(0,0,0,.5);z-index:2}
 .ms-name{font-family:var(--jp);font-weight:800;font-size:15px;margin-top:12px}
 
 /* overtake: crossing lines with icons at the tips */
