@@ -646,11 +646,8 @@
             '<div class="ms">' +
               '<div class="ms-metric">' + MWORD[n.kind] + ' 突破</div>' +
               '<div class="ms-num" style="color:' + n.color + '">' + esc(bn.n) + '<small>' + bn.u + '</small></div>' +
-              '<div class="mbar-stage" style="--c:' + n.color + ';--cl:' + shade(n.color, .42) + ';--cd:' + shade(n.color, -.4) + '">' +
-                '<div class="tower"><div class="tower-grow">' +
-                  '<div class="tface t-back"></div><div class="tface t-left"></div><div class="tface t-right"></div>' +
-                  '<div class="tface t-front"></div><div class="tface t-top"></div>' +
-                '</div></div>' +
+              '<div class="mbar-stage" style="--c:' + n.color + ';--cl:' + shade(n.color, .42) + ';--h:210px">' +
+                '<div class="mbar"></div>' +
                 '<img class="mbar-icon" src="' + n.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
               '</div>' +
               '<div class="ms-name" style="color:' + n.color + '">' + esc(n.name) + '</div>' +
