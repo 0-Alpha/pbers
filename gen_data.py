@@ -180,13 +180,13 @@ def main():
 
     build_news(colors)
     build_growth(colors)
-    build_live(colors)
+    build_race(colors)
     build_channel_pages(order, colors)
     build_sitemap(order)
 
-def build_live(colors):
+def build_race(colors):
     """登録者が接戦(隣接との差が1%以内)のチャンネルを2〜3件ずつグループ化し、
-       各メンバーの登録者推移とともに live.js に出力。"""
+       各メンバーの登録者推移とともに race.js に出力。"""
     series, names = load_history()
     by_id = {}
     amap = {}
@@ -224,9 +224,9 @@ def build_live(colors):
                             "subs": by_id[cid].get("subs"), "history": pts})
         out.append({"members": members})
 
-    with open(BASE + "/assets/live.js", "w", encoding="utf-8") as f:
-        f.write("window.PBERS_LIVE = " + json.dumps(out, ensure_ascii=False, indent=2) + ";\n")
-    print("wrote assets/live.js (%d close races)" % len(out))
+    with open(BASE + "/assets/race.js", "w", encoding="utf-8") as f:
+        f.write("window.PBERS_RACE = " + json.dumps(out, ensure_ascii=False, indent=2) + ";\n")
+    print("wrote assets/race.js (%d close races)" % len(out))
 
 CH_TPL = '''<!doctype html>
 <html lang="ja">

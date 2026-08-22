@@ -1,4 +1,4 @@
-window.PBERS_LIVE = [
+window.PBERS_RACE = [
   {
     "members": [
       {

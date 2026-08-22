@@ -34,7 +34,7 @@
   };
   var GROWTH = window.PBERS_GROWTH || { span: { days: 0 }, subs: [], views: [], videos: [] };
   var GUNIT = { subs: '人', views: '回', videos: '本' };
-  var LIVE = window.PBERS_LIVE || [];
+  var RACE = window.PBERS_RACE || [];
   var GENRES = window.PBERS_GENRES || [];
   var genreOn = {}; GENRES.forEach(function (g) { genreOn[g.label] = !!g.on; });
   function genreVisible(x) { return x.genre == null || genreOn[x.genre] !== false; }
@@ -582,11 +582,12 @@
     dashboard: document.getElementById('view-dashboard'),
     growth:    document.getElementById('view-growth'),
     news:      document.getElementById('view-news'),
-    live:      document.getElementById('view-live'),
+    race:      document.getElementById('view-race'),
     channels:  document.getElementById('view-channels')
   };
   var currentView = 'dashboard';
   function switchTab(v) {
+    if (v === 'live') v = 'race';   // 旧ハッシュ #live / 旧リンクの後方互換
     if (!VIEWS[v]) v = 'dashboard';
     currentView = v;
     document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x.dataset.view === v); });
@@ -596,18 +597,19 @@
     if (v === 'dashboard') replay();
     if (v === 'growth') { renderTrend(); playGrowth(); }
     if (v === 'news') renderNewsFeed();
-    if (v === 'live') renderLive();
+    if (v === 'race') renderRace();
     if (v === 'channels') moveTierInd();
   }
+  function hashView(h) { var v = (h || '').replace('#', ''); return v === 'live' ? 'race' : v; }   // 'live' は旧名の後方互換
   function setupTabs() {
     document.querySelectorAll('.tab').forEach(function (t) {
       t.addEventListener('click', function () { switchTab(t.dataset.view); });
     });
     window.addEventListener('hashchange', function () {
-      var v = location.hash.slice(1);
+      var v = hashView(location.hash);
       if (VIEWS[v] && v !== currentView) switchTab(v);
     });
-    var initial = location.hash.slice(1);   // deep-link on load
+    var initial = hashView(location.hash);   // deep-link on load
     if (VIEWS[initial] && initial !== 'dashboard') switchTab(initial);
   }
 
@@ -691,13 +693,13 @@
     }
   }
 
-  /* ---- live: close-race subscriber trends ---- */
-  function buildLiveChart(el) {
-    var race = LIVE[+el.dataset.gi]; if (!race) return;
+  /* ---- race: close-race subscriber trends ---- */
+  function buildRaceChart(el) {
+    var race = RACE[+el.dataset.gi]; if (!race) return;
     var m = race.members;
     var dset = {}; m.forEach(function (x) { (x.history || []).forEach(function (p) { dset[p.d] = 1; }); });
     var ds = Object.keys(dset).sort();
-    if (ds.length < 1) { el.innerHTML = '<div class="live-empty">推移データがまだありません（記録が増えると表示されます）。</div>'; return; }
+    if (ds.length < 1) { el.innerHTML = '<div class="race-empty">推移データがまだありません（記録が増えると表示されます）。</div>'; return; }
     var W = Math.max(300, el.clientWidth || 620), H = 200, padL = 54, padR = 34, padT = 16, padB = 28;
     var vals = []; m.forEach(function (x) { (x.history || []).forEach(function (p) { vals.push(p.s); }); });
     var mn = Math.min.apply(null, vals), mx = Math.max.apply(null, vals);
@@ -714,7 +716,7 @@
     m.forEach(function (x, mi) {
       var dd = ''; (x.history || []).forEach(function (p) { dd += (dd === '' ? 'M' : ' L') + X(di[p.d]) + ',' + Y(p.s); });
       if (!dd) return;
-      lines += '<path class="live-line" d="' + dd + '" stroke="' + x.color + '"/>';
+      lines += '<path class="race-line" d="' + dd + '" stroke="' + x.color + '"/>';
       var last = x.history[x.history.length - 1], lx = X(di[last.d]), ly = Y(last.s);
       clip += '<clipPath id="lc' + gi + '_' + mi + '"><circle cx="' + lx + '" cy="' + ly + '" r="13"/></clipPath>';
       icons += '<image href="' + x.avatar + '" x="' + (lx - 13) + '" y="' + (ly - 13) + '" width="26" height="26" clip-path="url(#lc' + gi + '_' + mi + ')" preserveAspectRatio="xMidYMid slice"/>' +
@@ -722,23 +724,23 @@
     });
     el.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet"><defs>' + clip + '</defs>' + grid + yl + xl + lines + icons + '</svg>';
   }
-  function renderLive() {
-    var host = document.getElementById('live-list'); if (!host) return;
-    if (!LIVE.length) { host.innerHTML = '<div class="live-empty">いま接戦中の組はありません（記録が増えると表示されます）。</div>'; return; }
+  function renderRace() {
+    var host = document.getElementById('race-list'); if (!host) return;
+    if (!RACE.length) { host.innerHTML = '<div class="race-empty">いま接戦中の組はありません（記録が増えると表示されます）。</div>'; return; }
     host.innerHTML = '';
-    LIVE.forEach(function (race, gi) {
+    RACE.forEach(function (race, gi) {
       var m = race.members;
       var subs = m.map(function (x) { return x.subs || 0; });
       var gap = Math.max.apply(null, subs) - Math.min.apply(null, subs);
-      var head = '<div class="live-head">' + m.map(function (x) {
-        return '<div class="live-ch" style="--c:' + x.color + '"><img src="' + x.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
+      var head = '<div class="race-head">' + m.map(function (x) {
+        return '<div class="race-ch" style="--c:' + x.color + '"><img src="' + x.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
           '<div><div class="ln" style="color:' + x.color + '">' + esc(x.name) + '</div><div class="ls">' + jp(x.subs) + '人</div></div></div>';
-      }).join('') + '<span class="live-gap">差 ' + fmt(gap) + '人</span></div>';
-      var card = document.createElement('div'); card.className = 'live-race';
-      card.innerHTML = head + '<div class="live-chart" data-gi="' + gi + '"></div>';
+      }).join('') + '<span class="race-gap">差 ' + fmt(gap) + '人</span></div>';
+      var card = document.createElement('div'); card.className = 'race-card';
+      card.innerHTML = head + '<div class="race-chart" data-gi="' + gi + '"></div>';
       host.appendChild(card);
     });
-    host.querySelectorAll('.live-chart').forEach(buildLiveChart);
+    host.querySelectorAll('.race-chart').forEach(buildRaceChart);
   }
 
   /* ---- settings: genre visibility ---- */
@@ -813,7 +815,7 @@
     clearTimeout(_rz); _rz = setTimeout(function () {
       if (!VIEWS.growth.hidden) renderTrend();
       if (VIEWS.news && !VIEWS.news.hidden) document.querySelectorAll('#news-feed .ov-chart').forEach(buildOvChart);
-      if (VIEWS.live && !VIEWS.live.hidden) document.querySelectorAll('#live-list .live-chart').forEach(buildLiveChart);
+      if (VIEWS.race && !VIEWS.race.hidden) document.querySelectorAll('#race-list .race-chart').forEach(buildRaceChart);
     }, 200);
   });
   observe(document.querySelector('.donut-stage'), playDonut);
