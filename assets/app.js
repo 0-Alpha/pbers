@@ -457,7 +457,9 @@
       host.innerHTML = '<div class="t-empty">推移データはまだありません（記録が増えると表示されます）。</div>';
       return;
     }
-    var W = 720, H = 260, padL = 56, padR = 16, padT = 18, padB = 30;
+    // viewBox width = 実際のピクセル幅 → 文字・線が縮小されない（スマホでも読める）
+    var W = Math.max(300, (host.clientWidth || 720) - 28), H = 240;
+    var padL = 54, padR = 16, padT = 18, padB = 30;
     var innerW = W - padL - padR, innerH = H - padT - padB, n = dates.length;
     var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
     if (min === max) { min = min * 0.98; max = max * 1.02 || 1; }
@@ -466,12 +468,8 @@
     function Y(v) { return padT + innerH * (1 - (v - yMin) / (yMax - yMin)); }
     var col = TREND_COLOR[gmetric] || '#4db6e0';
 
-    var d = '';
-    for (var i = 0; i < n; i++) {
-      var x = X(i), y = Y(vals[i]);
-      if (i === 0) d = 'M' + x + ',' + y;
-      else d += ' L' + x + ',' + Y(vals[i - 1]) + ' L' + x + ',' + y;   // step (カクカク)
-    }
+    var d = '';   // 点を直線で結ぶ折れ線
+    for (var i = 0; i < n; i++) { d += (i === 0 ? 'M' : ' L') + X(i) + ',' + Y(vals[i]); }
     var grid = '', yl = '';
     [yMax, (yMax + yMin) / 2, yMin].forEach(function (gv) {
       var gy = Y(gv);
@@ -554,7 +552,7 @@
     if (location.hash.slice(1) !== v) location.hash = v;   // reflect in the URL (#dashboard / #growth / #channels)
     window.scrollTo(0, 0);
     if (v === 'dashboard') replay();
-    if (v === 'growth') playGrowth();
+    if (v === 'growth') { renderTrend(); playGrowth(); }
   }
   function setupTabs() {
     document.querySelectorAll('.tab').forEach(function (t) {
@@ -633,7 +631,11 @@
   setupDonutHover();
   setupColScroll();
   moveInd(document.querySelector('#toggle .tg.on'));
-  window.addEventListener('resize', function () { moveInd(document.querySelector('#toggle .tg.on')); showTotal(); });
+  var _rz;
+  window.addEventListener('resize', function () {
+    moveInd(document.querySelector('#toggle .tg.on')); showTotal();
+    clearTimeout(_rz); _rz = setTimeout(function () { if (!VIEWS.growth.hidden) renderTrend(); }, 200);
+  });
   observe(document.querySelector('.donut-stage'), playDonut);
   observe(document.getElementById('col-scroll'), playCols);   // observe the viewport-width container, not the wide flex
 })();

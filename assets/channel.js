@@ -60,7 +60,7 @@
     for (var i = 0; i < dates.length; i++) if (vals[i] != null) pts.push({ d: dates[i], v: vals[i] });
     if (pts.length < 1) { host.innerHTML = '<div class="t-empty">まだ推移データがありません（記録が増えると表示されます）。</div>'; if (note) note.textContent = ''; return; }
     if (note) note.textContent = pts.length + '日分（' + shortDate(pts[0].d) + '〜' + shortDate(pts[pts.length - 1].d) + '）';
-    var W = 720, Hh = 260, padL = 56, padR = 16, padT = 18, padB = 30;
+    var W = Math.max(300, (host.clientWidth || 720) - 28), Hh = 240, padL = 54, padR = 16, padT = 18, padB = 30;
     var iW = W - padL - padR, iH = Hh - padT - padB, n = pts.length;
     var mn = Math.min.apply(null, pts.map(function (p) { return p.v; })), mx = Math.max.apply(null, pts.map(function (p) { return p.v; }));
     if (mn === mx) { mn = mn * 0.98; mx = mx * 1.02 || 1; }
@@ -68,8 +68,8 @@
     function X(i) { return n === 1 ? padL + iW / 2 : padL + iW * i / (n - 1); }
     function Y(v) { return padT + iH * (1 - (v - yMin) / (yMax - yMin)); }
     var col = COLOR[gm];
-    var d = '';
-    for (var k = 0; k < n; k++) { var x = X(k), y = Y(pts[k].v); d += k === 0 ? ('M' + x + ',' + y) : (' L' + x + ',' + Y(pts[k - 1].v) + ' L' + x + ',' + y); }
+    var d = '';   // 点を直線で結ぶ折れ線
+    for (var k = 0; k < n; k++) { d += (k === 0 ? 'M' : ' L') + X(k) + ',' + Y(pts[k].v); }
     var grid = '', yl = '';
     [yMax, (yMax + yMin) / 2, yMin].forEach(function (gv) { var gy = Y(gv); grid += '<line class="t-grid" x1="' + padL + '" y1="' + gy + '" x2="' + (W - padR) + '" y2="' + gy + '"/>'; yl += '<text class="t-axis" x="' + (padL - 8) + '" y="' + (gy + 4) + '" text-anchor="end">' + jp(Math.round(gv)) + '</text>'; });
     var xl = '', step = Math.max(1, Math.ceil(n / 6));
@@ -92,5 +92,6 @@
   var bc = document.getElementById('sh-copy'); if (bc) bc.addEventListener('click', function () { navigator.clipboard && navigator.clipboard.writeText(shareUrl).then(function () { bc.textContent = 'コピーしました'; setTimeout(function () { bc.textContent = 'リンクをコピー'; }, 1500); }); });
 
   renderChart(); moveInd();
-  window.addEventListener('resize', moveInd);
+  var _rz;
+  window.addEventListener('resize', function () { moveInd(); clearTimeout(_rz); _rz = setTimeout(renderChart, 200); });
 })();
