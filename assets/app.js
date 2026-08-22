@@ -443,6 +443,48 @@
     });
     cols.forEach(function (c) { c.classList.add('shown'); });
   }
+  /* ---- 界隈全体の推移（ステップ折れ線） ---- */
+  var TREND_COLOR = { subs: '#33bb74', views: '#9b7bff', videos: '#eba864' };
+  function renderTrend() {
+    var host = document.getElementById('trend'); if (!host) return;
+    var T = GROWTH.totals || { dates: [] };
+    var dates = T.dates || [], vals = T[gmetric] || [];
+    if (!dates.length || !vals.length) {
+      host.innerHTML = '<div class="t-empty">推移データはまだありません（記録が増えると表示されます）。</div>';
+      return;
+    }
+    var W = 720, H = 260, padL = 56, padR = 16, padT = 18, padB = 30;
+    var innerW = W - padL - padR, innerH = H - padT - padB, n = dates.length;
+    var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+    if (min === max) { min = min * 0.98; max = max * 1.02 || 1; }
+    var pad = (max - min) * 0.15 || 1; var yMin = min - pad, yMax = max + pad;
+    function X(i) { return n === 1 ? padL + innerW / 2 : padL + innerW * i / (n - 1); }
+    function Y(v) { return padT + innerH * (1 - (v - yMin) / (yMax - yMin)); }
+    var col = TREND_COLOR[gmetric] || '#4db6e0';
+
+    var d = '';
+    for (var i = 0; i < n; i++) {
+      var x = X(i), y = Y(vals[i]);
+      if (i === 0) d = 'M' + x + ',' + y;
+      else d += ' L' + x + ',' + Y(vals[i - 1]) + ' L' + x + ',' + y;   // step (カクカク)
+    }
+    var grid = '', yl = '';
+    [yMax, (yMax + yMin) / 2, yMin].forEach(function (gv) {
+      var gy = Y(gv);
+      grid += '<line class="t-grid" x1="' + padL + '" y1="' + gy + '" x2="' + (W - padR) + '" y2="' + gy + '"/>';
+      yl += '<text class="t-axis" x="' + (padL - 8) + '" y="' + (gy + 4) + '" text-anchor="end">' + jp(Math.round(gv)) + '</text>';
+    });
+    var xl = '', step = Math.max(1, Math.ceil(n / 6));
+    for (var j = 0; j < n; j++) {
+      if (j % step === 0 || j === n - 1) xl += '<text class="t-axis" x="' + X(j) + '" y="' + (H - 10) + '" text-anchor="middle">' + shortDate(dates[j]) + '</text>';
+    }
+    var dots = '';
+    for (var k = 0; k < n; k++) dots += '<circle class="t-dot" cx="' + X(k) + '" cy="' + Y(vals[k]) + '" r="3.5" fill="' + col + '"/>';
+    var last = '<text class="t-val" x="' + X(n - 1) + '" y="' + (Y(vals[n - 1]) - 9) + '" text-anchor="end">' + jp(vals[n - 1]) + GUNIT[gmetric] + '</text>';
+    host.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet">' +
+      grid + yl + xl + '<path class="t-line" d="' + d + '" stroke="' + col + '"/>' + dots + last + '</svg>';
+  }
+
   function setupGrowthZoom() {
     var out = document.getElementById('gz-out'), inn = document.getElementById('gz-in'), val = document.getElementById('gz-val');
     function upd() { if (val) val.textContent = Math.round(growZoom * 100) + '%'; renderGrowth(); playGrowth(); }
@@ -456,7 +498,7 @@
         if (b.dataset.gm === gmetric) return;
         gmetric = b.dataset.gm;
         gtabs.forEach(function (x) { x.classList.toggle('on', x === b); });
-        renderGrowth(); playGrowth();
+        renderGrowth(); playGrowth(); renderTrend();
       });
     });
   }
@@ -564,6 +606,7 @@
   renderTiers();
   setupSettings();
   renderGrowth();
+  renderTrend();
   setupGrowth();
   setupGrowthZoom();
   setupTabs();

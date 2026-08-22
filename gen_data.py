@@ -158,9 +158,23 @@ def build_growth(colors):
             arr.sort(key=lambda x: -x["delta"])
             result[metric] = arr
 
+    # 界隈全体の推移: 通常ジャンル(引退除く)の日別合計を全履歴ぶん
+    main_ids = [cid for cid in series if cid not in RETIRED and genre_of(cid) == DEFAULT_GENRE]
+    tdates = sorted({d for cid in main_ids for d in series[cid]})
+    totals = {"dates": tdates, "subs": [], "views": [], "videos": []}
+    for d in tdates:
+        for m in ("subs", "views", "videos"):
+            s = 0
+            for cid in main_ids:
+                rec = series.get(cid, {}).get(d)
+                if rec and rec[m] is not None:
+                    s += rec[m]
+            totals[m].append(s)
+    result["totals"] = totals
+
     with open(BASE + "/assets/growth.js", "w", encoding="utf-8") as f:
         f.write("window.PBERS_GROWTH = " + json.dumps(result, ensure_ascii=False, indent=2) + ";\n")
-    print("wrote assets/growth.js (span %s days)" % result["span"]["days"])
+    print("wrote assets/growth.js (span %s days, %d trend points)" % (result["span"]["days"], len(tdates)))
 
 def build_news(colors):
     """history.csv から直近7日（当日含む）のマイルストーン突破を検出して news.js を出力。
