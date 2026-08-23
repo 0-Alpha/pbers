@@ -1,5 +1,43 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-08-24",
+    "label": "8月24日(月)",
+    "items": [
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "マイクラ共和国ボール(tama2224)",
+        "color": "#d45eb1",
+        "avatar": "https://yt3.googleusercontent.com/psef_ue--gNaBgLl-zOqXHns6BWfEF54h8FFXb5TdVgFEFi5iBsoBWkRJTK0ZXoOunYefwoPpA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "エッバの歴史解説ちゃんねる",
+          "color": "#7a62d2",
+          "avatar": "https://yt3.googleusercontent.com/FVCCwHNXn1Og-UsdgaUK1OpuIA0hHBZE6c73zsjLoJQC8znpEAXKEGjdYAF8-Y5yeTWkGH1y=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で エッバの歴史解説ちゃんねる を追い越し",
+        "value": 10244072
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "ソビエト・カチューシャボール☭\n\n",
+        "color": "#cc3e53",
+        "avatar": "https://yt3.googleusercontent.com/6JoYS-SVAtxks_NujxGVoLu7GhB-S9QqtUKOVraRMoSH61_yiCLncK4jPGsPaUhlMjxTTlpfGw=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "天川 蒼",
+          "color": "#72d45e",
+          "avatar": "https://yt3.googleusercontent.com/63Fpi8JlajXPXsdNjqlWOkEgcXu34tmR_KAqSqvAwcRNITSlK4hCz8KpphFjAhMsUcakxNiA=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で 天川 蒼 を追い越し",
+        "value": 5072017
+      }
+    ]
+  },
+  {
     "date": "2026-08-23",
     "label": "8月23日(日)",
     "items": [
@@ -77,7 +115,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "views",
         "name": "ぽぱい",
-        "color": "#d4625e",
+        "color": "#7d5ed4",
         "avatar": "https://yt3.googleusercontent.com/MksIU96BJUaPxSVQoRJDlxvXjPIe0cDmD70CaujSB0nstsAFYIzoDylPLYe5-MzPUm4pMGM9Mg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -250,11 +288,6 @@ window.PBERS_NEWS = [
   {
     "date": "2026-08-18",
     "label": "8月18日(火)",
-    "items": []
-  },
-  {
-    "date": "2026-08-17",
-    "label": "8月17日(月)",
     "items": []
   }
 ];
