@@ -236,9 +236,9 @@ window.PBERS_DATA = [
   {
     "name": "作",
     "subs": 27400,
-    "views": 9537441,
+    "views": 9533342,
     "subsLabel": "チャンネル登録者数 2.74万人",
-    "viewsLabel": "9,537,441回視聴",
+    "viewsLabel": "9,533,342回視聴",
     "videos": 137,
     "url": "https://www.youtube.com/channel/UCVxwV9hTI2DVS0exkZ-Mqww",
     "avatar": "https://yt3.googleusercontent.com/N5gbRgWiJl1ISH1f24FsbafsY5p66QqmiG9pVRj9s3IKGR0rgcQqv1_JlmLesNJg_4Q1bvN8zZs=s900-c-k-c0x00ffffff-no-rj",
@@ -431,9 +431,9 @@ window.PBERS_DATA = [
   {
     "name": "ミルー帝国-はんぺん[PB]",
     "subs": 17400,
-    "views": 8683525,
+    "views": 8675499,
     "subsLabel": "チャンネル登録者数 1.74万人",
-    "viewsLabel": "8,683,525回視聴",
+    "viewsLabel": "8,675,499回視聴",
     "videos": 250,
     "url": "https://www.youtube.com/channel/UCYhJeY5hQxjCB5onai17ExA",
     "avatar": "https://yt3.googleusercontent.com/Ky8R9pg8h7UvmF53F7Bv9forW3gIMrGUzI2JuRlUaX_Lzf19_45Sif5nf5BqRdQy0WDtPvGvLw=s900-c-k-c0x00ffffff-no-rj",
@@ -626,9 +626,9 @@ window.PBERS_DATA = [
   {
     "name": "ケエレビQ!",
     "subs": 12400,
-    "views": 5404845,
+    "views": 5405699,
     "subsLabel": "チャンネル登録者数 1.24万人",
-    "viewsLabel": "5,404,845回視聴",
+    "viewsLabel": "5,405,699回視聴",
     "videos": 100,
     "url": "https://www.youtube.com/channel/UC7TqXiAikWw_Xh4Xbam1Faw",
     "avatar": "https://yt3.googleusercontent.com/T7210hEFAOEDsDIQv46XXCo2mYDBeI9SShL4A4ZIo-qJE5eURzK5jy6rFAOWk2orvXdsnt-r=s900-c-k-c0x00ffffff-no-rj",
@@ -678,9 +678,9 @@ window.PBERS_DATA = [
   {
     "name": "SEKKI98",
     "subs": 12200,
-    "views": 8535628,
+    "views": 8535066,
     "subsLabel": "チャンネル登録者数 1.22万人",
-    "viewsLabel": "8,535,628回視聴",
+    "viewsLabel": "8,535,066回視聴",
     "videos": 791,
     "url": "https://www.youtube.com/channel/UCmjY1OXynztjoCn9Lb4w7Ag",
     "avatar": "https://yt3.googleusercontent.com/n7RskwBn8eLp8MACtbTciWLvA53zE11jWpQ0ukoJT4NCRFB4GH8_xAQ6o7Y3GRc91XSC2NPBz50=s900-c-k-c0x00ffffff-no-rj",
@@ -873,9 +873,9 @@ window.PBERS_DATA = [
   {
     "name": "かめ・さーくボール共和国",
     "subs": 9570,
-    "views": 2004819,
+    "views": 2004246,
     "subsLabel": "チャンネル登録者数 9570人",
-    "viewsLabel": "2,004,819回視聴",
+    "viewsLabel": "2,004,246回視聴",
     "videos": 82,
     "url": "https://www.youtube.com/channel/UCeV4DkPl_rjFqZB6KrgIpmQ",
     "avatar": "https://yt3.googleusercontent.com/pmJmxVLE0mmUdGwtazGaKNHTg4eIJByKeQUYGONLj9xn5hXL-lBXiNSNjQCCBN6RcYfle0LO=s900-c-k-c0x00ffffff-no-rj",
@@ -899,9 +899,9 @@ window.PBERS_DATA = [
   {
     "name": "ふかひれ牧場",
     "subs": 9170,
-    "views": 1266441,
+    "views": 1266414,
     "subsLabel": "チャンネル登録者数 9170人",
-    "viewsLabel": "1,266,441回視聴",
+    "viewsLabel": "1,266,414回視聴",
     "videos": 24,
     "url": "https://www.youtube.com/channel/UCeImiuiv09c_mQzrJziJPAA",
     "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_lbyS-yUnTDLkuj88p4kT7eJLsTjCgGRad7f-J60xIPNRU=s900-c-k-c0x00ffffff-no-rj",
@@ -925,9 +925,9 @@ window.PBERS_DATA = [
   {
     "name": "ほすとぼーる",
     "subs": 8320,
-    "views": 1606685,
+    "views": 1614290,
     "subsLabel": "チャンネル登録者数 8320人",
-    "viewsLabel": "1,606,685回視聴",
+    "viewsLabel": "1,614,290回視聴",
     "videos": 23,
     "url": "https://www.youtube.com/channel/UCpYfKq3qR3POstp21yzKyVQ",
     "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
@@ -1185,9 +1185,9 @@ window.PBERS_DATA = [
   {
     "name": "みすい",
     "subs": 2910,
-    "views": 1234894,
+    "views": 1242981,
     "subsLabel": "チャンネル登録者数 2910人",
-    "viewsLabel": "1,234,894回視聴",
+    "viewsLabel": "1,242,981回視聴",
     "videos": 25,
     "url": "https://www.youtube.com/channel/UCYmJ2rqzqNtXBm-gn438zGw",
     "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
@@ -1198,4 +1198,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "ポーランドボーラーのようなもの", "on": false}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-23";
-window.PBERS_PREDICT = {"asOfMs": 1787454000000, "subs": {"base": 2443390, "rate": 0.00010073948962564843}, "views": {"base": 1733774757, "rate": 0.03858963859656409}};
+window.PBERS_PREDICT = {"asOfMs": 1787454000000, "subs": {"base": 2443390, "rate": 0.00010073948962564843}, "views": {"base": 1733778016, "rate": 0.03858963859656409}};
