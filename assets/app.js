@@ -683,6 +683,53 @@
       '</svg>';
     el.querySelectorAll('.ov-line').forEach(function (p) { var L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
   }
+  // 投稿数追い越し: 積み上がる16:9の箱スタック(1列 = 1チャンネル)
+  function vovStack(ch, count, isWinner) {
+    var col = ch.color || '#888';
+    var boxes = '';
+    for (var k = 0; k < count; k++) {
+      boxes += '<div class="vov-box" style="--i:' + k + ';background:' + col + '"></div>';
+    }
+    return '<div class="vov-stack' + (isWinner ? ' win' : '') + '">' +
+      '<div class="vov-boxes">' + boxes + '</div>' +
+      '<img class="vov-av" src="' + (ch.avatar || '') + '" alt="" onerror="this.style.visibility=\'hidden\'" style="border-color:' + col + '">' +
+      '<div class="vov-nm" style="color:' + col + '">' + esc(ch.name || '') + '</div>' +
+    '</div>';
+  }
+  // 突破(土/月): 左下→右上に伸びる矢印。根元に ||| の躍動線、先端にアイコン
+  function buildArrow(el) {
+    var W = Math.max(280, el.clientWidth || 620), H = 210, pad = 24, r = 27;
+    var c = el.dataset.c, cl = el.dataset.cl, ai = el.dataset.ai, id = el.dataset.clip;
+    var rootX = pad + 26, rootY = H - pad - 6, tipX = W - pad - r, tipY = pad + r;
+    var ang = Math.atan2(tipY - rootY, tipX - rootX);           // 上向き(負)
+    var ux = Math.cos(ang), uy = Math.sin(ang);                 // 矢印方向の単位ベクトル
+    var px = -uy, py = ux;                                      // 直交ベクトル
+    var ah = 24;                                               // 矢じりの長さ
+    function pt(x, y) { return x.toFixed(1) + ',' + y.toFixed(1); }
+    var shaft = 'M' + pt(rootX, rootY) + ' L' + pt(tipX, tipY);
+    var h1 = 'M' + pt(tipX - ah * Math.cos(ang - 0.5), tipY - ah * Math.sin(ang - 0.5)) + ' L' + pt(tipX, tipY);
+    var h2 = 'M' + pt(tipX - ah * Math.cos(ang + 0.5), tipY - ah * Math.sin(ang + 0.5)) + ' L' + pt(tipX, tipY);
+    // 躍動線 |||: 根元寄りに矢印と平行な短い線を3本、直交方向にずらして配置
+    var speed = '';
+    var offs = [-16, 0, 16], seg = 30, back = 4;
+    var dx = (28 * ux).toFixed(1), dy = (28 * uy).toFixed(1);
+    for (var i = 0; i < offs.length; i++) {
+      var bx = rootX - ux * back + px * offs[i], by = rootY - uy * back + py * offs[i];
+      speed += '<line class="ar-speed" x1="' + bx.toFixed(1) + '" y1="' + by.toFixed(1) +
+        '" x2="' + (bx + ux * seg).toFixed(1) + '" y2="' + (by + uy * seg).toFixed(1) + '"' +
+        ' stroke="' + cl + '" style="--dx:' + dx + 'px;--dy:' + dy + 'px;animation-delay:' + (i * 0.12) + 's"/>';
+    }
+    el.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet">' +
+      '<defs><clipPath id="' + id + '"><circle cx="' + tipX + '" cy="' + tipY + '" r="' + r + '"/></clipPath></defs>' +
+      speed +
+      '<path class="ar-shaft" d="' + shaft + '" stroke="' + c + '"/>' +
+      '<path class="ar-head" d="' + h1 + '" stroke="' + c + '"/>' +
+      '<path class="ar-head" d="' + h2 + '" stroke="' + c + '"/>' +
+      '<image class="ar-icon" href="' + ai + '" x="' + (tipX - r) + '" y="' + (tipY - r) + '" width="' + (r * 2) + '" height="' + (r * 2) + '" clip-path="url(#' + id + ')" preserveAspectRatio="xMidYMid slice"/>' +
+      '<circle class="ar-icon" cx="' + tipX + '" cy="' + tipY + '" r="' + r + '" fill="none" stroke="' + c + '" stroke-width="3"/>' +
+      '</svg>';
+    var sh = el.querySelector('.ar-shaft'); var L = sh.getTotalLength(); sh.style.strokeDasharray = L; sh.style.strokeDashoffset = L;
+  }
   function renderNewsFeed() {
     var host = document.getElementById('news-feed'); if (!host) return;
     var NEWS = window.PBERS_NEWS || [];
@@ -693,33 +740,46 @@
       if (!items.length) return;
       any = true;
       var sep = document.createElement('div'); sep.className = 'nf-daysep'; sep.textContent = day.label; host.appendChild(sep);
+      // 曜日を求める（土=6 / 月=1 は突破を矢印演出にする）
+      var wd = -1;
+      if (day.date) { var dp = day.date.split('-'); wd = new Date(+dp[0], (+dp[1]) - 1, +dp[2]).getDay(); }
+      var arrowDay = (wd === 6 || wd === 1);
       items.forEach(function (n) {
         var st = document.createElement('div'); st.className = 'nf-story ' + n.type;
         if (n.type === 'milestone') {
           var bn = bigNum(n.kind, n.value);
+          var stage = arrowDay
+            ? '<div class="ms-arrow" data-c="' + n.color + '" data-cl="' + shade(n.color, .42) + '" data-ai="' + esc(n.avatar) + '" data-clip="ar' + (clip++) + '"></div>'
+            : '<div class="mbar-stage" style="--c:' + n.color + ';--cl:' + shade(n.color, .42) + ';--h:210px">' +
+                '<div class="mbar"></div>' +
+                '<img class="mbar-icon" src="' + n.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
+              '</div>';
           st.innerHTML =
             '<div class="ms">' +
               '<div class="ms-metric">' + MWORD[n.kind] + ' 突破</div>' +
               '<div class="ms-num" style="color:' + n.color + '">' + esc(bn.n) + '<small>' + bn.u + '</small></div>' +
-              '<div class="mbar-stage" style="--c:' + n.color + ';--cl:' + shade(n.color, .42) + ';--h:210px">' +
-                '<div class="mbar"></div>' +
-                '<img class="mbar-icon" src="' + n.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
-              '</div>' +
+              stage +
               '<div class="ms-name" style="color:' + n.color + '">' + esc(n.name) + '</div>' +
             '</div>';
         } else {
           var opp = n.opp || { name: '', color: '#888', avatar: '' };
-          st.innerHTML =
-            '<div class="ov">' +
-              '<div class="ov-title"><b style="color:' + n.color + '">' + esc(n.name) + '</b> が <b style="color:' + opp.color + '">' + esc(opp.name) + '</b> を ' + MWORD[n.kind] + 'で追い越し</div>' +
+          var title = '<div class="ov-title"><b style="color:' + n.color + '">' + esc(n.name) + '</b> が <b style="color:' + opp.color + '">' + esc(opp.name) + '</b> を ' + MWORD[n.kind] + 'で追い越し</div>';
+          if (n.kind === 'videos') {
+            // 投稿数の追い越し: 16:9の箱を積み上げ、追い越した方が1つ多い（全曜日この演出）
+            st.innerHTML = '<div class="ov">' + title +
+              '<div class="vov">' + vovStack(n, 5, true) + vovStack(opp, 4, false) + '</div></div>';
+          } else {
+            st.innerHTML = '<div class="ov">' + title +
               '<div class="ov-chart" data-a="' + n.color + '" data-b="' + opp.color + '" data-ai="' + esc(n.avatar) + '" data-bi="' + esc(opp.avatar) + '" data-clip="' + (clip++) + '"></div>' +
             '</div>';
+          }
         }
         host.appendChild(st);
       });
     });
     if (!any) { host.innerHTML = '<div class="nf-none">まだニュースがありません（記録が2日分たまると出はじめます）。</div>'; return; }
     host.querySelectorAll('.ov-chart').forEach(buildOvChart);
+    host.querySelectorAll('.ms-arrow').forEach(buildArrow);
     if (NF_OBS) NF_OBS.disconnect();
     if ('IntersectionObserver' in window) {
       NF_OBS = new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle('in', e.isIntersecting); }); }, { threshold: 0.3 });
