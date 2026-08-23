@@ -392,9 +392,9 @@ window.PBERS_DATA = [
   {
     "name": "炭火焼き",
     "subs": 18800,
-    "views": 14068096,
+    "views": 14068181,
     "subsLabel": "チャンネル登録者数 1.88万人",
-    "viewsLabel": "14,068,096回視聴",
+    "viewsLabel": "14,068,181回視聴",
     "videos": 59,
     "url": "https://www.youtube.com/channel/UCKCAWr6aCfgm9lLWmM7yEKQ",
     "avatar": "https://yt3.googleusercontent.com/gk9_UdLk_1Ljo0YtH3dFvFZfdywxlXC1l1XfJ2zA054iHW7UdOLMIYWg4VsmDK1UI2rlHaDC2HE=s900-c-k-c0x00ffffff-no-rj",
@@ -729,9 +729,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "なごみん",
-    "subs": 11600,
+    "subs": 11700,
     "views": 2871602,
-    "subsLabel": "チャンネル登録者数 1.16万人",
+    "subsLabel": "チャンネル登録者数 1.17万人",
     "viewsLabel": "2,871,602回視聴",
     "videos": 84,
     "url": "https://www.youtube.com/channel/UCw38uDxuGOKl_4CXuXs4xGg",
@@ -813,7 +813,7 @@ window.PBERS_DATA = [
     "viewsLabel": "6,401,292回視聴",
     "videos": 167,
     "url": "https://www.youtube.com/channel/UCZiElwYajEL91UWMkBpSU-w",
-    "avatar": "https://yt3.googleusercontent.com/7WE5sNZbcP-UYFH-XZdHMPoBvQ1ii12Fm1a71RFJnbL7qLvLcLos63sQg8v91sGjN3nwvDiX=s900-c-k-c0x00ffffff-no-rj",
+    "avatar": "https://yt3.googleusercontent.com/Wl1vuWqpvPzdTNc7rQRJetFtI7E6QyIeKf6if9jN1PmTvQbCy4MgXLfkAHlFwmqe1WbhiNJQKQ=s900-c-k-c0x00ffffff-no-rj",
     "color": "#a3cc3e",
     "genre": "ポーランドボーラー",
     "slug": "ĝç_z3røくん"
@@ -924,9 +924,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ほすとぼーる",
-    "subs": 8400,
+    "subs": 8410,
     "views": 1620644,
-    "subsLabel": "チャンネル登録者数 8400人",
+    "subsLabel": "チャンネル登録者数 8410人",
     "viewsLabel": "1,620,644回視聴",
     "videos": 23,
     "url": "https://www.youtube.com/channel/UCpYfKq3qR3POstp21yzKyVQ",
@@ -1145,9 +1145,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "にこちPB",
-    "subs": 4260,
+    "subs": 4270,
     "views": 149348,
-    "subsLabel": "チャンネル登録者数 4260人",
+    "subsLabel": "チャンネル登録者数 4270人",
     "viewsLabel": "149,348回視聴",
     "videos": 11,
     "url": "https://www.youtube.com/channel/UC2fMWFGgy-ENfkqlK0CUwrg",
@@ -1198,5 +1198,5 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "ポーランドボーラーのようなもの", "on": false}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-24";
-window.PBERS_PREDICT = {"asOfMs": 1787518800000, "subs": {"base": 2446010, "rate": 6.666293332493607e-05}, "views": {"base": 1738029611, "rate": 0.05192747426103455}};
-window.PBERS_OLIGO = {"asOfMs": 1787518800000, "horizonDays": 30, "enough": true, "top3": [{"name": "Æž!フヒフム", "color": "#9b51e0", "avatar": "https://yt3.googleusercontent.com/o0-EijPjZl_g0OcDfSJdv78d6uG6Ba0RxPPeI4spBOdIZqL842tVa_BsE8_cNxZLHRwd8PmZEA=s900-c-k-c0x00ffffff-no-rj"}, {"name": "Æž!みかんぼーる🍊", "color": "#eba864", "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj"}, {"name": "田中MID", "color": "#2f80ed", "avatar": "https://yt3.googleusercontent.com/mnFY8X_lmtyW54Uh5ocg1QJQVTxTRKG9XDdrGAhxFZpPPJzhsGue-cMHqLBCsIRF4hBHjsLU=s900-c-k-c0x00ffffff-no-rj"}], "subs": {"shareNow": 0.4031054656358723, "shareFuture": 0.4021728216244044, "top3Now": 986000, "totalNow": 2446010, "top3Future": 1053210, "totalFuture": 2618800}, "views": {"shareNow": 0.565240616605352, "shareFuture": 0.5721262715099587, "top3Now": 982404929, "totalNow": 1738029611, "top3Future": 1071378316, "totalFuture": 1872625624}, "ranks": {"subs": [{"higher": {"name": "Æž!フヒフム", "color": "#9b51e0"}, "lower": {"name": "Æž!みかんぼーる🍊", "color": "#eba864"}, "gapNow": 74000, "gapFuture": 74000, "prob": 2.7360946841525902e-11, "days": null}, {"higher": {"name": "Æž!みかんぼーる🍊", "color": "#eba864"}, "lower": {"name": "田中MID", "color": "#2f80ed"}, "gapNow": 24000, "gapFuture": 22563, "prob": 0.021616998552939692, "days": 501}, {"higher": {"name": "田中MID", "color": "#2f80ed"}, "lower": {"name": "こうちゃ(ポーランドボール)", "color": "#ccbb3e"}, "gapNow": 232800, "gapFuture": 255847, "prob": 0.0, "days": null}], "views": [{"higher": {"name": "Æž!みかんぼーる🍊", "color": "#eba864"}, "lower": {"name": "Æž!フヒフム", "color": "#9b51e0"}, "gapNow": 9709748, "gapFuture": 6711355, "prob": 0.2271973095306301, "days": 97}, {"higher": {"name": "Æž!フヒフム", "color": "#9b51e0"}, "lower": {"name": "田中MID", "color": "#2f80ed"}, "gapNow": 172350267, "gapFuture": 185461335, "prob": 0.0, "days": null}, {"higher": {"name": "田中MID", "color": "#2f80ed"}, "lower": {"name": "Neille / ナユ", "color": "#e35d52"}, "gapNow": 139214089, "gapFuture": 154828882, "prob": 0.0, "days": null}]}};
+window.PBERS_PREDICT = {"asOfMs": 1787518800000, "subs": {"base": 2446130, "rate": 6.666293332493607e-05}, "views": {"base": 1738029696, "rate": 0.05192747426103455}};
+window.PBERS_OLIGO = {"asOfMs": 1787518800000, "horizonDays": 30, "enough": true, "top3": [{"name": "Æž!フヒフム", "color": "#9b51e0", "avatar": "https://yt3.googleusercontent.com/o0-EijPjZl_g0OcDfSJdv78d6uG6Ba0RxPPeI4spBOdIZqL842tVa_BsE8_cNxZLHRwd8PmZEA=s900-c-k-c0x00ffffff-no-rj"}, {"name": "Æž!みかんぼーる🍊", "color": "#eba864", "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj"}, {"name": "田中MID", "color": "#2f80ed", "avatar": "https://yt3.googleusercontent.com/mnFY8X_lmtyW54Uh5ocg1QJQVTxTRKG9XDdrGAhxFZpPPJzhsGue-cMHqLBCsIRF4hBHjsLU=s900-c-k-c0x00ffffff-no-rj"}], "subs": {"shareNow": 0.40308569045798875, "shareFuture": 0.40215439390128205, "top3Now": 986000, "totalNow": 2446130, "top3Future": 1053210, "totalFuture": 2618920}, "views": {"shareNow": 0.5652405889617205, "shareFuture": 0.572126245540683, "top3Now": 982404929, "totalNow": 1738029696, "top3Future": 1071378316, "totalFuture": 1872625709}, "ranks": {"subs": [{"higher": {"name": "Æž!フヒフム", "color": "#9b51e0"}, "lower": {"name": "Æž!みかんぼーる🍊", "color": "#eba864"}, "gapNow": 74000, "gapFuture": 74000, "prob": 2.7360946841525902e-11, "days": null}, {"higher": {"name": "Æž!みかんぼーる🍊", "color": "#eba864"}, "lower": {"name": "田中MID", "color": "#2f80ed"}, "gapNow": 24000, "gapFuture": 22563, "prob": 0.021616998552939692, "days": 501}, {"higher": {"name": "田中MID", "color": "#2f80ed"}, "lower": {"name": "こうちゃ(ポーランドボール)", "color": "#ccbb3e"}, "gapNow": 232800, "gapFuture": 255847, "prob": 0.0, "days": null}], "views": [{"higher": {"name": "Æž!みかんぼーる🍊", "color": "#eba864"}, "lower": {"name": "Æž!フヒフム", "color": "#9b51e0"}, "gapNow": 9709748, "gapFuture": 6711355, "prob": 0.2271973095306301, "days": 97}, {"higher": {"name": "Æž!フヒフム", "color": "#9b51e0"}, "lower": {"name": "田中MID", "color": "#2f80ed"}, "gapNow": 172350267, "gapFuture": 185461335, "prob": 0.0, "days": null}, {"higher": {"name": "田中MID", "color": "#2f80ed"}, "lower": {"name": "Neille / ナユ", "color": "#e35d52"}, "gapNow": 139214089, "gapFuture": 154828882, "prob": 0.0, "days": null}]}};

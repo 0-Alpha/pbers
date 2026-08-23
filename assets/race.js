@@ -930,16 +930,12 @@ window.PBERS_RACE = [
             "s": 11800
           }
         ]
-      }
-    ]
-  },
-  {
-    "members": [
+      },
       {
         "name": "なごみん",
         "color": "#40cc3e",
         "avatar": "https://yt3.googleusercontent.com/sejttmaZGPCSjyOiW-llk9T7ukJmjKJYIbBhWfXk3Vg7c0qdft3H20u3FM3iH_DxyLY115R5=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 11600,
+        "subs": 11700,
         "history": [
           {
             "d": "2026-08-22",
@@ -952,30 +948,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-24",
             "s": 11600
-          }
-        ]
-      },
-      {
-        "name": "わーるどボール【ポーランドボール】",
-        "color": "#5ed4c4",
-        "avatar": "https://yt3.googleusercontent.com/6gVVVw-moV268fxv9p9C-RAHunkNQ2F6T9_k_Kmu8hZ_CvP93ry95Q9gHkuX00mq7kifxCE7CQ=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 11500,
-        "history": [
-          {
-            "d": "2026-08-21",
-            "s": 11400
-          },
-          {
-            "d": "2026-08-22",
-            "s": 11400
-          },
-          {
-            "d": "2026-08-23",
-            "s": 11500
-          },
-          {
-            "d": "2026-08-24",
-            "s": 11500
           }
         ]
       }
