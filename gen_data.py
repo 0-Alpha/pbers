@@ -410,17 +410,19 @@ def build_growth(colors):
         earliest, latest = win[0], win[-1]
         span = (datetime.date.fromisoformat(day_of(latest)) - datetime.date.fromisoformat(day_of(earliest))).days
         result["span"] = {"from": day_of(earliest), "to": day_of(latest), "days": span}
-
-        def gv(cid, d, m):
-            rec = series.get(cid, {}).get(d)
-            return rec[m] if rec else None
+        win_set = set(win)
 
         for metric in ("subs", "views", "videos"):
             arr = []
             for cid in shown:
-                a, b = gv(cid, earliest, metric), gv(cid, latest, metric)
-                if a is None or b is None:
+                # 各チャンネル自身の「ウィンドウ内の最古〜最新」で増減を出す
+                # (集計対象に後から加わったチャンネルも、値が2点以上あれば必ず載る)
+                pts = [t for t in sorted(series.get(cid, {}))
+                       if t in win_set and series[cid][t][metric] is not None]
+                if len(pts) < 2:
                     continue
+                a = series[cid][pts[0]][metric]
+                b = series[cid][pts[-1]][metric]
                 arr.append({"name": names[cid], "color": colors[cid], "delta": b - a, "latest": b, "genre": genre_of(cid)})
             arr.sort(key=lambda x: -x["delta"])
             result[metric] = arr
