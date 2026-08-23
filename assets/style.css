@@ -337,15 +337,21 @@ section.block{padding:46px 0}
 /* milestone (土/月): 左下→右上の矢印 + 根元の躍動線 ||| */
 .ms-arrow{width:100%;max-width:660px;margin:18px auto 0}
 .ms-arrow svg{width:100%;height:auto;display:block;overflow:visible}
-.ar-shaft{fill:none;stroke-width:9;stroke-linecap:round}
+.ar-shaft{fill:none;stroke-width:18;stroke-linecap:round}
 .nf-story.in .ar-shaft{transition:stroke-dashoffset 1s cubic-bezier(.4,0,.3,1) .15s;stroke-dashoffset:0!important}
-.ar-head{fill:none;stroke-width:9;stroke-linecap:round;opacity:0}
+.ar-head{fill:none;stroke-width:18;stroke-linecap:round;stroke-linejoin:round;opacity:0}
 .nf-story.in .ar-head{opacity:1;transition:opacity .3s ease .95s}
 .ar-icon{opacity:0}
 .nf-story.in .ar-icon{opacity:1;transition:opacity .35s ease 1s}
-.ar-speed{stroke-width:5;stroke-linecap:round;opacity:0}
+.ar-speed{stroke-width:8;stroke-linecap:round;opacity:0}
 .nf-story.in .ar-speed{animation:ar-whoosh 1.05s ease-out .35s infinite}
 @keyframes ar-whoosh{0%{opacity:0;transform:translate(0,0)}25%{opacity:.85}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
+/* 突破ライン(矢印SVG内) */
+.ms-gline{stroke:rgba(255,255,255,.16);stroke-width:1.5;stroke-dasharray:6 6}
+.ms-glabel{fill:var(--muted);font-family:var(--num);font-weight:800;font-size:13px}
+/* 突破ライン(タワー型) */
+.ms-line{position:absolute;left:0;right:0;height:0;border-top:1.5px dashed rgba(255,255,255,.16)}
+.ms-line-lb{position:absolute;left:0;top:-20px;font-family:var(--num);font-weight:800;font-size:13px;color:var(--muted)}
 
 /* 投稿数の追い越し: 16:9の箱を積み上げ、追い越した方が1つ多い */
 .vov{display:flex;justify-content:center;align-items:flex-end;gap:34px;margin-top:8px}

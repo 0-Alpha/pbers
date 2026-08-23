@@ -698,35 +698,41 @@
   }
   // 突破(土/月): 左下→右上に伸びる矢印。根元に ||| の躍動線、先端にアイコン
   function buildArrow(el) {
-    var W = Math.max(280, el.clientWidth || 620), H = 210, pad = 24, r = 27;
-    var c = el.dataset.c, cl = el.dataset.cl, ai = el.dataset.ai, id = el.dataset.clip;
-    var rootX = pad + 26, rootY = H - pad - 6, tipX = W - pad - r, tipY = pad + r;
-    var ang = Math.atan2(tipY - rootY, tipX - rootX);           // 上向き(負)
+    var W = Math.max(280, el.clientWidth || 620), H = 210, pad = 26, r = 30;
+    var c = el.dataset.c, cl = el.dataset.cl, ai = el.dataset.ai, id = el.dataset.clip, lb = el.dataset.lb || '';
+    var iconX = W - pad - r, iconY = pad + r;                    // アイコン中心(右上)
+    var rootX = pad + 30, rootY = H - pad - 4;
+    var ang = Math.atan2(iconY - rootY, iconX - rootX);         // 上向き(負)
     var ux = Math.cos(ang), uy = Math.sin(ang);                 // 矢印方向の単位ベクトル
     var px = -uy, py = ux;                                      // 直交ベクトル
-    var ah = 24;                                               // 矢じりの長さ
+    // 矢じりの先端はアイコンの手前で止める(被り防止)
+    var gap = 14, tipX = iconX - (r + gap) * ux, tipY = iconY - (r + gap) * uy;
+    var ah = 30;                                               // 矢じりの長さ
     function pt(x, y) { return x.toFixed(1) + ',' + y.toFixed(1); }
     var shaft = 'M' + pt(rootX, rootY) + ' L' + pt(tipX, tipY);
     var h1 = 'M' + pt(tipX - ah * Math.cos(ang - 0.5), tipY - ah * Math.sin(ang - 0.5)) + ' L' + pt(tipX, tipY);
     var h2 = 'M' + pt(tipX - ah * Math.cos(ang + 0.5), tipY - ah * Math.sin(ang + 0.5)) + ' L' + pt(tipX, tipY);
     // 躍動線 |||: 根元寄りに矢印と平行な短い線を3本、直交方向にずらして配置
     var speed = '';
-    var offs = [-16, 0, 16], seg = 30, back = 4;
-    var dx = (28 * ux).toFixed(1), dy = (28 * uy).toFixed(1);
+    var offs = [-18, 0, 18], seg = 34, back = 6;
+    var dx = (30 * ux).toFixed(1), dy = (30 * uy).toFixed(1);
     for (var i = 0; i < offs.length; i++) {
       var bx = rootX - ux * back + px * offs[i], by = rootY - uy * back + py * offs[i];
       speed += '<line class="ar-speed" x1="' + bx.toFixed(1) + '" y1="' + by.toFixed(1) +
         '" x2="' + (bx + ux * seg).toFixed(1) + '" y2="' + (by + uy * seg).toFixed(1) + '"' +
         ' stroke="' + cl + '" style="--dx:' + dx + 'px;--dy:' + dy + 'px;animation-delay:' + (i * 0.12) + 's"/>';
     }
+    // 突破ライン: アイコンの高さに水平な薄い線＋値ラベル
+    var mline = '<line class="ms-gline" x1="0" y1="' + iconY + '" x2="' + W + '" y2="' + iconY + '"/>' +
+      (lb ? '<text class="ms-glabel" x="4" y="' + (iconY - 7) + '">' + lb + '</text>' : '');
     el.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet">' +
-      '<defs><clipPath id="' + id + '"><circle cx="' + tipX + '" cy="' + tipY + '" r="' + r + '"/></clipPath></defs>' +
-      speed +
+      '<defs><clipPath id="' + id + '"><circle cx="' + iconX + '" cy="' + iconY + '" r="' + r + '"/></clipPath></defs>' +
+      mline + speed +
       '<path class="ar-shaft" d="' + shaft + '" stroke="' + c + '"/>' +
       '<path class="ar-head" d="' + h1 + '" stroke="' + c + '"/>' +
       '<path class="ar-head" d="' + h2 + '" stroke="' + c + '"/>' +
-      '<image class="ar-icon" href="' + ai + '" x="' + (tipX - r) + '" y="' + (tipY - r) + '" width="' + (r * 2) + '" height="' + (r * 2) + '" clip-path="url(#' + id + ')" preserveAspectRatio="xMidYMid slice"/>' +
-      '<circle class="ar-icon" cx="' + tipX + '" cy="' + tipY + '" r="' + r + '" fill="none" stroke="' + c + '" stroke-width="3"/>' +
+      '<image class="ar-icon" href="' + ai + '" x="' + (iconX - r) + '" y="' + (iconY - r) + '" width="' + (r * 2) + '" height="' + (r * 2) + '" clip-path="url(#' + id + ')" preserveAspectRatio="xMidYMid slice"/>' +
+      '<circle class="ar-icon" cx="' + iconX + '" cy="' + iconY + '" r="' + r + '" fill="none" stroke="' + c + '" stroke-width="3"/>' +
       '</svg>';
     var sh = el.querySelector('.ar-shaft'); var L = sh.getTotalLength(); sh.style.strokeDasharray = L; sh.style.strokeDashoffset = L;
   }
@@ -748,9 +754,11 @@
         var st = document.createElement('div'); st.className = 'nf-story ' + n.type;
         if (n.type === 'milestone') {
           var bn = bigNum(n.kind, n.value);
+          var lb = bn.n + bn.u;   // 突破ラインのラベル(例 300万回)
           var stage = arrowDay
-            ? '<div class="ms-arrow" data-c="' + n.color + '" data-cl="' + shade(n.color, .42) + '" data-ai="' + esc(n.avatar) + '" data-clip="ar' + (clip++) + '"></div>'
+            ? '<div class="ms-arrow" data-c="' + n.color + '" data-cl="' + shade(n.color, .42) + '" data-ai="' + esc(n.avatar) + '" data-lb="' + esc(lb) + '" data-clip="ar' + (clip++) + '"></div>'
             : '<div class="mbar-stage" style="--c:' + n.color + ';--cl:' + shade(n.color, .42) + ';--h:210px">' +
+                '<div class="ms-line" style="bottom:210px"><span class="ms-line-lb">' + esc(lb) + '</span></div>' +
                 '<div class="mbar"></div>' +
                 '<img class="mbar-icon" src="' + n.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
               '</div>';
