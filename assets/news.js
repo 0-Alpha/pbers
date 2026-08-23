@@ -6,8 +6,19 @@ window.PBERS_NEWS = [
       {
         "type": "milestone",
         "kind": "views",
+        "name": "Neille / ナユ",
+        "color": "#e35d52",
+        "avatar": "https://yt3.googleusercontent.com/veRe0sqhiRVBvhNlR2GFXHTdGKFmeUDL-vDFPIeZwt_mohOji6bk-0KKfRz5v5MbjgYcuJ_0FRo=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 7000万回 突破",
+        "value": 70000000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
         "name": "ソビエト・カチューシャボール☭\n\n",
-        "color": "#d4b55e",
+        "color": "#cc3e53",
         "avatar": "https://yt3.googleusercontent.com/6JoYS-SVAtxks_NujxGVoLu7GhB-S9QqtUKOVraRMoSH61_yiCLncK4jPGsPaUhlMjxTTlpfGw=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -33,6 +44,22 @@ window.PBERS_NEWS = [
       {
         "type": "overtake",
         "kind": "views",
+        "name": "エッバの歴史解説ちゃんねる",
+        "color": "#7a62d2",
+        "avatar": "https://yt3.googleusercontent.com/FVCCwHNXn1Og-UsdgaUK1OpuIA0hHBZE6c73zsjLoJQC8znpEAXKEGjdYAF8-Y5yeTWkGH1y=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "マイクラ共和国ボール(tama2224)",
+          "color": "#d45eb1",
+          "avatar": "https://yt3.googleusercontent.com/psef_ue--gNaBgLl-zOqXHns6BWfEF54h8FFXb5TdVgFEFi5iBsoBWkRJTK0ZXoOunYefwoPpA=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で マイクラ共和国ボール(tama2224) を追い越し",
+        "value": 10242990
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
         "name": "ばかわたし",
         "color": "#4e3ecc",
         "avatar": "https://yt3.googleusercontent.com/8Q3AkB3SLb49XqB1aR0hp3jyCVu5hS_YrBkjoYn-0FkHttGhP6gadqK2oaOqadgMcjYFYhR1=s900-c-k-c0x00ffffff-no-rj",
@@ -45,6 +72,22 @@ window.PBERS_NEWS = [
         },
         "label": "総再生数で マスカットボール を追い越し",
         "value": 4585021
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "ぽぱい",
+        "color": "#d4625e",
+        "avatar": "https://yt3.googleusercontent.com/MksIU96BJUaPxSVQoRJDlxvXjPIe0cDmD70CaujSB0nstsAFYIzoDylPLYe5-MzPUm4pMGM9Mg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ライヒスボール【Reichsball】",
+          "color": "#5e66d4",
+          "avatar": "https://yt3.googleusercontent.com/ZT_Uape_wuD-XJYz4KzEJfX3UcxisMo3_bXo7wgbU0wtBltqG4S-KMHZBuFeP50g-8WUo1rE=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で ライヒスボール【Reichsball】 を追い越し",
+        "value": 4443199
       },
       {
         "type": "overtake",
@@ -77,6 +120,22 @@ window.PBERS_NEWS = [
         },
         "label": "総再生数で アスラボール　 を追い越し",
         "value": 3110507
+      },
+      {
+        "type": "overtake",
+        "kind": "videos",
+        "name": "はなひに",
+        "color": "#c62f2f",
+        "avatar": "https://yt3.googleusercontent.com/e0BgeRqXjVy0clUSkPPpXyWlPbosGpgYBQSVCQqRxMNeOSHZ797OQaFgPo5PeF5vHMQUQZ0=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ねとえん",
+          "color": "#3ec4cc",
+          "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "投稿数で ねとえん を追い越し",
+        "value": 115
       }
     ]
   },
