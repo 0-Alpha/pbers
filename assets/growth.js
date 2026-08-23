@@ -13,17 +13,17 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "Æž!みかんぼーる🍊",
-      "color": "#eba864",
-      "delta": 3000,
-      "latest": 312000,
-      "genre": "ポーランドボーラー"
-    },
-    {
       "name": "Æž!フヒフム",
       "color": "#9b51e0",
       "delta": 3000,
       "latest": 386000,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "Æž!みかんぼーる🍊",
+      "color": "#eba864",
+      "delta": 3000,
+      "latest": 312000,
       "genre": "ポーランドボーラー"
     },
     {
@@ -55,17 +55,17 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "こゆまる_koyumaru908",
-      "color": "#a55ed4",
-      "delta": 200,
-      "latest": 21600,
-      "genre": "ポーランドボーラー"
-    },
-    {
       "name": "こうちゃ(ポーランドボール)",
       "color": "#ccbb3e",
       "delta": 200,
       "latest": 55200,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "こゆまる_koyumaru908",
+      "color": "#cc3e87",
+      "delta": 200,
+      "latest": 21600,
       "genre": "ポーランドボーラー"
     },
     {
@@ -76,129 +76,10 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "さとボール",
-      "color": "#e01e26",
-      "delta": 100,
-      "latest": 54700,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ミルー帝国-はんぺん[PB]",
-      "color": "#d45e85",
-      "delta": 100,
-      "latest": 17400,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "BALL420",
-      "color": "#46b6e0",
-      "delta": 100,
-      "latest": 32600,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "レメラボール / 🌈🌙【えるめす】",
-      "color": "#3e61cc",
-      "delta": 100,
-      "latest": 11100,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ちまちもヒエナ ",
-      "color": "#76d45e",
-      "delta": 100,
-      "latest": 12400,
-      "genre": "ポーランドボーラー"
-    },
-    {
       "name": "ボウコムボール",
       "color": "#3ecc9a",
       "delta": 100,
       "latest": 30500,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "わーるどボール【ポーランドボール】",
-      "color": "#5ed4c4",
-      "delta": 100,
-      "latest": 11500,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ユウセイボール",
-      "color": "#3ecc6b",
-      "delta": 100,
-      "latest": 16900,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "Schokoladen Ball",
-      "color": "#793ecc",
-      "delta": 100,
-      "latest": 28200,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "まるッとわかる地理の裏話",
-      "color": "#3ecc9f",
-      "delta": 100,
-      "latest": 12400,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "日本ボール",
-      "color": "#b5382f",
-      "delta": 100,
-      "latest": 27800,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "マルルさん",
-      "color": "#cc3e87",
-      "delta": 100,
-      "latest": 21600,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "アオアオカントリー",
-      "color": "#a1d45e",
-      "delta": 100,
-      "latest": 17100,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "すいかぼーる",
-      "color": "#cc583e",
-      "delta": 100,
-      "latest": 24200,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "エッバの歴史解説ちゃんねる",
-      "color": "#7a62d2",
-      "delta": 100,
-      "latest": 44100,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "作",
-      "color": "#3a72d6",
-      "delta": 100,
-      "latest": 27400,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ジャスティンピーバー - ポーランドボール",
-      "color": "#5e6ad4",
-      "delta": 100,
-      "latest": 18700,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ソビエト・カチューシャボール☭\n\n",
-      "color": "#d4b55e",
-      "delta": 100,
-      "latest": 14200,
       "genre": "ポーランドボーラー"
     },
     {
@@ -209,10 +90,129 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
+      "name": "作",
+      "color": "#3a72d6",
+      "delta": 100,
+      "latest": 27400,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "日本ボール",
+      "color": "#b5382f",
+      "delta": 100,
+      "latest": 27800,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "エッバの歴史解説ちゃんねる",
+      "color": "#7a62d2",
+      "delta": 100,
+      "latest": 44100,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "さとボール",
+      "color": "#e01e26",
+      "delta": 100,
+      "latest": 54700,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "レメラボール / 🌈🌙【えるめす】",
+      "color": "#3e61cc",
+      "delta": 100,
+      "latest": 11100,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ジャスティンピーバー - ポーランドボール",
+      "color": "#5e6ad4",
+      "delta": 100,
+      "latest": 18700,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ミルー帝国-はんぺん[PB]",
+      "color": "#d45e85",
+      "delta": 100,
+      "latest": 17400,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "Schokoladen Ball",
+      "color": "#793ecc",
+      "delta": 100,
+      "latest": 28200,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ユウセイボール",
+      "color": "#3ecc6b",
+      "delta": 100,
+      "latest": 16900,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "アオアオカントリー",
+      "color": "#a1d45e",
+      "delta": 100,
+      "latest": 17100,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "まるッとわかる地理の裏話",
+      "color": "#3ecc9f",
+      "delta": 100,
+      "latest": 12400,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "BALL420",
+      "color": "#46b6e0",
+      "delta": 100,
+      "latest": 32600,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "わーるどボール【ポーランドボール】",
+      "color": "#5ed4c4",
+      "delta": 100,
+      "latest": 11500,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "マルルさん",
+      "color": "#a55ed4",
+      "delta": 100,
+      "latest": 21600,
+      "genre": "ポーランドボーラー"
+    },
+    {
       "name": " ゼリョーヌィボール　活停中",
       "color": "#a8cc3e",
       "delta": 100,
       "latest": 20500,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "すいかぼーる",
+      "color": "#cc583e",
+      "delta": 100,
+      "latest": 24200,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ソビエト・カチューシャボール☭\n\n",
+      "color": "#d4b55e",
+      "delta": 100,
+      "latest": 14200,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ちまちもヒエナ ",
+      "color": "#76d45e",
+      "delta": 100,
+      "latest": 12400,
       "genre": "ポーランドボーラー"
     },
     {
@@ -230,17 +230,10 @@ window.PBERS_GROWTH = {
       "genre": "PBerer"
     },
     {
-      "name": "mikan帝国ぼーる",
-      "color": "#cc903e",
+      "name": "空白ボール",
+      "color": "#b23ecc",
       "delta": 20,
-      "latest": 9400,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ねとえん",
-      "color": "#3ec4cc",
-      "delta": 20,
-      "latest": 9650,
+      "latest": 9600,
       "genre": "ポーランドボーラー"
     },
     {
@@ -251,6 +244,20 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
+      "name": "ねとえん",
+      "color": "#3ec4cc",
+      "delta": 20,
+      "latest": 9650,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "mikan帝国ぼーる",
+      "color": "#cc903e",
+      "delta": 20,
+      "latest": 9400,
+      "genre": "ポーランドボーラー"
+    },
+    {
       "name": "ikasumi帝国",
       "color": "#823ecc",
       "delta": 20,
@@ -258,17 +265,10 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "空白ボール",
-      "color": "#b23ecc",
-      "delta": 20,
-      "latest": 9600,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "みすい",
-      "color": "#3ecc40",
+      "name": "ココプー",
+      "color": "#3ecc6f",
       "delta": 10,
-      "latest": 2920,
+      "latest": 8930,
       "genre": "ポーランドボーラー"
     },
     {
@@ -286,17 +286,10 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "ココプー",
-      "color": "#3ecc6f",
+      "name": "みすい",
+      "color": "#3ecc40",
       "delta": 10,
-      "latest": 8930,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "玄米ボール🍚",
-      "color": "#5ed472",
-      "delta": 10,
-      "latest": 9950,
+      "latest": 2920,
       "genre": "ポーランドボーラー"
     },
     {
@@ -307,178 +300,10 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "Acgelent",
-      "color": "#5e91d4",
-      "delta": 0,
-      "latest": 12300,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "なるほど地理",
-      "color": "#d45e5e",
-      "delta": 0,
-      "latest": 142000,
-      "genre": "ポーランドボーラーのようなもの"
-    },
-    {
-      "name": "ひかるボール　Hikaru ball",
-      "color": "#c8d45e",
-      "delta": 0,
-      "latest": 11800,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "きままボール",
-      "color": "#ad3ecc",
-      "delta": 0,
-      "latest": 17800,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ほわさん",
-      "color": "#cc3e53",
-      "delta": 0,
-      "latest": 14300,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ねこボール",
-      "color": "#5ed46e",
-      "delta": 0,
-      "latest": 20500,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "マスカットボール",
-      "color": "#493ecc",
-      "delta": 0,
-      "latest": 16100,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "いたりぃ",
-      "color": "#5ed49d",
-      "delta": 0,
-      "latest": 7030,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "MIKUボール",
-      "color": "#74cc3e",
-      "delta": 0,
-      "latest": 14100,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "カミヤ kamiya【ポーランドボール】",
-      "color": "#d45ead",
-      "delta": 0,
-      "latest": 12100,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "炭火焼き",
-      "color": "#3ec9cc",
-      "delta": 0,
-      "latest": 18800,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "りょうデス",
-      "color": "#ccd45e",
-      "delta": 0,
-      "latest": 24000,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "なごみん",
-      "color": "#40cc3e",
-      "delta": 0,
-      "latest": 11600,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "天川 蒼",
-      "color": "#72d45e",
-      "delta": 0,
-      "latest": 6330,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "カルノ  ムックル教",
-      "color": "#5ed4c0",
-      "delta": 0,
-      "latest": 22200,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "パプさん",
-      "color": "#cc8c3e",
-      "delta": 0,
-      "latest": 17200,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ノートボール",
-      "color": "#6fcc3e",
-      "delta": 0,
-      "latest": 7050,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ポーランドボールの教科書",
-      "color": "#d45ed4",
-      "delta": 0,
-      "latest": 7910,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ユラミア連邦共和国",
-      "color": "#cc5c3e",
-      "delta": 0,
-      "latest": 11900,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "渋谷区のペンギン",
-      "color": "#d05ed4",
-      "delta": 0,
-      "latest": 15000,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "Rimoru",
-      "color": "#d4b95e",
-      "delta": 0,
-      "latest": 7120,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "アフガンボール",
-      "color": "#5e8dd4",
-      "delta": 0,
-      "latest": 5550,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "かにたる",
-      "color": "#40a86a",
-      "delta": 0,
-      "latest": 30900,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ほたて",
-      "color": "#a95ed4",
-      "delta": 0,
-      "latest": 10900,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ポテトの王",
-      "color": "#cc3eb2",
-      "delta": 0,
-      "latest": 6700,
+      "name": "玄米ボール🍚",
+      "color": "#5ed472",
+      "delta": 10,
+      "latest": 9950,
       "genre": "ポーランドボーラー"
     },
     {
@@ -489,17 +314,38 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "ライヒスボール【Reichsball】",
-      "color": "#5e66d4",
+      "name": "ほたて",
+      "color": "#a95ed4",
       "delta": 0,
-      "latest": 9640,
+      "latest": 10900,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "TKG ball",
-      "color": "#5ed499",
+      "name": "ノートボール",
+      "color": "#6fcc3e",
       "delta": 0,
-      "latest": 13700,
+      "latest": 7050,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "カルノ  ムックル教",
+      "color": "#5ed4c0",
+      "delta": 0,
+      "latest": 22200,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ポテトの王",
+      "color": "#cc3eb2",
+      "delta": 0,
+      "latest": 6700,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "いたりぃ",
+      "color": "#5ed49d",
+      "delta": 0,
+      "latest": 7030,
       "genre": "ポーランドボーラー"
     },
     {
@@ -517,38 +363,31 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "Yukkuri ball",
-      "color": "#8f2f2f",
+      "name": "ねこボール",
+      "color": "#5ed46e",
       "delta": 0,
-      "latest": 29300,
+      "latest": 20500,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "ヴァイマル共和国ボール [底辺PBer連盟] ",
-      "color": "#d45ea9",
+      "name": "ひかるボール　Hikaru ball",
+      "color": "#c8d45e",
       "delta": 0,
-      "latest": 5270,
+      "latest": 11800,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "ケエレビQ!",
-      "color": "#ccc03e",
+      "name": "ポーランドボールの教科書",
+      "color": "#d45ed4",
       "delta": 0,
-      "latest": 12400,
+      "latest": 7910,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "ウィン【肉声】【ポーランドボール】",
-      "color": "#c4d45e",
+      "name": "なごみん",
+      "color": "#40cc3e",
       "delta": 0,
-      "latest": 2950,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "なぽりたんぼーる!!",
-      "color": "#5ebcd4",
-      "delta": 0,
-      "latest": 16500,
+      "latest": 11600,
       "genre": "ポーランドボーラー"
     },
     {
@@ -559,73 +398,31 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "ぱふball",
-      "color": "#3e66cc",
+      "name": "マスカットボール",
+      "color": "#493ecc",
       "delta": 0,
-      "latest": 22200,
+      "latest": 16100,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "まるぼーるch ",
-      "color": "#7d5ed4",
+      "name": "パプさん",
+      "color": "#cc8c3e",
       "delta": 0,
-      "latest": 13000,
+      "latest": 17200,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "カカポボール🦜",
-      "color": "#ccc43e",
+      "name": "きままボール",
+      "color": "#ad3ecc",
       "delta": 0,
-      "latest": 6460,
+      "latest": 17800,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "ｺﾏ",
-      "color": "#d4895e",
+      "name": "ケエレビQ!",
+      "color": "#ccc03e",
       "delta": 0,
-      "latest": 21100,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "練乳=ソビエト共和国ぼーる",
-      "color": "#d48d5e",
-      "delta": 0,
-      "latest": 10600,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "マイクラ共和国ボール(tama2224)",
-      "color": "#d45eb1",
-      "delta": 0,
-      "latest": 26700,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "狼狐 Roko(ポーランドボール)",
-      "color": "#79d45e",
-      "delta": 0,
-      "latest": 53000,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ふかひれ牧場",
-      "color": "#9dd45e",
-      "delta": 0,
-      "latest": 9170,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "うずまき🌀",
-      "color": "#5e95d4",
-      "delta": 0,
-      "latest": 28800,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "はなひに",
-      "color": "#c62f2f",
-      "delta": 0,
-      "latest": 41800,
+      "latest": 12400,
       "genre": "ポーランドボーラー"
     },
     {
@@ -636,6 +433,34 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
+      "name": "TKG ball",
+      "color": "#5ed499",
+      "delta": 0,
+      "latest": 13700,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "狼狐 Roko(ポーランドボール)",
+      "color": "#79d45e",
+      "delta": 0,
+      "latest": 53000,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "渋谷区のペンギン",
+      "color": "#d05ed4",
+      "delta": 0,
+      "latest": 15000,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "マイクラ共和国ボール(tama2224)",
+      "color": "#d45eb1",
+      "delta": 0,
+      "latest": 26700,
+      "genre": "ポーランドボーラー"
+    },
+    {
       "name": "かめ・さーくボール共和国",
       "color": "#d45e81",
       "delta": 0,
@@ -643,10 +468,185 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
+      "name": "ヴァイマル共和国ボール [底辺PBer連盟] ",
+      "color": "#d45ea9",
+      "delta": 0,
+      "latest": 5270,
+      "genre": "ポーランドボーラー"
+    },
+    {
       "name": "lemon_Ball",
       "color": "#cc3e82",
       "delta": 0,
       "latest": 10700,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "カミヤ kamiya【ポーランドボール】",
+      "color": "#d45ead",
+      "delta": 0,
+      "latest": 12100,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "りょうデス",
+      "color": "#ccd45e",
+      "delta": 0,
+      "latest": 24000,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "Rimoru",
+      "color": "#d4b95e",
+      "delta": 0,
+      "latest": 7120,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "うずまき🌀",
+      "color": "#5e95d4",
+      "delta": 0,
+      "latest": 28800,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ふかひれ牧場",
+      "color": "#9dd45e",
+      "delta": 0,
+      "latest": 9170,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "カカポボール🦜",
+      "color": "#ccc43e",
+      "delta": 0,
+      "latest": 6460,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "かにたる",
+      "color": "#40a86a",
+      "delta": 0,
+      "latest": 30900,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ほわさん",
+      "color": "#cc3e53",
+      "delta": 0,
+      "latest": 14300,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "Acgelent",
+      "color": "#5e91d4",
+      "delta": 0,
+      "latest": 12300,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ｺﾏ",
+      "color": "#d4895e",
+      "delta": 0,
+      "latest": 21100,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "Yukkuri ball",
+      "color": "#8f2f2f",
+      "delta": 0,
+      "latest": 29300,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "まるぼーるch ",
+      "color": "#7d5ed4",
+      "delta": 0,
+      "latest": 13000,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "はなひに",
+      "color": "#c62f2f",
+      "delta": 0,
+      "latest": 41800,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "なぽりたんぼーる!!",
+      "color": "#5ebcd4",
+      "delta": 0,
+      "latest": 16500,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ユラミア連邦共和国",
+      "color": "#cc5c3e",
+      "delta": 0,
+      "latest": 11900,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "練乳=ソビエト共和国ぼーる",
+      "color": "#d48d5e",
+      "delta": 0,
+      "latest": 10600,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ウィン【肉声】【ポーランドボール】",
+      "color": "#c4d45e",
+      "delta": 0,
+      "latest": 2950,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ぱふball",
+      "color": "#3e66cc",
+      "delta": 0,
+      "latest": 22200,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "炭火焼き",
+      "color": "#3ec9cc",
+      "delta": 0,
+      "latest": 18800,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "MIKUボール",
+      "color": "#74cc3e",
+      "delta": 0,
+      "latest": 14100,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "アフガンボール",
+      "color": "#5e8dd4",
+      "delta": 0,
+      "latest": 5550,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ライヒスボール【Reichsball】",
+      "color": "#5e66d4",
+      "delta": 0,
+      "latest": 9640,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "なるほど地理",
+      "color": "#d45e5e",
+      "delta": 0,
+      "latest": 142000,
+      "genre": "ポーランドボーラーのようなもの"
+    },
+    {
+      "name": "天川 蒼",
+      "color": "#72d45e",
+      "delta": 0,
+      "latest": 6330,
       "genre": "ポーランドボーラー"
     }
   ],
@@ -695,7 +695,7 @@ window.PBERS_GROWTH = {
     },
     {
       "name": "マルルさん",
-      "color": "#cc3e87",
+      "color": "#a55ed4",
       "delta": 194382,
       "latest": 26729144,
       "genre": "ポーランドボーラー"
@@ -744,7 +744,7 @@ window.PBERS_GROWTH = {
     },
     {
       "name": "こゆまる_koyumaru908",
-      "color": "#a55ed4",
+      "color": "#cc3e87",
       "delta": 101821,
       "latest": 9431664,
       "genre": "ポーランドボーラー"
@@ -1326,6 +1326,13 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
+      "name": "ボウコムボール",
+      "color": "#3ecc9a",
+      "delta": 2,
+      "latest": 116,
+      "genre": "ポーランドボーラー"
+    },
+    {
       "name": "なるほど地理",
       "color": "#d45e5e",
       "delta": 2,
@@ -1333,10 +1340,10 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラーのようなもの"
     },
     {
-      "name": "ボウコムボール",
-      "color": "#3ecc9a",
-      "delta": 2,
-      "latest": 116,
+      "name": "Neille / ナユ",
+      "color": "#e35d52",
+      "delta": 1,
+      "latest": 188,
       "genre": "ポーランドボーラー"
     },
     {
@@ -1347,34 +1354,6 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "田中MID",
-      "color": "#2f80ed",
-      "delta": 1,
-      "latest": 262,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "BALL420",
-      "color": "#46b6e0",
-      "delta": 1,
-      "latest": 567,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "MIKUボール",
-      "color": "#74cc3e",
-      "delta": 1,
-      "latest": 210,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ちまちもヒエナ ",
-      "color": "#76d45e",
-      "delta": 1,
-      "latest": 81,
-      "genre": "ポーランドボーラー"
-    },
-    {
       "name": "Schokoladen Ball",
       "color": "#793ecc",
       "delta": 1,
@@ -1382,38 +1361,10 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "玄米ボール🍚",
-      "color": "#5ed472",
-      "delta": 1,
-      "latest": 122,
-      "genre": "ポーランドボーラー"
-    },
-    {
       "name": "ヴァイマル共和国ボール [底辺PBer連盟] ",
       "color": "#d45ea9",
       "delta": 1,
       "latest": 285,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "なぽりたんぼーる!!",
-      "color": "#5ebcd4",
-      "delta": 1,
-      "latest": 285,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "Neille / ナユ",
-      "color": "#e35d52",
-      "delta": 1,
-      "latest": 188,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "練乳=ソビエト共和国ぼーる",
-      "color": "#d48d5e",
-      "delta": 1,
-      "latest": 93,
       "genre": "ポーランドボーラー"
     },
     {
@@ -1431,220 +1382,52 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "mikan帝国ぼーる",
-      "color": "#cc903e",
-      "delta": 0,
-      "latest": 33,
+      "name": "玄米ボール🍚",
+      "color": "#5ed472",
+      "delta": 1,
+      "latest": 122,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "Acgelent",
-      "color": "#5e91d4",
-      "delta": 0,
-      "latest": 66,
+      "name": "BALL420",
+      "color": "#46b6e0",
+      "delta": 1,
+      "latest": 567,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "さとボール",
-      "color": "#e01e26",
-      "delta": 0,
-      "latest": 952,
+      "name": "なぽりたんぼーる!!",
+      "color": "#5ebcd4",
+      "delta": 1,
+      "latest": 285,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "ねとえん",
-      "color": "#3ec4cc",
-      "delta": 0,
-      "latest": 116,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ゆうボール",
-      "color": "#3e90cc",
-      "delta": 0,
-      "latest": 27,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ひかるボール　Hikaru ball",
-      "color": "#c8d45e",
-      "delta": 0,
-      "latest": 157,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "きままボール",
-      "color": "#ad3ecc",
-      "delta": 0,
-      "latest": 153,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ほわさん",
-      "color": "#cc3e53",
-      "delta": 0,
-      "latest": 88,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "みすい",
-      "color": "#3ecc40",
-      "delta": 0,
-      "latest": 25,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ねこボール",
-      "color": "#5ed46e",
-      "delta": 0,
-      "latest": 64,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "マスカットボール",
-      "color": "#493ecc",
-      "delta": 0,
-      "latest": 45,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "レメラボール / 🌈🌙【えるめす】",
-      "color": "#3e61cc",
-      "delta": 0,
-      "latest": 179,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "いたりぃ",
-      "color": "#5ed49d",
-      "delta": 0,
-      "latest": 24,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "カミヤ kamiya【ポーランドボール】",
-      "color": "#d45ead",
-      "delta": 0,
-      "latest": 79,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "フラルランドPB",
-      "color": "#3ecca3",
-      "delta": 0,
-      "latest": 147,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "炭火焼き",
-      "color": "#3ec9cc",
-      "delta": 0,
-      "latest": 59,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "りょうデス",
-      "color": "#ccd45e",
-      "delta": 0,
-      "latest": 893,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "白海豚",
-      "color": "#d4665e",
-      "delta": 0,
-      "latest": 117,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "なごみん",
-      "color": "#40cc3e",
-      "delta": 0,
-      "latest": 84,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "天川 蒼",
-      "color": "#72d45e",
-      "delta": 0,
-      "latest": 228,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "カルノ  ムックル教",
-      "color": "#5ed4c0",
-      "delta": 0,
-      "latest": 37,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ノートボール",
-      "color": "#6fcc3e",
-      "delta": 0,
-      "latest": 90,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ポーランドボールの教科書",
-      "color": "#d45ed4",
-      "delta": 0,
-      "latest": 50,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ユラミア連邦共和国",
-      "color": "#cc5c3e",
-      "delta": 0,
+      "name": "練乳=ソビエト共和国ぼーる",
+      "color": "#d48d5e",
+      "delta": 1,
       "latest": 93,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "渋谷区のペンギン",
-      "color": "#d05ed4",
-      "delta": 0,
-      "latest": 53,
+      "name": "MIKUボール",
+      "color": "#74cc3e",
+      "delta": 1,
+      "latest": 210,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "Rimoru",
-      "color": "#d4b95e",
-      "delta": 0,
-      "latest": 140,
+      "name": "田中MID",
+      "color": "#2f80ed",
+      "delta": 1,
+      "latest": 262,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "アフガンボール",
-      "color": "#5e8dd4",
-      "delta": 0,
-      "latest": 6,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "かにたる",
-      "color": "#40a86a",
-      "delta": 0,
-      "latest": 84,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ほたて",
-      "color": "#a95ed4",
-      "delta": 0,
-      "latest": 235,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ココプー",
-      "color": "#3ecc6f",
-      "delta": 0,
-      "latest": 372,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "わーるどボール【ポーランドボール】",
-      "color": "#5ed4c4",
-      "delta": 0,
-      "latest": 99,
+      "name": "ちまちもヒエナ ",
+      "color": "#76d45e",
+      "delta": 1,
+      "latest": 81,
       "genre": "ポーランドボーラー"
     },
     {
@@ -1655,20 +1438,6 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "ユウセイボール",
-      "color": "#3ecc6b",
-      "delta": 0,
-      "latest": 76,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ポテトの王",
-      "color": "#cc3eb2",
-      "delta": 0,
-      "latest": 37,
-      "genre": "ポーランドボーラー"
-    },
-    {
       "name": "マロー",
       "color": "#3e95cc",
       "delta": 0,
@@ -1676,17 +1445,17 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "ikasumi帝国",
-      "color": "#823ecc",
+      "name": "ほたて",
+      "color": "#a95ed4",
       "delta": 0,
-      "latest": 36,
+      "latest": 235,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "ライヒスボール【Reichsball】",
-      "color": "#5e66d4",
+      "name": "こうちゃ(ポーランドボール)",
+      "color": "#ccbb3e",
       "delta": 0,
-      "latest": 49,
+      "latest": 122,
       "genre": "ポーランドボーラー"
     },
     {
@@ -1697,31 +1466,52 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "まるッとわかる地理の裏話",
-      "color": "#3ecc9f",
+      "name": "ノートボール",
+      "color": "#6fcc3e",
       "delta": 0,
-      "latest": 34,
+      "latest": 90,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "日本ボール",
-      "color": "#b5382f",
+      "name": "カルノ  ムックル教",
+      "color": "#5ed4c0",
       "delta": 0,
-      "latest": 85,
+      "latest": 37,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "TKG ball",
-      "color": "#5ed499",
+      "name": "日帝ボール",
+      "color": "#45cc3e",
       "delta": 0,
-      "latest": 48,
+      "latest": 26,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "こゆまる_koyumaru908",
-      "color": "#a55ed4",
+      "name": "ポテトの王",
+      "color": "#cc3eb2",
       "delta": 0,
-      "latest": 186,
+      "latest": 37,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ココプー",
+      "color": "#3ecc6f",
+      "delta": 0,
+      "latest": 372,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "作",
+      "color": "#3a72d6",
+      "delta": 0,
+      "latest": 137,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "いたりぃ",
+      "color": "#5ed49d",
+      "delta": 0,
+      "latest": 24,
       "genre": "ポーランドボーラー"
     },
     {
@@ -1739,80 +1529,17 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "Yukkuri ball",
-      "color": "#8f2f2f",
+      "name": "日本ボール",
+      "color": "#b5382f",
       "delta": 0,
-      "latest": 123,
+      "latest": 85,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "ほすとぼーる",
-      "color": "#5eb9d4",
+      "name": "ねこボール",
+      "color": "#5ed46e",
       "delta": 0,
-      "latest": 23,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ばかわたし",
-      "color": "#4e3ecc",
-      "delta": 0,
-      "latest": 92,
-      "genre": "PBerer"
-    },
-    {
-      "name": "ケエレビQ!",
-      "color": "#ccc03e",
-      "delta": 0,
-      "latest": 100,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "マルルさん",
-      "color": "#cc3e87",
-      "delta": 0,
-      "latest": 78,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ウィン【肉声】【ポーランドボール】",
-      "color": "#c4d45e",
-      "delta": 0,
-      "latest": 107,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "アオアオカントリー",
-      "color": "#a1d45e",
-      "delta": 0,
-      "latest": 18,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "アスラボール　",
-      "color": "#cc3e4e",
-      "delta": 0,
-      "latest": 20,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ぱふball",
-      "color": "#3e66cc",
-      "delta": 0,
-      "latest": 103,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "すいかぼーる",
-      "color": "#cc583e",
-      "delta": 0,
-      "latest": 180,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "まるぼーるch ",
-      "color": "#7d5ed4",
-      "delta": 0,
-      "latest": 121,
+      "latest": 64,
       "genre": "ポーランドボーラー"
     },
     {
@@ -1823,38 +1550,122 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "作",
-      "color": "#3a72d6",
+      "name": "フラルランドPB",
+      "color": "#3ecca3",
       "delta": 0,
-      "latest": 137,
+      "latest": 147,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "カカポボール🦜",
-      "color": "#ccc43e",
+      "name": "こゆまる_koyumaru908",
+      "color": "#cc3e87",
       "delta": 0,
-      "latest": 86,
+      "latest": 186,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "ｺﾏ",
-      "color": "#d4895e",
+      "name": "ばかわたし",
+      "color": "#4e3ecc",
       "delta": 0,
-      "latest": 22,
+      "latest": 92,
+      "genre": "PBerer"
+    },
+    {
+      "name": "白海豚",
+      "color": "#d4665e",
+      "delta": 0,
+      "latest": 117,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "マイクラ共和国ボール(tama2224)",
-      "color": "#d45eb1",
+      "name": "ひかるボール　Hikaru ball",
+      "color": "#c8d45e",
       "delta": 0,
-      "latest": 144,
+      "latest": 157,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "日帝ボール",
-      "color": "#45cc3e",
+      "name": "ゆうボール",
+      "color": "#3e90cc",
       "delta": 0,
-      "latest": 26,
+      "latest": 27,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ポーランドボールの教科書",
+      "color": "#d45ed4",
+      "delta": 0,
+      "latest": 50,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "なごみん",
+      "color": "#40cc3e",
+      "delta": 0,
+      "latest": 84,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ねとえん",
+      "color": "#3ec4cc",
+      "delta": 0,
+      "latest": 116,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "アスラボール　",
+      "color": "#cc3e4e",
+      "delta": 0,
+      "latest": 20,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "マスカットボール",
+      "color": "#493ecc",
+      "delta": 0,
+      "latest": 45,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "さとボール",
+      "color": "#e01e26",
+      "delta": 0,
+      "latest": 952,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "きままボール",
+      "color": "#ad3ecc",
+      "delta": 0,
+      "latest": 153,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ケエレビQ!",
+      "color": "#ccc03e",
+      "delta": 0,
+      "latest": 100,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "レメラボール / 🌈🌙【えるめす】",
+      "color": "#3e61cc",
+      "delta": 0,
+      "latest": 179,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "SEKKI98",
+      "color": "#7e3ecc",
+      "delta": 0,
+      "latest": 791,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "TKG ball",
+      "color": "#5ed499",
+      "delta": 0,
+      "latest": 48,
       "genre": "ポーランドボーラー"
     },
     {
@@ -1865,52 +1676,24 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": " ゼリョーヌィボール　活停中",
-      "color": "#a8cc3e",
+      "name": "渋谷区のペンギン",
+      "color": "#d05ed4",
       "delta": 0,
-      "latest": 88,
+      "latest": 53,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "ふかひれ牧場",
-      "color": "#9dd45e",
+      "name": "マイクラ共和国ボール(tama2224)",
+      "color": "#d45eb1",
       "delta": 0,
-      "latest": 24,
+      "latest": 144,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "セフィルぼーる‼︎",
-      "color": "#815ed4",
+      "name": "ほすとぼーる",
+      "color": "#5eb9d4",
       "delta": 0,
-      "latest": 249,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "ぽぱい",
-      "color": "#d4625e",
-      "delta": 0,
-      "latest": 33,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "こうちゃ(ポーランドボール)",
-      "color": "#ccbb3e",
-      "delta": 0,
-      "latest": 122,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "はなひに",
-      "color": "#c62f2f",
-      "delta": 0,
-      "latest": 115,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "SEKKI98",
-      "color": "#7e3ecc",
-      "delta": 0,
-      "latest": 791,
+      "latest": 23,
       "genre": "ポーランドボーラー"
     },
     {
@@ -1925,6 +1708,223 @@ window.PBERS_GROWTH = {
       "color": "#cc3e82",
       "delta": 0,
       "latest": 117,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "カミヤ kamiya【ポーランドボール】",
+      "color": "#d45ead",
+      "delta": 0,
+      "latest": 79,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "りょうデス",
+      "color": "#ccd45e",
+      "delta": 0,
+      "latest": 893,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "Rimoru",
+      "color": "#d4b95e",
+      "delta": 0,
+      "latest": 140,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ふかひれ牧場",
+      "color": "#9dd45e",
+      "delta": 0,
+      "latest": 24,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "mikan帝国ぼーる",
+      "color": "#cc903e",
+      "delta": 0,
+      "latest": 33,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "みすい",
+      "color": "#3ecc40",
+      "delta": 0,
+      "latest": 25,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "カカポボール🦜",
+      "color": "#ccc43e",
+      "delta": 0,
+      "latest": 86,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "セフィルぼーる‼︎",
+      "color": "#815ed4",
+      "delta": 0,
+      "latest": 249,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ユウセイボール",
+      "color": "#3ecc6b",
+      "delta": 0,
+      "latest": 76,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "かにたる",
+      "color": "#40a86a",
+      "delta": 0,
+      "latest": 84,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "アオアオカントリー",
+      "color": "#a1d45e",
+      "delta": 0,
+      "latest": 18,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "まるッとわかる地理の裏話",
+      "color": "#3ecc9f",
+      "delta": 0,
+      "latest": 34,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ほわさん",
+      "color": "#cc3e53",
+      "delta": 0,
+      "latest": 88,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "Acgelent",
+      "color": "#5e91d4",
+      "delta": 0,
+      "latest": 66,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ｺﾏ",
+      "color": "#d4895e",
+      "delta": 0,
+      "latest": 22,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "Yukkuri ball",
+      "color": "#8f2f2f",
+      "delta": 0,
+      "latest": 123,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "わーるどボール【ポーランドボール】",
+      "color": "#5ed4c4",
+      "delta": 0,
+      "latest": 99,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ikasumi帝国",
+      "color": "#823ecc",
+      "delta": 0,
+      "latest": 36,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "マルルさん",
+      "color": "#a55ed4",
+      "delta": 0,
+      "latest": 78,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "まるぼーるch ",
+      "color": "#7d5ed4",
+      "delta": 0,
+      "latest": 121,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ぽぱい",
+      "color": "#d4625e",
+      "delta": 0,
+      "latest": 33,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "はなひに",
+      "color": "#c62f2f",
+      "delta": 0,
+      "latest": 115,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": " ゼリョーヌィボール　活停中",
+      "color": "#a8cc3e",
+      "delta": 0,
+      "latest": 88,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ユラミア連邦共和国",
+      "color": "#cc5c3e",
+      "delta": 0,
+      "latest": 93,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ウィン【肉声】【ポーランドボール】",
+      "color": "#c4d45e",
+      "delta": 0,
+      "latest": 107,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "すいかぼーる",
+      "color": "#cc583e",
+      "delta": 0,
+      "latest": 180,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ぱふball",
+      "color": "#3e66cc",
+      "delta": 0,
+      "latest": 103,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "炭火焼き",
+      "color": "#3ec9cc",
+      "delta": 0,
+      "latest": 59,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "アフガンボール",
+      "color": "#5e8dd4",
+      "delta": 0,
+      "latest": 6,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "ライヒスボール【Reichsball】",
+      "color": "#5e66d4",
+      "delta": 0,
+      "latest": 49,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "天川 蒼",
+      "color": "#72d45e",
+      "delta": 0,
+      "latest": 228,
       "genre": "ポーランドボーラー"
     },
     {
