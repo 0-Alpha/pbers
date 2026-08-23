@@ -4,6 +4,17 @@ window.PBERS_NEWS = [
     "label": "8月23日(日)",
     "items": [
       {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ソビエト・カチューシャボール☭\n\n",
+        "color": "#d4b55e",
+        "avatar": "https://yt3.googleusercontent.com/6JoYS-SVAtxks_NujxGVoLu7GhB-S9QqtUKOVraRMoSH61_yiCLncK4jPGsPaUhlMjxTTlpfGw=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 500万回 突破",
+        "value": 5000000
+      },
+      {
         "type": "overtake",
         "kind": "subs",
         "name": "にこちPB",
@@ -18,6 +29,54 @@ window.PBERS_NEWS = [
         },
         "label": "登録者数で レイアルファ を追い越し",
         "value": 3820
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "ばかわたし",
+        "color": "#4e3ecc",
+        "avatar": "https://yt3.googleusercontent.com/8Q3AkB3SLb49XqB1aR0hp3jyCVu5hS_YrBkjoYn-0FkHttGhP6gadqK2oaOqadgMcjYFYhR1=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "PBerer",
+        "opp": {
+          "name": "マスカットボール",
+          "color": "#493ecc",
+          "avatar": "https://yt3.googleusercontent.com/0LFy0gzQnjYCPHXvDJpUTOtKyZoSi6UGXTRQs1_FWE2Or_MqTKViIHNrO7cK33ob-lq5snr_xCE=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で マスカットボール を追い越し",
+        "value": 4585021
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "MIKUボール",
+        "color": "#74cc3e",
+        "avatar": "https://yt3.googleusercontent.com/6w7QBnmhG0QOmG33OrGsxQR2cM7u-_izyc_BizYXJzvu-1MbSW2UC3X8T15rWcyY9TTgmRuYZQ=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "渋谷区のペンギン",
+          "color": "#d05ed4",
+          "avatar": "https://yt3.googleusercontent.com/UzSRTPeQjShkDU9fW2m2meYmivDymiYdGJUdfMhxQGeFCqEaGeVO3Bkvo0X-AgvDhLC_VqWRV3M=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で 渋谷区のペンギン を追い越し",
+        "value": 3396184
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "レイアルファ",
+        "color": "#db4f57",
+        "avatar": "https://yt3.googleusercontent.com/i-3zcDugOBC0BsV7k8-06wQY125k3kMWPiaVTXQt96XHKdrN-V7iocfwUrLRnEBskVJ0dyiCYZ0=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "アスラボール　",
+          "color": "#cc3e4e",
+          "avatar": "https://yt3.googleusercontent.com/ZbdOHnPvnMP9Us0RTVMXDIG34oJMxW6dUgOdgEU93aHiDFn8bcE3AG5TIX37FVBkEzDhimSL2w=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で アスラボール　 を追い越し",
+        "value": 3110507
       }
     ]
   },
