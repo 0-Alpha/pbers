@@ -972,42 +972,6 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "セフィルぼーる‼︎",
-        "color": "#815ed4",
-        "avatar": "https://yt3.googleusercontent.com/HSCQnokZVxhiCR-7vyTJA-4vvznf-NuT5Kal3GwnJbTMv3rvRKzEjwRPWOiLPiwoDcbij7-shQ=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 6760,
-        "history": [
-          {
-            "d": "2026-08-22",
-            "s": 6750
-          },
-          {
-            "d": "2026-08-23",
-            "s": 6760
-          }
-        ]
-      },
-      {
-        "name": "ポテトの王",
-        "color": "#cc3eb2",
-        "avatar": "https://yt3.googleusercontent.com/Ht3xBUYGa1q7jf81ZNMimtHDeFwJg9OGx0uVryQc6VfR5cmzW942vpj0LrAFe9-C0gj9Blv9cH0=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 6700,
-        "history": [
-          {
-            "d": "2026-08-22",
-            "s": 6700
-          },
-          {
-            "d": "2026-08-23",
-            "s": 6700
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "members": [
-      {
         "name": "アフガンボール",
         "color": "#5e8dd4",
         "avatar": "https://yt3.googleusercontent.com/aOj-FnTWhrUAPjz49cHMeTuREL5cpUpsUWPVs1AuaeeMqVIrUHxeIOlHdCi0h8HukDZHL_ZQ0HA=s900-c-k-c0x00ffffff-no-rj",
