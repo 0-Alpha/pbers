@@ -17,6 +17,13 @@ def day_of(ts):
         return (datetime.date.fromisoformat(d) - datetime.timedelta(days=1)).isoformat()
     return d
 
+def daily_reps(ts_iterable):
+    """スロット群を「日 -> その日の最終スロット」に集約する(グラフ表示を1日1点にするため)。"""
+    rep = {}
+    for t in sorted(ts_iterable):     # 昇順なので各日は最後(=最新)のスロットで上書きされる
+        rep[day_of(t)] = t
+    return rep
+
 # データの基準日 = 直近スロットが属する日(JST 0時取得は前日分とみなす)
 _now = datetime.datetime.now(JST)
 ASOF = (_now.date() - datetime.timedelta(days=1)) if (_now.hour // 6) * 6 == 0 else _now.date()
@@ -218,7 +225,8 @@ def build_race(colors):
 
     def member(cid):
         hist = series.get(cid, {})
-        pts = [{"d": d, "s": hist[d]["subs"]} for d in sorted(hist) if hist[d]["subs"] is not None]
+        rep = daily_reps(hist.keys())    # 1日1点(その日の最終値)に集約
+        pts = [{"d": d, "s": hist[rep[d]]["subs"]} for d in sorted(rep) if hist[rep[d]]["subs"] is not None]
         return {"name": names.get(cid, ""), "color": colors[cid], "avatar": amap.get(cid, ""),
                 "subs": by_id[cid].get("subs"), "history": pts}
 
@@ -257,7 +265,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250845">
+<link rel="stylesheet" href="../../assets/style.css?v=250846">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -273,7 +281,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250845"></script>
+<script src="../../assets/channel.js?v=250846"></script>
 </body>
 </html>
 '''
@@ -289,11 +297,12 @@ def build_channel_pages(order, colors):
     for i, d in enumerate(order):
         cid = d["id"]; slug = d["_slug"]
         hist = series.get(cid, {})
-        hd = sorted(hist.keys())
+        rep = daily_reps(hist.keys())          # 1日1点(その日の最終値)に集約
+        hd = sorted(rep.keys())
         HH = {"dates": hd,
-              "subs": [hist[x]["subs"] for x in hd],
-              "views": [hist[x]["views"] for x in hd],
-              "videos": [hist[x]["videos"] for x in hd]}
+              "subs": [hist[rep[x]]["subs"] for x in hd],
+              "views": [hist[rep[x]]["views"] for x in hd],
+              "videos": [hist[rep[x]]["videos"] for x in hd]}
         ch = {"id": cid, "name": d["name"], "subs": d.get("subs"), "views": d.get("views"),
               "videos": d.get("videos") if d.get("videos") is not None else vids(d.get("videosLabel")),
               "url": d["url"], "avatar": d["avatar"], "color": colors[cid],
@@ -554,15 +563,18 @@ def build_growth(colors):
             arr.sort(key=lambda x: -x["delta"])
             result[metric] = arr
 
-    # 界隈全体の推移: 通常ジャンル(引退除く)のスロット別合計を全履歴ぶん
+    # 界隈全体の推移: 通常ジャンル(引退除く)の日別合計(グラフは1日1点=その日の最終スロット)
     main_ids = [cid for cid in series if cid not in RETIRED and genre_of(cid) == DEFAULT_GENRE]
-    tdates = sorted({d for cid in main_ids for d in series[cid]})
-    totals = {"dates": tdates, "subs": [], "views": [], "videos": []}
-    for d in tdates:
+    all_ts = sorted({t for cid in main_ids for t in series[cid]})
+    rep = daily_reps(all_ts)                       # 日 -> その日の最終スロット
+    tdays = sorted(rep.keys())
+    totals = {"dates": tdays, "subs": [], "views": [], "videos": []}
+    for d in tdays:
+        t = rep[d]
         for m in ("subs", "views", "videos"):
             s = 0
             for cid in main_ids:
-                rec = series.get(cid, {}).get(d)
+                rec = series.get(cid, {}).get(t)
                 if rec and rec[m] is not None:
                     s += rec[m]
             totals[m].append(s)
@@ -570,7 +582,7 @@ def build_growth(colors):
 
     with open(BASE + "/assets/growth.js", "w", encoding="utf-8") as f:
         f.write("window.PBERS_GROWTH = " + json.dumps(result, ensure_ascii=False, indent=2) + ";\n")
-    print("wrote assets/growth.js (span %s days, %d trend points)" % (result["span"]["days"], len(tdates)))
+    print("wrote assets/growth.js (span %s days, %d trend points)" % (result["span"]["days"], len(tdays)))
 
 def build_news(colors):
     """history.csv から直近7日（当日含む）のマイルストーン突破を検出して news.js を出力。
