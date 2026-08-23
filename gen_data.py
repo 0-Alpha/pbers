@@ -265,7 +265,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250846">
+<link rel="stylesheet" href="../../assets/style.css?v=250847">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -281,7 +281,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250846"></script>
+<script src="../../assets/channel.js?v=250847"></script>
 </body>
 </html>
 '''
