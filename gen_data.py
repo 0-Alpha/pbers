@@ -215,19 +215,24 @@ def build_race(colors):
         else:
             i += 1
 
+    def member(cid):
+        hist = series.get(cid, {})
+        pts = [{"d": d, "s": hist[d]["subs"]} for d in sorted(hist) if hist[d]["subs"] is not None]
+        return {"name": names.get(cid, ""), "color": colors[cid], "avatar": amap.get(cid, ""),
+                "subs": by_id[cid].get("subs"), "history": pts}
+
     out = []
+    # 特別枠: 上位3チャンネルの首位争い(差に関係なく必ず表示)
+    top = [cid for cid, _ in items[:3]]
+    if len(top) >= 2:
+        out.append({"special": True, "title": "首位争い TOP3", "members": [member(cid) for cid in top]})
+
     for g in groups:
-        members = []
-        for cid in g:
-            hist = series.get(cid, {})
-            pts = [{"d": d, "s": hist[d]["subs"]} for d in sorted(hist) if hist[d]["subs"] is not None]
-            members.append({"name": names.get(cid, ""), "color": colors[cid], "avatar": amap.get(cid, ""),
-                            "subs": by_id[cid].get("subs"), "history": pts})
-        out.append({"members": members})
+        out.append({"members": [member(cid) for cid in g]})
 
     with open(BASE + "/assets/race.js", "w", encoding="utf-8") as f:
         f.write("window.PBERS_RACE = " + json.dumps(out, ensure_ascii=False, indent=2) + ";\n")
-    print("wrote assets/race.js (%d close races)" % len(out))
+    print("wrote assets/race.js (%d races incl. TOP3)" % len(out))
 
 CH_TPL = '''<!doctype html>
 <html lang="ja">
@@ -251,7 +256,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250840">
+<link rel="stylesheet" href="../../assets/style.css?v=250841">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -267,7 +272,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250840"></script>
+<script src="../../assets/channel.js?v=250841"></script>
 </body>
 </html>
 '''

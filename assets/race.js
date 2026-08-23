@@ -1,5 +1,95 @@
 window.PBERS_RACE = [
   {
+    "special": true,
+    "title": "首位争い TOP3",
+    "members": [
+      {
+        "name": "Æž!フヒフム",
+        "color": "#9b51e0",
+        "avatar": "https://yt3.googleusercontent.com/o0-EijPjZl_g0OcDfSJdv78d6uG6Ba0RxPPeI4spBOdIZqL842tVa_BsE8_cNxZLHRwd8PmZEA=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 386000,
+        "history": [
+          {
+            "d": "2026-08-20",
+            "s": 383000
+          },
+          {
+            "d": "2026-08-21",
+            "s": 385000
+          },
+          {
+            "d": "2026-08-23 00:00",
+            "s": 385000
+          },
+          {
+            "d": "2026-08-23 06:00",
+            "s": 385000
+          },
+          {
+            "d": "2026-08-23 12:00",
+            "s": 386000
+          }
+        ]
+      },
+      {
+        "name": "Æž!みかんぼーる🍊",
+        "color": "#eba864",
+        "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 312000,
+        "history": [
+          {
+            "d": "2026-08-20",
+            "s": 309000
+          },
+          {
+            "d": "2026-08-21",
+            "s": 311000
+          },
+          {
+            "d": "2026-08-23 00:00",
+            "s": 311000
+          },
+          {
+            "d": "2026-08-23 06:00",
+            "s": 311000
+          },
+          {
+            "d": "2026-08-23 12:00",
+            "s": 312000
+          }
+        ]
+      },
+      {
+        "name": "田中MID",
+        "color": "#2f80ed",
+        "avatar": "https://yt3.googleusercontent.com/mnFY8X_lmtyW54Uh5ocg1QJQVTxTRKG9XDdrGAhxFZpPPJzhsGue-cMHqLBCsIRF4hBHjsLU=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 288000,
+        "history": [
+          {
+            "d": "2026-08-20",
+            "s": 284000
+          },
+          {
+            "d": "2026-08-21",
+            "s": 286000
+          },
+          {
+            "d": "2026-08-23 00:00",
+            "s": 287000
+          },
+          {
+            "d": "2026-08-23 06:00",
+            "s": 287000
+          },
+          {
+            "d": "2026-08-23 12:00",
+            "s": 288000
+          }
+        ]
+      }
+    ]
+  },
+  {
     "members": [
       {
         "name": "こうちゃ(ポーランドボール)",

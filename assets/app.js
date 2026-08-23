@@ -765,12 +765,14 @@
       var m = race.members;
       var subs = m.map(function (x) { return x.subs || 0; });
       var gap = Math.max.apply(null, subs) - Math.min.apply(null, subs);
-      var head = '<div class="race-head">' + m.map(function (x) {
-        return '<div class="race-ch" style="--c:' + x.color + '"><img src="' + x.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
+      var title = race.special ? '<div class="race-title">👑 ' + esc(race.title || '首位争い TOP3') + '</div>' : '';
+      var head = '<div class="race-head">' + m.map(function (x, mi) {
+        var rk = race.special ? '<span class="race-rank">' + (mi + 1) + '</span>' : '';
+        return '<div class="race-ch" style="--c:' + x.color + '">' + rk + '<img src="' + x.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
           '<div><div class="ln" style="color:' + x.color + '">' + esc(x.name) + '</div><div class="ls">' + jp(x.subs) + '人</div></div></div>';
       }).join('') + '<span class="race-gap">差 ' + fmt(gap) + '人</span></div>';
-      var card = document.createElement('div'); card.className = 'race-card';
-      card.innerHTML = head + '<div class="race-chart" data-gi="' + gi + '"></div>';
+      var card = document.createElement('div'); card.className = 'race-card' + (race.special ? ' race-special' : '');
+      card.innerHTML = title + head + '<div class="race-chart" data-gi="' + gi + '"></div>';
       host.appendChild(card);
     });
     host.querySelectorAll('.race-chart').forEach(buildRaceChart);
