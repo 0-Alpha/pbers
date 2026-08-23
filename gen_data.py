@@ -177,6 +177,7 @@ def main():
         f.write("window.PBERS_GENRES = " + json.dumps(GENRES, ensure_ascii=False) + ";\n")
         f.write('window.PBERS_UPDATED = "%s";\n' % UPDATED)
         f.write("window.PBERS_PREDICT = " + json.dumps(compute_predict(colors), ensure_ascii=False) + ";\n")
+        f.write("window.PBERS_OLIGO = " + json.dumps(compute_oligopoly(colors), ensure_ascii=False) + ";\n")
     print("wrote assets/data.js (%d channels)" % len(out))
 
     build_news(colors)
@@ -256,7 +257,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250841">
+<link rel="stylesheet" href="../../assets/style.css?v=250842">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -272,7 +273,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250841"></script>
+<script src="../../assets/channel.js?v=250842"></script>
 </body>
 </html>
 '''
@@ -384,6 +385,123 @@ def compute_predict(colors):
     return {"asOfMs": as_of_ms,
             "subs":  {"base": sb, "rate": sr},
             "views": {"base": vb, "rate": vr}}
+
+def _rate_vol(pts, exclude_neg):
+    """(t_ms, value) の並びから、1日あたりの増加率(加重平均, 半減期2日)と
+       日次増加率のばらつき(標準偏差)を返す。exclude_negなら減少区間は無視。"""
+    DAY = 86400000.0
+    if len(pts) < 2:
+        return 0.0, 0.0
+    latest = pts[-1][0]
+    num = den = 0.0
+    day_rates = []
+    for i in range(1, len(pts)):
+        dt = pts[i][0] - pts[i - 1][0]
+        if dt <= 0:
+            continue
+        dv = pts[i][1] - pts[i - 1][1]
+        if exclude_neg and dv < 0:
+            continue
+        rday = dv / dt * DAY                      # 1日あたり
+        age = (latest - (pts[i][0] + pts[i - 1][0]) / 2) / DAY
+        w = 0.5 ** (age / 2.0)
+        num += w * rday
+        den += w
+        day_rates.append(rday)
+    rate = (num / den) if den else 0.0
+    if rate < 0:
+        rate = 0.0
+    if len(day_rates) >= 2:
+        m = sum(day_rates) / len(day_rates)
+        vol = (sum((x - m) ** 2 for x in day_rates) / len(day_rates)) ** 0.5
+    else:
+        vol = abs(rate) * 0.5                     # データが少ないときの目安
+    return rate, vol
+
+def channel_models(colors):
+    """主要ジャンル各チャンネルの現在値・1日あたり増加率・ばらつきを返す。"""
+    series, names = load_history()
+    try:
+        cur = {d["id"]: d for d in json.load(open(BASE + "/data.json", encoding="utf-8"))}
+    except Exception:
+        cur = {}
+    main_ids = [cid for cid in colors if cid not in RETIRED and genre_of(cid) == DEFAULT_GENRE]
+    all_ts = sorted({t for cid in main_ids for t in series.get(cid, {})})
+    as_of_ms = ts_to_ms(all_ts[-1]) if all_ts else int(datetime.datetime.now(JST).timestamp() * 1000)
+    WEEK = 7 * 86400000.0
+    models = {}
+    for cid in main_ids:
+        c = cur.get(cid, {})
+        if not (c.get("subs")):
+            continue
+        h = series.get(cid, {})
+        ts = sorted(h)
+        latest = ts_to_ms(ts[-1]) if ts else as_of_ms
+        def pts(metric):
+            return [(ts_to_ms(x), h[x][metric]) for x in ts
+                    if h[x][metric] is not None and (latest - ts_to_ms(x)) <= WEEK]
+        sr, sv = _rate_vol(pts("subs"), False)
+        vr, vv = _rate_vol(pts("views"), True)
+        models[cid] = {
+            "name": names.get(cid, c.get("name", "")), "color": colors[cid],
+            "avatar": c.get("avatar", ""),
+            "subs": c.get("subs") or 0, "views": c.get("views") or 0,
+            "subs_rate": sr, "subs_vol": sv, "views_rate": vr, "views_vol": vv,
+        }
+    return models, as_of_ms
+
+def compute_oligopoly(colors):
+    """寡占予測: トップ3の占有率が1ヶ月後どう変わるか＋順位変動の可能性(加重平均予測)。"""
+    import math
+    models, as_of = channel_models(colors)
+    ids = sorted(models.keys(), key=lambda c: -models[c]["subs"])
+    H = 30  # 日
+    if len(ids) < 3:
+        return {"asOfMs": as_of, "horizonDays": H, "enough": False}
+
+    def proj(cid, metric):
+        m = models[cid]
+        return m[metric] + m[metric + "_rate"] * H
+
+    out = {"asOfMs": as_of, "horizonDays": H, "enough": True,
+           "top3": [{"name": models[c]["name"], "color": models[c]["color"], "avatar": models[c]["avatar"]} for c in ids[:3]]}
+
+    for metric in ("subs", "views"):
+        tot_n = sum(models[c][metric] for c in ids)
+        t3_n = sum(models[c][metric] for c in ids[:3])
+        tot_f = sum(proj(c, metric) for c in ids)
+        t3_f = sum(proj(c, metric) for c in ids[:3])
+        out[metric] = {
+            "shareNow": (t3_n / tot_n) if tot_n else 0,
+            "shareFuture": (t3_f / tot_f) if tot_f else 0,
+            "top3Now": round(t3_n), "totalNow": round(tot_n),
+            "top3Future": round(t3_f), "totalFuture": round(tot_f),
+        }
+
+    def ncdf(x):
+        return 0.5 * (1 + math.erf(x / math.sqrt(2)))
+
+    ranks = []
+    topN = ids[:4]
+    for i in range(1, len(topN)):
+        A, B = topN[i - 1], topN[i]          # A=上位, B=下位
+        a, b = models[A], models[B]
+        gap_now = a["subs"] - b["subs"]
+        mean_lead = gap_now + (a["subs_rate"] - b["subs_rate"]) * H     # 1ヶ月後のAのリード
+        var = (a["subs_vol"] ** 2 + b["subs_vol"] ** 2) * H
+        sigma = math.sqrt(var) if var > 0 else max(1.0, abs(mean_lead) * 0.25)
+        prob = ncdf(-mean_lead / sigma) if sigma > 0 else (1.0 if mean_lead < 0 else 0.0)
+        close = b["subs_rate"] - a["subs_rate"]                          # Bの追い上げ速度(人/日)
+        days = (gap_now / close) if close > 1e-9 else None
+        ranks.append({
+            "higher": {"name": a["name"], "color": a["color"]},
+            "lower":  {"name": b["name"], "color": b["color"]},
+            "gapNow": round(gap_now), "gapFuture": round(mean_lead),
+            "prob": max(0.0, min(1.0, prob)),
+            "days": (round(days) if (days and 0 < days) else None),
+        })
+    out["ranks"] = ranks
+    return out
 
 def load_history():
     path = BASE + "/history.csv"

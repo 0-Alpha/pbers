@@ -35,6 +35,7 @@
   var GROWTH = window.PBERS_GROWTH || { span: { days: 0 }, subs: [], views: [], videos: [] };
   var GUNIT = { subs: '人', views: '回', videos: '本' };
   var RACE = window.PBERS_RACE || [];
+  var OLIGO = window.PBERS_OLIGO || null;
   var GENRES = window.PBERS_GENRES || [];
   var genreOn = {}; GENRES.forEach(function (g) { genreOn[g.label] = !!g.on; });
   function genreVisible(x) { return x.genre == null || genreOn[x.genre] !== false; }
@@ -616,6 +617,7 @@
     growth:    document.getElementById('view-growth'),
     news:      document.getElementById('view-news'),
     race:      document.getElementById('view-race'),
+    forecast:  document.getElementById('view-forecast'),
     channels:  document.getElementById('view-channels')
   };
   var currentView = 'dashboard';
@@ -631,6 +633,7 @@
     if (v === 'growth') { renderTrend(); playGrowth(); }
     if (v === 'news') renderNewsFeed();
     if (v === 'race') renderRace();
+    if (v === 'forecast') renderForecast();
     if (v === 'channels') moveTierInd();
   }
   function hashView(h) { var v = (h || '').replace('#', ''); return v === 'live' ? 'race' : v; }   // 'live' は旧名の後方互換
@@ -776,6 +779,58 @@
       host.appendChild(card);
     });
     host.querySelectorAll('.race-chart').forEach(buildRaceChart);
+  }
+
+  /* ---- forecast: oligopoly (top3 share trend + rank-change probability) ---- */
+  function renderForecast() {
+    var host = document.getElementById('forecast-root'); if (!host) return;
+    if (!OLIGO || !OLIGO.enough) {
+      host.innerHTML = '<div class="fc-empty">予測はデータが数日たまると表示されます（自動で反映されます）。</div>';
+      return;
+    }
+    var H = OLIGO.horizonDays || 30;
+    // 上位3
+    var top3 = (OLIGO.top3 || []).map(function (t, i) {
+      return '<div class="fc-ch"><span class="fc-rk">' + (i + 1) + '</span>' +
+        '<img src="' + t.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'" style="border-color:' + t.color + '">' +
+        '<span class="fc-nm" style="color:' + t.color + '">' + esc(t.name) + '</span></div>';
+    }).join('');
+
+    function shareCard(cap, d) {
+      var now = d.shareNow * 100, fut = d.shareFuture * 100, dp = fut - now;
+      var cls = Math.abs(dp) < 0.1 ? 'flat' : (dp > 0 ? 'up' : 'down');
+      var word = Math.abs(dp) < 0.1 ? 'ほぼ横ばい' : (dp > 0 ? '寡占が強まる' : '寡占が弱まる');
+      var sign = dp > 0 ? '+' : '';
+      return '<div class="fc-card"><div class="fc-cap">' + cap + '（トップ3の占有率）</div>' +
+        '<div class="fc-flow"><span class="fc-now">' + now.toFixed(1) + '%</span>' +
+        '<span class="fc-sep">→</span><span class="fc-future">' + fut.toFixed(1) + '%</span></div>' +
+        '<div class="fc-tag ' + cls + '">' + sign + dp.toFixed(1) + 'pt ・ ' + word + '</div>' +
+        '<div class="fc-sub">現在 ' + jp(d.top3Now) + ' / ' + jp(d.totalNow) + ' → 1ヶ月後 ' + jp(d.top3Future) + ' / ' + jp(d.totalFuture) + '</div></div>';
+    }
+
+    var ranks = (OLIGO.ranks || []).map(function (r) {
+      var pct = Math.round(r.prob * 100);
+      var days = r.days;
+      var sub;
+      if (days != null && days > 0) {
+        sub = '現在の差 ' + fmt(r.gapNow) + '人 → 1ヶ月後 ' + fmt(Math.max(0, r.gapFuture)) + '人 ・ このペースだと約' + days + '日後に逆転';
+      } else {
+        sub = '現在の差 ' + fmt(r.gapNow) + '人 → 1ヶ月後 ' + fmt(Math.max(0, r.gapFuture)) + '人 ・ 現状では逆転の見込みは小さい';
+      }
+      return '<div class="fc-rank"><div class="fc-rank-h">' +
+        '<b style="color:' + r.lower.color + '">' + esc(r.lower.name) + '</b> が ' +
+        '<b style="color:' + r.higher.color + '">' + esc(r.higher.name) + '</b> を1ヶ月以内に抜く可能性</div>' +
+        '<div class="fc-prob"><div class="fc-prob-track"><div class="fc-prob-bar" style="width:' + pct + '%"></div></div>' +
+        '<span class="fc-prob-val">' + pct + '%</span></div>' +
+        '<div class="fc-rank-sub">' + sub + '</div></div>';
+    }).join('');
+
+    host.innerHTML =
+      '<div class="fc-note">下の数字は、直近の登録者・再生数の推移を<b>加重平均（直近ほど重視）</b>して割り出した<b>' + H + '日後の推定値</b>です。実際の値を保証するものではありません。</div>' +
+      '<div class="fc-top3">' + top3 + '</div>' +
+      '<div class="fc-grid">' + shareCard('登録者', OLIGO.subs) + shareCard('総再生数', OLIGO.views) + '</div>' +
+      '<div class="fc-h3">順位変動の可能性（登録者・1ヶ月後）</div>' +
+      (ranks || '<div class="fc-empty">対象となる上位チャンネルが不足しています。</div>');
   }
 
   /* ---- settings: genre visibility ---- */

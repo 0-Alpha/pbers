@@ -31,7 +31,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="assets/style.css?v=250841">
+<link rel="stylesheet" href="assets/style.css?v=250842">
 </head>
 <body>
 
@@ -54,6 +54,7 @@
     <button class="tab" data-view="growth">成長</button>
     <button class="tab" data-view="news">ニュース</button>
     <button class="tab" data-view="race">レース</button>
+    <button class="tab" data-view="forecast">寡占予測</button>
     <button class="tab" data-view="channels">チャンネル一覧</button>
   </div>
 </div>
@@ -145,6 +146,9 @@
         <div class="log-item">
           <div class="log-date">2026-08-23</div>
           <ul>
+            <li>「寡占予測」タブを追加(トップ3の占有率が1ヶ月後どう変わるか＋順位変動の可能性を加重平均で予測)</li>
+            <li>「レース」に上位3チャンネルの首位争い(TOP3)を特別枠で追加</li>
+            <li>スマホでタブが縦に折り返さないよう横スクロール化</li>
             <li>円グラフに「リアル予測」を追加(過去7日の推移=直近ほど加重・総再生数の減少は除外 から現在値を推定し自動カウントアップ)</li>
             <li>データ取得の時刻を微調整(スケジュール混雑を避けるため分をずらした)</li>
           </ul>
@@ -243,6 +247,19 @@
   </section>
 </main>
 
+<!-- FORECAST (oligopoly prediction) view -->
+<main id="view-forecast" hidden>
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>寡占予測 <span class="en">Oligopoly Forecast</span></h2>
+        <span class="note">直近の推移(加重平均)からの30日後の予測・参考値</span>
+      </div>
+      <div id="forecast-root"></div>
+    </div>
+  </section>
+</main>
+
 <!-- CHANNELS (by-tier) view -->
 <main id="view-channels" hidden>
   <section class="block" style="padding-top:40px">
@@ -271,10 +288,10 @@
   </div>
 </footer>
 
-<script src="assets/data.js?v=250841"></script>
-<script src="assets/news.js?v=250841"></script>
-<script src="assets/growth.js?v=250841"></script>
-<script src="assets/race.js?v=250841"></script>
-<script src="assets/app.js?v=250841"></script>
+<script src="assets/data.js?v=250842"></script>
+<script src="assets/news.js?v=250842"></script>
+<script src="assets/growth.js?v=250842"></script>
+<script src="assets/race.js?v=250842"></script>
+<script src="assets/app.js?v=250842"></script>
 </body>
 </html>
