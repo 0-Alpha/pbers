@@ -808,15 +808,50 @@
         '<div class="fc-sub">現在 ' + jp(d.top3Now) + ' / ' + jp(d.totalNow) + ' → 1ヶ月後 ' + jp(d.top3Future) + ' / ' + jp(d.totalFuture) + '</div></div>';
     }
 
-    var ranks = (OLIGO.ranks || []).map(function (r) {
+    host.innerHTML =
+      '<div class="fc-note">下の数字は、直近の登録者・再生数の推移を<b>加重平均（直近ほど重視）</b>して割り出した<b>' + H + '日後の推定値</b>です。実際の値を保証するものではありません。</div>' +
+      '<div class="fc-top3">' + top3 + '</div>' +
+      '<div class="fc-h3">寡占予測 <span class="fc-en">Oligopoly</span></div>' +
+      '<div class="fc-lead">トップ3が界隈全体に占める割合が、1ヶ月後どう変わるか</div>' +
+      '<div class="fc-grid">' + shareCard('登録者', OLIGO.subs) + shareCard('総再生数', OLIGO.views) + '</div>' +
+      '<div class="fc-h3" style="margin-top:34px">順位変動予測 <span class="fc-en">Rank Change</span></div>' +
+      '<div class="fc-lead">上位チャンネルが1ヶ月以内に入れ替わる可能性</div>' +
+      '<div class="toggle" id="fc-rank-toggle" style="margin-bottom:16px">' +
+        '<button class="tg on" data-rm="subs">登録者</button>' +
+        '<button class="tg" data-rm="views">総再生数</button>' +
+        '<span class="tg-ind" id="fc-rank-ind"></span>' +
+      '</div>' +
+      '<div id="fc-ranks"></div>';
+
+    renderFcRanks(forecastRankMetric);
+    var tabs = [].slice.call(host.querySelectorAll('#fc-rank-toggle .tg'));
+    function moveFcInd() {
+      var on = host.querySelector('#fc-rank-toggle .tg.on'), ind = document.getElementById('fc-rank-ind');
+      if (on && ind) { ind.style.left = on.offsetLeft + 'px'; ind.style.width = on.offsetWidth + 'px'; }
+    }
+    tabs.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.dataset.rm === forecastRankMetric) return;
+        forecastRankMetric = b.dataset.rm;
+        tabs.forEach(function (x) { x.classList.toggle('on', x === b); });
+        moveFcInd(); renderFcRanks(forecastRankMetric);
+      });
+    });
+    moveFcInd();
+  }
+  var forecastRankMetric = 'subs';
+  function renderFcRanks(rm) {
+    var box = document.getElementById('fc-ranks'); if (!box) return;
+    var list = (OLIGO && OLIGO.ranks && OLIGO.ranks[rm]) || [];
+    if (!list.length) { box.innerHTML = '<div class="fc-empty">対象となる上位チャンネルが不足しています。</div>'; return; }
+    var unit = rm === 'subs' ? '人' : '回';
+    var nf = rm === 'subs' ? fmt : jp;   // 再生数は 億/万 表記で見やすく
+    box.innerHTML = list.map(function (r) {
       var pct = Math.round(r.prob * 100);
-      var days = r.days;
-      var sub;
-      if (days != null && days > 0) {
-        sub = '現在の差 ' + fmt(r.gapNow) + '人 → 1ヶ月後 ' + fmt(Math.max(0, r.gapFuture)) + '人 ・ このペースだと約' + days + '日後に逆転';
-      } else {
-        sub = '現在の差 ' + fmt(r.gapNow) + '人 → 1ヶ月後 ' + fmt(Math.max(0, r.gapFuture)) + '人 ・ 現状では逆転の見込みは小さい';
-      }
+      var tail = (r.days != null && r.days > 0)
+        ? '・このペースだと約' + r.days + '日後に逆転'
+        : '・現状では逆転の見込みは小さい';
+      var sub = '現在の差 ' + nf(r.gapNow) + unit + ' → 1ヶ月後 ' + nf(Math.max(0, r.gapFuture)) + unit + ' ' + tail;
       return '<div class="fc-rank"><div class="fc-rank-h">' +
         '<b style="color:' + r.lower.color + '">' + esc(r.lower.name) + '</b> が ' +
         '<b style="color:' + r.higher.color + '">' + esc(r.higher.name) + '</b> を1ヶ月以内に抜く可能性</div>' +
@@ -824,13 +859,6 @@
         '<span class="fc-prob-val">' + pct + '%</span></div>' +
         '<div class="fc-rank-sub">' + sub + '</div></div>';
     }).join('');
-
-    host.innerHTML =
-      '<div class="fc-note">下の数字は、直近の登録者・再生数の推移を<b>加重平均（直近ほど重視）</b>して割り出した<b>' + H + '日後の推定値</b>です。実際の値を保証するものではありません。</div>' +
-      '<div class="fc-top3">' + top3 + '</div>' +
-      '<div class="fc-grid">' + shareCard('登録者', OLIGO.subs) + shareCard('総再生数', OLIGO.views) + '</div>' +
-      '<div class="fc-h3">順位変動の可能性（登録者・1ヶ月後）</div>' +
-      (ranks || '<div class="fc-empty">対象となる上位チャンネルが不足しています。</div>');
   }
 
   /* ---- settings: genre visibility ---- */

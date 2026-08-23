@@ -257,7 +257,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250842">
+<link rel="stylesheet" href="../../assets/style.css?v=250843">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -273,7 +273,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250842"></script>
+<script src="../../assets/channel.js?v=250843"></script>
 </body>
 </html>
 '''
@@ -481,26 +481,30 @@ def compute_oligopoly(colors):
     def ncdf(x):
         return 0.5 * (1 + math.erf(x / math.sqrt(2)))
 
-    ranks = []
-    topN = ids[:4]
-    for i in range(1, len(topN)):
-        A, B = topN[i - 1], topN[i]          # A=上位, B=下位
-        a, b = models[A], models[B]
-        gap_now = a["subs"] - b["subs"]
-        mean_lead = gap_now + (a["subs_rate"] - b["subs_rate"]) * H     # 1ヶ月後のAのリード
-        var = (a["subs_vol"] ** 2 + b["subs_vol"] ** 2) * H
-        sigma = math.sqrt(var) if var > 0 else max(1.0, abs(mean_lead) * 0.25)
-        prob = ncdf(-mean_lead / sigma) if sigma > 0 else (1.0 if mean_lead < 0 else 0.0)
-        close = b["subs_rate"] - a["subs_rate"]                          # Bの追い上げ速度(人/日)
-        days = (gap_now / close) if close > 1e-9 else None
-        ranks.append({
-            "higher": {"name": a["name"], "color": a["color"]},
-            "lower":  {"name": b["name"], "color": b["color"]},
-            "gapNow": round(gap_now), "gapFuture": round(mean_lead),
-            "prob": max(0.0, min(1.0, prob)),
-            "days": (round(days) if (days and 0 < days) else None),
-        })
-    out["ranks"] = ranks
+    def rank_pairs(metric):
+        by = sorted(models.keys(), key=lambda c: -models[c][metric])
+        topN = by[:4]
+        pairs = []
+        for i in range(1, len(topN)):
+            A, B = topN[i - 1], topN[i]          # A=上位, B=下位
+            a, b = models[A], models[B]
+            gap_now = a[metric] - b[metric]
+            mean_lead = gap_now + (a[metric + "_rate"] - b[metric + "_rate"]) * H   # 1ヶ月後のAのリード
+            var = (a[metric + "_vol"] ** 2 + b[metric + "_vol"] ** 2) * H
+            sigma = math.sqrt(var) if var > 0 else max(1.0, abs(mean_lead) * 0.25)
+            prob = ncdf(-mean_lead / sigma) if sigma > 0 else (1.0 if mean_lead < 0 else 0.0)
+            close = b[metric + "_rate"] - a[metric + "_rate"]                        # Bの追い上げ速度/日
+            days = (gap_now / close) if close > 1e-9 else None
+            pairs.append({
+                "higher": {"name": a["name"], "color": a["color"]},
+                "lower":  {"name": b["name"], "color": b["color"]},
+                "gapNow": round(gap_now), "gapFuture": round(mean_lead),
+                "prob": max(0.0, min(1.0, prob)),
+                "days": (round(days) if (days and 0 < days) else None),
+            })
+        return pairs
+
+    out["ranks"] = {"subs": rank_pairs("subs"), "views": rank_pairs("views")}
     return out
 
 def load_history():
