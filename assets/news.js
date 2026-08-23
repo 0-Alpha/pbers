@@ -2,7 +2,24 @@ window.PBERS_NEWS = [
   {
     "date": "2026-08-23",
     "label": "8月23日(日)",
-    "items": []
+    "items": [
+      {
+        "type": "overtake",
+        "kind": "subs",
+        "name": "にこちPB",
+        "color": "#cc613e",
+        "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "レイアルファ",
+          "color": "#db4f57",
+          "avatar": "https://yt3.googleusercontent.com/i-3zcDugOBC0BsV7k8-06wQY125k3kMWPiaVTXQt96XHKdrN-V7iocfwUrLRnEBskVJ0dyiCYZ0=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "登録者数で レイアルファ を追い越し",
+        "value": 3820
+      }
+    ]
   },
   {
     "date": "2026-08-22",
