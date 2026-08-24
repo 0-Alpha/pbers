@@ -883,7 +883,7 @@
     html += '<div class="q-prog"><span>第 ' + (quizIdx + 1) + ' / ' + quizQs.length + ' 問</span><span>正解 ' + quizScore + '</span></div>';
     html += '<div class="gq"><div class="gq-title">' + esc(q.t) + '</div><div class="' + (q.opts[0].avatar ? 'gq-opts' : 'gq-vals') + '">' +
       q.opts.map(function (o, i) {
-        var cls = (q.opts[0].avatar ? 'gopt' : 'gval');
+        var cls = (q.opts[0].avatar ? 'gopt' : 'qval');
         if (quizAnswered) { if (o.correct) cls += ' win'; else if (i === quizPick) cls += ' bad'; }
         var inner = o.avatar
           ? '<img src="' + o.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'" style="border-color:' + o.color + '"><span class="nm">' + esc(o.label) + '</span>'
@@ -893,7 +893,7 @@
       (quizAnswered ? '<div class="g-actions" style="margin-top:14px"><button class="g-btn" id="q-next">' + (quizIdx + 1 >= quizQs.length ? '結果を見る' : '次の問題へ') + '</button></div>' : '') +
       '</div>';
     host.innerHTML = html;
-    host.querySelectorAll('.gopt:not([disabled]),.gval:not([disabled])').forEach(function (b) {
+    host.querySelectorAll('.gopt:not([disabled]),.qval:not([disabled])').forEach(function (b) {
       b.addEventListener('click', function () {
         if (quizAnswered) return;
         quizAnswered = true; quizPick = +b.dataset.i;
