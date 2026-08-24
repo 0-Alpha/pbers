@@ -53,9 +53,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "こうちゃ(ポーランドボール)",
-    "subs": 55300,
+    "subs": 55400,
     "views": 29235583,
-    "subsLabel": "チャンネル登録者数 5.53万人",
+    "subsLabel": "チャンネル登録者数 5.54万人",
     "viewsLabel": "29,235,583回視聴",
     "videos": 122,
     "url": "https://www.youtube.com/channel/UCScWUYsYXgrDN8AVIRJLtLw",
@@ -720,7 +720,7 @@ window.PBERS_DATA = [
     "views": 1554137,
     "subsLabel": "チャンネル登録者数 1.18万人",
     "viewsLabel": "1,554,137回視聴",
-    "videos": 156,
+    "videos": 154,
     "url": "https://www.youtube.com/channel/UCkUsTywsJ86m7U4wbknNXQQ",
     "avatar": "https://yt3.googleusercontent.com/lMrwVsNlRIEQ33xWghCURT11JZQo7GawkJ0drtWKJ8uq5Xm9O34MI7djJonM5eZBq3n6y60dHNI=s900-c-k-c0x00ffffff-no-rj",
     "color": "#c8d45e",
@@ -1198,4 +1198,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "ポーランドボーラーのようなもの", "on": false}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-24";
-window.PBERS_PREDICT = {"asOfMs": 1787583600000, "subs": {"base": 2453320, "rate": 8.682321549167011e-05}, "views": {"base": 1740336381, "rate": 0.04466838916823847}};
+window.PBERS_PREDICT = {"asOfMs": 1787583600000, "subs": {"base": 2453420, "rate": 8.682321549167011e-05}, "views": {"base": 1740336381, "rate": 0.04466838916823847}};
