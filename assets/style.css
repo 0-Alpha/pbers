@@ -103,7 +103,8 @@ a{color:inherit;text-decoration:none}
   background:var(--red);transition:left .28s cubic-bezier(.22,1,.36,1),width .28s cubic-bezier(.22,1,.36,1)}
 
 .total-cap{font-family:var(--num);font-weight:700;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
-.total{font-family:var(--num);font-weight:900;font-size:clamp(52px,11vw,120px);line-height:.92;letter-spacing:-.03em;margin:10px 0 4px}
+.total{font-family:var(--num);font-weight:900;font-size:clamp(52px,11vw,120px);line-height:.92;letter-spacing:-.03em;margin:10px 0 4px;
+  min-height:calc(clamp(52px,11vw,120px) * .92)}   /* 描画/フォント読込前に高さを確保しCLSを防ぐ */
 .total .u{font-size:.32em;font-weight:800;color:var(--muted);letter-spacing:0;margin-left:.15em}
 .total-sub{font-family:var(--num);font-weight:600;color:var(--muted);font-size:14px}
 .predict-sub{font-family:var(--num);font-weight:700;color:var(--text);font-size:clamp(15px,2.4vw,20px);display:flex;flex-wrap:wrap;gap:.5em;align-items:baseline;justify-content:center}
@@ -117,7 +118,7 @@ a{color:inherit;text-decoration:none}
 .donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;padding:0 12%}
 .dc-name{font-family:var(--jp);font-weight:700;font-size:14px;color:var(--text);max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:20px}
 .dc-num{font-family:var(--num);font-weight:900;font-size:40px;line-height:1;margin:6px 0 2px;letter-spacing:-.02em;
-  max-width:100%;white-space:nowrap;overflow:hidden}
+  width:100%;text-align:center;white-space:nowrap;overflow:hidden}   /* 幅を固定して中央数字の横ズレ(CLS)を防ぐ */
 .dc-cap{font-family:var(--num);font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
 .dc-pct{font-family:var(--num);font-weight:800;font-size:13px;color:var(--muted);margin-top:4px;min-height:16px}
 
@@ -535,6 +536,6 @@ footer .brand{font-size:16px}
   .grid{grid-template-columns:1fr;min-height:520px}
 }
 @media(max-width:400px){
-  .total{font-size:46px}
+  .total{font-size:46px;min-height:calc(46px * .92)}
   .donut-stage{width:88vw}
 }
