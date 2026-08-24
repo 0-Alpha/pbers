@@ -44,7 +44,7 @@ window.PBERS_DATA = [
     "views": 323498827,
     "subsLabel": "チャンネル登録者数 14.2万人",
     "viewsLabel": "323,498,827回視聴",
-    "videos": 1086,
+    "videos": 1087,
     "url": "https://www.youtube.com/channel/UCmzj8pO1YtKLmcmaMPf9wbQ",
     "avatar": "https://yt3.googleusercontent.com/gNv7_1OO5KoHNGHTucUfub1OS8J0Q48iz0hDl49mNXF3ZugBFYxEJckd0zeLUC3lxnitdxI9=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d45e5e",
@@ -343,7 +343,7 @@ window.PBERS_DATA = [
     "views": 9446960,
     "subsLabel": "チャンネル登録者数 2.16万人",
     "viewsLabel": "9,446,960回視聴",
-    "videos": 186,
+    "videos": 187,
     "url": "https://www.youtube.com/channel/UCZJGdkej48qsbPf7ZBBJlKQ",
     "avatar": "https://yt3.googleusercontent.com/7E1EME20oj2j5h8bBf7K618lZ7fAEN6hB6j_l8zaxWbyH-8VK49BLcM0uS38ZvsRtELNy8Hp5g=s900-c-k-c0x00ffffff-no-rj",
     "color": "#cc3e87",
@@ -780,6 +780,19 @@ window.PBERS_DATA = [
     "slug": "ほたて"
   },
   {
+    "name": "練乳=ソビエト共和国ぼーる",
+    "subs": 10700,
+    "views": 1781008,
+    "subsLabel": "チャンネル登録者数 1.07万人",
+    "viewsLabel": "1,781,008回視聴",
+    "videos": 93,
+    "url": "https://www.youtube.com/channel/UCXn5jlX_q9OtdFqDgC7fj8Q",
+    "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#cc3e82",
+    "genre": "ポーランドボーラー",
+    "slug": "練乳ソビエト共和国ぼーる"
+  },
+  {
     "name": "lemon_Ball",
     "subs": 10700,
     "views": 985324,
@@ -788,22 +801,9 @@ window.PBERS_DATA = [
     "videos": 117,
     "url": "https://www.youtube.com/channel/UC3N1ZsVd8KkOmSryri0AesA",
     "avatar": "https://yt3.googleusercontent.com/LibMAGPV5ah6ENHwbAzVSek6GVaOhu0MBeupoPGW6l_e6lSZChJjDGadIqPbiAc1rGRzTLHr=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc3e82",
-    "genre": "ポーランドボーラー",
-    "slug": "lemon_ball"
-  },
-  {
-    "name": "練乳=ソビエト共和国ぼーる",
-    "subs": 10600,
-    "views": 1781008,
-    "subsLabel": "チャンネル登録者数 1.06万人",
-    "viewsLabel": "1,781,008回視聴",
-    "videos": 93,
-    "url": "https://www.youtube.com/channel/UCXn5jlX_q9OtdFqDgC7fj8Q",
-    "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d48d5e",
     "genre": "ポーランドボーラー",
-    "slug": "練乳ソビエト共和国ぼーる"
+    "slug": "lemon_ball"
   },
   {
     "name": "ĜÇ_Z3RØくん",
@@ -811,7 +811,7 @@ window.PBERS_DATA = [
     "views": 6404069,
     "subsLabel": "チャンネル登録者数 1.01万人",
     "viewsLabel": "6,404,069回視聴",
-    "videos": 167,
+    "videos": 168,
     "url": "https://www.youtube.com/channel/UCZiElwYajEL91UWMkBpSU-w",
     "avatar": "https://yt3.googleusercontent.com/Wl1vuWqpvPzdTNc7rQRJetFtI7E6QyIeKf6if9jN1PmTvQbCy4MgXLfkAHlFwmqe1WbhiNJQKQ=s900-c-k-c0x00ffffff-no-rj",
     "color": "#a3cc3e",
@@ -820,9 +820,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "玄米ボール🍚",
-    "subs": 9960,
+    "subs": 9970,
     "views": 5530159,
-    "subsLabel": "チャンネル登録者数 9960人",
+    "subsLabel": "チャンネル登録者数 9970人",
     "viewsLabel": "5,530,159回視聴",
     "videos": 122,
     "url": "https://www.youtube.com/channel/UCtPArTiYwO9r7BeXVZdZjGQ",
@@ -924,9 +924,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ほすとぼーる",
-    "subs": 8500,
+    "subs": 8520,
     "views": 1627000,
-    "subsLabel": "チャンネル登録者数 8500人",
+    "subsLabel": "チャンネル登録者数 8520人",
     "viewsLabel": "1,627,000回視聴",
     "videos": 24,
     "url": "https://www.youtube.com/channel/UCpYfKq3qR3POstp21yzKyVQ",
@@ -1015,9 +1015,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ゆうボール",
-    "subs": 6990,
+    "subs": 6980,
     "views": 1588684,
-    "subsLabel": "チャンネル登録者数 6990人",
+    "subsLabel": "チャンネル登録者数 6980人",
     "viewsLabel": "1,588,684回視聴",
     "videos": 27,
     "url": "https://www.youtube.com/channel/UCjwy3iaSFry_4JOWVv44lXA",
@@ -1028,9 +1028,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "セフィルぼーる‼︎",
-    "subs": 6770,
+    "subs": 6780,
     "views": 2194347,
-    "subsLabel": "チャンネル登録者数 6770人",
+    "subsLabel": "チャンネル登録者数 6780人",
     "viewsLabel": "2,194,347回視聴",
     "videos": 249,
     "url": "https://www.youtube.com/channel/UCQ81jsSQFLY49Fh9UfOTONQ",
@@ -1106,9 +1106,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "アフガンボール",
-    "subs": 5550,
+    "subs": 5560,
     "views": 951727,
-    "subsLabel": "チャンネル登録者数 5550人",
+    "subsLabel": "チャンネル登録者数 5560人",
     "viewsLabel": "951,727回視聴",
     "videos": 6,
     "url": "https://www.youtube.com/channel/UCXCVbJCSF4FLP_TfojbkvUA",
@@ -1119,9 +1119,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ikasumi帝国",
-    "subs": 5550,
+    "subs": 5560,
     "views": 942375,
-    "subsLabel": "チャンネル登録者数 5550人",
+    "subsLabel": "チャンネル登録者数 5560人",
     "viewsLabel": "942,375回視聴",
     "videos": 37,
     "url": "https://www.youtube.com/channel/UCmVUXrmRsAk94xhvZR9wufA",
@@ -1132,9 +1132,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ヴァイマル共和国ボール [底辺PBer連盟] ",
-    "subs": 5270,
+    "subs": 5280,
     "views": 3958481,
-    "subsLabel": "チャンネル登録者数 5270人",
+    "subsLabel": "チャンネル登録者数 5280人",
     "viewsLabel": "3,958,481回視聴",
     "videos": 285,
     "url": "https://www.youtube.com/channel/UChdZLH2O41ruwShCEExLzIg",
@@ -1145,9 +1145,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "にこちPB",
-    "subs": 4700,
+    "subs": 4740,
     "views": 179009,
-    "subsLabel": "チャンネル登録者数 4700人",
+    "subsLabel": "チャンネル登録者数 4740人",
     "viewsLabel": "179,009回視聴",
     "videos": 13,
     "url": "https://www.youtube.com/channel/UC2fMWFGgy-ENfkqlK0CUwrg",
@@ -1162,7 +1162,7 @@ window.PBERS_DATA = [
     "views": 3169483,
     "subsLabel": "チャンネル登録者数 3760人",
     "viewsLabel": "3,169,483回視聴",
-    "videos": 86,
+    "videos": 87,
     "url": "https://www.youtube.com/channel/UCVYMXYU6j0M5Gj1xwywKDyg",
     "avatar": "https://yt3.googleusercontent.com/i-3zcDugOBC0BsV7k8-06wQY125k3kMWPiaVTXQt96XHKdrN-V7iocfwUrLRnEBskVJ0dyiCYZ0=s900-c-k-c0x00ffffff-no-rj",
     "color": "#db4f57",
@@ -1198,4 +1198,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "ポーランドボーラーのようなもの", "on": false}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-24";
-window.PBERS_PREDICT = {"asOfMs": 1787562000000, "subs": {"base": 2450040, "rate": 7.528533363169979e-05}, "views": {"base": 1740336381, "rate": 0.052816287438548416}};
+window.PBERS_PREDICT = {"asOfMs": 1787562000000, "subs": {"base": 2450240, "rate": 7.528533363169979e-05}, "views": {"base": 1740336381, "rate": 0.052816287438548416}};

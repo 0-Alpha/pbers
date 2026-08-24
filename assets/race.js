@@ -956,8 +956,32 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "lemon_Ball",
+        "name": "練乳=ソビエト共和国ぼーる",
         "color": "#cc3e82",
+        "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 10700,
+        "history": [
+          {
+            "d": "2026-08-21",
+            "s": 10600
+          },
+          {
+            "d": "2026-08-22",
+            "s": 10600
+          },
+          {
+            "d": "2026-08-23",
+            "s": 10600
+          },
+          {
+            "d": "2026-08-24",
+            "s": 10600
+          }
+        ]
+      },
+      {
+        "name": "lemon_Ball",
+        "color": "#d48d5e",
         "avatar": "https://yt3.googleusercontent.com/LibMAGPV5ah6ENHwbAzVSek6GVaOhu0MBeupoPGW6l_e6lSZChJjDGadIqPbiAc1rGRzTLHr=s900-c-k-c0x00ffffff-no-rj",
         "subs": 10700,
         "history": [
@@ -976,30 +1000,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-24",
             "s": 10700
-          }
-        ]
-      },
-      {
-        "name": "練乳=ソビエト共和国ぼーる",
-        "color": "#d48d5e",
-        "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 10600,
-        "history": [
-          {
-            "d": "2026-08-21",
-            "s": 10600
-          },
-          {
-            "d": "2026-08-22",
-            "s": 10600
-          },
-          {
-            "d": "2026-08-23",
-            "s": 10600
-          },
-          {
-            "d": "2026-08-24",
-            "s": 10600
           }
         ]
       }
@@ -1147,7 +1147,7 @@ window.PBERS_RACE = [
         "name": "アフガンボール",
         "color": "#5e8dd4",
         "avatar": "https://yt3.googleusercontent.com/aOj-FnTWhrUAPjz49cHMeTuREL5cpUpsUWPVs1AuaeeMqVIrUHxeIOlHdCi0h8HukDZHL_ZQ0HA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5550,
+        "subs": 5560,
         "history": [
           {
             "d": "2026-08-22",
@@ -1167,7 +1167,7 @@ window.PBERS_RACE = [
         "name": "ikasumi帝国",
         "color": "#823ecc",
         "avatar": "https://yt3.googleusercontent.com/pXavDBoQWleJO0X1Cd7TrS5BP9DduNyqd0CtSqENd7k-YW0UwYkREQdZAE0mthqG4mUSPcMS8Q=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5550,
+        "subs": 5560,
         "history": [
           {
             "d": "2026-08-22",
