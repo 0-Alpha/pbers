@@ -5,6 +5,22 @@ window.PBERS_NEWS = [
     "items": [
       {
         "type": "overtake",
+        "kind": "subs",
+        "name": "ゆずボール🎣",
+        "color": "#ecc233",
+        "avatar": "https://yt3.googleusercontent.com/88pDjPAKENvTaKmGmwXqEHlWts-pFETX_IXmcQRIZ7mP46T-VX3O76ph6QOS1S25WKgpCE0EP68=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "Neille / ナユ",
+          "color": "#e35d52",
+          "avatar": "https://yt3.googleusercontent.com/veRe0sqhiRVBvhNlR2GFXHTdGKFmeUDL-vDFPIeZwt_mohOji6bk-0KKfRz5v5MbjgYcuJ_0FRo=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "登録者数で Neille / ナユ を追い越し",
+        "value": 38200
+      },
+      {
+        "type": "overtake",
         "kind": "views",
         "name": "マイクラ共和国ボール(tama2224)",
         "color": "#d45eb1",
