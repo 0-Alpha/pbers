@@ -320,11 +320,12 @@ section.block{padding:46px 0}
 /* 本物のCSS 3D：四角柱を見下ろすカメラで描画。下(遠く)へ perspective で縮み、面はフェード */
 /* 正面視点の直方体：まっすぐな長方形。上は不透明、下へ透明にフェード。上にアイコン */
 .mbar-stage{position:relative;height:270px;display:flex;align-items:flex-end;justify-content:center;margin-top:18px}
-.mbar{width:132px;height:0;border-radius:5px 5px 0 0;
+/* 高さは常に var(--h) で確保し、transform:scaleY で伸ばす(レイアウトに影響しない=CLSゼロ) */
+.mbar{width:132px;height:var(--h);border-radius:5px 5px 0 0;transform:scaleY(0);transform-origin:bottom;
   background:linear-gradient(to bottom, var(--cl) 0%, var(--c) 12%, var(--c) 100%);
   -webkit-mask:linear-gradient(to bottom,#000 30%,transparent 100%);
           mask:linear-gradient(to bottom,#000 30%,transparent 100%)}
-.nf-story.in .mbar{height:var(--h);transition:height 1.15s cubic-bezier(.22,1,.36,1) .12s}
+.nf-story.in .mbar{transform:scaleY(1);transition:transform 1.15s cubic-bezier(.22,1,.36,1) .12s}
 .mbar-icon{position:absolute;left:50%;bottom:calc(var(--h) - 10px);transform:translateX(-50%);width:56px;height:56px;
   border-radius:50%;object-fit:cover;border:3px solid var(--cl);background:#222;box-shadow:0 6px 16px rgba(0,0,0,.5);z-index:2}
 .ms-name{font-family:var(--jp);font-weight:800;font-size:15px;margin-top:12px}
