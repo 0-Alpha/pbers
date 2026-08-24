@@ -235,9 +235,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "作",
-    "subs": 27400,
+    "subs": 27500,
     "views": 9544125,
-    "subsLabel": "チャンネル登録者数 2.74万人",
+    "subsLabel": "チャンネル登録者数 2.75万人",
     "viewsLabel": "9,544,125回視聴",
     "videos": 137,
     "url": "https://www.youtube.com/channel/UCVxwV9hTI2DVS0exkZ-Mqww",
@@ -1171,9 +1171,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ウィン【肉声】【ポーランドボール】",
-    "subs": 2950,
+    "subs": 2960,
     "views": 458644,
-    "subsLabel": "チャンネル登録者数 2950人",
+    "subsLabel": "チャンネル登録者数 2960人",
     "viewsLabel": "458,644回視聴",
     "videos": 107,
     "url": "https://www.youtube.com/channel/UCh3VbVye4ZnUM0bWM_Y809A",
@@ -1198,4 +1198,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "ポーランドボーラーのようなもの", "on": false}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-24";
-window.PBERS_PREDICT = {"asOfMs": 1787583600000, "subs": {"base": 2453210, "rate": 8.682321549167011e-05}, "views": {"base": 1740336381, "rate": 0.04466838916823847}};
+window.PBERS_PREDICT = {"asOfMs": 1787583600000, "subs": {"base": 2453320, "rate": 8.682321549167011e-05}, "views": {"base": 1740336381, "rate": 0.04466838916823847}};
