@@ -767,10 +767,26 @@
     var rate = Math.round(st.correct / (st.played * 3) * 100);
     return '<div class="g-stats"><span>参加 ' + st.played + '回</span><span>的中率 ' + rate + '%</span><span>連続全問正解 ' + (st.streak || 0) + '</span></div>';
   }
+  var gameMode = 'predict';   // 'predict'(7日予想) or 'quiz'(その場でわかるクイズ)
   function renderGame() {
     var host = document.getElementById('game-root'); if (!host) return;
+    host.innerHTML =
+      '<div class="toggle" id="game-mode" style="margin-bottom:20px">' +
+        '<button class="tg' + (gameMode === 'predict' ? ' on' : '') + '" data-gmode="predict">予想</button>' +
+        '<button class="tg' + (gameMode === 'quiz' ? ' on' : '') + '" data-gmode="quiz">クイズ</button>' +
+        '<span class="tg-ind" id="game-mode-ind"></span>' +
+      '</div><div id="game-body"></div>';
+    var tabs = [].slice.call(host.querySelectorAll('#game-mode .tg'));
+    function moveInd() { var on = host.querySelector('#game-mode .tg.on'), ind = document.getElementById('game-mode-ind'); if (on && ind) { ind.style.left = on.offsetLeft + 'px'; ind.style.width = on.offsetWidth + 'px'; } }
+    tabs.forEach(function (b) { b.addEventListener('click', function () { if (b.dataset.gmode === gameMode) return; gameMode = b.dataset.gmode; renderGame(); }); });
+    moveInd();
+    if (gameMode === 'quiz') renderQuiz(); else renderPredict();
+  }
+
+  /* ---- 予想(7日後に自動採点) ---- */
+  function renderPredict() {
+    var host = document.getElementById('game-body'); if (!host) return;
     var s = gLoad();
-    // 締切が来ていれば採点
     if (s.active && s.active.picked && Date.now() >= s.active.resolve && !s.active.scored) {
       var sc = gScore(s.active);
       s.stats = s.stats || { played: 0, correct: 0, streak: 0, best: 0 };
@@ -778,9 +794,8 @@
       if (sc.correct === sc.total) { s.stats.streak = (s.stats.streak || 0) + 1; if (s.stats.streak > (s.stats.best || 0)) s.stats.best = s.stats.streak; } else s.stats.streak = 0;
       s.active.scored = true; s.active.result = sc; s.last = s.active; s.active = null; gSave(s);
     }
-    var html = '<div class="game-head"><h3 class="g-h3">🎯 予想ゲーム <span class="fc-en">Prediction</span></h3>' +
-      '<div class="fc-lead">データを見て予想 → ' + GAME_DAYS + '日後に自動で答え合わせ。ログイン不要。</div></div>' + gStatsBar(s.stats);
-
+    var html = '<div class="game-head"><h3 class="g-h3">🎯 7日予想 <span class="fc-en">Prediction</span></h3>' +
+      '<div class="fc-lead">データを見て予想 → ' + GAME_DAYS + '日後に自動で答え合わせ。</div></div>' + gStatsBar(s.stats);
     if (s.active && s.active.picked) {
       html += '<div class="g-count">結果発表まで あと <b>' + gCountdown(s.active.resolve) + '</b></div>';
       html += s.active.questions.map(function (cq, i) { return gOptHTML(cq, i, s.active.sel[i], 'lock'); }).join('');
@@ -798,26 +813,96 @@
       html += '<div class="g-actions"><button class="g-btn g-confirm" id="g-confirm"' + (done ? '' : ' disabled') + '>この予想で確定する</button></div>';
     }
     host.innerHTML = html;
-    gBind(host);
-  }
-  function gBind(host) {
     host.querySelectorAll('.gopt:not([disabled]),.gyn:not([disabled])').forEach(function (b) {
-      b.addEventListener('click', function () { if (!gDraft) return; gDraft.sel[+b.dataset.q] = b.dataset.opt; renderGame(); });
+      b.addEventListener('click', function () { if (!gDraft) return; gDraft.sel[+b.dataset.q] = b.dataset.opt; renderPredict(); });
     });
     var conf = host.querySelector('#g-confirm');
-    if (conf) conf.addEventListener('click', function () {
-      var s = gLoad();
-      gDraft.picked = true; gDraft.resolve = Date.now() + GAME_DMS; gDraft.scored = false;
-      s.active = gDraft; gSave(s); gDraft = null; renderGame();
-    });
+    if (conf) conf.addEventListener('click', function () { var s2 = gLoad(); gDraft.picked = true; gDraft.resolve = Date.now() + GAME_DMS; gDraft.scored = false; s2.active = gDraft; gSave(s2); gDraft = null; renderPredict(); });
     var again = host.querySelector('#g-again');
-    if (again) again.addEventListener('click', function () { var s = gLoad(); s.last = null; gSave(s); gDraft = null; renderGame(); });
+    if (again) again.addEventListener('click', function () { var s2 = gLoad(); s2.last = null; gSave(s2); gDraft = null; renderPredict(); });
     var sh = host.querySelector('#g-share');
     if (sh) sh.addEventListener('click', function () {
-      var s = gLoad(); var r = (s.last && s.last.result) || { correct: 0, total: 3 };
-      var t = 'PBersの予想ゲームで ' + r.correct + '/' + r.total + ' 的中！ ポーランドボーラー界隈を予想しよう #ポーランドボール';
+      var s2 = gLoad(); var r2 = (s2.last && s2.last.result) || { correct: 0, total: 3 };
+      var t = 'PBersの予想ゲームで ' + r2.correct + '/' + r2.total + ' 的中！ ポーランドボーラー界隈を予想しよう #ポーランドボール';
       window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(t) + '&url=' + encodeURIComponent(location.origin + location.pathname + '#game'), '_blank', 'noopener');
     });
+  }
+
+  /* ---- クイズ(その場でわかる) ---- */
+  var QUIZ_N = 7;
+  var quizQs = null, quizIdx = 0, quizScore = 0, quizAnswered = false, quizPick = null, quizBest = null;
+  function qShuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function quizGen() {
+    var pool = ALL.filter(genreVisible).filter(function (d) { return d.subs; });
+    var byV = pool.filter(function (d) { return d.views; });
+    var qs = [], guard = 0;
+    while (qs.length < QUIZ_N && guard++ < 200) {
+      var kind = Math.floor(Math.random() * 3);
+      var m = Math.random() < 0.5 ? 'subs' : 'views';
+      var src = m === 'views' ? byV : pool;
+      if (src.length < 4) { m = 'subs'; src = pool; }
+      var mw = m === 'subs' ? '登録者数' : '総再生数', unit = m === 'subs' ? '人' : '回';
+      var pick = qShuffle(src.slice());
+      if (kind === 0) {   // どっちが多い?
+        var a = pick[0], b = pick[1]; if (!a || !b || (a[m] || 0) === (b[m] || 0)) continue;
+        qs.push({ t: mw + 'が多いのは?', opts: qShuffle([a, b]).map(function (d) { return { label: d.name, avatar: d.avatar, color: d.color, correct: d === (a[m] > b[m] ? a : b) }; }) });
+      } else if (kind === 1) {   // 4択で一番多いのは?
+        var four = pick.slice(0, 4); if (four.length < 4) continue;
+        var top = four.slice().sort(function (x, y) { return (y[m] || 0) - (x[m] || 0); })[0];
+        qs.push({ t: 'この中で' + mw + 'が一番多いのは?', opts: four.map(function (d) { return { label: d.name, avatar: d.avatar, color: d.color, correct: d === top }; }) });
+      } else {   // 数値当て
+        var ch = pick[0]; var real = ch[m] || 0; if (real <= 0) continue;
+        var facts = qShuffle([0.55, 0.7, 1.35, 1.7, 2.2]); var vals = [real];
+        for (var f = 0; f < facts.length && vals.length < 4; f++) { var v = Math.round(real * facts[f]); if (v > 0 && vals.indexOf(v) < 0 && jp(v) !== jp(real)) vals.push(v); }
+        if (vals.length < 4) continue;
+        qs.push({ t: ch.name + ' の' + mw + 'は?', opts: qShuffle(vals).map(function (v) { return { label: jp(v) + unit, color: ch.color, correct: v === real }; }) });
+      }
+    }
+    return qs;
+  }
+  function renderQuiz() {
+    var host = document.getElementById('game-body'); if (!host) return;
+    if (!quizQs) { quizQs = quizGen(); quizIdx = 0; quizScore = 0; quizAnswered = false; quizPick = null; }
+    var html = '<div class="game-head"><h3 class="g-h3">⚡ その場でクイズ <span class="fc-en">Quiz</span></h3>' +
+      '<div class="fc-lead">全' + quizQs.length + '問・答えたその場で正解が出ます。</div></div>';
+    if (quizIdx >= quizQs.length) {
+      if (quizBest == null || quizScore > quizBest) quizBest = quizScore;
+      html += '<div class="g-score"><b>' + quizScore + '</b> / ' + quizQs.length + ' 正解!</div>' +
+        (quizBest != null ? '<div class="g-stats" style="justify-content:center"><span>自己ベスト ' + quizBest + '/' + quizQs.length + '</span></div>' : '') +
+        '<div class="g-actions"><button class="g-btn" id="q-again">もう一度</button>' +
+        '<button class="g-btn g-x" id="q-share">𝕏 でスコアをシェア</button></div>';
+      host.innerHTML = html;
+      var qa = host.querySelector('#q-again'); if (qa) qa.addEventListener('click', function () { quizQs = null; renderQuiz(); });
+      var qsh = host.querySelector('#q-share'); if (qsh) qsh.addEventListener('click', function () {
+        var t = 'PBersのポーランドボーラー・クイズで ' + quizScore + '/' + quizQs.length + ' 正解！ あなたは何問わかる? #ポーランドボール';
+        window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(t) + '&url=' + encodeURIComponent(location.origin + location.pathname + '#game'), '_blank', 'noopener');
+      });
+      return;
+    }
+    var q = quizQs[quizIdx];
+    html += '<div class="q-prog"><span>第 ' + (quizIdx + 1) + ' / ' + quizQs.length + ' 問</span><span>正解 ' + quizScore + '</span></div>';
+    html += '<div class="gq"><div class="gq-title">' + esc(q.t) + '</div><div class="' + (q.opts[0].avatar ? 'gq-opts' : 'gq-vals') + '">' +
+      q.opts.map(function (o, i) {
+        var cls = (q.opts[0].avatar ? 'gopt' : 'gval');
+        if (quizAnswered) { if (o.correct) cls += ' win'; else if (i === quizPick) cls += ' bad'; }
+        var inner = o.avatar
+          ? '<img src="' + o.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'" style="border-color:' + o.color + '"><span class="nm">' + esc(o.label) + '</span>'
+          : esc(o.label);
+        return '<button class="' + cls + '" data-i="' + i + '"' + (quizAnswered ? ' disabled' : '') + ' style="--c:' + (o.color || '#888') + '">' + inner + '</button>';
+      }).join('') + '</div>' +
+      (quizAnswered ? '<div class="g-actions" style="margin-top:14px"><button class="g-btn" id="q-next">' + (quizIdx + 1 >= quizQs.length ? '結果を見る' : '次の問題へ') + '</button></div>' : '') +
+      '</div>';
+    host.innerHTML = html;
+    host.querySelectorAll('.gopt:not([disabled]),.gval:not([disabled])').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (quizAnswered) return;
+        quizAnswered = true; quizPick = +b.dataset.i;
+        if (q.opts[quizPick].correct) quizScore++;
+        renderQuiz();
+      });
+    });
+    var nx = host.querySelector('#q-next');
+    if (nx) nx.addEventListener('click', function () { quizIdx++; quizAnswered = false; quizPick = null; renderQuiz(); });
   }
 
   // 投稿数追い越し: 積み上がる16:9の箱スタック(1列 = 1チャンネル)

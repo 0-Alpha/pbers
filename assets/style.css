@@ -450,6 +450,16 @@ section.block{padding:46px 0}
 .g-btn:hover{opacity:.9}
 .g-btn[disabled]{opacity:.4;cursor:default}
 .g-btn.g-x{background:#181818;border:1px solid var(--line-2);color:var(--text)}
+.gopt.bad{border-color:var(--red);background:rgba(172,28,28,.12)}
+/* quiz */
+.q-prog{display:flex;justify-content:space-between;font-family:var(--num);font-weight:800;font-size:13px;color:var(--muted);margin-bottom:12px}
+.gq-vals{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gval{cursor:pointer;font-family:var(--num);font-weight:800;font-size:18px;color:var(--text);
+  background:#181818;border:2px solid var(--line);border-radius:12px;padding:18px 12px;transition:border-color .15s,background .15s}
+.gval:hover:not([disabled]){border-color:var(--line-2)}
+.gval.win{border-color:#e6c56b;background:rgba(230,197,107,.14)}
+.gval.bad{border-color:var(--red);background:rgba(172,28,28,.14)}
+.gval[disabled]{cursor:default}
 @media(max-width:520px){.gq-opts{grid-template-columns:repeat(2,1fr)}}
 
 /* ---------- prediction game ---------- */
