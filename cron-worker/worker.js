@@ -1,0 +1,166 @@
+/* PBers Cloudflare Worker
+ * - 6時間ごとの統計取得トリガー(GitHub workflow_dispatch)
+ * - WebSub(PubSubHubbub)で YouTube 新着動画をリアルタイム受信
+ *
+ * 必要な設定(Cloudflareダッシュボード):
+ *   KV binding : PBERS_KV
+ *   Secrets    : GH_TOKEN, RUN_KEY, HUB_SECRET
+ *   Variable   : CALLBACK_URL = https://<このworker>.workers.dev/yt
+ *   Cron       : 0 3,9,15,21 * * *  (= JST 12/18/0/6時。統計＋購読更新)
+ */
+
+const HUB = "https://pubsubhubbub.appspot.com/";
+const SITE = "https://pbers.pages.dev";
+const TOPIC = (id) => `https://www.youtube.com/xml/feeds/videos.xml?channel_id=${id}`;
+
+export default {
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil((async () => {
+      await dispatch(env);       // 統計取得(既存)
+      await subscribeAll(env);   // 購読のリース更新
+    })());
+  },
+
+  async fetch(req, env) {
+    const url = new URL(req.url);
+
+    // WebSub 購読確認: Hub が hub.challenge を付けて GET してくる → そのまま返す
+    if (req.method === "GET" && url.pathname === "/yt") {
+      const ch = url.searchParams.get("hub.challenge");
+      return ch ? new Response(ch, { status: 200 }) : new Response("bad", { status: 400 });
+    }
+
+    // WebSub 新着通知: Hub が Atom XML を POST してくる
+    if (req.method === "POST" && url.pathname === "/yt") {
+      const body = await req.text();
+      if (env.HUB_SECRET) {
+        const ok = await verifySig(env.HUB_SECRET, body, req.headers.get("X-Hub-Signature") || "");
+        if (!ok) return new Response("", { status: 204 });   // 2xxで返して再送ループを避ける
+      }
+      await handleNotification(body, env);
+      return new Response("", { status: 204 });
+    }
+
+    // サイト用: 最新動画 JSON(新着30件)
+    if (req.method === "GET" && url.pathname === "/videos") {
+      const feed = (await env.PBERS_KV.get("feed", "json")) || [];
+      return json(feed);
+    }
+
+    // 手動/初回: 全チャンネル購読(RUN_KEY で保護)
+    if (url.pathname === "/subscribe" && url.searchParams.get("key") === env.RUN_KEY) {
+      const n = await subscribeAll(env);
+      return new Response("subscribed " + n, { status: 200 });
+    }
+
+    // 統計取得の手動テスト(既存): /run?key=RUN_KEY
+    if (url.pathname === "/run" && url.searchParams.get("key") === env.RUN_KEY) {
+      const r = await dispatch(env);
+      return new Response("dispatched: HTTP " + r.status, { status: 200 });
+    }
+
+    if (req.method === "OPTIONS") return json({}, 204);   // CORS プリフライト
+    return new Response("ok");
+  }
+};
+
+/* ---- GitHub Actions を起動(統計取得) ---- */
+async function dispatch(env) {
+  return fetch("https://api.github.com/repos/0-Alpha/pbers/actions/workflows/daily.yml/dispatches", {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer " + env.GH_TOKEN,
+      "Accept": "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+      "User-Agent": "pbers-cron-worker",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ ref: "main" })
+  });
+}
+
+/* ---- 全チャンネルを購読(初回＆リース更新) ---- */
+async function subscribeAll(env) {
+  const ids = await channelIds(env);
+  let n = 0;
+  for (const id of ids) {
+    const form = new URLSearchParams({
+      "hub.mode": "subscribe",
+      "hub.topic": TOPIC(id),
+      "hub.callback": env.CALLBACK_URL,
+      "hub.verify": "async",
+      "hub.secret": env.HUB_SECRET || "",
+      "hub.lease_seconds": "864000"
+    });
+    try {
+      const r = await fetch(HUB, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: form
+      });
+      if (r.status === 202 || r.status === 204) n++;
+    } catch (e) { /* 個別失敗は無視して続行 */ }
+  }
+  return n;
+}
+
+async function channelIds(env) {
+  try {
+    const r = await fetch(SITE + "/channels.json");
+    return r.ok ? await r.json() : [];
+  } catch (e) { return []; }
+}
+
+/* ---- 新着通知の処理 ---- */
+async function handleNotification(xml, env) {
+  if (/<at:deleted-entry/.test(xml)) return;                 // 削除通知は無視
+  const vid = (xml.match(/<yt:videoId>(.*?)<\/yt:videoId>/) || [])[1];
+  const cid = (xml.match(/<yt:channelId>(.*?)<\/yt:channelId>/) || [])[1];
+  const title = decode((xml.match(/<title>(.*?)<\/title>/) || [])[1] || "");
+  const published = (xml.match(/<published>(.*?)<\/published>/) || [])[1] || "";
+  if (!vid || !cid) return;
+
+  const prev = await env.PBERS_KV.get("latest:" + cid, "json");
+  if (prev && prev.vid === vid) return;                      // タイトル編集の再通知はスキップ
+
+  const item = {
+    vid, cid, title, published,
+    url: "https://www.youtube.com/watch?v=" + vid,
+    thumb: "https://i.ytimg.com/vi/" + vid + "/hqdefault.jpg",
+    at: Date.now()
+  };
+  await env.PBERS_KV.put("latest:" + cid, JSON.stringify(item));
+
+  let feed = (await env.PBERS_KV.get("feed", "json")) || [];
+  feed = feed.filter((x) => x.vid !== vid);
+  feed.unshift(item);
+  feed = feed.slice(0, 30);
+  await env.PBERS_KV.put("feed", JSON.stringify(feed));
+}
+
+/* ---- 署名検証(YouTube は sha1) ---- */
+async function verifySig(secret, body, header) {
+  const [algo, hex] = (header || "").split("=");
+  if (algo !== "sha1" || !hex) return true;                  // 不明な形式は通す
+  const key = await crypto.subtle.importKey(
+    "raw", new TextEncoder().encode(secret),
+    { name: "HMAC", hash: "SHA-1" }, false, ["sign"]);
+  const mac = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(body));
+  const calc = [...new Uint8Array(mac)].map((b) => b.toString(16).padStart(2, "0")).join("");
+  return calc === hex;
+}
+
+function decode(s) {
+  return s.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&")
+          .replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+}
+function json(o, status = 200) {
+  return new Response(JSON.stringify(o), {
+    status,
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": SITE,
+      "Access-Control-Allow-Methods": "GET,OPTIONS"
+    }
+  });
+}

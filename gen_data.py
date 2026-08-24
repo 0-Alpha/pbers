@@ -192,6 +192,11 @@ def main():
     build_channel_pages(order, colors)
     build_sitemap(order)
 
+    # WebSub(新着動画通知)用: 監視対象チャンネルIDの一覧
+    with open(BASE + "/channels.json", "w", encoding="utf-8") as f:
+        json.dump([d["id"] for d in order], f, ensure_ascii=False)
+    print("wrote channels.json (%d ids)" % len(order))
+
 def build_race(colors):
     """登録者が接戦(隣接との差が1%以内)のチャンネルを2〜3件ずつグループ化し、
        各メンバーの登録者推移とともに race.js に出力。"""
@@ -264,7 +269,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250852">
+<link rel="stylesheet" href="../../assets/style.css?v=250853">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -280,7 +285,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250852"></script>
+<script src="../../assets/channel.js?v=250853"></script>
 </body>
 </html>
 '''

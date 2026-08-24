@@ -1122,9 +1122,38 @@
     if (c) c.addEventListener('click', function () { if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { c.textContent = 'コピーしました'; setTimeout(function () { c.textContent = 'リンクをコピー'; }, 1500); }); });
   }
 
+  /* ---- latest videos (WebSub) ---- */
+  function timeAgo(iso) {
+    var t = Date.parse(iso); if (!t) return '';
+    var s = (Date.now() - t) / 1000;
+    if (s < 3600) return Math.max(1, Math.floor(s / 60)) + '分前';
+    if (s < 86400) return Math.floor(s / 3600) + '時間前';
+    return Math.floor(s / 86400) + '日前';
+  }
+  function chById(cid) { for (var i = 0; i < ALL.length; i++) { if (chId(ALL[i]) === cid) return ALL[i]; } return null; }
+  function renderLatest() {
+    var api = window.PBERS_VIDEOS_API; if (!api) return;
+    var sec = document.getElementById('latest'), host = document.getElementById('latest-list');
+    if (!sec || !host) return;
+    fetch(api).then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
+      if (!list || !list.length) return;
+      host.innerHTML = list.slice(0, 12).map(function (v) {
+        var ch = chById(v.cid), name = ch ? ch.name : '', color = ch ? ch.color : '#8d8986', av = ch ? ch.avatar : '';
+        return '<a class="vid" href="' + v.url + '" target="_blank" rel="noopener">' +
+          '<div class="vid-thumb"><img loading="lazy" src="' + v.thumb + '" alt="" onerror="this.style.visibility=\'hidden\'"></div>' +
+          '<div class="vid-meta"><div class="vid-title">' + esc(v.title) + '</div>' +
+          '<div class="vid-ch">' + (av ? '<img src="' + av + '" alt="" onerror="this.style.display=\'none\'">' : '') +
+          '<span class="vid-nm" style="color:' + color + '">' + esc(name) + '</span>' +
+          '<span class="vid-ago">' + timeAgo(v.published) + '</span></div></div></a>';
+      }).join('');
+      sec.hidden = false;
+    }).catch(function () {});
+  }
+
   /* ---- init ---- */
   build();
   renderNews();
+  renderLatest();
   setupShare();
   renderTiers();
   setupTierToggle();

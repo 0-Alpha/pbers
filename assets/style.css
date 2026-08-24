@@ -505,6 +505,20 @@ section.block{padding:46px 0}
 .g-btn.g-x{background:#111;border:1px solid var(--line-2)}
 @media(max-width:520px){.gopt img{width:44px;height:44px}.gq-opts{gap:8px}}
 
+/* ---------- latest videos (WebSub) ---------- */
+.vid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.vid{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:border-color .15s,transform .15s}
+.vid:hover{border-color:var(--line-2);transform:translateY(-2px)}
+.vid-thumb{position:relative;width:100%;aspect-ratio:16/9;background:#222;overflow:hidden}
+.vid-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.vid-meta{padding:11px 12px 13px}
+.vid-title{font-family:var(--jp);font-weight:700;font-size:13.5px;line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:38px}
+.vid-ch{display:flex;align-items:center;gap:7px;margin-top:9px}
+.vid-ch img{width:22px;height:22px;border-radius:50%;object-fit:cover;background:#222;flex:none}
+.vid-nm{font-family:var(--jp);font-weight:700;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vid-ago{margin-left:auto;font-family:var(--num);font-weight:700;font-size:11px;color:var(--muted-2);flex:none}
+
 /* ---------- changelog ---------- */
 .log{display:flex;flex-direction:column;gap:2px}
 .log-item{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:16px 2px;border-top:1px solid var(--line)}
