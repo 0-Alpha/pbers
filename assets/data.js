@@ -924,9 +924,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ほすとぼーる",
-    "subs": 8720,
+    "subs": 8730,
     "views": 1627000,
-    "subsLabel": "チャンネル登録者数 8720人",
+    "subsLabel": "チャンネル登録者数 8730人",
     "viewsLabel": "1,627,000回視聴",
     "videos": 24,
     "url": "https://www.youtube.com/channel/UCpYfKq3qR3POstp21yzKyVQ",
@@ -937,9 +937,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ばかわたし",
-    "subs": 8200,
+    "subs": 8210,
     "views": 4605950,
-    "subsLabel": "チャンネル登録者数 8200人",
+    "subsLabel": "チャンネル登録者数 8210人",
     "viewsLabel": "4,605,950回視聴",
     "videos": 92,
     "url": "https://www.youtube.com/channel/UCnZNY63Txhu4ot3l2lbicOA",
@@ -1145,9 +1145,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "にこちPB",
-    "subs": 4890,
+    "subs": 4900,
     "views": 179009,
-    "subsLabel": "チャンネル登録者数 4890人",
+    "subsLabel": "チャンネル登録者数 4900人",
     "viewsLabel": "179,009回視聴",
     "videos": 13,
     "url": "https://www.youtube.com/channel/UC2fMWFGgy-ENfkqlK0CUwrg",
@@ -1171,9 +1171,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ウィン【肉声】【ポーランドボール】",
-    "subs": 2950,
+    "subs": 2960,
     "views": 458644,
-    "subsLabel": "チャンネル登録者数 2950人",
+    "subsLabel": "チャンネル登録者数 2960人",
     "viewsLabel": "458,644回視聴",
     "videos": 107,
     "url": "https://www.youtube.com/channel/UCh3VbVye4ZnUM0bWM_Y809A",
@@ -1198,4 +1198,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "ポーランドボーラーのようなもの", "on": false}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-25";
-window.PBERS_PREDICT = {"asOfMs": 1787605200000, "subs": {"base": 2453440, "rate": 7.532229483373549e-05}, "views": {"base": 1740336381, "rate": 0.03823752943925561}};
+window.PBERS_PREDICT = {"asOfMs": 1787605200000, "subs": {"base": 2453470, "rate": 7.532229483373549e-05}, "views": {"base": 1740336381, "rate": 0.03823752943925561}};
