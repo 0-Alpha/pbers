@@ -184,7 +184,6 @@ def main():
         f.write("window.PBERS_GENRES = " + json.dumps(GENRES, ensure_ascii=False) + ";\n")
         f.write('window.PBERS_UPDATED = "%s";\n' % UPDATED)
         f.write("window.PBERS_PREDICT = " + json.dumps(compute_predict(colors), ensure_ascii=False) + ";\n")
-        f.write("window.PBERS_OLIGO = " + json.dumps(compute_oligopoly(colors), ensure_ascii=False) + ";\n")
     print("wrote assets/data.js (%d channels)" % len(out))
 
     build_news(colors)
@@ -265,7 +264,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250847">
+<link rel="stylesheet" href="../../assets/style.css?v=250848">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -281,7 +280,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250847"></script>
+<script src="../../assets/channel.js?v=250848"></script>
 </body>
 </html>
 '''

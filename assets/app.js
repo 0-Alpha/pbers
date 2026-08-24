@@ -35,7 +35,6 @@
   var GROWTH = window.PBERS_GROWTH || { span: { days: 0 }, subs: [], views: [], videos: [] };
   var GUNIT = { subs: '人', views: '回', videos: '本' };
   var RACE = window.PBERS_RACE || [];
-  var OLIGO = window.PBERS_OLIGO || null;
   var GENRES = window.PBERS_GENRES || [];
   var genreOn = {}; GENRES.forEach(function (g) { genreOn[g.label] = !!g.on; });
   function genreVisible(x) { return x.genre == null || genreOn[x.genre] !== false; }
@@ -617,7 +616,7 @@
     growth:    document.getElementById('view-growth'),
     news:      document.getElementById('view-news'),
     race:      document.getElementById('view-race'),
-    forecast:  document.getElementById('view-forecast'),
+    game:      document.getElementById('view-game'),
     channels:  document.getElementById('view-channels')
   };
   var currentView = 'dashboard';
@@ -633,7 +632,7 @@
     if (v === 'growth') { renderTrend(); playGrowth(); }
     if (v === 'news') renderNewsFeed();
     if (v === 'race') renderRace();
-    if (v === 'forecast') renderForecast();
+    if (v === 'game') renderGame();
     if (v === 'channels') moveTierInd();
   }
   function hashView(h) { var v = (h || '').replace('#', ''); return v === 'live' ? 'race' : v; }   // 'live' は旧名の後方互換
@@ -683,6 +682,144 @@
       '</svg>';
     el.querySelectorAll('.ov-line').forEach(function (p) { var L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
   }
+  /* ================= 予想ゲーム(localStorageで完結・自動採点) ================= */
+  var GAME_KEY = 'pbers_game_v1', GAME_DAYS = 7, GAME_DMS = GAME_DAYS * 86400000;
+  function gLoad() { try { return JSON.parse(localStorage.getItem(GAME_KEY)) || {}; } catch (e) { return {}; } }
+  function gSave(s) { try { localStorage.setItem(GAME_KEY, JSON.stringify(s)); } catch (e) {} }
+  function gCand(d) { return { id: chId(d), name: d.name, color: d.color, avatar: d.avatar, subs: d.subs || 0, views: d.views || 0 }; }
+  function gCurrent(id) { for (var i = 0; i < ALL.length; i++) { if (chId(ALL[i]) === id) return ALL[i]; } return null; }
+  var gDraft = null;   // 未確定の問題セット
+  function gGenerate() {
+    var pool = ALL.filter(genreVisible).filter(function (d) { return d.subs; });
+    var bs = pool.slice().sort(function (a, b) { return (b.subs || 0) - (a.subs || 0); });
+    var bv = pool.slice().sort(function (a, b) { return (b.views || 0) - (a.views || 0); });
+    var q = [];
+    q.push({ type: 'grow', metric: 'subs', title: '今後' + GAME_DAYS + '日で「登録者」が一番のびるのは?', candidates: bs.slice(0, 6).map(gCand) });
+    q.push({ type: 'grow', metric: 'views', title: '今後' + GAME_DAYS + '日で「総再生数」が一番のびるのは?', candidates: bv.slice(0, 6).map(gCand) });
+    var top = bs.slice(0, 15), best = null;   // 接戦の隣接ペアで追い越し問題
+    for (var i = 1; i < top.length; i++) {
+      var hi = top[i - 1].subs || 0, lo = top[i].subs || 0;
+      if (hi > 0) { var gp = (hi - lo) / hi; if (gp > 0 && (!best || gp < best.gp)) best = { gp: gp, a: top[i - 1], b: top[i] }; }
+    }
+    if (best) q.push({ type: 'overtake', a: gCand(best.a), b: gCand(best.b) });
+    return { id: 'c' + Date.now(), questions: q, sel: {} };
+  }
+  function gGrowLeader(cq) {   // 現在の暫定リーダー(基準値からの増加が最大)
+    var win = null, bd = -Infinity;
+    cq.candidates.forEach(function (c) {
+      var cur = gCurrent(c.id); var now = cur ? (cur[cq.metric] || 0) : c[cq.metric];
+      var d = now - (c[cq.metric] || 0); if (d > bd) { bd = d; win = c; }
+    });
+    return { winner: win, delta: bd };
+  }
+  function gOverStatus(cq) {   // B が A を上回っているか
+    var a = gCurrent(cq.a.id), b = gCurrent(cq.b.id);
+    return (b ? b.subs : cq.b.subs) > (a ? a.subs : cq.a.subs);
+  }
+  function gScore(active) {
+    var correct = 0, total = 0, detail = [];
+    active.questions.forEach(function (cq, i) {
+      total++;
+      if (cq.type === 'grow') {
+        var L = gGrowLeader(cq); var ok = L.winner && active.sel[i] === L.winner.id;
+        if (ok) correct++; detail.push({ i: i, winnerId: L.winner && L.winner.id, ok: ok });
+      } else {
+        var yes = gOverStatus(cq); var ans = yes ? 'yes' : 'no'; var ok = active.sel[i] === ans;
+        if (ok) correct++; detail.push({ i: i, answer: ans, ok: ok });
+      }
+    });
+    return { correct: correct, total: total, detail: detail };
+  }
+  function gCountdown(ms) {
+    var s = Math.max(0, ms - Date.now()); var d = Math.floor(s / 86400000), h = Math.floor((s % 86400000) / 3600000);
+    return d > 0 ? (d + '日' + h + '時間') : (h + '時間');
+  }
+  function gOptHTML(cq, i, selVal, mode) {
+    // mode: 'pick'(選択可) / 'lock'(確定表示) / 'result'(採点表示)
+    if (cq.type === 'grow') {
+      var lead = (mode !== 'pick') ? gGrowLeader(cq) : null;
+      return '<div class="gq"><div class="gq-title">' + esc(cq.title) + '</div><div class="gq-opts">' +
+        cq.candidates.map(function (c) {
+          var on = selVal === c.id;
+          var cls = 'gopt' + (on ? ' sel' : '') + (mode === 'result' && lead && lead.winner && lead.winner.id === c.id ? ' win' : '');
+          var badge = (mode !== 'pick' && on) ? '<span class="gopt-you">あなた</span>' : '';
+          return '<button class="' + cls + '" data-q="' + i + '" data-opt="' + esc(c.id) + '"' + (mode !== 'pick' ? ' disabled' : '') + ' style="--c:' + c.color + '">' +
+            badge + '<img src="' + c.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'"><span class="nm">' + esc(c.name) + '</span></button>';
+        }).join('') + '</div>' +
+        (mode === 'lock' && lead && lead.winner ? '<div class="g-prov">暫定トップ: <b style="color:' + lead.winner.color + '">' + esc(lead.winner.name) + '</b>(+' + fmt(Math.max(0, lead.delta)) + (cq.metric === 'subs' ? '人' : '回') + ')</div>' : '') +
+        (mode === 'result' && lead && lead.winner ? '<div class="g-prov">正解: <b style="color:' + lead.winner.color + '">' + esc(lead.winner.name) + '</b></div>' : '') +
+        '</div>';
+    }
+    // overtake
+    var title = '<b style="color:' + cq.b.color + '">' + esc(cq.b.name) + '</b> は <b style="color:' + cq.a.color + '">' + esc(cq.a.name) + '</b> を' + GAME_DAYS + '日以内に追い越す?';
+    var yes = selVal === 'yes', no = selVal === 'no';
+    var st = (mode !== 'pick') ? gOverStatus(cq) : null;
+    return '<div class="gq"><div class="gq-title">' + title + '</div><div class="gq-yn">' +
+      '<button class="gyn' + (yes ? ' sel' : '') + (mode === 'result' && st ? ' win' : '') + '" data-q="' + i + '" data-opt="yes"' + (mode !== 'pick' ? ' disabled' : '') + '>する</button>' +
+      '<button class="gyn' + (no ? ' sel' : '') + (mode === 'result' && !st ? ' win' : '') + '" data-q="' + i + '" data-opt="no"' + (mode !== 'pick' ? ' disabled' : '') + '>しない</button>' +
+      '</div>' +
+      (mode === 'lock' ? '<div class="g-prov">現在: ' + (st ? '追い越し済み' : 'まだ') + '</div>' : '') +
+      (mode === 'result' ? '<div class="g-prov">結果: ' + (st ? '追い越した' : '追い越さなかった') + '</div>' : '') +
+      '</div>';
+  }
+  function gStatsBar(st) {
+    if (!st || !st.played) return '';
+    var rate = Math.round(st.correct / (st.played * 3) * 100);
+    return '<div class="g-stats"><span>参加 ' + st.played + '回</span><span>的中率 ' + rate + '%</span><span>連続全問正解 ' + (st.streak || 0) + '</span></div>';
+  }
+  function renderGame() {
+    var host = document.getElementById('game-root'); if (!host) return;
+    var s = gLoad();
+    // 締切が来ていれば採点
+    if (s.active && s.active.picked && Date.now() >= s.active.resolve && !s.active.scored) {
+      var sc = gScore(s.active);
+      s.stats = s.stats || { played: 0, correct: 0, streak: 0, best: 0 };
+      s.stats.played++; s.stats.correct += sc.correct;
+      if (sc.correct === sc.total) { s.stats.streak = (s.stats.streak || 0) + 1; if (s.stats.streak > (s.stats.best || 0)) s.stats.best = s.stats.streak; } else s.stats.streak = 0;
+      s.active.scored = true; s.active.result = sc; s.last = s.active; s.active = null; gSave(s);
+    }
+    var html = '<div class="game-head"><h3 class="g-h3">🎯 予想ゲーム <span class="fc-en">Prediction</span></h3>' +
+      '<div class="fc-lead">データを見て予想 → ' + GAME_DAYS + '日後に自動で答え合わせ。ログイン不要。</div></div>' + gStatsBar(s.stats);
+
+    if (s.active && s.active.picked) {
+      html += '<div class="g-count">結果発表まで あと <b>' + gCountdown(s.active.resolve) + '</b></div>';
+      html += s.active.questions.map(function (cq, i) { return gOptHTML(cq, i, s.active.sel[i], 'lock'); }).join('');
+      html += '<div class="g-note">締切まで暫定トップが変わります。また見に来てね。</div>';
+    } else if (s.last && s.last.result) {
+      var r = s.last.result;
+      html += '<div class="g-score"><b>' + r.correct + '</b> / ' + r.total + ' 的中!</div>';
+      html += s.last.questions.map(function (cq, i) { return gOptHTML(cq, i, s.last.sel[i], 'result'); }).join('');
+      html += '<div class="g-actions"><button class="g-btn" id="g-again">もう一度 予想する</button>' +
+        '<button class="g-btn g-x" id="g-share">𝕏 で結果をシェア</button></div>';
+    } else {
+      if (!gDraft) gDraft = gGenerate();
+      html += gDraft.questions.map(function (cq, i) { return gOptHTML(cq, i, gDraft.sel[i], 'pick'); }).join('');
+      var done = gDraft.questions.every(function (cq, i) { return gDraft.sel[i] != null; });
+      html += '<div class="g-actions"><button class="g-btn g-confirm" id="g-confirm"' + (done ? '' : ' disabled') + '>この予想で確定する</button></div>';
+    }
+    host.innerHTML = html;
+    gBind(host);
+  }
+  function gBind(host) {
+    host.querySelectorAll('.gopt:not([disabled]),.gyn:not([disabled])').forEach(function (b) {
+      b.addEventListener('click', function () { if (!gDraft) return; gDraft.sel[+b.dataset.q] = b.dataset.opt; renderGame(); });
+    });
+    var conf = host.querySelector('#g-confirm');
+    if (conf) conf.addEventListener('click', function () {
+      var s = gLoad();
+      gDraft.picked = true; gDraft.resolve = Date.now() + GAME_DMS; gDraft.scored = false;
+      s.active = gDraft; gSave(s); gDraft = null; renderGame();
+    });
+    var again = host.querySelector('#g-again');
+    if (again) again.addEventListener('click', function () { var s = gLoad(); s.last = null; gSave(s); gDraft = null; renderGame(); });
+    var sh = host.querySelector('#g-share');
+    if (sh) sh.addEventListener('click', function () {
+      var s = gLoad(); var r = (s.last && s.last.result) || { correct: 0, total: 3 };
+      var t = 'PBersの予想ゲームで ' + r.correct + '/' + r.total + ' 的中！ ポーランドボーラー界隈を予想しよう #ポーランドボール';
+      window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(t) + '&url=' + encodeURIComponent(location.origin + location.pathname + '#game'), '_blank', 'noopener');
+    });
+  }
+
   // 投稿数追い越し: 積み上がる16:9の箱スタック(1列 = 1チャンネル)
   function vovStack(ch, count, isWinner) {
     var col = ch.color || '#888';
@@ -847,86 +984,6 @@
       host.appendChild(card);
     });
     host.querySelectorAll('.race-chart').forEach(buildRaceChart);
-  }
-
-  /* ---- forecast: oligopoly (top3 share trend + rank-change probability) ---- */
-  function renderForecast() {
-    var host = document.getElementById('forecast-root'); if (!host) return;
-    if (!OLIGO || !OLIGO.enough) {
-      host.innerHTML = '<div class="fc-empty">予測はデータが数日たまると表示されます（自動で反映されます）。</div>';
-      return;
-    }
-    var H = OLIGO.horizonDays || 30;
-    // 上位3
-    var top3 = (OLIGO.top3 || []).map(function (t, i) {
-      return '<div class="fc-ch"><span class="fc-rk">' + (i + 1) + '</span>' +
-        '<img src="' + t.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'" style="border-color:' + t.color + '">' +
-        '<span class="fc-nm" style="color:' + t.color + '">' + esc(t.name) + '</span></div>';
-    }).join('');
-
-    function shareCard(cap, d) {
-      var now = d.shareNow * 100, fut = d.shareFuture * 100, dp = fut - now;
-      var cls = Math.abs(dp) < 0.1 ? 'flat' : (dp > 0 ? 'up' : 'down');
-      var word = Math.abs(dp) < 0.1 ? 'ほぼ横ばい' : (dp > 0 ? '寡占が強まる' : '寡占が弱まる');
-      var sign = dp > 0 ? '+' : '';
-      return '<div class="fc-card"><div class="fc-cap">' + cap + '（トップ3の占有率）</div>' +
-        '<div class="fc-flow"><span class="fc-now">' + now.toFixed(1) + '%</span>' +
-        '<span class="fc-sep">→</span><span class="fc-future">' + fut.toFixed(1) + '%</span></div>' +
-        '<div class="fc-tag ' + cls + '">' + sign + dp.toFixed(1) + 'pt ・ ' + word + '</div>' +
-        '<div class="fc-sub">現在 ' + jp(d.top3Now) + ' / ' + jp(d.totalNow) + ' → 1ヶ月後 ' + jp(d.top3Future) + ' / ' + jp(d.totalFuture) + '</div></div>';
-    }
-
-    host.innerHTML =
-      '<div class="fc-note">下の数字は、直近の登録者・再生数の推移を<b>加重平均（直近ほど重視）</b>して割り出した<b>' + H + '日後の推定値</b>です。実際の値を保証するものではありません。</div>' +
-      '<div class="fc-top3">' + top3 + '</div>' +
-      '<div class="fc-h3">寡占予測 <span class="fc-en">Oligopoly</span></div>' +
-      '<div class="fc-lead">トップ3が界隈全体に占める割合が、1ヶ月後どう変わるか</div>' +
-      '<div class="fc-grid">' + shareCard('登録者', OLIGO.subs) + shareCard('総再生数', OLIGO.views) + '</div>' +
-      '<div class="fc-h3" style="margin-top:34px">順位変動予測 <span class="fc-en">Rank Change</span></div>' +
-      '<div class="fc-lead">上位チャンネルが1ヶ月以内に入れ替わる可能性</div>' +
-      '<div class="toggle" id="fc-rank-toggle" style="margin-bottom:16px">' +
-        '<button class="tg on" data-rm="subs">登録者</button>' +
-        '<button class="tg" data-rm="views">総再生数</button>' +
-        '<span class="tg-ind" id="fc-rank-ind"></span>' +
-      '</div>' +
-      '<div id="fc-ranks"></div>';
-
-    renderFcRanks(forecastRankMetric);
-    var tabs = [].slice.call(host.querySelectorAll('#fc-rank-toggle .tg'));
-    function moveFcInd() {
-      var on = host.querySelector('#fc-rank-toggle .tg.on'), ind = document.getElementById('fc-rank-ind');
-      if (on && ind) { ind.style.left = on.offsetLeft + 'px'; ind.style.width = on.offsetWidth + 'px'; }
-    }
-    tabs.forEach(function (b) {
-      b.addEventListener('click', function () {
-        if (b.dataset.rm === forecastRankMetric) return;
-        forecastRankMetric = b.dataset.rm;
-        tabs.forEach(function (x) { x.classList.toggle('on', x === b); });
-        moveFcInd(); renderFcRanks(forecastRankMetric);
-      });
-    });
-    moveFcInd();
-  }
-  var forecastRankMetric = 'subs';
-  function renderFcRanks(rm) {
-    var box = document.getElementById('fc-ranks'); if (!box) return;
-    var list = (OLIGO && OLIGO.ranks && OLIGO.ranks[rm]) || [];
-    if (!list.length) { box.innerHTML = '<div class="fc-empty">対象となる上位チャンネルが不足しています。</div>'; return; }
-    var unit = rm === 'subs' ? '人' : '回';
-    var nf = rm === 'subs' ? fmt : jp;   // 再生数は 億/万 表記で見やすく
-    box.innerHTML = list.map(function (r) {
-      var pct = Math.round(r.prob * 100);
-      var tail = (r.days != null && r.days > 0)
-        ? '・このペースだと約' + r.days + '日後に逆転'
-        : '・現状では逆転の見込みは小さい';
-      var sub = '現在の差 ' + nf(r.gapNow) + unit + ' → 1ヶ月後 ' + nf(Math.max(0, r.gapFuture)) + unit + ' ' + tail;
-      return '<div class="fc-rank"><div class="fc-rank-h">' +
-        '<b style="color:' + r.lower.color + '">' + esc(r.lower.name) + '</b> が ' +
-        '<b style="color:' + r.higher.color + '">' + esc(r.higher.name) + '</b> を1ヶ月以内に抜く可能性</div>' +
-        '<div class="fc-prob"><div class="fc-prob-track"><div class="fc-prob-bar" style="width:' + pct + '%"></div></div>' +
-        '<span class="fc-prob-val">' + pct + '%</span></div>' +
-        '<div class="fc-rank-sub">' + sub + '</div></div>';
-    }).join('');
   }
 
   /* ---- settings: genre visibility ---- */
