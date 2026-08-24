@@ -12,12 +12,13 @@
 const HUB = "https://pubsubhubbub.appspot.com/";
 const SITE = "https://pbers.pages.dev";
 const TOPIC = (id) => `https://www.youtube.com/xml/feeds/videos.xml?channel_id=${id}`;
+const BATCH = 30;   // 1回で購読する数(無料プランの50サブリクエスト上限に収める)
 
 export default {
   async scheduled(event, env, ctx) {
     ctx.waitUntil((async () => {
-      await dispatch(env);       // 統計取得(既存)
-      await subscribeAll(env);   // 購読のリース更新
+      await dispatch(env);         // 統計取得(既存)
+      await subscribeBatch(env);   // 購読のリース更新(1回30件ずつ、cursorで巡回)
     })());
   },
 
@@ -47,10 +48,10 @@ export default {
       return json(feed);
     }
 
-    // 手動/初回: 全チャンネル購読(RUN_KEY で保護)
+    // 手動/初回: 30件ずつ購読(RUN_KEY で保護)。全部やるには数回叩くか、cronに任せる
     if (url.pathname === "/subscribe" && url.searchParams.get("key") === env.RUN_KEY) {
-      const n = await subscribeAll(env);
-      return new Response("subscribed " + n, { status: 200 });
+      const msg = await subscribeBatch(env);
+      return new Response(msg, { status: 200 });
     }
 
     // 統計取得の手動テスト(既存): /run?key=RUN_KEY
@@ -79,29 +80,36 @@ async function dispatch(env) {
   });
 }
 
-/* ---- 全チャンネルを購読(初回＆リース更新) ---- */
-async function subscribeAll(env) {
+/* ---- 30件ずつ購読(初回＆リース更新)。KVのcursorで巡回 ---- */
+async function subscribeBatch(env) {
   const ids = await channelIds(env);
-  let n = 0;
-  for (const id of ids) {
-    const form = new URLSearchParams({
-      "hub.mode": "subscribe",
-      "hub.topic": TOPIC(id),
-      "hub.callback": env.CALLBACK_URL,
-      "hub.verify": "async",
-      "hub.secret": env.HUB_SECRET || "",
-      "hub.lease_seconds": "864000"
+  if (!ids.length) return "no channels";
+  let cur = parseInt((await env.PBERS_KV.get("subcursor")) || "0", 10);
+  if (!(cur >= 0) || cur >= ids.length) cur = 0;
+  const slice = ids.slice(cur, cur + BATCH);
+  const results = await Promise.all(slice.map((id) => subscribeOne(id, env)));  // 並列で速く
+  const n = results.filter(Boolean).length;
+  const nextCur = (cur + slice.length) % ids.length;
+  await env.PBERS_KV.put("subcursor", String(nextCur));
+  return `subscribed ${n}/${slice.length} (ch ${cur}..${cur + slice.length} of ${ids.length}). next=${nextCur}`;
+}
+async function subscribeOne(id, env) {
+  const form = new URLSearchParams({
+    "hub.mode": "subscribe",
+    "hub.topic": TOPIC(id),
+    "hub.callback": env.CALLBACK_URL,
+    "hub.verify": "async",
+    "hub.secret": env.HUB_SECRET || "",
+    "hub.lease_seconds": "864000"
+  });
+  try {
+    const r = await fetch(HUB, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: form
     });
-    try {
-      const r = await fetch(HUB, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: form
-      });
-      if (r.status === 202 || r.status === 204) n++;
-    } catch (e) { /* 個別失敗は無視して続行 */ }
-  }
-  return n;
+    return r.status === 202 || r.status === 204;
+  } catch (e) { return false; }
 }
 
 async function channelIds(env) {
