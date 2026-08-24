@@ -92,66 +92,6 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "こうちゃ(ポーランドボール)",
-        "color": "#ccbb3e",
-        "avatar": "https://yt3.googleusercontent.com/1cbq4WC93gSQ0ofLhwbV_cCyoCRMOPxB1nseXGGQhNuKH7hEYNyLIckvlO_OEELBCcnFduL2Eto=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 55200,
-        "history": [
-          {
-            "d": "2026-08-20",
-            "s": 55000
-          },
-          {
-            "d": "2026-08-21",
-            "s": 55100
-          },
-          {
-            "d": "2026-08-22",
-            "s": 55200
-          },
-          {
-            "d": "2026-08-23",
-            "s": 55200
-          },
-          {
-            "d": "2026-08-24",
-            "s": 55200
-          }
-        ]
-      },
-      {
-        "name": "さとボール",
-        "color": "#e01e26",
-        "avatar": "https://yt3.googleusercontent.com/f__uscB73pTTt5p7rHmCpVYVZcLrsZP-lWyHAOciK2Fx-IGcXFuDN1vRJTzsBRhp8LF7g60YVQ=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 54700,
-        "history": [
-          {
-            "d": "2026-08-20",
-            "s": 54600
-          },
-          {
-            "d": "2026-08-21",
-            "s": 54600
-          },
-          {
-            "d": "2026-08-22",
-            "s": 54700
-          },
-          {
-            "d": "2026-08-23",
-            "s": 54700
-          },
-          {
-            "d": "2026-08-24",
-            "s": 54700
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "members": [
-      {
         "name": "Neille / ナユ",
         "color": "#e35d52",
         "avatar": "https://yt3.googleusercontent.com/veRe0sqhiRVBvhNlR2GFXHTdGKFmeUDL-vDFPIeZwt_mohOji6bk-0KKfRz5v5MbjgYcuJ_0FRo=s900-c-k-c0x00ffffff-no-rj",
@@ -1115,7 +1055,7 @@ window.PBERS_RACE = [
         "name": "空白ボール",
         "color": "#b23ecc",
         "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 9600,
+        "subs": 9610,
         "history": [
           {
             "d": "2026-08-21",
