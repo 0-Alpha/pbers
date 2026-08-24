@@ -235,9 +235,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "作",
-    "subs": 27500,
+    "subs": 27400,
     "views": 9544125,
-    "subsLabel": "チャンネル登録者数 2.75万人",
+    "subsLabel": "チャンネル登録者数 2.74万人",
     "viewsLabel": "9,544,125回視聴",
     "videos": 137,
     "url": "https://www.youtube.com/channel/UCVxwV9hTI2DVS0exkZ-Mqww",
@@ -924,9 +924,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ほすとぼーる",
-    "subs": 8700,
+    "subs": 8710,
     "views": 1627000,
-    "subsLabel": "チャンネル登録者数 8700人",
+    "subsLabel": "チャンネル登録者数 8710人",
     "viewsLabel": "1,627,000回視聴",
     "videos": 24,
     "url": "https://www.youtube.com/channel/UCpYfKq3qR3POstp21yzKyVQ",
@@ -1198,4 +1198,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "ポーランドボーラーのようなもの", "on": false}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-24";
-window.PBERS_PREDICT = {"asOfMs": 1787583600000, "subs": {"base": 2453300, "rate": 8.682321549167011e-05}, "views": {"base": 1740336381, "rate": 0.04466838916823847}};
+window.PBERS_PREDICT = {"asOfMs": 1787583600000, "subs": {"base": 2453210, "rate": 8.682321549167011e-05}, "views": {"base": 1740336381, "rate": 0.04466838916823847}};
