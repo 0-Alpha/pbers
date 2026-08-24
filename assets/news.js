@@ -6,6 +6,22 @@ window.PBERS_NEWS = [
       {
         "type": "overtake",
         "kind": "views",
+        "name": "エッバの歴史解説ちゃんねる",
+        "color": "#7a62d2",
+        "avatar": "https://yt3.googleusercontent.com/FVCCwHNXn1Og-UsdgaUK1OpuIA0hHBZE6c73zsjLoJQC8znpEAXKEGjdYAF8-Y5yeTWkGH1y=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "マイクラ共和国ボール(tama2224)",
+          "color": "#d45eb1",
+          "avatar": "https://yt3.googleusercontent.com/psef_ue--gNaBgLl-zOqXHns6BWfEF54h8FFXb5TdVgFEFi5iBsoBWkRJTK0ZXoOunYefwoPpA=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で マイクラ共和国ボール(tama2224) を追い越し",
+        "value": 10245999
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
         "name": "マイクラ共和国ボール(tama2224)",
         "color": "#d45eb1",
         "avatar": "https://yt3.googleusercontent.com/psef_ue--gNaBgLl-zOqXHns6BWfEF54h8FFXb5TdVgFEFi5iBsoBWkRJTK0ZXoOunYefwoPpA=s900-c-k-c0x00ffffff-no-rj",
@@ -34,6 +50,70 @@ window.PBERS_NEWS = [
         },
         "label": "総再生数で 天川 蒼 を追い越し",
         "value": 5072017
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "レイアルファ",
+        "color": "#db4f57",
+        "avatar": "https://yt3.googleusercontent.com/i-3zcDugOBC0BsV7k8-06wQY125k3kMWPiaVTXQt96XHKdrN-V7iocfwUrLRnEBskVJ0dyiCYZ0=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ねこボール",
+          "color": "#5ed46e",
+          "avatar": "https://yt3.googleusercontent.com/vs0mdcPR3R_OnPIC5sEBR4uKQsFXDVuJR6FWVi9LxuvcpgfBWwOuY76hfgX7PAaOLIHqJ8cPqZo=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で ねこボール を追い越し",
+        "value": 3169483
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "わーるどボール【ポーランドボール】",
+        "color": "#5ed4c4",
+        "avatar": "https://yt3.googleusercontent.com/6gVVVw-moV268fxv9p9C-RAHunkNQ2F6T9_k_Kmu8hZ_CvP93ry95Q9gHkuX00mq7kifxCE7CQ=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "アオアオカントリー",
+          "color": "#a1d45e",
+          "avatar": "https://yt3.googleusercontent.com/bkPPCcevoRKHMXyk4MzSH9s7MWSv-oI3n6DOPjx_FtUqqm6ALXRBjPWV5tgk5Rv3k-DcbXrV8g=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で アオアオカントリー を追い越し",
+        "value": 2224902
+      },
+      {
+        "type": "overtake",
+        "kind": "videos",
+        "name": "ウィン【肉声】【ポーランドボール】",
+        "color": "#c4d45e",
+        "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ねとえん",
+          "color": "#3ec4cc",
+          "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "投稿数で ねとえん を追い越し",
+        "value": 107
+      },
+      {
+        "type": "overtake",
+        "kind": "videos",
+        "name": "ぱふball",
+        "color": "#5ed4c0",
+        "avatar": "https://yt3.googleusercontent.com/PGTvcj4FN_eQ8Cvs9-f17837doHi0C9Zvctb1JF5kSBUPfQsvHq3dGziIdetTDDBOxAklbz5V0E=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ねとえん",
+          "color": "#3ec4cc",
+          "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "投稿数で ねとえん を追い越し",
+        "value": 103
       }
     ]
   },
