@@ -6,6 +6,22 @@ window.PBERS_NEWS = [
       {
         "type": "overtake",
         "kind": "views",
+        "name": "マイクラ共和国ボール(tama2224)",
+        "color": "#d45eb1",
+        "avatar": "https://yt3.googleusercontent.com/psef_ue--gNaBgLl-zOqXHns6BWfEF54h8FFXb5TdVgFEFi5iBsoBWkRJTK0ZXoOunYefwoPpA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "エッバの歴史解説ちゃんねる",
+          "color": "#7a62d2",
+          "avatar": "https://yt3.googleusercontent.com/FVCCwHNXn1Og-UsdgaUK1OpuIA0hHBZE6c73zsjLoJQC8znpEAXKEGjdYAF8-Y5yeTWkGH1y=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で エッバの歴史解説ちゃんねる を追い越し",
+        "value": 10246515
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
         "name": "エッバの歴史解説ちゃんねる",
         "color": "#7a62d2",
         "avatar": "https://yt3.googleusercontent.com/FVCCwHNXn1Og-UsdgaUK1OpuIA0hHBZE6c73zsjLoJQC8znpEAXKEGjdYAF8-Y5yeTWkGH1y=s900-c-k-c0x00ffffff-no-rj",
@@ -22,22 +38,6 @@ window.PBERS_NEWS = [
       {
         "type": "overtake",
         "kind": "views",
-        "name": "マイクラ共和国ボール(tama2224)",
-        "color": "#d45eb1",
-        "avatar": "https://yt3.googleusercontent.com/psef_ue--gNaBgLl-zOqXHns6BWfEF54h8FFXb5TdVgFEFi5iBsoBWkRJTK0ZXoOunYefwoPpA=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "⤴️",
-        "genre": "ポーランドボーラー",
-        "opp": {
-          "name": "エッバの歴史解説ちゃんねる",
-          "color": "#7a62d2",
-          "avatar": "https://yt3.googleusercontent.com/FVCCwHNXn1Og-UsdgaUK1OpuIA0hHBZE6c73zsjLoJQC8znpEAXKEGjdYAF8-Y5yeTWkGH1y=s900-c-k-c0x00ffffff-no-rj"
-        },
-        "label": "総再生数で エッバの歴史解説ちゃんねる を追い越し",
-        "value": 10244072
-      },
-      {
-        "type": "overtake",
-        "kind": "views",
         "name": "ソビエト・カチューシャボール☭\n\n",
         "color": "#cc3e53",
         "avatar": "https://yt3.googleusercontent.com/6JoYS-SVAtxks_NujxGVoLu7GhB-S9QqtUKOVraRMoSH61_yiCLncK4jPGsPaUhlMjxTTlpfGw=s900-c-k-c0x00ffffff-no-rj",
@@ -50,6 +50,22 @@ window.PBERS_NEWS = [
         },
         "label": "総再生数で 天川 蒼 を追い越し",
         "value": 5072017
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "ねこボール",
+        "color": "#5ed46e",
+        "avatar": "https://yt3.googleusercontent.com/vs0mdcPR3R_OnPIC5sEBR4uKQsFXDVuJR6FWVi9LxuvcpgfBWwOuY76hfgX7PAaOLIHqJ8cPqZo=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "レイアルファ",
+          "color": "#db4f57",
+          "avatar": "https://yt3.googleusercontent.com/i-3zcDugOBC0BsV7k8-06wQY125k3kMWPiaVTXQt96XHKdrN-V7iocfwUrLRnEBskVJ0dyiCYZ0=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で レイアルファ を追い越し",
+        "value": 3169752
       },
       {
         "type": "overtake",
@@ -211,7 +227,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "views",
         "name": "MIKUボール",
-        "color": "#74cc3e",
+        "color": "#d4b55e",
         "avatar": "https://yt3.googleusercontent.com/6w7QBnmhG0QOmG33OrGsxQR2cM7u-_izyc_BizYXJzvu-1MbSW2UC3X8T15rWcyY9TTgmRuYZQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
