@@ -18,7 +18,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "レメラボール / 🌈🌙【えるめす】",
-        "color": "#3e61cc",
+        "color": "#5ed4c4",
         "avatar": "https://yt3.googleusercontent.com/PgMT_pQ_UrNxFF8c66TxiZAc14EW2SJikKgha9sBh6PlKPTkW6Evdg8exa07dWNyAVQYenXUNg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -29,7 +29,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "videos",
         "name": "わーるどボール【ポーランドボール】",
-        "color": "#5ed4c4",
+        "color": "#3e61cc",
         "avatar": "https://yt3.googleusercontent.com/6gVVVw-moV268fxv9p9C-RAHunkNQ2F6T9_k_Kmu8hZ_CvP93ry95Q9gHkuX00mq7kifxCE7CQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -67,6 +67,38 @@ window.PBERS_NEWS = [
         },
         "label": "登録者数で ふかひれ牧場 を追い越し",
         "value": 9200
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "ボウコムボール",
+        "color": "#3ecc9a",
+        "avatar": "https://yt3.googleusercontent.com/Ki8G9hyCliDIiP3Zu6KY6brAse_PNC0P9VMZUklsy0A-FrhAkIEDkaSi7BxfwIe6aRPxHiZY=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "かにたる",
+          "color": "#40a86a",
+          "avatar": "https://yt3.googleusercontent.com/7JW64uDPyTgm2LjJdDoj8B-aIJJa972rNgZLoStNU9Y-QGi44RcpGo-8jEfE9nTSczMQafX_sJ0=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で かにたる を追い越し",
+        "value": 10968189
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "マイクラ共和国ボール(tama2224)",
+        "color": "#d45eb1",
+        "avatar": "https://yt3.googleusercontent.com/psef_ue--gNaBgLl-zOqXHns6BWfEF54h8FFXb5TdVgFEFi5iBsoBWkRJTK0ZXoOunYefwoPpA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "エッバの歴史解説ちゃんねる",
+          "color": "#7a62d2",
+          "avatar": "https://yt3.googleusercontent.com/FVCCwHNXn1Og-UsdgaUK1OpuIA0hHBZE6c73zsjLoJQC8znpEAXKEGjdYAF8-Y5yeTWkGH1y=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で エッバの歴史解説ちゃんねる を追い越し",
+        "value": 10253373
       },
       {
         "type": "overtake",
@@ -254,7 +286,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "views",
         "name": "わーるどボール【ポーランドボール】",
-        "color": "#5ed4c4",
+        "color": "#3e61cc",
         "avatar": "https://yt3.googleusercontent.com/6gVVVw-moV268fxv9p9C-RAHunkNQ2F6T9_k_Kmu8hZ_CvP93ry95Q9gHkuX00mq7kifxCE7CQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
