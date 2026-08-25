@@ -158,32 +158,25 @@ async function refreshOne(id, env) {
     const title = decode((entry.match(/<title>(.*?)<\/title>/) || [])[1] || "");
     const published = (entry.match(/<published>(.*?)<\/published>/) || [])[1] || "";
     if (!vid) return;
-    const short = await isShort(vid);
+    const c = await classify(vid);
     await env.PBERS_KV.put("latest:" + id, JSON.stringify({
-      vid, cid: id, title, published, short,
+      vid, cid: id, title, published, short: c.short,
       url: "https://www.youtube.com/watch?v=" + vid,
-      thumb: "https://i.ytimg.com/vi/" + vid + "/hqdefault.jpg",
+      thumb: c.thumb,
       at: Date.now()
     }));
   } catch (e) { /* skip */ }
 }
-// /shorts/ がそのまま開ける(200)=ショート、/watch へリダイレクト=横動画。
-// サーバーから叩くと同意ページに飛ばされるので、ブラウザ相当のUA＋同意Cookieを付ける。
-async function isShort(vid) {
+// ショート判定＋サムネ決定。
+// i.ytimg.com/vi/<id>/oardefault.jpg(縦専用サムネ)が存在(200)すればショート。
+// CDNなので同意ページに飛ばされず、Cloudflareからでも確実。ショートはこの縦サムネを使う。
+async function classify(vid) {
+  const oar = "https://i.ytimg.com/vi/" + vid + "/oardefault.jpg";
   try {
-    const r = await fetch("https://www.youtube.com/shorts/" + vid, {
-      redirect: "manual",
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
-        "Accept-Language": "ja,en;q=0.9",
-        "Cookie": "SOCS=CAISEwgDEgk0ODE3Nzk3MjQaAmphIAEaBgiA_LyaBg; CONSENT=YES+1"
-      }
-    });
-    if (r.status === 200) return true;                      // /shorts/ がそのまま開けた=ショート
-    const loc = r.headers.get("location") || "";
-    if (/\/watch\b/.test(loc)) return false;                // /watch へリダイレクト=横動画
-    return r.status === 200;                                 // それ以外は横扱い
-  } catch (e) { return false; }
+    const r = await fetch(oar, { method: "HEAD" });
+    if (r.status === 200) return { short: true, thumb: oar };
+  } catch (e) { /* fall through */ }
+  return { short: false, thumb: "https://i.ytimg.com/vi/" + vid + "/hqdefault.jpg" };
 }
 // latest:* をすべて集めて published 降順で feed を作り直す
 async function rebuildFeed(env) {
@@ -208,10 +201,11 @@ async function handleNotification(xml, env) {
   const prev = await env.PBERS_KV.get("latest:" + cid, "json");
   if (prev && prev.vid === vid) return;                      // タイトル編集の再通知はスキップ
 
+  const c = await classify(vid);
   const item = {
-    vid, cid, title, published, short: await isShort(vid),
+    vid, cid, title, published, short: c.short,
     url: "https://www.youtube.com/watch?v=" + vid,
-    thumb: "https://i.ytimg.com/vi/" + vid + "/hqdefault.jpg",
+    thumb: c.thumb,
     at: Date.now()
   };
   await env.PBERS_KV.put("latest:" + cid, JSON.stringify(item));
