@@ -2,7 +2,19 @@ window.PBERS_NEWS = [
   {
     "date": "2026-08-25",
     "label": "8月25日(火)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "videos",
+        "name": "わーるどボール【ポーランドボール】",
+        "color": "#5ed4c4",
+        "avatar": "https://yt3.googleusercontent.com/6gVVVw-moV268fxv9p9C-RAHunkNQ2F6T9_k_Kmu8hZ_CvP93ry95Q9gHkuX00mq7kifxCE7CQ=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "投稿数 100本 突破",
+        "value": 100
+      }
+    ]
   },
   {
     "date": "2026-08-24",
@@ -248,7 +260,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "views",
         "name": "MIKUボール",
-        "color": "#d4b55e",
+        "color": "#74cc3e",
         "avatar": "https://yt3.googleusercontent.com/6w7QBnmhG0QOmG33OrGsxQR2cM7u-_izyc_BizYXJzvu-1MbSW2UC3X8T15rWcyY9TTgmRuYZQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -378,7 +390,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "videos",
         "name": "りょうデス",
-        "color": "#ccd45e",
+        "color": "#45cc3e",
         "avatar": "https://yt3.googleusercontent.com/3JZIEM7UfdCSG6s6ge7iysnTTyLWldBvHduFzlEyA2KMqsUWqUxtWKy6sL2EIlMdFlPzzJ2FlQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
