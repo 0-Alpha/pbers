@@ -1143,7 +1143,7 @@ window.PBERS_RACE = [
         "name": "ほすとぼーる",
         "color": "#9dd45e",
         "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 9200,
+        "subs": 9240,
         "history": [
           {
             "d": "2026-08-21",

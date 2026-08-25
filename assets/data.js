@@ -118,9 +118,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ゆずボール🎣",
-    "subs": 38900,
+    "subs": 39000,
     "views": 17317764,
-    "subsLabel": "チャンネル登録者数 3.89万人",
+    "subsLabel": "チャンネル登録者数 3.9万人",
     "viewsLabel": "17,317,764回視聴",
     "videos": 194,
     "url": "https://www.youtube.com/channel/UCGo_IzKD2-TooYrTGFt2fDA",
@@ -392,9 +392,9 @@ window.PBERS_DATA = [
   {
     "name": "炭火焼き",
     "subs": 18800,
-    "views": 14068284,
+    "views": 14068485,
     "subsLabel": "チャンネル登録者数 1.88万人",
-    "viewsLabel": "14,068,284回視聴",
+    "viewsLabel": "14,068,485回視聴",
     "videos": 59,
     "url": "https://www.youtube.com/channel/UCKCAWr6aCfgm9lLWmM7yEKQ",
     "avatar": "https://yt3.googleusercontent.com/gk9_UdLk_1Ljo0YtH3dFvFZfdywxlXC1l1XfJ2zA054iHW7UdOLMIYWg4VsmDK1UI2rlHaDC2HE=s900-c-k-c0x00ffffff-no-rj",
@@ -678,9 +678,9 @@ window.PBERS_DATA = [
   {
     "name": "SEKKI98",
     "subs": 12200,
-    "views": 8537533,
+    "views": 8536633,
     "subsLabel": "チャンネル登録者数 1.22万人",
-    "viewsLabel": "8,537,533回視聴",
+    "viewsLabel": "8,536,633回視聴",
     "videos": 791,
     "url": "https://www.youtube.com/channel/UCmjY1OXynztjoCn9Lb4w7Ag",
     "avatar": "https://yt3.googleusercontent.com/n7RskwBn8eLp8MACtbTciWLvA53zE11jWpQ0ukoJT4NCRFB4GH8_xAQ6o7Y3GRc91XSC2NPBz50=s900-c-k-c0x00ffffff-no-rj",
@@ -847,9 +847,9 @@ window.PBERS_DATA = [
   {
     "name": "ライヒスボール【Reichsball】",
     "subs": 9640,
-    "views": 4405933,
+    "views": 4405663,
     "subsLabel": "チャンネル登録者数 9640人",
-    "viewsLabel": "4,405,933回視聴",
+    "viewsLabel": "4,405,663回視聴",
     "videos": 49,
     "url": "https://www.youtube.com/channel/UCOh65Kskqz7uscFL7p1UexQ",
     "avatar": "https://yt3.googleusercontent.com/ZT_Uape_wuD-XJYz4KzEJfX3UcxisMo3_bXo7wgbU0wtBltqG4S-KMHZBuFeP50g-8WUo1rE=s900-c-k-c0x00ffffff-no-rj",
@@ -873,9 +873,9 @@ window.PBERS_DATA = [
   {
     "name": "かめ・さーくボール共和国",
     "subs": 9570,
-    "views": 2005448,
+    "views": 2006163,
     "subsLabel": "チャンネル登録者数 9570人",
-    "viewsLabel": "2,005,448回視聴",
+    "viewsLabel": "2,006,163回視聴",
     "videos": 82,
     "url": "https://www.youtube.com/channel/UCeV4DkPl_rjFqZB6KrgIpmQ",
     "avatar": "https://yt3.googleusercontent.com/pmJmxVLE0mmUdGwtazGaKNHTg4eIJByKeQUYGONLj9xn5hXL-lBXiNSNjQCCBN6RcYfle0LO=s900-c-k-c0x00ffffff-no-rj",
@@ -898,9 +898,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ほすとぼーる",
-    "subs": 9200,
+    "subs": 9240,
     "views": 1645291,
-    "subsLabel": "チャンネル登録者数 9200人",
+    "subsLabel": "チャンネル登録者数 9240人",
     "viewsLabel": "1,645,291回視聴",
     "videos": 25,
     "url": "https://www.youtube.com/channel/UCpYfKq3qR3POstp21yzKyVQ",
@@ -1042,9 +1042,9 @@ window.PBERS_DATA = [
   {
     "name": "ポテトの王",
     "subs": 6700,
-    "views": 2045525,
+    "views": 2045778,
     "subsLabel": "チャンネル登録者数 6700人",
-    "viewsLabel": "2,045,525回視聴",
+    "viewsLabel": "2,045,778回視聴",
     "videos": 37,
     "url": "https://www.youtube.com/channel/UCvOfNL3MjhbjxAU8U9Fi9uQ",
     "avatar": "https://yt3.googleusercontent.com/Ht3xBUYGa1q7jf81ZNMimtHDeFwJg9OGx0uVryQc6VfR5cmzW942vpj0LrAFe9-C0gj9Blv9cH0=s900-c-k-c0x00ffffff-no-rj",
@@ -1068,9 +1068,9 @@ window.PBERS_DATA = [
   {
     "name": "カカポボール🦜",
     "subs": 6470,
-    "views": 4159397,
+    "views": 4160877,
     "subsLabel": "チャンネル登録者数 6470人",
-    "viewsLabel": "4,159,397回視聴",
+    "viewsLabel": "4,160,877回視聴",
     "videos": 86,
     "url": "https://www.youtube.com/channel/UCq7LWvE7EDAvLZ_5jctGQ3w",
     "avatar": "https://yt3.googleusercontent.com/Cb2TyV7ECI33oz2rQZp7xpkRM8v9WRWFmzZ8AGqkMp-_S4t6lWG7K6elbuUqNr7n4jZUaNnZ=s900-c-k-c0x00ffffff-no-rj",
@@ -1145,9 +1145,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "にこちPB",
-    "subs": 5080,
+    "subs": 5100,
     "views": 236782,
-    "subsLabel": "チャンネル登録者数 5080人",
+    "subsLabel": "チャンネル登録者数 5100人",
     "viewsLabel": "236,782回視聴",
     "videos": 15,
     "url": "https://www.youtube.com/channel/UC2fMWFGgy-ENfkqlK0CUwrg",
@@ -1198,4 +1198,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "ポーランドボーラーのようなもの", "on": false}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-25";
-window.PBERS_PREDICT = {"asOfMs": 1787648400000, "subs": {"base": 2458650, "rate": 8.688972149967623e-05}, "views": {"base": 1744005665, "rate": 0.05547542446728663}};
+window.PBERS_PREDICT = {"asOfMs": 1787648400000, "subs": {"base": 2458810, "rate": 8.688972149967623e-05}, "views": {"base": 1744007144, "rate": 0.05547542446728663}};
