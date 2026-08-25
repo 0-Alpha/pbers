@@ -314,11 +314,11 @@
     var stage = document.querySelector('.donut-stage');
     var TOL = 26;                 // px, widens the hoverable ring band
     var TAU = Math.PI * 2, cur = -1;
-    function at(e) {
+    function atPoint(px, py) {
       var r = stage.getBoundingClientRect();
       var scale = r.width / 200;
-      var dx = e.clientX - (r.left + r.width / 2);
-      var dy = e.clientY - (r.top + r.height / 2);
+      var dx = px - (r.left + r.width / 2);
+      var dy = py - (r.top + r.height / 2);
       var dist = Math.sqrt(dx * dx + dy * dy);
       var inner = (R - SW / 2) * scale - TOL, outer = (R + SW / 2) * scale + TOL;
       if (dist < inner || dist > outer) { if (cur !== -1) { cur = -1; unfocus(); } return; }
@@ -334,8 +334,13 @@
         else focus(donutSegs[hit].idx);
       }
     }
+    function at(e) { atPoint(e.clientX, e.clientY); }
     stage.addEventListener('mousemove', at);
     stage.addEventListener('mouseleave', function () { cur = -1; unfocus(); });
+    // タッチ対応: スマホでもタップ/なぞりで各チャンネルの詳細を出す
+    function touch(e) { var t = e.touches && e.touches[0]; if (t) atPoint(t.clientX, t.clientY); }
+    stage.addEventListener('touchstart', touch, { passive: true });
+    stage.addEventListener('touchmove', touch, { passive: true });
   }
 
   /* ---- easier horizontal scroll for column-style charts (wheel + drag) ---- */
