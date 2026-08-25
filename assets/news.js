@@ -1,5 +1,27 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-08-26",
+    "label": "8月26日(水)",
+    "items": [
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "エッバの歴史解説ちゃんねる",
+        "color": "#7a62d2",
+        "avatar": "https://yt3.googleusercontent.com/FVCCwHNXn1Og-UsdgaUK1OpuIA0hHBZE6c73zsjLoJQC8znpEAXKEGjdYAF8-Y5yeTWkGH1y=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "マイクラ共和国ボール(tama2224)",
+          "color": "#d45eb1",
+          "avatar": "https://yt3.googleusercontent.com/psef_ue--gNaBgLl-zOqXHns6BWfEF54h8FFXb5TdVgFEFi5iBsoBWkRJTK0ZXoOunYefwoPpA=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で マイクラ共和国ボール(tama2224) を追い越し",
+        "value": 10256361
+      }
+    ]
+  },
+  {
     "date": "2026-08-25",
     "label": "8月25日(火)",
     "items": [
@@ -18,7 +40,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "レメラボール / 🌈🌙【えるめす】",
-        "color": "#5ed4c4",
+        "color": "#3e61cc",
         "avatar": "https://yt3.googleusercontent.com/PgMT_pQ_UrNxFF8c66TxiZAc14EW2SJikKgha9sBh6PlKPTkW6Evdg8exa07dWNyAVQYenXUNg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -29,7 +51,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "videos",
         "name": "わーるどボール【ポーランドボール】",
-        "color": "#3e61cc",
+        "color": "#5ed4c4",
         "avatar": "https://yt3.googleusercontent.com/6gVVVw-moV268fxv9p9C-RAHunkNQ2F6T9_k_Kmu8hZ_CvP93ry95Q9gHkuX00mq7kifxCE7CQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -45,11 +67,11 @@ window.PBERS_NEWS = [
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
-          "name": "ココプー",
-          "color": "#5eb9d4",
-          "avatar": "https://yt3.googleusercontent.com/6RPAsUvFY4QV_SwqqWI9dqogl3ahSOpHFjPXHDHdUtsb6lgq0d3bvTmVN6NzewK6OqffySKtzw=s900-c-k-c0x00ffffff-no-rj"
+          "name": "ふかひれ牧場",
+          "color": "#3ecc6f",
+          "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_lbyS-yUnTDLkuj88p4kT7eJLsTjCgGRad7f-J60xIPNRU=s900-c-k-c0x00ffffff-no-rj"
         },
-        "label": "登録者数で ココプー を追い越し",
+        "label": "登録者数で ふかひれ牧場 を追い越し",
         "value": 9200
       },
       {
@@ -61,11 +83,11 @@ window.PBERS_NEWS = [
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
-          "name": "ふかひれ牧場",
-          "color": "#3ecc6f",
-          "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_lbyS-yUnTDLkuj88p4kT7eJLsTjCgGRad7f-J60xIPNRU=s900-c-k-c0x00ffffff-no-rj"
+          "name": "ココプー",
+          "color": "#5eb9d4",
+          "avatar": "https://yt3.googleusercontent.com/6RPAsUvFY4QV_SwqqWI9dqogl3ahSOpHFjPXHDHdUtsb6lgq0d3bvTmVN6NzewK6OqffySKtzw=s900-c-k-c0x00ffffff-no-rj"
         },
-        "label": "登録者数で ふかひれ牧場 を追い越し",
+        "label": "登録者数で ココプー を追い越し",
         "value": 9200
       },
       {
@@ -286,7 +308,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "views",
         "name": "わーるどボール【ポーランドボール】",
-        "color": "#3e61cc",
+        "color": "#5ed4c4",
         "avatar": "https://yt3.googleusercontent.com/6gVVVw-moV268fxv9p9C-RAHunkNQ2F6T9_k_Kmu8hZ_CvP93ry95Q9gHkuX00mq7kifxCE7CQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -573,11 +595,6 @@ window.PBERS_NEWS = [
   {
     "date": "2026-08-20",
     "label": "8月20日(木)",
-    "items": []
-  },
-  {
-    "date": "2026-08-19",
-    "label": "8月19日(水)",
     "items": []
   }
 ];
