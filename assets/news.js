@@ -5,6 +5,28 @@ window.PBERS_NEWS = [
     "items": [
       {
         "type": "milestone",
+        "kind": "views",
+        "name": "Schokoladen Ball",
+        "color": "#793ecc",
+        "avatar": "https://yt3.googleusercontent.com/AlFPad8pRVrfeIto9rOiwJjZaJNUmdMQekXAnHSIOOvCA5cEG_VlryXtlSx0oylMukqi3lVbYg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 2000万回 突破",
+        "value": 20000000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "レメラボール / 🌈🌙【えるめす】",
+        "color": "#3e61cc",
+        "avatar": "https://yt3.googleusercontent.com/PgMT_pQ_UrNxFF8c66TxiZAc14EW2SJikKgha9sBh6PlKPTkW6Evdg8exa07dWNyAVQYenXUNg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 600万回 突破",
+        "value": 6000000
+      },
+      {
+        "type": "milestone",
         "kind": "videos",
         "name": "わーるどボール【ポーランドボール】",
         "color": "#5ed4c4",
@@ -13,6 +35,118 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "投稿数 100本 突破",
         "value": 100
+      },
+      {
+        "type": "overtake",
+        "kind": "subs",
+        "name": "ほすとぼーる",
+        "color": "#9dd45e",
+        "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ココプー",
+          "color": "#5eb9d4",
+          "avatar": "https://yt3.googleusercontent.com/6RPAsUvFY4QV_SwqqWI9dqogl3ahSOpHFjPXHDHdUtsb6lgq0d3bvTmVN6NzewK6OqffySKtzw=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "登録者数で ココプー を追い越し",
+        "value": 9200
+      },
+      {
+        "type": "overtake",
+        "kind": "subs",
+        "name": "ほすとぼーる",
+        "color": "#9dd45e",
+        "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ふかひれ牧場",
+          "color": "#3ecc6f",
+          "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_lbyS-yUnTDLkuj88p4kT7eJLsTjCgGRad7f-J60xIPNRU=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "登録者数で ふかひれ牧場 を追い越し",
+        "value": 9200
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "エッバの歴史解説ちゃんねる",
+        "color": "#7a62d2",
+        "avatar": "https://yt3.googleusercontent.com/FVCCwHNXn1Og-UsdgaUK1OpuIA0hHBZE6c73zsjLoJQC8znpEAXKEGjdYAF8-Y5yeTWkGH1y=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "マイクラ共和国ボール(tama2224)",
+          "color": "#d45eb1",
+          "avatar": "https://yt3.googleusercontent.com/psef_ue--gNaBgLl-zOqXHns6BWfEF54h8FFXb5TdVgFEFi5iBsoBWkRJTK0ZXoOunYefwoPpA=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で マイクラ共和国ボール(tama2224) を追い越し",
+        "value": 10253248
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "ミルー帝国-はんぺん[PB]",
+        "color": "#d45e85",
+        "avatar": "https://yt3.googleusercontent.com/Ky8R9pg8h7UvmF53F7Bv9forW3gIMrGUzI2JuRlUaX_Lzf19_45Sif5nf5BqRdQy0WDtPvGvLw=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ユラミア連邦共和国",
+          "color": "#cc5c3e",
+          "avatar": "https://yt3.googleusercontent.com/zb3DJtqgEv4eDPHRmrgrZ9ZrOKPoVfym9o0Q0cO0HzerM2-br1DD7-qR8YWYGmTcklK81tqq4g=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で ユラミア連邦共和国 を追い越し",
+        "value": 8709226
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "なぽりたんぼーる!!",
+        "color": "#5ebcd4",
+        "avatar": "https://yt3.googleusercontent.com/cgKkkofz-kGsbqVy2T6imA2bHpnVt2dT5fWXi8lePnlHa6p_KyhQCJ63Al_qjzB09nAGRrcOpg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ユラミア連邦共和国",
+          "color": "#cc5c3e",
+          "avatar": "https://yt3.googleusercontent.com/zb3DJtqgEv4eDPHRmrgrZ9ZrOKPoVfym9o0Q0cO0HzerM2-br1DD7-qR8YWYGmTcklK81tqq4g=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で ユラミア連邦共和国 を追い越し",
+        "value": 8666340
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "カルノ  ムックル教",
+        "color": "#3e66cc",
+        "avatar": "https://yt3.googleusercontent.com/Fh9i2Sa-ySgm9PDZL5ktPlJ4llYP4yHzoIy7klMJuDHk1QuO_iLMXSDkJHCNcQ9r_gORYb0QbEc=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ねとえん",
+          "color": "#3ec4cc",
+          "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で ねとえん を追い越し",
+        "value": 7052343
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "レイアルファ",
+        "color": "#db4f57",
+        "avatar": "https://yt3.googleusercontent.com/i-3zcDugOBC0BsV7k8-06wQY125k3kMWPiaVTXQt96XHKdrN-V7iocfwUrLRnEBskVJ0dyiCYZ0=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ねこボール",
+          "color": "#5ed46e",
+          "avatar": "https://yt3.googleusercontent.com/vs0mdcPR3R_OnPIC5sEBR4uKQsFXDVuJR6FWVi9LxuvcpgfBWwOuY76hfgX7PAaOLIHqJ8cPqZo=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で ねこボール を追い越し",
+        "value": 3198562
       }
     ]
   },
