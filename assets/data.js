@@ -470,9 +470,9 @@ window.PBERS_DATA = [
   {
     "name": "ユウセイボール",
     "subs": 16900,
-    "views": 6292155,
+    "views": 6296438,
     "subsLabel": "チャンネル登録者数 1.69万人",
-    "viewsLabel": "6,292,155回視聴",
+    "viewsLabel": "6,296,438回視聴",
     "videos": 76,
     "url": "https://www.youtube.com/channel/UCDlKmulWHerASMS8t2rIrYg",
     "avatar": "https://yt3.googleusercontent.com/I-XKa9a7xFyQ68pS0xm8J6IycdiDn-j1196mgQvxmvRV7H-_2139nR8BHonZYBdazkIVXeSMZGg=s900-c-k-c0x00ffffff-no-rj",
@@ -898,9 +898,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ほすとぼーる",
-    "subs": 9380,
+    "subs": 9390,
     "views": 1790390,
-    "subsLabel": "チャンネル登録者数 9380人",
+    "subsLabel": "チャンネル登録者数 9390人",
     "viewsLabel": "1,790,390回視聴",
     "videos": 25,
     "url": "https://www.youtube.com/channel/UCpYfKq3qR3POstp21yzKyVQ",
@@ -1198,4 +1198,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "ポーランドボーラーのようなもの", "on": false}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-26";
-window.PBERS_PREDICT = {"asOfMs": 1787691600000, "subs": {"base": 2460170, "rate": 7.503830822026993e-05}, "views": {"base": 1746788302, "rate": 0.05772671998082535}};
+window.PBERS_PREDICT = {"asOfMs": 1787691600000, "subs": {"base": 2460180, "rate": 7.503830822026993e-05}, "views": {"base": 1746792585, "rate": 0.05772671998082535}};
