@@ -30,10 +30,10 @@
 (function(){var u=location.origin+location.pathname;var c=document.querySelector('link[rel=canonical]');if(c)c.href=u;var o=document.querySelector('meta[property="og:url"]');if(o)o.setAttribute('content',u);})();
 </script>
 <!-- 最新動画API(WebSub Worker の /videos)。未設定なら最新動画セクションは非表示 -->
-<script>window.PBERS_VIDEOS_API = "";</script>
+<script>window.PBERS_VIDEOS_API = "https://pbers-cron.myray0629.workers.dev/videos";</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="assets/style.css?v=250854">
+<link rel="stylesheet" href="assets/style.css?v=250855">
 </head>
 <body>
 
@@ -156,6 +156,12 @@
         <h2>アップデート履歴 <span class="en">Changelog</span></h2>
       </div>
       <div class="log">
+        <div class="log-item">
+          <div class="log-date">2026-08-25</div>
+          <ul>
+            <li>「最新動画」を追加。各チャンネルの新着をリアルタイム(WebSub)で反映</li>
+          </ul>
+        </div>
         <div class="log-item">
           <div class="log-date">2026-08-23</div>
           <ul>
@@ -303,10 +309,10 @@
   </div>
 </footer>
 
-<script src="assets/data.js?v=250854"></script>
-<script src="assets/news.js?v=250854"></script>
-<script src="assets/growth.js?v=250854"></script>
-<script src="assets/race.js?v=250854"></script>
-<script src="assets/app.js?v=250854"></script>
+<script src="assets/data.js?v=250855"></script>
+<script src="assets/news.js?v=250855"></script>
+<script src="assets/growth.js?v=250855"></script>
+<script src="assets/race.js?v=250855"></script>
+<script src="assets/app.js?v=250855"></script>
 </body>
 </html>
