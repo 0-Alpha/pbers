@@ -269,7 +269,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250858">
+<link rel="stylesheet" href="../../assets/style.css?v=250859">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -277,7 +277,7 @@ CH_TPL = '''<!doctype html>
 </div></header>
 <main class="ch-page"><div class="wrap">
   <a class="ch-back" href="../../">← 一覧へ戻る</a>
-  <div id="ch-root"></div>
+  <div id="ch-root" style="--accent:{{COLOR}}">{{HEADER}}</div>
 </div></main>
 <footer><div class="wrap">
   <a class="brand" href="../../"><span class="dot"></span><span>PB<b>ers</b></span></a>
@@ -285,10 +285,62 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250858"></script>
+<script src="../../assets/channel.js?v=250859"></script>
 </body>
 </html>
 '''
+
+def _sig3(x):
+    d = 2 if x < 10 else (1 if x < 100 else 0)
+    return ("%.*f" % (d, x)).rstrip("0").rstrip(".")
+
+def _jp(n):
+    if n is None:
+        return "—"
+    if n >= 1e8:
+        return _sig3(n / 1e8) + "億"
+    if n >= 1e4:
+        return _sig3(n / 1e4) + "万"
+    return "{:,}".format(n)
+
+def _stat_tile(label, v, unit):
+    if v is None:
+        return '<div class="ch-tile"><div class="k">%s</div><div class="v num">非公開</div><div class="sub"></div></div>' % label
+    return ('<div class="ch-tile"><div class="k">%s</div>'
+            '<div class="v num">%s<small>%s</small></div>'
+            '<div class="sub">%s%s</div></div>') % (label, "{:,}".format(v), unit, _jp(v), unit)
+
+def ch_header_html(d, videos, rank, total, esc):
+    """チャンネル個別ページのヘッダを静的HTMLで生成(SEO用に名前・数値・説明文を本文に載せる)。"""
+    name = esc(d["name"])
+    return (
+        '<div class="ch-head">'
+          '<img class="ch-av" src="' + esc(d["avatar"]) + '" alt="' + name + ' のアイコン" onerror="this.style.visibility=\'hidden\'">'
+          '<div class="ch-meta">'
+            '<div class="ch-genre">' + esc(genre_of(d["id"])) + ' ・ 総合 ' + str(rank) + '位 / ' + str(total) + '</div>'
+            '<h1 class="ch-name">' + name + '</h1>'
+            '<p class="ch-lead">' + name + '（ポーランドボーラー）の登録者数・総再生数・投稿数と、その推移をまとめたページです。PBers調べ・毎日更新。</p>'
+            '<div class="ch-actions">'
+              '<a class="yt-btn" href="' + esc(d["url"]) + '" target="_blank" rel="noopener">YouTube ↗</a>'
+              '<button class="sh sh-x" id="sh-x">𝕏 シェア</button>'
+              '<button class="sh sh-copy" id="sh-copy">リンクをコピー</button>'
+            '</div>'
+          '</div>'
+        '</div>'
+        '<div class="ch-stats">' +
+          _stat_tile("登録者数", d.get("subs"), "人") +
+          _stat_tile("総再生数", d.get("views"), "回") +
+          _stat_tile("投稿数", videos, "本") +
+        '</div>'
+        '<div class="sec-head" style="margin-top:34px"><h2>推移 <span class="en">History</span></h2>'
+          '<span class="note" id="ch-note"></span></div>'
+        '<div class="controls" style="justify-content:flex-start"><div class="toggle" id="ch-toggle">'
+          '<button class="tg on" data-gm="subs">登録者</button>'
+          '<button class="tg" data-gm="views">総再生数</button>'
+          '<button class="tg" data-gm="videos">投稿数</button>'
+          '<span class="tg-ind" id="ch-tind"></span></div></div>'
+        '<div class="trend" id="ch-chart"></div>'
+    )
 
 def build_channel_pages(order, colors):
     import shutil, html as _html
@@ -307,15 +359,19 @@ def build_channel_pages(order, colors):
               "subs": [hist[rep[x]]["subs"] for x in hd],
               "views": [hist[rep[x]]["views"] for x in hd],
               "videos": [hist[rep[x]]["videos"] for x in hd]}
+        vcount = d.get("videos") if d.get("videos") is not None else vids(d.get("videosLabel"))
         ch = {"id": cid, "name": d["name"], "subs": d.get("subs"), "views": d.get("views"),
-              "videos": d.get("videos") if d.get("videos") is not None else vids(d.get("videosLabel")),
+              "videos": vcount,
               "url": d["url"], "avatar": d["avatar"], "color": colors[cid],
               "genre": genre_of(cid), "rank": i + 1, "total": total}
+        header = ch_header_html(d, vcount, i + 1, total, _html.escape)
         page = (CH_TPL
                 .replace("{{TITLE}}", _html.escape(d["name"]))
                 .replace("{{SLUG}}", urllib.parse.quote(slug))
                 .replace("{{AVATAR}}", _html.escape(d["avatar"]))
                 .replace("{{SITE}}", SITE)
+                .replace("{{COLOR}}", colors[cid])
+                .replace("{{HEADER}}", header)
                 .replace("{{CH}}", json.dumps(ch, ensure_ascii=False))
                 .replace("{{HIST}}", json.dumps(HH, ensure_ascii=False)))
         os.makedirs(os.path.join(cdir, slug), exist_ok=True)

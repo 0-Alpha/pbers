@@ -26,44 +26,10 @@
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (m) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[m]; }); }
 
+  // ヘッダ(名前・数値・説明・トグル・共有ボタン)はサーバー側で静的出力済み(SEO用)。
+  // ここでは配色設定と、推移グラフの描画＋操作の紐付けだけを行う。
   var root = document.getElementById('ch-root'); if (!root) return;
   document.documentElement.style.setProperty('--accent', CH.color || '#ac1c1c');
-
-  root.innerHTML =
-    '<div class="ch-head">' +
-      '<img class="ch-av" src="' + CH.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
-      '<div class="ch-meta">' +
-        '<div class="ch-genre">' + esc(CH.genre || '') + ' ・ 総合 ' + CH.rank + '位 / ' + CH.total + '</div>' +
-        '<h1 class="ch-name">' + esc(CH.name) + '</h1>' +
-        '<div class="ch-actions">' +
-          '<a class="yt-btn" href="' + CH.url + '" target="_blank" rel="noopener">YouTube ↗</a>' +
-          '<button class="sh sh-x" id="sh-x">𝕏 シェア</button>' +
-          '<button class="sh sh-copy" id="sh-copy">リンクをコピー</button>' +
-        '</div>' +
-      '</div>' +
-    '</div>' +
-    '<div class="ch-stats">' +
-      statTile('登録者数', CH.subs, '人') +
-      statTile('総再生数', CH.views, '回') +
-      statTile('投稿数', CH.videos, '本') +
-    '</div>' +
-    '<div class="sec-head" style="margin-top:34px"><h2>推移 <span class="en">History</span></h2>' +
-      '<span class="note" id="ch-note"></span></div>' +
-    '<div class="controls" style="justify-content:flex-start">' +
-      '<div class="toggle" id="ch-toggle">' +
-        '<button class="tg on" data-gm="subs">登録者</button>' +
-        '<button class="tg" data-gm="views">総再生数</button>' +
-        '<button class="tg" data-gm="videos">投稿数</button>' +
-        '<span class="tg-ind" id="ch-tind"></span>' +
-      '</div>' +
-    '</div>' +
-    '<div class="trend" id="ch-chart"></div>';
-
-  function statTile(label, v, unit) {
-    return '<div class="ch-tile"><div class="k">' + label + '</div>' +
-      '<div class="v num">' + (v == null ? '非公開' : fmt(v)) + (v == null ? '' : '<small>' + unit + '</small>') + '</div>' +
-      '<div class="sub">' + (v == null ? '' : jp(v) + unit) + '</div></div>';
-  }
 
   function renderChart() {
     var host = document.getElementById('ch-chart');
