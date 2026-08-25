@@ -211,6 +211,9 @@
         '<div class="col-name">' + esc(d.name) + '</div></div>';
       col.addEventListener('mouseenter', function () { focus(i); });
       col.addEventListener('mouseleave', unfocus);
+      // タップ/クリックで即そのチャンネルのページへ(横ドラッグ中は .col-scroll.drag が抑止)
+      col.style.cursor = 'pointer';
+      col.addEventListener('click', function () { location.href = 'c/' + encodeURIComponent(d.slug || chId(d)) + '/'; });
       cols.appendChild(col); colEls.push(col); colBars.push(col.querySelector('.col-bar'));
     });
 
@@ -314,33 +317,60 @@
     var stage = document.querySelector('.donut-stage');
     var TOL = 26;                 // px, widens the hoverable ring band
     var TAU = Math.PI * 2, cur = -1;
-    function atPoint(px, py) {
+    function hitAt(px, py) {   // 座標から扇の index を返す(帯の外は -1)
       var r = stage.getBoundingClientRect();
       var scale = r.width / 200;
       var dx = px - (r.left + r.width / 2);
       var dy = py - (r.top + r.height / 2);
       var dist = Math.sqrt(dx * dx + dy * dy);
       var inner = (R - SW / 2) * scale - TOL, outer = (R + SW / 2) * scale + TOL;
-      if (dist < inner || dist > outer) { if (cur !== -1) { cur = -1; unfocus(); } return; }
+      if (dist < inner || dist > outer) return -1;
       var ang = Math.atan2(dx, -dy); if (ang < 0) ang += TAU;   // 0 at top, clockwise
-      var frac = ang / TAU, hit = -1;
+      var frac = ang / TAU;
       for (var i = 0; i < sliceFrac.length; i++) {
-        if (sliceFrac[i] > 0 && frac >= sliceStart[i] && frac < sliceStart[i] + sliceFrac[i]) { hit = i; break; }
+        if (sliceFrac[i] > 0 && frac >= sliceStart[i] && frac < sliceStart[i] + sliceFrac[i]) return i;
       }
-      if (hit !== cur) {
-        cur = hit;
-        if (hit === -1) unfocus();
-        else if (donutSegs[hit].type === 'other') focusOther();
-        else focus(donutSegs[hit].idx);
-      }
+      return -1;
     }
-    function at(e) { atPoint(e.clientX, e.clientY); }
-    stage.addEventListener('mousemove', at);
+    function applyHit(hit) {
+      if (hit === cur) return;
+      cur = hit;
+      if (hit === -1) unfocus();
+      else if (donutSegs[hit].type === 'other') focusOther();
+      else focus(donutSegs[hit].idx);
+    }
+    function goto(hit) {   // その扇の遷移先へ
+      if (hit < 0) return false;
+      if (donutSegs[hit].type === 'other') { switchTab('channels'); return true; }
+      var d = DATA[donutSegs[hit].idx];
+      if (d) { location.href = 'c/' + encodeURIComponent(d.slug || chId(d)) + '/'; return true; }
+      return false;
+    }
+    stage.addEventListener('mousemove', function (e) { applyHit(hitAt(e.clientX, e.clientY)); });
     stage.addEventListener('mouseleave', function () { cur = -1; unfocus(); });
-    // タッチ対応: スマホでもタップ/なぞりで各チャンネルの詳細を出す
-    function touch(e) { var t = e.touches && e.touches[0]; if (t) atPoint(t.clientX, t.clientY); }
-    stage.addEventListener('touchstart', touch, { passive: true });
-    stage.addEventListener('touchmove', touch, { passive: true });
+
+    // タッチ: 1回目のタップ=詳細表示 / 同じ扇をもう一度タップ=そのページへ
+    var lastTouchHit = -2, lastTouchTime = 0;
+    stage.addEventListener('touchstart', function (e) {
+      var t = e.touches && e.touches[0]; if (!t) return;
+      lastTouchTime = Date.now();
+      var hit = hitAt(t.clientX, t.clientY);
+      if (hit >= 0 && hit === lastTouchHit) { if (goto(hit)) return; }
+      lastTouchHit = hit;
+      applyHit(hit);
+    }, { passive: true });
+    stage.addEventListener('touchmove', function (e) {
+      var t = e.touches && e.touches[0]; if (!t) return;
+      lastTouchHit = hitAt(t.clientX, t.clientY);
+      applyHit(lastTouchHit);
+    }, { passive: true });
+
+    // マウス: クリックでそのページへ(タッチ由来の合成クリックは無視)
+    stage.addEventListener('click', function (e) {
+      if (Date.now() - lastTouchTime < 700) return;
+      goto(hitAt(e.clientX, e.clientY));
+    });
+    stage.style.cursor = 'pointer';
   }
 
   /* ---- easier horizontal scroll for column-style charts (wheel + drag) ---- */
