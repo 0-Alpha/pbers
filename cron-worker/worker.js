@@ -167,11 +167,22 @@ async function refreshOne(id, env) {
     }));
   } catch (e) { /* skip */ }
 }
-// /shorts/ がそのまま開ける(200)=ショート、/watch へリダイレクト=横動画
+// /shorts/ がそのまま開ける(200)=ショート、/watch へリダイレクト=横動画。
+// サーバーから叩くと同意ページに飛ばされるので、ブラウザ相当のUA＋同意Cookieを付ける。
 async function isShort(vid) {
   try {
-    const r = await fetch("https://www.youtube.com/shorts/" + vid, { redirect: "manual" });
-    return r.status === 200;
+    const r = await fetch("https://www.youtube.com/shorts/" + vid, {
+      redirect: "manual",
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+        "Accept-Language": "ja,en;q=0.9",
+        "Cookie": "SOCS=CAISEwgDEgk0ODE3Nzk3MjQaAmphIAEaBgiA_LyaBg; CONSENT=YES+1"
+      }
+    });
+    if (r.status === 200) return true;                      // /shorts/ がそのまま開けた=ショート
+    const loc = r.headers.get("location") || "";
+    if (/\/watch\b/.test(loc)) return false;                // /watch へリダイレクト=横動画
+    return r.status === 200;                                 // それ以外は横扱い
   } catch (e) { return false; }
 }
 // latest:* をすべて集めて published 降順で feed を作り直す
