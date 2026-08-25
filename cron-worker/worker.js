@@ -54,6 +54,19 @@ export default {
       return new Response(msg, { status: 200 });
     }
 
+    // 30件ずつ RSS から最新動画を取り込む(初回シード/タイトル修正用)。RUN_KEYで保護
+    if (url.pathname === "/refresh" && url.searchParams.get("key") === env.RUN_KEY) {
+      const msg = await refreshBatch(env);
+      return new Response(msg, { status: 200 });
+    }
+
+    // KVを全消去(やり直し用)。RUN_KEYで保護
+    if (url.pathname === "/reset" && url.searchParams.get("key") === env.RUN_KEY) {
+      const l = await env.PBERS_KV.list();
+      await Promise.all(l.keys.map((k) => env.PBERS_KV.delete(k.name)));
+      return new Response("cleared " + l.keys.length, { status: 200 });
+    }
+
     // 統計取得の手動テスト(既存): /run?key=RUN_KEY
     if (url.pathname === "/run" && url.searchParams.get("key") === env.RUN_KEY) {
       const r = await dispatch(env);
@@ -119,13 +132,56 @@ async function channelIds(env) {
   } catch (e) { return []; }
 }
 
+/* ---- RSS から最新動画を取り込む(30件ずつ・cursor巡回) ---- */
+async function refreshBatch(env) {
+  const ids = await channelIds(env);
+  if (!ids.length) return "no channels";
+  let cur = parseInt((await env.PBERS_KV.get("refcursor")) || "0", 10);
+  if (!(cur >= 0) || cur >= ids.length) cur = 0;
+  const slice = ids.slice(cur, cur + BATCH);
+  await Promise.all(slice.map((id) => refreshOne(id, env)));
+  await rebuildFeed(env);
+  const nextCur = (cur + slice.length) % ids.length;
+  await env.PBERS_KV.put("refcursor", String(nextCur));
+  return `refreshed ${slice.length} (ch ${cur}..${cur + slice.length} of ${ids.length}). next=${nextCur}`;
+}
+async function refreshOne(id, env) {
+  try {
+    const r = await fetch("https://www.youtube.com/feeds/videos.xml?channel_id=" + id);
+    if (!r.ok) return;
+    const xml = await r.text();
+    const entry = (xml.match(/<entry>[\s\S]*?<\/entry>/) || [])[0];
+    if (!entry) return;
+    const vid = (entry.match(/<yt:videoId>(.*?)<\/yt:videoId>/) || [])[1];
+    const title = decode((entry.match(/<title>(.*?)<\/title>/) || [])[1] || "");
+    const published = (entry.match(/<published>(.*?)<\/published>/) || [])[1] || "";
+    if (!vid) return;
+    await env.PBERS_KV.put("latest:" + id, JSON.stringify({
+      vid, cid: id, title, published,
+      url: "https://www.youtube.com/watch?v=" + vid,
+      thumb: "https://i.ytimg.com/vi/" + vid + "/hqdefault.jpg",
+      at: Date.now()
+    }));
+  } catch (e) { /* skip */ }
+}
+// latest:* をすべて集めて published 降順で feed(最大30件)を作り直す
+async function rebuildFeed(env) {
+  const l = await env.PBERS_KV.list({ prefix: "latest:" });
+  const items = [];
+  for (const k of l.keys) { const it = await env.PBERS_KV.get(k.name, "json"); if (it) items.push(it); }
+  items.sort((a, b) => (Date.parse(b.published) || 0) - (Date.parse(a.published) || 0));
+  await env.PBERS_KV.put("feed", JSON.stringify(items.slice(0, 30)));
+}
+
 /* ---- 新着通知の処理 ---- */
 async function handleNotification(xml, env) {
   if (/<at:deleted-entry/.test(xml)) return;                 // 削除通知は無視
-  const vid = (xml.match(/<yt:videoId>(.*?)<\/yt:videoId>/) || [])[1];
-  const cid = (xml.match(/<yt:channelId>(.*?)<\/yt:channelId>/) || [])[1];
-  const title = decode((xml.match(/<title>(.*?)<\/title>/) || [])[1] || "");
-  const published = (xml.match(/<published>(.*?)<\/published>/) || [])[1] || "";
+  // フィード全体の<title>ではなく<entry>内から取る(でないと "YouTube video feed" になる)
+  const entry = (xml.match(/<entry>[\s\S]*?<\/entry>/) || [])[0] || xml;
+  const vid = (entry.match(/<yt:videoId>(.*?)<\/yt:videoId>/) || [])[1];
+  const cid = (entry.match(/<yt:channelId>(.*?)<\/yt:channelId>/) || [])[1];
+  const title = decode((entry.match(/<title>(.*?)<\/title>/) || [])[1] || "");
+  const published = (entry.match(/<published>(.*?)<\/published>/) || [])[1] || "";
   if (!vid || !cid) return;
 
   const prev = await env.PBERS_KV.get("latest:" + cid, "json");

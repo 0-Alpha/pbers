@@ -1137,6 +1137,7 @@
     if (!sec || !host) return;
     fetch(api).then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
       if (!list || !list.length) return;
+      list = list.slice().sort(function (a, b) { return (Date.parse(b.published) || 0) - (Date.parse(a.published) || 0); });
       host.innerHTML = list.slice(0, 12).map(function (v) {
         var ch = chById(v.cid), name = ch ? ch.name : '', color = ch ? ch.color : '#8d8986', av = ch ? ch.avatar : '';
         return '<a class="vid" href="' + v.url + '" target="_blank" rel="noopener">' +
