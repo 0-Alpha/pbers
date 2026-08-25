@@ -617,6 +617,7 @@
     news:      document.getElementById('view-news'),
     race:      document.getElementById('view-race'),
     game:      document.getElementById('view-game'),
+    videos:    document.getElementById('view-videos'),
     channels:  document.getElementById('view-channels')
   };
   var currentView = 'dashboard';
@@ -633,6 +634,7 @@
     if (v === 'news') renderNewsFeed();
     if (v === 'race') renderRace();
     if (v === 'game') renderGame();
+    if (v === 'videos') renderVideos();
     if (v === 'channels') moveTierInd();
   }
   function hashView(h) { var v = (h || '').replace('#', ''); return v === 'live' ? 'race' : v; }   // 'live' は旧名の後方互換
@@ -1131,32 +1133,63 @@
     return Math.floor(s / 86400) + '日前';
   }
   function chById(cid) { for (var i = 0; i < ALL.length; i++) { if (chId(ALL[i]) === cid) return ALL[i]; } return null; }
-  function renderLatest() {
-    var api = window.PBERS_VIDEOS_API; if (!api) return;
+  var VIDEOS_CACHE = null, VIDEOS_TS = 0;
+  function loadVideos(force) {
+    var api = window.PBERS_VIDEOS_API; if (!api) return Promise.resolve([]);
+    if (!force && VIDEOS_CACHE && (Date.now() - VIDEOS_TS < 45000)) return Promise.resolve(VIDEOS_CACHE);
+    return fetch(api).then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
+      list = (list || []).filter(function (v) { return v.title && v.title !== 'YouTube video feed'; })
+                         .sort(function (a, b) { return (Date.parse(b.published) || 0) - (Date.parse(a.published) || 0); });
+      VIDEOS_CACHE = list; VIDEOS_TS = Date.now(); return list;
+    }).catch(function () { return VIDEOS_CACHE || []; });
+  }
+  function vidCard(v) {
+    var ch = chById(v.cid), name = ch ? ch.name : '', color = ch ? ch.color : '#8d8986', av = ch ? ch.avatar : '';
+    return '<a class="vid' + (v.short ? ' short' : '') + '" href="' + v.url + '" target="_blank" rel="noopener">' +
+      '<div class="vid-thumb"><img loading="lazy" src="' + v.thumb + '" alt="" onerror="this.style.visibility=\'hidden\'"></div>' +
+      '<div class="vid-meta"><div class="vid-title">' + esc(v.title) + '</div>' +
+      '<div class="vid-ch">' + (av ? '<img src="' + av + '" alt="" onerror="this.style.display=\'none\'">' : '') +
+      '<span class="vid-nm" style="color:' + color + '">' + esc(name) + '</span>' +
+      '<span class="vid-ago">' + timeAgo(v.published) + '</span></div></div></a>';
+  }
+  function renderLatest() {   // ダッシュボードの上位12件
+    if (!window.PBERS_VIDEOS_API) return;
     var sec = document.getElementById('latest'), host = document.getElementById('latest-list');
     if (!sec || !host) return;
-    fetch(api).then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
-      if (!list || !list.length) return;
-      list = list.filter(function (v) { return v.title && v.title !== 'YouTube video feed'; })
-                 .sort(function (a, b) { return (Date.parse(b.published) || 0) - (Date.parse(a.published) || 0); });
+    loadVideos().then(function (list) {
       if (!list.length) return;
-      host.innerHTML = list.slice(0, 12).map(function (v) {
-        var ch = chById(v.cid), name = ch ? ch.name : '', color = ch ? ch.color : '#8d8986', av = ch ? ch.avatar : '';
-        return '<a class="vid" href="' + v.url + '" target="_blank" rel="noopener">' +
-          '<div class="vid-thumb"><img loading="lazy" src="' + v.thumb + '" alt="" onerror="this.style.visibility=\'hidden\'"></div>' +
-          '<div class="vid-meta"><div class="vid-title">' + esc(v.title) + '</div>' +
-          '<div class="vid-ch">' + (av ? '<img src="' + av + '" alt="" onerror="this.style.display=\'none\'">' : '') +
-          '<span class="vid-nm" style="color:' + color + '">' + esc(name) + '</span>' +
-          '<span class="vid-ago">' + timeAgo(v.published) + '</span></div></div></a>';
-      }).join('');
+      host.innerHTML = list.slice(0, 12).map(vidCard).join('');
       sec.hidden = false;
-    }).catch(function () {});
+    });
+  }
+  function renderVideos() {   // 最新動画タブ: 横動画/ショートを分けて全件
+    var host = document.getElementById('videos-root'); if (!host) return;
+    if (!window.PBERS_VIDEOS_API) { host.innerHTML = '<div class="fc-empty">最新動画は準備中です。</div>'; return; }
+    loadVideos().then(function (list) {
+      if (!list.length) { host.innerHTML = '<div class="fc-empty">まだ新着がありません。</div>'; return; }
+      var longs = list.filter(function (v) { return !v.short; });
+      var shorts = list.filter(function (v) { return v.short; });
+      host.innerHTML =
+        '<div class="fc-h3">横動画 <span class="fc-en">Videos</span> <span class="v-count">' + longs.length + '</span></div>' +
+        '<div class="vid-grid">' + (longs.length ? longs.map(vidCard).join('') : '<div class="fc-empty">なし</div>') + '</div>' +
+        '<div class="fc-h3" style="margin-top:34px">ショート <span class="fc-en">Shorts</span> <span class="v-count">' + shorts.length + '</span></div>' +
+        '<div class="vid-grid short">' + (shorts.length ? shorts.map(vidCard).join('') : '<div class="fc-empty">なし</div>') + '</div>';
+    });
   }
 
   /* ---- init ---- */
   build();
   renderNews();
   renderLatest();
+  // 最新動画を定期的に自動更新(開きっぱなしでもライブ反映)
+  if (window.PBERS_VIDEOS_API) {
+    setInterval(function () {
+      loadVideos(true).then(function () {
+        if (VIEWS.dashboard && !VIEWS.dashboard.hidden) renderLatest();
+        if (VIEWS.videos && !VIEWS.videos.hidden) renderVideos();
+      });
+    }, 60000);
+  }
   setupShare();
   renderTiers();
   setupTierToggle();
