@@ -385,9 +385,9 @@ def build_sitemap(order):
     for u in urls:
         body += '  <url><loc>%s</loc><changefreq>daily</changefreq></url>\n' % u
     body += '</urlset>\n'
-    with open(os.path.join(BASE, "sitemap.xml"), "w", encoding="utf-8") as f:
+    with open(os.path.join(BASE, "sitemap-pbers.xml"), "w", encoding="utf-8") as f:
         f.write(body)
-    print("wrote sitemap.xml (%d urls)" % len(urls))
+    print("wrote sitemap-pbers.xml (%d urls)" % len(urls))
 
 def ts_to_ms(s):
     """記録スロット文字列(JSTの壁時計)を絶対時刻(epoch ms)にする。"""
