@@ -28,8 +28,88 @@ window.PBERS_NEWS = [
       {
         "type": "overtake",
         "kind": "subs",
+        "name": "うずまき🌀",
+        "color": "#5e95d4",
+        "avatar": "https://yt3.googleusercontent.com/LkRrW7onGMeTLMUJrz7kkIrH0s24TKAC_bpYBQGYSVDe_V_mde3xmj8zE5mVKHtXTKDArtwGaU4=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "Yukkuri ball",
+          "color": "#8f2f2f",
+          "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mR5LylFOFrr-t2X5vaJbwkzfKOkvcpiNfdQw8kaFQAAw=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "登録者数で Yukkuri ball を追い越し",
+        "value": 29500
+      },
+      {
+        "type": "overtake",
+        "kind": "subs",
+        "name": "レメラボール / 🌈🌙【えるめす】",
+        "color": "#40cc3e",
+        "avatar": "https://yt3.googleusercontent.com/PgMT_pQ_UrNxFF8c66TxiZAc14EW2SJikKgha9sBh6PlKPTkW6Evdg8exa07dWNyAVQYenXUNg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "わーるどボール【ポーランドボール】",
+          "color": "#3e61cc",
+          "avatar": "https://yt3.googleusercontent.com/6gVVVw-moV268fxv9p9C-RAHunkNQ2F6T9_k_Kmu8hZ_CvP93ry95Q9gHkuX00mq7kifxCE7CQ=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "登録者数で わーるどボール【ポーランドボール】 を追い越し",
+        "value": 11700
+      },
+      {
+        "type": "overtake",
+        "kind": "subs",
         "name": "ほすとぼーる",
-        "color": "#cc903e",
+        "color": "#3ec4cc",
+        "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ライヒスボール【Reichsball】",
+          "color": "#b23ecc",
+          "avatar": "https://yt3.googleusercontent.com/ZT_Uape_wuD-XJYz4KzEJfX3UcxisMo3_bXo7wgbU0wtBltqG4S-KMHZBuFeP50g-8WUo1rE=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "登録者数で ライヒスボール【Reichsball】 を追い越し",
+        "value": 9670
+      },
+      {
+        "type": "overtake",
+        "kind": "subs",
+        "name": "ほすとぼーる",
+        "color": "#3ec4cc",
+        "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "かめ・さーくボール共和国",
+          "color": "#cc903e",
+          "avatar": "https://yt3.googleusercontent.com/pmJmxVLE0mmUdGwtazGaKNHTg4eIJByKeQUYGONLj9xn5hXL-lBXiNSNjQCCBN6RcYfle0LO=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "登録者数で かめ・さーくボール共和国 を追い越し",
+        "value": 9670
+      },
+      {
+        "type": "overtake",
+        "kind": "subs",
+        "name": "ほすとぼーる",
+        "color": "#3ec4cc",
+        "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "空白ボール",
+          "color": "#d45e81",
+          "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "登録者数で 空白ボール を追い越し",
+        "value": 9670
+      },
+      {
+        "type": "overtake",
+        "kind": "subs",
+        "name": "ほすとぼーる",
+        "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -40,6 +120,38 @@ window.PBERS_NEWS = [
         },
         "label": "登録者数で mikan帝国ぼーる を追い越し",
         "value": 9500
+      },
+      {
+        "type": "overtake",
+        "kind": "subs",
+        "name": "にこちPB",
+        "color": "#d45ea9",
+        "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ヴァイマル共和国ボール [底辺PBer連盟] ",
+          "color": "#cc613e",
+          "avatar": "https://yt3.googleusercontent.com/dQc05XhmvR-D6BpN8LxOmCx-tE2IB8BzBHGnNtg3ZbmfeSspkw4_q-_vs0-LVrBnkvb-PtibOg=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "登録者数で ヴァイマル共和国ボール [底辺PBer連盟]  を追い越し",
+        "value": 5330
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "Schokoladen Ball",
+        "color": "#793ecc",
+        "avatar": "https://yt3.googleusercontent.com/AlFPad8pRVrfeIto9rOiwJjZaJNUmdMQekXAnHSIOOvCA5cEG_VlryXtlSx0oylMukqi3lVbYg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "まるッとわかる地理の裏話",
+          "color": "#ccc03e",
+          "avatar": "https://yt3.googleusercontent.com/OKTvYCqWkuYG-s3iq1dydM6YDas44QIY_hQxl1bPLPQbGzbLUe-ljaKZ4AoJu1kb1r2PI0GPXnI=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で まるッとわかる地理の裏話 を追い越し",
+        "value": 20147680
       },
       {
         "type": "overtake",
@@ -76,6 +188,22 @@ window.PBERS_NEWS = [
       {
         "type": "overtake",
         "kind": "views",
+        "name": "なぽりたんぼーる!!",
+        "color": "#5ebcd4",
+        "avatar": "https://yt3.googleusercontent.com/cgKkkofz-kGsbqVy2T6imA2bHpnVt2dT5fWXi8lePnlHa6p_KyhQCJ63Al_qjzB09nAGRrcOpg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ミルー帝国-はんぺん[PB]",
+          "color": "#d45e85",
+          "avatar": "https://yt3.googleusercontent.com/Ky8R9pg8h7UvmF53F7Bv9forW3gIMrGUzI2JuRlUaX_Lzf19_45Sif5nf5BqRdQy0WDtPvGvLw=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で ミルー帝国-はんぺん[PB] を追い越し",
+        "value": 8728114
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
         "name": "ソビエト・カチューシャボール☭\n\n",
         "color": "#cc3e53",
         "avatar": "https://yt3.googleusercontent.com/6JoYS-SVAtxks_NujxGVoLu7GhB-S9QqtUKOVraRMoSH61_yiCLncK4jPGsPaUhlMjxTTlpfGw=s900-c-k-c0x00ffffff-no-rj",
@@ -98,11 +226,11 @@ window.PBERS_NEWS = [
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
-          "name": "マスカットボール",
-          "color": "#493ecc",
-          "avatar": "https://yt3.googleusercontent.com/0LFy0gzQnjYCPHXvDJpUTOtKyZoSi6UGXTRQs1_FWE2Or_MqTKViIHNrO7cK33ob-lq5snr_xCE=s900-c-k-c0x00ffffff-no-rj"
+          "name": "空白ボール",
+          "color": "#d45e81",
+          "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj"
         },
-        "label": "総再生数で マスカットボール を追い越し",
+        "label": "総再生数で 空白ボール を追い越し",
         "value": 4616733
       },
       {
@@ -114,18 +242,18 @@ window.PBERS_NEWS = [
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
-          "name": "空白ボール",
-          "color": "#b23ecc",
-          "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj"
+          "name": "マスカットボール",
+          "color": "#493ecc",
+          "avatar": "https://yt3.googleusercontent.com/0LFy0gzQnjYCPHXvDJpUTOtKyZoSi6UGXTRQs1_FWE2Or_MqTKViIHNrO7cK33ob-lq5snr_xCE=s900-c-k-c0x00ffffff-no-rj"
         },
-        "label": "総再生数で 空白ボール を追い越し",
+        "label": "総再生数で マスカットボール を追い越し",
         "value": 4616733
       },
       {
         "type": "overtake",
         "kind": "views",
         "name": "空白ボール",
-        "color": "#b23ecc",
+        "color": "#d45e81",
         "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -156,8 +284,24 @@ window.PBERS_NEWS = [
       {
         "type": "overtake",
         "kind": "views",
+        "name": "セフィルぼーる‼︎",
+        "color": "#815ed4",
+        "avatar": "https://yt3.googleusercontent.com/HSCQnokZVxhiCR-7vyTJA-4vvznf-NuT5Kal3GwnJbTMv3rvRKzEjwRPWOiLPiwoDcbij7-shQ=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "アオアオカントリー",
+          "color": "#a1d45e",
+          "avatar": "https://yt3.googleusercontent.com/bkPPCcevoRKHMXyk4MzSH9s7MWSv-oI3n6DOPjx_FtUqqm6ALXRBjPWV5tgk5Rv3k-DcbXrV8g=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で アオアオカントリー を追い越し",
+        "value": 2210017
+      },
+      {
+        "type": "overtake",
+        "kind": "views",
         "name": "ほすとぼーる",
-        "color": "#cc903e",
+        "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -168,6 +312,22 @@ window.PBERS_NEWS = [
         },
         "label": "総再生数で 練乳=ソビエト共和国ぼーる を追い越し",
         "value": 1871090
+      },
+      {
+        "type": "overtake",
+        "kind": "videos",
+        "name": "にこちPB",
+        "color": "#d45ea9",
+        "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "アオアオカントリー",
+          "color": "#a1d45e",
+          "avatar": "https://yt3.googleusercontent.com/bkPPCcevoRKHMXyk4MzSH9s7MWSv-oI3n6DOPjx_FtUqqm6ALXRBjPWV5tgk5Rv3k-DcbXrV8g=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "投稿数で アオアオカントリー を追い越し",
+        "value": 17
       }
     ]
   },
@@ -190,7 +350,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "レメラボール / 🌈🌙【えるめす】",
-        "color": "#5ed4c4",
+        "color": "#40cc3e",
         "avatar": "https://yt3.googleusercontent.com/PgMT_pQ_UrNxFF8c66TxiZAc14EW2SJikKgha9sBh6PlKPTkW6Evdg8exa07dWNyAVQYenXUNg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -212,7 +372,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "subs",
         "name": "ほすとぼーる",
-        "color": "#cc903e",
+        "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -228,7 +388,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "subs",
         "name": "ほすとぼーる",
-        "color": "#cc903e",
+        "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -330,7 +490,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ねとえん",
-          "color": "#3ec4cc",
+          "color": "#5e66d4",
           "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj"
         },
         "label": "総再生数で ねとえん を追い越し",
@@ -480,7 +640,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ねとえん",
-          "color": "#3ec4cc",
+          "color": "#5e66d4",
           "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj"
         },
         "label": "投稿数で ねとえん を追い越し",
@@ -496,7 +656,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ねとえん",
-          "color": "#3ec4cc",
+          "color": "#5e66d4",
           "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj"
         },
         "label": "投稿数で ねとえん を追い越し",
@@ -534,7 +694,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "subs",
         "name": "にこちPB",
-        "color": "#cc613e",
+        "color": "#d45ea9",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -588,7 +748,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ライヒスボール【Reichsball】",
-          "color": "#5e66d4",
+          "color": "#b23ecc",
           "avatar": "https://yt3.googleusercontent.com/ZT_Uape_wuD-XJYz4KzEJfX3UcxisMo3_bXo7wgbU0wtBltqG4S-KMHZBuFeP50g-8WUo1rE=s900-c-k-c0x00ffffff-no-rj"
         },
         "label": "総再生数で ライヒスボール【Reichsball】 を追い越し",
@@ -653,7 +813,7 @@ window.PBERS_NEWS = [
         "genre": "PBerer",
         "opp": {
           "name": "空白ボール",
-          "color": "#b23ecc",
+          "color": "#d45e81",
           "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj"
         },
         "label": "総再生数で 空白ボール を追い越し",
