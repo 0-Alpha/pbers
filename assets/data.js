@@ -1181,21 +1181,8 @@ window.PBERS_DATA = [
     "color": "#3ecc40",
     "genre": "ポーランドボーラー",
     "slug": "みすい"
-  },
-  {
-    "name": "UC8BA486HqgHSLO82YlPNFfw",
-    "subs": null,
-    "views": null,
-    "subsLabel": null,
-    "viewsLabel": null,
-    "videos": null,
-    "url": "https://www.youtube.com/channel/UC8BA486HqgHSLO82YlPNFfw",
-    "avatar": "",
-    "color": "#c62f2f",
-    "genre": "ポーランドボーラー",
-    "slug": "uc8ba486hqghslo82ylpnffw"
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "ポーランドボーラーのようなもの", "on": false}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-26";
-window.PBERS_PREDICT = {"asOfMs": 1787713200000, "subs": {"base": 2421090, "rate": 8.140282420070082e-05}, "views": {"base": 1731419586, "rate": 0.05906109734734451}};
+window.PBERS_PREDICT = {"asOfMs": 1787713200000, "subs": {"base": 2421090, "rate": 8.115380427562608e-05}, "views": {"base": 1731419586, "rate": 0.05876128428575982}};
