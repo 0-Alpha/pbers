@@ -1403,7 +1403,7 @@ window.PBERS_RACE = [
         "name": "ほすとぼーる",
         "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 9670,
+        "subs": 9720,
         "history": [
           {
             "d": "2026-08-21",
@@ -1595,7 +1595,7 @@ window.PBERS_RACE = [
         "name": "ノートボール",
         "color": "#6fcc3e",
         "avatar": "https://yt3.googleusercontent.com/CsaI4tM_AC-OCGe2i5wE9oAIMAaI4WbGpKrOm6-4prkv_ZINQsm7V3ysWW8dodd7juUu-py2QUg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 7060,
+        "subs": 7070,
         "history": [
           {
             "d": "2026-08-22",
@@ -1704,70 +1704,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-26",
             "s": 5570
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "members": [
-      {
-        "name": "にこちPB",
-        "color": "#d45ea9",
-        "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5330,
-        "history": [
-          {
-            "d": "2026-08-21",
-            "s": 3350
-          },
-          {
-            "d": "2026-08-22",
-            "s": 3640
-          },
-          {
-            "d": "2026-08-23",
-            "s": 4220
-          },
-          {
-            "d": "2026-08-24",
-            "s": 4880
-          },
-          {
-            "d": "2026-08-25",
-            "s": 5180
-          },
-          {
-            "d": "2026-08-26",
-            "s": 5330
-          }
-        ]
-      },
-      {
-        "name": "ヴァイマル共和国ボール [底辺PBer連盟] ",
-        "color": "#cc613e",
-        "avatar": "https://yt3.googleusercontent.com/dQc05XhmvR-D6BpN8LxOmCx-tE2IB8BzBHGnNtg3ZbmfeSspkw4_q-_vs0-LVrBnkvb-PtibOg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5280,
-        "history": [
-          {
-            "d": "2026-08-22",
-            "s": 5270
-          },
-          {
-            "d": "2026-08-23",
-            "s": 5270
-          },
-          {
-            "d": "2026-08-24",
-            "s": 5280
-          },
-          {
-            "d": "2026-08-25",
-            "s": 5280
-          },
-          {
-            "d": "2026-08-26",
-            "s": 5280
           }
         ]
       }
