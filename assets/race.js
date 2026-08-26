@@ -596,8 +596,40 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "パプさん",
+        "name": "ミルー帝国-はんぺん[PB]",
         "color": "#d45e85",
+        "avatar": "https://yt3.googleusercontent.com/Ky8R9pg8h7UvmF53F7Bv9forW3gIMrGUzI2JuRlUaX_Lzf19_45Sif5nf5BqRdQy0WDtPvGvLw=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 17500,
+        "history": [
+          {
+            "d": "2026-08-21",
+            "s": 17300
+          },
+          {
+            "d": "2026-08-22",
+            "s": 17300
+          },
+          {
+            "d": "2026-08-23",
+            "s": 17400
+          },
+          {
+            "d": "2026-08-24",
+            "s": 17400
+          },
+          {
+            "d": "2026-08-25",
+            "s": 17400
+          },
+          {
+            "d": "2026-08-26",
+            "s": 17400
+          }
+        ]
+      },
+      {
+        "name": "パプさん",
+        "color": "#cc8c3e",
         "avatar": "https://yt3.googleusercontent.com/0b2IgtgzK5mrUu4ZQwqBnw5XCvQ6JjQMW72YqTmoCqzAFJYpZwUXvSIQlIfEYiLdNc3Subi9kg=s900-c-k-c0x00ffffff-no-rj",
         "subs": 17400,
         "history": [
@@ -620,38 +652,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-25",
             "s": 17300
-          },
-          {
-            "d": "2026-08-26",
-            "s": 17400
-          }
-        ]
-      },
-      {
-        "name": "ミルー帝国-はんぺん[PB]",
-        "color": "#cc8c3e",
-        "avatar": "https://yt3.googleusercontent.com/Ky8R9pg8h7UvmF53F7Bv9forW3gIMrGUzI2JuRlUaX_Lzf19_45Sif5nf5BqRdQy0WDtPvGvLw=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 17400,
-        "history": [
-          {
-            "d": "2026-08-21",
-            "s": 17300
-          },
-          {
-            "d": "2026-08-22",
-            "s": 17300
-          },
-          {
-            "d": "2026-08-23",
-            "s": 17400
-          },
-          {
-            "d": "2026-08-24",
-            "s": 17400
-          },
-          {
-            "d": "2026-08-25",
-            "s": 17400
           },
           {
             "d": "2026-08-26",
@@ -1588,8 +1588,36 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "アフガンボール",
+        "name": "ikasumi帝国",
         "color": "#5e8dd4",
+        "avatar": "https://yt3.googleusercontent.com/pXavDBoQWleJO0X1Cd7TrS5BP9DduNyqd0CtSqENd7k-YW0UwYkREQdZAE0mthqG4mUSPcMS8Q=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 5580,
+        "history": [
+          {
+            "d": "2026-08-22",
+            "s": 5520
+          },
+          {
+            "d": "2026-08-23",
+            "s": 5540
+          },
+          {
+            "d": "2026-08-24",
+            "s": 5560
+          },
+          {
+            "d": "2026-08-25",
+            "s": 5570
+          },
+          {
+            "d": "2026-08-26",
+            "s": 5570
+          }
+        ]
+      },
+      {
+        "name": "アフガンボール",
+        "color": "#823ecc",
         "avatar": "https://yt3.googleusercontent.com/aOj-FnTWhrUAPjz49cHMeTuREL5cpUpsUWPVs1AuaeeMqVIrUHxeIOlHdCi0h8HukDZHL_ZQ0HA=s900-c-k-c0x00ffffff-no-rj",
         "subs": 5570,
         "history": [
@@ -1608,34 +1636,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-25",
             "s": 5560
-          },
-          {
-            "d": "2026-08-26",
-            "s": 5570
-          }
-        ]
-      },
-      {
-        "name": "ikasumi帝国",
-        "color": "#823ecc",
-        "avatar": "https://yt3.googleusercontent.com/pXavDBoQWleJO0X1Cd7TrS5BP9DduNyqd0CtSqENd7k-YW0UwYkREQdZAE0mthqG4mUSPcMS8Q=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5570,
-        "history": [
-          {
-            "d": "2026-08-22",
-            "s": 5520
-          },
-          {
-            "d": "2026-08-23",
-            "s": 5540
-          },
-          {
-            "d": "2026-08-24",
-            "s": 5560
-          },
-          {
-            "d": "2026-08-25",
-            "s": 5570
           },
           {
             "d": "2026-08-26",

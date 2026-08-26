@@ -416,6 +416,19 @@ window.PBERS_DATA = [
     "slug": "きままボール"
   },
   {
+    "name": "ミルー帝国-はんぺん[PB]",
+    "subs": 17500,
+    "views": 8720633,
+    "subsLabel": "チャンネル登録者数 1.75万人",
+    "viewsLabel": "8,720,633回視聴",
+    "videos": 251,
+    "url": "https://www.youtube.com/channel/UCYhJeY5hQxjCB5onai17ExA",
+    "avatar": "https://yt3.googleusercontent.com/Ky8R9pg8h7UvmF53F7Bv9forW3gIMrGUzI2JuRlUaX_Lzf19_45Sif5nf5BqRdQy0WDtPvGvLw=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#d45e85",
+    "genre": "ポーランドボーラー",
+    "slug": "ミルー帝国-はんぺんpb"
+  },
+  {
     "name": "パプさん",
     "subs": 17400,
     "views": 16406216,
@@ -424,22 +437,9 @@ window.PBERS_DATA = [
     "videos": 334,
     "url": "https://www.youtube.com/channel/UCPgo3vhueVGcmxye8KXomag",
     "avatar": "https://yt3.googleusercontent.com/0b2IgtgzK5mrUu4ZQwqBnw5XCvQ6JjQMW72YqTmoCqzAFJYpZwUXvSIQlIfEYiLdNc3Subi9kg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d45e85",
-    "genre": "ポーランドボーラー",
-    "slug": "パプさん"
-  },
-  {
-    "name": "ミルー帝国-はんぺん[PB]",
-    "subs": 17400,
-    "views": 8720633,
-    "subsLabel": "チャンネル登録者数 1.74万人",
-    "viewsLabel": "8,720,633回視聴",
-    "videos": 251,
-    "url": "https://www.youtube.com/channel/UCYhJeY5hQxjCB5onai17ExA",
-    "avatar": "https://yt3.googleusercontent.com/Ky8R9pg8h7UvmF53F7Bv9forW3gIMrGUzI2JuRlUaX_Lzf19_45Sif5nf5BqRdQy0WDtPvGvLw=s900-c-k-c0x00ffffff-no-rj",
     "color": "#cc8c3e",
     "genre": "ポーランドボーラー",
-    "slug": "ミルー帝国-はんぺんpb"
+    "slug": "パプさん"
   },
   {
     "name": "アオアオカントリー",
@@ -898,9 +898,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ふかひれ牧場",
-    "subs": 9160,
+    "subs": 9170,
     "views": 1266554,
-    "subsLabel": "チャンネル登録者数 9160人",
+    "subsLabel": "チャンネル登録者数 9170人",
     "viewsLabel": "1,266,554回視聴",
     "videos": 24,
     "url": "https://www.youtube.com/channel/UCeImiuiv09c_mQzrJziJPAA",
@@ -990,9 +990,9 @@ window.PBERS_DATA = [
   {
     "name": "いたりぃ",
     "subs": 7030,
-    "views": 1129501,
+    "views": 1129609,
     "subsLabel": "チャンネル登録者数 7030人",
-    "viewsLabel": "1,129,501回視聴",
+    "viewsLabel": "1,129,609回視聴",
     "videos": 24,
     "url": "https://www.youtube.com/channel/UC4XJouYnuo5B4eKy2yWhkHg",
     "avatar": "https://yt3.googleusercontent.com/wWf7XHQyr1hGg9o3HAYnlWqzpOZZtOXVtWjUos40r8UYVxAFu4o8G-oGH75KRRyxCdCRd48vpOA=s900-c-k-c0x00ffffff-no-rj",
@@ -1029,9 +1029,9 @@ window.PBERS_DATA = [
   {
     "name": "ポテトの王",
     "subs": 6690,
-    "views": 2045908,
+    "views": 2045944,
     "subsLabel": "チャンネル登録者数 6690人",
-    "viewsLabel": "2,045,908回視聴",
+    "viewsLabel": "2,045,944回視聴",
     "videos": 37,
     "url": "https://www.youtube.com/channel/UCvOfNL3MjhbjxAU8U9Fi9uQ",
     "avatar": "https://yt3.googleusercontent.com/Ht3xBUYGa1q7jf81ZNMimtHDeFwJg9OGx0uVryQc6VfR5cmzW942vpj0LrAFe9-C0gj9Blv9cH0=s900-c-k-c0x00ffffff-no-rj",
@@ -1068,9 +1068,9 @@ window.PBERS_DATA = [
   {
     "name": "天川 蒼",
     "subs": 6340,
-    "views": 5056728,
+    "views": 5056383,
     "subsLabel": "チャンネル登録者数 6340人",
-    "viewsLabel": "5,056,728回視聴",
+    "viewsLabel": "5,056,383回視聴",
     "videos": 229,
     "url": "https://www.youtube.com/channel/UCSmEHeb7jyz5cCBzwHRYZ_w",
     "avatar": "https://yt3.googleusercontent.com/63Fpi8JlajXPXsdNjqlWOkEgcXu34tmR_KAqSqvAwcRNITSlK4hCz8KpphFjAhMsUcakxNiA=s900-c-k-c0x00ffffff-no-rj",
@@ -1081,15 +1081,28 @@ window.PBERS_DATA = [
   {
     "name": "フラルランドPB",
     "subs": 5910,
-    "views": 2726223,
+    "views": 2720238,
     "subsLabel": "チャンネル登録者数 5910人",
-    "viewsLabel": "2,726,223回視聴",
+    "viewsLabel": "2,720,238回視聴",
     "videos": 151,
     "url": "https://www.youtube.com/channel/UCyFwf6UZ3uhUq1Kheyz_uWw",
     "avatar": "https://yt3.googleusercontent.com/wYQy32blzS07grHFB3DDkmB05AXUqkYdumJ9XW3oiicrFUcp_0xLRAbo7iGjK0KZqIXVPXPL=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3ecca3",
     "genre": "ポーランドボーラー",
     "slug": "フラルランドpb"
+  },
+  {
+    "name": "ikasumi帝国",
+    "subs": 5580,
+    "views": 950842,
+    "subsLabel": "チャンネル登録者数 5580人",
+    "viewsLabel": "950,842回視聴",
+    "videos": 37,
+    "url": "https://www.youtube.com/channel/UCmVUXrmRsAk94xhvZR9wufA",
+    "avatar": "https://yt3.googleusercontent.com/pXavDBoQWleJO0X1Cd7TrS5BP9DduNyqd0CtSqENd7k-YW0UwYkREQdZAE0mthqG4mUSPcMS8Q=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#5e8dd4",
+    "genre": "ポーランドボーラー",
+    "slug": "ikasumi帝国"
   },
   {
     "name": "アフガンボール",
@@ -1100,28 +1113,15 @@ window.PBERS_DATA = [
     "videos": 6,
     "url": "https://www.youtube.com/channel/UCXCVbJCSF4FLP_TfojbkvUA",
     "avatar": "https://yt3.googleusercontent.com/aOj-FnTWhrUAPjz49cHMeTuREL5cpUpsUWPVs1AuaeeMqVIrUHxeIOlHdCi0h8HukDZHL_ZQ0HA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5e8dd4",
+    "color": "#823ecc",
     "genre": "ポーランドボーラー",
     "slug": "アフガンボール"
   },
   {
-    "name": "ikasumi帝国",
-    "subs": 5570,
-    "views": 950842,
-    "subsLabel": "チャンネル登録者数 5570人",
-    "viewsLabel": "950,842回視聴",
-    "videos": 37,
-    "url": "https://www.youtube.com/channel/UCmVUXrmRsAk94xhvZR9wufA",
-    "avatar": "https://yt3.googleusercontent.com/pXavDBoQWleJO0X1Cd7TrS5BP9DduNyqd0CtSqENd7k-YW0UwYkREQdZAE0mthqG4mUSPcMS8Q=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#823ecc",
-    "genre": "ポーランドボーラー",
-    "slug": "ikasumi帝国"
-  },
-  {
     "name": "にこちPB",
-    "subs": 5430,
+    "subs": 5440,
     "views": 261112,
-    "subsLabel": "チャンネル登録者数 5430人",
+    "subsLabel": "チャンネル登録者数 5440人",
     "viewsLabel": "261,112回視聴",
     "videos": 18,
     "url": "https://www.youtube.com/channel/UC2fMWFGgy-ENfkqlK0CUwrg",
@@ -1159,9 +1159,9 @@ window.PBERS_DATA = [
   {
     "name": "ウィン【肉声】【ポーランドボール】",
     "subs": 2960,
-    "views": 459346,
+    "views": 459443,
     "subsLabel": "チャンネル登録者数 2960人",
-    "viewsLabel": "459,346回視聴",
+    "viewsLabel": "459,443回視聴",
     "videos": 107,
     "url": "https://www.youtube.com/channel/UCh3VbVye4ZnUM0bWM_Y809A",
     "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
@@ -1185,4 +1185,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "ポーランドボーラーのようなもの", "on": false}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-26";
-window.PBERS_PREDICT = {"asOfMs": 1787756400000, "subs": {"base": 2426020, "rate": 8.789140163276669e-05}, "views": {"base": 1733218773, "rate": 0.05507137723989764}};
+window.PBERS_PREDICT = {"asOfMs": 1787756400000, "subs": {"base": 2426150, "rate": 8.789140163276669e-05}, "views": {"base": 1733212684, "rate": 0.05507137723989764}};
