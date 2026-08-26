@@ -1,5 +1,27 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-08-27",
+    "label": "8月27日(木)",
+    "items": [
+      {
+        "type": "overtake",
+        "kind": "views",
+        "name": "レメラボール / 🌈🌙【えるめす】",
+        "color": "#c8d45e",
+        "avatar": "https://yt3.googleusercontent.com/PgMT_pQ_UrNxFF8c66TxiZAc14EW2SJikKgha9sBh6PlKPTkW6Evdg8exa07dWNyAVQYenXUNg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ココプー",
+          "color": "#5eb9d4",
+          "avatar": "https://yt3.googleusercontent.com/6RPAsUvFY4QV_SwqqWI9dqogl3ahSOpHFjPXHDHdUtsb6lgq0d3bvTmVN6NzewK6OqffySKtzw=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "label": "総再生数で ココプー を追い越し",
+        "value": 6134100
+      }
+    ]
+  },
+  {
     "date": "2026-08-26",
     "label": "8月26日(水)",
     "items": [
@@ -66,11 +88,11 @@ window.PBERS_NEWS = [
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
-          "name": "ライヒスボール【Reichsball】",
-          "color": "#b23ecc",
-          "avatar": "https://yt3.googleusercontent.com/ZT_Uape_wuD-XJYz4KzEJfX3UcxisMo3_bXo7wgbU0wtBltqG4S-KMHZBuFeP50g-8WUo1rE=s900-c-k-c0x00ffffff-no-rj"
+          "name": "空白ボール",
+          "color": "#d45e81",
+          "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj"
         },
-        "label": "登録者数で ライヒスボール【Reichsball】 を追い越し",
+        "label": "登録者数で 空白ボール を追い越し",
         "value": 9670
       },
       {
@@ -82,11 +104,11 @@ window.PBERS_NEWS = [
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
-          "name": "空白ボール",
-          "color": "#d45e81",
-          "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj"
+          "name": "ライヒスボール【Reichsball】",
+          "color": "#b23ecc",
+          "avatar": "https://yt3.googleusercontent.com/ZT_Uape_wuD-XJYz4KzEJfX3UcxisMo3_bXo7wgbU0wtBltqG4S-KMHZBuFeP50g-8WUo1rE=s900-c-k-c0x00ffffff-no-rj"
         },
-        "label": "登録者数で 空白ボール を追い越し",
+        "label": "登録者数で ライヒスボール【Reichsball】 を追い越し",
         "value": 9670
       },
       {
@@ -189,7 +211,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "views",
         "name": "なぽりたんぼーる!!",
-        "color": "#5ebcd4",
+        "color": "#3ecc6b",
         "avatar": "https://yt3.googleusercontent.com/cgKkkofz-kGsbqVy2T6imA2bHpnVt2dT5fWXi8lePnlHa6p_KyhQCJ63Al_qjzB09nAGRrcOpg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -468,7 +490,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "views",
         "name": "なぽりたんぼーる!!",
-        "color": "#5ebcd4",
+        "color": "#3ecc6b",
         "avatar": "https://yt3.googleusercontent.com/cgKkkofz-kGsbqVy2T6imA2bHpnVt2dT5fWXi8lePnlHa6p_KyhQCJ63Al_qjzB09nAGRrcOpg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -885,10 +907,5 @@ window.PBERS_NEWS = [
         "value": 893
       }
     ]
-  },
-  {
-    "date": "2026-08-20",
-    "label": "8月20日(木)",
-    "items": []
   }
 ];
