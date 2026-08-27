@@ -655,13 +655,20 @@
     channels:  document.getElementById('view-channels')
   };
   var currentView = 'dashboard';
-  function switchTab(v) {
-    if (v === 'live') v = 'race';   // 旧ハッシュ #live / 旧リンクの後方互換
+  function pathOf(v) { return v === 'dashboard' ? '/' : '/' + v; }   // dashboard=/ , 他は /growth など
+  function viewOf() {
+    var seg = location.pathname.replace(/^\/+|\/+$/g, '');   // '/growth/' -> 'growth'
+    if (!seg && location.hash) seg = location.hash.replace(/^#/, '');   // 旧 #growth 形式の共有リンク互換
+    if (seg === 'live') seg = 'race';   // 旧名の後方互換
+    return VIEWS[seg] ? seg : 'dashboard';
+  }
+  function switchTab(v, noPush) {
+    if (v === 'live') v = 'race';   // 旧リンクの後方互換
     if (!VIEWS[v]) v = 'dashboard';
     currentView = v;
     document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x.dataset.view === v); });
     Object.keys(VIEWS).forEach(function (k) { if (VIEWS[k]) VIEWS[k].hidden = (k !== v); });
-    if (location.hash.slice(1) !== v) location.hash = v;   // reflect in the URL (#dashboard / #growth / #channels)
+    if (!noPush && location.pathname !== pathOf(v)) history.pushState({ view: v }, '', pathOf(v));   // 実URLに反映(戻る/共有/計測)
     window.scrollTo(0, 0);
     if (v === 'dashboard') { replay(); if (metric === 'predict') enterPredictUI(); }
     if (v === 'growth') { renderTrend(); playGrowth(); }
@@ -671,17 +678,22 @@
     if (v === 'videos') renderVideos();
     if (v === 'channels') moveTierInd();
   }
-  function hashView(h) { var v = (h || '').replace('#', ''); return v === 'live' ? 'race' : v; }   // 'live' は旧名の後方互換
   function setupTabs() {
     document.querySelectorAll('.tab').forEach(function (t) {
       t.addEventListener('click', function () { switchTab(t.dataset.view); });
     });
-    window.addEventListener('hashchange', function () {
-      var v = hashView(location.hash);
-      if (VIEWS[v] && v !== currentView) switchTab(v);
+    // ダッシュボード内の「詳細を見る →」等、#view へのリンクもタブ遷移に変換
+    document.querySelectorAll('a.more-link[href^="#"]').forEach(function (a) {
+      var mv = a.getAttribute('href').slice(1);
+      if (VIEWS[mv]) a.addEventListener('click', function (e) { e.preventDefault(); switchTab(mv); });
     });
-    var initial = hashView(location.hash);   // deep-link on load
-    if (VIEWS[initial] && initial !== 'dashboard') switchTab(initial);
+    window.addEventListener('popstate', function () {   // 戻る/進む
+      var v = viewOf();
+      if (v !== currentView) switchTab(v, true);
+    });
+    var initial = viewOf();   // 直アクセス/旧ハッシュ共有リンクからの復元
+    history.replaceState({ view: initial }, '', pathOf(initial));   // URLをクリーンなパスに正規化(#growth → /growth)
+    if (initial !== 'dashboard') switchTab(initial, true);
   }
 
   /* ---- news feed (animated: 3D milestone bars + crossing overtakes) ---- */
