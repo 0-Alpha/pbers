@@ -416,90 +416,6 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "マルルさん",
-        "color": "#a55ed4",
-        "avatar": "https://yt3.googleusercontent.com/QfACL0DhK6yHf9vMZ3kj03349mMW_meIXAfcpQFSbqQVa3loFzTuxEx4yBpDDo5i2b-xK_Hi4w=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 21800,
-        "history": [
-          {
-            "d": "2026-08-20",
-            "s": 21500
-          },
-          {
-            "d": "2026-08-21",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-22",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-23",
-            "s": 21700
-          },
-          {
-            "d": "2026-08-24",
-            "s": 21700
-          },
-          {
-            "d": "2026-08-25",
-            "s": 21800
-          },
-          {
-            "d": "2026-08-26",
-            "s": 21800
-          },
-          {
-            "d": "2026-08-27",
-            "s": 21800
-          }
-        ]
-      },
-      {
-        "name": "こゆまる_koyumaru908",
-        "color": "#cc3e87",
-        "avatar": "https://yt3.googleusercontent.com/7E1EME20oj2j5h8bBf7K618lZ7fAEN6hB6j_l8zaxWbyH-8VK49BLcM0uS38ZvsRtELNy8Hp5g=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 21600,
-        "history": [
-          {
-            "d": "2026-08-20",
-            "s": 21400
-          },
-          {
-            "d": "2026-08-21",
-            "s": 21500
-          },
-          {
-            "d": "2026-08-22",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-23",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-24",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-25",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-26",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-27",
-            "s": 21600
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "members": [
-      {
         "name": " ゼリョーヌィボール　活停中",
         "color": "#a8cc3e",
         "avatar": "https://yt3.googleusercontent.com/h212WQooy6cDooAN4i3o7utLAZzgAV5nNo9ofNaIrQDAETaqLFxtL8sXOGoJpuJXjVkQ4h_LUYs=s900-c-k-c0x00ffffff-no-rj",
@@ -1407,7 +1323,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-27",
-            "s": 9970
+            "s": 9980
           }
         ]
       },
@@ -1415,7 +1331,7 @@ window.PBERS_RACE = [
         "name": "ほすとぼーる",
         "color": "#5ed472",
         "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 9920,
+        "subs": 9950,
         "history": [
           {
             "d": "2026-08-21",
@@ -1443,7 +1359,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-27",
-            "s": 9880
+            "s": 9950
           }
         ]
       }
@@ -1687,7 +1603,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-27",
-            "s": 5570
+            "s": 5580
           }
         ]
       },
@@ -1695,7 +1611,7 @@ window.PBERS_RACE = [
         "name": "ikasumi帝国",
         "color": "#5e8dd4",
         "avatar": "https://yt3.googleusercontent.com/pXavDBoQWleJO0X1Cd7TrS5BP9DduNyqd0CtSqENd7k-YW0UwYkREQdZAE0mthqG4mUSPcMS8Q=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5580,
+        "subs": 5570,
         "history": [
           {
             "d": "2026-08-22",
@@ -1719,7 +1635,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-27",
-            "s": 5580
+            "s": 5570
           }
         ]
       }
@@ -1728,8 +1644,40 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "ウィン【肉声】【ポーランドボール】",
+        "name": "みすい",
         "color": "#cc613e",
+        "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 2960,
+        "history": [
+          {
+            "d": "2026-08-22",
+            "s": 2910
+          },
+          {
+            "d": "2026-08-23",
+            "s": 2920
+          },
+          {
+            "d": "2026-08-24",
+            "s": 2920
+          },
+          {
+            "d": "2026-08-25",
+            "s": 2920
+          },
+          {
+            "d": "2026-08-26",
+            "s": 2940
+          },
+          {
+            "d": "2026-08-27",
+            "s": 2960
+          }
+        ]
+      },
+      {
+        "name": "ウィン【肉声】【ポーランドボール】",
+        "color": "#c4d45e",
         "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2960,
         "history": [
@@ -1756,38 +1704,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-27",
             "s": 2960
-          }
-        ]
-      },
-      {
-        "name": "みすい",
-        "color": "#c4d45e",
-        "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 2950,
-        "history": [
-          {
-            "d": "2026-08-22",
-            "s": 2910
-          },
-          {
-            "d": "2026-08-23",
-            "s": 2920
-          },
-          {
-            "d": "2026-08-24",
-            "s": 2920
-          },
-          {
-            "d": "2026-08-25",
-            "s": 2920
-          },
-          {
-            "d": "2026-08-26",
-            "s": 2940
-          },
-          {
-            "d": "2026-08-27",
-            "s": 2940
           }
         ]
       }
