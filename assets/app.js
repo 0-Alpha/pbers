@@ -414,9 +414,8 @@
           '<span class="cstat"><i>総再生</i>' + (d.views != null ? jp(d.views) + '回' : '非公開') + '</span>' +
           '<span class="cstat"><i>投稿数</i>' + (d.videos != null ? fmt(d.videos) + '本' : '—') + '</span>' +
         '</span></span>' +
-      '</a>' +
-      '<a class="card-yt" href="' + d.url + '" target="_blank" rel="noopener" title="YouTubeで開く" aria-label="YouTubeで開く">' +
-        '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></a>';
+        '<span class="go" aria-hidden="true">›</span>' +
+      '</a>';
     return wrap;
   }
 
@@ -1187,16 +1186,6 @@
       '<span class="vid-nm" style="color:' + color + '">' + esc(name) + '</span>' +
       '<span class="vid-ago">' + timeAgo(v.published) + '</span></div></div></a>';
   }
-  function renderLatest() {   // ダッシュボードの上位12件
-    if (!window.PBERS_VIDEOS_API) return;
-    var sec = document.getElementById('latest'), host = document.getElementById('latest-list');
-    if (!sec || !host) return;
-    loadVideos().then(function (list) {
-      if (!list.length) return;
-      host.innerHTML = list.slice(0, 12).map(vidCard).join('');
-      sec.hidden = false;
-    });
-  }
   function renderVideos() {   // 最新動画タブ: 横動画/ショートを分けて全件
     var host = document.getElementById('videos-root'); if (!host) return;
     if (!window.PBERS_VIDEOS_API) { host.innerHTML = '<div class="fc-empty">最新動画は準備中です。</div>'; return; }
@@ -1215,12 +1204,10 @@
   /* ---- init ---- */
   build();
   renderNews();
-  renderLatest();
-  // 最新動画を定期的に自動更新(開きっぱなしでもライブ反映)
+  // 最新動画タブを定期的に自動更新(開きっぱなしでもライブ反映)
   if (window.PBERS_VIDEOS_API) {
     setInterval(function () {
       loadVideos(true).then(function () {
-        if (VIEWS.dashboard && !VIEWS.dashboard.hidden) renderLatest();
         if (VIEWS.videos && !VIEWS.videos.hidden) renderVideos();
       });
     }, 60000);

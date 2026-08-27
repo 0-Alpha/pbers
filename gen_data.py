@@ -270,7 +270,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250859">
+<link rel="stylesheet" href="../../assets/style.css?v=250860">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -286,7 +286,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250859"></script>
+<script src="../../assets/channel.js?v=250860"></script>
 </body>
 </html>
 '''
@@ -343,6 +343,50 @@ def ch_header_html(d, videos, rank, total, esc):
         '<div class="trend" id="ch-chart"></div>'
     )
 
+def _rc_chip(d, esc):
+    return ('<a class="rc-chip" href="../' + urllib.parse.quote(d["_slug"]) + '/">'
+            '<img class="rc-av" loading="lazy" src="' + esc(d["avatar"]) + '" alt="" '
+            'onerror="this.style.visibility=\'hidden\'">'
+            '<span class="rc-nm">' + esc(d["name"]) + '</span>'
+            '<span class="rc-sub">' + _jp(d.get("subs")) + '人</span></a>')
+
+def ch_footer_html(order, i, growth_map, esc):
+    """個別ページ下部: 前後ナビ + 関連チャンネル(近い規模 / 急上昇)。回遊導線。"""
+    total = len(order)
+    cur = order[i]
+    # 前後ナビ(登録者ランキング順)
+    nav = '<nav class="ch-nav" aria-label="前後のチャンネル">'
+    if i > 0:
+        p = order[i - 1]
+        nav += ('<a class="cn cn-prev" href="../' + urllib.parse.quote(p["_slug"]) + '/">'
+                '<span class="cn-dir">◀ ' + str(i) + '位</span>'
+                '<span class="cn-nm">' + esc(p["name"]) + '</span></a>')
+    else:
+        nav += '<span class="cn cn-off"></span>'
+    if i < total - 1:
+        nx = order[i + 1]
+        nav += ('<a class="cn cn-next" href="../' + urllib.parse.quote(nx["_slug"]) + '/">'
+                '<span class="cn-dir">' + str(i + 2) + '位 ▶</span>'
+                '<span class="cn-nm">' + esc(nx["name"]) + '</span></a>')
+    else:
+        nav += '<span class="cn cn-off"></span>'
+    nav += '</nav>'
+    # 近い規模(ランキング前後 ±4 から自分を除いて最大6)
+    lo = max(0, i - 4); hi = min(total, i + 5)
+    near = [order[j] for j in range(lo, hi) if j != i][:6]
+    # 急上昇(直近7日の登録者増、自分を除く)
+    rising = sorted((d for d in order if d["id"] != cur["id"]),
+                    key=lambda d: growth_map.get(d["id"], 0), reverse=True)
+    rising = [d for d in rising if growth_map.get(d["id"], 0) > 0][:6]
+    out = nav
+    if near:
+        out += ('<div class="rc-block"><div class="rc-h">近い規模のチャンネル</div>'
+                '<div class="rc-row">' + "".join(_rc_chip(d, esc) for d in near) + '</div></div>')
+    if rising:
+        out += ('<div class="rc-block"><div class="rc-h">急上昇中 <span class="rc-en">Rising</span></div>'
+                '<div class="rc-row">' + "".join(_rc_chip(d, esc) for d in rising) + '</div></div>')
+    return '<div class="ch-more">' + out + '</div>'
+
 def build_channel_pages(order, colors):
     import shutil, html as _html
     series, _ = load_history()
@@ -351,6 +395,14 @@ def build_channel_pages(order, colors):
         shutil.rmtree(cdir)
     os.makedirs(cdir, exist_ok=True)
     total = len(order)
+    # 関連チャンネル「急上昇」用: 直近7日の登録者増(cid -> delta)
+    _glo = (ASOF - datetime.timedelta(days=6)).isoformat()
+    _ghi = ASOF.isoformat()
+    growth_map = {}
+    for cid, m in series.items():
+        pts = [t for t in sorted(m) if _glo <= day_of(t) <= _ghi and m[t]["subs"] is not None]
+        if len(pts) >= 2:
+            growth_map[cid] = m[pts[-1]]["subs"] - m[pts[0]]["subs"]
     for i, d in enumerate(order):
         cid = d["id"]; slug = d["_slug"]
         hist = series.get(cid, {})
@@ -365,7 +417,8 @@ def build_channel_pages(order, colors):
               "videos": vcount,
               "url": d["url"], "avatar": d["avatar"], "color": colors[cid],
               "genre": genre_of(cid), "rank": i + 1, "total": total}
-        header = ch_header_html(d, vcount, i + 1, total, _html.escape)
+        header = (ch_header_html(d, vcount, i + 1, total, _html.escape)
+                  + ch_footer_html(order, i, growth_map, _html.escape))
         page = (CH_TPL
                 .replace("{{TITLE}}", _html.escape(d["name"]))
                 .replace("{{SLUG}}", urllib.parse.quote(slug))
