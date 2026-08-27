@@ -213,7 +213,7 @@
       col.addEventListener('mouseleave', unfocus);
       // タップ/クリックで即そのチャンネルのページへ(横ドラッグ中は .col-scroll.drag が抑止)
       col.style.cursor = 'pointer';
-      col.addEventListener('click', function () { location.href = 'c/' + encodeURIComponent(d.slug || chId(d)) + '/'; });
+      col.addEventListener('click', function () { location.href = '/c/' + encodeURIComponent(d.slug || chId(d)) + '/'; });
       cols.appendChild(col); colEls.push(col); colBars.push(col.querySelector('.col-bar'));
     });
 
@@ -343,7 +343,7 @@
       if (hit < 0) return false;
       if (donutSegs[hit].type === 'other') { switchTab('channels'); return true; }
       var d = DATA[donutSegs[hit].idx];
-      if (d) { location.href = 'c/' + encodeURIComponent(d.slug || chId(d)) + '/'; return true; }
+      if (d) { location.href = '/c/' + encodeURIComponent(d.slug || chId(d)) + '/'; return true; }
       return false;
     }
     stage.addEventListener('mousemove', function (e) { applyHit(hitAt(e.clientX, e.clientY)); });
@@ -405,7 +405,7 @@
     wrap.addEventListener('mouseenter', function () { wrap.style.borderColor = d.color; });
     wrap.addEventListener('mouseleave', function () { wrap.style.borderColor = 'var(--line)'; });
     wrap.innerHTML =
-      '<a class="card-main" href="c/' + encodeURIComponent(d.slug || chId(d)) + '/">' +
+      '<a class="card-main" href="/c/' + encodeURIComponent(d.slug || chId(d)) + '/">' +
         '<span class="rk num">' + rankNum + '</span>' +
         '<img class="av" loading="lazy" src="' + d.avatar + '" alt="" style="border-color:' + d.color + '" onerror="this.style.visibility=\'hidden\'">' +
         '<span class="meta"><span class="cn">' + esc(d.name) + '</span>' +

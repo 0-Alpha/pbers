@@ -174,7 +174,8 @@ section.block{padding:46px 0}
 .col:hover .col-name{color:var(--text)}
 
 /* ---------- directory ---------- */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:12px;min-height:360px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:12px;align-content:start}
+#grid{min-height:360px}   /* ダッシュボードの一覧だけ高さ確保(CLS対策)。tier帯の.gridは自然高さ */
 .card{display:flex;align-items:stretch;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 15px;
   transition:transform .16s ease,border-color .16s ease}
 .card:hover{transform:translateY(-2px)}
@@ -305,9 +306,9 @@ section.block{padding:46px 0}
 /* ---------- channel page: related channels & prev/next (回遊導線) ---------- */
 .ch-more{margin-top:44px}
 .ch-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.cn{display:flex;flex-direction:column;gap:3px;background:var(--panel);border:1px solid var(--line);
+.cnav{display:flex;flex-direction:column;gap:3px;background:var(--panel);border:1px solid var(--line);
   border-radius:12px;padding:12px 15px;min-width:0;text-decoration:none;color:inherit;transition:border-color .16s,transform .16s}
-.cn:hover{border-color:var(--accent,var(--red));transform:translateY(-2px)}
+.cnav:hover{border-color:var(--accent,var(--red));transform:translateY(-2px)}
 .cn-next{text-align:right}
 .cn-off{background:none;border:0}
 .cn-dir{font-family:var(--num);font-weight:800;font-size:11.5px;letter-spacing:.06em;color:var(--muted)}
@@ -578,7 +579,8 @@ footer .brand{font-size:16px}
   .col-bar{max-width:46px}
   .col-name{font-size:10px}
   .col-scroll{-webkit-overflow-scrolling:touch;min-height:280px}
-  .grid{grid-template-columns:1fr;min-height:520px}
+  .grid{grid-template-columns:1fr}
+  #grid{min-height:520px}
 }
 @media(max-width:400px){
   .total{font-size:46px;min-height:calc(46px * .92)}

@@ -359,18 +359,18 @@ def ch_footer_html(order, i, growth_map, esc):
     nav = '<nav class="ch-nav" aria-label="前後のチャンネル">'
     if i > 0:
         p = order[i - 1]
-        nav += ('<a class="cn cn-prev" href="../' + urllib.parse.quote(p["_slug"]) + '/">'
+        nav += ('<a class="cnav cn-prev" href="../' + urllib.parse.quote(p["_slug"]) + '/">'
                 '<span class="cn-dir">◀ ' + str(i) + '位</span>'
                 '<span class="cn-nm">' + esc(p["name"]) + '</span></a>')
     else:
-        nav += '<span class="cn cn-off"></span>'
+        nav += '<span class="cnav cn-off"></span>'
     if i < total - 1:
         nx = order[i + 1]
-        nav += ('<a class="cn cn-next" href="../' + urllib.parse.quote(nx["_slug"]) + '/">'
+        nav += ('<a class="cnav cn-next" href="../' + urllib.parse.quote(nx["_slug"]) + '/">'
                 '<span class="cn-dir">' + str(i + 2) + '位 ▶</span>'
                 '<span class="cn-nm">' + esc(nx["name"]) + '</span></a>')
     else:
-        nav += '<span class="cn cn-off"></span>'
+        nav += '<span class="cnav cn-off"></span>'
     nav += '</nav>'
     # 近い規模(ランキング前後 ±4 から自分を除いて最大6)
     lo = max(0, i - 4); hi = min(total, i + 5)
