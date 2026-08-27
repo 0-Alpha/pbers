@@ -670,13 +670,18 @@
     Object.keys(VIEWS).forEach(function (k) { if (VIEWS[k]) VIEWS[k].hidden = (k !== v); });
     if (!noPush && location.pathname !== pathOf(v)) history.pushState({ view: v }, '', pathOf(v));   // 実URLに反映(戻る/共有/計測)
     window.scrollTo(0, 0);
-    if (v === 'dashboard') { replay(); if (metric === 'predict') enterPredictUI(); }
-    if (v === 'growth') { renderTrend(); playGrowth(); }
-    if (v === 'news') renderNewsFeed();
-    if (v === 'race') renderRace();
-    if (v === 'game') renderGame();
-    if (v === 'videos') renderVideos();
-    if (v === 'channels') moveTierInd();
+    // タブの見た目切替は上で完了。重い描画(SVG生成等)は「描画後」に回してINP(反応速度)を確保。
+    // ダブル requestAnimationFrame = タブ強調＋ビュー切替が一度ペイントされた後に実行される。
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      if (currentView !== v) return;   // 連打時は最後に選ばれたタブだけ描画
+      if (v === 'dashboard') { replay(); if (metric === 'predict') enterPredictUI(); }
+      else if (v === 'growth') { renderTrend(); playGrowth(); }
+      else if (v === 'news') renderNewsFeed();
+      else if (v === 'race') renderRace();
+      else if (v === 'game') renderGame();
+      else if (v === 'videos') renderVideos();
+      else if (v === 'channels') moveTierInd();
+    }); });
   }
   function setupTabs() {
     document.querySelectorAll('.tab').forEach(function (t) {
