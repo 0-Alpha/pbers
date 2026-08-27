@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ポーランドボーラー登録者・再生数まとめ分析｜PBers</title>
+<meta name="description" content="ポーランドボーラー(ポーランドボール系YouTubeチャンネル)の登録者数・総再生数・投稿数をまとめて集計・分析。ランキング、円グラフ・棒グラフ、成長推移、マイルストーンニュースを毎日更新。">
+<meta name="keywords" content="ポーランドボーラー,ポーランドボール,Polandball,PBer,YouTube,登録者数,再生数,ランキング,チャンネル,まとめ,分析">
+<meta name="robots" content="noindex,follow">
+<meta name="application-name" content="PBers">
+<link rel="canonical" href="https://pbers.pages.dev/">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PBers">
+<meta property="og:title" content="ポーランドボーラー登録者・再生数まとめ分析｜PBers">
+<meta property="og:description" content="ポーランドボーラー(ポーランドボール系YouTubeチャンネル)の登録者数・総再生数・投稿数のまとめ・ランキング・成長分析。毎日更新。">
+<meta property="og:url" content="https://pbers.pages.dev/">
+<meta property="og:image" content="https://pbers.pages.dev/favicon.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ポーランドボーラー登録者・再生数まとめ分析｜PBers">
+<meta name="twitter:description" content="ポーランドボーラーの登録者数・再生数・投稿数のまとめ・ランキング・成長分析。毎日更新。">
+<meta name="twitter:image" content="https://pbers.pages.dev/favicon.png">
+<meta name="theme-color" content="#151515">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"PBers","alternateName":"ポーランドボーラー登録者・再生数まとめ分析","url":"https://pbers.pages.dev/","inLanguage":"ja","description":"ポーランドボーラー(ポーランドボール系YouTubeチャンネル)の登録者数・総再生数・投稿数のまとめ・ランキング・分析サイト。"}
+</script>
+<script>
+/* canonical / og:url を実際のドメインに自動追従（pages.dev でも独自ドメインでも正しくなる） */
+(function(){var u=location.origin+location.pathname;var c=document.querySelector('link[rel=canonical]');if(c)c.href=u;var o=document.querySelector('meta[property="og:url"]');if(o)o.setAttribute('content',u);})();
+</script>
+<!-- 最新動画API(WebSub Worker の /videos)。未設定なら最新動画セクションは非表示 -->
+<script>window.PBERS_VIDEOS_API = "https://pbers-cron.myray0629.workers.dev/videos";</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/assets/style.css?v=250861">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span><span>PB<b>ers</b></span></div>
+    <div class="settings-wrap">
+      <button class="gear" id="gear" aria-label="設定" aria-expanded="false">⚙</button>
+      <div class="settings" id="settings" hidden>
+        <div class="settings-title">表示するジャンル</div>
+        <div id="genre-list"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="tabs">
+  <div class="wrap">
+    <button class="tab on" data-view="dashboard">ダッシュボード</button>
+    <button class="tab" data-view="growth">成長</button>
+    <button class="tab" data-view="news">ニュース</button>
+    <button class="tab" data-view="race">レース</button>
+    <button class="tab" data-view="game">ゲーム</button>
+    <button class="tab" data-view="videos">最新動画</button>
+    <button class="tab" data-view="channels">チャンネル一覧</button>
+  </div>
+</div>
+
+<main id="view-dashboard">
+  <!-- HERO : total + giant donut -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">Polandball Analytics</span>
+
+      <div class="controls">
+        <div class="toggle" id="toggle" role="tablist">
+          <button class="tg on" data-metric="subs">登録者数</button>
+          <button class="tg" data-metric="views">総再生数</button>
+          <button class="tg" data-metric="videos">投稿数</button>
+          <button class="tg" data-metric="predict">リアル予測</button>
+          <span class="tg-ind" id="tg-ind"></span>
+        </div>
+        <button class="filter" id="filter-big" aria-pressed="false">
+          <span class="box"></span>登録者10万人以上を除外
+        </button>
+      </div>
+
+      <div class="total-cap" id="total-cap">合計登録者数 / Total Subscribers</div>
+      <div class="total num" id="total">—</div>
+      <div class="total-sub"><span class="num" id="total-man"></span> ・ <span class="num" id="ch-count"></span> channels</div>
+      <div class="predict-sub" id="predict-sub" hidden>推定 総再生数 <span class="num" id="predict-views">—</span> 回 <span class="predict-tag">● LIVE 推定・自動更新</span></div>
+
+      <div class="share" id="share-home" style="justify-content:center;margin-top:22px">
+        <button class="sh sh-x" data-share="x">𝕏 でシェア</button>
+        <button class="sh sh-copy" data-share="copy">リンクをコピー</button>
+      </div>
+
+      <div class="donut-stage" id="share">
+        <svg id="donut-svg" viewBox="0 0 200 200" aria-hidden="true"></svg>
+        <div class="donut-center" id="dc">
+          <div class="dc-name" id="dc-name"></div>
+          <div class="dc-num num" id="dc-num">—</div>
+          <div class="dc-cap" id="dc-cap">Subscribers</div>
+          <div class="dc-pct num" id="dc-pct"></div>
+        </div>
+      </div>
+
+      <div class="legend" id="legend"></div>
+    </div>
+  </section>
+
+  <!-- RANKING bar chart -->
+  <section class="block" id="ranking">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span id="rank-title">登録者ランキング</span> <span class="en">Ranking</span></h2>
+        <span class="note">更新 <span id="updated"></span></span>
+      </div>
+      <div class="col-hint">↔ ドラッグ / ホイールで横スクロール</div>
+      <div class="col-scroll" id="col-scroll"><div class="col-chart" id="cols"></div></div>
+    </div>
+  </section>
+
+  <!-- DIRECTORY -->
+  <section class="block" id="directory">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>チャンネル一覧 <span class="en">Directory</span></h2>
+        <span class="note">クリックで詳細ページへ</span>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- NEWS (summary) -->
+  <section class="block" id="dash-news">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>ニュース <span class="en">News</span></h2>
+        <a class="note more-link" href="#news">詳細を見る →</a>
+      </div>
+      <div class="news" id="news-list"></div>
+    </div>
+  </section>
+
+  <!-- UPDATE HISTORY -->
+  <section class="block" id="changelog">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>アップデート履歴 <span class="en">Changelog</span></h2>
+      </div>
+      <div class="log">
+        <div class="log-item">
+          <div class="log-date">2026-08-25</div>
+          <ul>
+            <li>「最新動画」を追加。各チャンネルの新着をリアルタイム(WebSub)で反映。横動画/ショートに分けて表示</li>
+            <li>スマホでも円グラフをタップして各チャンネルの詳細を表示できるように</li>
+          </ul>
+        </div>
+        <div class="log-item">
+          <div class="log-date">2026-08-23</div>
+          <ul>
+            <li>「ゲーム」タブを追加。7日予想(誰が一番のびる?追い越す?→7日後に自動採点)＋その場でわかるクイズ(界隈の数字を当てる)。ログイン不要・シェア付き</li>
+            <li>読み込み時のレイアウトのガタつき(CLS)を軽減。グラフは6時間ごと→1日1点表示に集約</li>
+            <li>ニュースの演出を追加(突破は土・月に矢印演出、投稿数の追い越しは16:9の箱が積み上がる演出)</li>
+            <li>「レース」に上位3チャンネルの首位争い(TOP3)を特別枠で追加</li>
+            <li>スマホでタブが縦に折り返さないよう横スクロール化</li>
+            <li>円グラフに「リアル予測」を追加(過去7日の推移=直近ほど加重・総再生数の減少は除外 から現在値を推定し自動カウントアップ)</li>
+            <li>データ取得の時刻を微調整(スケジュール混雑を避けるため分をずらした)</li>
+          </ul>
+        </div>
+        <div class="log-item">
+          <div class="log-date">2026-08-22</div>
+          <ul>
+            <li>ダッシュボードの円グラフに「投稿数」モードを追加。切替時に稀に円グラフが消える不具合を修正</li>
+            <li>データ取得を6時間ごと(0/6/12/18時)に変更。推移グラフをより細かく表示</li>
+            <li>「レース」タブを追加(登録者が接戦=差1%以内の組の推移を折れ線で表示)</li>
+            <li>アニメーション付き「ニュース」タブを追加(3D突破演出・順位交差演出)</li>
+            <li>チャンネル一覧を登録者数/総再生数/投稿数の帯別で切替可能に</li>
+            <li>チャンネル個別ページを追加(推移グラフ・検索しやすいURL)</li>
+            <li>成長タブを追加(登録者・再生数・投稿数の増減ランキング＋界隈全体の推移グラフ)</li>
+            <li>設定(⚙)からジャンルの表示/非表示を切り替え可能に</li>
+            <li>X シェア / リンクコピー ボタンを設置</li>
+            <li>集計チャンネルを大幅追加</li>
+          </ul>
+        </div>
+        <div class="log-item">
+          <div class="log-date">2026-08-21</div>
+          <ul>
+            <li>総再生数モードを追加、投稿数も表示</li>
+            <li>ニュース(マイルストーン突破・追い越し)を追加</li>
+            <li>毎日 0 時の自動更新を開始</li>
+            <li>「登録者10万人以上を除外」フィルタ、登録者帯別の一覧を追加</li>
+          </ul>
+        </div>
+        <div class="log-item">
+          <div class="log-date">2026-08-20</div>
+          <ul>
+            <li>サイト公開:登録者数ランキング(円グラフ・棒グラフ)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- GROWTH view -->
+<main id="view-growth" hidden>
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>成長ランキング <span class="en">Growth</span></h2>
+        <span class="note" id="growth-span"></span>
+      </div>
+      <div class="controls" style="justify-content:flex-start">
+        <div class="toggle" id="growth-toggle">
+          <button class="tg on" data-gm="subs">登録者</button>
+          <button class="tg" data-gm="views">総再生数</button>
+          <button class="tg" data-gm="videos">投稿数</button>
+          <span class="tg-ind" id="gtg-ind"></span>
+        </div>
+        <div class="zoom" id="growth-zoom">
+          <button type="button" class="zbtn" id="gz-out" aria-label="縮小">−</button>
+          <span class="zval num" id="gz-val">100%</span>
+          <button type="button" class="zbtn" id="gz-in" aria-label="拡大">＋</button>
+        </div>
+      </div>
+      <div class="col-hint" id="grow-hint">↔ ドラッグ / ホイールで横スクロール</div>
+      <div class="col-scroll" id="grow-scroll"><div class="grow-chart" id="grow-list"></div></div>
+
+      <div class="sec-head" style="margin-top:48px">
+        <h2>界隈全体の推移 <span class="en">Total Trend</span></h2>
+        <span class="note">6時間ごとの合計(上のトグルと連動)</span>
+      </div>
+      <div class="trend" id="trend"></div>
+    </div>
+  </section>
+</main>
+
+<!-- NEWS feed view (animated) -->
+<main id="view-news" hidden>
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>ニュース <span class="en">News Feed</span></h2>
+        <span class="note">下にスクロールで再生 / 直近7日</span>
+      </div>
+      <div id="news-feed"></div>
+    </div>
+  </section>
+</main>
+
+<!-- RACE (close races) view -->
+<main id="view-race" hidden>
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>レース <span class="en">Close Races</span></h2>
+        <span class="note">登録者が接戦(差1%以内)の組の推移</span>
+      </div>
+      <div id="race-list"></div>
+    </div>
+  </section>
+</main>
+
+<!-- LATEST VIDEOS (full) view -->
+<main id="view-videos" hidden>
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>最新動画 <span class="en">Latest Videos</span></h2>
+        <span class="note">各チャンネルの新着をリアルタイム反映</span>
+      </div>
+      <div id="videos-root"></div>
+    </div>
+  </section>
+</main>
+
+<!-- GAME (prediction + quiz) view -->
+<main id="view-game" hidden>
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>ゲーム <span class="en">Game</span></h2>
+        <span class="note">予想＆クイズで界隈にくわしくなろう</span>
+      </div>
+      <div id="game-root"></div>
+    </div>
+  </section>
+</main>
+
+<!-- CHANNELS (by-tier) view -->
+<main id="view-channels" hidden>
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>チャンネル一覧 <span class="en">By Tier</span></h2>
+        <span class="note">数の帯別</span>
+      </div>
+      <div class="controls" style="justify-content:flex-start">
+        <div class="toggle" id="tier-toggle">
+          <button class="tg on" data-tm="subs">登録者</button>
+          <button class="tg" data-tm="views">総再生数</button>
+          <button class="tg" data-tm="videos">投稿数</button>
+          <span class="tg-ind" id="ttg-ind"></span>
+        </div>
+      </div>
+      <div id="tiers"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span><span>PB<b>ers</b></span></div>
+    <div>データ出典: YouTube 各チャンネル公開情報 / 更新 <span id="updated-foot"></span></div>
+  </div>
+</footer>
+
+<script src="/assets/data.js?v=250861"></script>
+<script src="/assets/news.js?v=250861"></script>
+<script src="/assets/growth.js?v=250861"></script>
+<script src="/assets/race.js?v=250861"></script>
+<script src="/assets/app.js?v=250861"></script>
+</body>
+</html>

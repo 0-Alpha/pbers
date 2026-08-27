@@ -655,7 +655,7 @@
     channels:  document.getElementById('view-channels')
   };
   var currentView = 'dashboard';
-  function pathOf(v) { return v === 'dashboard' ? '/' : '/' + v; }   // dashboard=/ , 他は /growth など
+  function pathOf(v) { return v === 'dashboard' ? '/' : '/' + v + '/'; }   // dashboard=/ , 他は /growth/ (実体ディレクトリに一致)
   function viewOf() {
     var seg = location.pathname.replace(/^\/+|\/+$/g, '');   // '/growth/' -> 'growth'
     if (!seg && location.hash) seg = location.hash.replace(/^#/, '');   // 旧 #growth 形式の共有リンク互換

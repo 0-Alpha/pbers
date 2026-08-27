@@ -191,6 +191,7 @@ def main():
     build_growth(colors)
     build_race(colors)
     build_channel_pages(order, colors)
+    build_view_pages()
     build_sitemap(order)
 
     # WebSub(新着動画通知)用: 監視対象チャンネルIDの一覧
@@ -432,6 +433,26 @@ def build_channel_pages(order, colors):
         with open(os.path.join(cdir, slug, "index.html"), "w", encoding="utf-8") as f:
             f.write(page)
     print("wrote %d channel pages" % total)
+
+VIEW_ROUTES = ("growth", "news", "race", "game", "videos", "channels")
+
+def build_view_pages():
+    """SPAタブの実URL(/growth/ 等)への直アクセス・リロード用に index.html の複製を置く。
+       pushStateのクリーンURLをCloudflare Pagesで成立させる。中身は同一シェルなので
+       重複コンテンツ回避のため noindex にする(検索対象はトップ / のまま)。"""
+    src = os.path.join(BASE, "index.html")
+    if not os.path.exists(src):
+        return
+    with open(src, encoding="utf-8") as f:
+        html_src = f.read()
+    html_src = html_src.replace('name="robots" content="index,follow"',
+                                'name="robots" content="noindex,follow"')
+    for v in VIEW_ROUTES:
+        d = os.path.join(BASE, v)
+        os.makedirs(d, exist_ok=True)
+        with open(os.path.join(d, "index.html"), "w", encoding="utf-8") as f:
+            f.write(html_src)
+    print("wrote view pages (%s)" % "/".join(VIEW_ROUTES))
 
 def build_sitemap(order):
     urls = [SITE + "/"] + [SITE + "/c/" + urllib.parse.quote(d["_slug"]) + "/" for d in order]
