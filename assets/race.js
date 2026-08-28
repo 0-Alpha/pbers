@@ -51,7 +51,7 @@ window.PBERS_RACE = [
         "name": "Æž!みかんぼーる🍊",
         "color": "#eba864",
         "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 317000,
+        "subs": 318000,
         "history": [
           {
             "d": "2026-08-20",
@@ -87,7 +87,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-28",
-            "s": 317000
+            "s": 318000
           }
         ]
       },
@@ -275,7 +275,7 @@ window.PBERS_RACE = [
         "name": "日帝ボール",
         "color": "#ccd45e",
         "avatar": "https://yt3.googleusercontent.com/xXeQaK6fg2pfljWrgaMI_wG8G9HGyAgb8G_W1BU67gH5NiOQRd7-4wK7PdQlOFRUPCQKvjVHBuQ=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 24100,
+        "subs": 24200,
         "history": [
           {
             "d": "2026-08-20",
@@ -311,7 +311,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-28",
-            "s": 24100
+            "s": 24200
           }
         ]
       },
@@ -803,7 +803,7 @@ window.PBERS_RACE = [
         "name": "ぽぱい",
         "color": "#5ed499",
         "avatar": "https://yt3.googleusercontent.com/MksIU96BJUaPxSVQoRJDlxvXjPIe0cDmD70CaujSB0nstsAFYIzoDylPLYe5-MzPUm4pMGM9Mg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 13500,
+        "subs": 13600,
         "history": [
           {
             "d": "2026-08-21",
@@ -835,7 +835,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-28",
-            "s": 13500
+            "s": 13600
           }
         ]
       },
@@ -960,6 +960,42 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-28",
             "s": 13000
+          }
+        ]
+      },
+      {
+        "name": "まるッとわかる地理の裏話",
+        "color": "#d4625e",
+        "avatar": "https://yt3.googleusercontent.com/OKTvYCqWkuYG-s3iq1dydM6YDas44QIY_hQxl1bPLPQbGzbLUe-ljaKZ4AoJu1kb1r2PI0GPXnI=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 12900,
+        "history": [
+          {
+            "d": "2026-08-22",
+            "s": 12300
+          },
+          {
+            "d": "2026-08-23",
+            "s": 12400
+          },
+          {
+            "d": "2026-08-24",
+            "s": 12600
+          },
+          {
+            "d": "2026-08-25",
+            "s": 12700
+          },
+          {
+            "d": "2026-08-26",
+            "s": 12800
+          },
+          {
+            "d": "2026-08-27",
+            "s": 12800
+          },
+          {
+            "d": "2026-08-28",
+            "s": 12900
           }
         ]
       }
@@ -1176,8 +1212,48 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "ユラミア連邦共和国",
+        "name": "レメラボール / 🌈🌙【えるめす】",
         "color": "#d45ead",
+        "avatar": "https://yt3.googleusercontent.com/PgMT_pQ_UrNxFF8c66TxiZAc14EW2SJikKgha9sBh6PlKPTkW6Evdg8exa07dWNyAVQYenXUNg=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 12000,
+        "history": [
+          {
+            "d": "2026-08-21",
+            "s": 11000
+          },
+          {
+            "d": "2026-08-22",
+            "s": 11000
+          },
+          {
+            "d": "2026-08-23",
+            "s": 11100
+          },
+          {
+            "d": "2026-08-24",
+            "s": 11300
+          },
+          {
+            "d": "2026-08-25",
+            "s": 11500
+          },
+          {
+            "d": "2026-08-26",
+            "s": 11800
+          },
+          {
+            "d": "2026-08-27",
+            "s": 11900
+          },
+          {
+            "d": "2026-08-28",
+            "s": 12000
+          }
+        ]
+      },
+      {
+        "name": "ユラミア連邦共和国",
+        "color": "#cc5c3e",
         "avatar": "https://yt3.googleusercontent.com/zb3DJtqgEv4eDPHRmrgrZ9ZrOKPoVfym9o0Q0cO0HzerM2-br1DD7-qR8YWYGmTcklK81tqq4g=s900-c-k-c0x00ffffff-no-rj",
         "subs": 11900,
         "history": [
@@ -1204,46 +1280,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-26",
             "s": 11900
-          },
-          {
-            "d": "2026-08-27",
-            "s": 11900
-          },
-          {
-            "d": "2026-08-28",
-            "s": 11900
-          }
-        ]
-      },
-      {
-        "name": "レメラボール / 🌈🌙【えるめす】",
-        "color": "#cc5c3e",
-        "avatar": "https://yt3.googleusercontent.com/PgMT_pQ_UrNxFF8c66TxiZAc14EW2SJikKgha9sBh6PlKPTkW6Evdg8exa07dWNyAVQYenXUNg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 11900,
-        "history": [
-          {
-            "d": "2026-08-21",
-            "s": 11000
-          },
-          {
-            "d": "2026-08-22",
-            "s": 11000
-          },
-          {
-            "d": "2026-08-23",
-            "s": 11100
-          },
-          {
-            "d": "2026-08-24",
-            "s": 11300
-          },
-          {
-            "d": "2026-08-25",
-            "s": 11500
-          },
-          {
-            "d": "2026-08-26",
-            "s": 11800
           },
           {
             "d": "2026-08-27",
@@ -1591,7 +1627,7 @@ window.PBERS_RACE = [
         "name": "Rimoru",
         "color": "#cc3e4e",
         "avatar": "https://yt3.googleusercontent.com/givHPiZPGg1pnkUxhIgkbTidsnI7WUPlFrl1EeL8XhxGqor9DKhdndAEfEFFdDj3Ne9GtdM-wg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 7110,
+        "subs": 7100,
         "history": [
           {
             "d": "2026-08-22",
@@ -1619,7 +1655,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-28",
-            "s": 7110
+            "s": 7100
           }
         ]
       },
@@ -1815,7 +1851,7 @@ window.PBERS_RACE = [
         "name": "ウィン【肉声】【ポーランドボール】",
         "color": "#c4d45e",
         "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 2960,
+        "subs": 2970,
         "history": [
           {
             "d": "2026-08-22",
@@ -1843,7 +1879,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-28",
-            "s": 2960
+            "s": 2970
           }
         ]
       }
