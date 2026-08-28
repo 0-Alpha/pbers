@@ -495,7 +495,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-28",
-            "s": 20600
+            "s": 20700
           }
         ]
       },
@@ -1539,7 +1539,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-28",
-            "s": 9630
+            "s": 9640
           }
         ]
       },
@@ -1779,7 +1779,7 @@ window.PBERS_RACE = [
         "name": "みすい",
         "color": "#cc613e",
         "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 2970,
+        "subs": 2980,
         "history": [
           {
             "d": "2026-08-22",
@@ -1807,7 +1807,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-28",
-            "s": 2970
+            "s": 2980
           }
         ]
       },
