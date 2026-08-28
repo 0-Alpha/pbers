@@ -459,7 +459,7 @@ window.PBERS_RACE = [
         "name": " ゼリョーヌィボール　活停中",
         "color": "#a8cc3e",
         "avatar": "https://yt3.googleusercontent.com/h212WQooy6cDooAN4i3o7utLAZzgAV5nNo9ofNaIrQDAETaqLFxtL8sXOGoJpuJXjVkQ4h_LUYs=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 20600,
+        "subs": 20700,
         "history": [
           {
             "d": "2026-08-20",
@@ -1504,8 +1504,48 @@ window.PBERS_RACE = [
         ]
       },
       {
-        "name": "ライヒスボール【Reichsball】",
+        "name": "空白ボール",
         "color": "#5e66d4",
+        "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 9640,
+        "history": [
+          {
+            "d": "2026-08-21",
+            "s": 9580
+          },
+          {
+            "d": "2026-08-22",
+            "s": 9590
+          },
+          {
+            "d": "2026-08-23",
+            "s": 9600
+          },
+          {
+            "d": "2026-08-24",
+            "s": 9610
+          },
+          {
+            "d": "2026-08-25",
+            "s": 9620
+          },
+          {
+            "d": "2026-08-26",
+            "s": 9630
+          },
+          {
+            "d": "2026-08-27",
+            "s": 9640
+          },
+          {
+            "d": "2026-08-28",
+            "s": 9630
+          }
+        ]
+      },
+      {
+        "name": "ライヒスボール【Reichsball】",
+        "color": "#b23ecc",
         "avatar": "https://yt3.googleusercontent.com/ZT_Uape_wuD-XJYz4KzEJfX3UcxisMo3_bXo7wgbU0wtBltqG4S-KMHZBuFeP50g-8WUo1rE=s900-c-k-c0x00ffffff-no-rj",
         "subs": 9640,
         "history": [
@@ -1540,46 +1580,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-28",
             "s": 9640
-          }
-        ]
-      },
-      {
-        "name": "空白ボール",
-        "color": "#b23ecc",
-        "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 9630,
-        "history": [
-          {
-            "d": "2026-08-21",
-            "s": 9580
-          },
-          {
-            "d": "2026-08-22",
-            "s": 9590
-          },
-          {
-            "d": "2026-08-23",
-            "s": 9600
-          },
-          {
-            "d": "2026-08-24",
-            "s": 9610
-          },
-          {
-            "d": "2026-08-25",
-            "s": 9620
-          },
-          {
-            "d": "2026-08-26",
-            "s": 9630
-          },
-          {
-            "d": "2026-08-27",
-            "s": 9640
-          },
-          {
-            "d": "2026-08-28",
-            "s": 9630
           }
         ]
       }
