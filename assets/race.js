@@ -1103,7 +1103,7 @@ window.PBERS_RACE = [
         "name": "ぽぱい",
         "color": "#d4b55e",
         "avatar": "https://yt3.googleusercontent.com/MksIU96BJUaPxSVQoRJDlxvXjPIe0cDmD70CaujSB0nstsAFYIzoDylPLYe5-MzPUm4pMGM9Mg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 13700,
+        "subs": 13800,
         "history": [
           {
             "d": "2026-08-21",
@@ -1144,54 +1144,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-30",
             "s": 13700
-          }
-        ]
-      },
-      {
-        "name": "マロー",
-        "color": "#74cc3e",
-        "avatar": "https://yt3.googleusercontent.com/K-dVUHe9Ae8W_t9cegcDqeqfSNbX-pDfSaWEg9ObKADfEOrgf7rktFymc0zl-_qWHrTw1BlQGg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 13600,
-        "history": [
-          {
-            "d": "2026-08-21",
-            "s": 13500
-          },
-          {
-            "d": "2026-08-22",
-            "s": 13500
-          },
-          {
-            "d": "2026-08-23",
-            "s": 13500
-          },
-          {
-            "d": "2026-08-24",
-            "s": 13500
-          },
-          {
-            "d": "2026-08-25",
-            "s": 13500
-          },
-          {
-            "d": "2026-08-26",
-            "s": 13500
-          },
-          {
-            "d": "2026-08-27",
-            "s": 13500
-          },
-          {
-            "d": "2026-08-28",
-            "s": 13600
-          },
-          {
-            "d": "2026-08-29",
-            "s": 13600
-          },
-          {
-            "d": "2026-08-30",
-            "s": 13600
           }
         ]
       }
@@ -1983,7 +1935,7 @@ window.PBERS_RACE = [
         "name": "空白ボール",
         "color": "#5ed472",
         "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 9660,
+        "subs": 9670,
         "history": [
           {
             "d": "2026-08-21",
@@ -2171,7 +2123,7 @@ window.PBERS_RACE = [
         "name": "ゆうボール",
         "color": "#cc3e4e",
         "avatar": "https://yt3.googleusercontent.com/dDe-vpE0ub720mNouK763bXlq37V8dRRy6yQbJBUGfPobeaj40ktPUSvtcbo66HAkI9dk46oAA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 7050,
+        "subs": 7060,
         "history": [
           {
             "d": "2026-08-22",
