@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-08-30",
+    "label": "8月30日(日)",
+    "items": []
+  },
+  {
     "date": "2026-08-29",
     "label": "8月29日(土)",
     "items": [
@@ -229,11 +234,11 @@ window.PBERS_NEWS = [
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
-          "name": "ikasumi帝国",
-          "color": "#3ecca3",
-          "avatar": "https://yt3.googleusercontent.com/pXavDBoQWleJO0X1Cd7TrS5BP9DduNyqd0CtSqENd7k-YW0UwYkREQdZAE0mthqG4mUSPcMS8Q=s900-c-k-c0x00ffffff-no-rj"
+          "name": "アフガンボール",
+          "color": "#72d45e",
+          "avatar": "https://yt3.googleusercontent.com/aOj-FnTWhrUAPjz49cHMeTuREL5cpUpsUWPVs1AuaeeMqVIrUHxeIOlHdCi0h8HukDZHL_ZQ0HA=s900-c-k-c0x00ffffff-no-rj"
         },
-        "label": "登録者数で ikasumi帝国 を追い越し",
+        "label": "登録者数で アフガンボール を追い越し",
         "value": 5650
       },
       {
@@ -245,11 +250,11 @@ window.PBERS_NEWS = [
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
-          "name": "アフガンボール",
-          "color": "#72d45e",
-          "avatar": "https://yt3.googleusercontent.com/aOj-FnTWhrUAPjz49cHMeTuREL5cpUpsUWPVs1AuaeeMqVIrUHxeIOlHdCi0h8HukDZHL_ZQ0HA=s900-c-k-c0x00ffffff-no-rj"
+          "name": "ikasumi帝国",
+          "color": "#3ecca3",
+          "avatar": "https://yt3.googleusercontent.com/pXavDBoQWleJO0X1Cd7TrS5BP9DduNyqd0CtSqENd7k-YW0UwYkREQdZAE0mthqG4mUSPcMS8Q=s900-c-k-c0x00ffffff-no-rj"
         },
-        "label": "登録者数で アフガンボール を追い越し",
+        "label": "登録者数で ikasumi帝国 を追い越し",
         "value": 5650
       },
       {
@@ -545,11 +550,11 @@ window.PBERS_NEWS = [
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
-          "name": "マスカットボール",
-          "color": "#a1d45e",
-          "avatar": "https://yt3.googleusercontent.com/0LFy0gzQnjYCPHXvDJpUTOtKyZoSi6UGXTRQs1_FWE2Or_MqTKViIHNrO7cK33ob-lq5snr_xCE=s900-c-k-c0x00ffffff-no-rj"
+          "name": "空白ボール",
+          "color": "#5ed472",
+          "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj"
         },
-        "label": "総再生数で マスカットボール を追い越し",
+        "label": "総再生数で 空白ボール を追い越し",
         "value": 4616733
       },
       {
@@ -561,11 +566,11 @@ window.PBERS_NEWS = [
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
-          "name": "空白ボール",
-          "color": "#5ed472",
-          "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj"
+          "name": "マスカットボール",
+          "color": "#a1d45e",
+          "avatar": "https://yt3.googleusercontent.com/0LFy0gzQnjYCPHXvDJpUTOtKyZoSi6UGXTRQs1_FWE2Or_MqTKViIHNrO7cK33ob-lq5snr_xCE=s900-c-k-c0x00ffffff-no-rj"
         },
-        "label": "総再生数で 空白ボール を追い越し",
+        "label": "総再生数で マスカットボール を追い越し",
         "value": 4616733
       },
       {
@@ -980,130 +985,6 @@ window.PBERS_NEWS = [
         },
         "label": "投稿数で ねとえん を追い越し",
         "value": 103
-      }
-    ]
-  },
-  {
-    "date": "2026-08-23",
-    "label": "8月23日(日)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "Neille / ナユ",
-        "color": "#e35d52",
-        "avatar": "https://yt3.googleusercontent.com/veRe0sqhiRVBvhNlR2GFXHTdGKFmeUDL-vDFPIeZwt_mohOji6bk-0KKfRz5v5MbjgYcuJ_0FRo=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 7000万回 突破",
-        "value": 70000000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ソビエト・カチューシャボール☭\n\n",
-        "color": "#5ebcd4",
-        "avatar": "https://yt3.googleusercontent.com/6JoYS-SVAtxks_NujxGVoLu7GhB-S9QqtUKOVraRMoSH61_yiCLncK4jPGsPaUhlMjxTTlpfGw=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 500万回 突破",
-        "value": 5000000
-      },
-      {
-        "type": "overtake",
-        "kind": "subs",
-        "name": "にこちPB",
-        "color": "#d4665e",
-        "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "⤴️",
-        "genre": "ポーランドボーラー",
-        "opp": {
-          "name": "レイアルファ",
-          "color": "#db4f57",
-          "avatar": "https://yt3.googleusercontent.com/TVNAN6bSZZHGvc7hYhLs6Gnn95EKhcWj5GwqbWN00HAFA8SmXjUyKXQK6D4Ljl_S9A_8eaHn-Lk=s900-c-k-c0x00ffffff-no-rj"
-        },
-        "label": "登録者数で レイアルファ を追い越し",
-        "value": 3820
-      },
-      {
-        "type": "overtake",
-        "kind": "views",
-        "name": "エッバの歴史解説ちゃんねる",
-        "color": "#7a62d2",
-        "avatar": "https://yt3.googleusercontent.com/FVCCwHNXn1Og-UsdgaUK1OpuIA0hHBZE6c73zsjLoJQC8znpEAXKEGjdYAF8-Y5yeTWkGH1y=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "⤴️",
-        "genre": "ポーランドボーラー",
-        "opp": {
-          "name": "マイクラ共和国ボール(tama2224)",
-          "color": "#5e95d4",
-          "avatar": "https://yt3.googleusercontent.com/psef_ue--gNaBgLl-zOqXHns6BWfEF54h8FFXb5TdVgFEFi5iBsoBWkRJTK0ZXoOunYefwoPpA=s900-c-k-c0x00ffffff-no-rj"
-        },
-        "label": "総再生数で マイクラ共和国ボール(tama2224) を追い越し",
-        "value": 10242990
-      },
-      {
-        "type": "overtake",
-        "kind": "views",
-        "name": "ばかわたし",
-        "color": "#9dd45e",
-        "avatar": "https://yt3.googleusercontent.com/8Q3AkB3SLb49XqB1aR0hp3jyCVu5hS_YrBkjoYn-0FkHttGhP6gadqK2oaOqadgMcjYFYhR1=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "⤴️",
-        "genre": "PBerer",
-        "opp": {
-          "name": "マスカットボール",
-          "color": "#a1d45e",
-          "avatar": "https://yt3.googleusercontent.com/0LFy0gzQnjYCPHXvDJpUTOtKyZoSi6UGXTRQs1_FWE2Or_MqTKViIHNrO7cK33ob-lq5snr_xCE=s900-c-k-c0x00ffffff-no-rj"
-        },
-        "label": "総再生数で マスカットボール を追い越し",
-        "value": 4585021
-      },
-      {
-        "type": "overtake",
-        "kind": "views",
-        "name": "ぽぱい",
-        "color": "#d4b55e",
-        "avatar": "https://yt3.googleusercontent.com/MksIU96BJUaPxSVQoRJDlxvXjPIe0cDmD70CaujSB0nstsAFYIzoDylPLYe5-MzPUm4pMGM9Mg=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "⤴️",
-        "genre": "ポーランドボーラー",
-        "opp": {
-          "name": "ライヒスボール【Reichsball】",
-          "color": "#3ec4cc",
-          "avatar": "https://yt3.googleusercontent.com/ZT_Uape_wuD-XJYz4KzEJfX3UcxisMo3_bXo7wgbU0wtBltqG4S-KMHZBuFeP50g-8WUo1rE=s900-c-k-c0x00ffffff-no-rj"
-        },
-        "label": "総再生数で ライヒスボール【Reichsball】 を追い越し",
-        "value": 4443199
-      },
-      {
-        "type": "overtake",
-        "kind": "views",
-        "name": "MIKUボール",
-        "color": "#493ecc",
-        "avatar": "https://yt3.googleusercontent.com/6w7QBnmhG0QOmG33OrGsxQR2cM7u-_izyc_BizYXJzvu-1MbSW2UC3X8T15rWcyY9TTgmRuYZQ=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "⤴️",
-        "genre": "ポーランドボーラー",
-        "opp": {
-          "name": "渋谷区のペンギン",
-          "color": "#3ecc6b",
-          "avatar": "https://yt3.googleusercontent.com/UzSRTPeQjShkDU9fW2m2meYmivDymiYdGJUdfMhxQGeFCqEaGeVO3Bkvo0X-AgvDhLC_VqWRV3M=s900-c-k-c0x00ffffff-no-rj"
-        },
-        "label": "総再生数で 渋谷区のペンギン を追い越し",
-        "value": 3396184
-      },
-      {
-        "type": "overtake",
-        "kind": "views",
-        "name": "レイアルファ",
-        "color": "#db4f57",
-        "avatar": "https://yt3.googleusercontent.com/TVNAN6bSZZHGvc7hYhLs6Gnn95EKhcWj5GwqbWN00HAFA8SmXjUyKXQK6D4Ljl_S9A_8eaHn-Lk=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "⤴️",
-        "genre": "ポーランドボーラー",
-        "opp": {
-          "name": "アスラボール　",
-          "color": "#5eb9d4",
-          "avatar": "https://yt3.googleusercontent.com/ZbdOHnPvnMP9Us0RTVMXDIG34oJMxW6dUgOdgEU93aHiDFn8bcE3AG5TIX37FVBkEzDhimSL2w=s900-c-k-c0x00ffffff-no-rj"
-        },
-        "label": "総再生数で アスラボール　 を追い越し",
-        "value": 3110507
       }
     ]
   }

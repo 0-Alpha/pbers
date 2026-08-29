@@ -53,9 +53,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "こうちゃ(ポーランドボール)",
-    "subs": 56000,
+    "subs": 56100,
     "views": 29606981,
-    "subsLabel": "チャンネル登録者数 5.6万人",
+    "subsLabel": "チャンネル登録者数 5.61万人",
     "viewsLabel": "29,606,981回視聴",
     "videos": 122,
     "url": "https://www.youtube.com/channel/UCScWUYsYXgrDN8AVIRJLtLw",
@@ -470,9 +470,9 @@ window.PBERS_DATA = [
   {
     "name": "マスカットボール",
     "subs": 16200,
-    "views": 4583098,
+    "views": 4584035,
     "subsLabel": "チャンネル登録者数 1.62万人",
-    "viewsLabel": "4,583,098回視聴",
+    "viewsLabel": "4,584,035回視聴",
     "videos": 45,
     "url": "https://www.youtube.com/channel/UCzRXkYhS5YbXshAHUm8kUyg",
     "avatar": "https://yt3.googleusercontent.com/0LFy0gzQnjYCPHXvDJpUTOtKyZoSi6UGXTRQs1_FWE2Or_MqTKViIHNrO7cK33ob-lq5snr_xCE=s900-c-k-c0x00ffffff-no-rj",
@@ -483,9 +483,9 @@ window.PBERS_DATA = [
   {
     "name": "渋谷区のペンギン",
     "subs": 15100,
-    "views": 3399037,
+    "views": 3399956,
     "subsLabel": "チャンネル登録者数 1.51万人",
-    "viewsLabel": "3,399,037回視聴",
+    "viewsLabel": "3,399,956回視聴",
     "videos": 53,
     "url": "https://www.youtube.com/channel/UCw4mBghvckZ6kRp1KF3PP2g",
     "avatar": "https://yt3.googleusercontent.com/UzSRTPeQjShkDU9fW2m2meYmivDymiYdGJUdfMhxQGeFCqEaGeVO3Bkvo0X-AgvDhLC_VqWRV3M=s900-c-k-c0x00ffffff-no-rj",
@@ -547,9 +547,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ぽぱい",
-    "subs": 13800,
+    "subs": 13700,
     "views": 4796846,
-    "subsLabel": "チャンネル登録者数 1.38万人",
+    "subsLabel": "チャンネル登録者数 1.37万人",
     "viewsLabel": "4,796,846回視聴",
     "videos": 33,
     "url": "https://www.youtube.com/channel/UCaMxGSc7gfuS8YRuSzr_nuQ",
@@ -587,9 +587,9 @@ window.PBERS_DATA = [
   {
     "name": "やよいどき",
     "subs": 13000,
-    "views": 1295153,
+    "views": 1295304,
     "subsLabel": "チャンネル登録者数 1.3万人",
-    "viewsLabel": "1,295,153回視聴",
+    "viewsLabel": "1,295,304回視聴",
     "videos": 21,
     "url": "https://www.youtube.com/channel/UCLflWIARKMxRiQDu7OIGGyg",
     "avatar": "https://yt3.googleusercontent.com/fhtCfO2IcgGcnMPcdxsX4HNtMMm6AOWJYVqI2MoElr2NQJSGgJrq3zBNpHEc7mt_qUHs1RIs=s900-c-k-c0x00ffffff-no-rj",
@@ -613,9 +613,9 @@ window.PBERS_DATA = [
   {
     "name": "ケエレビQ!",
     "subs": 12500,
-    "views": 5414369,
+    "views": 5415284,
     "subsLabel": "チャンネル登録者数 1.25万人",
-    "viewsLabel": "5,414,369回視聴",
+    "viewsLabel": "5,415,284回視聴",
     "videos": 100,
     "url": "https://www.youtube.com/channel/UC7TqXiAikWw_Xh4Xbam1Faw",
     "avatar": "https://yt3.googleusercontent.com/T7210hEFAOEDsDIQv46XXCo2mYDBeI9SShL4A4ZIo-qJE5eURzK5jy6rFAOWk2orvXdsnt-r=s900-c-k-c0x00ffffff-no-rj",
@@ -756,9 +756,9 @@ window.PBERS_DATA = [
   {
     "name": "lemon_Ball",
     "subs": 10800,
-    "views": 986447,
+    "views": 986656,
     "subsLabel": "チャンネル登録者数 1.08万人",
-    "viewsLabel": "986,447回視聴",
+    "viewsLabel": "986,656回視聴",
     "videos": 117,
     "url": "https://www.youtube.com/channel/UC3N1ZsVd8KkOmSryri0AesA",
     "avatar": "https://yt3.googleusercontent.com/LibMAGPV5ah6ENHwbAzVSek6GVaOhu0MBeupoPGW6l_e6lSZChJjDGadIqPbiAc1rGRzTLHr=s900-c-k-c0x00ffffff-no-rj",
@@ -833,9 +833,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "空白ボール",
-    "subs": 9670,
+    "subs": 9660,
     "views": 4597665,
-    "subsLabel": "チャンネル登録者数 9670人",
+    "subsLabel": "チャンネル登録者数 9660人",
     "viewsLabel": "4,597,665回視聴",
     "videos": 66,
     "url": "https://www.youtube.com/channel/UCUwsogiV3npfOKMReFmY6wg",
@@ -873,9 +873,9 @@ window.PBERS_DATA = [
   {
     "name": "mikan帝国ぼーる",
     "subs": 9440,
-    "views": 1578911,
+    "views": 1579929,
     "subsLabel": "チャンネル登録者数 9440人",
-    "viewsLabel": "1,578,911回視聴",
+    "viewsLabel": "1,579,929回視聴",
     "videos": 33,
     "url": "https://www.youtube.com/channel/UCJ1LhZfBOpZy8NzLDYPOopA",
     "avatar": "https://yt3.googleusercontent.com/-Y6Ti_gGzDnNm2svjgNPePAmAgZxSUNre5HdSRPn9ttLJSM-6tSD8RGrCpjgNsFSGiH8XRmAros=s900-c-k-c0x00ffffff-no-rj",
@@ -886,9 +886,9 @@ window.PBERS_DATA = [
   {
     "name": "ふかひれ牧場",
     "subs": 9160,
-    "views": 1266744,
+    "views": 1266764,
     "subsLabel": "チャンネル登録者数 9160人",
-    "viewsLabel": "1,266,744回視聴",
+    "viewsLabel": "1,266,764回視聴",
     "videos": 24,
     "url": "https://www.youtube.com/channel/UCeImiuiv09c_mQzrJziJPAA",
     "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_lbyS-yUnTDLkuj88p4kT7eJLsTjCgGRad7f-J60xIPNRU=s900-c-k-c0x00ffffff-no-rj",
@@ -911,9 +911,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ばかわたし",
-    "subs": 8360,
+    "subs": 8370,
     "views": 4730017,
-    "subsLabel": "チャンネル登録者数 8360人",
+    "subsLabel": "チャンネル登録者数 8370人",
     "viewsLabel": "4,730,017回視聴",
     "videos": 92,
     "url": "https://www.youtube.com/channel/UCnZNY63Txhu4ot3l2lbicOA",
@@ -938,9 +938,9 @@ window.PBERS_DATA = [
   {
     "name": "アスラボール　",
     "subs": 7590,
-    "views": 3033201,
+    "views": 3034058,
     "subsLabel": "チャンネル登録者数 7590人",
-    "viewsLabel": "3,033,201回視聴",
+    "viewsLabel": "3,034,058回視聴",
     "videos": 20,
     "url": "https://www.youtube.com/channel/UCpuBkqE5xZRinCNByOVjOQg",
     "avatar": "https://yt3.googleusercontent.com/ZbdOHnPvnMP9Us0RTVMXDIG34oJMxW6dUgOdgEU93aHiDFn8bcE3AG5TIX37FVBkEzDhimSL2w=s900-c-k-c0x00ffffff-no-rj",
@@ -951,9 +951,9 @@ window.PBERS_DATA = [
   {
     "name": "Rimoru",
     "subs": 7100,
-    "views": 3300509,
+    "views": 3300605,
     "subsLabel": "チャンネル登録者数 7100人",
-    "viewsLabel": "3,300,509回視聴",
+    "viewsLabel": "3,300,605回視聴",
     "videos": 140,
     "url": "https://www.youtube.com/channel/UCAHBgzoF51DYatj2GvtsJ0g",
     "avatar": "https://yt3.googleusercontent.com/givHPiZPGg1pnkUxhIgkbTidsnI7WUPlFrl1EeL8XhxGqor9DKhdndAEfEFFdDj3Ne9GtdM-wg=s900-c-k-c0x00ffffff-no-rj",
@@ -990,9 +990,9 @@ window.PBERS_DATA = [
   {
     "name": "いたりぃ",
     "subs": 7030,
-    "views": 1130184,
+    "views": 1130236,
     "subsLabel": "チャンネル登録者数 7030人",
-    "viewsLabel": "1,130,184回視聴",
+    "viewsLabel": "1,130,236回視聴",
     "videos": 24,
     "url": "https://www.youtube.com/channel/UC4XJouYnuo5B4eKy2yWhkHg",
     "avatar": "https://yt3.googleusercontent.com/wWf7XHQyr1hGg9o3HAYnlWqzpOZZtOXVtWjUos40r8UYVxAFu4o8G-oGH75KRRyxCdCRd48vpOA=s900-c-k-c0x00ffffff-no-rj",
@@ -1029,9 +1029,9 @@ window.PBERS_DATA = [
   {
     "name": "白海豚",
     "subs": 6630,
-    "views": 2152814,
+    "views": 2154010,
     "subsLabel": "チャンネル登録者数 6630人",
-    "viewsLabel": "2,152,814回視聴",
+    "viewsLabel": "2,154,010回視聴",
     "videos": 117,
     "url": "https://www.youtube.com/channel/UCMNJg5qFCF3VPeo0cRXqQlg",
     "avatar": "https://yt3.googleusercontent.com/-aylIio-lOrVj-ucrDC3aShsu8bpsxhR7430gIdtXQAlwy2fkBvFau10k_KtYCOzZwuHsrNI=s900-c-k-c0x00ffffff-no-rj",
@@ -1107,9 +1107,9 @@ window.PBERS_DATA = [
   {
     "name": "ikasumi帝国",
     "subs": 5580,
-    "views": 956607,
+    "views": 957312,
     "subsLabel": "チャンネル登録者数 5580人",
-    "viewsLabel": "956,607回視聴",
+    "viewsLabel": "957,312回視聴",
     "videos": 37,
     "url": "https://www.youtube.com/channel/UCmVUXrmRsAk94xhvZR9wufA",
     "avatar": "https://yt3.googleusercontent.com/pXavDBoQWleJO0X1Cd7TrS5BP9DduNyqd0CtSqENd7k-YW0UwYkREQdZAE0mthqG4mUSPcMS8Q=s900-c-k-c0x00ffffff-no-rj",
@@ -1120,9 +1120,9 @@ window.PBERS_DATA = [
   {
     "name": "ヴァイマル共和国ボール [底辺PBer連盟] ",
     "subs": 5290,
-    "views": 3962004,
+    "views": 3962234,
     "subsLabel": "チャンネル登録者数 5290人",
-    "viewsLabel": "3,962,004回視聴",
+    "viewsLabel": "3,962,234回視聴",
     "videos": 285,
     "url": "https://www.youtube.com/channel/UChdZLH2O41ruwShCEExLzIg",
     "avatar": "https://yt3.googleusercontent.com/dQc05XhmvR-D6BpN8LxOmCx-tE2IB8BzBHGnNtg3ZbmfeSspkw4_q-_vs0-LVrBnkvb-PtibOg=s900-c-k-c0x00ffffff-no-rj",
@@ -1133,9 +1133,9 @@ window.PBERS_DATA = [
   {
     "name": "レイアルファ",
     "subs": 3830,
-    "views": 3306478,
+    "views": 3299699,
     "subsLabel": "チャンネル登録者数 3830人",
-    "viewsLabel": "3,306,478回視聴",
+    "viewsLabel": "3,299,699回視聴",
     "videos": 87,
     "url": "https://www.youtube.com/channel/UCVYMXYU6j0M5Gj1xwywKDyg",
     "avatar": "https://yt3.googleusercontent.com/TVNAN6bSZZHGvc7hYhLs6Gnn95EKhcWj5GwqbWN00HAFA8SmXjUyKXQK6D4Ljl_S9A_8eaHn-Lk=s900-c-k-c0x00ffffff-no-rj",
@@ -1184,5 +1184,5 @@ window.PBERS_DATA = [
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
-window.PBERS_UPDATED = "2026-08-29";
-window.PBERS_PREDICT = {"asOfMs": 1788015600000, "subs": {"base": 2564810, "rate": 6.561482269338275e-05}, "views": {"base": 2057640726, "rate": 0.0540599940144648}};
+window.PBERS_UPDATED = "2026-08-30";
+window.PBERS_PREDICT = {"asOfMs": 1788037200000, "subs": {"base": 2564800, "rate": 6.098165156368599e-05}, "views": {"base": 2057641252, "rate": 0.05795705166584209}};
