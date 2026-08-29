@@ -41,13 +41,11 @@ METRICWORD = {"subs": "登録者数", "views": "総再生数", "videos": "投稿
 # ジャンル分け。未指定は通常のポーランドボーラー。
 DEFAULT_GENRE = "ポーランドボーラー"
 GENRE = {
-    "UCmzj8pO1YtKLmcmaMPf9wbQ": "ポーランドボーラーのようなもの",
     "UCnZNY63Txhu4ot3l2lbicOA": "PBerer",
 }
 # 設定パネルの並び順と初期表示（通常のみ表示、その他は非表示）
 GENRES = [
     {"label": DEFAULT_GENRE,                 "on": True},
-    {"label": "ポーランドボーラーのようなもの", "on": False},
     {"label": "PBerer",                      "on": False},
 ]
 def genre_of(cid):

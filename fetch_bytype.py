@@ -18,6 +18,12 @@
 """
 import os, sys, json, re, time, urllib.request, urllib.parse, urllib.error
 
+# Windowsコンソール(cp932)は「Æ」等を表示できず print で落ちるため UTF-8 に固定
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 API = "https://www.googleapis.com/youtube/v3/"
 BASE = os.path.dirname(os.path.abspath(__file__))
 SAMPLE = "UCkjdTrE4hiJ4qNOV7NPGSSw"   # フヒフム
@@ -64,9 +70,11 @@ def all_video_ids(playlist):
             kw["pageToken"] = tok
         d = api("playlistItems", **kw)
         ids += [i["contentDetails"]["videoId"] for i in d.get("items", [])]
+        print("\r  動画ID取得中... {}件".format(len(ids)), end="", flush=True)
         tok = d.get("nextPageToken")
         if not tok:
             break
+    print("\r  動画ID取得: {}件".format(len(ids)))
     return ids
 
 def iso_seconds(s):
@@ -85,6 +93,8 @@ def video_stats(ids):
                 "views": int(it.get("statistics", {}).get("viewCount", 0) or 0),
                 "sec": iso_seconds(it.get("contentDetails", {}).get("duration")),
             }
+        print("\r  再生数・長さ取得中... {}/{}".format(min(i + 50, len(ids)), len(ids)), end="", flush=True)
+    print("\r  再生数・長さ取得: {}件".format(len(out)))
     return out
 
 class _NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -112,21 +122,29 @@ def analyze(cid):
     if not pl:
         print("!! チャンネルが見つかりません: %s" % cid)
         return None
+    print("\n[{}] 集計開始...".format(title), flush=True)
     ids = all_video_ids(pl)
     stats = video_stats(ids)
     longs = {"n": 0, "views": 0}
     shorts = {"n": 0, "views": 0}
     checked = 0
+    to_check = sum(1 for s in stats.values() if s["sec"] <= SHORT_MAX_SEC)
+    done = 0
     for vid, s in stats.items():
         if s["sec"] > SHORT_MAX_SEC:
             short = False
         else:
             short = is_short(vid)
             checked += 1
+            done += 1
+            if checked % 10 == 0 or checked == to_check:
+                print("\r  ショート判定中... {}/{}".format(checked, to_check), end="", flush=True)
             time.sleep(0.1)
         b = shorts if short else longs
         b["n"] += 1
         b["views"] += s["views"]
+    if to_check:
+        print("\r  ショート判定: {}本確認".format(to_check))
     tot = longs["n"] + shorts["n"] or 1
     print("\n== {} ({}) ==".format(title, cid))
     print("総動画数: {}  (/shorts 確認 {}本)".format(longs["n"] + shorts["n"], checked))

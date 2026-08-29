@@ -48,7 +48,7 @@ window.PBERS_DATA = [
     "url": "https://www.youtube.com/channel/UCmzj8pO1YtKLmcmaMPf9wbQ",
     "avatar": "https://yt3.googleusercontent.com/gNv7_1OO5KoHNGHTucUfub1OS8J0Q48iz0hDl49mNXF3ZugBFYxEJckd0zeLUC3lxnitdxI9=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d45e5e",
-    "genre": "ポーランドボーラーのようなもの",
+    "genre": "ポーランドボーラー",
     "slug": "なるほど地理"
   },
   {
@@ -1183,6 +1183,6 @@ window.PBERS_DATA = [
     "slug": "ucpgo3vhuevgcmxye8kxomag"
   }
 ];
-window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "ポーランドボーラーのようなもの", "on": false}, {"label": "PBerer", "on": false}];
+window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-29";
-window.PBERS_PREDICT = {"asOfMs": 1787972400000, "subs": {"base": 2367360, "rate": 6.868914533053915e-05}, "views": {"base": 1721276222, "rate": 0.05756607684261965}};
+window.PBERS_PREDICT = {"asOfMs": 1787972400000, "subs": {"base": 2509360, "rate": 6.868914533053915e-05}, "views": {"base": 2046576017, "rate": 0.06075301350533212}};
