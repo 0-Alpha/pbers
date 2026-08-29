@@ -179,16 +179,27 @@ async function mergeIntoFeed(env, items) {
   feed.sort((a, b) => (Date.parse(b.published) || 0) - (Date.parse(a.published) || 0));
   await env.PBERS_KV.put("feed", JSON.stringify(feed.slice(0, FEED_MAX)));
 }
-// ショート判定＋サムネ決定。
-// i.ytimg.com/vi/<id>/oardefault.jpg(縦専用サムネ)が存在(200)すればショート。
-// CDNなので同意ページに飛ばされず、Cloudflareからでも確実。ショートはこの縦サムネを使う。
+// ショート判定＋サムネ決定(2段)。
+// 1) i.ytimg.com/vi/<id>/oardefault.jpg(縦専用サムネ)が200 → 縦型ショート。CDNなので確実・高速。
+// 2) 404(=横素材)のときだけ /shorts/<id> で確認。ショートは尺(3分以下)で決まりアスペクト比は問わないため、
+//    横向きでもショート指定がありうる。200=ショート / リダイレクト=ロング。縦サムネが無いので横サムネを使う。
 async function classify(vid) {
   const oar = "https://i.ytimg.com/vi/" + vid + "/oardefault.jpg";
+  const hq = "https://i.ytimg.com/vi/" + vid + "/hqdefault.jpg";
   try {
     const r = await fetch(oar, { method: "HEAD" });
-    if (r.status === 200) return { short: true, thumb: oar };
+    if (r.status === 200) return { short: true, thumb: oar };   // 縦型ショート
   } catch (e) { /* fall through */ }
-  return { short: false, thumb: "https://i.ytimg.com/vi/" + vid + "/hqdefault.jpg" };
+  // 横素材: 横型ショートかロングかを /shorts/ で判定。redirect:manual で3xxを追わずに受ける
+  // (横ショートは200のまま／ロングは /watch へリダイレクト＝非200)。Cookieで同意ページ回避。
+  try {
+    const s = await fetch("https://www.youtube.com/shorts/" + vid, {
+      method: "HEAD", redirect: "manual",
+      headers: { "Cookie": "SOCS=CAI; CONSENT=YES+", "Accept-Language": "en-US,en;q=0.9" }
+    });
+    if (s.status === 200) return { short: true, thumb: hq };    // 横型ショート
+  } catch (e) { /* 想定外(同意ページ等)は下でロング扱い＝従来通りで悪化なし */ }
+  return { short: false, thumb: hq };
 }
 /* ---- 新着通知の処理(投稿順タイムライン: 同チャンネル複数OK) ---- */
 async function handleNotification(xml, env) {
