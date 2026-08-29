@@ -310,7 +310,7 @@ def _stat_tile(label, v, unit):
             '<div class="v num">%s<small>%s</small></div>'
             '<div class="sub">%s%s</div></div>') % (label, "{:,}".format(v), unit, _jp(v), unit)
 
-def ch_header_html(d, videos, rank, total, esc):
+def ch_header_html(d, videos, rank, total, esc, bytype_html=""):
     """チャンネル個別ページのヘッダを静的HTMLで生成(SEO用に名前・数値・説明文を本文に載せる)。"""
     name = esc(d["name"])
     return (
@@ -332,6 +332,7 @@ def ch_header_html(d, videos, rank, total, esc):
           _stat_tile("総再生数", d.get("views"), "回") +
           _stat_tile("投稿数", videos, "本") +
         '</div>'
+        + bytype_html +
         '<div class="sec-head" style="margin-top:34px"><h2>推移 <span class="en">History</span></h2>'
           '<span class="note" id="ch-note"></span></div>'
         '<div class="controls" style="justify-content:flex-start"><div class="toggle" id="ch-toggle">'
@@ -340,6 +341,52 @@ def ch_header_html(d, videos, rank, total, esc):
           '<button class="tg" data-gm="videos">投稿数</button>'
           '<span class="tg-ind" id="ch-tind"></span></div></div>'
         '<div class="trend" id="ch-chart"></div>'
+    )
+
+def load_bytype():
+    """fetch_bytype.py が出力した bytype.json を {id: data} で読む。無ければ空。"""
+    p = os.path.join(BASE, "bytype.json")
+    if not os.path.exists(p):
+        return {}
+    try:
+        return {r["id"]: r for r in json.load(open(p, encoding="utf-8"))}
+    except Exception:
+        return {}
+
+def ch_bytype_html(bt):
+    """横動画/ショートの本数比率＋1本あたり平均再生数を表示する静的HTML。データが無ければ空。"""
+    if not bt:
+        return ""
+    L, S = bt.get("long", {}), bt.get("short", {})
+    ln, sn = L.get("n", 0), S.get("n", 0)
+    tot = ln + sn
+    if tot == 0:
+        return ""
+    lp, sp = ln / tot * 100, sn / tot * 100
+    la = L.get("views", 0) // ln if ln else 0     # 横動画の1本あたり平均再生
+    sa = S.get("views", 0) // sn if sn else 0     # ショートの1本あたり平均再生
+    mx = max(la, sa) or 1
+    def card(cls, dot, label, n, avg):
+        return ('<div class="bt-card">'
+                  '<div class="bt-k"><i class="bt-dot ' + dot + '"></i>' + label + '</div>'
+                  '<div class="bt-n">' + "{:,}".format(n) + '<small>本</small></div>'
+                  '<div class="bt-avgbar"><span class="bt-fill ' + cls + '" style="width:'
+                    + ("%.1f" % (avg / mx * 100)) + '%"></span></div>'
+                  '<div class="bt-avg">1本あたり <b>' + _jp(avg) + '</b> 回</div>'
+                '</div>')
+    return (
+        '<div class="sec-head" style="margin-top:34px"><h2>動画タイプ別 <span class="en">By type</span></h2>'
+          '<span class="note">全' + str(tot) + '本</span></div>'
+        '<div class="bt">'
+          '<div class="bt-bar">'
+            '<div class="bt-seg bt-long" style="width:' + ("%.1f" % lp) + '%"><span>横 ' + ("%.0f" % lp) + '%</span></div>'
+            '<div class="bt-seg bt-short" style="width:' + ("%.1f" % sp) + '%"><span>ショート ' + ("%.0f" % sp) + '%</span></div>'
+          '</div>'
+          '<div class="bt-cards">'
+            + card("bt-fl", "bt-dl", "横動画", ln, la)
+            + card("bt-fs", "bt-ds", "ショート", sn, sa) +
+          '</div>'
+        '</div>'
     )
 
 def _rc_chip(d, esc):
@@ -402,6 +449,7 @@ def build_channel_pages(order, colors):
         pts = [t for t in sorted(m) if _glo <= day_of(t) <= _ghi and m[t]["subs"] is not None]
         if len(pts) >= 2:
             growth_map[cid] = m[pts[-1]]["subs"] - m[pts[0]]["subs"]
+    bt_map = load_bytype()   # 横/ショート内訳(bytype.json)。無いチャンネルはセクション非表示
     for i, d in enumerate(order):
         cid = d["id"]; slug = d["_slug"]
         hist = series.get(cid, {})
@@ -416,7 +464,7 @@ def build_channel_pages(order, colors):
               "videos": vcount,
               "url": d["url"], "avatar": d["avatar"], "color": colors[cid],
               "genre": genre_of(cid), "rank": i + 1, "total": total}
-        header = (ch_header_html(d, vcount, i + 1, total, _html.escape)
+        header = (ch_header_html(d, vcount, i + 1, total, _html.escape, ch_bytype_html(bt_map.get(cid)))
                   + ch_footer_html(order, i, growth_map, _html.escape))
         page = (CH_TPL
                 .replace("{{TITLE}}", _html.escape(d["name"]))

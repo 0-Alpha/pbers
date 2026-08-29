@@ -303,6 +303,30 @@ section.block{padding:46px 0}
 .ch-tile .sub{font-family:var(--num);font-weight:700;font-size:12.5px;color:var(--muted);margin-top:7px;min-height:16px}
 @media(max-width:620px){ .ch-stats{grid-template-columns:1fr} }
 
+/* ---------- channel page: 動画タイプ別(横/ショート比率＋1本あたり平均) ---------- */
+.bt{--bt-long:#5b8def;--bt-short:#e0554b}
+.bt-bar{display:flex;height:38px;border-radius:10px;overflow:hidden;background:var(--panel);border:1px solid var(--line)}
+.bt-seg{display:flex;align-items:center;justify-content:center;min-width:0;color:#fff;font-family:var(--num);
+  font-weight:800;font-size:13px;white-space:nowrap;overflow:hidden;transition:width .5s ease}
+.bt-seg span{padding:0 6px;overflow:hidden;text-overflow:ellipsis}
+.bt-long{background:var(--bt-long)}
+.bt-short{background:var(--bt-short)}
+.bt-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.bt-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.bt-k{display:flex;align-items:center;gap:8px;font-family:var(--jp);font-weight:700;font-size:13.5px;color:var(--muted-1,var(--text))}
+.bt-dot{width:11px;height:11px;border-radius:3px;flex:none}
+.bt-dl{background:var(--bt-long)}
+.bt-ds{background:var(--bt-short)}
+.bt-n{font-family:var(--num);font-weight:900;font-size:26px;margin-top:8px;line-height:1;color:var(--accent,#f4f2f0)}
+.bt-n small{font-size:13px;color:var(--muted);font-weight:700;margin-left:3px}
+.bt-avgbar{height:6px;border-radius:4px;background:var(--line-2);margin-top:12px;overflow:hidden}
+.bt-fill{display:block;height:100%;border-radius:4px;transition:width .5s ease}
+.bt-fl{background:var(--bt-long)}
+.bt-fs{background:var(--bt-short)}
+.bt-avg{font-family:var(--num);font-weight:700;font-size:12.5px;color:var(--muted);margin-top:7px}
+.bt-avg b{color:var(--text);font-weight:900;font-size:15px}
+@media(max-width:620px){ .bt-cards{grid-template-columns:1fr} }
+
 /* ---------- channel page: related channels & prev/next (回遊導線) ---------- */
 .ch-more{margin-top:44px}
 .ch-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px}

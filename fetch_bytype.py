@@ -17,6 +17,7 @@
 結果は bytype.json にも保存する。
 """
 import os, sys, json, re, time, urllib.request, urllib.parse, urllib.error
+from concurrent.futures import ThreadPoolExecutor
 
 # Windowsコンソール(cp932)は「Æ」等を表示できず print で落ちるため UTF-8 に固定
 try:
@@ -125,26 +126,32 @@ def analyze(cid):
     print("\n[{}] 集計開始...".format(title), flush=True)
     ids = all_video_ids(pl)
     stats = video_stats(ids)
+    # 尺<=180秒だけ /shorts/ で判定(180秒超は確実にロング)。判定は並列で高速化。
+    to_check = [vid for vid, s in stats.items() if s["sec"] <= SHORT_MAX_SEC]
+    short_set = set()
+    if to_check:
+        done = [0]
+        total_c = len(to_check)
+
+        def work(vid):
+            r = is_short(vid)
+            done[0] += 1
+            if done[0] % 20 == 0 or done[0] == total_c:
+                print("\r  ショート判定中... {}/{}".format(done[0], total_c), end="", flush=True)
+            return vid, r
+
+        with ThreadPoolExecutor(max_workers=12) as ex:
+            for vid, r in ex.map(work, to_check):
+                if r:
+                    short_set.add(vid)
+        print("\r  ショート判定: {}本確認".format(total_c))
     longs = {"n": 0, "views": 0}
     shorts = {"n": 0, "views": 0}
-    checked = 0
-    to_check = sum(1 for s in stats.values() if s["sec"] <= SHORT_MAX_SEC)
-    done = 0
+    checked = len(to_check)
     for vid, s in stats.items():
-        if s["sec"] > SHORT_MAX_SEC:
-            short = False
-        else:
-            short = is_short(vid)
-            checked += 1
-            done += 1
-            if checked % 10 == 0 or checked == to_check:
-                print("\r  ショート判定中... {}/{}".format(checked, to_check), end="", flush=True)
-            time.sleep(0.1)
-        b = shorts if short else longs
+        b = shorts if vid in short_set else longs
         b["n"] += 1
         b["views"] += s["views"]
-    if to_check:
-        print("\r  ショート判定: {}本確認".format(to_check))
     tot = longs["n"] + shorts["n"] or 1
     print("\n== {} ({}) ==".format(title, cid))
     print("総動画数: {}  (/shorts 確認 {}本)".format(longs["n"] + shorts["n"], checked))
