@@ -5,6 +5,9 @@ _preview*.html
 pbersbottaisetsujouhou.txt
 icon
 
+# YouTube Data API key (never commit)
+.yt_api_key
+
 # OS / editor cruft
 Thumbs.db
 .DS_Store
