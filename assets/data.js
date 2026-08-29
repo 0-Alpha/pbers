@@ -44,7 +44,7 @@ window.PBERS_DATA = [
     "views": 325299795,
     "subsLabel": "チャンネル登録者数 14.2万人",
     "viewsLabel": "325,299,795回視聴",
-    "videos": 1091,
+    "videos": 1092,
     "url": "https://www.youtube.com/channel/UCmzj8pO1YtKLmcmaMPf9wbQ",
     "avatar": "https://yt3.googleusercontent.com/gNv7_1OO5KoHNGHTucUfub1OS8J0Q48iz0hDl49mNXF3ZugBFYxEJckd0zeLUC3lxnitdxI9=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d45e5e",
@@ -330,7 +330,7 @@ window.PBERS_DATA = [
     "views": 9468551,
     "subsLabel": "チャンネル登録者数 2.16万人",
     "viewsLabel": "9,468,551回視聴",
-    "videos": 187,
+    "videos": 188,
     "url": "https://www.youtube.com/channel/UCZJGdkej48qsbPf7ZBBJlKQ",
     "avatar": "https://yt3.googleusercontent.com/7E1EME20oj2j5h8bBf7K618lZ7fAEN6hB6j_l8zaxWbyH-8VK49BLcM0uS38ZvsRtELNy8Hp5g=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3e66cc",
@@ -677,9 +677,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "レメラボール / 🌈🌙【えるめす】",
-    "subs": 12000,
+    "subs": 12100,
     "views": 6282442,
-    "subsLabel": "チャンネル登録者数 1.2万人",
+    "subsLabel": "チャンネル登録者数 1.21万人",
     "viewsLabel": "6,282,442回視聴",
     "videos": 179,
     "url": "https://www.youtube.com/channel/UCnzJL5YTjaPHTkkll5BHukQ",
@@ -820,9 +820,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ねとえん",
-    "subs": 9710,
+    "subs": 9720,
     "views": 7034834,
-    "subsLabel": "チャンネル登録者数 9710人",
+    "subsLabel": "チャンネル登録者数 9720人",
     "viewsLabel": "7,034,834回視聴",
     "videos": 99,
     "url": "https://www.youtube.com/channel/UCrRZolgBJ0K-yGqFKGbUVkw",
@@ -898,9 +898,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ココプー",
-    "subs": 8950,
+    "subs": 8940,
     "views": 6126682,
-    "subsLabel": "チャンネル登録者数 8950人",
+    "subsLabel": "チャンネル登録者数 8940人",
     "viewsLabel": "6,126,682回視聴",
     "videos": 373,
     "url": "https://www.youtube.com/channel/UCZPDR-vhP3KaujXH5DUJMxA",
@@ -1028,9 +1028,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "白海豚",
-    "subs": 6620,
+    "subs": 6630,
     "views": 2152814,
-    "subsLabel": "チャンネル登録者数 6620人",
+    "subsLabel": "チャンネル登録者数 6630人",
     "viewsLabel": "2,152,814回視聴",
     "videos": 117,
     "url": "https://www.youtube.com/channel/UCMNJg5qFCF3VPeo0cRXqQlg",
@@ -1067,9 +1067,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "にこちPB",
-    "subs": 5930,
+    "subs": 5940,
     "views": 314193,
-    "subsLabel": "チャンネル登録者数 5930人",
+    "subsLabel": "チャンネル登録者数 5940人",
     "viewsLabel": "314,193回視聴",
     "videos": 23,
     "url": "https://www.youtube.com/channel/UC2fMWFGgy-ENfkqlK0CUwrg",
@@ -1138,7 +1138,7 @@ window.PBERS_DATA = [
     "viewsLabel": "3,299,699回視聴",
     "videos": 87,
     "url": "https://www.youtube.com/channel/UCVYMXYU6j0M5Gj1xwywKDyg",
-    "avatar": "https://yt3.googleusercontent.com/i-3zcDugOBC0BsV7k8-06wQY125k3kMWPiaVTXQt96XHKdrN-V7iocfwUrLRnEBskVJ0dyiCYZ0=s900-c-k-c0x00ffffff-no-rj",
+    "avatar": "https://yt3.googleusercontent.com/TVNAN6bSZZHGvc7hYhLs6Gnn95EKhcWj5GwqbWN00HAFA8SmXjUyKXQK6D4Ljl_S9A_8eaHn-Lk=s900-c-k-c0x00ffffff-no-rj",
     "color": "#db4f57",
     "genre": "ポーランドボーラー",
     "slug": "レイアルファ"
@@ -1185,4 +1185,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-29";
-window.PBERS_PREDICT = {"asOfMs": 1787994000000, "subs": {"base": 2562970, "rate": 6.460681746861122e-05}, "views": {"base": 2055504615, "rate": 0.058945812295126666}};
+window.PBERS_PREDICT = {"asOfMs": 1787994000000, "subs": {"base": 2563090, "rate": 6.460681746861122e-05}, "views": {"base": 2055504615, "rate": 0.058945812295126666}};
