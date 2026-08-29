@@ -248,8 +248,56 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "すいかぼーる",
+        "name": "日帝ボール",
         "color": "#793ecc",
+        "avatar": "https://yt3.googleusercontent.com/xXeQaK6fg2pfljWrgaMI_wG8G9HGyAgb8G_W1BU67gH5NiOQRd7-4wK7PdQlOFRUPCQKvjVHBuQ=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 24300,
+        "history": [
+          {
+            "d": "2026-08-20",
+            "s": 23700
+          },
+          {
+            "d": "2026-08-21",
+            "s": 23800
+          },
+          {
+            "d": "2026-08-22",
+            "s": 23800
+          },
+          {
+            "d": "2026-08-23",
+            "s": 23900
+          },
+          {
+            "d": "2026-08-24",
+            "s": 23900
+          },
+          {
+            "d": "2026-08-25",
+            "s": 24000
+          },
+          {
+            "d": "2026-08-26",
+            "s": 24100
+          },
+          {
+            "d": "2026-08-27",
+            "s": 24100
+          },
+          {
+            "d": "2026-08-28",
+            "s": 24200
+          },
+          {
+            "d": "2026-08-29",
+            "s": 24200
+          }
+        ]
+      },
+      {
+        "name": "すいかぼーる",
+        "color": "#d45eb1",
         "avatar": "https://yt3.googleusercontent.com/bDvE2BnwRg6dRlxeBdzO-nNMsUNBS8ZL952Aoog1ENFH0TYSZXmJ04xCq00TaYHRrW6BZpPyaJY=s900-c-k-c0x00ffffff-no-rj",
         "subs": 24200,
         "history": [
@@ -284,54 +332,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-27",
             "s": 24200
-          },
-          {
-            "d": "2026-08-28",
-            "s": 24200
-          },
-          {
-            "d": "2026-08-29",
-            "s": 24200
-          }
-        ]
-      },
-      {
-        "name": "日帝ボール",
-        "color": "#d45eb1",
-        "avatar": "https://yt3.googleusercontent.com/xXeQaK6fg2pfljWrgaMI_wG8G9HGyAgb8G_W1BU67gH5NiOQRd7-4wK7PdQlOFRUPCQKvjVHBuQ=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 24200,
-        "history": [
-          {
-            "d": "2026-08-20",
-            "s": 23700
-          },
-          {
-            "d": "2026-08-21",
-            "s": 23800
-          },
-          {
-            "d": "2026-08-22",
-            "s": 23800
-          },
-          {
-            "d": "2026-08-23",
-            "s": 23900
-          },
-          {
-            "d": "2026-08-24",
-            "s": 23900
-          },
-          {
-            "d": "2026-08-25",
-            "s": 24000
-          },
-          {
-            "d": "2026-08-26",
-            "s": 24100
-          },
-          {
-            "d": "2026-08-27",
-            "s": 24100
           },
           {
             "d": "2026-08-28",
@@ -1019,7 +1019,7 @@ window.PBERS_RACE = [
         "name": "ぽぱい",
         "color": "#d4b55e",
         "avatar": "https://yt3.googleusercontent.com/MksIU96BJUaPxSVQoRJDlxvXjPIe0cDmD70CaujSB0nstsAFYIzoDylPLYe5-MzPUm4pMGM9Mg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 13700,
+        "subs": 13800,
         "history": [
           {
             "d": "2026-08-21",
@@ -1056,50 +1056,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-29",
             "s": 13700
-          }
-        ]
-      },
-      {
-        "name": "マロー",
-        "color": "#74cc3e",
-        "avatar": "https://yt3.googleusercontent.com/K-dVUHe9Ae8W_t9cegcDqeqfSNbX-pDfSaWEg9ObKADfEOrgf7rktFymc0zl-_qWHrTw1BlQGg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 13600,
-        "history": [
-          {
-            "d": "2026-08-21",
-            "s": 13500
-          },
-          {
-            "d": "2026-08-22",
-            "s": 13500
-          },
-          {
-            "d": "2026-08-23",
-            "s": 13500
-          },
-          {
-            "d": "2026-08-24",
-            "s": 13500
-          },
-          {
-            "d": "2026-08-25",
-            "s": 13500
-          },
-          {
-            "d": "2026-08-26",
-            "s": 13500
-          },
-          {
-            "d": "2026-08-27",
-            "s": 13500
-          },
-          {
-            "d": "2026-08-28",
-            "s": 13600
-          },
-          {
-            "d": "2026-08-29",
-            "s": 13600
           }
         ]
       }
