@@ -41,6 +41,12 @@ def api_key():
 
 KEY = api_key()
 
+class ApiError(Exception):
+    def __init__(self, code, body):
+        self.code = code
+        self.body = body
+        super().__init__("APIエラー %s: %s" % (code, body[:200]))
+
 def api(path, **params):
     params["key"] = KEY
     url = API + path + "?" + urllib.parse.urlencode(params)
@@ -50,7 +56,7 @@ def api(path, **params):
                 return json.load(r)
         except urllib.error.HTTPError as e:
             body = e.read().decode("utf-8", "ignore")
-            sys.exit("APIエラー %s: %s" % (e.code, body[:300]))
+            raise ApiError(e.code, body)          # 呼び出し側で握って続行/停止を判断
         except Exception:
             if attempt == 2:
                 raise
@@ -155,7 +161,7 @@ def analyze(cid):
     tot = longs["n"] + shorts["n"] or 1
     print("\n== {} ({}) ==".format(title, cid))
     print("総動画数: {}  (/shorts 確認 {}本)".format(longs["n"] + shorts["n"], checked))
-    print("横動画 : {:>4}本 ({:5.1f}%)  再生 {:,}".format(longs["n"], longs["n"] / tot * 100, longs["views"]))
+    print("ロング : {:>4}本 ({:5.1f}%)  再生 {:,}".format(longs["n"], longs["n"] / tot * 100, longs["views"]))
     print("ショート: {:>4}本 ({:5.1f}%)  再生 {:,}".format(shorts["n"], shorts["n"] / tot * 100, shorts["views"]))
     return {"id": cid, "title": title, "total": longs["n"] + shorts["n"],
             "long": longs, "short": shorts}
@@ -177,11 +183,38 @@ def main():
         targets = args
     else:
         targets = [SAMPLE]
+    out_path = os.path.join(BASE, "bytype.json")
+    existing = {}
+    if os.path.exists(out_path):
+        try:
+            existing = {r["id"]: r for r in json.load(open(out_path, encoding="utf-8"))}
+        except Exception:
+            existing = {}
     t0 = time.time()
-    res = [r for r in (analyze(c) for c in targets) if r]
-    with open(os.path.join(BASE, "bytype.json"), "w", encoding="utf-8") as f:
-        json.dump(res, f, ensure_ascii=False, indent=2)
-    print("\n%d チャンネル完了 / %.1f秒 / bytype.json に保存" % (len(res), time.time() - t0))
+    ok = skip = 0
+    for cid in targets:
+        try:
+            r = analyze(cid)
+        except ApiError as e:
+            if e.code == 403 and "quota" in e.body.lower():
+                print("\n!! APIクォータ超過。ここまでを保存して停止します。")
+                break
+            print("\n-- スキップ {} (APIエラー {}=削除/非公開の可能性)".format(cid, e.code))
+            skip += 1
+            continue
+        except Exception as ex:
+            print("\n-- スキップ {} ({})".format(cid, ex))
+            skip += 1
+            continue
+        if r:
+            existing[r["id"]] = r
+            ok += 1
+            with open(out_path, "w", encoding="utf-8") as f:   # 1chごとに逐次保存(途中で落ちても残る)
+                json.dump(list(existing.values()), f, ensure_ascii=False, indent=2)
+        else:
+            skip += 1
+    print("\n完了: {} 成功 / {} スキップ / {:.1f}秒 / bytype.json({}件)".format(
+        ok, skip, time.time() - t0, len(existing)))
 
 if __name__ == "__main__":
     main()
