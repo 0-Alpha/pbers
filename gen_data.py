@@ -119,6 +119,8 @@ FIXED = {
     "UC0kY7Nwjt8qkErtdxl3iuIw": "#b5382f",  # 日本ボール (赤系・レンガ)
     "UCVxwV9hTI2DVS0exkZ-Mqww": "#3a72d6",  # 作 (青)
     "UCVYMXYU6j0M5Gj1xwywKDyg": "#db4f57",  # 新規 (赤系・ローズ)
+    "UCvYaUyxK_wqez1bJYyFslRg": "#e3e5ea",  # ボウコムボール (白め)
+    "UCpOhdzl-CTUQ8xHonbVWsZw": "#4ec3e6",  # うずまき (水色)
 }
 
 def hsl(h, s, l):
@@ -354,8 +356,8 @@ def load_bytype():
         return {}
 
 def ch_bytype_html(bt):
-    """ロング/ショートの「投稿数」と「総再生数」の比率バーを2本並べ、境目を点線で結ぶ。
-       さらに1本あたり平均再生数のカードも出す。データが無ければ空。"""
+    """ロング/ショートの「投稿数」「総再生数」の比率バーを2本並べ、境目を点線で結ぶ。
+       実数はカードに必ず載せ、バーは幅に余裕がある時だけ実数を添える(押し潰れ防止)。"""
     if not bt:
         return ""
     L, S = bt.get("long", {}), bt.get("short", {})
@@ -365,49 +367,59 @@ def ch_bytype_html(bt):
     if tot == 0:
         return ""
     lp, sp = ln / tot * 100, sn / tot * 100                 # 投稿数の比率
-    lvp = (lv / totv * 100) if totv else 0                  # 総再生数の比率(ロング)
-    svp = (sv / totv * 100) if totv else 0                  #             (ショート)
+    lvp = (lv / totv * 100) if totv else 0                  # 総再生数の比率(ロング/ショート)
+    svp = (sv / totv * 100) if totv else 0
     la = lv // ln if ln else 0                              # ロング1本あたり平均再生
     sa = sv // sn if sn else 0                              # ショート1本あたり平均再生
     mx = max(la, sa) or 1
-    p1 = lambda x: "%.1f" % x   # width用
-    p0 = lambda x: "%.0f" % x   # ラベル用
+    p1 = lambda x: "%.1f" % x
+    p0 = lambda x: "%.0f" % x
+
+    def seg(cls, pct, raw):
+        inner = '<b>' + p0(pct) + '%</b>'
+        if pct >= 22:                                       # 幅に余裕がある時だけ実数を添える
+            inner += '<i class="bt-raw">' + raw + '</i>'
+        return ('<div class="bt-seg ' + cls + '" style="width:' + p1(pct) + '%">'
+                '<span>' + inner + '</span></div>')
 
     def bar(lw, sw, lraw, sraw):
-        return ('<div class="bt-bar">'
-                  '<div class="bt-seg bt-long" style="width:' + p1(lw) + '%"><span><b>' + p0(lw) + '%</b>'
-                    '<i class="bt-raw">' + lraw + '</i></span></div>'
-                  '<div class="bt-seg bt-short" style="width:' + p1(sw) + '%"><span><b>' + p0(sw) + '%</b>'
-                    '<i class="bt-raw">' + sraw + '</i></span></div>'
-                '</div>')
+        return '<div class="bt-bar">' + seg("bt-long", lw, lraw) + seg("bt-short", sw, sraw) + '</div>'
 
-    def card(cls, dot, label, n, avg):
+    def card(cls, dot, label, n, vv, avg):
         return ('<div class="bt-card">'
                   '<div class="bt-k"><i class="bt-dot ' + dot + '"></i>' + label + '</div>'
-                  '<div class="bt-n">' + "{:,}".format(n) + '<small>本</small></div>'
-                  '<div class="bt-avgbar"><span class="bt-fill ' + cls + '" style="width:'
-                    + p1(avg / mx * 100) + '%"></span></div>'
-                  '<div class="bt-avg">1本あたり <b>' + _jp(avg) + '</b> 回</div>'
+                  '<div class="bt-rows">'
+                    '<div class="bt-row"><span>投稿</span><b>' + "{:,}".format(n) + '<small>本</small></b></div>'
+                    '<div class="bt-row"><span>再生</span><b>' + _jp(vv) + '<small>回</small></b></div>'
+                  '</div>'
+                  '<div class="bt-avgwrap">'
+                    '<div class="bt-avglab">1本あたり <b>' + _jp(avg) + '</b> 回</div>'
+                    '<div class="bt-avgbar"><span class="bt-fill ' + cls + '" style="width:'
+                      + p1(avg / mx * 100) + '%"></span></div>'
+                  '</div>'
                 '</div>')
 
-    # 上バー(投稿数)の境目 lp% と 下バー(総再生数)の境目 lvp% を点線で結ぶ
+    # 上バー(投稿)の境目 lp% と 下バー(再生)の境目 lvp% を点線で結ぶ
     link = ('<div class="bt2-link"><span class="bt2-lab"></span>'
-            '<svg class="bt-linksvg" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true">'
-              '<line x1="' + p1(lp) + '" y1="0" x2="' + p1(lvp) + '" y2="16"/>'
+            '<svg class="bt-linksvg" viewBox="0 0 100 18" preserveAspectRatio="none" aria-hidden="true">'
+              '<line x1="' + p1(lp) + '" y1="0" x2="' + p1(lvp) + '" y2="18"/>'
             '</svg></div>')
 
     return (
         '<div class="sec-head" style="margin-top:34px"><h2>動画タイプ別 <span class="en">By type</span></h2>'
           '<span class="note">全' + str(tot) + '本</span></div>'
         '<div class="bt bt2">'
+          '<div class="bt-legend">'
+            '<span class="bt-lg"><i class="bt-dot bt-dl"></i>ロング</span>'
+            '<span class="bt-lg"><i class="bt-dot bt-ds"></i>ショート</span></div>'
           '<div class="bt2-row"><span class="bt2-lab">投稿数</span>'
             + bar(lp, sp, "{:,}本".format(ln), "{:,}本".format(sn)) + '</div>'
           + link +
           '<div class="bt2-row"><span class="bt2-lab">総再生数</span>'
             + bar(lvp, svp, _jp(lv) + "回", _jp(sv) + "回") + '</div>'
           '<div class="bt-cards">'
-            + card("bt-fl", "bt-dl", "ロング", ln, la)
-            + card("bt-fs", "bt-ds", "ショート", sn, sa) +
+            + card("bt-fl", "bt-dl", "ロング", ln, lv, la)
+            + card("bt-fs", "bt-ds", "ショート", sn, sv, sa) +
           '</div>'
         '</div>'
     )
