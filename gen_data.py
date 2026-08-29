@@ -354,36 +354,55 @@ def load_bytype():
         return {}
 
 def ch_bytype_html(bt):
-    """横動画/ショートの本数比率＋1本あたり平均再生数を表示する静的HTML。データが無ければ空。"""
+    """ロング/ショートの「投稿数」と「総再生数」の比率バーを2本並べ、境目を点線で結ぶ。
+       さらに1本あたり平均再生数のカードも出す。データが無ければ空。"""
     if not bt:
         return ""
     L, S = bt.get("long", {}), bt.get("short", {})
     ln, sn = L.get("n", 0), S.get("n", 0)
-    tot = ln + sn
+    lv, sv = L.get("views", 0), S.get("views", 0)
+    tot, totv = ln + sn, lv + sv
     if tot == 0:
         return ""
-    lp, sp = ln / tot * 100, sn / tot * 100
-    la = L.get("views", 0) // ln if ln else 0     # 横動画の1本あたり平均再生
-    sa = S.get("views", 0) // sn if sn else 0     # ショートの1本あたり平均再生
+    lp, sp = ln / tot * 100, sn / tot * 100                 # 投稿数の比率
+    lvp = (lv / totv * 100) if totv else 0                  # 総再生数の比率(ロング)
+    svp = (sv / totv * 100) if totv else 0                  #             (ショート)
+    la = lv // ln if ln else 0                              # ロング1本あたり平均再生
+    sa = sv // sn if sn else 0                              # ショート1本あたり平均再生
     mx = max(la, sa) or 1
+    p1 = lambda x: "%.1f" % x   # width用
+    p0 = lambda x: "%.0f" % x   # ラベル用
+
+    def bar(lw, sw):
+        return ('<div class="bt-bar">'
+                  '<div class="bt-seg bt-long" style="width:' + p1(lw) + '%"><span>ロング ' + p0(lw) + '%</span></div>'
+                  '<div class="bt-seg bt-short" style="width:' + p1(sw) + '%"><span>ショート ' + p0(sw) + '%</span></div>'
+                '</div>')
+
     def card(cls, dot, label, n, avg):
         return ('<div class="bt-card">'
                   '<div class="bt-k"><i class="bt-dot ' + dot + '"></i>' + label + '</div>'
                   '<div class="bt-n">' + "{:,}".format(n) + '<small>本</small></div>'
                   '<div class="bt-avgbar"><span class="bt-fill ' + cls + '" style="width:'
-                    + ("%.1f" % (avg / mx * 100)) + '%"></span></div>'
+                    + p1(avg / mx * 100) + '%"></span></div>'
                   '<div class="bt-avg">1本あたり <b>' + _jp(avg) + '</b> 回</div>'
                 '</div>')
+
+    # 上バー(投稿数)の境目 lp% と 下バー(総再生数)の境目 lvp% を点線で結ぶ
+    link = ('<div class="bt2-link"><span class="bt2-lab"></span>'
+            '<svg class="bt-linksvg" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true">'
+              '<line x1="' + p1(lp) + '" y1="0" x2="' + p1(lvp) + '" y2="16"/>'
+            '</svg></div>')
+
     return (
         '<div class="sec-head" style="margin-top:34px"><h2>動画タイプ別 <span class="en">By type</span></h2>'
           '<span class="note">全' + str(tot) + '本</span></div>'
-        '<div class="bt">'
-          '<div class="bt-bar">'
-            '<div class="bt-seg bt-long" style="width:' + ("%.1f" % lp) + '%"><span>横 ' + ("%.0f" % lp) + '%</span></div>'
-            '<div class="bt-seg bt-short" style="width:' + ("%.1f" % sp) + '%"><span>ショート ' + ("%.0f" % sp) + '%</span></div>'
-          '</div>'
+        '<div class="bt bt2">'
+          '<div class="bt2-row"><span class="bt2-lab">投稿数</span>' + bar(lp, sp) + '</div>'
+          + link +
+          '<div class="bt2-row"><span class="bt2-lab">総再生数</span>' + bar(lvp, svp) + '</div>'
           '<div class="bt-cards">'
-            + card("bt-fl", "bt-dl", "横動画", ln, la)
+            + card("bt-fl", "bt-dl", "ロング", ln, la)
             + card("bt-fs", "bt-ds", "ショート", sn, sa) +
           '</div>'
         '</div>'

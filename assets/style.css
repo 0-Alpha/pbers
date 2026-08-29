@@ -305,7 +305,13 @@ section.block{padding:46px 0}
 
 /* ---------- channel page: 動画タイプ別(横/ショート比率＋1本あたり平均) ---------- */
 .bt{--bt-long:#5b8def;--bt-short:#e0554b}
-.bt-bar{display:flex;height:38px;border-radius:10px;overflow:hidden;background:var(--panel);border:1px solid var(--line)}
+.bt2-row{display:flex;align-items:center;gap:10px}
+.bt2-row .bt-bar{flex:1}
+.bt2-lab{flex:none;width:62px;text-align:right;font-family:var(--jp);font-weight:700;font-size:11.5px;color:var(--muted)}
+.bt2-link{display:flex;gap:10px;height:16px}
+.bt-linksvg{flex:1;height:16px;display:block;overflow:visible}
+.bt-linksvg line{stroke:var(--muted);stroke-width:1.4;stroke-dasharray:2.5 3;vector-effect:non-scaling-stroke}
+.bt-bar{display:flex;height:36px;border-radius:10px;overflow:hidden;background:var(--panel);border:1px solid var(--line)}
 .bt-seg{display:flex;align-items:center;justify-content:center;min-width:0;color:#fff;font-family:var(--num);
   font-weight:800;font-size:13px;white-space:nowrap;overflow:hidden;transition:width .5s ease}
 .bt-seg span{padding:0 6px;overflow:hidden;text-overflow:ellipsis}
