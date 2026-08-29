@@ -373,10 +373,12 @@ def ch_bytype_html(bt):
     p1 = lambda x: "%.1f" % x   # width用
     p0 = lambda x: "%.0f" % x   # ラベル用
 
-    def bar(lw, sw):
+    def bar(lw, sw, lraw, sraw):
         return ('<div class="bt-bar">'
-                  '<div class="bt-seg bt-long" style="width:' + p1(lw) + '%"><span>ロング ' + p0(lw) + '%</span></div>'
-                  '<div class="bt-seg bt-short" style="width:' + p1(sw) + '%"><span>ショート ' + p0(sw) + '%</span></div>'
+                  '<div class="bt-seg bt-long" style="width:' + p1(lw) + '%"><span><b>' + p0(lw) + '%</b>'
+                    '<i class="bt-raw">' + lraw + '</i></span></div>'
+                  '<div class="bt-seg bt-short" style="width:' + p1(sw) + '%"><span><b>' + p0(sw) + '%</b>'
+                    '<i class="bt-raw">' + sraw + '</i></span></div>'
                 '</div>')
 
     def card(cls, dot, label, n, avg):
@@ -398,9 +400,11 @@ def ch_bytype_html(bt):
         '<div class="sec-head" style="margin-top:34px"><h2>動画タイプ別 <span class="en">By type</span></h2>'
           '<span class="note">全' + str(tot) + '本</span></div>'
         '<div class="bt bt2">'
-          '<div class="bt2-row"><span class="bt2-lab">投稿数</span>' + bar(lp, sp) + '</div>'
+          '<div class="bt2-row"><span class="bt2-lab">投稿数</span>'
+            + bar(lp, sp, "{:,}本".format(ln), "{:,}本".format(sn)) + '</div>'
           + link +
-          '<div class="bt2-row"><span class="bt2-lab">総再生数</span>' + bar(lvp, svp) + '</div>'
+          '<div class="bt2-row"><span class="bt2-lab">総再生数</span>'
+            + bar(lvp, svp, _jp(lv) + "回", _jp(sv) + "回") + '</div>'
           '<div class="bt-cards">'
             + card("bt-fl", "bt-dl", "ロング", ln, la)
             + card("bt-fs", "bt-ds", "ショート", sn, sa) +

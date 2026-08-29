@@ -314,7 +314,9 @@ section.block{padding:46px 0}
 .bt-bar{display:flex;height:36px;border-radius:10px;overflow:hidden;background:var(--panel);border:1px solid var(--line)}
 .bt-seg{display:flex;align-items:center;justify-content:center;min-width:0;color:#fff;font-family:var(--num);
   font-weight:800;font-size:13px;white-space:nowrap;overflow:hidden;transition:width .5s ease}
-.bt-seg span{padding:0 6px;overflow:hidden;text-overflow:ellipsis}
+.bt-seg span{padding:0 8px;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:baseline;gap:5px}
+.bt-seg b{font-weight:900}
+.bt-raw{font-style:normal;font-weight:700;font-size:11px;opacity:.82}
 .bt-long{background:var(--bt-long)}
 .bt-short{background:var(--bt-short)}
 .bt-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
@@ -331,7 +333,13 @@ section.block{padding:46px 0}
 .bt-fs{background:var(--bt-short)}
 .bt-avg{font-family:var(--num);font-weight:700;font-size:12.5px;color:var(--muted);margin-top:7px}
 .bt-avg b{color:var(--text);font-weight:900;font-size:15px}
-@media(max-width:620px){ .bt-cards{grid-template-columns:1fr} }
+@media(max-width:620px){
+  .bt-cards{grid-template-columns:1fr}
+  .bt-seg{font-size:11.5px}
+  .bt-seg span{padding:0 5px;gap:3px}
+  .bt-raw{font-size:10px}
+  .bt2-lab{width:52px}
+}
 
 /* ---------- channel page: related channels & prev/next (回遊導線) ---------- */
 .ch-more{margin-top:44px}
