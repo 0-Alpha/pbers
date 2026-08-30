@@ -1222,8 +1222,8 @@
   }
 
   /* ---- init ---- */
-  // 日本/海外の切替タブ: 現在のエディションをハイライト
-  document.querySelectorAll('.edtab').forEach(function (a) {
+  // 日本/海外の切替トグル: 現在のエディションをハイライト
+  document.querySelectorAll('.edsw-opt').forEach(function (a) {
     a.classList.toggle('on', a.getAttribute('data-ed') === GBASE);
   });
   if (!ALL.length) {
