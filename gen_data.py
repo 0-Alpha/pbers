@@ -101,6 +101,7 @@ RETIRED = {
     "UCvf-UiLQzKEGKYoMvwCGYbA",  # 引退
     "UCPpw3ZMnEraWpMPSrwCzOog",  # 引退済み
     "UC8BA486HqgHSLO82YlPNFfw",  # はなひに (2026-08-26 YouTube側で削除/利用不可)
+    "UCPgo3vhueVGcmxye8KXomag",  # 削除済み (name=ID・取得不可。2026-08 確認)
 }
 
 # 指定の固定カラー(チャンネルID -> hex)
