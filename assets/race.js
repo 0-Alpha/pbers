@@ -111,7 +111,7 @@ window.PBERS_RACE = [
         "name": "田中MID",
         "color": "#2f80ed",
         "avatar": "https://yt3.googleusercontent.com/mnFY8X_lmtyW54Uh5ocg1QJQVTxTRKG9XDdrGAhxFZpPPJzhsGue-cMHqLBCsIRF4hBHjsLU=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 292000,
+        "subs": 293000,
         "history": [
           {
             "d": "2026-08-20",
@@ -155,7 +155,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-30",
-            "s": 292000
+            "s": 293000
           }
         ]
       }
@@ -591,7 +591,7 @@ window.PBERS_RACE = [
         "name": "ｺﾏ",
         "color": "#a55ed4",
         "avatar": "https://yt3.googleusercontent.com/qfIMUcBcGCqbLGk6dZfwDM1ITBKnaYjIMF7mCqKncuWK8lA1JBya8wfa2f9evEE_mbpWj-67=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 21400,
+        "subs": 21500,
         "history": [
           {
             "d": "2026-08-20",
@@ -635,7 +635,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-30",
-            "s": 21400
+            "s": 21500
           }
         ]
       }
@@ -1143,7 +1143,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-30",
-            "s": 13700
+            "s": 13800
           }
         ]
       }
@@ -1152,8 +1152,52 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "まるぼーるch ",
+        "name": "まるッとわかる地理の裏話",
         "color": "#5ed499",
+        "avatar": "https://yt3.googleusercontent.com/OKTvYCqWkuYG-s3iq1dydM6YDas44QIY_hQxl1bPLPQbGzbLUe-ljaKZ4AoJu1kb1r2PI0GPXnI=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 13100,
+        "history": [
+          {
+            "d": "2026-08-22",
+            "s": 12300
+          },
+          {
+            "d": "2026-08-23",
+            "s": 12400
+          },
+          {
+            "d": "2026-08-24",
+            "s": 12600
+          },
+          {
+            "d": "2026-08-25",
+            "s": 12700
+          },
+          {
+            "d": "2026-08-26",
+            "s": 12800
+          },
+          {
+            "d": "2026-08-27",
+            "s": 12800
+          },
+          {
+            "d": "2026-08-28",
+            "s": 12900
+          },
+          {
+            "d": "2026-08-29",
+            "s": 13000
+          },
+          {
+            "d": "2026-08-30",
+            "s": 13100
+          }
+        ]
+      },
+      {
+        "name": "まるぼーるch ",
+        "color": "#3e95cc",
         "avatar": "https://yt3.googleusercontent.com/plXugBe_yne07EdTN2A5rq-5NpdGZp33xpvpmlwkItY6AH-tPC0sjllPf2WK6wcwBL2quhIOFw=s900-c-k-c0x00ffffff-no-rj",
         "subs": 13000,
         "history": [
@@ -1201,7 +1245,7 @@ window.PBERS_RACE = [
       },
       {
         "name": "やよいどき",
-        "color": "#3e95cc",
+        "color": "#7d5ed4",
         "avatar": "https://yt3.googleusercontent.com/fhtCfO2IcgGcnMPcdxsX4HNtMMm6AOWJYVqI2MoElr2NQJSGgJrq3zBNpHEc7mt_qUHs1RIs=s900-c-k-c0x00ffffff-no-rj",
         "subs": 13000,
         "history": [
@@ -1236,50 +1280,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-28",
             "s": 13000
-          },
-          {
-            "d": "2026-08-29",
-            "s": 13000
-          },
-          {
-            "d": "2026-08-30",
-            "s": 13000
-          }
-        ]
-      },
-      {
-        "name": "まるッとわかる地理の裏話",
-        "color": "#7d5ed4",
-        "avatar": "https://yt3.googleusercontent.com/OKTvYCqWkuYG-s3iq1dydM6YDas44QIY_hQxl1bPLPQbGzbLUe-ljaKZ4AoJu1kb1r2PI0GPXnI=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 13000,
-        "history": [
-          {
-            "d": "2026-08-22",
-            "s": 12300
-          },
-          {
-            "d": "2026-08-23",
-            "s": 12400
-          },
-          {
-            "d": "2026-08-24",
-            "s": 12600
-          },
-          {
-            "d": "2026-08-25",
-            "s": 12700
-          },
-          {
-            "d": "2026-08-26",
-            "s": 12800
-          },
-          {
-            "d": "2026-08-27",
-            "s": 12800
-          },
-          {
-            "d": "2026-08-28",
-            "s": 12900
           },
           {
             "d": "2026-08-29",
@@ -1975,7 +1975,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-30",
-            "s": 9660
+            "s": 9670
           }
         ]
       },
@@ -2159,7 +2159,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-30",
-            "s": 7050
+            "s": 7060
           }
         ]
       }
