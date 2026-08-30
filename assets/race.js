@@ -103,7 +103,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-30",
-            "s": 319000
+            "s": 320000
           }
         ]
       },
@@ -892,11 +892,16 @@ window.PBERS_RACE = [
         ]
       },
       {
-        "name": "",
+        "name": "Türkiye👑キプロスball",
         "color": "#5ebcd4",
         "avatar": "https://yt3.googleusercontent.com/WBViJaIICezH_uSU7qpm3-mZ6dwuAlZ59RE4LPIFWt-jg8a2U_zJNpFKr0yPh4kcAU9ayn8j=s900-c-k-c0x00ffffff-no-rj",
         "subs": 14800,
-        "history": []
+        "history": [
+          {
+            "d": "2026-08-30",
+            "s": 14800
+          }
+        ]
       }
     ]
   },
@@ -1046,7 +1051,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-30",
-            "s": 13800
+            "s": 13900
           }
         ]
       },
@@ -1943,6 +1948,34 @@ window.PBERS_RACE = [
   {
     "members": [
       {
+        "name": "Russiaぼーる",
+        "color": "#d45ed4",
+        "avatar": "https://yt3.googleusercontent.com/guuUYcSD0oOzaEb_pOM6B-FMV7iKODD9BXb0n909foibaw6t2R4s9RlQP0EmmTVyG1C_81R6=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 7480,
+        "history": [
+          {
+            "d": "2026-08-30",
+            "s": 7480
+          }
+        ]
+      },
+      {
+        "name": "ニイソビボール",
+        "color": "#cc3e4e",
+        "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 7410,
+        "history": [
+          {
+            "d": "2026-08-30",
+            "s": 7410
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "members": [
+      {
         "name": "Rimoru",
         "color": "#d4b95e",
         "avatar": "https://yt3.googleusercontent.com/givHPiZPGg1pnkUxhIgkbTidsnI7WUPlFrl1EeL8XhxGqor9DKhdndAEfEFFdDj3Ne9GtdM-wg=s900-c-k-c0x00ffffff-no-rj",
@@ -2026,7 +2059,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-30",
-            "s": 7080
+            "s": 7090
           }
         ]
       },
@@ -2086,7 +2119,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-08-30",
-            "s": 7070
+            "s": 7080
           }
         ]
       },
@@ -2374,7 +2407,7 @@ window.PBERS_RACE = [
         "history": [
           {
             "d": "2026-08-30",
-            "s": 5230
+            "s": 5240
           }
         ]
       }
@@ -2418,7 +2451,7 @@ window.PBERS_RACE = [
         "history": [
           {
             "d": "2026-08-30",
-            "s": 4930
+            "s": 4940
           }
         ]
       },
@@ -2458,7 +2491,7 @@ window.PBERS_RACE = [
         "history": [
           {
             "d": "2026-08-30",
-            "s": 4650
+            "s": 4660
           }
         ]
       }
@@ -2610,7 +2643,7 @@ window.PBERS_RACE = [
         "history": [
           {
             "d": "2026-08-30",
-            "s": 3050
+            "s": 3060
           }
         ]
       },
@@ -2746,11 +2779,11 @@ window.PBERS_RACE = [
         "name": "某P国の球",
         "color": "#d4955e",
         "avatar": "https://yt3.googleusercontent.com/XrXLTRaii_TN3m_FTr8J_fMlh1VJfhmf43mY2JzU4iNTLMMtYQR0xvyge9r5Tokxl0TNVW-wn30=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 2610,
+        "subs": 2620,
         "history": [
           {
             "d": "2026-08-30",
-            "s": 2610
+            "s": 2620
           }
         ]
       }
@@ -2800,7 +2833,7 @@ window.PBERS_RACE = [
     "members": [
       {
         "name": "日独伊同盟ボール(ポーランドボール)",
-        "color": "#95d45e",
+        "color": "#cc9a3e",
         "avatar": "https://yt3.googleusercontent.com/8x-zULuE0bf6GbydUZh3nQyTPrQ7rnZNHPQGN3mwP0bacDUOxtqn3XU0ZSOMMFXbT34D3LVPlQ=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2270,
         "history": [
@@ -2812,7 +2845,7 @@ window.PBERS_RACE = [
       },
       {
         "name": "信州ボール",
-        "color": "#3ecc79",
+        "color": "#95d45e",
         "avatar": "https://yt3.googleusercontent.com/PwNfzNceFKQIG8HYA09DBdyKKU4OUBZdQdPix97e6bfnUO0_bBTn8HOVRJ3TeSFVqLeLRi06v4o=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2260,
         "history": [
@@ -2824,7 +2857,7 @@ window.PBERS_RACE = [
       },
       {
         "name": "みみけけ",
-        "color": "#5eb1d4",
+        "color": "#3ecc79",
         "avatar": "https://yt3.googleusercontent.com/gtr3tkd9Ra4HMv-hciHc65Lr1q_1mClGOA7Gq4jNkAmqHimaEZYW8psX3Q86hCvN1-y33-D-0Q=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2250,
         "history": [
@@ -2840,7 +2873,7 @@ window.PBERS_RACE = [
     "members": [
       {
         "name": "Nà大和ボール",
-        "color": "#d45ecc",
+        "color": "#583ecc",
         "avatar": "https://yt3.googleusercontent.com/h9LJBh8voSTpKAg1qEsum8_xqgLHPv-6JMLk324I2__hStLiaJxmCHlWdF3_GWNi2MwVMjQDdQ=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2170,
         "history": [
@@ -2852,7 +2885,7 @@ window.PBERS_RACE = [
       },
       {
         "name": "ソビエトボールUSSR",
-        "color": "#cc3e45",
+        "color": "#d45ecc",
         "avatar": "https://yt3.googleusercontent.com/oQR3FLSbYKMQi1K_7qkk8PVfmLILRrYecaE-8XC2kKcQiazxJwzRa-yCeX6OxqgbmJ07vNTC=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2160,
         "history": [
@@ -2868,7 +2901,7 @@ window.PBERS_RACE = [
     "members": [
       {
         "name": "東トルキスタンボール",
-        "color": "#d4c05e",
+        "color": "#cc3e45",
         "avatar": "https://yt3.googleusercontent.com/gl0PJDChU9pNvwUraC-NHdbfB-E4QFi_ACxD9BO_GSGGoUYkNmcNH6d3crXJ-8l44QeEHRjz=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2130,
         "history": [
@@ -2880,7 +2913,7 @@ window.PBERS_RACE = [
       },
       {
         "name": "スチロール【ポーランドボール】",
-        "color": "#66cc3e",
+        "color": "#d4c05e",
         "avatar": "https://yt3.googleusercontent.com/JOm2bK8BIWTvVMMPnpH5pgZSCkzxxK98xNF0IeecxPHgbH_j4ZoSKeHS9A7cAWmpxQOs95sfUg=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2110,
         "history": [
@@ -2892,7 +2925,7 @@ window.PBERS_RACE = [
       },
       {
         "name": "宇宙千葉のPBルーム",
-        "color": "#5ed4a5",
+        "color": "#66cc3e",
         "avatar": "https://yt3.googleusercontent.com/_jK5l2UwBNsfjk9zVEdenHBT3eaTCeBaogOKV9JSU397tkbAGQvlyi7xnWxhn_9Ai9WGadGBUg=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2100,
         "history": [
@@ -2908,7 +2941,7 @@ window.PBERS_RACE = [
     "members": [
       {
         "name": "Mīþ!緑ボール　[大緑]",
-        "color": "#3e87cc",
+        "color": "#5ed4a5",
         "avatar": "https://yt3.googleusercontent.com/Uutqa_lcVBzUOuW1_dfogp9IHqDbVdiJESzPjRwGeJRlgcpWb_vfKqIfK4TfDAIPgzIGis9x=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2080,
         "history": [
@@ -2920,7 +2953,7 @@ window.PBERS_RACE = [
       },
       {
         "name": "ミントの農場",
-        "color": "#895ed4",
+        "color": "#3e87cc",
         "avatar": "https://yt3.googleusercontent.com/RnPkMOcvXnYH93HK6sBW4Pk3Z9xk8LGY2Flq4zNhr4yE8hhoRCqIh5px60QCEfsYUCJXuiD5ng=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2060,
         "history": [
@@ -2932,7 +2965,7 @@ window.PBERS_RACE = [
       },
       {
         "name": "ソ中ボール日友好平和同盟",
-        "color": "#cc3ea8",
+        "color": "#895ed4",
         "avatar": "https://yt3.googleusercontent.com/idKCYo4w5sKLb4FpUjDCoUGFI2ATRvQmRgavCKPeRW5wayDzDjKB9PnAgVEXLv6tDN2GjNBffkc=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2050,
         "history": [
