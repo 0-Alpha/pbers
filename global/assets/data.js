@@ -1,4 +1,174 @@
-window.PBERS_DATA = [];
+window.PBERS_DATA = [
+  {
+    "name": "JP-BALL",
+    "subs": 438000,
+    "views": 165596715,
+    "subsLabel": "チャンネル登録者数 43.8万人",
+    "viewsLabel": "165,596,715回視聴",
+    "videos": 128,
+    "url": "https://www.youtube.com/channel/UCZ-zUkkdNTYAYDgkDyeb_hA",
+    "avatar": "https://yt3.googleusercontent.com/UXoyWxO_MOdKJK4kLMC988Uj9LZC9pZO13VMLEVq-4C32fBkvug-FUzSiUrbAh_mSy3zOPyfCC0=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#d45e5e",
+    "genre": "ポーランドボーラー",
+    "slug": "jp-ball"
+  },
+  {
+    "name": "Moonball_PB",
+    "subs": 208000,
+    "views": 36863205,
+    "subsLabel": "チャンネル登録者数 20.8万人",
+    "viewsLabel": "36,863,205回視聴",
+    "videos": 31,
+    "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
+    "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#ccbb3e",
+    "genre": "ポーランドボーラー",
+    "slug": "moonball_pb"
+  },
+  {
+    "name": "Opera_cb",
+    "subs": 189000,
+    "views": 88257661,
+    "subsLabel": "チャンネル登録者数 18.9万人",
+    "viewsLabel": "88,257,661回視聴",
+    "videos": 142,
+    "url": "https://www.youtube.com/channel/UC4bqMpF49ebuiF4TbJvFmyw",
+    "avatar": "https://yt3.googleusercontent.com/U9rqdPqWMX7a6j1Nr0HKX2yBiK40Mxy7LJbTLRWaC_lMEcHPqoKb140oquBes08LNaSzmLa4kg=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#79d45e",
+    "genre": "ポーランドボーラー",
+    "slug": "opera_cb"
+  },
+  {
+    "name": "áíš!aispoaporu",
+    "subs": 136000,
+    "views": 92774098,
+    "subsLabel": "チャンネル登録者数 13.6万人",
+    "viewsLabel": "92,774,098回視聴",
+    "videos": 1044,
+    "url": "https://www.youtube.com/channel/UC1swbrz9S2VKVABS673ACgQ",
+    "avatar": "https://yt3.googleusercontent.com/PNuTtwQrRcQ7zzGQlLM54CsOYHqXfzQA3oPx8Q9o-_GTomHU_WV2SGsA7uv_oPc1XNo09Q0OAtY=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#3ecc9a",
+    "genre": "ポーランドボーラー",
+    "slug": "áíšaispoaporu"
+  },
+  {
+    "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
+    "subs": 112000,
+    "views": 45503005,
+    "subsLabel": "チャンネル登録者数 11.2万人",
+    "viewsLabel": "45,503,005回視聴",
+    "videos": 254,
+    "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
+    "avatar": "https://yt3.googleusercontent.com/6bFOwdJowJMxYBkoE3h0ws0_Lbgr8d8c0ZPgny5agUQ4OzwVqAeeD2E4RCFYEkte2VM_Bwel2w=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#5e95d4",
+    "genre": "ポーランドボーラー",
+    "slug": "dezinichtフヒフム-海外アカウント"
+  },
+  {
+    "name": "F丸",
+    "subs": 32800,
+    "views": 28413828,
+    "subsLabel": "チャンネル登録者数 3.28万人",
+    "viewsLabel": "28,413,828回視聴",
+    "videos": 88,
+    "url": "https://www.youtube.com/channel/UCEJRQBqXi3z3UXnHdueIvJg",
+    "avatar": "https://yt3.googleusercontent.com/PR6RDCc4I4mjNrUI-SNf6aFe77FFIuoEua4QgudGPAb0lNYAGsa96UnB3RMulCGlC6qHfzUxlrI=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#793ecc",
+    "genre": "ポーランドボーラー",
+    "slug": "f丸"
+  },
+  {
+    "name": "Blackbean",
+    "subs": 15800,
+    "views": 15878760,
+    "subsLabel": "チャンネル登録者数 1.58万人",
+    "viewsLabel": "15,878,760回視聴",
+    "videos": 63,
+    "url": "https://www.youtube.com/channel/UCfJp9c3kSkIjYFevd2G1RKg",
+    "avatar": "https://yt3.googleusercontent.com/CXsrTBOgxMJAWTRveVyOuxFWZ_qwNDgTOXLejp-EoJXM8hXkdhxO7aaWt4ETrS7jisX-m4KY=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#d45eb1",
+    "genre": "ポーランドボーラー",
+    "slug": "blackbean"
+  },
+  {
+    "name": "日本猫耳版ボール【目標9000人】",
+    "subs": 12900,
+    "views": 3922565,
+    "subsLabel": "チャンネル登録者数 1.29万人",
+    "viewsLabel": "3,922,565回視聴",
+    "videos": 226,
+    "url": "https://www.youtube.com/channel/UCIqROVo0xBJfh5h6cQyPm7Q",
+    "avatar": "https://yt3.googleusercontent.com/LpR7h9FEKhK0Va34bq-KRghVlWGkhmZQUTbd-JcnnuZ3BU17SQQjkFfh6YnFgAvVbYXcWO37Vw=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#cc583e",
+    "genre": "ポーランドボーラー",
+    "slug": "日本猫耳版ボール目標9000人"
+  },
+  {
+    "name": "Dotto edit",
+    "subs": 9610,
+    "views": 6728672,
+    "subsLabel": "チャンネル登録者数 9610人",
+    "viewsLabel": "6,728,672回視聴",
+    "videos": 61,
+    "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
+    "avatar": "https://yt3.googleusercontent.com/JjoolJ5faLhJzaPj3UckuOvdbEaug12ouvdocg6jk1Lw-ZS7TMNjGxAAuz0v3hb6b04v_uJ97Q=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#ccd45e",
+    "genre": "ポーランドボーラー",
+    "slug": "dotto-edit"
+  },
+  {
+    "name": "Past_Ball",
+    "subs": 7610,
+    "views": 3486043,
+    "subsLabel": "チャンネル登録者数 7610人",
+    "viewsLabel": "3,486,043回視聴",
+    "videos": 210,
+    "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
+    "avatar": "https://yt3.googleusercontent.com/r8ouoXMX9iar1cjJgX7u1yaZn1Eis8ZAzmdIhpoYUYTiTUl39uZ8KU81zZBYtSr-Gs2TCuga=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#45cc3e",
+    "genre": "ポーランドボーラー",
+    "slug": "past_ball"
+  },
+  {
+    "name": "udonball",
+    "subs": 6880,
+    "views": 1228190,
+    "subsLabel": "チャンネル登録者数 6880人",
+    "viewsLabel": "1,228,190回視聴",
+    "videos": 119,
+    "url": "https://www.youtube.com/channel/UCGueqNQmvtQYlGO3UL3Gf3w",
+    "avatar": "https://yt3.googleusercontent.com/t-XpUkPOEssGyYn9TK4JrLG9EmGIhn565-GBvVCtqkpxDXD36l6OOb6EOlWJ_Gr92W8a_ryApcg=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#5ed4c0",
+    "genre": "ポーランドボーラー",
+    "slug": "udonball"
+  },
+  {
+    "name": "AST.aosuto Polandball",
+    "subs": 3570,
+    "views": 1720649,
+    "subsLabel": "チャンネル登録者数 3570人",
+    "viewsLabel": "1,720,649回視聴",
+    "videos": 32,
+    "url": "https://www.youtube.com/channel/UC0oyndW7j5GS5NIb8ww7cxw",
+    "avatar": "https://yt3.googleusercontent.com/nXoBfvWS9QqvvLPBMax19Sflx1CZUnM7Yuwg1UKcJoinUoQca69gdhzMRdk9SiC-VMDw-46JkYI=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#3e66cc",
+    "genre": "ポーランドボーラー",
+    "slug": "astaosuto-polandball"
+  },
+  {
+    "name": "AJ ball",
+    "subs": 3490,
+    "views": 1508247,
+    "subsLabel": "チャンネル登録者数 3490人",
+    "viewsLabel": "1,508,247回視聴",
+    "videos": 38,
+    "url": "https://www.youtube.com/channel/UC9EPL3fLMARICtvoL6NGMBA",
+    "avatar": "https://yt3.googleusercontent.com/oBocVfsRI4xNymEO3_9zK8GmSus753e0k0d_Dm9TN5IXzxVHK7Nlea4VDStGfUaeRAX5cMc5=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#a55ed4",
+    "genre": "ポーランドボーラー",
+    "slug": "aj-ball"
+  }
+];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-30";
-window.PBERS_PREDICT = {"asOfMs": 1788107307039, "subs": {"base": 0, "rate": 0.0}, "views": {"base": 0, "rate": 0.0}};
+window.PBERS_PREDICT = {"asOfMs": 1788107837923, "subs": {"base": 1175660, "rate": 0.0}, "views": {"base": 491881638, "rate": 0.0}};

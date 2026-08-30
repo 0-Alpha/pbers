@@ -1222,6 +1222,10 @@
   }
 
   /* ---- init ---- */
+  // 日本/海外の切替タブ: 現在のエディションをハイライト
+  document.querySelectorAll('.edtab').forEach(function (a) {
+    a.classList.toggle('on', a.getAttribute('data-ed') === GBASE);
+  });
   if (!ALL.length) {
     // 空ロスター(海外向けの準備中など): データ描画はスキップし、ページを壊さない。タブ操作は有効。
     var _cap = document.getElementById('total-cap'); if (_cap) _cap.textContent = '準備中 / Coming soon';

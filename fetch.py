@@ -98,4 +98,5 @@ def main():
     for channels_file, data_file in EDITIONS:
         build(channels_file, data_file)
 
-main()
+if __name__ == "__main__":
+    main()
