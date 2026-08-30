@@ -1119,9 +1119,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "にこちPB",
-    "subs": 6100,
+    "subs": 6110,
     "views": 347618,
-    "subsLabel": "チャンネル登録者数 6100人",
+    "subsLabel": "チャンネル登録者数 6110人",
     "viewsLabel": "347,618回視聴",
     "videos": 25,
     "url": "https://www.youtube.com/channel/UC2fMWFGgy-ENfkqlK0CUwrg",
@@ -1392,9 +1392,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "カルマルボール",
-    "subs": 4000,
+    "subs": 4010,
     "views": 1196839,
-    "subsLabel": "チャンネル登録者数 4000人",
+    "subsLabel": "チャンネル登録者数 4010人",
     "viewsLabel": "1,196,839回視聴",
     "videos": 46,
     "url": "https://www.youtube.com/channel/UCZbTlsZfAf1cmBgLnYMfPWg",
@@ -1431,9 +1431,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "レイアルファ",
-    "subs": 3860,
+    "subs": 3870,
     "views": 3313589,
-    "subsLabel": "チャンネル登録者数 3860人",
+    "subsLabel": "チャンネル登録者数 3870人",
     "viewsLabel": "3,313,589回視聴",
     "videos": 88,
     "url": "https://www.youtube.com/channel/UCVYMXYU6j0M5Gj1xwywKDyg",
@@ -1666,9 +1666,9 @@ window.PBERS_DATA = [
   {
     "name": "水入り瓶",
     "subs": 2790,
-    "views": 684733,
+    "views": 684402,
     "subsLabel": "チャンネル登録者数 2790人",
-    "viewsLabel": "684,733回視聴",
+    "viewsLabel": "684,402回視聴",
     "videos": 42,
     "url": "https://www.youtube.com/channel/UCCfKBBDK5D66hbOl455YBHg",
     "avatar": "https://yt3.googleusercontent.com/Nn0wemqXOMylFQsOcg8qBCdIVuj-OqChx5GO0sNoi8DeeZTIfaxTUCX-9beyc530JDO0BGuXCvU=s900-c-k-c0x00ffffff-no-rj",
@@ -1913,9 +1913,9 @@ window.PBERS_DATA = [
   {
     "name": "東トルキスタンボール",
     "subs": 2130,
-    "views": 396393,
+    "views": 396340,
     "subsLabel": "チャンネル登録者数 2130人",
-    "viewsLabel": "396,393回視聴",
+    "viewsLabel": "396,340回視聴",
     "videos": 25,
     "url": "https://www.youtube.com/channel/UC9jmzFCXGdLiR75vcdxDH6A",
     "avatar": "https://yt3.googleusercontent.com/gl0PJDChU9pNvwUraC-NHdbfB-E4QFi_ACxD9BO_GSGGoUYkNmcNH6d3crXJ-8l44QeEHRjz=s900-c-k-c0x00ffffff-no-rj",
@@ -2004,4 +2004,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-30";
-window.PBERS_PREDICT = {"asOfMs": 1788080400000, "subs": {"base": 2797000, "rate": 6.323323929437209e-05}, "views": {"base": 2160773502, "rate": 0.0583654917562412}};
+window.PBERS_PREDICT = {"asOfMs": 1788080400000, "subs": {"base": 2797030, "rate": 6.323323929437209e-05}, "views": {"base": 2160773118, "rate": 0.0583654917562412}};

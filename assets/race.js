@@ -2619,7 +2619,7 @@ window.PBERS_RACE = [
         "name": "カルマルボール",
         "color": "#533ecc",
         "avatar": "https://yt3.googleusercontent.com/PjedTCVNF8mac6Vl4Ll3pJgi4tpzNdsMlL05pT1loCQStbHiB3VyBZfWjBULBAr8BjOG16S3xKA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4000,
+        "subs": 4010,
         "history": [
           {
             "d": "2026-08-30",
