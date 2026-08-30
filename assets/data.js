@@ -18,7 +18,7 @@ window.PBERS_DATA = [
     "views": 402543530,
     "subsLabel": "チャンネル登録者数 31.9万人",
     "viewsLabel": "402,543,530回視聴",
-    "videos": 430,
+    "videos": 431,
     "url": "https://www.youtube.com/channel/UCRCQ3G1d0DM2krO-Fx5LOuQ",
     "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
     "color": "#eba864",
@@ -105,9 +105,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ゆずボール🎣",
-    "subs": 41100,
+    "subs": 41200,
     "views": 17837121,
-    "subsLabel": "チャンネル登録者数 4.11万人",
+    "subsLabel": "チャンネル登録者数 4.12万人",
     "viewsLabel": "17,837,121回視聴",
     "videos": 199,
     "url": "https://www.youtube.com/channel/UCGo_IzKD2-TooYrTGFt2fDA",
@@ -313,9 +313,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "マルルさん",
-    "subs": 21900,
+    "subs": 22000,
     "views": 27060189,
-    "subsLabel": "チャンネル登録者数 2.19万人",
+    "subsLabel": "チャンネル登録者数 2.2万人",
     "viewsLabel": "27,060,189回視聴",
     "videos": 78,
     "url": "https://www.youtube.com/channel/UCnZ3-DYNoF3sdpWIj2Tr59Q",
@@ -976,9 +976,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ニイソビボール",
-    "subs": 7250,
+    "subs": 7270,
     "views": 2196216,
-    "subsLabel": "チャンネル登録者数 7250人",
+    "subsLabel": "チャンネル登録者数 7270人",
     "viewsLabel": "2,196,216回視聴",
     "videos": 60,
     "url": "https://www.youtube.com/channel/UCpaHKFWTUu4hyr_MafHXppA",
@@ -1383,7 +1383,7 @@ window.PBERS_DATA = [
     "views": 1449909,
     "subsLabel": "チャンネル登録者数 4200人",
     "viewsLabel": "1,449,909回視聴",
-    "videos": 92,
+    "videos": 93,
     "url": "https://www.youtube.com/channel/UCOWqMzG_N3gzH1yGENiUFiA",
     "avatar": "https://yt3.googleusercontent.com/bL9lWsp29DejSdFemB__O0UqwLkgufQdMTMKh0ceh2gHNtK9eIndZqueRLInTnEefoJndg7trA=s900-c-k-c0x00ffffff-no-rj",
     "color": "#5eb5d4",
@@ -1396,7 +1396,7 @@ window.PBERS_DATA = [
     "views": 1196839,
     "subsLabel": "チャンネル登録者数 4000人",
     "viewsLabel": "1,196,839回視聴",
-    "videos": 45,
+    "videos": 46,
     "url": "https://www.youtube.com/channel/UCZbTlsZfAf1cmBgLnYMfPWg",
     "avatar": "https://yt3.googleusercontent.com/PjedTCVNF8mac6Vl4Ll3pJgi4tpzNdsMlL05pT1loCQStbHiB3VyBZfWjBULBAr8BjOG16S3xKA=s900-c-k-c0x00ffffff-no-rj",
     "color": "#533ecc",
@@ -1678,9 +1678,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "あへへへへへﾝ",
-    "subs": 2750,
+    "subs": 2760,
     "views": 2862884,
-    "subsLabel": "チャンネル登録者数 2750人",
+    "subsLabel": "チャンネル登録者数 2760人",
     "viewsLabel": "2,862,884回視聴",
     "videos": 36,
     "url": "https://www.youtube.com/channel/UCiIFIiNkCdfSe9_cPh5ly4g",
@@ -1913,9 +1913,9 @@ window.PBERS_DATA = [
   {
     "name": "東トルキスタンボール",
     "subs": 2130,
-    "views": 396340,
+    "views": 396393,
     "subsLabel": "チャンネル登録者数 2130人",
-    "viewsLabel": "396,340回視聴",
+    "viewsLabel": "396,393回視聴",
     "videos": 25,
     "url": "https://www.youtube.com/channel/UC9jmzFCXGdLiR75vcdxDH6A",
     "avatar": "https://yt3.googleusercontent.com/gl0PJDChU9pNvwUraC-NHdbfB-E4QFi_ACxD9BO_GSGGoUYkNmcNH6d3crXJ-8l44QeEHRjz=s900-c-k-c0x00ffffff-no-rj",
@@ -2004,4 +2004,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-08-30";
-window.PBERS_PREDICT = {"asOfMs": 1788058800000, "subs": {"base": 2796770, "rate": 6.058491577599283e-05}, "views": {"base": 2160773449, "rate": 0.055697798978462686}};
+window.PBERS_PREDICT = {"asOfMs": 1788080400000, "subs": {"base": 2797000, "rate": 6.323323929437209e-05}, "views": {"base": 2160773502, "rate": 0.0583654917562412}};
