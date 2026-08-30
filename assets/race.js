@@ -2104,10 +2104,58 @@ window.PBERS_RACE = [
   {
     "members": [
       {
+        "name": "アスラボール　",
+        "color": "#4e3ecc",
+        "avatar": "https://yt3.googleusercontent.com/ZbdOHnPvnMP9Us0RTVMXDIG34oJMxW6dUgOdgEU93aHiDFn8bcE3AG5TIX37FVBkEzDhimSL2w=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 7590,
+        "history": [
+          {
+            "d": "2026-08-22",
+            "s": 7560
+          },
+          {
+            "d": "2026-08-23",
+            "s": 7560
+          },
+          {
+            "d": "2026-08-24",
+            "s": 7560
+          },
+          {
+            "d": "2026-08-25",
+            "s": 7570
+          },
+          {
+            "d": "2026-08-26",
+            "s": 7570
+          },
+          {
+            "d": "2026-08-27",
+            "s": 7580
+          },
+          {
+            "d": "2026-08-28",
+            "s": 7580
+          },
+          {
+            "d": "2026-08-29",
+            "s": 7590
+          },
+          {
+            "d": "2026-08-30",
+            "s": 7590
+          },
+          {
+            "d": "2026-08-31",
+            "s": 7590
+          }
+        ]
+      },
+      {
         "name": "ニイソビボール",
         "color": "#d45ed4",
         "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 7510,
+        "subs": 7550,
         "history": [
           {
             "d": "2026-08-30",
@@ -2359,7 +2407,7 @@ window.PBERS_RACE = [
         "name": "ポテトの王",
         "color": "#d4665e",
         "avatar": "https://yt3.googleusercontent.com/Ht3xBUYGa1q7jf81ZNMimtHDeFwJg9OGx0uVryQc6VfR5cmzW942vpj0LrAFe9-C0gj9Blv9cH0=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 6690,
+        "subs": 6680,
         "history": [
           {
             "d": "2026-08-22",
@@ -2696,10 +2744,26 @@ window.PBERS_RACE = [
   {
     "members": [
       {
+        "name": "旧食DX",
+        "color": "#5ed476",
+        "avatar": "https://yt3.googleusercontent.com/eS59gj4sUqncdlk0_nSnxkfIKeKASy0K5CwgIpOHv4JM4KR3XSMKM_uhXloSzt8vcLds6FiJjIA=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 4700,
+        "history": [
+          {
+            "d": "2026-08-30",
+            "s": 4700
+          },
+          {
+            "d": "2026-08-31",
+            "s": 4700
+          }
+        ]
+      },
+      {
         "name": "ソラビア人民共和国連邦",
         "color": "#3ec0cc",
         "avatar": "https://yt3.googleusercontent.com/zUSuCFiZuO8rrxqChp5qTpjkezlhB7gGtqwygoIvDGMvt2N_9e9Z5FfS7eEY9L8TvxdkhIRVYw=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4650,
+        "subs": 4660,
         "history": [
           {
             "d": "2026-08-30",
@@ -2708,22 +2772,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-31",
             "s": 4650
-          }
-        ]
-      },
-      {
-        "name": "スコミヤ228",
-        "color": "#5e62d4",
-        "avatar": "https://yt3.googleusercontent.com/d08MA9fnkNe-Afq3BznQl13_urdsh10q0R2-Kl6mvXfAl9Ib9ElsCtrvjP0tiDgdK41KohnTtQQ=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4610,
-        "history": [
-          {
-            "d": "2026-08-30",
-            "s": 4610
-          },
-          {
-            "d": "2026-08-31",
-            "s": 4610
           }
         ]
       }
@@ -3020,42 +3068,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-31",
             "s": 2990
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "members": [
-      {
-        "name": "あへへへへへﾝ",
-        "color": "#5ed4cc",
-        "avatar": "https://yt3.googleusercontent.com/umFwtFtVUF2UJKpw6p1Ao3UqFhfBiRBi7FqicRu23AcWly1z4owc6k2TBZvgUKZ3xIX5IfIA6A=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 2760,
-        "history": [
-          {
-            "d": "2026-08-30",
-            "s": 2760
-          },
-          {
-            "d": "2026-08-31",
-            "s": 2760
-          }
-        ]
-      },
-      {
-        "name": "世界最強(笑)ボール【こるからす盟主】",
-        "color": "#3e58cc",
-        "avatar": "https://yt3.googleusercontent.com/r5WpBv1ZXrilbbIGww5PNrgU7wU3GiKncz7ciO8IaFhhhToDfhV99wvAdqmGj_3-HdpMAqwy=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 2740,
-        "history": [
-          {
-            "d": "2026-08-30",
-            "s": 2740
-          },
-          {
-            "d": "2026-08-31",
-            "s": 2740
           }
         ]
       }
