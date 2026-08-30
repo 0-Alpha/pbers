@@ -1,0 +1,1 @@
+window.PBERS_RACE = [];

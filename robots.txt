@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://pbers.pages.dev/sitemap-pbers.xml
+Sitemap: https://pbers.pages.dev/global/sitemap-pbers.xml

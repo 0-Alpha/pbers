@@ -30,6 +30,26 @@ ASOF = (_now.date() - datetime.timedelta(days=1)) if (_now.hour // 6) * 6 == 0 e
 UPDATED = ASOF.strftime("%Y-%m-%d")   # main() で実データの最新日に更新
 SITE = "https://pbers.pages.dev"   # 独自ドメイン接続後は https://pbers.com に変更
 
+# ---- エディション: 通常サイト(ルート) と 海外向けサイト(/global/) ----
+# 各エディションは自分の channels/data/history を持ち、自分のサブパス配下に出力する。
+# コード(style.css, app.js, channel.js)は /assets/ を共有する。
+EDITIONS = [
+    {"sub": "",       "channels": "channels.txt",        "data": "data.json",        "history": "history.csv",        "label": "PBers"},
+    {"sub": "global", "channels": "channels_global.txt", "data": "data_global.json", "history": "history_global.csv", "label": "PBers Global"},
+]
+ED = EDITIONS[0]   # ビルド中のエディション(build_all で切替)
+
+def ed_root():   # 出力ルート(BASE または BASE/global)
+    return BASE if not ED["sub"] else os.path.join(BASE, ED["sub"])
+def ed_out(*parts):
+    return os.path.join(ed_root(), *parts)
+def ed_base():   # ページ内のベースパス("/" または "/global/")
+    return "/" if not ED["sub"] else "/" + ED["sub"] + "/"
+def ed_site():   # 絶対URL(sitemap/canonical用)
+    return SITE if not ED["sub"] else SITE + "/" + ED["sub"]
+def ed_data_path():
+    return os.path.join(BASE, ED["data"])
+
 # マイルストーンの刻み: 登録者=1万, 総再生=1000万, 投稿=100
 STEPS = {
     "subs":   (10000,    "登録者"),
@@ -154,15 +174,46 @@ def assign_slugs(order):
         used[slug] = True
         d["_slug"] = slug
 
+def build_edition_index():
+    """海外向けエディションの index.html を通常版から生成。
+       データ系スクリプトだけ /global/assets/ を指し、コード(app.js/style.css)は共有。
+       window.PBERS_BASE でSPAのリンク/ルーティングの基点を /global/ に切り替える。"""
+    with open(os.path.join(BASE, "index.html"), encoding="utf-8") as f:
+        html = f.read()
+    base = ed_base()   # "/global/"
+    for name in ("data.js", "news.js", "growth.js", "race.js"):
+        html = html.replace("/assets/" + name, base + "assets/" + name)
+    html = html.replace('<script src="/assets/app.js',
+                        '<script>window.PBERS_BASE="%s";</script>\n<script src="/assets/app.js' % base)
+    # 海外向けは別Worker未設定なので最新動画APIは無効化(タブは「準備中」表示になる)
+    html = html.replace('window.PBERS_VIDEOS_API = "https://pbers-cron.myray0629.workers.dev/videos"',
+                        'window.PBERS_VIDEOS_API = ""')
+    html = html.replace("ポーランドボーラー登録者・再生数まとめ分析｜PBers",
+                        "海外向けポーランドボーラー まとめ分析｜PBers Global")
+    os.makedirs(ed_root(), exist_ok=True)
+    with open(ed_out("index.html"), "w", encoding="utf-8") as f:
+        f.write(html)
+
 def main():
+    """全エディション(通常 + 海外向け)をビルド。"""
+    global ED
+    for ed in EDITIONS:
+        ED = ed
+        print("=== build edition: %s (%s) ===" % (ed["label"], ed["sub"] or "root"))
+        build_edition()
+    ED = EDITIONS[0]
+
+def build_edition():
     global UPDATED
+    os.makedirs(ed_out("assets"), exist_ok=True)
+    if ED["sub"]:
+        build_edition_index()   # /global/index.html を先に用意(view pages の元になる)
     # 実データの最新スロットが属する日を「更新日」にする
     _series, _ = load_history()
     _all_ts = sorted({t for m in _series.values() for t in m})
-    if _all_ts:
-        UPDATED = day_of(_all_ts[-1])
+    UPDATED = day_of(_all_ts[-1]) if _all_ts else ASOF.strftime("%Y-%m-%d")
 
-    data = json.load(open(BASE + "/data.json", encoding="utf-8"))
+    data = json.load(open(ed_data_path(), encoding="utf-8")) if os.path.exists(ed_data_path()) else []
     shown = [d for d in data if d["id"] not in RETIRED]   # 引退者はサイトに載せない
     order = sorted(shown, key=lambda x: (x.get("subs") or 0), reverse=True)
     assign_slugs(order)   # d["_slug"] を付与
@@ -183,7 +234,7 @@ def main():
         "slug": d["_slug"],
     } for d in order]
 
-    with open(BASE + "/assets/data.js", "w", encoding="utf-8") as f:
+    with open(ed_out("assets", "data.js"), "w", encoding="utf-8") as f:
         f.write("window.PBERS_DATA = " + json.dumps(out, ensure_ascii=False, indent=2) + ";\n")
         f.write("window.PBERS_GENRES = " + json.dumps(GENRES, ensure_ascii=False) + ";\n")
         f.write('window.PBERS_UPDATED = "%s";\n' % UPDATED)
@@ -198,7 +249,7 @@ def main():
     build_sitemap(order)
 
     # WebSub(新着動画通知)用: 監視対象チャンネルIDの一覧
-    with open(BASE + "/channels.json", "w", encoding="utf-8") as f:
+    with open(ed_out("channels.json"), "w", encoding="utf-8") as f:
         json.dump([d["id"] for d in order], f, ensure_ascii=False)
     print("wrote channels.json (%d ids)" % len(order))
 
@@ -209,7 +260,7 @@ def build_race(colors):
     by_id = {}
     amap = {}
     try:
-        for d in json.load(open(BASE + "/data.json", encoding="utf-8")):
+        for d in json.load(open(ed_data_path(), encoding="utf-8")):
             by_id[d["id"]] = d; amap[d["id"]] = d.get("avatar", "")
     except Exception:
         pass
@@ -248,7 +299,7 @@ def build_race(colors):
     for g in groups:
         out.append({"members": [member(cid) for cid in g]})
 
-    with open(BASE + "/assets/race.js", "w", encoding="utf-8") as f:
+    with open(ed_out("assets", "race.js"), "w", encoding="utf-8") as f:
         f.write("window.PBERS_RACE = " + json.dumps(out, ensure_ascii=False, indent=2) + ";\n")
     print("wrote assets/race.js (%d races incl. TOP3)" % len(out))
 
@@ -261,7 +312,7 @@ CH_TPL = '''<!doctype html>
 <meta name="description" content="{{TITLE}}（ポーランドボーラー）の登録者数・総再生数・投稿数の推移とデータ。PBers調べ、毎日更新。">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="{{SITE}}/c/{{SLUG}}/">
-<link rel="icon" type="image/png" href="../../favicon.png">
+<link rel="icon" type="image/png" href="/favicon.png">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="PBers">
 <meta property="og:title" content="{{TITLE}}｜登録者数・再生数まとめ｜PBers">
@@ -274,7 +325,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="../../assets/style.css?v=250869">
+<link rel="stylesheet" href="/assets/style.css?v=250871">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -290,7 +341,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="../../assets/channel.js?v=250869"></script>
+<script src="/assets/channel.js?v=250871"></script>
 </body>
 </html>
 '''
@@ -474,7 +525,7 @@ def ch_footer_html(order, i, growth_map, esc):
 def build_channel_pages(order, colors):
     import shutil, html as _html
     series, _ = load_history()
-    cdir = os.path.join(BASE, "c")
+    cdir = ed_out("c")
     if os.path.isdir(cdir):
         shutil.rmtree(cdir)
     os.makedirs(cdir, exist_ok=True)
@@ -508,7 +559,7 @@ def build_channel_pages(order, colors):
                 .replace("{{TITLE}}", _html.escape(d["name"]))
                 .replace("{{SLUG}}", urllib.parse.quote(slug))
                 .replace("{{AVATAR}}", _html.escape(d["avatar"]))
-                .replace("{{SITE}}", SITE)
+                .replace("{{SITE}}", ed_site())
                 .replace("{{COLOR}}", colors[cid])
                 .replace("{{HEADER}}", header)
                 .replace("{{CH}}", json.dumps(ch, ensure_ascii=False))
@@ -524,7 +575,7 @@ def build_view_pages():
     """SPAタブの実URL(/growth/ 等)への直アクセス・リロード用に index.html の複製を置く。
        pushStateのクリーンURLをCloudflare Pagesで成立させる。中身は同一シェルなので
        重複コンテンツ回避のため noindex にする(検索対象はトップ / のまま)。"""
-    src = os.path.join(BASE, "index.html")
+    src = ed_out("index.html")
     if not os.path.exists(src):
         return
     with open(src, encoding="utf-8") as f:
@@ -532,19 +583,19 @@ def build_view_pages():
     html_src = html_src.replace('name="robots" content="index,follow"',
                                 'name="robots" content="noindex,follow"')
     for v in VIEW_ROUTES:
-        d = os.path.join(BASE, v)
+        d = ed_out(v)
         os.makedirs(d, exist_ok=True)
         with open(os.path.join(d, "index.html"), "w", encoding="utf-8") as f:
             f.write(html_src)
     print("wrote view pages (%s)" % "/".join(VIEW_ROUTES))
 
 def build_sitemap(order):
-    urls = [SITE + "/"] + [SITE + "/c/" + urllib.parse.quote(d["_slug"]) + "/" for d in order]
+    urls = [ed_site() + "/"] + [ed_site() + "/c/" + urllib.parse.quote(d["_slug"]) + "/" for d in order]
     body = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     for u in urls:
         body += '  <url><loc>%s</loc><changefreq>daily</changefreq></url>\n' % u
     body += '</urlset>\n'
-    with open(os.path.join(BASE, "sitemap-pbers.xml"), "w", encoding="utf-8") as f:
+    with open(ed_out("sitemap-pbers.xml"), "w", encoding="utf-8") as f:
         f.write(body)
     print("wrote sitemap-pbers.xml (%d urls)" % len(urls))
 
@@ -563,7 +614,7 @@ def compute_predict(colors):
        返り値: {asOfMs, subs:{base,rate}, views:{base,rate}}  rateは1msあたり。"""
     series, _ = load_history()
     try:
-        cur = {d["id"]: d for d in json.load(open(BASE + "/data.json", encoding="utf-8"))}
+        cur = {d["id"]: d for d in json.load(open(ed_data_path(), encoding="utf-8"))}
     except Exception:
         cur = {}
     main_ids = [cid for cid in colors if cid not in RETIRED and genre_of(cid) == DEFAULT_GENRE]
@@ -650,7 +701,7 @@ def channel_models(colors):
     """主要ジャンル各チャンネルの現在値・1日あたり増加率・ばらつきを返す。"""
     series, names = load_history()
     try:
-        cur = {d["id"]: d for d in json.load(open(BASE + "/data.json", encoding="utf-8"))}
+        cur = {d["id"]: d for d in json.load(open(ed_data_path(), encoding="utf-8"))}
     except Exception:
         cur = {}
     main_ids = [cid for cid in colors if cid not in RETIRED and genre_of(cid) == DEFAULT_GENRE]
@@ -736,7 +787,7 @@ def compute_oligopoly(colors):
     return out
 
 def load_history():
-    path = BASE + "/history.csv"
+    path = os.path.join(BASE, ED["history"])
     series, names = {}, {}
     if os.path.exists(path):
         with open(path, encoding="utf-8", newline="") as f:
@@ -799,14 +850,14 @@ def build_growth(colors):
             totals[m].append(s)
     result["totals"] = totals
 
-    with open(BASE + "/assets/growth.js", "w", encoding="utf-8") as f:
+    with open(ed_out("assets", "growth.js"), "w", encoding="utf-8") as f:
         f.write("window.PBERS_GROWTH = " + json.dumps(result, ensure_ascii=False, indent=2) + ";\n")
     print("wrote assets/growth.js (span %s days, %d trend points)" % (result["span"]["days"], len(tdays)))
 
 def build_news(colors):
     """history.csv から直近7日（当日含む）のマイルストーン突破を検出して news.js を出力。
        各チャンネル・各指標について、前回記録日→当日で刻みを跨いだら「突破」ニュースにする。"""
-    path = BASE + "/history.csv"
+    path = os.path.join(BASE, ED["history"])
     series, names = {}, {}
     if os.path.exists(path):
         with open(path, encoding="utf-8", newline="") as f:
@@ -829,7 +880,7 @@ def build_news(colors):
 
     amap = {}   # id -> avatar
     try:
-        for d in json.load(open(BASE + "/data.json", encoding="utf-8")):
+        for d in json.load(open(ed_data_path(), encoding="utf-8")):
             amap[d["id"]] = d.get("avatar", "")
     except Exception:
         pass
@@ -898,7 +949,7 @@ def build_news(colors):
         dd = datetime.date.fromisoformat(d)
         news.append({"date": d, "label": "%d月%d日(%s)" % (dd.month, dd.day, WD[dd.weekday()]), "items": items})
 
-    with open(BASE + "/assets/news.js", "w", encoding="utf-8") as f:
+    with open(ed_out("assets", "news.js"), "w", encoding="utf-8") as f:
         f.write("window.PBERS_NEWS = " + json.dumps(news, ensure_ascii=False, indent=2) + ";\n")
     total = sum(len(n["items"]) for n in news)
     print("wrote assets/news.js (%d days, %d news items)" % (len(news), total))

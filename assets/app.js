@@ -1,6 +1,7 @@
 /* PBers — subscribers / total-views modes, giant donut + vertical columns,
    per-channel colors, hover overlay, scroll-triggered (replaying) animations */
 (function () {
+  var GBASE = window.PBERS_BASE || '/';   // このエディションの基点("/" または "/global/")
   var ALL = (window.PBERS_DATA || []).slice();
   var UPDATED = window.PBERS_UPDATED || '';
 
@@ -213,7 +214,7 @@
       col.addEventListener('mouseleave', unfocus);
       // タップ/クリックで即そのチャンネルのページへ(横ドラッグ中は .col-scroll.drag が抑止)
       col.style.cursor = 'pointer';
-      col.addEventListener('click', function () { location.href = '/c/' + encodeURIComponent(d.slug || chId(d)) + '/'; });
+      col.addEventListener('click', function () { location.href = GBASE + 'c/' + encodeURIComponent(d.slug || chId(d)) + '/'; });
       cols.appendChild(col); colEls.push(col); colBars.push(col.querySelector('.col-bar'));
     });
 
@@ -343,7 +344,7 @@
       if (hit < 0) return false;
       if (donutSegs[hit].type === 'other') { switchTab('channels'); return true; }
       var d = DATA[donutSegs[hit].idx];
-      if (d) { location.href = '/c/' + encodeURIComponent(d.slug || chId(d)) + '/'; return true; }
+      if (d) { location.href = GBASE + 'c/' + encodeURIComponent(d.slug || chId(d)) + '/'; return true; }
       return false;
     }
     stage.addEventListener('mousemove', function (e) { applyHit(hitAt(e.clientX, e.clientY)); });
@@ -405,7 +406,7 @@
     wrap.addEventListener('mouseenter', function () { wrap.style.borderColor = d.color; });
     wrap.addEventListener('mouseleave', function () { wrap.style.borderColor = 'var(--line)'; });
     wrap.innerHTML =
-      '<a class="card-main" href="/c/' + encodeURIComponent(d.slug || chId(d)) + '/">' +
+      '<a class="card-main" href="' + GBASE + 'c/' + encodeURIComponent(d.slug || chId(d)) + '/">' +
         '<span class="rk num">' + rankNum + '</span>' +
         '<img class="av" loading="lazy" src="' + d.avatar + '" alt="" style="border-color:' + d.color + '" onerror="this.style.visibility=\'hidden\'">' +
         '<span class="meta"><span class="cn">' + esc(d.name) + '</span>' +
@@ -655,9 +656,11 @@
     channels:  document.getElementById('view-channels')
   };
   var currentView = 'dashboard';
-  function pathOf(v) { return v === 'dashboard' ? '/' : '/' + v + '/'; }   // dashboard=/ , 他は /growth/ (実体ディレクトリに一致)
+  function pathOf(v) { return v === 'dashboard' ? GBASE : GBASE + v + '/'; }   // dashboard=/ , 他は /growth/ (実体ディレクトリに一致)
   function viewOf() {
-    var seg = location.pathname.replace(/^\/+|\/+$/g, '');   // '/growth/' -> 'growth'
+    var p = location.pathname;
+    if (GBASE !== '/' && p.indexOf(GBASE) === 0) p = p.slice(GBASE.length);   // /global/ を剥がす
+    var seg = p.replace(/^\/+|\/+$/g, '');   // '/growth/' -> 'growth'
     if (!seg && location.hash) seg = location.hash.replace(/^#/, '');   // 旧 #growth 形式の共有リンク互換
     if (seg === 'live') seg = 'race';   // 旧名の後方互換
     return VIEWS[seg] ? seg : 'dashboard';
@@ -1219,6 +1222,15 @@
   }
 
   /* ---- init ---- */
+  if (!ALL.length) {
+    // 空ロスター(海外向けの準備中など): データ描画はスキップし、ページを壊さない。タブ操作は有効。
+    var _cap = document.getElementById('total-cap'); if (_cap) _cap.textContent = '準備中 / Coming soon';
+    var _tot = document.getElementById('total'); if (_tot) _tot.textContent = '—';
+    var _sub = document.getElementById('total-sub'); if (_sub) _sub.textContent = 'まもなくチャンネルが追加されます';
+    setupTabs();
+    setupSettings();
+    return;
+  }
   build();
   renderNews();
   // 最新動画タブを定期的に自動更新(開きっぱなしでもライブ反映)

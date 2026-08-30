@@ -45,42 +45,57 @@ def parse_videos(label):
     m = re.search(r'([\d,]+)', label)
     return int(m.group(1).replace(",", "")) if m else None
 
-def main():
-    with open(BASE + "/channels.txt", encoding="utf-8") as f:
-        urls = [l.strip() for l in f if l.strip()]
+# (channels \u30d5\u30a1\u30a4\u30eb, data \u51fa\u529b\u30d5\u30a1\u30a4\u30eb) \u306e\u30da\u30a2\u3002\u901a\u5e38\u30b5\u30a4\u30c8 \u3068 \u6d77\u5916\u5411\u3051\u3002
+EDITIONS = [
+    ("channels.txt",        "data.json"),
+    ("channels_global.txt", "data_global.json"),
+]
+
+def fetch_channel(url):
+    cid = url.split("/channel/")[-1]
+    # The /about page carries aboutChannelViewModel, which holds this
+    # channel's OWN subscriber count AND total view count as plain strings.
+    h = fetch(url + "/about")
+    # subscriber: direct-string form (about model), owner's own value
+    m = re.search(r'"subscriberCountText":"([^"]*(?:\u767b\u9332\u8005|subscribers)[^"]*)"', h)
+    subs_label = m.group(1) if m else None
+    if not subs_label:  # fallback: main-header metadataParts
+        m = re.search(r'"content":"(\u30c1\u30e3\u30f3\u30cd\u30eb\u767b\u9332\u8005\u6570[^"]*)"', h)
+        subs_label = m.group(1) if m else None
+    # total views
+    vm = re.search(r'"viewCountText":"([^"]*(?:\u56de\u8996\u8074|views)[^"]*)"', h)
+    views_label = vm.group(1) if vm else None
+    # video count (bonus)
+    cm = re.search(r'"videoCountText":"([^"]*)"', h)
+    videos_label = cm.group(1) if cm else None
+    name_m = re.search(r'<meta property="og:title" content="([^"]*)"', h)
+    av_m = re.search(r'<meta property="og:image" content="([^"]*)"', h)
+    name = html.unescape(name_m.group(1)) if name_m else cid
+    avatar = av_m.group(1) if av_m else ""
+    return {"id": cid, "url": url, "name": name,
+            "subsLabel": subs_label, "subs": parse_subs(subs_label),
+            "viewsLabel": views_label, "views": parse_views(views_label),
+            "videosLabel": videos_label, "videos": parse_videos(videos_label), "avatar": avatar}
+
+def build(channels_file, data_file):
+    path = os.path.join(BASE, channels_file)
+    if not os.path.exists(path):
+        sys.stderr.write("%s not found \u2014 skip\n" % channels_file)
+        return
+    with open(path, encoding="utf-8") as f:
+        urls = [l.strip() for l in f if l.strip() and not l.strip().startswith("#") and "/channel/" in l]
     out = []
     for url in urls:
-        cid = url.split("/channel/")[-1]
-        # The /about page carries aboutChannelViewModel, which holds this
-        # channel's OWN subscriber count AND total view count as plain strings.
-        h = fetch(url + "/about")
-        # subscriber: direct-string form (about model), owner's own value
-        m = re.search(r'"subscriberCountText":"([^"]*(?:\u767b\u9332\u8005|subscribers)[^"]*)"', h)
-        subs_label = m.group(1) if m else None
-        if not subs_label:  # fallback: main-header metadataParts
-            m = re.search(r'"content":"(\u30c1\u30e3\u30f3\u30cd\u30eb\u767b\u9332\u8005\u6570[^"]*)"', h)
-            subs_label = m.group(1) if m else None
-        # total views
-        vm = re.search(r'"viewCountText":"([^"]*(?:\u56de\u8996\u8074|views)[^"]*)"', h)
-        views_label = vm.group(1) if vm else None
-        # video count (bonus)
-        cm = re.search(r'"videoCountText":"([^"]*)"', h)
-        videos_label = cm.group(1) if cm else None
-        name_m = re.search(r'<meta property="og:title" content="([^"]*)"', h)
-        av_m = re.search(r'<meta property="og:image" content="([^"]*)"', h)
-        name = html.unescape(name_m.group(1)) if name_m else cid
-        avatar = av_m.group(1) if av_m else ""
-        subs = parse_subs(subs_label)
-        views = parse_views(views_label)
-        videos = parse_videos(videos_label)
-        out.append({"id": cid, "url": url, "name": name,
-                    "subsLabel": subs_label, "subs": subs,
-                    "viewsLabel": views_label, "views": views,
-                    "videosLabel": videos_label, "videos": videos, "avatar": avatar})
-        sys.stderr.write("%-24s subs=%-8s views=%-11s videos=%s\n" % (name[:24], subs, views, videos))
+        d = fetch_channel(url)
+        out.append(d)
+        sys.stderr.write("%-24s subs=%-8s views=%-11s videos=%s\n" % (d["name"][:24], d["subs"], d["views"], d["videos"]))
         time.sleep(0.5)
-    with open(BASE + "/data.json", "w", encoding="utf-8") as f:
+    with open(os.path.join(BASE, data_file), "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
-    sys.stderr.write("wrote data.json (%d channels)\n" % len(out))
+    sys.stderr.write("wrote %s (%d channels)\n" % (data_file, len(out)))
+
+def main():
+    for channels_file, data_file in EDITIONS:
+        build(channels_file, data_file)
 
 main()
