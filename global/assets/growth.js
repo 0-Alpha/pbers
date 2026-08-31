@@ -27,24 +27,17 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "udonball",
-      "color": "#5ed4c0",
-      "delta": 0,
-      "latest": 6880,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "Blackbean",
-      "color": "#d45eb1",
-      "delta": 0,
-      "latest": 15800,
-      "genre": "ポーランドボーラー"
-    },
-    {
       "name": "Dotto edit",
       "color": "#ccd45e",
       "delta": 0,
       "latest": 9620,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "áíš!aispoaporu",
+      "color": "#3ecc9a",
+      "delta": 0,
+      "latest": 136000,
       "genre": "ポーランドボーラー"
     },
     {
@@ -55,10 +48,10 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "Opera_cb",
-      "color": "#79d45e",
+      "name": "Blackbean",
+      "color": "#d45eb1",
       "delta": 0,
-      "latest": 189000,
+      "latest": 15800,
       "genre": "ポーランドボーラー"
     },
     {
@@ -76,10 +69,17 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "F丸",
-      "color": "#793ecc",
+      "name": "udonball",
+      "color": "#5ed4c0",
       "delta": 0,
-      "latest": 32800,
+      "latest": 6880,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "Opera_cb",
+      "color": "#79d45e",
+      "delta": 0,
+      "latest": 189000,
       "genre": "ポーランドボーラー"
     },
     {
@@ -90,10 +90,10 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "áíš!aispoaporu",
-      "color": "#3ecc9a",
+      "name": "F丸",
+      "color": "#793ecc",
       "delta": 0,
-      "latest": 136000,
+      "latest": 32800,
       "genre": "ポーランドボーラー"
     }
   ],
@@ -192,27 +192,6 @@ window.PBERS_GROWTH = {
   ],
   "videos": [
     {
-      "name": "udonball",
-      "color": "#5ed4c0",
-      "delta": 0,
-      "latest": 119,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "Blackbean",
-      "color": "#d45eb1",
-      "delta": 0,
-      "latest": 63,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "Past_Ball",
-      "color": "#45cc3e",
-      "delta": 0,
-      "latest": 210,
-      "genre": "ポーランドボーラー"
-    },
-    {
       "name": "Dotto edit",
       "color": "#ccd45e",
       "delta": 0,
@@ -227,10 +206,17 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "Opera_cb",
-      "color": "#79d45e",
+      "name": "áíš!aispoaporu",
+      "color": "#3ecc9a",
       "delta": 0,
-      "latest": 142,
+      "latest": 1044,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "Blackbean",
+      "color": "#d45eb1",
+      "delta": 0,
+      "latest": 63,
       "genre": "ポーランドボーラー"
     },
     {
@@ -248,10 +234,24 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "F丸",
-      "color": "#793ecc",
+      "name": "udonball",
+      "color": "#5ed4c0",
       "delta": 0,
-      "latest": 88,
+      "latest": 119,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "Past_Ball",
+      "color": "#45cc3e",
+      "delta": 0,
+      "latest": 210,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "Opera_cb",
+      "color": "#79d45e",
+      "delta": 0,
+      "latest": 142,
       "genre": "ポーランドボーラー"
     },
     {
@@ -262,10 +262,10 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "áíš!aispoaporu",
-      "color": "#3ecc9a",
+      "name": "F丸",
+      "color": "#793ecc",
       "delta": 0,
-      "latest": 1044,
+      "latest": 88,
       "genre": "ポーランドボーラー"
     },
     {
