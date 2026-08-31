@@ -1,8 +1,8 @@
 window.PBERS_GROWTH = {
   "span": {
     "from": "2026-08-30",
-    "to": "2026-08-31",
-    "days": 1
+    "to": "2026-09-01",
+    "days": 2
   },
   "subs": [
     {
@@ -27,13 +27,6 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "Past_Ball",
-      "color": "#45cc3e",
-      "delta": 20,
-      "latest": 7630,
-      "genre": "ポーランドボーラー"
-    },
-    {
       "name": "Dotto edit",
       "color": "#ccd45e",
       "delta": 10,
@@ -41,24 +34,24 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "áíš!aispoaporu",
-      "color": "#3ecc9a",
-      "delta": 0,
-      "latest": 136000,
+      "name": "Past_Ball",
+      "color": "#45cc3e",
+      "delta": 10,
+      "latest": 7620,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "日本猫耳版ボール【目標9000人】",
-      "color": "#cc583e",
-      "delta": 0,
-      "latest": 12900,
+      "name": "udonball",
+      "color": "#5ed4c0",
+      "delta": 10,
+      "latest": 6890,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "JP-BALL",
-      "color": "#d45e5e",
+      "name": "Opera_cb",
+      "color": "#79d45e",
       "delta": 0,
-      "latest": 438000,
+      "latest": 189000,
       "genre": "ポーランドボーラー"
     },
     {
@@ -76,17 +69,24 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "udonball",
-      "color": "#5ed4c0",
+      "name": "áíš!aispoaporu",
+      "color": "#3ecc9a",
       "delta": 0,
-      "latest": 6880,
+      "latest": 136000,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "Opera_cb",
-      "color": "#79d45e",
+      "name": "JP-BALL",
+      "color": "#d45e5e",
       "delta": 0,
-      "latest": 189000,
+      "latest": 438000,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "日本猫耳版ボール【目標9000人】",
+      "color": "#cc583e",
+      "delta": 0,
+      "latest": 12900,
       "genre": "ポーランドボーラー"
     },
     {
@@ -101,8 +101,8 @@ window.PBERS_GROWTH = {
     {
       "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
       "color": "#5e95d4",
-      "delta": 212896,
-      "latest": 45715901,
+      "delta": 349635,
+      "latest": 45852640,
       "genre": "ポーランドボーラー"
     },
     {
@@ -127,6 +127,20 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
+      "name": "Dotto edit",
+      "color": "#ccd45e",
+      "delta": 43489,
+      "latest": 6772161,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "Opera_cb",
+      "color": "#79d45e",
+      "delta": 39383,
+      "latest": 88297044,
+      "genre": "ポーランドボーラー"
+    },
+    {
       "name": "JP-BALL",
       "color": "#d45e5e",
       "delta": 34655,
@@ -134,31 +148,17 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "Dotto edit",
-      "color": "#ccd45e",
-      "delta": 28487,
-      "latest": 6757159,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "Opera_cb",
-      "color": "#79d45e",
-      "delta": 24593,
-      "latest": 88282254,
+      "name": "Blackbean",
+      "color": "#d45eb1",
+      "delta": 16042,
+      "latest": 15894802,
       "genre": "ポーランドボーラー"
     },
     {
       "name": "Past_Ball",
       "color": "#45cc3e",
-      "delta": 1575,
-      "latest": 3487618,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "Blackbean",
-      "color": "#d45eb1",
-      "delta": 1038,
-      "latest": 15879798,
+      "delta": 2580,
+      "latest": 3488623,
       "genre": "ポーランドボーラー"
     },
     {
@@ -169,24 +169,24 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "udonball",
-      "color": "#5ed4c0",
-      "delta": 468,
-      "latest": 1228658,
+      "name": "日本猫耳版ボール【目標9000人】",
+      "color": "#cc583e",
+      "delta": 509,
+      "latest": 3923074,
       "genre": "ポーランドボーラー"
     },
     {
       "name": "AJ ball",
       "color": "#a55ed4",
-      "delta": 320,
-      "latest": 1508567,
+      "delta": 466,
+      "latest": 1508713,
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "日本猫耳版ボール【目標9000人】",
-      "color": "#cc583e",
-      "delta": 243,
-      "latest": 3922808,
+      "name": "udonball",
+      "color": "#5ed4c0",
+      "delta": -1651,
+      "latest": 1226539,
       "genre": "ポーランドボーラー"
     }
   ],
@@ -199,66 +199,10 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
-      "name": "áíš!aispoaporu",
-      "color": "#3ecc9a",
-      "delta": 0,
-      "latest": 1044,
-      "genre": "ポーランドボーラー"
-    },
-    {
       "name": "Moonball_PB",
       "color": "#ccbb3e",
       "delta": 0,
       "latest": 31,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "日本猫耳版ボール【目標9000人】",
-      "color": "#cc583e",
-      "delta": 0,
-      "latest": 226,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "JP-BALL",
-      "color": "#d45e5e",
-      "delta": 0,
-      "latest": 128,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "AJ ball",
-      "color": "#a55ed4",
-      "delta": 0,
-      "latest": 38,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "Dotto edit",
-      "color": "#ccd45e",
-      "delta": 0,
-      "latest": 61,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "udonball",
-      "color": "#5ed4c0",
-      "delta": 0,
-      "latest": 119,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "Opera_cb",
-      "color": "#79d45e",
-      "delta": 0,
-      "latest": 142,
-      "genre": "ポーランドボーラー"
-    },
-    {
-      "name": "F丸",
-      "color": "#793ecc",
-      "delta": 0,
-      "latest": 88,
       "genre": "ポーランドボーラー"
     },
     {
@@ -269,10 +213,66 @@ window.PBERS_GROWTH = {
       "genre": "ポーランドボーラー"
     },
     {
+      "name": "Opera_cb",
+      "color": "#79d45e",
+      "delta": 0,
+      "latest": 142,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "Dotto edit",
+      "color": "#ccd45e",
+      "delta": 0,
+      "latest": 61,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "AJ ball",
+      "color": "#a55ed4",
+      "delta": 0,
+      "latest": 38,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "F丸",
+      "color": "#793ecc",
+      "delta": 0,
+      "latest": 88,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "áíš!aispoaporu",
+      "color": "#3ecc9a",
+      "delta": 0,
+      "latest": 1044,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "JP-BALL",
+      "color": "#d45e5e",
+      "delta": 0,
+      "latest": 128,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "日本猫耳版ボール【目標9000人】",
+      "color": "#cc583e",
+      "delta": 0,
+      "latest": 226,
+      "genre": "ポーランドボーラー"
+    },
+    {
       "name": "Blackbean",
       "color": "#d45eb1",
       "delta": 0,
       "latest": 63,
+      "genre": "ポーランドボーラー"
+    },
+    {
+      "name": "udonball",
+      "color": "#5ed4c0",
+      "delta": 0,
+      "latest": 119,
       "genre": "ポーランドボーラー"
     },
     {
@@ -286,17 +286,21 @@ window.PBERS_GROWTH = {
   "totals": {
     "dates": [
       "2026-08-30",
-      "2026-08-31"
+      "2026-08-31",
+      "2026-09-01"
     ],
     "subs": [
       1175670,
+      1177800,
       1177800
     ],
     "views": [
       491881638,
-      492520781
+      492520781,
+      492701614
     ],
     "videos": [
+      2436,
       2436,
       2436
     ]
