@@ -820,9 +820,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ねとえん",
-    "subs": 9870,
+    "subs": 9880,
     "views": 7244231,
-    "subsLabel": "チャンネル登録者数 9870人",
+    "subsLabel": "チャンネル登録者数 9880人",
     "viewsLabel": "7,244,231回視聴",
     "videos": 98,
     "url": "https://www.youtube.com/channel/UCrRZolgBJ0K-yGqFKGbUVkw",
@@ -859,9 +859,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "かめ・さーくボール共和国",
-    "subs": 9590,
+    "subs": 9580,
     "views": 2010875,
-    "subsLabel": "チャンネル登録者数 9590人",
+    "subsLabel": "チャンネル登録者数 9580人",
     "viewsLabel": "2,010,875回視聴",
     "videos": 82,
     "url": "https://www.youtube.com/channel/UCeV4DkPl_rjFqZB6KrgIpmQ",
@@ -937,9 +937,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ニイソビボール",
-    "subs": 7970,
+    "subs": 7980,
     "views": 2469198,
-    "subsLabel": "チャンネル登録者数 7970人",
+    "subsLabel": "チャンネル登録者数 7980人",
     "viewsLabel": "2,469,198回視聴",
     "videos": 60,
     "url": "https://www.youtube.com/channel/UCpaHKFWTUu4hyr_MafHXppA",
@@ -1132,9 +1132,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "フラルランドPB",
-    "subs": 5940,
+    "subs": 5950,
     "views": 2745999,
-    "subsLabel": "チャンネル登録者数 5940人",
+    "subsLabel": "チャンネル登録者数 5950人",
     "viewsLabel": "2,745,999回視聴",
     "videos": 151,
     "url": "https://www.youtube.com/channel/UCyFwf6UZ3uhUq1Kheyz_uWw",
@@ -1353,9 +1353,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "レイアルファ",
-    "subs": 4350,
+    "subs": 4360,
     "views": 3436028,
-    "subsLabel": "チャンネル登録者数 4350人",
+    "subsLabel": "チャンネル登録者数 4360人",
     "viewsLabel": "3,436,028回視聴",
     "videos": 88,
     "url": "https://www.youtube.com/channel/UCVYMXYU6j0M5Gj1xwywKDyg",
@@ -1392,9 +1392,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "カルマルボール",
-    "subs": 4150,
+    "subs": 4160,
     "views": 1228828,
-    "subsLabel": "チャンネル登録者数 4150人",
+    "subsLabel": "チャンネル登録者数 4160人",
     "viewsLabel": "1,228,828回視聴",
     "videos": 47,
     "url": "https://www.youtube.com/channel/UCZbTlsZfAf1cmBgLnYMfPWg",
@@ -1669,7 +1669,7 @@ window.PBERS_DATA = [
     "views": 2420112,
     "subsLabel": "チャンネル登録者数 2740人",
     "viewsLabel": "2,420,112回視聴",
-    "videos": 285,
+    "videos": 247,
     "url": "https://www.youtube.com/channel/UCcRWc7xO2urlMP3WxI2gl6w",
     "avatar": "https://yt3.googleusercontent.com/r5WpBv1ZXrilbbIGww5PNrgU7wU3GiKncz7ciO8IaFhhhToDfhV99wvAdqmGj_3-HdpMAqwy=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3e58cc",
@@ -2004,4 +2004,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-01";
-window.PBERS_PREDICT = {"asOfMs": 1788253200000, "subs": {"base": 2795840, "rate": 6.397981700920368e-05}, "views": {"base": 2172322468, "rate": 0.061345085769842406}};
+window.PBERS_PREDICT = {"asOfMs": 1788274800000, "subs": {"base": 2795880, "rate": 6.597962552170663e-05}, "views": {"base": 2172322468, "rate": 0.05534985644111386}};
