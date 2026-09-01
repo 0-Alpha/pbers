@@ -59,7 +59,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-01",
-            "s": 392000
+            "s": 393000
           }
         ]
       },
@@ -423,7 +423,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-01",
-            "s": 27500
+            "s": 27600
           }
         ]
       }
@@ -2431,7 +2431,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-01",
-            "s": 8870
+            "s": 8880
           }
         ]
       }
@@ -2507,7 +2507,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-01",
-            "s": 7790
+            "s": 7870
           }
         ]
       }
@@ -2963,7 +2963,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-01",
-            "s": 6290
+            "s": 6310
           }
         ]
       }
@@ -3395,7 +3395,7 @@ window.PBERS_RACE = [
         "name": "レイアルファ",
         "color": "#db4f57",
         "avatar": "https://yt3.googleusercontent.com/TVNAN6bSZZHGvc7hYhLs6Gnn95EKhcWj5GwqbWN00HAFA8SmXjUyKXQK6D4Ljl_S9A_8eaHn-Lk=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4200,
+        "subs": 4210,
         "history": [
           {
             "d": "2026-08-21",
@@ -3443,7 +3443,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-01",
-            "s": 4110
+            "s": 4210
           }
         ]
       }
@@ -3668,7 +3668,7 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "UCYmJ2rqzqNtXBm-gn438zGw",
+        "name": "みすい",
         "color": "#873ecc",
         "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
         "subs": 3020,
@@ -3712,6 +3712,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-08-31",
             "s": 3010
+          },
+          {
+            "d": "2026-09-01",
+            "s": 3020
           }
         ]
       },
@@ -3839,7 +3843,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-01",
-            "s": 2610
+            "s": 2620
           }
         ]
       }
@@ -3859,7 +3863,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-01",
-            "s": 2510
+            "s": 2550
           }
         ]
       },
