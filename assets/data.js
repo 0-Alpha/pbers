@@ -846,9 +846,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ライヒスボール【Reichsball】",
-    "subs": 9640,
+    "subs": 9630,
     "views": 4407941,
-    "subsLabel": "チャンネル登録者数 9640人",
+    "subsLabel": "チャンネル登録者数 9630人",
     "viewsLabel": "4,407,941回視聴",
     "videos": 49,
     "url": "https://www.youtube.com/channel/UCOh65Kskqz7uscFL7p1UexQ",
@@ -924,9 +924,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ばかわたし",
-    "subs": 8430,
+    "subs": 8440,
     "views": 4779364,
-    "subsLabel": "チャンネル登録者数 8430人",
+    "subsLabel": "チャンネル登録者数 8440人",
     "viewsLabel": "4,779,364回視聴",
     "videos": 92,
     "url": "https://www.youtube.com/channel/UCnZNY63Txhu4ot3l2lbicOA",
@@ -937,9 +937,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ニイソビボール",
-    "subs": 8060,
+    "subs": 8070,
     "views": 2469198,
-    "subsLabel": "チャンネル登録者数 8060人",
+    "subsLabel": "チャンネル登録者数 8070人",
     "viewsLabel": "2,469,198回視聴",
     "videos": 60,
     "url": "https://www.youtube.com/channel/UCpaHKFWTUu4hyr_MafHXppA",
@@ -1353,9 +1353,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "レイアルファ",
-    "subs": 4380,
+    "subs": 4390,
     "views": 3436028,
-    "subsLabel": "チャンネル登録者数 4380人",
+    "subsLabel": "チャンネル登録者数 4390人",
     "viewsLabel": "3,436,028回視聴",
     "videos": 88,
     "url": "https://www.youtube.com/channel/UCVYMXYU6j0M5Gj1xwywKDyg",
@@ -1652,9 +1652,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "あへへへへへﾝ",
-    "subs": 2790,
+    "subs": 2800,
     "views": 3011893,
-    "subsLabel": "チャンネル登録者数 2790人",
+    "subsLabel": "チャンネル登録者数 2800人",
     "viewsLabel": "3,011,893回視聴",
     "videos": 36,
     "url": "https://www.youtube.com/channel/UCiIFIiNkCdfSe9_cPh5ly4g",
@@ -2003,5 +2003,5 @@ window.PBERS_DATA = [
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
-window.PBERS_UPDATED = "2026-09-01";
-window.PBERS_PREDICT = {"asOfMs": 1788274800000, "subs": {"base": 2797110, "rate": 6.597962552170663e-05}, "views": {"base": 2172322468, "rate": 0.05534985644111386}};
+window.PBERS_UPDATED = "2026-09-02";
+window.PBERS_PREDICT = {"asOfMs": 1788296400000, "subs": {"base": 2797130, "rate": 6.535549894155531e-05}, "views": {"base": 2172322468, "rate": 0.049629401124571856}};
