@@ -53,9 +53,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-    "subs": 113000,
+    "subs": 114000,
     "views": 46028886,
-    "subsLabel": "チャンネル登録者数 11.3万人",
+    "subsLabel": "チャンネル登録者数 11.4万人",
     "viewsLabel": "46,028,886回視聴",
     "videos": 254,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
@@ -171,4 +171,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-01";
-window.PBERS_PREDICT = {"asOfMs": 1788274800000, "subs": {"base": 1177840, "rate": 1.0540671738542595e-05}, "views": {"base": 493081977, "rate": 0.006918397691550381}};
+window.PBERS_PREDICT = {"asOfMs": 1788274800000, "subs": {"base": 1178840, "rate": 1.0540671738542595e-05}, "views": {"base": 493081977, "rate": 0.006918397691550381}};
