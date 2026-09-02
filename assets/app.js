@@ -605,11 +605,15 @@
     if (growWindow > maxW) growWindow = maxW;
     s.value = growWindow;
     var lab = document.getElementById('grow-range-val');
-    if (lab) lab.textContent = Math.round(growWindow) + '日';
+    var lastW = Math.max(1, Math.round(growWindow));
+    if (lab) lab.textContent = lastW + '日';
     var raf = null;
     s.addEventListener('input', function () {
       growWindow = parseFloat(s.value) || 1;
-      if (lab) lab.textContent = Math.round(growWindow) + '日';
+      var w = Math.max(1, Math.round(growWindow));
+      if (lab) lab.textContent = w + '日';        // ラベルは毎回更新(軽い)
+      if (w === lastW) return;                     // 丸めた日数が同じなら再描画しない(ドラッグ中の重さを解消)
+      lastW = w;
       if (raf) cancelAnimationFrame(raf);
       raf = requestAnimationFrame(function () { growRender(true); });
     });
