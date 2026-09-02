@@ -325,7 +325,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250873">
+<link rel="stylesheet" href="/assets/style.css?v=250874">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -341,7 +341,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250873"></script>
+<script src="/assets/channel.js?v=250874"></script>
 </body>
 </html>
 '''
@@ -832,6 +832,25 @@ def build_growth(colors):
                 arr.append({"name": names[cid], "color": colors[cid], "delta": b - a, "latest": b, "genre": genre_of(cid)})
             arr.sort(key=lambda x: -x["delta"])
             result[metric] = arr
+
+    # スライダー用: 全履歴の日別代表(1日1点)＋各チャンネルの日別値。
+    # クライアントが任意ウィンドウ(1日〜最長)の増減を計算できるようにする。
+    rep_all = daily_reps(all_ts)                    # 日 -> その日の最終スロット(全チャンネル共通)
+    days_all = sorted(rep_all.keys())
+    result["days"] = days_all
+    chlist = []
+    for cid in shown:
+        if cid not in names:          # 履歴がまだ無いチャンネルは日別データ無しなのでスキップ
+            continue
+        m = series.get(cid, {})
+        entry = {"name": names[cid], "color": colors[cid], "genre": genre_of(cid),
+                 "subs": [], "views": [], "videos": []}
+        for d in days_all:
+            rec = m.get(rep_all[d])
+            for metric in ("subs", "views", "videos"):
+                entry[metric].append(rec[metric] if rec and rec.get(metric) is not None else None)
+        chlist.append(entry)
+    result["channels"] = chlist
 
     # 界隈全体の推移: 通常ジャンル(引退除く)の日別合計(グラフは1日1点=その日の最終スロット)
     main_ids = [cid for cid in series if cid not in RETIRED and genre_of(cid) == DEFAULT_GENRE]

@@ -34,6 +34,9 @@
     ]
   };
   var GROWTH = window.PBERS_GROWTH || { span: { days: 0 }, subs: [], views: [], videos: [] };
+  var GDAYS = GROWTH.days || [];             // 全履歴の日別(昇順)
+  var GCHAN = GROWTH.channels || [];         // 各チャンネルの日別値(スライダーで任意期間を計算)
+  var growWindow = Math.max(1, GDAYS.length - 1);   // 現在の集計ウィンドウ(日数)
   var GUNIT = { subs: '人', views: '回', videos: '本' };
   var RACE = window.PBERS_RACE || [];
   var GENRES = window.PBERS_GENRES || [];
@@ -468,92 +471,144 @@
   function _mean(a) { return a.length ? a.reduce(function (s, v) { return s + v; }, 0) / a.length : 0; }
   function _std(a) { if (!a.length) return 0; var m = _mean(a); return Math.sqrt(_mean(a.map(function (v) { return (v - m) * (v - m); }))); }
 
-  function renderGrowth() {
+  // 指定ウィンドウ(日数)の各チャンネル増減を日別データから算出し、降順で返す
+  function growSeries(metric, win) {
+    if (GDAYS.length < 2) return [];
+    var end = GDAYS.length - 1, start = Math.max(0, end - win), out = [];
+    GCHAN.filter(genreVisible).forEach(function (c) {
+      var arr = c[metric] || [], a = null, b = null, cnt = 0;
+      for (var i = start; i <= end; i++) {
+        if (arr[i] != null) { if (a === null) a = arr[i]; b = arr[i]; cnt++; }
+      }
+      if (cnt < 2) return;                       // ウィンドウ内に2点以上ないと増減を出せない
+      out.push({ name: c.name, color: c.color, delta: b - a });
+    });
+    out.sort(function (p, q) { return q.delta - p.delta; });
+    return out;
+  }
+  // 固定ベースライン(上72% / 下28%)。ウィンドウが変わってもゼロ線は動かない=滑らかに伸縮
+  function growLayout(list) {
+    var H = Math.round(BASE_GROW_H * growZoom);
+    var PADV = Math.round(30 * growZoom);
+    var usable = Math.max(40, H - 2 * PADV);
+    var upSpace = usable * 0.72, downSpace = usable * 0.28;
+    var maxUp = 0, maxDown = 0;
+    list.forEach(function (x) { if (x.delta > maxUp) maxUp = x.delta; if (-x.delta > maxDown) maxDown = -x.delta; });
+    var cands = [];
+    if (maxUp) cands.push(upSpace / maxUp);
+    if (maxDown) cands.push(downSpace / maxDown);
+    var perPx = cands.length ? Math.min.apply(null, cands) : 1;
+    var baseFromBottom = PADV + downSpace;                  // 固定
+    return { H: H, perPx: perPx, baseFromBottom: baseFromBottom, baseFromTop: H - (PADV + downSpace) };
+  }
+  function makeGrowCol(key) {
+    var col = document.createElement('div');
+    col.className = 'grow-col shown'; col.dataset.key = key;
+    col.innerHTML =
+      '<div class="grow-plot">' +
+        '<div class="gbaseline"></div>' +
+        '<div class="gbar up"><div class="ghead up"></div><div class="gshaft"></div></div>' +
+        '<div class="gval up"></div>' +
+      '</div>' +
+      '<div class="grow-foot"><div class="grow-crank num"></div><div class="grow-cname"></div></div>';
+    return col;
+  }
+  function setGrowCol(col, x, rank, L) {
+    var bar = col.querySelector('.gbar'), val = col.querySelector('.gval'), head = col.querySelector('.ghead');
+    var dir = x.delta > 0 ? 'up' : (x.delta < 0 ? 'down' : 'flat');
+    var barPx = dir === 'flat' ? 0 : Math.abs(x.delta) * L.perPx;
+    var sign = x.delta > 0 ? '+' : (x.delta < 0 ? '−' : '±');
+    bar.className = 'gbar ' + (dir === 'down' ? 'down' : 'up');
+    head.className = 'ghead ' + (dir === 'down' ? 'down' : 'up');
+    if (dir === 'down') { bar.style.top = L.baseFromTop + 'px'; bar.style.bottom = ''; }
+    else { bar.style.bottom = L.baseFromBottom + 'px'; bar.style.top = ''; }
+    bar.style.transitionDelay = '0s';
+    bar.style.height = barPx + 'px';
+    val.className = 'gval ' + dir;
+    val.textContent = sign + fmt(Math.abs(x.delta)) + GUNIT[gmetric];
+    if (dir === 'down') { val.style.top = (L.baseFromTop + barPx + 6) + 'px'; val.style.bottom = ''; }
+    else { val.style.bottom = (L.baseFromBottom + barPx + 6) + 'px'; val.style.top = ''; }
+    col.querySelector('.grow-crank').textContent = rank;
+  }
+  // スライダー/トグルで呼ぶ描画。既存の棒は高さをトランジション、並び替えはFLIPで滑らかに動かす(再描画しない)
+  function growRender(animate) {
     var host = document.getElementById('grow-list'); if (!host) return;
     var note = document.getElementById('growth-span');
+    var rangeBox = document.getElementById('grow-range');
     var hint = document.getElementById('grow-hint');
-    var span = GROWTH.span || { days: 0 };
-    var list = (GROWTH[gmetric] || []).filter(genreVisible);
-    if (!span.days || !list.length) {
-      if (note) note.textContent = '';
+    if (GDAYS.length < 2) {
+      if (rangeBox) rangeBox.hidden = true;
       if (hint) hint.style.display = 'none';
+      if (note) note.textContent = '';
       host.innerHTML = '<div class="grow-empty">成長ランキングは履歴が2日分たまると表示されます（明日以降に自動反映）。</div>';
       return;
     }
+    if (rangeBox) rangeBox.hidden = false;
     if (hint) hint.style.display = '';
-    if (note) note.textContent = '過去' + span.days + '日間（' + shortDate(span.from) + '→' + shortDate(span.to) + '）の増減';
+    var list = growSeries(gmetric, growWindow);
+    var L = growLayout(list);
+    var end = GDAYS.length - 1, start = Math.max(0, end - growWindow);
+    if (note) note.textContent = '過去' + (end - start) + '日間（' + shortDate(GDAYS[start]) + '→' + shortDate(GDAYS[end]) + '）の増減';
+    host.style.gap = Math.round(12 * growZoom) + 'px';
+    var colBasis = Math.round(46 * growZoom), colMax = Math.round(66 * growZoom);
 
-    /* zoomed dimensions */
-    var H = Math.round(BASE_GROW_H * growZoom);
-    var PADV = Math.round(30 * growZoom);                 // reserve at top & bottom for labels/heads
-    var usable = Math.max(40, H - 2 * PADV);
-    var colBasis = Math.round(46 * growZoom), colMax = Math.round(66 * growZoom), gap = Math.round(12 * growZoom);
-    host.style.gap = gap + 'px';
-
-    var maxUp = 0, maxDown = 0;
-    list.forEach(function (x) { if (x.delta > maxUp) maxUp = x.delta; if (-x.delta > maxDown) maxDown = -x.delta; });
-    var range = (maxUp + maxDown) || 1;
-    var perPx = usable / range;
-    var baseFromBottom = PADV + maxDown * perPx;          // zero-line height from the plot bottom
-    var baseFromTop = H - baseFromBottom;
-
-    /* deviation (z-score) → arrow thickness & head size */
-    var absv = list.map(function (x) { return Math.abs(x.delta); });
-    var mu = _mean(absv), sd = _std(absv);
-    function sizeFor(v) {
-      var z = sd ? (v - mu) / sd : 0;
-      var t = Math.max(0, Math.min(1, (z + 1.2) / 3.2));
-      var shaftW = Math.round((8 + t * 22) * growZoom);          // 8〜30 * zoom
-      var headHalf = Math.round((shaftW * 0.6 + 8));             // head always wider than shaft
-      var headH = Math.round(headHalf * 0.9);
-      return { shaftW: shaftW, headHalf: headHalf, headH: headH };
-    }
-
-    host.innerHTML = '';
-    list.forEach(function (x, i) {
-      var dir = x.delta > 0 ? 'up' : (x.delta < 0 ? 'down' : 'flat');
-      var barPx = Math.abs(x.delta) * perPx;
-      var sign = x.delta > 0 ? '+' : (x.delta < 0 ? '−' : '±');
-      var s = sizeFor(Math.abs(x.delta));
-      var headH = Math.max(4, Math.min(s.headH, barPx));         // never let the head exceed the bar length
-      var col = document.createElement('div'); col.className = 'grow-col';
-      col.style.flex = '1 0 ' + colBasis + 'px'; col.style.maxWidth = colMax + 'px';
-
-      var shaftCss = 'width:' + s.shaftW + 'px;';
-      var bar = '';
-      if (dir === 'up') {
-        var headCssU = 'border-left:' + s.headHalf + 'px solid transparent;border-right:' + s.headHalf + 'px solid transparent;border-bottom:' + headH + 'px solid ' + GC.UP + ';';
-        bar = '<div class="gbar up" data-h="' + barPx + '" style="bottom:' + baseFromBottom + 'px">' +
-                '<div class="ghead" style="' + headCssU + '"></div><div class="gshaft" style="' + shaftCss + 'background:' + GC.UP + '"></div></div>' +
-              '<div class="gval up" style="bottom:' + (baseFromBottom + barPx + 6) + 'px">' + sign + fmt(x.delta) + GUNIT[gmetric] + '</div>';
-      } else if (dir === 'down') {
-        var headCssD = 'border-left:' + s.headHalf + 'px solid transparent;border-right:' + s.headHalf + 'px solid transparent;border-top:' + headH + 'px solid ' + GC.DOWN + ';';
-        bar = '<div class="gbar down" data-h="' + barPx + '" style="top:' + baseFromTop + 'px">' +
-                '<div class="gshaft" style="' + shaftCss + 'background:' + GC.DOWN + '"></div><div class="ghead" style="' + headCssD + '"></div></div>' +
-              '<div class="gval down" style="top:' + (baseFromTop + barPx + 6) + 'px">' + sign + fmt(Math.abs(x.delta)) + GUNIT[gmetric] + '</div>';
-      } else {
-        bar = '<div class="gval flat" style="bottom:' + (baseFromBottom + 6) + 'px">±0' + GUNIT[gmetric] + '</div>';
-      }
-
-      col.innerHTML =
-        '<div class="grow-plot" style="height:' + H + 'px">' +
-          '<div class="gbaseline" style="bottom:' + baseFromBottom + 'px"></div>' + bar +
-        '</div>' +
-        '<div class="grow-foot"><div class="grow-crank num">' + (i + 1) + '</div>' +
-        '<div class="grow-cname">' + esc(x.name) + '</div></div>';
-      host.appendChild(col);
+    var oldLeft = {}, existing = {};
+    [].forEach.call(host.children, function (c) {
+      if (c.dataset && c.dataset.key != null) { oldLeft[c.dataset.key] = c.getBoundingClientRect().left; existing[c.dataset.key] = c; }
     });
+    var used = {}, fresh = [];
+    list.forEach(function (x, i) {
+      var col = existing[x.name];
+      if (!col) { col = makeGrowCol(x.name); fresh.push(col); }
+      col.style.flex = '1 0 ' + colBasis + 'px'; col.style.maxWidth = colMax + 'px';
+      col.querySelector('.grow-plot').style.height = L.H + 'px';
+      col.querySelector('.gbaseline').style.bottom = L.baseFromBottom + 'px';
+      col.querySelector('.grow-cname').textContent = x.name;
+      setGrowCol(col, x, i + 1, L);
+      host.appendChild(col);          // 正しい順序へ移動
+      used[x.name] = true;
+    });
+    [].slice.call(host.children).forEach(function (c) {
+      if (c.dataset && c.dataset.key != null && !used[c.dataset.key]) c.remove();
+    });
+    // 新規の棒は 0 から目標高さへ伸ばす(登場アニメ)
+    fresh.forEach(function (c, k) {
+      var bar = c.querySelector('.gbar'), h = bar.style.height;
+      bar.style.height = '0px'; bar.offsetHeight;   // reflow
+      bar.style.transitionDelay = animate ? (Math.min(k, 30) * 0.015) + 's' : '0s';
+      bar.style.height = h;
+    });
+    // 既存の棒は位置ずれをFLIPで滑らかに(左右に流れて並び替わる)
+    if (animate) {
+      [].forEach.call(host.children, function (c) {
+        var key = c.dataset.key; if (oldLeft[key] == null) return;
+        var dx = oldLeft[key] - c.getBoundingClientRect().left;
+        if (dx) {
+          c.style.transition = 'none'; c.style.transform = 'translateX(' + dx + 'px)';
+          requestAnimationFrame(function () { c.style.transition = 'transform .55s cubic-bezier(.22,1,.36,1)'; c.style.transform = ''; });
+        }
+      });
+    }
   }
+  function renderGrowth() { growRender(true); }
   function playGrowth() {
-    var tog = document.getElementById('growth-toggle');
-    var on = tog && tog.querySelector('.tg.on');
+    var tog = document.getElementById('growth-toggle'), on = tog && tog.querySelector('.tg.on');
     var gind = document.getElementById('gtg-ind');
     if (on && gind) { gind.style.left = on.offsetLeft + 'px'; gind.style.width = on.offsetWidth + 'px'; }
-    var cols = document.querySelectorAll('#grow-list .grow-col');
-    document.querySelectorAll('#grow-list .gbar').forEach(function (b, k) {
-      b.style.transitionDelay = (k * 0.02) + 's'; b.style.height = (b.dataset.h || 0) + 'px';
+    growRender(true);
+  }
+  function setupGrowthSlider() {
+    var s = document.getElementById('grow-slider'); if (!s) return;
+    var maxW = Math.max(1, GDAYS.length - 1);
+    s.min = 1; s.max = maxW; if (growWindow > maxW) growWindow = maxW; s.value = growWindow;
+    var lab = document.getElementById('grow-range-val'); if (lab) lab.textContent = growWindow + '日';
+    var raf = null;
+    s.addEventListener('input', function () {
+      growWindow = parseInt(s.value, 10) || 1;
+      if (lab) lab.textContent = growWindow + '日';
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function () { growRender(true); });
     });
-    cols.forEach(function (c) { c.classList.add('shown'); });
   }
   /* ---- 界隈全体の推移（ステップ折れ線） ---- */
   var TREND_COLOR = { subs: '#33bb74', views: '#9b7bff', videos: '#eba864' };
@@ -597,7 +652,7 @@
 
   function setupGrowthZoom() {
     var out = document.getElementById('gz-out'), inn = document.getElementById('gz-in'), val = document.getElementById('gz-val');
-    function upd() { if (val) val.textContent = Math.round(growZoom * 100) + '%'; renderGrowth(); playGrowth(); }
+    function upd() { if (val) val.textContent = Math.round(growZoom * 100) + '%'; growRender(true); }
     if (out) out.addEventListener('click', function () { growZoom = Math.max(0.5, Math.round((growZoom - 0.25) * 100) / 100); upd(); });
     if (inn) inn.addEventListener('click', function () { growZoom = Math.min(2, Math.round((growZoom + 0.25) * 100) / 100); upd(); });
   }
@@ -608,7 +663,7 @@
         if (b.dataset.gm === gmetric) return;
         gmetric = b.dataset.gm;
         gtabs.forEach(function (x) { x.classList.toggle('on', x === b); });
-        renderGrowth(); playGrowth(); renderTrend();
+        growRender(true); renderTrend();
       });
     });
   }
@@ -1253,6 +1308,7 @@
   renderTrend();
   setupGrowth();
   setupGrowthZoom();
+  setupGrowthSlider();
   setupTabs();
   setupDonutHover();
   setupColScroll();
