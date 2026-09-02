@@ -105,9 +105,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dotto edit",
-    "subs": 9660,
+    "subs": 9670,
     "views": 6841885,
-    "subsLabel": "チャンネル登録者数 9660人",
+    "subsLabel": "チャンネル登録者数 9670人",
     "viewsLabel": "6,841,885回視聴",
     "videos": 61,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
@@ -132,9 +132,9 @@ window.PBERS_DATA = [
   {
     "name": "udonball",
     "subs": 6890,
-    "views": 1226897,
+    "views": 1227701,
     "subsLabel": "チャンネル登録者数 6890人",
-    "viewsLabel": "1,226,897回視聴",
+    "viewsLabel": "1,227,701回視聴",
     "videos": 119,
     "url": "https://www.youtube.com/channel/UCGueqNQmvtQYlGO3UL3Gf3w",
     "avatar": "https://yt3.googleusercontent.com/t-XpUkPOEssGyYn9TK4JrLG9EmGIhn565-GBvVCtqkpxDXD36l6OOb6EOlWJ_Gr92W8a_ryApcg=s900-c-k-c0x00ffffff-no-rj",
@@ -171,4 +171,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-02";
-window.PBERS_PREDICT = {"asOfMs": 1788318000000, "subs": {"base": 1179850, "rate": 2.042291551972541e-05}, "views": {"base": 493738085, "rate": 0.00501894269483861}};
+window.PBERS_PREDICT = {"asOfMs": 1788339600000, "subs": {"base": 1179860, "rate": 1.7726841540454457e-05}, "views": {"base": 493738889, "rate": 0.008449362092958723}};
