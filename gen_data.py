@@ -326,7 +326,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250877">
+<link rel="stylesheet" href="/assets/style.css?v=250878">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -338,11 +338,11 @@ CH_TPL = '''<!doctype html>
 </div></main>
 <footer><div class="wrap">
   <a class="brand" href="../../"><span class="dot"></span><span>PB<b>ers</b></span></a>
-  <div>データ出典: YouTube 各チャンネル公開情報</div>
+  <div>データ出典: YouTube 各チャンネル公開情報 ・ <a class="foot-link" href="/privacy/">プライバシーポリシー</a></div>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250877"></script>
+<script src="/assets/channel.js?v=250878"></script>
 </body>
 </html>
 '''
@@ -592,6 +592,8 @@ def build_view_pages():
 
 def build_sitemap(order):
     urls = [ed_site() + "/"] + [ed_site() + "/c/" + urllib.parse.quote(d["_slug"]) + "/" for d in order]
+    if not ED["sub"]:                       # プライバシーポリシーは通常サイト側のみ
+        urls.append(ed_site() + "/privacy/")
     body = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     for u in urls:
         body += '  <url><loc>%s</loc><changefreq>daily</changefreq></url>\n' % u
