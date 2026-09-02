@@ -10,7 +10,7 @@
  */
 
 const HUB = "https://pubsubhubbub.appspot.com/";
-const SITE = "https://pbers.pages.dev";
+const SITE = "https://pbers.com";
 const TOPIC = (id) => `https://www.youtube.com/xml/feeds/videos.xml?channel_id=${id}`;
 const BATCH = 30;          // 1回で購読する数(無料プランの50サブリクエスト上限に収める)
 const REFRESH_BATCH = 15;  // 1回でRSS取り込みするチャンネル数(1chにつきRSS+判定で最大3fetch)
@@ -243,7 +243,7 @@ function json(o, status = 200) {
     status,
     headers: {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": SITE,
+      "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET,OPTIONS"
     }
   });

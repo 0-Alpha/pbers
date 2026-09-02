@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pbers.pages.dev/sitemap-pbers.xml
-Sitemap: https://pbers.pages.dev/global/sitemap-pbers.xml
+Sitemap: https://pbers.com/sitemap-pbers.xml
+Sitemap: https://pbers.com/global/sitemap-pbers.xml

@@ -28,7 +28,7 @@ def daily_reps(ts_iterable):
 _now = datetime.datetime.now(JST)
 ASOF = (_now.date() - datetime.timedelta(days=1)) if (_now.hour // 6) * 6 == 0 else _now.date()
 UPDATED = ASOF.strftime("%Y-%m-%d")   # main() で実データの最新日に更新
-SITE = "https://pbers.pages.dev"   # 独自ドメイン接続後は https://pbers.com に変更
+SITE = "https://pbers.com"   # 独自ドメイン(2026-09 移行)。pages.dev も引き続き配信される
 
 # ---- エディション: 通常サイト(ルート) と 海外向けサイト(/global/) ----
 # 各エディションは自分の channels/data/history を持ち、自分のサブパス配下に出力する。
@@ -321,7 +321,7 @@ CH_TPL = '''<!doctype html>
 <meta property="og:image" content="{{AVATAR}}">
 <meta name="twitter:card" content="summary">
 <script>
-(function(){var u=location.origin+location.pathname;var c=document.querySelector('link[rel=canonical]');if(c)c.href=u;var o=document.querySelector('meta[property="og:url"]');if(o)o.setAttribute('content',u);})();
+(function(){var u="https://pbers.com"+location.pathname;var c=document.querySelector('link[rel=canonical]');if(c)c.href=u;var o=document.querySelector('meta[property="og:url"]');if(o)o.setAttribute('content',u);})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
