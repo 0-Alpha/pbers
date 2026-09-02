@@ -242,10 +242,12 @@ section.block{padding:46px 0}
 .grow-range{display:flex;align-items:center;gap:12px;margin:6px 0 14px}
 .gr-lab{font-family:var(--jp);font-weight:700;font-size:12.5px;color:var(--muted);flex:none}
 .gr-val{font-family:var(--num);font-weight:900;font-size:14px;color:var(--text);flex:none;min-width:46px}
-.gr-slider{-webkit-appearance:none;appearance:none;flex:1;height:6px;border-radius:999px;background:var(--line-2);outline:none;cursor:pointer}
-.gr-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;
-  background:var(--red);border:3px solid var(--panel);box-shadow:0 0 0 1px var(--line-2);cursor:pointer}
-.gr-slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--red);border:3px solid var(--panel);cursor:pointer}
+.gr-slider{-webkit-appearance:none;appearance:none;flex:1;height:6px;border-radius:999px;background:var(--line-2);
+  outline:none;cursor:pointer;direction:rtl}   /* 1日=右, 最長=左 */
+.gr-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;box-sizing:border-box;width:26px;height:26px;
+  border-radius:50%;background:var(--red);border:6px solid var(--line-2);cursor:pointer}   /* 灰色枠=トラックと同じ太さ・色 */
+.gr-slider::-moz-range-thumb{box-sizing:border-box;width:26px;height:26px;border-radius:50%;background:var(--red);
+  border:6px solid var(--line-2);cursor:pointer}
 
 /* total trend (stepped line chart) */
 .trend{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 14px;min-height:260px}

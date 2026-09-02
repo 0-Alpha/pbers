@@ -36,7 +36,7 @@
   var GROWTH = window.PBERS_GROWTH || { span: { days: 0 }, subs: [], views: [], videos: [] };
   var GDAYS = GROWTH.days || [];             // 全履歴の日別(昇順)
   var GCHAN = GROWTH.channels || [];         // 各チャンネルの日別値(スライダーで任意期間を計算)
-  var growWindow = Math.max(1, GDAYS.length - 1);   // 現在の集計ウィンドウ(日数)
+  var growWindow = Math.min(7, Math.max(1, GDAYS.length - 1));   // 集計ウィンドウ(日数・小数可)。既定7日
   var GUNIT = { subs: '人', views: '回', videos: '本' };
   var RACE = window.PBERS_RACE || [];
   var GENRES = window.PBERS_GENRES || [];
@@ -471,17 +471,31 @@
   function _mean(a) { return a.length ? a.reduce(function (s, v) { return s + v; }, 0) / a.length : 0; }
   function _std(a) { if (!a.length) return 0; var m = _mean(a); return Math.sqrt(_mean(a.map(function (v) { return (v - m) * (v - m); }))); }
 
-  // 指定ウィンドウ(日数)の各チャンネル増減を日別データから算出し、降順で返す
+  // 日別の存在点(欠損を除いた [index,value])から、位置p(小数可)の近似値を線形補間で返す
+  function interpAt(pres, p) {
+    if (!pres.length) return null;
+    if (p <= pres[0][0]) return pres[0][1];
+    var last = pres[pres.length - 1];
+    if (p >= last[0]) return last[1];
+    for (var i = 1; i < pres.length; i++) {
+      if (pres[i][0] >= p) {
+        var a = pres[i - 1], b = pres[i], f = (p - a[0]) / (b[0] - a[0]);
+        return a[1] + (b[1] - a[1]) * f;
+      }
+    }
+    return last[1];
+  }
+  // 指定ウィンドウ(日数・小数可)の各チャンネル増減を算出し降順で返す。小数は補間=なめらかに変化
   function growSeries(metric, win) {
     if (GDAYS.length < 2) return [];
-    var end = GDAYS.length - 1, start = Math.max(0, end - win), out = [];
+    var end = GDAYS.length - 1, startPos = Math.max(0, end - win), out = [];
     GCHAN.filter(genreVisible).forEach(function (c) {
-      var arr = c[metric] || [], a = null, b = null, cnt = 0;
-      for (var i = start; i <= end; i++) {
-        if (arr[i] != null) { if (a === null) a = arr[i]; b = arr[i]; cnt++; }
-      }
-      if (cnt < 2) return;                       // ウィンドウ内に2点以上ないと増減を出せない
-      out.push({ name: c.name, color: c.color, delta: b - a });
+      var arr = c[metric] || [], pres = [];
+      for (var i = 0; i < arr.length; i++) if (arr[i] != null) pres.push([i, arr[i]]);
+      if (pres.length < 2) return;               // 2点以上ないと増減を出せない
+      var ev = interpAt(pres, end), sv = interpAt(pres, startPos);
+      if (ev == null || sv == null) return;
+      out.push({ name: c.name, color: c.color, delta: Math.round(ev - sv) });
     });
     out.sort(function (p, q) { return q.delta - p.delta; });
     return out;
@@ -547,7 +561,7 @@
     if (hint) hint.style.display = '';
     var list = growSeries(gmetric, growWindow);
     var L = growLayout(list);
-    var end = GDAYS.length - 1, start = Math.max(0, end - growWindow);
+    var end = GDAYS.length - 1, wr = Math.max(1, Math.round(growWindow)), start = Math.max(0, end - wr);
     if (note) note.textContent = '過去' + (end - start) + '日間（' + shortDate(GDAYS[start]) + '→' + shortDate(GDAYS[end]) + '）の増減';
     host.style.gap = Math.round(12 * growZoom) + 'px';
     var colBasis = Math.round(46 * growZoom), colMax = Math.round(66 * growZoom);
@@ -600,12 +614,15 @@
   function setupGrowthSlider() {
     var s = document.getElementById('grow-slider'); if (!s) return;
     var maxW = Math.max(1, GDAYS.length - 1);
-    s.min = 1; s.max = maxW; if (growWindow > maxW) growWindow = maxW; s.value = growWindow;
-    var lab = document.getElementById('grow-range-val'); if (lab) lab.textContent = growWindow + '日';
+    s.min = 1; s.max = maxW; s.step = 'any';       // 連続スライド(小数)。1日=右, 最長=左(CSS direction:rtl)
+    if (growWindow > maxW) growWindow = maxW;
+    s.value = growWindow;
+    var lab = document.getElementById('grow-range-val');
+    if (lab) lab.textContent = Math.round(growWindow) + '日';
     var raf = null;
     s.addEventListener('input', function () {
-      growWindow = parseInt(s.value, 10) || 1;
-      if (lab) lab.textContent = growWindow + '日';
+      growWindow = parseFloat(s.value) || 1;
+      if (lab) lab.textContent = Math.round(growWindow) + '日';
       if (raf) cancelAnimationFrame(raf);
       raf = requestAnimationFrame(function () { growRender(true); });
     });
