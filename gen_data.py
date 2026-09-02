@@ -326,7 +326,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250878">
+<link rel="stylesheet" href="/assets/style.css?v=250879">
 </head>
 <body>
 <header class="topbar"><div class="wrap">
@@ -339,10 +339,11 @@ CH_TPL = '''<!doctype html>
 <footer><div class="wrap">
   <a class="brand" href="../../"><span class="dot"></span><span>PB<b>ers</b></span></a>
   <div>データ出典: YouTube 各チャンネル公開情報 ・ <a class="foot-link" href="/privacy/">プライバシーポリシー</a></div>
+  <div class="foot-note">チャンネル名・アイコン・サムネイル等の権利は各制作者に帰属します。当サイトは識別・参照目的で表示しています。掲載の削除をご希望の場合は <a href="mailto:contact@pbers.com">contact@pbers.com</a> までご連絡ください。</div>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250878"></script>
+<script src="/assets/channel.js?v=250879"></script>
 </body>
 </html>
 '''
