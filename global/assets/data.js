@@ -41,9 +41,9 @@ window.PBERS_DATA = [
   {
     "name": "áíš!aispoaporu",
     "subs": 136000,
-    "views": 93010300,
+    "views": 93027381,
     "subsLabel": "チャンネル登録者数 13.6万人",
-    "viewsLabel": "93,010,300回視聴",
+    "viewsLabel": "93,027,381回視聴",
     "videos": 1045,
     "url": "https://www.youtube.com/channel/UC1swbrz9S2VKVABS673ACgQ",
     "avatar": "https://yt3.googleusercontent.com/PNuTtwQrRcQ7zzGQlLM54CsOYHqXfzQA3oPx8Q9o-_GTomHU_WV2SGsA7uv_oPc1XNo09Q0OAtY=s900-c-k-c0x00ffffff-no-rj",
@@ -54,10 +54,10 @@ window.PBERS_DATA = [
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
     "subs": 114000,
-    "views": 46348512,
+    "views": 46456072,
     "subsLabel": "チャンネル登録者数 11.4万人",
-    "viewsLabel": "46,348,512回視聴",
-    "videos": 254,
+    "viewsLabel": "46,456,072回視聴",
+    "videos": 255,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
     "avatar": "https://yt3.googleusercontent.com/6bFOwdJowJMxYBkoE3h0ws0_Lbgr8d8c0ZPgny5agUQ4OzwVqAeeD2E4RCFYEkte2VM_Bwel2w=s900-c-k-c0x00ffffff-no-rj",
     "color": "#5e95d4",
@@ -105,9 +105,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dotto edit",
-    "subs": 9690,
+    "subs": 9700,
     "views": 6866709,
-    "subsLabel": "チャンネル登録者数 9690人",
+    "subsLabel": "チャンネル登録者数 9700人",
     "viewsLabel": "6,866,709回視聴",
     "videos": 61,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
@@ -171,4 +171,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-03";
-window.PBERS_PREDICT = {"asOfMs": 1788382800000, "subs": {"base": 1180980, "rate": 1.939763612028426e-05}, "views": {"base": 493854104, "rate": 0.007115166002234186}};
+window.PBERS_PREDICT = {"asOfMs": 1788382800000, "subs": {"base": 1180990, "rate": 1.939763612028426e-05}, "views": {"base": 493978745, "rate": 0.007115166002234186}};
