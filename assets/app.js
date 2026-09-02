@@ -471,31 +471,18 @@
   function _mean(a) { return a.length ? a.reduce(function (s, v) { return s + v; }, 0) / a.length : 0; }
   function _std(a) { if (!a.length) return 0; var m = _mean(a); return Math.sqrt(_mean(a.map(function (v) { return (v - m) * (v - m); }))); }
 
-  // 日別の存在点(欠損を除いた [index,value])から、位置p(小数可)の近似値を線形補間で返す
-  function interpAt(pres, p) {
-    if (!pres.length) return null;
-    if (p <= pres[0][0]) return pres[0][1];
-    var last = pres[pres.length - 1];
-    if (p >= last[0]) return last[1];
-    for (var i = 1; i < pres.length; i++) {
-      if (pres[i][0] >= p) {
-        var a = pres[i - 1], b = pres[i], f = (p - a[0]) / (b[0] - a[0]);
-        return a[1] + (b[1] - a[1]) * f;
-      }
-    }
-    return last[1];
-  }
-  // 指定ウィンドウ(日数・小数可)の各チャンネル増減を算出し降順で返す。小数は補間=なめらかに変化
+  // 指定ウィンドウの各チャンネル増減を算出し降順で返す。小数の位置は最寄りの整数日に丸める(近似)
   function growSeries(metric, win) {
     if (GDAYS.length < 2) return [];
-    var end = GDAYS.length - 1, startPos = Math.max(0, end - win), out = [];
+    var w = Math.max(1, Math.round(win));       // 途中位置は近い方の日数へスナップ
+    var end = GDAYS.length - 1, start = Math.max(0, end - w), out = [];
     GCHAN.filter(genreVisible).forEach(function (c) {
-      var arr = c[metric] || [], pres = [];
-      for (var i = 0; i < arr.length; i++) if (arr[i] != null) pres.push([i, arr[i]]);
-      if (pres.length < 2) return;               // 2点以上ないと増減を出せない
-      var ev = interpAt(pres, end), sv = interpAt(pres, startPos);
-      if (ev == null || sv == null) return;
-      out.push({ name: c.name, color: c.color, delta: Math.round(ev - sv) });
+      var arr = c[metric] || [], a = null, b = null, cnt = 0;
+      for (var i = start; i <= end; i++) {
+        if (arr[i] != null) { if (a === null) a = arr[i]; b = arr[i]; cnt++; }
+      }
+      if (cnt < 2) return;                       // ウィンドウ内に2点以上ないと増減を出せない
+      out.push({ name: c.name, color: c.color, delta: b - a });
     });
     out.sort(function (p, q) { return q.delta - p.delta; });
     return out;
@@ -680,7 +667,7 @@
         if (b.dataset.gm === gmetric) return;
         gmetric = b.dataset.gm;
         gtabs.forEach(function (x) { x.classList.toggle('on', x === b); });
-        growRender(true); renderTrend();
+        playGrowth(); renderTrend();     // playGrowth が赤インジケータ(#gtg-ind)を移動＋再描画
       });
     });
   }
