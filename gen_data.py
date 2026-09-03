@@ -326,7 +326,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250904">
+<link rel="stylesheet" href="/assets/style.css?v=250905">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -344,7 +344,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250904"></script>
+<script src="/assets/channel.js?v=250905"></script>
 </body>
 </html>
 '''
@@ -953,12 +953,17 @@ def build_news(colors):
                             "color": colors[a], "avatar": amap.get(a, ""), "icon": "⤴️",
                             "genre": genre_of(a),
                             "opp": {"name": names[b], "color": colors.get(b, "#8d8986"), "avatar": amap.get(b, "")},
+                            "opp_value": gv(b, T, metric),
                             "label": "%sで %s を追い越し" % (METRICWORD[metric], names[b]),
                             "value": ca,
                         })
 
     korder = {"subs": 0, "views": 1, "videos": 2}
-    torder = {"milestone": 0, "overtake": 1}
+    torder = {"milestone": 0, "multi_overtake": 1, "overtake": 2}
+    ZMAI = {2: "二枚抜き", 3: "三枚抜き", 4: "四枚抜き", 5: "五枚抜き", 6: "六枚抜き",
+            7: "七枚抜き", 8: "八枚抜き", 9: "九枚抜き", 10: "十枚抜き"}
+    def maisuki(n):
+        return ZMAI.get(n, "%d枚抜き" % n)
 
     def dedup(items):
         # 同じ日に6時間ごとで重複しうる同一ニュースを1件にまとめる
@@ -976,9 +981,39 @@ def build_news(colors):
             out.append(it)
         return out
 
+    def consolidate(items):
+        """同じ日に同一チャンネルが同一指標で複数を追い越したら『N枚抜き』1件にまとめる。
+           1件だけの追い越しはそのまま。マイルストーンは触らない。"""
+        ms = [it for it in items if it["type"] == "milestone"]
+        groups, order = {}, []
+        for it in items:
+            if it["type"] != "overtake":
+                continue
+            key = (it["kind"], it["name"])
+            if key not in groups:
+                groups[key] = []; order.append(key)
+            groups[key].append(it)
+        out = list(ms)
+        for key in order:
+            g = groups[key]
+            if len(g) == 1:
+                out.append(g[0]); continue
+            g = sorted(g, key=lambda x: -(x.get("opp_value") or 0))   # 大きい相手から並べる
+            opps = [x["opp"] for x in g]
+            subj = g[0]; n = len(opps)
+            out.append({
+                "type": "multi_overtake", "kind": subj["kind"], "name": subj["name"],
+                "color": subj["color"], "avatar": subj["avatar"], "icon": "⚡",
+                "genre": subj["genre"], "count": n, "opps": opps,
+                "label": "%sで %s（%s を追い越し）" % (
+                    METRICWORD[subj["kind"]], maisuki(n), "・".join(o["name"] for o in opps)),
+                "value": max(x["value"] for x in g),
+            })
+        return out
+
     news = []
     for d in sorted(by_date.keys(), reverse=True):     # 新しい日が上
-        items = sorted(dedup(by_date[d]), key=lambda x: (torder[x["type"]], korder[x["kind"]], -x["value"]))
+        items = sorted(consolidate(dedup(by_date[d])), key=lambda x: (torder[x["type"]], korder[x["kind"]], -x["value"]))
         dd = datetime.date.fromisoformat(d)
         news.append({"date": d, "label": "%d月%d日(%s)" % (dd.month, dd.day, WD[dd.weekday()]), "items": items})
 

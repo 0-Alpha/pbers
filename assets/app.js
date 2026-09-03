@@ -914,6 +914,27 @@
   /* ---- news feed (animated: 3D milestone bars + crossing overtakes) ---- */
   var NF_OBS = null;
   var MWORD = { subs: '登録者数', views: '総再生数', videos: '投稿数' };
+  var ZMAI_JS = { 2: '二枚抜き', 3: '三枚抜き', 4: '四枚抜き', 5: '五枚抜き', 6: '六枚抜き', 7: '七枚抜き', 8: '八枚抜き', 9: '九枚抜き', 10: '十枚抜き' };
+  function zmai(n) { return ZMAI_JS[n] || (n + '枚抜き'); }
+  // 二枚抜き・三枚抜き専用の演出: heroが下から最上位へ上昇し、被追越を一気に抜く
+  function movHTML(n) {
+    var opps = n.opps || [], N = opps.length, rowH = 44, gap = 6;
+    var rows = '<div class="mov-row hero" style="--t0:' + (N * rowH) + 'px;--t1:0px;height:' + (rowH - gap) + 'px">' +
+      '<img src="' + esc(n.avatar) + '" onerror="this.style.visibility=\'hidden\'">' +
+      '<span class="rn" style="color:' + n.color + '">' + esc(n.name) + '</span>' +
+      '<span class="mov-tag" style="color:' + n.color + '">▲ ' + N + '人抜き</span></div>';
+    opps.forEach(function (o, i) {
+      rows += '<div class="mov-row" style="--t0:' + (i * rowH) + 'px;--t1:' + ((i + 1) * rowH) + 'px;height:' + (rowH - gap) + 'px">' +
+        '<img src="' + esc(o.avatar) + '" onerror="this.style.visibility=\'hidden\'">' +
+        '<span class="rn">' + esc(o.name) + '</span></div>';
+    });
+    return '<div class="mov" style="--c:' + n.color + '">' +
+      '<div class="mov-top"><span class="mov-badge">' + zmai(N) + '</span>' +
+        '<span class="mov-metric">' + MWORD[n.kind] + '</span></div>' +
+      '<div class="mov-stack" style="height:' + (rowH * (N + 1) - gap) + 'px">' + rows + '</div>' +
+      '<div class="mov-cap"><b style="color:' + n.color + '">' + esc(n.name) + '</b> が ' + N + 'チャンネルを一気に追い越し</div>' +
+    '</div>';
+  }
   function shade(hex, amt) {
     var h = (hex || '#888888').replace('#', '');
     if (h.length === 3) h = h.split('').map(function (c) { return c + c; }).join('');
@@ -1254,6 +1275,8 @@
               stage +
               '<div class="ms-name" style="color:' + n.color + '">' + esc(n.name) + '</div>' +
             '</div>';
+        } else if (n.type === 'multi_overtake') {
+          st.innerHTML = movHTML(n);
         } else {
           var opp = n.opp || { name: '', color: '#888', avatar: '' };
           var title = '<div class="ov-title"><b style="color:' + n.color + '">' + esc(n.name) + '</b> が <b style="color:' + opp.color + '">' + esc(opp.name) + '</b> を ' + MWORD[n.kind] + 'で追い越し</div>';
