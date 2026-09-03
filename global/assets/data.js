@@ -14,9 +14,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Moonball_PB",
-    "subs": 211000,
+    "subs": 212000,
     "views": 37178596,
-    "subsLabel": "チャンネル登録者数 21.1万人",
+    "subsLabel": "チャンネル登録者数 21.2万人",
     "viewsLabel": "37,178,596回視聴",
     "videos": 31,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
@@ -53,9 +53,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-    "subs": 114000,
+    "subs": 115000,
     "views": 46634662,
-    "subsLabel": "チャンネル登録者数 11.4万人",
+    "subsLabel": "チャンネル登録者数 11.5万人",
     "viewsLabel": "46,634,662回視聴",
     "videos": 255,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
@@ -171,4 +171,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-03";
-window.PBERS_PREDICT = {"asOfMs": 1788447600000, "subs": {"base": 1181040, "rate": 1.3764102629647137e-05}, "views": {"base": 494382948, "rate": 0.007379413861991981}};
+window.PBERS_PREDICT = {"asOfMs": 1788447600000, "subs": {"base": 1183040, "rate": 1.3764102629647137e-05}, "views": {"base": 494382948, "rate": 0.007379413861991981}};
