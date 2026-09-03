@@ -200,7 +200,7 @@ window.PBERS_DATA = [
     "views": 20513495,
     "subsLabel": "チャンネル登録者数 2.85万人",
     "viewsLabel": "20,513,495回視聴",
-    "videos": 125,
+    "videos": 124,
     "url": "https://www.youtube.com/channel/UCFUXbdaOpvcbuC0zQMjS1Rw",
     "avatar": "https://yt3.googleusercontent.com/AlFPad8pRVrfeIto9rOiwJjZaJNUmdMQekXAnHSIOOvCA5cEG_VlryXtlSx0oylMukqi3lVbYg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3ecc9a",
@@ -924,9 +924,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ニイソビボール",
-    "subs": 8480,
+    "subs": 8490,
     "views": 2696923,
-    "subsLabel": "チャンネル登録者数 8480人",
+    "subsLabel": "チャンネル登録者数 8490人",
     "viewsLabel": "2,696,923回視聴",
     "videos": 60,
     "url": "https://www.youtube.com/channel/UCpaHKFWTUu4hyr_MafHXppA",
@@ -937,9 +937,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ばかわたし",
-    "subs": 8440,
+    "subs": 8450,
     "views": 4804319,
-    "subsLabel": "チャンネル登録者数 8440人",
+    "subsLabel": "チャンネル登録者数 8450人",
     "viewsLabel": "4,804,319回視聴",
     "videos": 92,
     "url": "https://www.youtube.com/channel/UCnZNY63Txhu4ot3l2lbicOA",
@@ -1001,6 +1001,19 @@ window.PBERS_DATA = [
     "slug": "rimoru"
   },
   {
+    "name": "ゆうボール",
+    "subs": 7110,
+    "views": 1625306,
+    "subsLabel": "チャンネル登録者数 7110人",
+    "viewsLabel": "1,625,306回視聴",
+    "videos": 27,
+    "url": "https://www.youtube.com/channel/UCjwy3iaSFry_4JOWVv44lXA",
+    "avatar": "https://yt3.googleusercontent.com/dDe-vpE0ub720mNouK763bXlq37V8dRRy6yQbJBUGfPobeaj40ktPUSvtcbo66HAkI9dk46oAA=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#6fcc3e",
+    "genre": "ポーランドボーラー",
+    "slug": "ゆうボール"
+  },
+  {
     "name": "ノートボール",
     "subs": 7100,
     "views": 3645519,
@@ -1009,22 +1022,9 @@ window.PBERS_DATA = [
     "videos": 90,
     "url": "https://www.youtube.com/channel/UCH5Q8u60__uE8KKC0STZH_g",
     "avatar": "https://yt3.googleusercontent.com/CsaI4tM_AC-OCGe2i5wE9oAIMAaI4WbGpKrOm6-4prkv_ZINQsm7V3ysWW8dodd7juUu-py2QUg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#6fcc3e",
-    "genre": "ポーランドボーラー",
-    "slug": "ノートボール"
-  },
-  {
-    "name": "ゆうボール",
-    "subs": 7100,
-    "views": 1625306,
-    "subsLabel": "チャンネル登録者数 7100人",
-    "viewsLabel": "1,625,306回視聴",
-    "videos": 27,
-    "url": "https://www.youtube.com/channel/UCjwy3iaSFry_4JOWVv44lXA",
-    "avatar": "https://yt3.googleusercontent.com/dDe-vpE0ub720mNouK763bXlq37V8dRRy6yQbJBUGfPobeaj40ktPUSvtcbo66HAkI9dk46oAA=s900-c-k-c0x00ffffff-no-rj",
     "color": "#5ed49d",
     "genre": "ポーランドボーラー",
-    "slug": "ゆうボール"
+    "slug": "ノートボール"
   },
   {
     "name": "から揚げボール 永遠の24歳学生",
@@ -1339,19 +1339,6 @@ window.PBERS_DATA = [
     "slug": "アドラー"
   },
   {
-    "name": "まっこゆ",
-    "subs": 4420,
-    "views": 2334719,
-    "subsLabel": "チャンネル登録者数 4420人",
-    "viewsLabel": "2,334,719回視聴",
-    "videos": 24,
-    "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
-    "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d45e7d",
-    "genre": "ポーランドボーラー",
-    "slug": "まっこゆ"
-  },
-  {
     "name": "萱口",
     "subs": 4410,
     "views": 1588586,
@@ -1360,9 +1347,22 @@ window.PBERS_DATA = [
     "videos": 68,
     "url": "https://www.youtube.com/channel/UCfl1W6sL5-es_rWqA7bGbRQ",
     "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc953e",
+    "color": "#d45e7d",
     "genre": "ポーランドボーラー",
     "slug": "萱口"
+  },
+  {
+    "name": "まっこゆ",
+    "subs": 4410,
+    "views": 2334719,
+    "subsLabel": "チャンネル登録者数 4410人",
+    "viewsLabel": "2,334,719回視聴",
+    "videos": 24,
+    "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
+    "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#cc953e",
+    "genre": "ポーランドボーラー",
+    "slug": "まっこゆ"
   },
   {
     "name": "幻死帝国 ",
@@ -2003,5 +2003,5 @@ window.PBERS_DATA = [
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
-window.PBERS_UPDATED = "2026-09-03";
-window.PBERS_PREDICT = {"asOfMs": 1788447600000, "subs": {"base": 2805060, "rate": 5.934915312569233e-05}, "views": {"base": 2179227876, "rate": 0.04563561643337373}};
+window.PBERS_UPDATED = "2026-09-04";
+window.PBERS_PREDICT = {"asOfMs": 1788469200000, "subs": {"base": 2805070, "rate": 5.49873966508564e-05}, "views": {"base": 2179227876, "rate": 0.04163920902825591}};
