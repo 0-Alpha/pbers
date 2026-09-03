@@ -398,6 +398,14 @@ section.block{padding:46px 0}
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .rc-sub{font-family:var(--num);font-weight:800;font-size:12px;color:var(--muted)}
 .card-main .go{align-self:center;font-size:22px;line-height:1}
+.ch-ed-cross{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:34px;
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+  text-decoration:none;color:inherit;transition:border-color .16s,transform .16s}
+.ch-ed-cross:hover{border-color:var(--accent,var(--red));transform:translateY(-2px)}
+.xed-lead{font-family:var(--jp);font-weight:700;font-size:13.5px;color:var(--muted)}
+.xed-cta{font-family:var(--jp);font-weight:800;font-size:14px;color:var(--text);white-space:nowrap}
+.xed-cta b{font-family:var(--num);color:var(--red)}
+@media(max-width:480px){.ch-ed-cross{flex-direction:column;align-items:flex-start;gap:6px}}
 
 /* ---------- news feed (animated) ---------- */
 .more-link{color:var(--red)!important;font-weight:700}

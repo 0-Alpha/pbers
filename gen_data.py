@@ -326,7 +326,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250879">
+<link rel="stylesheet" href="/assets/style.css?v=250903">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -344,7 +344,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250879"></script>
+<script src="/assets/channel.js?v=250903"></script>
 </body>
 </html>
 '''
@@ -523,6 +523,15 @@ def ch_footer_html(order, i, growth_map, esc):
     if rising:
         out += ('<div class="rc-block"><div class="rc-h">急上昇中 <span class="rc-en">Rising</span></div>'
                 '<div class="rc-row">' + "".join(_rc_chip(d, esc) for d in rising) + '</div></div>')
+    # 版(日本/海外)クロス導線: 反対側の版トップへ。回遊の出口を作る。
+    if ED["sub"]:   # 海外版 → 日本版へ
+        out += ('<a class="ch-ed-cross" href="/">'
+                '<span class="xed-lead">日本国内のPBerは</span>'
+                '<span class="xed-cta">日本版ランキングを見る <b>→</b></span></a>')
+    else:           # 日本版 → 海外版へ
+        out += ('<a class="ch-ed-cross" href="/global/">'
+                '<span class="xed-lead">海外向けに発信しているPBerは</span>'
+                '<span class="xed-cta">海外版ランキングを見る <b>→</b></span></a>')
     return '<div class="ch-more">' + out + '</div>'
 
 def build_channel_pages(order, colors):
