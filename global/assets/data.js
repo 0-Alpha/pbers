@@ -143,7 +143,7 @@ window.PBERS_DATA = [
     "slug": "udonball"
   },
   {
-    "name": "AST.aosuto Polandball",
+    "name": "AST.アオスト Polandball",
     "subs": 3570,
     "views": 1723298,
     "subsLabel": "チャンネル登録者数 3570人",
@@ -153,7 +153,7 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/nXoBfvWS9QqvvLPBMax19Sflx1CZUnM7Yuwg1UKcJoinUoQca69gdhzMRdk9SiC-VMDw-46JkYI=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3e66cc",
     "genre": "ポーランドボーラー",
-    "slug": "astaosuto-polandball"
+    "slug": "astアオスト-polandball"
   },
   {
     "name": "AJ ball",

@@ -151,7 +151,7 @@ window.PBERS_RACE = [
         "name": "田中MID",
         "color": "#2f80ed",
         "avatar": "https://yt3.googleusercontent.com/mnFY8X_lmtyW54Uh5ocg1QJQVTxTRKG9XDdrGAhxFZpPPJzhsGue-cMHqLBCsIRF4hBHjsLU=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 296000,
+        "subs": 297000,
         "history": [
           {
             "d": "2026-08-20",
@@ -736,8 +736,80 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "ｺﾏ",
+        "name": "こゆまる_koyumaru908",
         "color": "#5ed4c0",
+        "avatar": "https://yt3.googleusercontent.com/7E1EME20oj2j5h8bBf7K618lZ7fAEN6hB6j_l8zaxWbyH-8VK49BLcM0uS38ZvsRtELNy8Hp5g=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 21700,
+        "history": [
+          {
+            "d": "2026-08-20",
+            "s": 21400
+          },
+          {
+            "d": "2026-08-21",
+            "s": 21500
+          },
+          {
+            "d": "2026-08-22",
+            "s": 21600
+          },
+          {
+            "d": "2026-08-23",
+            "s": 21600
+          },
+          {
+            "d": "2026-08-24",
+            "s": 21600
+          },
+          {
+            "d": "2026-08-25",
+            "s": 21600
+          },
+          {
+            "d": "2026-08-26",
+            "s": 21600
+          },
+          {
+            "d": "2026-08-27",
+            "s": 21600
+          },
+          {
+            "d": "2026-08-28",
+            "s": 21600
+          },
+          {
+            "d": "2026-08-29",
+            "s": 21600
+          },
+          {
+            "d": "2026-08-30",
+            "s": 21600
+          },
+          {
+            "d": "2026-08-31",
+            "s": 21600
+          },
+          {
+            "d": "2026-09-01",
+            "s": 21600
+          },
+          {
+            "d": "2026-09-02",
+            "s": 21600
+          },
+          {
+            "d": "2026-09-03",
+            "s": 21700
+          },
+          {
+            "d": "2026-09-04",
+            "s": 21600
+          }
+        ]
+      },
+      {
+        "name": "ｺﾏ",
+        "color": "#3e66cc",
         "avatar": "https://yt3.googleusercontent.com/qfIMUcBcGCqbLGk6dZfwDM1ITBKnaYjIMF7mCqKncuWK8lA1JBya8wfa2f9evEE_mbpWj-67=s900-c-k-c0x00ffffff-no-rj",
         "subs": 21600,
         "history": [
@@ -800,78 +872,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-09-03",
             "s": 21600
-          },
-          {
-            "d": "2026-09-04",
-            "s": 21600
-          }
-        ]
-      },
-      {
-        "name": "こゆまる_koyumaru908",
-        "color": "#3e66cc",
-        "avatar": "https://yt3.googleusercontent.com/7E1EME20oj2j5h8bBf7K618lZ7fAEN6hB6j_l8zaxWbyH-8VK49BLcM0uS38ZvsRtELNy8Hp5g=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 21600,
-        "history": [
-          {
-            "d": "2026-08-20",
-            "s": 21400
-          },
-          {
-            "d": "2026-08-21",
-            "s": 21500
-          },
-          {
-            "d": "2026-08-22",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-23",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-24",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-25",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-26",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-27",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-28",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-29",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-30",
-            "s": 21600
-          },
-          {
-            "d": "2026-08-31",
-            "s": 21600
-          },
-          {
-            "d": "2026-09-01",
-            "s": 21600
-          },
-          {
-            "d": "2026-09-02",
-            "s": 21600
-          },
-          {
-            "d": "2026-09-03",
-            "s": 21700
           },
           {
             "d": "2026-09-04",
@@ -3779,7 +3779,7 @@ window.PBERS_RACE = [
         "name": "にこちPB",
         "color": "#72d45e",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 6520,
+        "subs": 6530,
         "history": [
           {
             "d": "2026-08-21",
@@ -4247,7 +4247,7 @@ window.PBERS_RACE = [
         "name": "レイアルファ",
         "color": "#db4f57",
         "avatar": "https://yt3.googleusercontent.com/TVNAN6bSZZHGvc7hYhLs6Gnn95EKhcWj5GwqbWN00HAFA8SmXjUyKXQK6D4Ljl_S9A_8eaHn-Lk=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4840,
+        "subs": 4860,
         "history": [
           {
             "d": "2026-08-21",

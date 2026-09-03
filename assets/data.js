@@ -27,9 +27,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "田中MID",
-    "subs": 296000,
+    "subs": 297000,
     "views": 214700767,
-    "subsLabel": "チャンネル登録者数 29.6万人",
+    "subsLabel": "チャンネル登録者数 29.7万人",
     "viewsLabel": "214,700,767回視聴",
     "videos": 270,
     "url": "https://www.youtube.com/channel/UC6BwO1hK3hHd-Hr43jokcyg",
@@ -118,9 +118,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Neille / ナユ",
-    "subs": 40100,
+    "subs": 40200,
     "views": 72441701,
-    "subsLabel": "チャンネル登録者数 4.01万人",
+    "subsLabel": "チャンネル登録者数 4.02万人",
     "viewsLabel": "72,441,701回視聴",
     "videos": 191,
     "url": "https://www.youtube.com/channel/UCxKNMaOOdi32HNUFTOCw-8w",
@@ -312,6 +312,19 @@ window.PBERS_DATA = [
     "slug": "マルルさん"
   },
   {
+    "name": "こゆまる_koyumaru908",
+    "subs": 21700,
+    "views": 9476738,
+    "subsLabel": "チャンネル登録者数 2.17万人",
+    "viewsLabel": "9,476,738回視聴",
+    "videos": 189,
+    "url": "https://www.youtube.com/channel/UCZJGdkej48qsbPf7ZBBJlKQ",
+    "avatar": "https://yt3.googleusercontent.com/7E1EME20oj2j5h8bBf7K618lZ7fAEN6hB6j_l8zaxWbyH-8VK49BLcM0uS38ZvsRtELNy8Hp5g=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#5ed4c0",
+    "genre": "ポーランドボーラー",
+    "slug": "こゆまる_koyumaru908"
+  },
+  {
     "name": "ｺﾏ",
     "subs": 21600,
     "views": 10233422,
@@ -320,22 +333,9 @@ window.PBERS_DATA = [
     "videos": 23,
     "url": "https://www.youtube.com/channel/UCHJrlfd5kaoF7hx_KjfwZxQ",
     "avatar": "https://yt3.googleusercontent.com/qfIMUcBcGCqbLGk6dZfwDM1ITBKnaYjIMF7mCqKncuWK8lA1JBya8wfa2f9evEE_mbpWj-67=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5ed4c0",
-    "genre": "ポーランドボーラー",
-    "slug": "ｺﾏ"
-  },
-  {
-    "name": "こゆまる_koyumaru908",
-    "subs": 21600,
-    "views": 9476738,
-    "subsLabel": "チャンネル登録者数 2.16万人",
-    "viewsLabel": "9,476,738回視聴",
-    "videos": 189,
-    "url": "https://www.youtube.com/channel/UCZJGdkej48qsbPf7ZBBJlKQ",
-    "avatar": "https://yt3.googleusercontent.com/7E1EME20oj2j5h8bBf7K618lZ7fAEN6hB6j_l8zaxWbyH-8VK49BLcM0uS38ZvsRtELNy8Hp5g=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3e66cc",
     "genre": "ポーランドボーラー",
-    "slug": "こゆまる_koyumaru908"
+    "slug": "ｺﾏ"
   },
   {
     "name": " ゼリョーヌィボール　活停中",
@@ -824,7 +824,7 @@ window.PBERS_DATA = [
     "views": 7288631,
     "subsLabel": "チャンネル登録者数 1.01万人",
     "viewsLabel": "7,288,631回視聴",
-    "videos": 100,
+    "videos": 98,
     "url": "https://www.youtube.com/channel/UCrRZolgBJ0K-yGqFKGbUVkw",
     "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
     "color": "#a3cc3e",
@@ -924,9 +924,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ニイソビボール",
-    "subs": 8490,
+    "subs": 8510,
     "views": 2696923,
-    "subsLabel": "チャンネル登録者数 8490人",
+    "subsLabel": "チャンネル登録者数 8510人",
     "viewsLabel": "2,696,923回視聴",
     "videos": 60,
     "url": "https://www.youtube.com/channel/UCpaHKFWTUu4hyr_MafHXppA",
@@ -1093,9 +1093,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "にこちPB",
-    "subs": 6520,
+    "subs": 6530,
     "views": 409383,
-    "subsLabel": "チャンネル登録者数 6520人",
+    "subsLabel": "チャンネル登録者数 6530人",
     "viewsLabel": "409,383回視聴",
     "videos": 33,
     "url": "https://www.youtube.com/channel/UC2fMWFGgy-ENfkqlK0CUwrg",
@@ -1262,9 +1262,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "レイアルファ",
-    "subs": 4840,
+    "subs": 4860,
     "views": 3519688,
-    "subsLabel": "チャンネル登録者数 4840人",
+    "subsLabel": "チャンネル登録者数 4860人",
     "viewsLabel": "3,519,688回視聴",
     "videos": 89,
     "url": "https://www.youtube.com/channel/UCVYMXYU6j0M5Gj1xwywKDyg",
@@ -1639,9 +1639,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "【PB】ネオンボール",
-    "subs": 2840,
+    "subs": 2850,
     "views": 1534130,
-    "subsLabel": "チャンネル登録者数 2840人",
+    "subsLabel": "チャンネル登録者数 2850人",
     "viewsLabel": "1,534,130回視聴",
     "videos": 51,
     "url": "https://www.youtube.com/channel/UCtYX3q7PyNWFbykXddPJEdA",
@@ -2004,4 +2004,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-04";
-window.PBERS_PREDICT = {"asOfMs": 1788469200000, "subs": {"base": 2805070, "rate": 5.49873966508564e-05}, "views": {"base": 2179227876, "rate": 0.04163920902825591}};
+window.PBERS_PREDICT = {"asOfMs": 1788469200000, "subs": {"base": 2806330, "rate": 5.49873966508564e-05}, "views": {"base": 2179227876, "rate": 0.04163920902825591}};
