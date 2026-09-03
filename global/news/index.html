@@ -34,7 +34,7 @@
 <script>window.PBERS_VIDEOS_API = "";</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250903">
+<link rel="stylesheet" href="/assets/style.css?v=250904">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -62,6 +62,7 @@
   <div class="wrap">
     <button class="tab on" data-view="dashboard">ダッシュボード</button>
     <button class="tab" data-view="growth">成長</button>
+    <button class="tab" data-view="rising">急上昇</button>
     <button class="tab" data-view="news">ニュース</button>
     <button class="tab" data-view="race">レース</button>
     <button class="tab" data-view="game">ゲーム</button>
@@ -246,6 +247,38 @@
   </section>
 </main>
 
+<!-- RISING (growth rate) view -->
+<main id="view-rising" hidden>
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>急上昇ランキング <span class="en">Rising</span></h2>
+        <span class="note" id="rising-span"></span>
+      </div>
+      <div class="controls" style="justify-content:flex-start">
+        <div class="toggle rise" id="rising-toggle">
+          <button class="tg on" data-gm="subs">登録者</button>
+          <button class="tg" data-gm="views">総再生数</button>
+          <button class="tg" data-gm="videos">投稿数</button>
+          <span class="tg-ind" id="rtg-ind"></span>
+        </div>
+        <div class="zoom" id="rising-zoom">
+          <button type="button" class="zbtn" id="rz-out" aria-label="縮小">−</button>
+          <span class="zval num" id="rz-val">100%</span>
+          <button type="button" class="zbtn" id="rz-in" aria-label="拡大">＋</button>
+        </div>
+      </div>
+      <div class="grow-range" id="rise-range" hidden>
+        <span class="gr-lab">期間</span>
+        <input type="range" class="gr-slider rise" id="rise-slider" min="1" max="6" value="6" step="1" aria-label="集計期間(日数)">
+        <span class="gr-val num" id="rise-range-val">6日</span>
+      </div>
+      <div class="col-hint" id="rise-hint">↔ ドラッグ / ホイールで横スクロール ・ 伸び率(%)順</div>
+      <div class="col-scroll" id="rise-scroll"><div class="grow-chart" id="rise-list"></div></div>
+    </div>
+  </section>
+</main>
+
 <!-- NEWS feed view (animated) -->
 <main id="view-news" hidden>
   <section class="block" style="padding-top:40px">
@@ -327,11 +360,11 @@
   </div>
 </footer>
 
-<script src="/global/assets/data.js?v=250903"></script>
-<script src="/global/assets/news.js?v=250903"></script>
-<script src="/global/assets/growth.js?v=250903"></script>
-<script src="/global/assets/race.js?v=250903"></script>
+<script src="/global/assets/data.js?v=250904"></script>
+<script src="/global/assets/news.js?v=250904"></script>
+<script src="/global/assets/growth.js?v=250904"></script>
+<script src="/global/assets/race.js?v=250904"></script>
 <script>window.PBERS_BASE="/global/";</script>
-<script src="/assets/app.js?v=250903"></script>
+<script src="/assets/app.js?v=250904"></script>
 </body>
 </html>

@@ -38,6 +38,12 @@
   var GCHAN = GROWTH.channels || [];         // 各チャンネルの日別値(スライダーで任意期間を計算)
   var growWindow = Math.min(7, Math.max(1, GDAYS.length - 1));   // 集計ウィンドウ(日数・小数可)。既定7日
   var GUNIT = { subs: '人', views: '回', videos: '本' };
+  // 急上昇タブ(伸び率%): 成長ランキングと同じ仕組みで、増減の代わりに増加率で並べる
+  var riseMetric = 'subs';
+  var riseWindow = Math.min(7, Math.max(1, GDAYS.length - 1));
+  var riseZoom = 1;
+  // 伸び率の足切り: 期間開始時の値がこれ未満のチャンネルは除外(小さな母数で率が暴れるのを防ぐ)
+  var RISE_FLOOR = { subs: 300, views: 3000, videos: 2 };
   var RACE = window.PBERS_RACE || [];
   var GENRES = window.PBERS_GENRES || [];
   var genreOn = {}; GENRES.forEach(function (g) { genreOn[g.label] = !!g.on; });
@@ -378,7 +384,7 @@
   }
 
   /* ---- easier horizontal scroll for column-style charts (wheel + drag) ---- */
-  function setupColScroll() { ['col-scroll', 'grow-scroll'].forEach(function (id) { var el = document.getElementById(id); if (el) setupScroll(el); }); }
+  function setupColScroll() { ['col-scroll', 'grow-scroll', 'rise-scroll'].forEach(function (id) { var el = document.getElementById(id); if (el) setupScroll(el); }); }
   function setupScroll(sc) {
     sc.addEventListener('wheel', function (e) {
       if (sc.scrollWidth <= sc.clientWidth) return;
@@ -488,9 +494,10 @@
     return out;
   }
   // 固定ベースライン(上72% / 下28%)。ウィンドウが変わってもゼロ線は動かない=滑らかに伸縮
-  function growLayout(list) {
-    var H = Math.round(BASE_GROW_H * growZoom);
-    var PADV = Math.round(30 * growZoom);
+  function growLayout(list, zoom) {
+    var z = zoom || growZoom;
+    var H = Math.round(BASE_GROW_H * z);
+    var PADV = Math.round(30 * z);
     var usable = Math.max(40, H - 2 * PADV);
     var upSpace = usable * 0.72, downSpace = usable * 0.28;
     var maxUp = 0, maxDown = 0;
@@ -676,6 +683,141 @@
     });
   }
 
+  /* ---- 急上昇ランキング(伸び率%) — 成長ランキングと同じ見た目でオレンジ系。増減の代わりに増加率で並べる ---- */
+  function riseSeries(metric, win) {
+    if (GDAYS.length < 2) return [];
+    var w = Math.max(1, Math.round(win));       // 途中位置は近い方の日数へスナップ
+    var end = GDAYS.length - 1, start = Math.max(0, end - w), out = [];
+    var floor = RISE_FLOOR[metric] || 0;
+    GCHAN.filter(genreVisible).forEach(function (c) {
+      var arr = c[metric] || [], a = null, b = null, cnt = 0;
+      for (var i = start; i <= end; i++) {
+        if (arr[i] != null) { if (a === null) a = arr[i]; b = arr[i]; cnt++; }
+      }
+      if (cnt < 2 || a == null || a <= 0 || a < floor) return;   // 2点未満/母数が小さすぎるものは除外
+      out.push({ name: c.name, color: c.color, delta: (b - a) / a * 100, abs: b - a });
+    });
+    out.sort(function (p, q) { return q.delta - p.delta; });
+    return out;
+  }
+  function setRiseCol(col, x, rank, L) {
+    var bar = col.querySelector('.gbar'), val = col.querySelector('.gval'), head = col.querySelector('.ghead');
+    var dir = x.delta > 0 ? 'up' : (x.delta < 0 ? 'down' : 'flat');
+    var barPx = dir === 'flat' ? 0 : Math.abs(x.delta) * L.perPx;
+    var sign = x.delta > 0 ? '+' : (x.delta < 0 ? '−' : '±');
+    bar.className = 'gbar ' + (dir === 'down' ? 'down' : 'up');
+    head.className = 'ghead ' + (dir === 'down' ? 'down' : 'up');
+    if (dir === 'down') { bar.style.top = L.baseFromTop + 'px'; bar.style.bottom = ''; }
+    else { bar.style.bottom = L.baseFromBottom + 'px'; bar.style.top = ''; }
+    bar.style.transitionDelay = '0s';
+    bar.style.height = barPx + 'px';
+    val.className = 'gval ' + dir;
+    val.textContent = sign + Math.abs(x.delta).toFixed(1) + '%';
+    if (dir === 'down') { val.style.top = (L.baseFromTop + barPx + 6) + 'px'; val.style.bottom = ''; }
+    else { val.style.bottom = (L.baseFromBottom + barPx + 6) + 'px'; val.style.top = ''; }
+    col.querySelector('.grow-crank').textContent = rank;
+  }
+  function riseRender(animate) {
+    var host = document.getElementById('rise-list'); if (!host) return;
+    var note = document.getElementById('rising-span');
+    var rangeBox = document.getElementById('rise-range');
+    var hint = document.getElementById('rise-hint');
+    if (GDAYS.length < 2) {
+      if (rangeBox) rangeBox.hidden = true;
+      if (hint) hint.style.display = 'none';
+      if (note) note.textContent = '';
+      host.innerHTML = '<div class="grow-empty">急上昇ランキングは履歴が2日分たまると表示されます（明日以降に自動反映）。</div>';
+      return;
+    }
+    if (rangeBox) rangeBox.hidden = false;
+    if (hint) hint.style.display = '';
+    var list = riseSeries(riseMetric, riseWindow);
+    var L = growLayout(list, riseZoom);
+    var end = GDAYS.length - 1, wr = Math.max(1, Math.round(riseWindow)), start = Math.max(0, end - wr);
+    if (note) note.textContent = '過去' + (end - start) + '日間（' + shortDate(GDAYS[start]) + '→' + shortDate(GDAYS[end]) + '）の増加率';
+    host.style.gap = Math.round(12 * riseZoom) + 'px';
+    var colBasis = Math.round(46 * riseZoom), colMax = Math.round(66 * riseZoom);
+
+    var oldLeft = {}, existing = {};
+    [].forEach.call(host.children, function (c) {
+      if (c.dataset && c.dataset.key != null) { oldLeft[c.dataset.key] = c.getBoundingClientRect().left; existing[c.dataset.key] = c; }
+    });
+    var used = {}, fresh = [];
+    list.forEach(function (x, i) {
+      var col = existing[x.name];
+      if (!col) { col = makeGrowCol(x.name); col.classList.add('rise'); fresh.push(col); }
+      col.style.flex = '1 0 ' + colBasis + 'px'; col.style.maxWidth = colMax + 'px';
+      col.querySelector('.grow-plot').style.height = L.H + 'px';
+      col.querySelector('.gbaseline').style.bottom = L.baseFromBottom + 'px';
+      col.querySelector('.grow-cname').textContent = x.name;
+      setRiseCol(col, x, i + 1, L);
+      host.appendChild(col);
+      used[x.name] = true;
+    });
+    [].slice.call(host.children).forEach(function (c) {
+      if (c.dataset && c.dataset.key != null && !used[c.dataset.key]) c.remove();
+    });
+    fresh.forEach(function (c, k) {
+      var bar = c.querySelector('.gbar'), h = bar.style.height;
+      bar.style.height = '0px'; bar.offsetHeight;
+      bar.style.transitionDelay = animate ? (Math.min(k, 30) * 0.015) + 's' : '0s';
+      bar.style.height = h;
+    });
+    if (animate) {
+      [].forEach.call(host.children, function (c) {
+        var key = c.dataset.key; if (oldLeft[key] == null) return;
+        var dx = oldLeft[key] - c.getBoundingClientRect().left;
+        if (dx) {
+          c.style.transition = 'none'; c.style.transform = 'translateX(' + dx + 'px)';
+          requestAnimationFrame(function () { c.style.transition = 'transform .55s cubic-bezier(.22,1,.36,1)'; c.style.transform = ''; });
+        }
+      });
+    }
+  }
+  function playRise() {
+    var tog = document.getElementById('rising-toggle'), on = tog && tog.querySelector('.tg.on');
+    var rind = document.getElementById('rtg-ind');
+    if (on && rind) { rind.style.left = on.offsetLeft + 'px'; rind.style.width = on.offsetWidth + 'px'; }
+    riseRender(true);
+  }
+  function setupRiseSlider() {
+    var s = document.getElementById('rise-slider'); if (!s) return;
+    var maxW = Math.max(1, GDAYS.length - 1);
+    s.min = 1; s.max = maxW; s.step = 'any';
+    if (riseWindow > maxW) riseWindow = maxW;
+    s.value = riseWindow;
+    var lab = document.getElementById('rise-range-val');
+    var lastW = Math.max(1, Math.round(riseWindow));
+    if (lab) lab.textContent = lastW + '日';
+    var raf = null;
+    s.addEventListener('input', function () {
+      riseWindow = parseFloat(s.value) || 1;
+      var w = Math.max(1, Math.round(riseWindow));
+      if (lab) lab.textContent = w + '日';
+      if (w === lastW) return;
+      lastW = w;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function () { riseRender(true); });
+    });
+  }
+  function setupRiseZoom() {
+    var out = document.getElementById('rz-out'), inn = document.getElementById('rz-in'), val = document.getElementById('rz-val');
+    function upd() { if (val) val.textContent = Math.round(riseZoom * 100) + '%'; riseRender(true); }
+    if (out) out.addEventListener('click', function () { riseZoom = Math.max(0.5, Math.round((riseZoom - 0.25) * 100) / 100); upd(); });
+    if (inn) inn.addEventListener('click', function () { riseZoom = Math.min(2, Math.round((riseZoom + 0.25) * 100) / 100); upd(); });
+  }
+  function setupRise() {
+    var rtabs = [].slice.call(document.querySelectorAll('#rising-toggle .tg'));
+    rtabs.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.dataset.gm === riseMetric) return;
+        riseMetric = b.dataset.gm;
+        rtabs.forEach(function (x) { x.classList.toggle('on', x === b); });
+        playRise();     // playRise がオレンジインジケータ(#rtg-ind)を移動＋再描画
+      });
+    });
+  }
+
   /* ---- news (milestones over the last 7 days) ---- */
   function renderNews() {
     var wrap = document.getElementById('news-list');
@@ -712,6 +854,7 @@
   var VIEWS = {
     dashboard: document.getElementById('view-dashboard'),
     growth:    document.getElementById('view-growth'),
+    rising:    document.getElementById('view-rising'),
     news:      document.getElementById('view-news'),
     race:      document.getElementById('view-race'),
     game:      document.getElementById('view-game'),
@@ -742,6 +885,7 @@
       if (currentView !== v) return;   // 連打時は最後に選ばれたタブだけ描画
       if (v === 'dashboard') { replay(); if (metric === 'predict') enterPredictUI(); }
       else if (v === 'growth') { renderTrend(); playGrowth(); }
+      else if (v === 'rising') { playRise(); }
       else if (v === 'news') renderNewsFeed();
       else if (v === 'race') renderRace();
       else if (v === 'game') renderGame();
@@ -1191,7 +1335,7 @@
   }
 
   /* ---- settings: genre visibility ---- */
-  function applyGenre() { build(); renderTiers(); renderGrowth(); renderNews(); replay(); playGrowth(); }
+  function applyGenre() { build(); renderTiers(); renderGrowth(); renderNews(); replay(); playGrowth(); riseRender(false); }
   function updateGenreCounts() {
     var counts = {}; ALL.forEach(function (d) { counts[d.genre] = (counts[d.genre] || 0) + 1; });
     document.querySelectorAll('.g-count').forEach(function (el) { el.textContent = (counts[el.dataset.genre] || 0) + ' ch'; });
@@ -1317,6 +1461,10 @@
   setupGrowth();
   setupGrowthZoom();
   setupGrowthSlider();
+  riseRender(false);
+  setupRise();
+  setupRiseZoom();
+  setupRiseSlider();
   setupTabs();
   setupDonutHover();
   setupColScroll();

@@ -249,6 +249,17 @@ section.block{padding:46px 0}
 .gr-slider::-moz-range-thumb{box-sizing:border-box;width:26px;height:26px;border-radius:50%;background:var(--red);
   border:6px solid var(--line-2);cursor:pointer}
 
+/* 急上昇ランキング: 成長ランキングと同じ形でオレンジ系。上昇=オレンジ, 下降=グレー(控えめ) */
+.grow-col.rise .gbar.up .gshaft{background:#f2913d}
+.grow-col.rise .gbar.down .gshaft{background:#6f665e}
+.grow-col.rise .ghead.up{border-bottom-color:#f2913d}
+.grow-col.rise .ghead.down{border-top-color:#6f665e}
+.grow-col.rise .gval.up{color:#f2913d}
+.grow-col.rise .gval.down{color:var(--muted)}
+#rising-toggle .tg-ind{background:#e07b2c}
+.gr-slider.rise::-webkit-slider-thumb{background:#e07b2c}
+.gr-slider.rise::-moz-range-thumb{background:#e07b2c}
+
 /* total trend (stepped line chart) */
 .trend{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 14px;min-height:260px}
 .trend svg{width:100%;height:auto;display:block}

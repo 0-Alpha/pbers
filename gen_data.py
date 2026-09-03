@@ -326,7 +326,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250903">
+<link rel="stylesheet" href="/assets/style.css?v=250904">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -344,7 +344,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250903"></script>
+<script src="/assets/channel.js?v=250904"></script>
 </body>
 </html>
 '''
@@ -581,7 +581,7 @@ def build_channel_pages(order, colors):
             f.write(page)
     print("wrote %d channel pages" % total)
 
-VIEW_ROUTES = ("growth", "news", "race", "game", "videos", "channels")
+VIEW_ROUTES = ("growth", "rising", "news", "race", "game", "videos", "channels")
 
 def build_view_pages():
     """SPAタブの実URL(/growth/ 等)への直アクセス・リロード用に index.html の複製を置く。
