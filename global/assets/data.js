@@ -67,10 +67,10 @@ window.PBERS_DATA = [
   {
     "name": "F丸",
     "subs": 33000,
-    "views": 28711846,
+    "views": 28768452,
     "subsLabel": "チャンネル登録者数 3.3万人",
-    "viewsLabel": "28,711,846回視聴",
-    "videos": 88,
+    "viewsLabel": "28,768,452回視聴",
+    "videos": 89,
     "url": "https://www.youtube.com/channel/UCEJRQBqXi3z3UXnHdueIvJg",
     "avatar": "https://yt3.googleusercontent.com/PR6RDCc4I4mjNrUI-SNf6aFe77FFIuoEua4QgudGPAb0lNYAGsa96UnB3RMulCGlC6qHfzUxlrI=s900-c-k-c0x00ffffff-no-rj",
     "color": "#793ecc",
@@ -106,9 +106,9 @@ window.PBERS_DATA = [
   {
     "name": "Dotto edit",
     "subs": 9740,
-    "views": 6900851,
+    "views": 6980407,
     "subsLabel": "チャンネル登録者数 9740人",
-    "viewsLabel": "6,900,851回視聴",
+    "viewsLabel": "6,980,407回視聴",
     "videos": 61,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
     "avatar": "https://yt3.googleusercontent.com/JjoolJ5faLhJzaPj3UckuOvdbEaug12ouvdocg6jk1Lw-ZS7TMNjGxAAuz0v3hb6b04v_uJ97Q=s900-c-k-c0x00ffffff-no-rj",
@@ -144,9 +144,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "AST.アオスト Polandball",
-    "subs": 3570,
+    "subs": 3580,
     "views": 1723298,
-    "subsLabel": "チャンネル登録者数 3570人",
+    "subsLabel": "チャンネル登録者数 3580人",
     "viewsLabel": "1,723,298回視聴",
     "videos": 31,
     "url": "https://www.youtube.com/channel/UC0oyndW7j5GS5NIb8ww7cxw",
@@ -171,4 +171,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-04";
-window.PBERS_PREDICT = {"asOfMs": 1788512400000, "subs": {"base": 1184050, "rate": 2.2674186922104612e-05}, "views": {"base": 494382948, "rate": 0.005286854908510221}};
+window.PBERS_PREDICT = {"asOfMs": 1788512400000, "subs": {"base": 1184060, "rate": 2.2674186922104612e-05}, "views": {"base": 494519110, "rate": 0.005286854908510221}};
