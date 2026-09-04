@@ -14,9 +14,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Moonball_PB",
-    "subs": 212000,
+    "subs": 213000,
     "views": 37178596,
-    "subsLabel": "チャンネル登録者数 21.2万人",
+    "subsLabel": "チャンネル登録者数 21.3万人",
     "viewsLabel": "37,178,596回視聴",
     "videos": 31,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
@@ -171,4 +171,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-04";
-window.PBERS_PREDICT = {"asOfMs": 1788512400000, "subs": {"base": 1184060, "rate": 2.2674186922104612e-05}, "views": {"base": 494519110, "rate": 0.005286854908510221}};
+window.PBERS_PREDICT = {"asOfMs": 1788534000000, "subs": {"base": 1185060, "rate": 2.510240246421339e-05}, "views": {"base": 494519110, "rate": 0.005389365776468008}};
