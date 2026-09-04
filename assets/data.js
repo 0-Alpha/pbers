@@ -14,9 +14,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Æž!みかんぼーる🍊",
-    "subs": 323000,
+    "subs": 324000,
     "views": 408647465,
-    "subsLabel": "チャンネル登録者数 32.3万人",
+    "subsLabel": "チャンネル登録者数 32.4万人",
     "viewsLabel": "408,647,465回視聴",
     "videos": 436,
     "url": "https://www.youtube.com/channel/UCRCQ3G1d0DM2krO-Fx5LOuQ",
@@ -118,9 +118,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Neille / ナユ",
-    "subs": 40400,
+    "subs": 40500,
     "views": 72727133,
-    "subsLabel": "チャンネル登録者数 4.04万人",
+    "subsLabel": "チャンネル登録者数 4.05万人",
     "viewsLabel": "72,727,133回視聴",
     "videos": 191,
     "url": "https://www.youtube.com/channel/UCxKNMaOOdi32HNUFTOCw-8w",
@@ -512,7 +512,7 @@ window.PBERS_DATA = [
     "views": 3493414,
     "subsLabel": "チャンネル登録者数 1.46万人",
     "viewsLabel": "3,493,414回視聴",
-    "videos": 217,
+    "videos": 218,
     "url": "https://www.youtube.com/channel/UCP8Ycdrev3FBUVFH-PMxQNQ",
     "avatar": "https://yt3.googleusercontent.com/6w7QBnmhG0QOmG33OrGsxQR2cM7u-_izyc_BizYXJzvu-1MbSW2UC3X8T15rWcyY9TTgmRuYZQ=s900-c-k-c0x00ffffff-no-rj",
     "color": "#493ecc",
@@ -924,9 +924,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ニイソビボール",
-    "subs": 8740,
+    "subs": 8760,
     "views": 2696923,
-    "subsLabel": "チャンネル登録者数 8740人",
+    "subsLabel": "チャンネル登録者数 8760人",
     "viewsLabel": "2,696,923回視聴",
     "videos": 60,
     "url": "https://www.youtube.com/channel/UCpaHKFWTUu4hyr_MafHXppA",
@@ -1210,9 +1210,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "レイアルファ",
-    "subs": 5140,
+    "subs": 5150,
     "views": 3519688,
-    "subsLabel": "チャンネル登録者数 5140人",
+    "subsLabel": "チャンネル登録者数 5150人",
     "viewsLabel": "3,519,688回視聴",
     "videos": 89,
     "url": "https://www.youtube.com/channel/UCVYMXYU6j0M5Gj1xwywKDyg",
@@ -2004,4 +2004,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-05";
-window.PBERS_PREDICT = {"asOfMs": 1788555600000, "subs": {"base": 2809250, "rate": 5.303794733704769e-05}, "views": {"base": 2180687080, "rate": 0.033810678775149046}};
+window.PBERS_PREDICT = {"asOfMs": 1788555600000, "subs": {"base": 2810380, "rate": 5.303794733704769e-05}, "views": {"base": 2180687080, "rate": 0.033810678775149046}};

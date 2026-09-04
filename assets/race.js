@@ -83,7 +83,7 @@ window.PBERS_RACE = [
         "name": "Æž!みかんぼーる🍊",
         "color": "#eba864",
         "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 323000,
+        "subs": 324000,
         "history": [
           {
             "d": "2026-08-20",
@@ -4427,7 +4427,7 @@ window.PBERS_RACE = [
         "name": "レイアルファ",
         "color": "#db4f57",
         "avatar": "https://yt3.googleusercontent.com/TVNAN6bSZZHGvc7hYhLs6Gnn95EKhcWj5GwqbWN00HAFA8SmXjUyKXQK6D4Ljl_S9A_8eaHn-Lk=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5140,
+        "subs": 5150,
         "history": [
           {
             "d": "2026-08-21",
