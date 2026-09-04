@@ -27,9 +27,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "田中MID",
-    "subs": 297000,
+    "subs": 298000,
     "views": 214700767,
-    "subsLabel": "チャンネル登録者数 29.7万人",
+    "subsLabel": "チャンネル登録者数 29.8万人",
     "viewsLabel": "214,700,767回視聴",
     "videos": 271,
     "url": "https://www.youtube.com/channel/UC6BwO1hK3hHd-Hr43jokcyg",
@@ -806,6 +806,19 @@ window.PBERS_DATA = [
     "slug": "ĝç_z3røくん"
   },
   {
+    "name": "ねとえん",
+    "subs": 10200,
+    "views": 7288631,
+    "subsLabel": "チャンネル登録者数 1.02万人",
+    "viewsLabel": "7,288,631回視聴",
+    "videos": 103,
+    "url": "https://www.youtube.com/channel/UCrRZolgBJ0K-yGqFKGbUVkw",
+    "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#d48d5e",
+    "genre": "ポーランドボーラー",
+    "slug": "ねとえん"
+  },
+  {
     "name": "玄米ボール🍚",
     "subs": 10100,
     "views": 5633655,
@@ -814,22 +827,9 @@ window.PBERS_DATA = [
     "videos": 124,
     "url": "https://www.youtube.com/channel/UCtPArTiYwO9r7BeXVZdZjGQ",
     "avatar": "https://yt3.googleusercontent.com/OZQ7LsHl8T-Sl5BYycGb1Rtq-ciSrxEc4HLna525rT78ok08Fyewy8ymbmVYc5YdkYyTuuDZrw=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d48d5e",
-    "genre": "ポーランドボーラー",
-    "slug": "玄米ボール"
-  },
-  {
-    "name": "ねとえん",
-    "subs": 10100,
-    "views": 7288631,
-    "subsLabel": "チャンネル登録者数 1.01万人",
-    "viewsLabel": "7,288,631回視聴",
-    "videos": 102,
-    "url": "https://www.youtube.com/channel/UCrRZolgBJ0K-yGqFKGbUVkw",
-    "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
     "color": "#a3cc3e",
     "genre": "ポーランドボーラー",
-    "slug": "ねとえん"
+    "slug": "玄米ボール"
   },
   {
     "name": "空白ボール",
@@ -924,9 +924,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ニイソビボール",
-    "subs": 8680,
+    "subs": 8710,
     "views": 2696923,
-    "subsLabel": "チャンネル登録者数 8680人",
+    "subsLabel": "チャンネル登録者数 8710人",
     "viewsLabel": "2,696,923回視聴",
     "videos": 60,
     "url": "https://www.youtube.com/channel/UCpaHKFWTUu4hyr_MafHXppA",
@@ -1019,7 +1019,7 @@ window.PBERS_DATA = [
     "views": 3645519,
     "subsLabel": "チャンネル登録者数 7100人",
     "viewsLabel": "3,645,519回視聴",
-    "videos": 90,
+    "videos": 89,
     "url": "https://www.youtube.com/channel/UCH5Q8u60__uE8KKC0STZH_g",
     "avatar": "https://yt3.googleusercontent.com/CsaI4tM_AC-OCGe2i5wE9oAIMAaI4WbGpKrOm6-4prkv_ZINQsm7V3ysWW8dodd7juUu-py2QUg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#5ed49d",
@@ -1093,9 +1093,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "にこちPB",
-    "subs": 6590,
+    "subs": 6600,
     "views": 409383,
-    "subsLabel": "チャンネル登録者数 6590人",
+    "subsLabel": "チャンネル登録者数 6600人",
     "viewsLabel": "409,383回視聴",
     "videos": 35,
     "url": "https://www.youtube.com/channel/UC2fMWFGgy-ENfkqlK0CUwrg",
@@ -1612,6 +1612,19 @@ window.PBERS_DATA = [
     "slug": "クッキーシャワーボール"
   },
   {
+    "name": "ウィン【肉声】【ポーランドボール】",
+    "subs": 2990,
+    "views": 462393,
+    "subsLabel": "チャンネル登録者数 2990人",
+    "viewsLabel": "462,393回視聴",
+    "videos": 108,
+    "url": "https://www.youtube.com/channel/UCh3VbVye4ZnUM0bWM_Y809A",
+    "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#cc663e",
+    "genre": "ポーランドボーラー",
+    "slug": "ウィン肉声ポーランドボール"
+  },
+  {
     "name": "リルバシ",
     "subs": 2990,
     "views": 3227581,
@@ -1620,22 +1633,9 @@ window.PBERS_DATA = [
     "videos": 69,
     "url": "https://www.youtube.com/channel/UCnnsEBpayZL_JHzdw4mnbeA",
     "avatar": "https://yt3.googleusercontent.com/bp_CX7qOIvj2-sbDMHSnoPjEuefwG0wuv94z66Nqpoz9T41wOFGREsij1THKpSkdy3PvvFxUZA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc663e",
-    "genre": "ポーランドボーラー",
-    "slug": "リルバシ"
-  },
-  {
-    "name": "ウィン【肉声】【ポーランドボール】",
-    "subs": 2980,
-    "views": 462393,
-    "subsLabel": "チャンネル登録者数 2980人",
-    "viewsLabel": "462,393回視聴",
-    "videos": 108,
-    "url": "https://www.youtube.com/channel/UCh3VbVye4ZnUM0bWM_Y809A",
-    "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
     "color": "#c0d45e",
     "genre": "ポーランドボーラー",
-    "slug": "ウィン肉声ポーランドボール"
+    "slug": "リルバシ"
   },
   {
     "name": "【PB】ネオンボール",
@@ -2004,4 +2004,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-04";
-window.PBERS_PREDICT = {"asOfMs": 1788534000000, "subs": {"base": 2808040, "rate": 5.23807467491768e-05}, "views": {"base": 2180687080, "rate": 0.03732677232920181}};
+window.PBERS_PREDICT = {"asOfMs": 1788534000000, "subs": {"base": 2809190, "rate": 5.23807467491768e-05}, "views": {"base": 2180687080, "rate": 0.03732677232920181}};
