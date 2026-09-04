@@ -512,9 +512,9 @@
     var baseFromBottom = PADV + downSpace;                  // 固定
     return { H: H, perPx: perPx, baseFromBottom: baseFromBottom, baseFromTop: H - (PADV + downSpace) };
   }
-  // 成長/急上昇の棒 → 個別ページへの導線用: チャンネル名から slug を引く
-  var SLUG_BY_NAME = {};
-  ALL.forEach(function (d) { SLUG_BY_NAME[d.name] = d.slug || chId(d); });
+  // 成長/急上昇の棒 → 個別ページへの導線用: チャンネル名から slug / アバターを引く
+  var SLUG_BY_NAME = {}, AV_BY_NAME = {};
+  ALL.forEach(function (d) { SLUG_BY_NAME[d.name] = d.slug || chId(d); AV_BY_NAME[d.name] = d.avatar || ''; });
   function makeGrowCol(key) {
     var col = document.createElement('div');
     col.className = 'grow-col shown'; col.dataset.key = key;
@@ -828,6 +828,48 @@
       });
     });
   }
+  // ダッシュボード: 今日の急上昇 TOP5(登録者の伸び率)。棒タブへの入口＋個別ページへ流す
+  function renderDashRise() {
+    var host = document.getElementById('dash-rise-list'), sec = document.getElementById('dash-rise');
+    if (!host || !sec) return;
+    var pos = function (x) { return x.delta > 0; };
+    var list = riseSeries('subs', 1).filter(pos);                       // まず「今日(1日)」
+    if (list.length < 5) list = riseSeries('subs', Math.min(7, Math.max(1, GDAYS.length - 1))).filter(pos);
+    list = list.slice(0, 5);
+    if (!list.length) { sec.hidden = true; return; }
+    sec.hidden = false;
+    host.innerHTML = list.map(function (x, i) {
+      var slug = SLUG_BY_NAME[x.name] || '', av = AV_BY_NAME[x.name] || '';
+      return '<a class="dr-item" href="' + GBASE + 'c/' + encodeURIComponent(slug) + '/">' +
+        '<span class="dr-rank num">' + (i + 1) + '</span>' +
+        (av ? '<img class="dr-av" src="' + esc(av) + '" alt="" onerror="this.style.visibility=\'hidden\'">' : '<span class="dr-av"></span>') +
+        '<span class="dr-name">' + esc(x.name) + '</span>' +
+        '<span class="dr-rate num">+' + x.delta.toFixed(1) + '%</span></a>';
+    }).join('');
+  }
+  // ダッシュボード: 掲示板の新着スレッド(公開中のみ表示)。掲示板への入口
+  function openBoardThread(id) {
+    history.pushState({ view: 'board' }, '', pathOf('board') + '?t=' + id);
+    switchTab('board', true);
+  }
+  function renderDashBoard() {
+    var sec = document.getElementById('dash-board'), host = document.getElementById('dash-board-list');
+    if (!sec || !host) return;
+    if (!boardEnabled || !BOARD_API) { sec.hidden = true; return; }
+    fetch(boardApi('/threads'), { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
+      var ths = (d.threads || []).slice(0, 5);
+      if (!ths.length) { sec.hidden = true; return; }
+      sec.hidden = false;
+      host.innerHTML = ths.map(function (t) {
+        return '<a class="db-item" data-id="' + t.id + '" href="' + pathOf('board') + '?t=' + t.id + '">' +
+          '<span class="db-title">' + esc(t.title) + '</span>' +
+          '<span class="db-meta"><span class="num">' + t.posts + '</span> レス ・ ' + bWhen(t.bumped) + '</span></a>';
+      }).join('');
+      host.querySelectorAll('.db-item').forEach(function (el) {
+        el.addEventListener('click', function (e) { e.preventDefault(); openBoardThread(+el.dataset.id); });
+      });
+    }).catch(function () { sec.hidden = true; });
+  }
 
   /* ---- news (milestones over the last 7 days) ---- */
   function renderNews() {
@@ -1040,6 +1082,7 @@
       boardEnabled = boardPublic || !!boardKey;
       tsLoad();   // 公開・非管理者ならTurnstileスクリプトを読み込む
       if (boardEnabled && tabBtn) tabBtn.hidden = false;
+      renderDashBoard();   // 公開中ならダッシュボードに新着スレッドを表示
       if (boardEnabled && viewOf() === 'board' && currentView !== 'board') switchTab('board', true);
     }).catch(function () {});
   }
@@ -1564,7 +1607,7 @@
   }
 
   /* ---- settings: genre visibility ---- */
-  function applyGenre() { build(); renderTiers(); renderGrowth(); renderNews(); replay(); playGrowth(); riseRender(false); }
+  function applyGenre() { build(); renderTiers(); renderGrowth(); renderNews(); replay(); playGrowth(); riseRender(false); renderDashRise(); }
   function updateGenreCounts() {
     var counts = {}; ALL.forEach(function (d) { counts[d.genre] = (counts[d.genre] || 0) + 1; });
     document.querySelectorAll('.g-count').forEach(function (el) { el.textContent = (counts[el.dataset.genre] || 0) + ' ch'; });
@@ -1694,6 +1737,7 @@
   setupRise();
   setupRiseZoom();
   setupRiseSlider();
+  renderDashRise();
   setupBoard();
   setupTabs();
   setupDonutHover();
