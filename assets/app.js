@@ -3,6 +3,9 @@
 (function () {
   var GBASE = window.PBERS_BASE || '/';   // このエディションの基点("/" または "/global/")
   var ALL = (window.PBERS_DATA || []).slice();
+  // 掲示板: 公開状態をWorkerに問い合わせ、公開 or 管理キー所持者のみタブを出す(デプロイ=即公開ではない)
+  var BOARD_API = window.PBERS_BOARD_API || '';
+  var boardKey = '', boardPublic = false, boardEnabled = false;
   var UPDATED = window.PBERS_UPDATED || '';
 
   var METRICS = {
@@ -841,6 +844,98 @@
     });
   }
 
+  /* ---- 掲示板(board) ---- */
+  function boardErr(code) {
+    return ({ too_fast: '投稿の間隔が短すぎます（20秒ほどお待ちください）', captcha: '認証に失敗しました',
+      private: '現在は非公開です', db_unconfigured: '掲示板は準備中です', empty: '本文を入力してください',
+      bad_board: 'エラー（board）', forbidden: '権限がありません' })[code] || '通信エラーが発生しました';
+  }
+  function boardHeaders(extra) {
+    var h = extra || {};
+    if (boardKey) h['X-Board-Key'] = boardKey;
+    return h;
+  }
+  function boardItemHTML(it) {
+    var t = new Date(it.created), p2 = function (x) { return (x < 10 ? '0' : '') + x; };
+    var when = (t.getMonth() + 1) + '/' + t.getDate() + ' ' + p2(t.getHours()) + ':' + p2(t.getMinutes());
+    return '<div class="bc' + (it.hidden ? ' bc-off' : '') + '" data-id="' + it.id + '">' +
+      '<div class="bc-head"><span class="bc-name">' + esc(it.name) + '</span>' +
+        '<span class="bc-time num">' + when + '</span>' +
+        (boardKey ? '<button type="button" class="bc-hide" data-id="' + it.id + '" data-h="' + (it.hidden ? 0 : 1) + '">' + (it.hidden ? '表示' : '非表示') + '</button>' : '') +
+      '</div>' +
+      '<div class="bc-body">' + esc(it.body).replace(/\n/g, '<br>') + '</div>' +
+    '</div>';
+  }
+  function wireHide(list) {
+    list.querySelectorAll('.bc-hide').forEach(function (b) {
+      b.addEventListener('click', function () {
+        b.disabled = true;
+        fetch(BOARD_API + '/hide', { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ id: +b.dataset.id, hide: b.dataset.h === '1' }) })
+          .then(function (r) { return r.json(); }).then(function (d) { if (d.ok) renderBoard(); else b.disabled = false; })
+          .catch(function () { b.disabled = false; });
+      });
+    });
+  }
+  function renderBoard() {
+    var list = document.getElementById('board-list'); if (!list) return;
+    var note = document.getElementById('board-note'), status = document.getElementById('board-status');
+    if (!boardEnabled) { list.innerHTML = '<div class="board-empty">準備中です。</div>'; return; }
+    if (note) note.textContent = boardPublic
+      ? '誰でも投稿できます。荒らし・誹謗中傷・個人情報・宣伝はご遠慮ください。'
+      : '非公開モード（管理者のみ表示・投稿）。公開するとみんなが書き込めます。';
+    if (status) status.textContent = boardKey ? '管理モード' : '';
+    list.innerHTML = '<div class="board-empty">読み込み中…</div>';
+    fetch(BOARD_API + '?board=general', { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
+      if (d.error) { list.innerHTML = '<div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; return; }
+      var items = d.items || [];
+      if (!items.length) { list.innerHTML = '<div class="board-empty">まだコメントはありません。最初の投稿をどうぞ。</div>'; return; }
+      list.innerHTML = items.map(boardItemHTML).join('');
+      if (d.admin) wireHide(list);
+    }).catch(function () { list.innerHTML = '<div class="board-empty">読み込みに失敗しました。</div>'; });
+  }
+  function setupBoardForm() {
+    var f = document.getElementById('board-form'); if (!f) return;
+    var body = document.getElementById('bf-body'), cnt = document.getElementById('bf-count'),
+        msg = document.getElementById('bf-msg'), send = document.getElementById('bf-send'), nm = document.getElementById('bf-name');
+    if (body) body.addEventListener('input', function () { cnt.textContent = body.value.length + ' / 1000'; });
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var text = (body.value || '').trim();
+      if (!text) { msg.textContent = '本文を入力してください'; return; }
+      send.disabled = true; msg.textContent = '送信中…';
+      fetch(BOARD_API, { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
+        body: JSON.stringify({ board: 'general', name: nm.value, body: text }) })
+        .then(function (r) { return r.json(); }).then(function (d) {
+          send.disabled = false;
+          if (d.ok) { body.value = ''; cnt.textContent = '0 / 1000'; msg.textContent = '投稿しました'; renderBoard(); setTimeout(function () { msg.textContent = ''; }, 2500); }
+          else { msg.textContent = boardErr(d.error); }
+        }).catch(function () { send.disabled = false; msg.textContent = '送信に失敗しました'; });
+    });
+  }
+  function setupBoard() {
+    if (!VIEWS.board || !BOARD_API || GBASE !== '/') return;   // 海外版/API未設定では無効
+    try {   // ?boardkey=... で管理解錠。localStorageに保存しURLからは消す
+      var q = new URLSearchParams(location.search);
+      if (q.get('boardkey')) {
+        localStorage.setItem('pbers_board_key', q.get('boardkey'));
+        q.delete('boardkey');
+        history.replaceState(history.state, '', location.pathname + (q.toString() ? '?' + q.toString() : '') + location.hash);
+      }
+      boardKey = localStorage.getItem('pbers_board_key') || '';
+    } catch (e) { boardKey = ''; }
+    var tabBtn = document.getElementById('tab-board');
+    boardEnabled = !!boardKey;                          // 管理キー所持なら即有効(同期)
+    if (boardEnabled && tabBtn) tabBtn.hidden = false;
+    setupBoardForm();
+    fetch(BOARD_API + '/config').then(function (r) { return r.json(); }).then(function (c) {
+      boardPublic = !!(c && c.public);
+      boardEnabled = boardPublic || !!boardKey;
+      if (boardEnabled && tabBtn) tabBtn.hidden = false;
+      if (boardEnabled && viewOf() === 'board' && currentView !== 'board') switchTab('board', true);
+    }).catch(function () {});
+  }
+
   /* ---- exclude-big filter ---- */
   var fbtn = document.getElementById('filter-big');
   if (fbtn) fbtn.addEventListener('click', function () {
@@ -859,7 +954,8 @@
     race:      document.getElementById('view-race'),
     game:      document.getElementById('view-game'),
     videos:    document.getElementById('view-videos'),
-    channels:  document.getElementById('view-channels')
+    channels:  document.getElementById('view-channels'),
+    board:     document.getElementById('view-board')
   };
   var currentView = 'dashboard';
   function pathOf(v) { return v === 'dashboard' ? GBASE : GBASE + v + '/'; }   // dashboard=/ , 他は /growth/ (実体ディレクトリに一致)
@@ -874,6 +970,7 @@
   function switchTab(v, noPush) {
     if (v === 'live') v = 'race';   // 旧リンクの後方互換
     if (!VIEWS[v]) v = 'dashboard';
+    if (v === 'board' && !boardEnabled) v = 'dashboard';   // 非公開かつ管理キー無しは掲示板に入れない
     currentView = v;
     document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x.dataset.view === v); });
     Object.keys(VIEWS).forEach(function (k) { if (VIEWS[k]) VIEWS[k].hidden = (k !== v); });
@@ -891,6 +988,7 @@
       else if (v === 'game') renderGame();
       else if (v === 'videos') renderVideos();
       else if (v === 'channels') moveTierInd();
+      else if (v === 'board') renderBoard();
     }); });
   }
   function setupTabs() {
@@ -1488,6 +1586,7 @@
   setupRise();
   setupRiseZoom();
   setupRiseSlider();
+  setupBoard();
   setupTabs();
   setupDonutHover();
   setupColScroll();

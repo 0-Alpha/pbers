@@ -51,6 +51,15 @@ export default {
       return json(feed);
     }
 
+    // ---- 掲示板(board) ----
+    // 公開状態は env.BOARD_PUBLIC("1"で公開)。非公開の間は管理キー(X-Board-Key=env.BOARD_KEY)所持者のみ閲覧/投稿可。
+    if (url.pathname === "/api/board/config") {
+      return json({ public: env.BOARD_PUBLIC === "1" });
+    }
+    if (url.pathname === "/api/board" && req.method === "GET")  return boardList(url, req, env);
+    if (url.pathname === "/api/board" && req.method === "POST") return boardPost(req, env);
+    if (url.pathname === "/api/board/hide" && req.method === "POST") return boardHide(req, env);
+
     // 手動/初回: 30件ずつ購読(RUN_KEY で保護)。全部やるには数回叩くか、cronに任せる
     if (url.pathname === "/subscribe" && url.searchParams.get("key") === env.RUN_KEY) {
       const msg = await subscribeBatch(env);
@@ -244,7 +253,92 @@ function json(o, status = 200) {
     headers: {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET,OPTIONS"
+      "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type,X-Board-Key",
+      "Access-Control-Max-Age": "86400"
     }
   });
+}
+
+/* ================= 掲示板(board) ================= */
+/* 必要な設定:
+ *   D1 binding : DB           (テーブル comments)
+ *   Variables  : BOARD_PUBLIC = "1" で全体公開(未設定/その他は非公開=管理者のみ)
+ *   Secrets    : BOARD_KEY    (管理キー。閲覧解錠・投稿・モデレーション)
+ *                SALT         (IPハッシュ用の塩。任意だが推奨)
+ *                TURNSTILE_SECRET (任意。設定すると一般投稿にCAPTCHA必須)
+ *   D1 スキーマ:
+ *     CREATE TABLE IF NOT EXISTS comments(
+ *       id INTEGER PRIMARY KEY AUTOINCREMENT, board TEXT NOT NULL, name TEXT NOT NULL,
+ *       body TEXT NOT NULL, created INTEGER NOT NULL, ip_hash TEXT, hidden INTEGER DEFAULT 0);
+ *     CREATE INDEX IF NOT EXISTS idx_board ON comments(board, id);
+ */
+const BOARD_OK = /^[a-z0-9_-]{1,32}$/i;
+function isAdmin(req, env) {
+  const k = req.headers.get("X-Board-Key") || "";
+  return !!(env.BOARD_KEY && k && k === env.BOARD_KEY);
+}
+async function sha(s) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
+  return [...new Uint8Array(buf)].map((x) => x.toString(16).padStart(2, "0")).join("").slice(0, 32);
+}
+async function boardList(url, req, env) {
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  const pub = env.BOARD_PUBLIC === "1", admin = isAdmin(req, env);
+  if (!pub && !admin) return json({ error: "private" }, 403);
+  const board = url.searchParams.get("board") || "general";
+  if (!BOARD_OK.test(board)) return json({ error: "bad_board" }, 400);
+  const sql = admin
+    ? "SELECT id,name,body,created,hidden FROM comments WHERE board=?1 ORDER BY id DESC LIMIT 200"
+    : "SELECT id,name,body,created,hidden FROM comments WHERE board=?1 AND hidden=0 ORDER BY id DESC LIMIT 200";
+  const { results } = await env.DB.prepare(sql).bind(board).all();
+  return json({ public: pub, admin, items: results || [] });
+}
+async function boardPost(req, env) {
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  const pub = env.BOARD_PUBLIC === "1", admin = isAdmin(req, env);
+  if (!pub && !admin) return json({ error: "private" }, 403);
+  let b;
+  try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
+  const board = b.board || "general";
+  if (!BOARD_OK.test(board)) return json({ error: "bad_board" }, 400);
+  let name = String(b.name || "").trim().replace(/\s+/g, " ").slice(0, 24) || "名無し";
+  let body = String(b.body || "").trim();
+  if (!body) return json({ error: "empty" }, 400);
+  if (body.length > 1000) body = body.slice(0, 1000);
+  const ip = req.headers.get("CF-Connecting-IP") || "0";
+  if (!admin) {
+    const rlKey = "rl:" + (await sha(ip + "|" + board));
+    if (await env.PBERS_KV.get(rlKey)) return json({ error: "too_fast" }, 429);
+    if (env.TURNSTILE_SECRET) {
+      const ok = await verifyTurnstile(b.token, ip, env);
+      if (!ok) return json({ error: "captcha" }, 400);
+    }
+    await env.PBERS_KV.put(rlKey, "1", { expirationTtl: 20 });
+  }
+  const iph = await sha(ip + "|" + (env.SALT || "pbers"));
+  await env.DB.prepare("INSERT INTO comments(board,name,body,created,ip_hash,hidden) VALUES(?1,?2,?3,?4,?5,0)")
+    .bind(board, name, body, Date.now(), iph).run();
+  return json({ ok: true });
+}
+async function boardHide(req, env) {
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  let b;
+  try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
+  const id = parseInt(b.id, 10);
+  if (!id) return json({ error: "bad_id" }, 400);
+  const hide = b.hide === false ? 0 : 1;
+  await env.DB.prepare("UPDATE comments SET hidden=?2 WHERE id=?1").bind(id, hide).run();
+  return json({ ok: true });
+}
+async function verifyTurnstile(token, ip, env) {
+  if (!token) return false;
+  const form = new URLSearchParams();
+  form.set("secret", env.TURNSTILE_SECRET);
+  form.set("response", token);
+  form.set("remoteip", ip);
+  const r = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body: form });
+  const d = await r.json().catch(() => ({}));
+  return !!d.success;
 }

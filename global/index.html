@@ -32,9 +32,11 @@
 </script>
 <!-- 最新動画API(WebSub Worker の /videos)。未設定なら最新動画セクションは非表示 -->
 <script>window.PBERS_VIDEOS_API = "";</script>
+<!-- 掲示板API(同Workerの /api/board)。非公開の間は管理キー所持者のみタブ表示 -->
+<script>window.PBERS_BOARD_API = "https://pbers-cron.myray0629.workers.dev/api/board";</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250905">
+<link rel="stylesheet" href="/assets/style.css?v=250906">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -68,6 +70,7 @@
     <button class="tab" data-view="game">ゲーム</button>
     <button class="tab" data-view="videos">最新動画</button>
     <button class="tab" data-view="channels">チャンネル一覧</button>
+    <button class="tab" data-view="board" id="tab-board" hidden>掲示板</button>
   </div>
 </div>
 
@@ -352,6 +355,31 @@
   </section>
 </main>
 
+<!-- BOARD (掲示板) view -->
+<main id="view-board" hidden>
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>掲示板 <span class="en">Board</span></h2>
+        <span class="note" id="board-status"></span>
+      </div>
+      <div class="board-note" id="board-note"></div>
+      <form class="board-form" id="board-form" autocomplete="off">
+        <div class="bf-row">
+          <input class="bf-name" id="bf-name" maxlength="24" placeholder="名前(任意・24字まで)">
+          <span class="bf-count num" id="bf-count">0 / 1000</span>
+        </div>
+        <textarea class="bf-body" id="bf-body" maxlength="1000" rows="3" placeholder="コメントを書く…（誹謗中傷・個人情報・宣伝はご遠慮ください）"></textarea>
+        <div class="bf-actions">
+          <span class="bf-msg" id="bf-msg"></span>
+          <button type="submit" class="bf-send" id="bf-send">投稿する</button>
+        </div>
+      </form>
+      <div class="board-list" id="board-list"></div>
+    </div>
+  </section>
+</main>
+
 <footer>
   <div class="wrap">
     <div class="brand"><span class="dot"></span><span>PB<b>ers</b></span></div>
@@ -360,11 +388,11 @@
   </div>
 </footer>
 
-<script src="/global/assets/data.js?v=250905"></script>
-<script src="/global/assets/news.js?v=250905"></script>
-<script src="/global/assets/growth.js?v=250905"></script>
-<script src="/global/assets/race.js?v=250905"></script>
+<script src="/global/assets/data.js?v=250906"></script>
+<script src="/global/assets/news.js?v=250906"></script>
+<script src="/global/assets/growth.js?v=250906"></script>
+<script src="/global/assets/race.js?v=250906"></script>
 <script>window.PBERS_BASE="/global/";</script>
-<script src="/assets/app.js?v=250905"></script>
+<script src="/assets/app.js?v=250906"></script>
 </body>
 </html>
