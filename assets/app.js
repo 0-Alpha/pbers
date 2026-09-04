@@ -846,6 +846,28 @@
 
   /* ---- 掲示板(board): スレッド + レス形式 ---- */
   var boardThreadId = null;
+  var TS_KEY = window.PBERS_TURNSTILE_SITEKEY || '';   // Turnstileサイトキー(公開・任意)
+  function boardName() { try { return localStorage.getItem('pbers_board_name') || ''; } catch (e) { return ''; } }
+  function saveBoardName(v) { try { localStorage.setItem('pbers_board_name', v == null ? '' : v); } catch (e) {} }
+  // Turnstileは「公開中」かつ「非管理者」の時だけ出す(管理者はサーバ側で免除)
+  function tsNeeded() { return !!TS_KEY && boardPublic && !boardKey; }
+  function tsLoad() {
+    if (!tsNeeded() || document.getElementById('cf-ts-api')) return;
+    var s = document.createElement('script'); s.id = 'cf-ts-api';
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
+  function tsMount(form) {
+    if (!tsNeeded()) return { get: function () { return ''; }, reset: function () {} };
+    var box = document.createElement('div'); box.className = 'ts-box';
+    var actions = form.querySelector('.bf-actions'); form.insertBefore(box, actions);
+    var wid = null;
+    (function go() { if (window.turnstile) { try { wid = window.turnstile.render(box, { sitekey: TS_KEY, theme: 'dark' }); } catch (e) {} } else setTimeout(go, 250); })();
+    return {
+      get: function () { try { return (window.turnstile && wid != null) ? window.turnstile.getResponse(wid) : ''; } catch (e) { return ''; } },
+      reset: function () { try { if (window.turnstile && wid != null) window.turnstile.reset(wid); } catch (e) {} }
+    };
+  }
   function boardErr(code) {
     return ({ too_fast: '投稿の間隔があいていません（少し待ってね）', captcha: '認証に失敗しました',
       private: '現在は非公開です', db_unconfigured: '掲示板は準備中です', empty: '本文を入力してください',
@@ -906,20 +928,23 @@
           '<button type="submit" class="bf-send" id="bt-send">スレッドを作成</button></div>' +
       '</form>' +
       '<div class="board-list" id="board-threads"><div class="board-empty">読み込み中…</div></div>';
+    document.getElementById('bt-name').value = boardName();
+    var tsNew = tsMount(document.getElementById('bt-new'));
     document.getElementById('bt-new').addEventListener('submit', function (e) {
       e.preventDefault();
       var title = document.getElementById('bt-title').value.trim();
       var body = document.getElementById('bt-body').value.trim();
+      var name = document.getElementById('bt-name').value;
       var msg = document.getElementById('bt-msg'), send = document.getElementById('bt-send');
       if (!title) { msg.textContent = 'タイトルを入力してください'; return; }
       if (!body) { msg.textContent = '本文を入力してください'; return; }
       send.disabled = true; msg.textContent = '作成中…';
       fetch(boardApi('/threads'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
-        body: JSON.stringify({ title: title, name: document.getElementById('bt-name').value, body: body }) })
+        body: JSON.stringify({ title: title, name: name, body: body, token: tsNew.get() }) })
         .then(function (r) { return r.json(); }).then(function (d) {
-          send.disabled = false;
-          if (d.ok) boardGo(d.id); else msg.textContent = boardErr(d.error);
-        }).catch(function () { send.disabled = false; msg.textContent = '送信に失敗しました'; });
+          send.disabled = false; tsNew.reset();
+          if (d.ok) { saveBoardName(name); boardGo(d.id); } else msg.textContent = boardErr(d.error);
+        }).catch(function () { send.disabled = false; tsNew.reset(); msg.textContent = '送信に失敗しました'; });
     });
     var box = document.getElementById('board-threads');
     fetch(boardApi('/threads'), { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
@@ -950,9 +975,10 @@
       host.innerHTML = '<button class="th-back">← スレ一覧</button>' +
         '<h3 class="th-h">' + esc(d.thread.title) + '</h3>' +
         '<div class="posts">' + posts.map(function (p) {
-          return '<div class="post' + (p.hidden ? ' bc-off' : '') + '">' +
+          return '<div class="post' + (p.hidden ? ' bc-off' : '') + (p.admin ? ' post-adm' : '') + '">' +
             '<div class="post-head"><span class="post-no num">' + p.no + '</span>' +
               '<span class="post-name">' + esc(p.name) + '</span>' +
+              (p.admin ? '<span class="post-badge">★管理人</span>' : '') +
               (p.uid ? '<span class="post-id num">ID:' + esc(p.uid) + '</span>' : '') +
               '<span class="post-time num">' + bWhen(p.created) + '</span>' +
               (boardKey ? '<button type="button" class="bc-hide" data-k="post" data-t="' + id + '" data-no="' + p.no + '" data-h="' + (p.hidden ? 0 : 1) + '">' + (p.hidden ? '表示' : '非表示') + '</button>' : '') +
@@ -968,18 +994,21 @@
         '</form>';
       back();
       if (d.admin) wireHide(host);
+      document.getElementById('rp-name').value = boardName();
+      var tsRep = tsMount(document.getElementById('bt-reply'));
       document.getElementById('bt-reply').addEventListener('submit', function (e) {
         e.preventDefault();
         var body = document.getElementById('rp-body').value.trim();
+        var name = document.getElementById('rp-name').value;
         var msg = document.getElementById('rp-msg'), send = document.getElementById('rp-send');
         if (!body) { msg.textContent = '本文を入力してください'; return; }
         send.disabled = true; msg.textContent = '送信中…';
         fetch(boardApi('/posts'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
-          body: JSON.stringify({ thread: id, name: document.getElementById('rp-name').value, body: body }) })
+          body: JSON.stringify({ thread: id, name: name, body: body, token: tsRep.get() }) })
           .then(function (r) { return r.json(); }).then(function (d2) {
-            send.disabled = false;
-            if (d2.ok) renderThread(host, id); else msg.textContent = boardErr(d2.error);
-          }).catch(function () { send.disabled = false; msg.textContent = '送信に失敗しました'; });
+            send.disabled = false; tsRep.reset();
+            if (d2.ok) { saveBoardName(name); renderThread(host, id); } else msg.textContent = boardErr(d2.error);
+          }).catch(function () { send.disabled = false; tsRep.reset(); msg.textContent = '送信に失敗しました'; });
       });
     }).catch(function () { host.innerHTML = '<button class="th-back">← スレ一覧</button><div class="board-empty">読み込みに失敗しました。</div>'; back(); });
   }
@@ -1001,6 +1030,7 @@
     fetch(boardApi('/config')).then(function (r) { return r.json(); }).then(function (c) {
       boardPublic = !!(c && c.public);
       boardEnabled = boardPublic || !!boardKey;
+      tsLoad();   // 公開・非管理者ならTurnstileスクリプトを読み込む
       if (boardEnabled && tabBtn) tabBtn.hidden = false;
       if (boardEnabled && viewOf() === 'board' && currentView !== 'board') switchTab('board', true);
     }).catch(function () {});

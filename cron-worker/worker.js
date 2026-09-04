@@ -277,7 +277,7 @@ function json(o, status = 200) {
  *     CREATE TABLE IF NOT EXISTS posts(
  *       id INTEGER PRIMARY KEY AUTOINCREMENT, thread_id INTEGER NOT NULL, no INTEGER NOT NULL,
  *       name TEXT NOT NULL, body TEXT NOT NULL, uid TEXT, created INTEGER NOT NULL,
- *       ip_hash TEXT, hidden INTEGER DEFAULT 0);
+ *       ip_hash TEXT, hidden INTEGER DEFAULT 0, admin INTEGER DEFAULT 0);
  *     CREATE INDEX IF NOT EXISTS idx_posts ON posts(thread_id, no);
  */
 function isAdmin(req, env) {
@@ -324,8 +324,8 @@ async function threadShow(url, req, env) {
   const th = await env.DB.prepare("SELECT id,title,created,bumped,posts,hidden FROM threads WHERE id=?1").bind(id).first();
   if (!th || (th.hidden && !g.admin)) return json({ error: "not_found" }, 404);
   const sql = g.admin
-    ? "SELECT no,name,body,uid,created,hidden FROM posts WHERE thread_id=?1 ORDER BY no ASC LIMIT 1000"
-    : "SELECT no,name,body,uid,created,hidden FROM posts WHERE thread_id=?1 AND hidden=0 ORDER BY no ASC LIMIT 1000";
+    ? "SELECT no,name,body,uid,created,hidden,admin FROM posts WHERE thread_id=?1 ORDER BY no ASC LIMIT 1000"
+    : "SELECT no,name,body,uid,created,hidden,admin FROM posts WHERE thread_id=?1 AND hidden=0 ORDER BY no ASC LIMIT 1000";
   const { results } = await env.DB.prepare(sql).bind(id).all();
   return json({ public: g.pub, admin: g.admin, thread: th, posts: results || [] });
 }
@@ -350,8 +350,8 @@ async function threadCreate(req, env) {
     .bind(title, now, iph).run();
   const tid = r.meta.last_row_id;
   await env.DB.prepare(
-    "INSERT INTO posts(thread_id,no,name,body,uid,created,ip_hash,hidden) VALUES(?1,1,?2,?3,?4,?5,?6,0)")
-    .bind(tid, name, body, uid, now, iph).run();
+    "INSERT INTO posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin) VALUES(?1,1,?2,?3,?4,?5,?6,0,?7)")
+    .bind(tid, name, body, uid, now, iph, g.admin ? 1 : 0).run();
   return json({ ok: true, id: tid });
 }
 async function postCreate(req, env) {
@@ -374,8 +374,8 @@ async function postCreate(req, env) {
   const now = Date.now();
   const no = (th.posts || 1) + 1;
   await env.DB.prepare(
-    "INSERT INTO posts(thread_id,no,name,body,uid,created,ip_hash,hidden) VALUES(?1,?2,?3,?4,?5,?6,?7,0)")
-    .bind(tid, no, name, body, uid, now, iph).run();
+    "INSERT INTO posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin) VALUES(?1,?2,?3,?4,?5,?6,?7,0,?8)")
+    .bind(tid, no, name, body, uid, now, iph, g.admin ? 1 : 0).run();
   await env.DB.prepare("UPDATE threads SET posts=?2, bumped=?3 WHERE id=?1").bind(tid, no, now).run();
   return json({ ok: true, no });
 }
