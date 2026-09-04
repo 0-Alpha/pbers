@@ -391,9 +391,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "きままボール",
-    "subs": 17900,
+    "subs": 17800,
     "views": 12696578,
-    "subsLabel": "チャンネル登録者数 1.79万人",
+    "subsLabel": "チャンネル登録者数 1.78万人",
     "viewsLabel": "12,696,578回視聴",
     "videos": 153,
     "url": "https://www.youtube.com/channel/UCCQEhe-wXZCSb843x92YDzQ",
@@ -650,19 +650,6 @@ window.PBERS_DATA = [
     "slug": "acgelent"
   },
   {
-    "name": "レメラボール / 🌈🌙【えるめす】",
-    "subs": 12300,
-    "views": 6385456,
-    "subsLabel": "チャンネル登録者数 1.23万人",
-    "viewsLabel": "6,385,456回視聴",
-    "videos": 178,
-    "url": "https://www.youtube.com/channel/UCnzJL5YTjaPHTkkll5BHukQ",
-    "avatar": "https://yt3.googleusercontent.com/PgMT_pQ_UrNxFF8c66TxiZAc14EW2SJikKgha9sBh6PlKPTkW6Evdg8exa07dWNyAVQYenXUNg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#76d45e",
-    "genre": "ポーランドボーラー",
-    "slug": "レメラボール-えるめす"
-  },
-  {
     "name": "SEKKI98",
     "subs": 12200,
     "views": 8544069,
@@ -671,9 +658,22 @@ window.PBERS_DATA = [
     "videos": 791,
     "url": "https://www.youtube.com/channel/UCmjY1OXynztjoCn9Lb4w7Ag",
     "avatar": "https://yt3.googleusercontent.com/n7RskwBn8eLp8MACtbTciWLvA53zE11jWpQ0ukoJT4NCRFB4GH8_xAQ6o7Y3GRc91XSC2NPBz50=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3ecc9f",
+    "color": "#76d45e",
     "genre": "ポーランドボーラー",
     "slug": "sekki98"
+  },
+  {
+    "name": "レメラボール / 🌈🌙【えるめす】",
+    "subs": 12200,
+    "views": 6385456,
+    "subsLabel": "チャンネル登録者数 1.22万人",
+    "viewsLabel": "6,385,456回視聴",
+    "videos": 178,
+    "url": "https://www.youtube.com/channel/UCnzJL5YTjaPHTkkll5BHukQ",
+    "avatar": "https://yt3.googleusercontent.com/PgMT_pQ_UrNxFF8c66TxiZAc14EW2SJikKgha9sBh6PlKPTkW6Evdg8exa07dWNyAVQYenXUNg=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#3ecc9f",
+    "genre": "ポーランドボーラー",
+    "slug": "レメラボール-えるめす"
   },
   {
     "name": "カミヤ kamiya【ポーランドボール】",
@@ -759,7 +759,7 @@ window.PBERS_DATA = [
     "views": 987557,
     "subsLabel": "チャンネル登録者数 1.08万人",
     "viewsLabel": "987,557回視聴",
-    "videos": 117,
+    "videos": 116,
     "url": "https://www.youtube.com/channel/UC3N1ZsVd8KkOmSryri0AesA",
     "avatar": "https://yt3.googleusercontent.com/LibMAGPV5ah6ENHwbAzVSek6GVaOhu0MBeupoPGW6l_e6lSZChJjDGadIqPbiAc1rGRzTLHr=s900-c-k-c0x00ffffff-no-rj",
     "color": "#5ed4c4",
@@ -911,9 +911,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "スーパーボール",
-    "subs": 8920,
+    "subs": 8910,
     "views": 5017835,
-    "subsLabel": "チャンネル登録者数 8920人",
+    "subsLabel": "チャンネル登録者数 8910人",
     "viewsLabel": "5,017,835回視聴",
     "videos": 273,
     "url": "https://www.youtube.com/channel/UCsoMWL2O3xnXe4VQMC3TDmw",
@@ -924,9 +924,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ニイソビボール",
-    "subs": 8510,
+    "subs": 8530,
     "views": 2696923,
-    "subsLabel": "チャンネル登録者数 8510人",
+    "subsLabel": "チャンネル登録者数 8530人",
     "viewsLabel": "2,696,923回視聴",
     "videos": 60,
     "url": "https://www.youtube.com/channel/UCpaHKFWTUu4hyr_MafHXppA",
@@ -1015,9 +1015,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ノートボール",
-    "subs": 7100,
+    "subs": 7090,
     "views": 3645519,
-    "subsLabel": "チャンネル登録者数 7100人",
+    "subsLabel": "チャンネル登録者数 7090人",
     "viewsLabel": "3,645,519回視聴",
     "videos": 90,
     "url": "https://www.youtube.com/channel/UCH5Q8u60__uE8KKC0STZH_g",
@@ -1093,9 +1093,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "にこちPB",
-    "subs": 6530,
+    "subs": 6540,
     "views": 409383,
-    "subsLabel": "チャンネル登録者数 6530人",
+    "subsLabel": "チャンネル登録者数 6540人",
     "viewsLabel": "409,383回視聴",
     "videos": 33,
     "url": "https://www.youtube.com/channel/UC2fMWFGgy-ENfkqlK0CUwrg",
@@ -1262,9 +1262,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "レイアルファ",
-    "subs": 4860,
+    "subs": 4890,
     "views": 3519688,
-    "subsLabel": "チャンネル登録者数 4860人",
+    "subsLabel": "チャンネル登録者数 4890人",
     "viewsLabel": "3,519,688回視聴",
     "videos": 89,
     "url": "https://www.youtube.com/channel/UCVYMXYU6j0M5Gj1xwywKDyg",
@@ -2004,4 +2004,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-04";
-window.PBERS_PREDICT = {"asOfMs": 1788469200000, "subs": {"base": 2806330, "rate": 5.49873966508564e-05}, "views": {"base": 2179227876, "rate": 0.04163920902825591}};
+window.PBERS_PREDICT = {"asOfMs": 1788490800000, "subs": {"base": 2806170, "rate": 5.490444834515965e-05}, "views": {"base": 2179227876, "rate": 0.03741347181902097}};
