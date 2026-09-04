@@ -512,6 +512,9 @@
     var baseFromBottom = PADV + downSpace;                  // 固定
     return { H: H, perPx: perPx, baseFromBottom: baseFromBottom, baseFromTop: H - (PADV + downSpace) };
   }
+  // 成長/急上昇の棒 → 個別ページへの導線用: チャンネル名から slug を引く
+  var SLUG_BY_NAME = {};
+  ALL.forEach(function (d) { SLUG_BY_NAME[d.name] = d.slug || chId(d); });
   function makeGrowCol(key) {
     var col = document.createElement('div');
     col.className = 'grow-col shown'; col.dataset.key = key;
@@ -522,6 +525,9 @@
         '<div class="gval up"></div>' +
       '</div>' +
       '<div class="grow-foot"><div class="grow-crank num"></div><div class="grow-cname"></div></div>';
+    col.addEventListener('click', function () {   // クリックでそのチャンネルの個別ページへ
+      var s = col.dataset.slug; if (s) location.href = GBASE + 'c/' + encodeURIComponent(s) + '/';
+    });
     return col;
   }
   function setGrowCol(col, x, rank, L) {
@@ -575,6 +581,7 @@
       col.querySelector('.grow-plot').style.height = L.H + 'px';
       col.querySelector('.gbaseline').style.bottom = L.baseFromBottom + 'px';
       col.querySelector('.grow-cname').textContent = x.name;
+      col.dataset.slug = SLUG_BY_NAME[x.name] || '';
       setGrowCol(col, x, i + 1, L);
       host.appendChild(col);          // 正しい順序へ移動
       used[x.name] = true;
@@ -753,6 +760,7 @@
       col.querySelector('.grow-plot').style.height = L.H + 'px';
       col.querySelector('.gbaseline').style.bottom = L.baseFromBottom + 'px';
       col.querySelector('.grow-cname').textContent = x.name;
+      col.dataset.slug = SLUG_BY_NAME[x.name] || '';
       setRiseCol(col, x, i + 1, L);
       host.appendChild(col);
       used[x.name] = true;

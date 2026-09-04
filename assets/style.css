@@ -215,7 +215,8 @@ section.block{padding:46px 0}
 /* ---------- growth ranking (vertical arrow bars, diverging from baseline) ---------- */
 .grow-empty{color:var(--muted);font-size:14px;padding:10px 0}
 .grow-chart{display:flex;align-items:flex-end;gap:12px;min-width:min-content;padding:26px 16px 0}
-.grow-col{display:flex;flex-direction:column;align-items:center;flex:1 0 46px;max-width:66px}
+.grow-col{display:flex;flex-direction:column;align-items:center;flex:1 0 46px;max-width:66px;cursor:pointer}
+.grow-col:hover .grow-cname,.grow-col:hover .grow-crank{color:var(--text)}
 .grow-plot{position:relative;width:100%;height:270px}
 .gbaseline{position:absolute;left:-6px;right:-6px;height:2px;background:var(--line-2);border-radius:2px}
 .gbar{position:absolute;left:0;right:0;margin:0 auto;width:100%;display:flex;flex-direction:column;align-items:center;
