@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-09-05",
+    "label": "9月5日(土)",
+    "items": []
+  },
+  {
     "date": "2026-09-04",
     "label": "9月4日(金)",
     "items": [
@@ -76,17 +81,17 @@ window.PBERS_NEWS = [
         "count": 2,
         "opps": [
           {
-            "name": "ケエレビQ!",
-            "color": "#d4625e",
-            "avatar": "https://yt3.googleusercontent.com/T7210hEFAOEDsDIQv46XXCo2mYDBeI9SShL4A4ZIo-qJE5eURzK5jy6rFAOWk2orvXdsnt-r=s900-c-k-c0x00ffffff-no-rj"
-          },
-          {
             "name": "ソビエト・ロシアぼーる",
             "color": "#3ecca8",
             "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj"
+          },
+          {
+            "name": "ケエレビQ!",
+            "color": "#d4625e",
+            "avatar": "https://yt3.googleusercontent.com/T7210hEFAOEDsDIQv46XXCo2mYDBeI9SShL4A4ZIo-qJE5eURzK5jy6rFAOWk2orvXdsnt-r=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
-        "label": "投稿数で 二枚抜き（ケエレビQ!・ソビエト・ロシアぼーる を追い越し）",
+        "label": "投稿数で 二枚抜き（ソビエト・ロシアぼーる・ケエレビQ! を追い越し）",
         "value": 102
       },
       {
@@ -281,7 +286,7 @@ window.PBERS_NEWS = [
         "type": "multi_overtake",
         "kind": "views",
         "name": "カルマルボール",
-        "color": "#99d45e",
+        "color": "#cc953e",
         "avatar": "https://yt3.googleusercontent.com/PjedTCVNF8mac6Vl4Ll3pJgi4tpzNdsMlL05pT1loCQStbHiB3VyBZfWjBULBAr8BjOG16S3xKA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⚡",
         "genre": "ポーランドボーラー",
@@ -420,7 +425,7 @@ window.PBERS_NEWS = [
           },
           {
             "name": "萱口",
-            "color": "#cc953e",
+            "color": "#99d45e",
             "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
@@ -489,7 +494,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "subs",
         "name": "カルマルボール",
-        "color": "#99d45e",
+        "color": "#cc953e",
         "avatar": "https://yt3.googleusercontent.com/PjedTCVNF8mac6Vl4Ll3pJgi4tpzNdsMlL05pT1loCQStbHiB3VyBZfWjBULBAr8BjOG16S3xKA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -930,9 +935,9 @@ window.PBERS_NEWS = [
       {
         "type": "overtake",
         "kind": "videos",
-        "name": "Yukkuri ball",
-        "color": "#8f2f2f",
-        "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mR5LylFOFrr-t2X5vaJbwkzfKOkvcpiNfdQw8kaFQAAw=s900-c-k-c0x00ffffff-no-rj",
+        "name": "Schokoladen Ball",
+        "color": "#3ecc9a",
+        "avatar": "https://yt3.googleusercontent.com/AlFPad8pRVrfeIto9rOiwJjZaJNUmdMQekXAnHSIOOvCA5cEG_VlryXtlSx0oylMukqi3lVbYg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
@@ -947,9 +952,9 @@ window.PBERS_NEWS = [
       {
         "type": "overtake",
         "kind": "videos",
-        "name": "Schokoladen Ball",
-        "color": "#3ecc9a",
-        "avatar": "https://yt3.googleusercontent.com/AlFPad8pRVrfeIto9rOiwJjZaJNUmdMQekXAnHSIOOvCA5cEG_VlryXtlSx0oylMukqi3lVbYg=s900-c-k-c0x00ffffff-no-rj",
+        "name": "Yukkuri ball",
+        "color": "#8f2f2f",
+        "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mR5LylFOFrr-t2X5vaJbwkzfKOkvcpiNfdQw8kaFQAAw=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
@@ -981,9 +986,9 @@ window.PBERS_NEWS = [
       {
         "type": "overtake",
         "kind": "videos",
-        "name": "lemon_Ball",
-        "color": "#3e61cc",
-        "avatar": "https://yt3.googleusercontent.com/LibMAGPV5ah6ENHwbAzVSek6GVaOhu0MBeupoPGW6l_e6lSZChJjDGadIqPbiAc1rGRzTLHr=s900-c-k-c0x00ffffff-no-rj",
+        "name": "TTボール",
+        "color": "#cc3e49",
+        "avatar": "https://yt3.googleusercontent.com/Jyb_uPlk9ssENZe3msLyrrbjmcOI5zimVCAi-itbq0gbYxltaXY5IDwxqUcPzsX9-S-X5e89gx0=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
@@ -1015,9 +1020,9 @@ window.PBERS_NEWS = [
       {
         "type": "overtake",
         "kind": "videos",
-        "name": "TTボール",
-        "color": "#cc3e49",
-        "avatar": "https://yt3.googleusercontent.com/Jyb_uPlk9ssENZe3msLyrrbjmcOI5zimVCAi-itbq0gbYxltaXY5IDwxqUcPzsX9-S-X5e89gx0=s900-c-k-c0x00ffffff-no-rj",
+        "name": "lemon_Ball",
+        "color": "#3e61cc",
+        "avatar": "https://yt3.googleusercontent.com/LibMAGPV5ah6ENHwbAzVSek6GVaOhu0MBeupoPGW6l_e6lSZChJjDGadIqPbiAc1rGRzTLHr=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
@@ -1170,7 +1175,7 @@ window.PBERS_NEWS = [
           },
           {
             "name": "カルマルボール",
-            "color": "#99d45e",
+            "color": "#cc953e",
             "avatar": "https://yt3.googleusercontent.com/PjedTCVNF8mac6Vl4Ll3pJgi4tpzNdsMlL05pT1loCQStbHiB3VyBZfWjBULBAr8BjOG16S3xKA=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
@@ -1913,57 +1918,6 @@ window.PBERS_NEWS = [
         "opp_value": 298,
         "label": "投稿数で みみけけ を追い越し",
         "value": 315
-      }
-    ]
-  },
-  {
-    "date": "2026-08-29",
-    "label": "8月29日(土)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "Æž!みかんぼーる🍊",
-        "color": "#eba864",
-        "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 4億回 突破",
-        "value": 400000000
-      },
-      {
-        "type": "overtake",
-        "kind": "views",
-        "name": "MIKUボール",
-        "color": "#493ecc",
-        "avatar": "https://yt3.googleusercontent.com/6w7QBnmhG0QOmG33OrGsxQR2cM7u-_izyc_BizYXJzvu-1MbSW2UC3X8T15rWcyY9TTgmRuYZQ=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "⤴️",
-        "genre": "ポーランドボーラー",
-        "opp": {
-          "name": "カミヤ kamiya【ポーランドボール】",
-          "color": "#5e91d4",
-          "avatar": "https://yt3.googleusercontent.com/owf5QKUnNYr0ZfO_AtXo6uyQCTIcpT6-ih6SZkmUdtSOFBx5eiDlRZlDOxeQd04kHlirE4HRQA=s900-c-k-c0x00ffffff-no-rj"
-        },
-        "opp_value": 3455797,
-        "label": "総再生数で カミヤ kamiya【ポーランドボール】 を追い越し",
-        "value": 3458374
-      },
-      {
-        "type": "overtake",
-        "kind": "views",
-        "name": "みすい",
-        "color": "#873ecc",
-        "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "⤴️",
-        "genre": "ポーランドボーラー",
-        "opp": {
-          "name": "やよいどき",
-          "color": "#7d5ed4",
-          "avatar": "https://yt3.googleusercontent.com/fhtCfO2IcgGcnMPcdxsX4HNtMMm6AOWJYVqI2MoElr2NQJSGgJrq3zBNpHEc7mt_qUHs1RIs=s900-c-k-c0x00ffffff-no-rj"
-        },
-        "opp_value": 1294890,
-        "label": "総再生数で やよいどき を追い越し",
-        "value": 1297184
       }
     ]
   }

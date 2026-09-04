@@ -924,9 +924,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ニイソビボール",
-    "subs": 8710,
+    "subs": 8740,
     "views": 2696923,
-    "subsLabel": "チャンネル登録者数 8710人",
+    "subsLabel": "チャンネル登録者数 8740人",
     "viewsLabel": "2,696,923回視聴",
     "videos": 60,
     "url": "https://www.youtube.com/channel/UCpaHKFWTUu4hyr_MafHXppA",
@@ -1210,9 +1210,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "レイアルファ",
-    "subs": 5130,
+    "subs": 5140,
     "views": 3519688,
-    "subsLabel": "チャンネル登録者数 5130人",
+    "subsLabel": "チャンネル登録者数 5140人",
     "viewsLabel": "3,519,688回視聴",
     "videos": 89,
     "url": "https://www.youtube.com/channel/UCVYMXYU6j0M5Gj1xwywKDyg",
@@ -1352,6 +1352,19 @@ window.PBERS_DATA = [
     "slug": "まっこゆ"
   },
   {
+    "name": "カルマルボール",
+    "subs": 4420,
+    "views": 1243650,
+    "subsLabel": "チャンネル登録者数 4420人",
+    "viewsLabel": "1,243,650回視聴",
+    "videos": 50,
+    "url": "https://www.youtube.com/channel/UCZbTlsZfAf1cmBgLnYMfPWg",
+    "avatar": "https://yt3.googleusercontent.com/PjedTCVNF8mac6Vl4Ll3pJgi4tpzNdsMlL05pT1loCQStbHiB3VyBZfWjBULBAr8BjOG16S3xKA=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#cc953e",
+    "genre": "ポーランドボーラー",
+    "slug": "カルマルボール"
+  },
+  {
     "name": "萱口",
     "subs": 4410,
     "views": 1588586,
@@ -1360,22 +1373,9 @@ window.PBERS_DATA = [
     "videos": 68,
     "url": "https://www.youtube.com/channel/UCfl1W6sL5-es_rWqA7bGbRQ",
     "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc953e",
-    "genre": "ポーランドボーラー",
-    "slug": "萱口"
-  },
-  {
-    "name": "カルマルボール",
-    "subs": 4410,
-    "views": 1243650,
-    "subsLabel": "チャンネル登録者数 4410人",
-    "viewsLabel": "1,243,650回視聴",
-    "videos": 50,
-    "url": "https://www.youtube.com/channel/UCZbTlsZfAf1cmBgLnYMfPWg",
-    "avatar": "https://yt3.googleusercontent.com/PjedTCVNF8mac6Vl4Ll3pJgi4tpzNdsMlL05pT1loCQStbHiB3VyBZfWjBULBAr8BjOG16S3xKA=s900-c-k-c0x00ffffff-no-rj",
     "color": "#99d45e",
     "genre": "ポーランドボーラー",
-    "slug": "カルマルボール"
+    "slug": "萱口"
   },
   {
     "name": "幻死帝国 ",
@@ -1639,9 +1639,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "【PB】ネオンボール",
-    "subs": 2900,
+    "subs": 2910,
     "views": 1534130,
-    "subsLabel": "チャンネル登録者数 2900人",
+    "subsLabel": "チャンネル登録者数 2910人",
     "viewsLabel": "1,534,130回視聴",
     "videos": 52,
     "url": "https://www.youtube.com/channel/UCtYX3q7PyNWFbykXddPJEdA",
@@ -2003,5 +2003,5 @@ window.PBERS_DATA = [
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
-window.PBERS_UPDATED = "2026-09-04";
-window.PBERS_PREDICT = {"asOfMs": 1788534000000, "subs": {"base": 2809190, "rate": 5.23807467491768e-05}, "views": {"base": 2180687080, "rate": 0.03732677232920181}};
+window.PBERS_UPDATED = "2026-09-05";
+window.PBERS_PREDICT = {"asOfMs": 1788555600000, "subs": {"base": 2809250, "rate": 5.303794733704769e-05}, "views": {"base": 2180687080, "rate": 0.033810678775149046}};
