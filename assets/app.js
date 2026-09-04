@@ -844,74 +844,144 @@
     });
   }
 
-  /* ---- 掲示板(board) ---- */
+  /* ---- 掲示板(board): スレッド + レス形式 ---- */
+  var boardThreadId = null;
   function boardErr(code) {
-    return ({ too_fast: '投稿の間隔が短すぎます（20秒ほどお待ちください）', captcha: '認証に失敗しました',
+    return ({ too_fast: '投稿の間隔があいていません（少し待ってね）', captcha: '認証に失敗しました',
       private: '現在は非公開です', db_unconfigured: '掲示板は準備中です', empty: '本文を入力してください',
-      bad_board: 'エラー（board）', forbidden: '権限がありません' })[code] || '通信エラーが発生しました';
+      no_title: 'タイトルを入力してください', not_found: 'スレッドが見つかりません', forbidden: '権限がありません' })[code]
+      || '通信エラーが発生しました';
   }
-  function boardHeaders(extra) {
-    var h = extra || {};
-    if (boardKey) h['X-Board-Key'] = boardKey;
-    return h;
+  function boardHeaders(extra) { var h = extra || {}; if (boardKey) h['X-Board-Key'] = boardKey; return h; }
+  function boardApi(p) { return BOARD_API + p; }
+  function bWhen(ms) {
+    var t = new Date(ms), p2 = function (x) { return (x < 10 ? '0' : '') + x; };
+    return (t.getMonth() + 1) + '/' + t.getDate() + ' ' + p2(t.getHours()) + ':' + p2(t.getMinutes());
   }
-  function boardItemHTML(it) {
-    var t = new Date(it.created), p2 = function (x) { return (x < 10 ? '0' : '') + x; };
-    var when = (t.getMonth() + 1) + '/' + t.getDate() + ' ' + p2(t.getHours()) + ':' + p2(t.getMinutes());
-    return '<div class="bc' + (it.hidden ? ' bc-off' : '') + '" data-id="' + it.id + '">' +
-      '<div class="bc-head"><span class="bc-name">' + esc(it.name) + '</span>' +
-        '<span class="bc-time num">' + when + '</span>' +
-        (boardKey ? '<button type="button" class="bc-hide" data-id="' + it.id + '" data-h="' + (it.hidden ? 0 : 1) + '">' + (it.hidden ? '表示' : '非表示') + '</button>' : '') +
-      '</div>' +
-      '<div class="bc-body">' + esc(it.body).replace(/\n/g, '<br>') + '</div>' +
-    '</div>';
+  function boardHead() {
+    var note = document.getElementById('board-note'), status = document.getElementById('board-status');
+    if (note) note.textContent = boardPublic
+      ? '誰でもスレッドを立てて書き込めます。荒らし・誹謗中傷・個人情報・宣伝はご遠慮ください。'
+      : '非公開モード（管理者のみ表示・投稿）。公開すると誰でも書き込めます。';
+    if (status) status.textContent = boardKey ? '管理モード' : '';
   }
-  function wireHide(list) {
-    list.querySelectorAll('.bc-hide').forEach(function (b) {
-      b.addEventListener('click', function () {
-        b.disabled = true;
-        fetch(BOARD_API + '/hide', { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
-          body: JSON.stringify({ id: +b.dataset.id, hide: b.dataset.h === '1' }) })
+  function boardSyncFromUrl() {
+    var t = parseInt(new URLSearchParams(location.search).get('t'), 10);
+    boardThreadId = t > 0 ? t : null;
+  }
+  function boardGo(threadId) {   // スレッドを開く/一覧へ戻る(URLに反映=戻る/共有に対応)
+    boardThreadId = threadId || null;
+    var u = pathOf('board') + (boardThreadId ? '?t=' + boardThreadId : '');
+    if (location.pathname + location.search !== u) history.pushState({ view: 'board' }, '', u);
+    renderBoard();
+  }
+  function wireHide(scope) {
+    scope.querySelectorAll('.bc-hide').forEach(function (b) {
+      b.addEventListener('click', function (e) {
+        e.stopPropagation(); b.disabled = true;
+        var payload = b.dataset.k === 'post'
+          ? { kind: 'post', thread: +b.dataset.t, no: +b.dataset.no, hide: b.dataset.h === '1' }
+          : { kind: 'thread', id: +b.dataset.id, hide: b.dataset.h === '1' };
+        fetch(boardApi('/hide'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }), body: JSON.stringify(payload) })
           .then(function (r) { return r.json(); }).then(function (d) { if (d.ok) renderBoard(); else b.disabled = false; })
           .catch(function () { b.disabled = false; });
       });
     });
   }
   function renderBoard() {
-    var list = document.getElementById('board-list'); if (!list) return;
-    var note = document.getElementById('board-note'), status = document.getElementById('board-status');
-    if (!boardEnabled) { list.innerHTML = '<div class="board-empty">準備中です。</div>'; return; }
-    if (note) note.textContent = boardPublic
-      ? '誰でも投稿できます。荒らし・誹謗中傷・個人情報・宣伝はご遠慮ください。'
-      : '非公開モード（管理者のみ表示・投稿）。公開するとみんなが書き込めます。';
-    if (status) status.textContent = boardKey ? '管理モード' : '';
-    list.innerHTML = '<div class="board-empty">読み込み中…</div>';
-    fetch(BOARD_API + '?board=general', { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
-      if (d.error) { list.innerHTML = '<div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; return; }
-      var items = d.items || [];
-      if (!items.length) { list.innerHTML = '<div class="board-empty">まだコメントはありません。最初の投稿をどうぞ。</div>'; return; }
-      list.innerHTML = items.map(boardItemHTML).join('');
-      if (d.admin) wireHide(list);
-    }).catch(function () { list.innerHTML = '<div class="board-empty">読み込みに失敗しました。</div>'; });
+    var host = document.getElementById('board-body'); if (!host) return;
+    boardHead();
+    if (!boardEnabled) { host.innerHTML = '<div class="board-empty">準備中です。</div>'; return; }
+    boardSyncFromUrl();
+    if (boardThreadId) renderThread(host, boardThreadId); else renderThreadList(host);
   }
-  function setupBoardForm() {
-    var f = document.getElementById('board-form'); if (!f) return;
-    var body = document.getElementById('bf-body'), cnt = document.getElementById('bf-count'),
-        msg = document.getElementById('bf-msg'), send = document.getElementById('bf-send'), nm = document.getElementById('bf-name');
-    if (body) body.addEventListener('input', function () { cnt.textContent = body.value.length + ' / 1000'; });
-    f.addEventListener('submit', function (e) {
+  function renderThreadList(host) {
+    host.innerHTML =
+      '<form class="bt-new" id="bt-new" autocomplete="off">' +
+        '<div class="bt-new-h">スレッドを立てる</div>' +
+        '<input class="bf-in" id="bt-title" maxlength="60" placeholder="タイトル（60字まで）">' +
+        '<input class="bf-in bf-name" id="bt-name" maxlength="24" placeholder="名前（任意）">' +
+        '<textarea class="bf-in bf-body" id="bt-body" maxlength="2000" rows="3" placeholder="最初の書き込み…"></textarea>' +
+        '<div class="bf-actions"><span class="bf-msg" id="bt-msg"></span>' +
+          '<button type="submit" class="bf-send" id="bt-send">スレッドを作成</button></div>' +
+      '</form>' +
+      '<div class="board-list" id="board-threads"><div class="board-empty">読み込み中…</div></div>';
+    document.getElementById('bt-new').addEventListener('submit', function (e) {
       e.preventDefault();
-      var text = (body.value || '').trim();
-      if (!text) { msg.textContent = '本文を入力してください'; return; }
-      send.disabled = true; msg.textContent = '送信中…';
-      fetch(BOARD_API, { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
-        body: JSON.stringify({ board: 'general', name: nm.value, body: text }) })
+      var title = document.getElementById('bt-title').value.trim();
+      var body = document.getElementById('bt-body').value.trim();
+      var msg = document.getElementById('bt-msg'), send = document.getElementById('bt-send');
+      if (!title) { msg.textContent = 'タイトルを入力してください'; return; }
+      if (!body) { msg.textContent = '本文を入力してください'; return; }
+      send.disabled = true; msg.textContent = '作成中…';
+      fetch(boardApi('/threads'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
+        body: JSON.stringify({ title: title, name: document.getElementById('bt-name').value, body: body }) })
         .then(function (r) { return r.json(); }).then(function (d) {
           send.disabled = false;
-          if (d.ok) { body.value = ''; cnt.textContent = '0 / 1000'; msg.textContent = '投稿しました'; renderBoard(); setTimeout(function () { msg.textContent = ''; }, 2500); }
-          else { msg.textContent = boardErr(d.error); }
+          if (d.ok) boardGo(d.id); else msg.textContent = boardErr(d.error);
         }).catch(function () { send.disabled = false; msg.textContent = '送信に失敗しました'; });
     });
+    var box = document.getElementById('board-threads');
+    fetch(boardApi('/threads'), { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
+      if (d.error) { box.innerHTML = '<div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; return; }
+      var ths = d.threads || [];
+      if (!ths.length) { box.innerHTML = '<div class="board-empty">まだスレッドがありません。最初のスレッドを立ててみよう。</div>'; return; }
+      box.innerHTML = ths.map(function (t) {
+        return '<div class="th' + (t.hidden ? ' bc-off' : '') + '" data-id="' + t.id + '">' +
+          '<div class="th-main"><div class="th-title">' + esc(t.title) + '</div>' +
+            '<div class="th-meta"><span class="num">' + t.posts + '</span> レス ・ 最終 ' + bWhen(t.bumped) + '</div></div>' +
+          (boardKey ? '<button type="button" class="bc-hide" data-k="thread" data-id="' + t.id + '" data-h="' + (t.hidden ? 0 : 1) + '">' + (t.hidden ? '表示' : '非表示') + '</button>' : '') +
+        '</div>';
+      }).join('');
+      box.querySelectorAll('.th').forEach(function (el) {
+        el.querySelector('.th-main').addEventListener('click', function () { boardGo(+el.dataset.id); });
+      });
+      if (d.admin) wireHide(box);
+    }).catch(function () { box.innerHTML = '<div class="board-empty">読み込みに失敗しました。</div>'; });
+  }
+  function renderThread(host, id) {
+    host.innerHTML = '<div class="board-empty">読み込み中…</div>';
+    var back = function () {
+      host.querySelectorAll('.th-back').forEach(function (b) { b.addEventListener('click', function () { boardGo(null); }); });
+    };
+    fetch(boardApi('/thread') + '?id=' + id, { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
+      if (d.error) { host.innerHTML = '<button class="th-back">← スレ一覧</button><div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; back(); return; }
+      var posts = d.posts || [];
+      host.innerHTML = '<button class="th-back">← スレ一覧</button>' +
+        '<h3 class="th-h">' + esc(d.thread.title) + '</h3>' +
+        '<div class="posts">' + posts.map(function (p) {
+          return '<div class="post' + (p.hidden ? ' bc-off' : '') + '">' +
+            '<div class="post-head"><span class="post-no num">' + p.no + '</span>' +
+              '<span class="post-name">' + esc(p.name) + '</span>' +
+              (p.uid ? '<span class="post-id num">ID:' + esc(p.uid) + '</span>' : '') +
+              '<span class="post-time num">' + bWhen(p.created) + '</span>' +
+              (boardKey ? '<button type="button" class="bc-hide" data-k="post" data-t="' + id + '" data-no="' + p.no + '" data-h="' + (p.hidden ? 0 : 1) + '">' + (p.hidden ? '表示' : '非表示') + '</button>' : '') +
+            '</div>' +
+            '<div class="post-body">' + esc(p.body).replace(/\n/g, '<br>') + '</div>' +
+          '</div>';
+        }).join('') + '</div>' +
+        '<form class="bt-reply" id="bt-reply" autocomplete="off">' +
+          '<input class="bf-in bf-name" id="rp-name" maxlength="24" placeholder="名前（任意）">' +
+          '<textarea class="bf-in bf-body" id="rp-body" maxlength="2000" rows="3" placeholder="返信を書く…"></textarea>' +
+          '<div class="bf-actions"><span class="bf-msg" id="rp-msg"></span>' +
+            '<button type="submit" class="bf-send" id="rp-send">返信する</button></div>' +
+        '</form>';
+      back();
+      if (d.admin) wireHide(host);
+      document.getElementById('bt-reply').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var body = document.getElementById('rp-body').value.trim();
+        var msg = document.getElementById('rp-msg'), send = document.getElementById('rp-send');
+        if (!body) { msg.textContent = '本文を入力してください'; return; }
+        send.disabled = true; msg.textContent = '送信中…';
+        fetch(boardApi('/posts'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ thread: id, name: document.getElementById('rp-name').value, body: body }) })
+          .then(function (r) { return r.json(); }).then(function (d2) {
+            send.disabled = false;
+            if (d2.ok) renderThread(host, id); else msg.textContent = boardErr(d2.error);
+          }).catch(function () { send.disabled = false; msg.textContent = '送信に失敗しました'; });
+      });
+    }).catch(function () { host.innerHTML = '<button class="th-back">← スレ一覧</button><div class="board-empty">読み込みに失敗しました。</div>'; back(); });
   }
   function setupBoard() {
     if (!VIEWS.board || !BOARD_API || GBASE !== '/') return;   // 海外版/API未設定では無効
@@ -927,8 +997,8 @@
     var tabBtn = document.getElementById('tab-board');
     boardEnabled = !!boardKey;                          // 管理キー所持なら即有効(同期)
     if (boardEnabled && tabBtn) tabBtn.hidden = false;
-    setupBoardForm();
-    fetch(BOARD_API + '/config').then(function (r) { return r.json(); }).then(function (c) {
+    window.addEventListener('popstate', function () { if (currentView === 'board' && viewOf() === 'board') renderBoard(); });
+    fetch(boardApi('/config')).then(function (r) { return r.json(); }).then(function (c) {
       boardPublic = !!(c && c.public);
       boardEnabled = boardPublic || !!boardKey;
       if (boardEnabled && tabBtn) tabBtn.hidden = false;

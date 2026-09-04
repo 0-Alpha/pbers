@@ -28,6 +28,9 @@ export default {
   async fetch(req, env) {
     const url = new URL(req.url);
 
+    // CORS プリフライト(最優先・空ボディの204で返す。204にボディを付けるとWorkerが例外になる)
+    if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
+
     // WebSub 購読確認: Hub が hub.challenge を付けて GET してくる → そのまま返す
     if (req.method === "GET" && url.pathname === "/yt") {
       const ch = url.searchParams.get("hub.challenge");
@@ -51,14 +54,16 @@ export default {
       return json(feed);
     }
 
-    // ---- 掲示板(board) ----
+    // ---- 掲示板(board): スレッド + レス形式 ----
     // 公開状態は env.BOARD_PUBLIC("1"で公開)。非公開の間は管理キー(X-Board-Key=env.BOARD_KEY)所持者のみ閲覧/投稿可。
     if (url.pathname === "/api/board/config") {
       return json({ public: env.BOARD_PUBLIC === "1" });
     }
-    if (url.pathname === "/api/board" && req.method === "GET")  return boardList(url, req, env);
-    if (url.pathname === "/api/board" && req.method === "POST") return boardPost(req, env);
-    if (url.pathname === "/api/board/hide" && req.method === "POST") return boardHide(req, env);
+    if (url.pathname === "/api/board/threads" && req.method === "GET")  return threadList(url, req, env);
+    if (url.pathname === "/api/board/threads" && req.method === "POST") return threadCreate(req, env);
+    if (url.pathname === "/api/board/thread"  && req.method === "GET")  return threadShow(url, req, env);
+    if (url.pathname === "/api/board/posts"   && req.method === "POST") return postCreate(req, env);
+    if (url.pathname === "/api/board/hide"    && req.method === "POST") return boardHide(req, env);
 
     // 手動/初回: 30件ずつ購読(RUN_KEY で保護)。全部やるには数回叩くか、cronに任せる
     if (url.pathname === "/subscribe" && url.searchParams.get("key") === env.RUN_KEY) {
@@ -85,7 +90,6 @@ export default {
       return new Response("dispatched: HTTP " + r.status, { status: 200 });
     }
 
-    if (req.method === "OPTIONS") return json({}, 204);   // CORS プリフライト
     return new Response("ok");
   }
 };
@@ -247,33 +251,35 @@ function decode(s) {
   return s.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&")
           .replace(/&quot;/g, '"').replace(/&#39;/g, "'");
 }
+const CORS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type,X-Board-Key",
+  "Access-Control-Max-Age": "86400"
+};
 function json(o, status = 200) {
-  return new Response(JSON.stringify(o), {
-    status,
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type,X-Board-Key",
-      "Access-Control-Max-Age": "86400"
-    }
-  });
+  return new Response(JSON.stringify(o), { status, headers: { "Content-Type": "application/json", ...CORS } });
 }
 
-/* ================= 掲示板(board) ================= */
+/* ================= 掲示板(board): スレッド + レス形式 ================= */
 /* 必要な設定:
- *   D1 binding : DB           (テーブル comments)
+ *   D1 binding : DB
  *   Variables  : BOARD_PUBLIC = "1" で全体公開(未設定/その他は非公開=管理者のみ)
  *   Secrets    : BOARD_KEY    (管理キー。閲覧解錠・投稿・モデレーション)
- *                SALT         (IPハッシュ用の塩。任意だが推奨)
+ *                SALT         (IPハッシュ / 日替りID用の塩。推奨)
  *                TURNSTILE_SECRET (任意。設定すると一般投稿にCAPTCHA必須)
  *   D1 スキーマ:
- *     CREATE TABLE IF NOT EXISTS comments(
- *       id INTEGER PRIMARY KEY AUTOINCREMENT, board TEXT NOT NULL, name TEXT NOT NULL,
- *       body TEXT NOT NULL, created INTEGER NOT NULL, ip_hash TEXT, hidden INTEGER DEFAULT 0);
- *     CREATE INDEX IF NOT EXISTS idx_board ON comments(board, id);
+ *     CREATE TABLE IF NOT EXISTS threads(
+ *       id INTEGER PRIMARY KEY AUTOINCREMENT, board TEXT NOT NULL, title TEXT NOT NULL,
+ *       created INTEGER NOT NULL, bumped INTEGER NOT NULL, posts INTEGER NOT NULL DEFAULT 1,
+ *       ip_hash TEXT, hidden INTEGER DEFAULT 0);
+ *     CREATE INDEX IF NOT EXISTS idx_threads ON threads(board, bumped);
+ *     CREATE TABLE IF NOT EXISTS posts(
+ *       id INTEGER PRIMARY KEY AUTOINCREMENT, thread_id INTEGER NOT NULL, no INTEGER NOT NULL,
+ *       name TEXT NOT NULL, body TEXT NOT NULL, uid TEXT, created INTEGER NOT NULL,
+ *       ip_hash TEXT, hidden INTEGER DEFAULT 0);
+ *     CREATE INDEX IF NOT EXISTS idx_posts ON posts(thread_id, no);
  */
-const BOARD_OK = /^[a-z0-9_-]{1,32}$/i;
 function isAdmin(req, env) {
   const k = req.headers.get("X-Board-Key") || "";
   return !!(env.BOARD_KEY && k && k === env.BOARD_KEY);
@@ -282,54 +288,110 @@ async function sha(s) {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
   return [...new Uint8Array(buf)].map((x) => x.toString(16).padStart(2, "0")).join("").slice(0, 32);
 }
-async function boardList(url, req, env) {
-  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
-  const pub = env.BOARD_PUBLIC === "1", admin = isAdmin(req, env);
-  if (!pub && !admin) return json({ error: "private" }, 403);
-  const board = url.searchParams.get("board") || "general";
-  if (!BOARD_OK.test(board)) return json({ error: "bad_board" }, 400);
-  const sql = admin
-    ? "SELECT id,name,body,created,hidden FROM comments WHERE board=?1 ORDER BY id DESC LIMIT 200"
-    : "SELECT id,name,body,created,hidden FROM comments WHERE board=?1 AND hidden=0 ORDER BY id DESC LIMIT 200";
-  const { results } = await env.DB.prepare(sql).bind(board).all();
-  return json({ public: pub, admin, items: results || [] });
+function ymdJST() {                        // 日替りID用の日付(JST)
+  const d = new Date(Date.now() + 9 * 3600e3);
+  return d.toISOString().slice(0, 10);
 }
-async function boardPost(req, env) {
-  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+function clean(s, max) { return String(s == null ? "" : s).replace(/\r\n/g, "\n").trim().slice(0, max); }
+async function guard(req, env, { write, cost = 20 }) {
+  // 閲覧/投稿の共通ガード。戻り値: {admin} または {err, status}
+  if (!env.DB) return { err: "db_unconfigured", status: 503 };
   const pub = env.BOARD_PUBLIC === "1", admin = isAdmin(req, env);
-  if (!pub && !admin) return json({ error: "private" }, 403);
-  let b;
-  try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
-  const board = b.board || "general";
-  if (!BOARD_OK.test(board)) return json({ error: "bad_board" }, 400);
-  let name = String(b.name || "").trim().replace(/\s+/g, " ").slice(0, 24) || "名無し";
-  let body = String(b.body || "").trim();
-  if (!body) return json({ error: "empty" }, 400);
-  if (body.length > 1000) body = body.slice(0, 1000);
+  if (!pub && !admin) return { err: "private", status: 403 };
+  return { admin, pub };
+}
+async function rateLimit(req, env, tag, ttl) {
   const ip = req.headers.get("CF-Connecting-IP") || "0";
-  if (!admin) {
-    const rlKey = "rl:" + (await sha(ip + "|" + board));
-    if (await env.PBERS_KV.get(rlKey)) return json({ error: "too_fast" }, 429);
-    if (env.TURNSTILE_SECRET) {
-      const ok = await verifyTurnstile(b.token, ip, env);
-      if (!ok) return json({ error: "captcha" }, 400);
-    }
-    await env.PBERS_KV.put(rlKey, "1", { expirationTtl: 20 });
+  const key = "rl:" + tag + ":" + (await sha(ip));
+  if (await env.PBERS_KV.get(key)) return false;
+  await env.PBERS_KV.put(key, "1", { expirationTtl: ttl });
+  return true;
+}
+
+async function threadList(url, req, env) {
+  const g = await guard(req, env, {}); if (g.err) return json({ error: g.err }, g.status);
+  const board = "general";
+  const sql = g.admin
+    ? "SELECT id,title,created,bumped,posts,hidden FROM threads WHERE board=?1 ORDER BY bumped DESC LIMIT 200"
+    : "SELECT id,title,created,bumped,posts,hidden FROM threads WHERE board=?1 AND hidden=0 ORDER BY bumped DESC LIMIT 200";
+  const { results } = await env.DB.prepare(sql).bind(board).all();
+  return json({ public: g.pub, admin: g.admin, threads: results || [] });
+}
+async function threadShow(url, req, env) {
+  const g = await guard(req, env, {}); if (g.err) return json({ error: g.err }, g.status);
+  const id = parseInt(url.searchParams.get("id"), 10);
+  if (!id) return json({ error: "bad_id" }, 400);
+  const th = await env.DB.prepare("SELECT id,title,created,bumped,posts,hidden FROM threads WHERE id=?1").bind(id).first();
+  if (!th || (th.hidden && !g.admin)) return json({ error: "not_found" }, 404);
+  const sql = g.admin
+    ? "SELECT no,name,body,uid,created,hidden FROM posts WHERE thread_id=?1 ORDER BY no ASC LIMIT 1000"
+    : "SELECT no,name,body,uid,created,hidden FROM posts WHERE thread_id=?1 AND hidden=0 ORDER BY no ASC LIMIT 1000";
+  const { results } = await env.DB.prepare(sql).bind(id).all();
+  return json({ public: g.pub, admin: g.admin, thread: th, posts: results || [] });
+}
+async function threadCreate(req, env) {
+  const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
+  let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
+  const title = clean(b.title, 60);
+  const body = clean(b.body, 2000);
+  if (!title) return json({ error: "no_title" }, 400);
+  if (!body) return json({ error: "empty" }, 400);
+  const name = clean(b.name, 24) || "名無し";
+  const ip = req.headers.get("CF-Connecting-IP") || "0";
+  if (!g.admin) {
+    if (env.TURNSTILE_SECRET && !(await verifyTurnstile(b.token, ip, env))) return json({ error: "captcha" }, 400);
+    if (!(await rateLimit(req, env, "th", 60))) return json({ error: "too_fast" }, 429);
   }
   const iph = await sha(ip + "|" + (env.SALT || "pbers"));
-  await env.DB.prepare("INSERT INTO comments(board,name,body,created,ip_hash,hidden) VALUES(?1,?2,?3,?4,?5,0)")
-    .bind(board, name, body, Date.now(), iph).run();
-  return json({ ok: true });
+  const uid = (await sha(ip + "|" + ymdJST() + "|" + (env.SALT || "pbers"))).slice(0, 6);
+  const now = Date.now();
+  const r = await env.DB.prepare(
+    "INSERT INTO threads(board,title,created,bumped,posts,ip_hash,hidden) VALUES('general',?1,?2,?2,1,?3,0)")
+    .bind(title, now, iph).run();
+  const tid = r.meta.last_row_id;
+  await env.DB.prepare(
+    "INSERT INTO posts(thread_id,no,name,body,uid,created,ip_hash,hidden) VALUES(?1,1,?2,?3,?4,?5,?6,0)")
+    .bind(tid, name, body, uid, now, iph).run();
+  return json({ ok: true, id: tid });
+}
+async function postCreate(req, env) {
+  const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
+  let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
+  const tid = parseInt(b.thread, 10);
+  const body = clean(b.body, 2000);
+  if (!tid) return json({ error: "bad_id" }, 400);
+  if (!body) return json({ error: "empty" }, 400);
+  const name = clean(b.name, 24) || "名無し";
+  const th = await env.DB.prepare("SELECT id,posts,hidden FROM threads WHERE id=?1").bind(tid).first();
+  if (!th || th.hidden) return json({ error: "not_found" }, 404);
+  const ip = req.headers.get("CF-Connecting-IP") || "0";
+  if (!g.admin) {
+    if (env.TURNSTILE_SECRET && !(await verifyTurnstile(b.token, ip, env))) return json({ error: "captcha" }, 400);
+    if (!(await rateLimit(req, env, "po", 15))) return json({ error: "too_fast" }, 429);
+  }
+  const iph = await sha(ip + "|" + (env.SALT || "pbers"));
+  const uid = (await sha(ip + "|" + ymdJST() + "|" + (env.SALT || "pbers"))).slice(0, 6);
+  const now = Date.now();
+  const no = (th.posts || 1) + 1;
+  await env.DB.prepare(
+    "INSERT INTO posts(thread_id,no,name,body,uid,created,ip_hash,hidden) VALUES(?1,?2,?3,?4,?5,?6,?7,0)")
+    .bind(tid, no, name, body, uid, now, iph).run();
+  await env.DB.prepare("UPDATE threads SET posts=?2, bumped=?3 WHERE id=?1").bind(tid, no, now).run();
+  return json({ ok: true, no });
 }
 async function boardHide(req, env) {
   if (!env.DB) return json({ error: "db_unconfigured" }, 503);
   if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
-  let b;
-  try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
-  const id = parseInt(b.id, 10);
-  if (!id) return json({ error: "bad_id" }, 400);
+  let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
   const hide = b.hide === false ? 0 : 1;
-  await env.DB.prepare("UPDATE comments SET hidden=?2 WHERE id=?1").bind(id, hide).run();
+  if (b.kind === "thread") {
+    const id = parseInt(b.id, 10); if (!id) return json({ error: "bad_id" }, 400);
+    await env.DB.prepare("UPDATE threads SET hidden=?2 WHERE id=?1").bind(id, hide).run();
+  } else {                                   // レス1件を非表示(thread_id + no で指定)
+    const tid = parseInt(b.thread, 10), no = parseInt(b.no, 10);
+    if (!tid || !no) return json({ error: "bad_id" }, 400);
+    await env.DB.prepare("UPDATE posts SET hidden=?3 WHERE thread_id=?1 AND no=?2").bind(tid, no, hide).run();
+  }
   return json({ ok: true });
 }
 async function verifyTurnstile(token, ip, env) {

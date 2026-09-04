@@ -1535,17 +1535,17 @@ window.PBERS_NEWS = [
         "count": 2,
         "opps": [
           {
-            "name": "みすい",
-            "color": "#873ecc",
-            "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj"
-          },
-          {
             "name": "日帝ボール",
             "color": "#793ecc",
             "avatar": "https://yt3.googleusercontent.com/xXeQaK6fg2pfljWrgaMI_wG8G9HGyAgb8G_W1BU67gH5NiOQRd7-4wK7PdQlOFRUPCQKvjVHBuQ=s900-c-k-c0x00ffffff-no-rj"
+          },
+          {
+            "name": "みすい",
+            "color": "#873ecc",
+            "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
-        "label": "投稿数で 二枚抜き（みすい・日帝ボール を追い越し）",
+        "label": "投稿数で 二枚抜き（日帝ボール・みすい を追い越し）",
         "value": 27
       },
       {

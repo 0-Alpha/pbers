@@ -689,34 +689,54 @@ footer .brand{font-size:16px}
 .doc-page .doc-back{display:inline-block;color:var(--muted);font-size:13px;font-weight:600;margin-bottom:18px}
 .doc-page .doc-back:hover{color:var(--text);text-decoration:none}
 
-/* ---------- board (掲示板) ---------- */
-.board-note{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.7}
-.board-form{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 14px 12px;margin-bottom:26px}
-.bf-row{display:flex;align-items:center;gap:12px;margin-bottom:9px}
-.bf-name{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line-2);border-radius:9px;padding:9px 12px;
-  color:var(--text);font-family:var(--jp);font-size:13.5px}
-.bf-name:focus{outline:none;border-color:var(--muted)}
-.bf-count{font-family:var(--num);font-weight:700;font-size:11.5px;color:var(--muted-2);flex:none}
-.bf-body{width:100%;background:var(--bg);border:1px solid var(--line-2);border-radius:9px;padding:11px 12px;
-  color:var(--text);font-family:var(--jp);font-size:14px;line-height:1.6;resize:vertical;min-height:70px}
-.bf-body:focus{outline:none;border-color:var(--muted)}
-.bf-actions{display:flex;align-items:center;justify-content:flex-end;gap:14px;margin-top:10px}
+/* ---------- board (掲示板: スレッド+レス) ---------- */
+.board-note{font-size:13px;color:var(--muted);margin-bottom:18px;line-height:1.7}
+.board-empty{color:var(--muted);font-size:14px;padding:14px 0}
+/* 投稿フォーム(スレ作成・返信 共通) */
+.bt-new,.bt-reply{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:24px;
+  display:flex;flex-direction:column;gap:9px}
+.bt-reply{margin-top:24px;margin-bottom:0}
+.bt-new-h{font-family:var(--jp);font-weight:800;font-size:14px;color:var(--text);margin-bottom:2px}
+.bf-in{width:100%;background:var(--bg);border:1px solid var(--line-2);border-radius:9px;padding:10px 12px;
+  color:var(--text);font-family:var(--jp);font-size:14px;line-height:1.6}
+.bf-in:focus{outline:none;border-color:var(--muted)}
+.bf-name{max-width:220px}
+.bf-body{resize:vertical;min-height:74px}
+.bf-actions{display:flex;align-items:center;justify-content:flex-end;gap:14px}
 .bf-msg{font-family:var(--jp);font-weight:700;font-size:12.5px;color:var(--muted);margin-right:auto}
 .bf-send{border:0;background:var(--red);color:#fff;font-family:var(--jp);font-weight:800;font-size:14px;
   padding:10px 22px;border-radius:999px;cursor:pointer;transition:background .16s}
 .bf-send:hover{background:#c33}
 .bf-send:disabled{opacity:.5;cursor:default}
-.board-list{display:flex;flex-direction:column;gap:12px}
-.board-empty{color:var(--muted);font-size:14px;padding:14px 0}
-.bc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+/* スレッド一覧 */
+.board-list{display:flex;flex-direction:column;gap:10px}
+.th{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  transition:border-color .16s,transform .16s}
+.th:hover{border-color:var(--line-2);transform:translateY(-1px)}
+.th-main{flex:1;min-width:0;padding:13px 15px;cursor:pointer}
+.th-title{font-family:var(--jp);font-weight:800;font-size:15px;color:var(--text);line-height:1.4;word-break:break-word}
+.th-meta{font-family:var(--jp);font-size:12px;color:var(--muted);margin-top:4px}
+.th-meta .num{color:var(--text);font-weight:800}
 .bc-off{opacity:.5}
-.bc-head{display:flex;align-items:center;gap:12px;margin-bottom:7px}
-.bc-name{font-family:var(--jp);font-weight:800;font-size:13.5px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.bc-time{font-family:var(--num);font-weight:700;font-size:11.5px;color:var(--muted-2)}
-.bc-hide{margin-left:auto;border:1px solid var(--line-2);background:transparent;color:var(--muted);
-  font-family:var(--jp);font-weight:700;font-size:11px;padding:3px 10px;border-radius:999px;cursor:pointer}
+.bc-hide{align-self:flex-start;margin:11px 12px 0 0;border:1px solid var(--line-2);background:transparent;color:var(--muted);
+  font-family:var(--jp);font-weight:700;font-size:11px;padding:3px 10px;border-radius:999px;cursor:pointer;flex:none}
 .bc-hide:hover{color:var(--text);border-color:var(--muted)}
-.bc-body{font-family:var(--jp);font-size:14px;line-height:1.7;color:var(--text);word-break:break-word;white-space:pre-wrap}
+/* スレッド詳細 */
+.th-back{border:1px solid var(--line);background:var(--panel);color:var(--muted);font-family:var(--jp);font-weight:700;
+  font-size:13px;padding:8px 15px;border-radius:999px;cursor:pointer;margin-bottom:16px}
+.th-back:hover{color:var(--text);border-color:var(--line-2)}
+.th-h{font-family:var(--jp);font-weight:900;font-size:clamp(19px,3.4vw,24px);color:var(--text);line-height:1.4;
+  margin-bottom:18px;word-break:break-word}
+.posts{display:flex;flex-direction:column;gap:2px}
+.post{padding:12px 2px;border-top:1px solid var(--line)}
+.post:first-child{border-top:0}
+.post-head{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin-bottom:6px}
+.post-no{font-family:var(--num);font-weight:900;font-size:13px;color:var(--red)}
+.post-name{font-family:var(--jp);font-weight:800;font-size:13px;color:var(--text)}
+.post-id{font-family:var(--num);font-weight:700;font-size:11px;color:var(--muted-2)}
+.post-time{font-family:var(--num);font-weight:700;font-size:11px;color:var(--muted-2)}
+.post .bc-hide{margin:0 0 0 auto}
+.post-body{font-family:var(--jp);font-size:14.5px;line-height:1.75;color:var(--text);word-break:break-word;white-space:pre-wrap}
 
 @media(max-width:760px){
   .topbar nav{display:none}
