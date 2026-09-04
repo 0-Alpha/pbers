@@ -40,9 +40,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "áíš!aispoaporu",
-    "subs": 136000,
+    "subs": 137000,
     "views": 93064745,
-    "subsLabel": "チャンネル登録者数 13.6万人",
+    "subsLabel": "チャンネル登録者数 13.7万人",
     "viewsLabel": "93,064,745回視聴",
     "videos": 1046,
     "url": "https://www.youtube.com/channel/UC1swbrz9S2VKVABS673ACgQ",
@@ -105,9 +105,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dotto edit",
-    "subs": 9730,
+    "subs": 9740,
     "views": 6900851,
-    "subsLabel": "チャンネル登録者数 9730人",
+    "subsLabel": "チャンネル登録者数 9740人",
     "viewsLabel": "6,900,851回視聴",
     "videos": 61,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
@@ -171,4 +171,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-04";
-window.PBERS_PREDICT = {"asOfMs": 1788490800000, "subs": {"base": 1183040, "rate": 1.991405547362644e-05}, "views": {"base": 494382948, "rate": 0.00589274642922224}};
+window.PBERS_PREDICT = {"asOfMs": 1788490800000, "subs": {"base": 1184050, "rate": 1.991405547362644e-05}, "views": {"base": 494382948, "rate": 0.00589274642922224}};
