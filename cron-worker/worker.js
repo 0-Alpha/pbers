@@ -20,12 +20,13 @@ const FEED_MAX = 100;      // feedに保持する最大件数(投稿順タイム
 export default {
   async scheduled(event, env, ctx) {
     ctx.waitUntil((async () => {
-      await dispatch(env);         // 統計取得(既存)
-      await subscribeBatch(env);   // 購読のリース更新(1回30件ずつ、cursorで巡回)
+      try { await dispatch(env); } catch (e) {}         // 統計取得(既存)
+      try { await subscribeBatch(env); } catch (e) {}   // 購読のリース更新(1回30件ずつ、cursorで巡回)
     })());
   },
 
   async fetch(req, env) {
+   try {
     const url = new URL(req.url);
 
     // CORS プリフライト(最優先・空ボディの204で返す。204にボディを付けるとWorkerが例外になる)
@@ -91,6 +92,12 @@ export default {
     }
 
     return new Response("ok");
+   } catch (e) {
+    // どんな例外も表に出さない安全網(ダッシュボードの"uncaught exception"を防ぐ)。
+    // /yt は再送ループ回避のため2xxで返し、それ以外はCORS付きの500 JSONを返す。
+    try { if (new URL(req.url).pathname === "/yt") return new Response("", { status: 204 }); } catch (_) {}
+    return json({ error: "server_error" }, 500);
+   }
   }
 };
 
