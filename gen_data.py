@@ -333,7 +333,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250915">
+<link rel="stylesheet" href="/assets/style.css?v=250916">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -352,7 +352,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250915"></script>
+<script src="/assets/channel.js?v=250916"></script>
 </body>
 </html>
 '''
@@ -406,8 +406,15 @@ def ch_header_html(d, videos, rank, total, esc, bytype_html=""):
           '<button class="tg on" data-gm="subs">登録者</button>'
           '<button class="tg" data-gm="views">総再生数</button>'
           '<button class="tg" data-gm="videos">投稿数</button>'
-          '<span class="tg-ind" id="ch-tind"></span></div></div>'
+          '<span class="tg-ind" id="ch-tind"></span></div>'
+          '<div class="ch-range" id="ch-range">'
+            '<button class="rg" data-days="7">1週間</button>'
+            '<button class="rg" data-days="30">1ヶ月</button>'
+            '<button class="rg on" data-days="all">全期間</button>'
+          '</div></div>'
         '<div class="trend" id="ch-chart"></div>'
+        '<div class="ch-nums-wrap"><button type="button" class="ch-nums-btn" id="ch-nums-btn">数値で見る ▾</button>'
+          '<div class="ch-nums" id="ch-nums" hidden></div></div>'
     )
 
 def load_bytype():

@@ -2,6 +2,13 @@
 (function () {
   var CH = window.CH || {}, H = window.CH_HISTORY || { dates: [] };
   var gm = 'subs';
+  var chRange = 'all';   // 表示期間: '7' / '30' / 'all'
+  function inRange(pts) {   // 直近 N 日に絞る(pts は昇順・{d,...})
+    if (chRange === 'all' || !pts.length) return pts;
+    var days = +chRange, last = new Date(dayOf(pts[pts.length - 1].d));
+    var cut = new Date(last); cut.setDate(cut.getDate() - (days - 1));
+    return pts.filter(function (p) { return new Date(dayOf(p.d)) >= cut; });
+  }
   var UNIT = { subs: '人', views: '回', videos: '本' };
   var WORD = { subs: '登録者数', views: '総再生数', videos: '投稿数' };
   var COLOR = { subs: '#33bb74', views: '#9b7bff', videos: '#eba864' };
@@ -38,7 +45,8 @@
     // drop leading nulls (channel may hide a metric)
     var pts = [];
     for (var i = 0; i < dates.length; i++) if (vals[i] != null) pts.push({ d: dates[i], v: vals[i] });
-    if (pts.length < 1) { host.innerHTML = '<div class="t-empty">まだ推移データがありません（記録が増えると表示されます）。</div>'; if (note) note.textContent = ''; return; }
+    pts = inRange(pts);   // 選択期間に絞る
+    if (pts.length < 1) { host.innerHTML = '<div class="t-empty">この期間の記録はまだありません。</div>'; if (note) note.textContent = ''; return; }
     if (note) { var dset = {}; pts.forEach(function (p) { dset[dayOf(p.d)] = 1; }); note.textContent = Object.keys(dset).length + '日分（' + shortDate(pts[0].d) + '〜' + shortDate(pts[pts.length - 1].d) + '）'; }
     var W = Math.max(300, (host.clientWidth || 720) - 28), Hh = 240, padL = 54, padR = 16, padT = 18, padB = 30;
     var iW = W - padL - padR, iH = Hh - padT - padB, n = pts.length;
@@ -62,7 +70,33 @@
   // toggle
   var tabs = [].slice.call(document.querySelectorAll('#ch-toggle .tg'));
   function moveInd() { var on = document.querySelector('#ch-toggle .tg.on'), ind = document.getElementById('ch-tind'); if (on && ind) { ind.style.left = on.offsetLeft + 'px'; ind.style.width = on.offsetWidth + 'px'; } }
-  tabs.forEach(function (b) { b.addEventListener('click', function () { if (b.dataset.gm === gm) return; gm = b.dataset.gm; tabs.forEach(function (x) { x.classList.toggle('on', x === b); }); moveInd(); renderChart(); }); });
+  tabs.forEach(function (b) { b.addEventListener('click', function () { if (b.dataset.gm === gm) return; gm = b.dataset.gm; tabs.forEach(function (x) { x.classList.toggle('on', x === b); }); moveInd(); renderChart(); if (numsOpen) renderNums(); }); });
+
+  // 期間切替(1週間 / 1ヶ月 / 全期間)
+  var rgs = [].slice.call(document.querySelectorAll('#ch-range .rg'));
+  rgs.forEach(function (b) { b.addEventListener('click', function () { if (b.dataset.days === chRange) return; chRange = b.dataset.days; rgs.forEach(function (x) { x.classList.toggle('on', x === b); }); renderChart(); if (numsOpen) renderNums(); }); });
+
+  // 過去の実数値テーブル(日付 + 登録者/総再生/投稿。選択期間に連動・新しい順)
+  var numsOpen = false;
+  function renderNums() {
+    var host = document.getElementById('ch-nums'); if (!host) return;
+    var dates = H.dates || [], rows = [];
+    for (var i = 0; i < dates.length; i++) rows.push({ d: dates[i], subs: (H.subs || [])[i], views: (H.views || [])[i], videos: (H.videos || [])[i] });
+    rows = inRange(rows).slice().reverse();   // 新しい順
+    if (!rows.length) { host.innerHTML = '<div class="t-empty">この期間の記録はまだありません。</div>'; return; }
+    var html = '<table class="ch-table"><thead><tr><th>日付</th><th>登録者</th><th>総再生数</th><th>投稿</th></tr></thead><tbody>';
+    rows.forEach(function (r) {
+      html += '<tr><td>' + esc(shortDate(r.d)) + '</td><td class="num">' + fmt(r.subs) + '</td><td class="num">' + fmt(r.views) + '</td><td class="num">' + fmt(r.videos) + '</td></tr>';
+    });
+    host.innerHTML = html + '</tbody></table>';
+  }
+  var numsBtn = document.getElementById('ch-nums-btn');
+  if (numsBtn) numsBtn.addEventListener('click', function () {
+    numsOpen = !numsOpen;
+    var host = document.getElementById('ch-nums'); if (host) host.hidden = !numsOpen;
+    numsBtn.textContent = numsOpen ? '数値を隠す ▴' : '数値で見る ▾';
+    if (numsOpen) renderNums();
+  });
 
   // share
   var shareUrl = location.origin + location.pathname;
