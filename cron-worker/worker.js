@@ -307,11 +307,14 @@ async function guard(req, env, { write, cost = 20 }) {
   if (!pub && !admin) return { err: "private", status: 403 };
   return { admin, pub };
 }
-async function rateLimit(req, env, tag, ttl) {
+async function rateLimit(req, env, tag, seconds) {
+  // KVのexpirationTTLは最低60秒。15秒等の短い制限も出せるよう「最終投稿時刻」を保存して経過で判定。
   const ip = req.headers.get("CF-Connecting-IP") || "0";
   const key = "rl:" + tag + ":" + (await sha(ip));
-  if (await env.PBERS_KV.get(key)) return false;
-  await env.PBERS_KV.put(key, "1", { expirationTtl: ttl });
+  const prev = await env.PBERS_KV.get(key);
+  const now = Date.now();
+  if (prev && now - parseInt(prev, 10) < seconds * 1000) return false;
+  await env.PBERS_KV.put(key, String(now), { expirationTtl: Math.max(60, seconds) });
   return true;
 }
 
