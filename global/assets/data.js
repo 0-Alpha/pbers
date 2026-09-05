@@ -15,9 +15,9 @@ window.PBERS_DATA = [
   {
     "name": "Moonball_PB",
     "subs": 214000,
-    "views": 37411938,
+    "views": 37476489,
     "subsLabel": "チャンネル登録者数 21.4万人",
-    "viewsLabel": "37,411,938回視聴",
+    "viewsLabel": "37,476,489回視聴",
     "videos": 32,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
     "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
@@ -79,9 +79,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-    "subs": 115000,
+    "subs": 116000,
     "views": 47147950,
-    "subsLabel": "チャンネル登録者数 11.5万人",
+    "subsLabel": "チャンネル登録者数 11.6万人",
     "viewsLabel": "47,147,950回視聴",
     "videos": 254,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
@@ -93,9 +93,9 @@ window.PBERS_DATA = [
   {
     "name": "F丸",
     "subs": 33200,
-    "views": 28824530,
+    "views": 28846566,
     "subsLabel": "チャンネル登録者数 3.32万人",
-    "viewsLabel": "28,824,530回視聴",
+    "viewsLabel": "28,846,566回視聴",
     "videos": 89,
     "url": "https://www.youtube.com/channel/UCEJRQBqXi3z3UXnHdueIvJg",
     "avatar": "https://yt3.googleusercontent.com/PR6RDCc4I4mjNrUI-SNf6aFe77FFIuoEua4QgudGPAb0lNYAGsa96UnB3RMulCGlC6qHfzUxlrI=s900-c-k-c0x00ffffff-no-rj",
@@ -158,9 +158,9 @@ window.PBERS_DATA = [
   {
     "name": "Past_Ball",
     "subs": 7660,
-    "views": 3498806,
+    "views": 3500279,
     "subsLabel": "チャンネル登録者数 7660人",
-    "viewsLabel": "3,498,806回視聴",
+    "viewsLabel": "3,500,279回視聴",
     "videos": 212,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
     "avatar": "https://yt3.googleusercontent.com/r8ouoXMX9iar1cjJgX7u1yaZn1Eis8ZAzmdIhpoYUYTiTUl39uZ8KU81zZBYtSr-Gs2TCuga=s900-c-k-c0x00ffffff-no-rj",
@@ -184,9 +184,9 @@ window.PBERS_DATA = [
   {
     "name": "AST.アオスト Polandball",
     "subs": 3580,
-    "views": 1724907,
+    "views": 1725446,
     "subsLabel": "チャンネル登録者数 3580人",
-    "viewsLabel": "1,724,907回視聴",
+    "viewsLabel": "1,725,446回視聴",
     "videos": 32,
     "url": "https://www.youtube.com/channel/UC0oyndW7j5GS5NIb8ww7cxw",
     "avatar": "https://yt3.googleusercontent.com/nXoBfvWS9QqvvLPBMax19Sflx1CZUnM7Yuwg1UKcJoinUoQca69gdhzMRdk9SiC-VMDw-46JkYI=s900-c-k-c0x00ffffff-no-rj",
@@ -210,4 +210,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-05";
-window.PBERS_PREDICT = {"asOfMs": 1788598800000, "subs": {"base": 1505420, "rate": 1.94353340936093e-05}, "views": {"base": 664721424, "rate": 0.012568018388648365}};
+window.PBERS_PREDICT = {"asOfMs": 1788620400000, "subs": {"base": 1506420, "rate": 2.689529050963173e-05}, "views": {"base": 664810023, "rate": 0.010241764518466874}};
