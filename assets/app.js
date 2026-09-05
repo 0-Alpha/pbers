@@ -947,6 +947,20 @@
     if (location.pathname + location.search !== u) history.pushState({ view: 'board' }, '', u);
     renderBoard();
   }
+  // 自分のスレ/レスに新着返信が付いたら知らせる(匿名なのでlocalStorageで「自分が関わったスレ」を記憶)
+  var boardThreadsCache = [];
+  function myThreads() { try { return JSON.parse(localStorage.getItem('pbers_my_threads') || '{}'); } catch (e) { return {}; } }
+  function saveMyThreads(o) { try { localStorage.setItem('pbers_my_threads', JSON.stringify(o)); } catch (e) {} }
+  function markMine(id, seenPosts) { var m = myThreads(); m[id] = { seen: seenPosts }; saveMyThreads(m); }
+  function seenThread(id, posts) { var m = myThreads(); if (m[id]) { m[id].seen = posts; saveMyThreads(m); } }   // 閲覧=既読化
+  function newFor(id, posts) { var m = myThreads(); return m[id] ? Math.max(0, (posts || 0) - (m[id].seen || 0)) : 0; }
+  function countNew(threads) { var t = 0; (threads || []).forEach(function (x) { t += newFor(x.id, x.posts); }); return t; }
+  function updateBoardBadge(n) {
+    var tab = document.getElementById('tab-board'); if (!tab) return;
+    var b = tab.querySelector('.tab-badge');
+    if (n > 0) { if (!b) { b = document.createElement('span'); b.className = 'tab-badge'; tab.appendChild(b); } b.textContent = n > 99 ? '99+' : n; }
+    else if (b) { b.remove(); }
+  }
   function wireHide(scope) {
     scope.querySelectorAll('.bc-hide').forEach(function (b) {
       b.addEventListener('click', function (e) {
@@ -993,17 +1007,19 @@
         body: JSON.stringify({ title: title, name: name, body: body, token: tsNew.get() }) })
         .then(function (r) { return r.json(); }).then(function (d) {
           send.disabled = false; tsNew.reset();
-          if (d.ok) { saveBoardName(name); boardGo(d.id); } else msg.textContent = boardErr(d.error);
+          if (d.ok) { saveBoardName(name); markMine(d.id, 1); boardGo(d.id); } else msg.textContent = boardErr(d.error);
         }).catch(function () { send.disabled = false; tsNew.reset(); msg.textContent = '送信に失敗しました'; });
     });
     var box = document.getElementById('board-threads');
     fetch(boardApi('/threads'), { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
       if (d.error) { box.innerHTML = '<div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; return; }
       var ths = d.threads || [];
+      boardThreadsCache = ths; updateBoardBadge(countNew(ths));
       if (!ths.length) { box.innerHTML = '<div class="board-empty">まだスレッドがありません。最初のスレッドを立ててみよう。</div>'; return; }
       box.innerHTML = ths.map(function (t) {
+        var nn = newFor(t.id, t.posts);
         return '<div class="th' + (t.hidden ? ' bc-off' : '') + '" data-id="' + t.id + '">' +
-          '<div class="th-main"><div class="th-title">' + esc(t.title) + '</div>' +
+          '<div class="th-main"><div class="th-title">' + esc(t.title) + (nn > 0 ? ' <span class="th-new">新着' + nn + '</span>' : '') + '</div>' +
             '<div class="th-meta"><span class="num">' + t.posts + '</span> レス ・ 最終 ' + bWhen(t.bumped) + '</div></div>' +
           (boardKey ? '<button type="button" class="bc-hide" data-k="thread" data-id="' + t.id + '" data-h="' + (t.hidden ? 0 : 1) + '">' + (t.hidden ? '表示' : '非表示') + '</button>' : '') +
         '</div>';
@@ -1048,6 +1064,8 @@
     fetch(boardApi('/thread') + '?id=' + id, { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
       if (d.error) { host.innerHTML = '<button class="th-back">← スレ一覧</button><div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; back(); return; }
       var posts = d.posts || [];
+      seenThread(id, d.thread.posts);                         // 閲覧=このスレは既読に
+      updateBoardBadge(countNew(boardThreadsCache));          // タブの新着バッジを更新
       host.innerHTML = '<button class="th-back">← スレ一覧</button>' +
         '<h3 class="th-h">' + esc(d.thread.title) + '</h3>' +
         '<div class="posts">' + posts.map(function (p) {
@@ -1106,7 +1124,8 @@
           body: JSON.stringify({ thread: id, name: name, body: body, token: tsRep.get() }) })
           .then(function (r) { return r.json(); }).then(function (d2) {
             send.disabled = false; tsRep.reset();
-            if (d2.ok) { saveBoardName(name); renderThread(host, id); } else msg.textContent = boardErr(d2.error);
+            if (d2.ok) { saveBoardName(name); if (!myThreads()[id]) markMine(id, 0); renderThread(host, id); }   // 返信したスレも自分のスレとして追跡
+            else msg.textContent = boardErr(d2.error);
           }).catch(function () { send.disabled = false; tsRep.reset(); msg.textContent = '送信に失敗しました'; });
       });
     }).catch(function () { host.innerHTML = '<button class="th-back">← スレ一覧</button><div class="board-empty">読み込みに失敗しました。</div>'; back(); });
@@ -1132,6 +1151,11 @@
       tsLoad();   // 公開・非管理者ならTurnstileスクリプトを読み込む
       if (boardEnabled && tabBtn) tabBtn.hidden = false;
       renderDashBoard();   // 公開中ならダッシュボードに新着スレッドを表示
+      // 自分が関わったスレがあれば、読込時に新着返信を背後でチェックしてタブにバッジを出す
+      if (boardEnabled && Object.keys(myThreads()).length) {
+        fetch(boardApi('/threads'), { headers: boardHeaders() }).then(function (r) { return r.json(); })
+          .then(function (d) { boardThreadsCache = d.threads || []; updateBoardBadge(countNew(boardThreadsCache)); }).catch(function () {});
+      }
       if (boardEnabled && viewOf() === 'board' && currentView !== 'board') switchTab('board', true);
     }).catch(function () {});
   }
