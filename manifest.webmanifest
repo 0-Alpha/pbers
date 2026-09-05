@@ -1,0 +1,17 @@
+{
+  "name": "PBers — ポーランドボーラー分析",
+  "short_name": "PBers",
+  "description": "ポーランドボーラー(ポーランドボール系YouTube)の登録者数・再生数・投稿数のまとめ・ランキング・分析。毎日更新。",
+  "lang": "ja",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#151515",
+  "theme_color": "#151515",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -314,6 +314,11 @@ CH_TPL = '''<!doctype html>
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="{{SITE}}/c/{{SLUG}}/">
 <link rel="icon" type="image/png" href="/favicon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#151515">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PBers">
+<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="PBers">
 <meta property="og:title" content="{{TITLE}}｜登録者数・再生数まとめ｜PBers">
@@ -326,7 +331,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250913">
+<link rel="stylesheet" href="/assets/style.css?v=250914">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -344,7 +349,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250913"></script>
+<script src="/assets/channel.js?v=250914"></script>
 </body>
 </html>
 '''
