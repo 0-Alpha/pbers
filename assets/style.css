@@ -745,6 +745,15 @@ footer .brand{font-size:16px}
   padding:10px 22px;border-radius:999px;cursor:pointer;transition:background .16s}
 .bf-send:hover{background:#c33}
 .bf-send:disabled{opacity:.5;cursor:default}
+/* 検索 */
+.bd-search-wrap{position:relative;margin-bottom:16px}
+.bd-search{width:100%;padding-right:38px}
+.bd-sclear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:26px;height:26px;border:0;border-radius:50%;
+  background:var(--line-2);color:var(--text);font-size:15px;line-height:1;cursor:pointer}
+.bd-sclear:hover{background:var(--muted-2,var(--muted));color:#fff}
+.bd-sresult{font-family:var(--jp);font-weight:700;font-size:13px;color:var(--muted);margin-bottom:10px}
+.th-snip{font-family:var(--jp);font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.5;
+  overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 /* スレッド一覧 */
 .board-list{display:flex;flex-direction:column;gap:10px}
 .th{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:12px;

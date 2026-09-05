@@ -991,6 +991,8 @@
         '<div class="bf-actions"><span class="bf-msg" id="bt-msg"></span>' +
           '<button type="submit" class="bf-send" id="bt-send">スレッドを作成</button></div>' +
       '</form>' +
+      '<div class="bd-search-wrap"><input class="bf-in bd-search" id="bd-search" maxlength="100" placeholder="🔍 スレ・書き込みを検索">' +
+        '<button type="button" class="bd-sclear" id="bd-sclear" aria-label="クリア" hidden>×</button></div>' +
       '<div class="board-list" id="board-threads"><div class="board-empty">読み込み中…</div></div>';
     document.getElementById('bt-name').value = boardName();
     var tsNew = tsMount(document.getElementById('bt-new'));
@@ -1011,15 +1013,18 @@
         }).catch(function () { send.disabled = false; tsNew.reset(); msg.textContent = '送信に失敗しました'; });
     });
     var box = document.getElementById('board-threads');
-    fetch(boardApi('/threads'), { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
-      if (d.error) { box.innerHTML = '<div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; return; }
-      var ths = d.threads || [];
-      boardThreadsCache = ths; updateBoardBadge(countNew(ths));
-      if (!ths.length) { box.innerHTML = '<div class="board-empty">まだスレッドがありません。最初のスレッドを立ててみよう。</div>'; return; }
-      box.innerHTML = ths.map(function (t) {
+    function paint(ths, isSearch, q) {
+      if (!isSearch) { boardThreadsCache = ths; updateBoardBadge(countNew(ths)); }
+      if (!ths.length) {
+        box.innerHTML = '<div class="board-empty">' + (isSearch ? '「' + esc(q) + '」に一致するスレッドはありません。' : 'まだスレッドがありません。最初のスレッドを立ててみよう。') + '</div>';
+        return;
+      }
+      var head = isSearch ? '<div class="bd-sresult">「' + esc(q) + '」の結果 ' + ths.length + '件</div>' : '';
+      box.innerHTML = head + ths.map(function (t) {
         var nn = newFor(t.id, t.posts);
+        var sn = (isSearch && t.snippet) ? '<div class="th-snip">' + esc(String(t.snippet).slice(0, 80)) + (String(t.snippet).length > 80 ? '…' : '') + '</div>' : '';
         return '<div class="th' + (t.hidden ? ' bc-off' : '') + '" data-id="' + t.id + '">' +
-          '<div class="th-main"><div class="th-title">' + esc(t.title) + (nn > 0 ? ' <span class="th-new">新着' + nn + '</span>' : '') + '</div>' +
+          '<div class="th-main"><div class="th-title">' + esc(t.title) + (nn > 0 ? ' <span class="th-new">新着' + nn + '</span>' : '') + '</div>' + sn +
             '<div class="th-meta"><span class="num">' + t.posts + '</span> レス ・ 最終 ' + bWhen(t.bumped) + '</div></div>' +
           (boardKey ? '<button type="button" class="bc-hide" data-k="thread" data-id="' + t.id + '" data-h="' + (t.hidden ? 0 : 1) + '">' + (t.hidden ? '表示' : '非表示') + '</button>' : '') +
         '</div>';
@@ -1027,8 +1032,29 @@
       box.querySelectorAll('.th').forEach(function (el) {
         el.querySelector('.th-main').addEventListener('click', function () { boardGo(+el.dataset.id); });
       });
-      if (d.admin) wireHide(box);
-    }).catch(function () { box.innerHTML = '<div class="board-empty">読み込みに失敗しました。</div>'; });
+      if (boardKey) wireHide(box);
+    }
+    function loadAll() {
+      box.innerHTML = '<div class="board-empty">読み込み中…</div>';
+      fetch(boardApi('/threads'), { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
+        if (d.error) { box.innerHTML = '<div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; return; }
+        paint(d.threads || [], false);
+      }).catch(function () { box.innerHTML = '<div class="board-empty">読み込みに失敗しました。</div>'; });
+    }
+    function doSearch(q) {
+      box.innerHTML = '<div class="board-empty">検索中…</div>';
+      fetch(boardApi('/search') + '?q=' + encodeURIComponent(q), { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
+        if (d.error) { box.innerHTML = '<div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; return; }
+        paint(d.threads || [], true, q);
+      }).catch(function () { box.innerHTML = '<div class="board-empty">検索に失敗しました。</div>'; });
+    }
+    var si = document.getElementById('bd-search'), sc = document.getElementById('bd-sclear'), sTimer = null;
+    si.addEventListener('input', function () {
+      var q = si.value.trim(); sc.hidden = !q;
+      clearTimeout(sTimer); sTimer = setTimeout(function () { if (q) doSearch(q); else loadAll(); }, 300);
+    });
+    sc.addEventListener('click', function () { si.value = ''; sc.hidden = true; loadAll(); si.focus(); });
+    loadAll();
   }
   // 本文中の >>N (全角＞＞も) をアンカーリンク化。esc後の文字列に対して掛ける(> は &gt; になっている)
   function linkAnchors(s) {

@@ -63,6 +63,7 @@ export default {
     if (url.pathname === "/api/board/threads" && req.method === "GET")  return threadList(url, req, env);
     if (url.pathname === "/api/board/threads" && req.method === "POST") return threadCreate(req, env);
     if (url.pathname === "/api/board/thread"  && req.method === "GET")  return threadShow(url, req, env);
+    if (url.pathname === "/api/board/search"  && req.method === "GET")  return boardSearch(url, req, env);
     if (url.pathname === "/api/board/posts"   && req.method === "POST") return postCreate(req, env);
     if (url.pathname === "/api/board/hide"    && req.method === "POST") return boardHide(req, env);
 
@@ -329,6 +330,27 @@ async function threadList(url, req, env) {
     : "SELECT id,title,created,bumped,posts,hidden FROM threads WHERE board=?1 AND hidden=0 ORDER BY bumped DESC LIMIT 200";
   const { results } = await env.DB.prepare(sql).bind(board).all();
   return json({ public: g.pub, admin: g.admin, threads: results || [] });
+}
+async function boardSearch(url, req, env) {
+  const g = await guard(req, env, {}); if (g.err) return json({ error: g.err }, g.status);
+  const q = (url.searchParams.get("q") || "").trim().slice(0, 100);
+  if (!q) return json({ public: g.pub, admin: g.admin, q: "", threads: [] });
+  const like = "%" + q.replace(/[\\%_]/g, "\\$&") + "%";   // LIKEワイルドカードをエスケープ
+  const board = "general";
+  // タイトル or 本文に一致するスレを返す。本文一致時は最初の該当レス本文を snippet に。
+  const sql = g.admin
+    ? "SELECT t.id,t.title,t.posts,t.bumped,t.hidden," +
+      " (SELECT p.body FROM posts p WHERE p.thread_id=t.id AND p.body LIKE ?2 ESCAPE '\\' ORDER BY p.no LIMIT 1) AS snippet" +
+      " FROM threads t WHERE t.board=?1" +
+      " AND (t.title LIKE ?2 ESCAPE '\\' OR EXISTS(SELECT 1 FROM posts p2 WHERE p2.thread_id=t.id AND p2.body LIKE ?2 ESCAPE '\\'))" +
+      " ORDER BY t.bumped DESC LIMIT 50"
+    : "SELECT t.id,t.title,t.posts,t.bumped,t.hidden," +
+      " (SELECT p.body FROM posts p WHERE p.thread_id=t.id AND p.hidden=0 AND p.body LIKE ?2 ESCAPE '\\' ORDER BY p.no LIMIT 1) AS snippet" +
+      " FROM threads t WHERE t.board=?1 AND t.hidden=0" +
+      " AND (t.title LIKE ?2 ESCAPE '\\' OR EXISTS(SELECT 1 FROM posts p2 WHERE p2.thread_id=t.id AND p2.hidden=0 AND p2.body LIKE ?2 ESCAPE '\\'))" +
+      " ORDER BY t.bumped DESC LIMIT 50";
+  const { results } = await env.DB.prepare(sql).bind(board, like).all();
+  return json({ public: g.pub, admin: g.admin, q: q, threads: results || [] });
 }
 async function threadShow(url, req, env) {
   const g = await guard(req, env, {}); if (g.err) return json({ error: g.err }, g.status);
