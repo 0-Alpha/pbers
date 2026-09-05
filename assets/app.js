@@ -1025,6 +1025,21 @@
     el.scrollIntoView({ block: 'center' });
     el.classList.remove('post-hl'); void el.offsetWidth; el.classList.add('post-hl');   // 再クリックでも光る
   }
+  // 本文からYouTubeの動画IDを抽出(最大3件)。ID(11文字)は英数-_のみなので埋め込みは安全
+  function ytIds(text) {
+    var ids = [], seen = {}, m;
+    var re = /(?:youtube\.com\/(?:watch\?(?:[^\s"']*&)?v=|shorts\/|live\/|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/g;
+    while ((m = re.exec(text)) && ids.length < 3) { if (!seen[m[1]]) { seen[m[1]] = 1; ids.push(m[1]); } }
+    return ids;
+  }
+  // Discord風: サムネ+再生ボタン。クリックで初めてiframe読込(=軽い) / nocookieでプライバシー配慮
+  function ytEmbeds(body) {
+    var ids = ytIds(String(body || '')); if (!ids.length) return '';
+    return '<div class="yt-embeds">' + ids.map(function (id) {
+      return '<div class="yt-lite" data-id="' + id + '" style="background-image:url(https://i.ytimg.com/vi/' + id + '/hqdefault.jpg)">' +
+        '<button type="button" class="yt-play" aria-label="再生"></button></div>';
+    }).join('') + '</div>';
+  }
   function renderThread(host, id) {
     host.innerHTML = '<div class="board-empty">読み込み中…</div>';
     var back = function () {
@@ -1046,6 +1061,7 @@
               (boardKey ? '<button type="button" class="bc-hide" data-k="post" data-t="' + id + '" data-no="' + p.no + '" data-h="' + (p.hidden ? 0 : 1) + '">' + (p.hidden ? '表示' : '非表示') + '</button>' : '') +
             '</div>' +
             '<div class="post-body">' + linkAnchors(esc(p.body).replace(/\n/g, '<br>')) + '</div>' +
+            ytEmbeds(p.body) +
           '</div>';
         }).join('') + '</div>' +
         '<form class="bt-reply" id="bt-reply" autocomplete="off">' +
@@ -1065,6 +1081,16 @@
           rb.value = (cur && !/\n$/.test(cur) ? cur + '\n' : cur) + '>>' + b.dataset.no + '\n';
           document.getElementById('bt-reply').scrollIntoView({ block: 'center' });
           rb.focus();
+        });
+      });
+      host.querySelectorAll('.yt-lite').forEach(function (el) {   // クリックで初めてiframe読込→その場再生
+        el.addEventListener('click', function () {
+          var f = document.createElement('iframe');
+          f.className = 'yt-frame';
+          f.src = 'https://www.youtube-nocookie.com/embed/' + el.dataset.id + '?autoplay=1';
+          f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+          f.setAttribute('allowfullscreen', '');
+          el.replaceWith(f);
         });
       });
       document.getElementById('rp-name').value = boardName();
