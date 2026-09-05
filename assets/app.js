@@ -1014,6 +1014,17 @@
       if (d.admin) wireHide(box);
     }).catch(function () { box.innerHTML = '<div class="board-empty">読み込みに失敗しました。</div>'; });
   }
+  // 本文中の >>N (全角＞＞も) をアンカーリンク化。esc後の文字列に対して掛ける(> は &gt; になっている)
+  function linkAnchors(s) {
+    return s.replace(/(?:&gt;&gt;|＞＞)(\d+)/g, function (m, n) {
+      return '<a class="anchor" data-no="' + n + '">&gt;&gt;' + n + '</a>';
+    });
+  }
+  function jumpToPost(no) {
+    var el = document.getElementById('post-' + no); if (!el) return;
+    el.scrollIntoView({ block: 'center' });
+    el.classList.remove('post-hl'); void el.offsetWidth; el.classList.add('post-hl');   // 再クリックでも光る
+  }
   function renderThread(host, id) {
     host.innerHTML = '<div class="board-empty">読み込み中…</div>';
     var back = function () {
@@ -1025,15 +1036,16 @@
       host.innerHTML = '<button class="th-back">← スレ一覧</button>' +
         '<h3 class="th-h">' + esc(d.thread.title) + '</h3>' +
         '<div class="posts">' + posts.map(function (p) {
-          return '<div class="post' + (p.hidden ? ' bc-off' : '') + (p.admin ? ' post-adm' : '') + '">' +
+          return '<div class="post' + (p.hidden ? ' bc-off' : '') + (p.admin ? ' post-adm' : '') + '" id="post-' + p.no + '">' +
             '<div class="post-head"><span class="post-no num">' + p.no + '</span>' +
               '<span class="post-name">' + esc(p.name) + '</span>' +
               (p.admin ? '<span class="post-badge">★管理人</span>' : '') +
               (p.uid ? '<span class="post-id num">ID:' + esc(p.uid) + '</span>' : '') +
               '<span class="post-time num">' + bWhen(p.created) + '</span>' +
+              '<button type="button" class="post-re" data-no="' + p.no + '">返信</button>' +
               (boardKey ? '<button type="button" class="bc-hide" data-k="post" data-t="' + id + '" data-no="' + p.no + '" data-h="' + (p.hidden ? 0 : 1) + '">' + (p.hidden ? '表示' : '非表示') + '</button>' : '') +
             '</div>' +
-            '<div class="post-body">' + esc(p.body).replace(/\n/g, '<br>') + '</div>' +
+            '<div class="post-body">' + linkAnchors(esc(p.body).replace(/\n/g, '<br>')) + '</div>' +
           '</div>';
         }).join('') + '</div>' +
         '<form class="bt-reply" id="bt-reply" autocomplete="off">' +
@@ -1044,6 +1056,17 @@
         '</form>';
       back();
       if (d.admin) wireHide(host);
+      host.querySelectorAll('.anchor').forEach(function (a) {
+        a.addEventListener('click', function () { jumpToPost(a.dataset.no); });
+      });
+      host.querySelectorAll('.post-re').forEach(function (b) {   // 「返信」で >>N を返信欄に挿入
+        b.addEventListener('click', function () {
+          var rb = document.getElementById('rp-body'), cur = rb.value;
+          rb.value = (cur && !/\n$/.test(cur) ? cur + '\n' : cur) + '>>' + b.dataset.no + '\n';
+          document.getElementById('bt-reply').scrollIntoView({ block: 'center' });
+          rb.focus();
+        });
+      });
       document.getElementById('rp-name').value = boardName();
       var tsRep = tsMount(document.getElementById('bt-reply'));
       document.getElementById('bt-reply').addEventListener('submit', function (e) {
@@ -1156,7 +1179,8 @@
       if (v !== currentView) switchTab(v, true);
     });
     var initial = viewOf();   // 直アクセス/旧ハッシュ共有リンクからの復元
-    history.replaceState({ view: initial }, '', pathOf(initial));   // URLをクリーンなパスに正規化(#growth → /growth)
+    // URLをクリーンなパスに正規化(#growth → /growth)。掲示板の ?t=<id>(スレ直リンク)は保持する
+    history.replaceState({ view: initial }, '', pathOf(initial) + (initial === 'board' ? location.search : ''));
     if (initial !== 'dashboard') switchTab(initial, true);
   }
 
