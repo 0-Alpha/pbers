@@ -396,11 +396,15 @@ async function boardHide(req, env) {
 }
 async function verifyTurnstile(token, ip, env) {
   if (!token) return false;
-  const form = new URLSearchParams();
-  form.set("secret", env.TURNSTILE_SECRET);
-  form.set("response", token);
-  form.set("remoteip", ip);
-  const r = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body: form });
-  const d = await r.json().catch(() => ({}));
-  return !!d.success;
+  try {   // 外部通信の失敗で掲示板が500にならないよう保護(失敗時は不許可=クリーンな400)
+    const form = new URLSearchParams();
+    form.set("secret", env.TURNSTILE_SECRET);
+    form.set("response", token);
+    form.set("remoteip", ip);
+    const r = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body: form });
+    const d = await r.json().catch(() => ({}));
+    return !!d.success;
+  } catch (e) {
+    return false;
+  }
 }
