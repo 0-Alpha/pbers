@@ -2,7 +2,19 @@ window.PBERS_NEWS = [
   {
     "date": "2026-09-05",
     "label": "9月5日(土)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "Dotto edit",
+        "color": "#3e66cc",
+        "avatar": "https://yt3.googleusercontent.com/JjoolJ5faLhJzaPj3UckuOvdbEaug12ouvdocg6jk1Lw-ZS7TMNjGxAAuz0v3hb6b04v_uJ97Q=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 700万回 突破",
+        "value": 7000000
+      }
+    ]
   },
   {
     "date": "2026-09-04",
