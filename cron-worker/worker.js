@@ -66,6 +66,9 @@ export default {
     if (url.pathname === "/api/board/posts"   && req.method === "POST") return postCreate(req, env);
     if (url.pathname === "/api/board/hide"    && req.method === "POST") return boardHide(req, env);
 
+    // ---- ページ表示回数カウンター ----
+    if (url.pathname === "/api/views" && req.method === "GET") return viewCount(url, req, env);
+
     // 手動/初回: 30件ずつ購読(RUN_KEY で保護)。全部やるには数回叩くか、cronに任せる
     if (url.pathname === "/subscribe" && url.searchParams.get("key") === env.RUN_KEY) {
       const msg = await subscribeBatch(env);
@@ -403,6 +406,20 @@ async function boardHide(req, env) {
     await env.DB.prepare("UPDATE posts SET hidden=?3 WHERE thread_id=?1 AND no=?2").bind(tid, no, hide).run();
   }
   return json({ ok: true });
+}
+/* ページ表示回数: D1テーブル pageviews(page TEXT PRIMARY KEY, count INTEGER)。
+ * ?page=<パス>&hit=1 で加算(重複はクライアント側でその日1回に制御)。?hit無しは閲覧のみ。 */
+async function viewCount(url, req, env) {
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  let page = (url.searchParams.get("page") || "/").slice(0, 300);
+  if (page.charAt(0) !== "/") page = "/" + page;           // 自サイトのパスのみ扱う
+  if (url.searchParams.get("hit") === "1") {
+    await env.DB.prepare(
+      "INSERT INTO pageviews(page,count) VALUES(?1,1) ON CONFLICT(page) DO UPDATE SET count=count+1"
+    ).bind(page).run();
+  }
+  const row = await env.DB.prepare("SELECT count FROM pageviews WHERE page=?1").bind(page).first();
+  return json({ page: page, count: (row && row.count) || 0 });
 }
 async function verifyTurnstile(token, ip, env) {
   if (!token) return false;

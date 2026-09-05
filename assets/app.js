@@ -1175,6 +1175,7 @@
     document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x.dataset.view === v); });
     Object.keys(VIEWS).forEach(function (k) { if (VIEWS[k]) VIEWS[k].hidden = (k !== v); });
     if (!noPush && location.pathname !== pathOf(v)) history.pushState({ view: v }, '', pathOf(v));   // 実URLに反映(戻る/共有/計測)
+    if (window.pbersTrackView) window.pbersTrackView(pathOf(v));   // タブごとの表示回数を計上
     window.scrollTo(0, 0);
     // タブの見た目切替は上で完了。重い描画(SVG生成等)は「描画後」に回してINP(反応速度)を確保。
     // ダブル requestAnimationFrame = タブ強調＋ビュー切替が一度ペイントされた後に実行される。

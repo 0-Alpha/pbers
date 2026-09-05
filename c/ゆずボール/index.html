@@ -14,6 +14,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="PBers">
 <script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
+<script>window.PBERS_VIEWS_API = "https://pbers-cron.myray0629.workers.dev/api/views";
+(function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="PBers">
 <meta property="og:title" content="ゆずボール🎣｜登録者数・再生数まとめ｜PBers">
@@ -26,7 +28,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250914">
+<link rel="stylesheet" href="/assets/style.css?v=250915">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -41,9 +43,10 @@
   <a class="brand" href="../../"><span class="dot"></span><span>PB<b>ers</b></span></a>
   <div>データ出典: YouTube 各チャンネル公開情報 ・ <a class="foot-link" href="/privacy/">プライバシーポリシー</a></div>
   <div class="foot-note">チャンネル名・アイコン・サムネイル等の権利は各制作者に帰属します。当サイトは識別・参照目的で表示しています。掲載の削除をご希望の場合は <a href="mailto:contact@pbers.com">contact@pbers.com</a> までご連絡ください。</div>
+  <div class="view-count" id="view-count" hidden>👁 このページの表示回数 <span class="num" id="view-count-n">—</span></div>
 </div></footer>
 <script>window.CH = {"id": "UCGo_IzKD2-TooYrTGFt2fDA", "name": "ゆずボール🎣", "subs": 42300, "views": 18215140, "videos": 202, "url": "https://www.youtube.com/channel/UCGo_IzKD2-TooYrTGFt2fDA", "avatar": "https://yt3.googleusercontent.com/88pDjPAKENvTaKmGmwXqEHlWts-pFETX_IXmcQRIZ7mP46T-VX3O76ph6QOS1S25WKgpCE0EP68=s900-c-k-c0x00ffffff-no-rj", "color": "#ecc233", "genre": "ポーランドボーラー", "rank": 9, "total": 154};</script>
 <script>window.CH_HISTORY = {"dates": ["2026-08-20", "2026-08-21", "2026-08-22", "2026-08-23", "2026-08-24", "2026-08-25", "2026-08-26", "2026-08-27", "2026-08-28", "2026-08-29", "2026-08-30", "2026-08-31", "2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05"], "subs": [34400, 34600, 35900, 37400, 38200, 39100, 39700, 40100, 40500, 40900, 41300, 41600, 41800, 42000, 42200, 42300, 42300], "views": [16856769, 16942341, 16982055, 17196237, 17236662, 17317764, 17402534, 17496699, 17562517, 17665040, 17837121, 17980656, 18107119, 18163146, 18215140, 18215140, 18215140], "videos": [193, 193, 194, 194, 194, 195, 195, 196, 197, 198, 199, 200, 200, 201, 201, 202, 202]};</script>
-<script src="/assets/channel.js?v=250914"></script>
+<script src="/assets/channel.js?v=250915"></script>
 </body>
 </html>

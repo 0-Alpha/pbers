@@ -14,6 +14,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="PBers">
 <script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
+<script>window.PBERS_VIEWS_API = "https://pbers-cron.myray0629.workers.dev/api/views";
+(function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="PBers">
 <meta property="og:title" content=" ゼリョーヌィボール　活停中｜登録者数・再生数まとめ｜PBers">
@@ -26,7 +28,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250914">
+<link rel="stylesheet" href="/assets/style.css?v=250915">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -41,9 +43,10 @@
   <a class="brand" href="../../"><span class="dot"></span><span>PB<b>ers</b></span></a>
   <div>データ出典: YouTube 各チャンネル公開情報 ・ <a class="foot-link" href="/privacy/">プライバシーポリシー</a></div>
   <div class="foot-note">チャンネル名・アイコン・サムネイル等の権利は各制作者に帰属します。当サイトは識別・参照目的で表示しています。掲載の削除をご希望の場合は <a href="mailto:contact@pbers.com">contact@pbers.com</a> までご連絡ください。</div>
+  <div class="view-count" id="view-count" hidden>👁 このページの表示回数 <span class="num" id="view-count-n">—</span></div>
 </div></footer>
 <script>window.CH = {"id": "UCl4efTdPPsQWpj6jXmE9Azg", "name": " ゼリョーヌィボール　活停中", "subs": 20800, "views": 5901103, "videos": 88, "url": "https://www.youtube.com/channel/UCl4efTdPPsQWpj6jXmE9Azg", "avatar": "https://yt3.googleusercontent.com/h212WQooy6cDooAN4i3o7utLAZzgAV5nNo9ofNaIrQDAETaqLFxtL8sXOGoJpuJXjVkQ4h_LUYs=s900-c-k-c0x00ffffff-no-rj", "color": "#a55ed4", "genre": "ポーランドボーラー", "rank": 27, "total": 154};</script>
 <script>window.CH_HISTORY = {"dates": ["2026-08-20", "2026-08-21", "2026-08-22", "2026-08-23", "2026-08-24", "2026-08-25", "2026-08-26", "2026-08-27", "2026-08-28", "2026-08-29", "2026-08-30", "2026-08-31", "2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05"], "subs": [20400, 20500, 20500, 20500, 20500, 20600, 20600, 20600, 20700, 20700, 20700, 20700, 20700, 20700, 20800, 20800, 20800], "views": [5750338, 5767448, 5778856, 5786082, 5796652, 5813928, 5822446, 5839712, 5847140, 5858524, 5869005, 5878965, 5887969, 5894741, 5901103, 5901103, 5901103], "videos": [88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88]};</script>
-<script src="/assets/channel.js?v=250914"></script>
+<script src="/assets/channel.js?v=250915"></script>
 </body>
 </html>

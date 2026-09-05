@@ -14,6 +14,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="PBers">
 <script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
+<script>window.PBERS_VIEWS_API = "https://pbers-cron.myray0629.workers.dev/api/views";
+(function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="PBers">
 <meta property="og:title" content="ロボキチ｜登録者数・再生数まとめ｜PBers">
@@ -26,7 +28,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250914">
+<link rel="stylesheet" href="/assets/style.css?v=250915">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -41,9 +43,10 @@
   <a class="brand" href="../../"><span class="dot"></span><span>PB<b>ers</b></span></a>
   <div>データ出典: YouTube 各チャンネル公開情報 ・ <a class="foot-link" href="/privacy/">プライバシーポリシー</a></div>
   <div class="foot-note">チャンネル名・アイコン・サムネイル等の権利は各制作者に帰属します。当サイトは識別・参照目的で表示しています。掲載の削除をご希望の場合は <a href="mailto:contact@pbers.com">contact@pbers.com</a> までご連絡ください。</div>
+  <div class="view-count" id="view-count" hidden>👁 このページの表示回数 <span class="num" id="view-count-n">—</span></div>
 </div></footer>
 <script>window.CH = {"id": "UCR3fxiql3FgVodpgLg8Bo4w", "name": "ロボキチ", "subs": 3100, "views": 704711, "videos": 48, "url": "https://www.youtube.com/channel/UCR3fxiql3FgVodpgLg8Bo4w", "avatar": "https://yt3.googleusercontent.com/ZANmjXIpKKRDrpaem1qIr-TJ6mUYPAuv4bV3Knwo9dv1-5oqFVmml2Y4vT3XNG5kIId00SR1AQ=s900-c-k-c0x00ffffff-no-rj", "color": "#6ed45e", "genre": "ポーランドボーラー", "rank": 120, "total": 154};</script>
 <script>window.CH_HISTORY = {"dates": ["2026-08-30", "2026-08-31", "2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05"], "subs": [3080, 3090, 3090, 3090, 3090, 3100, 3100], "views": [701570, 702634, 703593, 704162, 704711, 704711, 704711], "videos": [48, 48, 48, 48, 48, 48, 48]};</script>
-<script src="/assets/channel.js?v=250914"></script>
+<script src="/assets/channel.js?v=250915"></script>
 </body>
 </html>
