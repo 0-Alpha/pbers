@@ -87,7 +87,7 @@ window.PBERS_RACE = [
         "name": "Æž!みかんぼーる🍊",
         "color": "#eba864",
         "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 324000,
+        "subs": 325000,
         "history": [
           {
             "d": "2026-08-20",
@@ -3463,7 +3463,7 @@ window.PBERS_RACE = [
         "name": "ニイソビボール",
         "color": "#d45e81",
         "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 9210,
+        "subs": 9240,
         "history": [
           {
             "d": "2026-08-30",
@@ -3583,7 +3583,7 @@ window.PBERS_RACE = [
         "name": "スーパーボール",
         "color": "#9dd45e",
         "avatar": "https://yt3.googleusercontent.com/0NhkSRTABECyIyqd1bt9OTglE5rGWYcMHAcf2beADzj__HG6GqRKGdMZmBnQlWwY2eZ46Gjbkg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 9010,
+        "subs": 9030,
         "history": [
           {
             "d": "2026-08-30",
@@ -4483,7 +4483,7 @@ window.PBERS_RACE = [
         "name": "レイアルファ",
         "color": "#db4f57",
         "avatar": "https://yt3.googleusercontent.com/TVNAN6bSZZHGvc7hYhLs6Gnn95EKhcWj5GwqbWN00HAFA8SmXjUyKXQK6D4Ljl_S9A_8eaHn-Lk=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5340,
+        "subs": 5350,
         "history": [
           {
             "d": "2026-08-21",
@@ -5503,7 +5503,7 @@ window.PBERS_RACE = [
         "name": "みすい",
         "color": "#873ecc",
         "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3040,
+        "subs": 3050,
         "history": [
           {
             "d": "2026-08-22",
@@ -5575,7 +5575,7 @@ window.PBERS_RACE = [
         "name": "【PB】ネオンボール",
         "color": "#d45ea5",
         "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3030,
+        "subs": 3040,
         "history": [
           {
             "d": "2026-08-31",
