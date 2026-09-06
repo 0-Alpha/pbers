@@ -41,7 +41,7 @@
 <!-- 掲示板API(同Workerの /api/board)。非公開の間は管理キー所持者のみタブ表示 -->
 <script>window.PBERS_BOARD_API = "https://pbers-cron.myray0629.workers.dev/api/board";</script>
 <!-- 掲示板を「整備中」表示にする(true=整備中/APIを叩かず案内だけ表示)。復旧したら false に -->
-<script>window.PBERS_BOARD_MAINTENANCE = true;</script>
+<script>window.PBERS_BOARD_MAINTENANCE = false;</script>
 <!-- Turnstile サイトキー(公開・任意)。設定すると公開掲示板の投稿にCAPTCHAが付く。未設定なら無効 -->
 <script>window.PBERS_TURNSTILE_SITEKEY = "0x4AAAAAAEnNpMvX20MtH6e2";</script>
 <!-- ページ表示回数カウンター(同Workerの /api/views) -->
@@ -49,7 +49,7 @@
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250919">
+<link rel="stylesheet" href="/assets/style.css?v=250920">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -413,10 +413,10 @@
   </div>
 </footer>
 
-<script src="/assets/data.js?v=250919"></script>
-<script src="/assets/news.js?v=250919"></script>
-<script src="/assets/growth.js?v=250919"></script>
-<script src="/assets/race.js?v=250919"></script>
-<script src="/assets/app.js?v=250919"></script>
+<script src="/assets/data.js?v=250920"></script>
+<script src="/assets/news.js?v=250920"></script>
+<script src="/assets/growth.js?v=250920"></script>
+<script src="/assets/race.js?v=250920"></script>
+<script src="/assets/app.js?v=250920"></script>
 </body>
 </html>

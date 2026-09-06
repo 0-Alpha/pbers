@@ -4,7 +4,7 @@
  * ・別オリジン(掲示板/最新動画API・広告・YouTube・フォント)は一切触らない。
  * キャッシュ戦略を変えたら VERSION を上げる(古いキャッシュを自動削除)。
  */
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE = 'pbers-' + VERSION;
 const DATA_RE = /\/assets\/(data|news|growth|race)\.js|\/bytype\.json/;
 
