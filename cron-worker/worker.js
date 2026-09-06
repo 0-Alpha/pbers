@@ -279,17 +279,17 @@ function json(o, status = 200) {
  *   Secrets    : BOARD_KEY    (管理キー。閲覧解錠・投稿・モデレーション)
  *                SALT         (IPハッシュ / 日替りID用の塩。推奨)
  *                TURNSTILE_SECRET (任意。設定すると一般投稿にCAPTCHA必須)
- *   D1 スキーマ:
- *     CREATE TABLE IF NOT EXISTS threads(
+ *   D1 スキーマ (他プロジェクトとの衝突回避のため board_ 接頭辞で隔離):
+ *     CREATE TABLE IF NOT EXISTS board_threads(
  *       id INTEGER PRIMARY KEY AUTOINCREMENT, board TEXT NOT NULL, title TEXT NOT NULL,
  *       created INTEGER NOT NULL, bumped INTEGER NOT NULL, posts INTEGER NOT NULL DEFAULT 1,
  *       ip_hash TEXT, hidden INTEGER DEFAULT 0);
- *     CREATE INDEX IF NOT EXISTS idx_threads ON threads(board, bumped);
- *     CREATE TABLE IF NOT EXISTS posts(
+ *     CREATE INDEX IF NOT EXISTS idx_board_threads ON board_threads(board, bumped);
+ *     CREATE TABLE IF NOT EXISTS board_posts(
  *       id INTEGER PRIMARY KEY AUTOINCREMENT, thread_id INTEGER NOT NULL, no INTEGER NOT NULL,
  *       name TEXT NOT NULL, body TEXT NOT NULL, uid TEXT, created INTEGER NOT NULL,
  *       ip_hash TEXT, hidden INTEGER DEFAULT 0, admin INTEGER DEFAULT 0);
- *     CREATE INDEX IF NOT EXISTS idx_posts ON posts(thread_id, no);
+ *     CREATE INDEX IF NOT EXISTS idx_board_posts ON board_posts(thread_id, no);
  */
 function isAdmin(req, env) {
   const k = req.headers.get("X-Board-Key") || "";
@@ -326,8 +326,8 @@ async function threadList(url, req, env) {
   const g = await guard(req, env, {}); if (g.err) return json({ error: g.err }, g.status);
   const board = "general";
   const sql = g.admin
-    ? "SELECT id,title,created,bumped,posts,hidden FROM threads WHERE board=?1 ORDER BY bumped DESC LIMIT 200"
-    : "SELECT id,title,created,bumped,posts,hidden FROM threads WHERE board=?1 AND hidden=0 ORDER BY bumped DESC LIMIT 200";
+    ? "SELECT id,title,created,bumped,posts,hidden FROM board_threads WHERE board=?1 ORDER BY bumped DESC LIMIT 200"
+    : "SELECT id,title,created,bumped,posts,hidden FROM board_threads WHERE board=?1 AND hidden=0 ORDER BY bumped DESC LIMIT 200";
   const { results } = await env.DB.prepare(sql).bind(board).all();
   return json({ public: g.pub, admin: g.admin, threads: results || [] });
 }
@@ -340,14 +340,14 @@ async function boardSearch(url, req, env) {
   // タイトル or 本文に一致するスレを返す。本文一致時は最初の該当レス本文を snippet に。
   const sql = g.admin
     ? "SELECT t.id,t.title,t.posts,t.bumped,t.hidden," +
-      " (SELECT p.body FROM posts p WHERE p.thread_id=t.id AND p.body LIKE ?2 ESCAPE '\\' ORDER BY p.no LIMIT 1) AS snippet" +
-      " FROM threads t WHERE t.board=?1" +
-      " AND (t.title LIKE ?2 ESCAPE '\\' OR EXISTS(SELECT 1 FROM posts p2 WHERE p2.thread_id=t.id AND p2.body LIKE ?2 ESCAPE '\\'))" +
+      " (SELECT p.body FROM board_posts p WHERE p.thread_id=t.id AND p.body LIKE ?2 ESCAPE '\\' ORDER BY p.no LIMIT 1) AS snippet" +
+      " FROM board_threads t WHERE t.board=?1" +
+      " AND (t.title LIKE ?2 ESCAPE '\\' OR EXISTS(SELECT 1 FROM board_posts p2 WHERE p2.thread_id=t.id AND p2.body LIKE ?2 ESCAPE '\\'))" +
       " ORDER BY t.bumped DESC LIMIT 50"
     : "SELECT t.id,t.title,t.posts,t.bumped,t.hidden," +
-      " (SELECT p.body FROM posts p WHERE p.thread_id=t.id AND p.hidden=0 AND p.body LIKE ?2 ESCAPE '\\' ORDER BY p.no LIMIT 1) AS snippet" +
-      " FROM threads t WHERE t.board=?1 AND t.hidden=0" +
-      " AND (t.title LIKE ?2 ESCAPE '\\' OR EXISTS(SELECT 1 FROM posts p2 WHERE p2.thread_id=t.id AND p2.hidden=0 AND p2.body LIKE ?2 ESCAPE '\\'))" +
+      " (SELECT p.body FROM board_posts p WHERE p.thread_id=t.id AND p.hidden=0 AND p.body LIKE ?2 ESCAPE '\\' ORDER BY p.no LIMIT 1) AS snippet" +
+      " FROM board_threads t WHERE t.board=?1 AND t.hidden=0" +
+      " AND (t.title LIKE ?2 ESCAPE '\\' OR EXISTS(SELECT 1 FROM board_posts p2 WHERE p2.thread_id=t.id AND p2.hidden=0 AND p2.body LIKE ?2 ESCAPE '\\'))" +
       " ORDER BY t.bumped DESC LIMIT 50";
   const { results } = await env.DB.prepare(sql).bind(board, like).all();
   return json({ public: g.pub, admin: g.admin, q: q, threads: results || [] });
@@ -356,11 +356,11 @@ async function threadShow(url, req, env) {
   const g = await guard(req, env, {}); if (g.err) return json({ error: g.err }, g.status);
   const id = parseInt(url.searchParams.get("id"), 10);
   if (!id) return json({ error: "bad_id" }, 400);
-  const th = await env.DB.prepare("SELECT id,title,created,bumped,posts,hidden FROM threads WHERE id=?1").bind(id).first();
+  const th = await env.DB.prepare("SELECT id,title,created,bumped,posts,hidden FROM board_threads WHERE id=?1").bind(id).first();
   if (!th || (th.hidden && !g.admin)) return json({ error: "not_found" }, 404);
   const sql = g.admin
-    ? "SELECT no,name,body,uid,created,hidden,admin FROM posts WHERE thread_id=?1 ORDER BY no ASC LIMIT 1000"
-    : "SELECT no,name,body,uid,created,hidden,admin FROM posts WHERE thread_id=?1 AND hidden=0 ORDER BY no ASC LIMIT 1000";
+    ? "SELECT no,name,body,uid,created,hidden,admin FROM board_posts WHERE thread_id=?1 ORDER BY no ASC LIMIT 1000"
+    : "SELECT no,name,body,uid,created,hidden,admin FROM board_posts WHERE thread_id=?1 AND hidden=0 ORDER BY no ASC LIMIT 1000";
   const { results } = await env.DB.prepare(sql).bind(id).all();
   return json({ public: g.pub, admin: g.admin, thread: th, posts: results || [] });
 }
@@ -381,11 +381,11 @@ async function threadCreate(req, env) {
   const uid = (await sha(ip + "|" + ymdJST() + "|" + (env.SALT || "pbers"))).slice(0, 6);
   const now = Date.now();
   const r = await env.DB.prepare(
-    "INSERT INTO threads(board,title,created,bumped,posts,ip_hash,hidden) VALUES('general',?1,?2,?2,1,?3,0)")
+    "INSERT INTO board_threads(board,title,created,bumped,posts,ip_hash,hidden) VALUES('general',?1,?2,?2,1,?3,0)")
     .bind(title, now, iph).run();
   const tid = r.meta.last_row_id;
   await env.DB.prepare(
-    "INSERT INTO posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin) VALUES(?1,1,?2,?3,?4,?5,?6,0,?7)")
+    "INSERT INTO board_posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin) VALUES(?1,1,?2,?3,?4,?5,?6,0,?7)")
     .bind(tid, name, body, uid, now, iph, g.admin ? 1 : 0).run();
   return json({ ok: true, id: tid });
 }
@@ -397,7 +397,7 @@ async function postCreate(req, env) {
   if (!tid) return json({ error: "bad_id" }, 400);
   if (!body) return json({ error: "empty" }, 400);
   const name = clean(b.name, 24) || "名無し";
-  const th = await env.DB.prepare("SELECT id,posts,hidden FROM threads WHERE id=?1").bind(tid).first();
+  const th = await env.DB.prepare("SELECT id,posts,hidden FROM board_threads WHERE id=?1").bind(tid).first();
   if (!th || th.hidden) return json({ error: "not_found" }, 404);
   const ip = req.headers.get("CF-Connecting-IP") || "0";
   if (!g.admin) {
@@ -409,9 +409,9 @@ async function postCreate(req, env) {
   const now = Date.now();
   const no = (th.posts || 1) + 1;
   await env.DB.prepare(
-    "INSERT INTO posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin) VALUES(?1,?2,?3,?4,?5,?6,?7,0,?8)")
+    "INSERT INTO board_posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin) VALUES(?1,?2,?3,?4,?5,?6,?7,0,?8)")
     .bind(tid, no, name, body, uid, now, iph, g.admin ? 1 : 0).run();
-  await env.DB.prepare("UPDATE threads SET posts=?2, bumped=?3 WHERE id=?1").bind(tid, no, now).run();
+  await env.DB.prepare("UPDATE board_threads SET posts=?2, bumped=?3 WHERE id=?1").bind(tid, no, now).run();
   return json({ ok: true, no });
 }
 async function boardHide(req, env) {
@@ -421,11 +421,11 @@ async function boardHide(req, env) {
   const hide = b.hide === false ? 0 : 1;
   if (b.kind === "thread") {
     const id = parseInt(b.id, 10); if (!id) return json({ error: "bad_id" }, 400);
-    await env.DB.prepare("UPDATE threads SET hidden=?2 WHERE id=?1").bind(id, hide).run();
+    await env.DB.prepare("UPDATE board_threads SET hidden=?2 WHERE id=?1").bind(id, hide).run();
   } else {                                   // レス1件を非表示(thread_id + no で指定)
     const tid = parseInt(b.thread, 10), no = parseInt(b.no, 10);
     if (!tid || !no) return json({ error: "bad_id" }, 400);
-    await env.DB.prepare("UPDATE posts SET hidden=?3 WHERE thread_id=?1 AND no=?2").bind(tid, no, hide).run();
+    await env.DB.prepare("UPDATE board_posts SET hidden=?3 WHERE thread_id=?1 AND no=?2").bind(tid, no, hide).run();
   }
   return json({ ok: true });
 }
