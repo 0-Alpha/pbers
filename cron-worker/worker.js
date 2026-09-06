@@ -23,6 +23,7 @@ export default {
       try { await dispatch(env); } catch (e) {}         // 統計取得(既存)
       try { await subscribeBatch(env); } catch (e) {}   // 購読のリース更新(1回30件ずつ、cursorで巡回)
       try { await backupBoard(env); } catch (e) {}      // 掲示板の日次バックアップ(その日未実施なら1回)
+      try { await purgeOldIps(env); } catch (e) {}      // 保管期間を過ぎたIP/UAを削除
     })());
   },
 
@@ -111,6 +112,9 @@ export default {
     }
     if (url.pathname === "/board/restore" && url.searchParams.get("key") === env.RUN_KEY) {
       return new Response(await restoreBoard(env, url.searchParams.get("date")), { status: 200 });   // バックアップから復元(全置換)
+    }
+    if (url.pathname === "/board/lookup" && url.searchParams.get("key") === env.RUN_KEY) {
+      return boardLookup(url, env);   // 開示請求対応: ?thread=<id>&no=<n> のIP/UA/日時
     }
 
     return new Response("ok");
@@ -306,7 +310,8 @@ function json(o, status = 200) {
  *     CREATE TABLE IF NOT EXISTS board_posts(
  *       id INTEGER PRIMARY KEY AUTOINCREMENT, thread_id INTEGER NOT NULL, no INTEGER NOT NULL,
  *       name TEXT NOT NULL, body TEXT NOT NULL, uid TEXT, created INTEGER NOT NULL,
- *       ip_hash TEXT, hidden INTEGER DEFAULT 0, admin INTEGER DEFAULT 0);
+ *       ip_hash TEXT, hidden INTEGER DEFAULT 0, admin INTEGER DEFAULT 0,
+ *       ip TEXT, ua TEXT);   -- ip/ua は発信者情報開示用(内部保存のみ・公開しない・IP_RETENTION_DAYS で自動削除)
  *     CREATE INDEX IF NOT EXISTS idx_board_posts ON board_posts(thread_id, no);
  */
 function isAdmin(req, env) {
@@ -397,14 +402,15 @@ async function threadCreate(req, env) {
   }
   const iph = await sha(ip + "|" + (env.SALT || "pbers"));
   const uid = (await sha(ip + "|" + ymdJST() + "|" + (env.SALT || "pbers"))).slice(0, 6);
+  const ua = (req.headers.get("User-Agent") || "").slice(0, 300);   // 開示請求用(内部保存のみ・公開しない)
   const now = Date.now();
   const r = await env.DB.prepare(
     "INSERT INTO board_threads(board,title,created,bumped,posts,ip_hash,hidden) VALUES('general',?1,?2,?2,1,?3,0)")
     .bind(title, now, iph).run();
   const tid = r.meta.last_row_id;
   await env.DB.prepare(
-    "INSERT INTO board_posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin) VALUES(?1,1,?2,?3,?4,?5,?6,0,?7)")
-    .bind(tid, name, body, uid, now, iph, g.admin ? 1 : 0).run();
+    "INSERT INTO board_posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin,ip,ua) VALUES(?1,1,?2,?3,?4,?5,?6,0,?7,?8,?9)")
+    .bind(tid, name, body, uid, now, iph, g.admin ? 1 : 0, ip, ua).run();
   return json({ ok: true, id: tid });
 }
 async function postCreate(req, env) {
@@ -424,11 +430,12 @@ async function postCreate(req, env) {
   }
   const iph = await sha(ip + "|" + (env.SALT || "pbers"));
   const uid = (await sha(ip + "|" + ymdJST() + "|" + (env.SALT || "pbers"))).slice(0, 6);
+  const ua = (req.headers.get("User-Agent") || "").slice(0, 300);   // 開示請求用(内部保存のみ・公開しない)
   const now = Date.now();
   const no = (th.posts || 1) + 1;
   await env.DB.prepare(
-    "INSERT INTO board_posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin) VALUES(?1,?2,?3,?4,?5,?6,?7,0,?8)")
-    .bind(tid, no, name, body, uid, now, iph, g.admin ? 1 : 0).run();
+    "INSERT INTO board_posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin,ip,ua) VALUES(?1,?2,?3,?4,?5,?6,?7,0,?8,?9,?10)")
+    .bind(tid, no, name, body, uid, now, iph, g.admin ? 1 : 0, ip, ua).run();
   await env.DB.prepare("UPDATE board_threads SET posts=?2, bumped=?3 WHERE id=?1").bind(tid, no, now).run();
   return json({ ok: true, no });
 }
@@ -497,10 +504,31 @@ async function restoreBoard(env, date) {
     env.DB.prepare("INSERT INTO board_threads(id,board,title,created,bumped,posts,ip_hash,hidden) VALUES(?1,?2,?3,?4,?5,?6,?7,?8)")
       .bind(t.id, t.board, t.title, t.created, t.bumped, t.posts, t.ip_hash, t.hidden)));
   (snap.posts || []).forEach((p) => stmts.push(
-    env.DB.prepare("INSERT INTO board_posts(id,thread_id,no,name,body,uid,created,ip_hash,hidden,admin) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10)")
-      .bind(p.id, p.thread_id, p.no, p.name, p.body, p.uid, p.created, p.ip_hash, p.hidden, p.admin)));
+    env.DB.prepare("INSERT INTO board_posts(id,thread_id,no,name,body,uid,created,ip_hash,hidden,admin,ip,ua) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12)")
+      .bind(p.id, p.thread_id, p.no, p.name, p.body, p.uid, p.created, p.ip_hash, p.hidden, p.admin, p.ip == null ? null : p.ip, p.ua == null ? null : p.ua)));
   await env.DB.batch(stmts);   // 全置換(アトミック)
   return `restored ${key}: ${(snap.threads || []).length} threads / ${(snap.posts || []).length} posts`;
+}
+
+/* ---- 発信者情報開示 用: IP/UAの保管期間 & 照会 ---- */
+const IP_RETENTION_DAYS = 180;   // これを過ぎた投稿は ip/ua を消す(投稿自体は残す)
+async function purgeOldIps(env) {
+  if (!env.DB) return;
+  const cutoff = Date.now() - IP_RETENTION_DAYS * 86400000;
+  await env.DB.prepare("UPDATE board_posts SET ip=NULL, ua=NULL WHERE ip IS NOT NULL AND created < ?1").bind(cutoff).run();
+}
+// 管理照会(RUN_KEY保護): 特定レスの IP/UA/日時 を返す。開示請求対応・むやみに使わない
+async function boardLookup(url, env) {
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  const tid = parseInt(url.searchParams.get("thread"), 10);
+  const no = parseInt(url.searchParams.get("no"), 10);
+  if (!tid || !no) return json({ error: "need thread & no" }, 400);
+  const row = await env.DB.prepare(
+    "SELECT thread_id,no,name,body,uid,created,ip,ua,ip_hash,hidden,admin FROM board_posts WHERE thread_id=?1 AND no=?2"
+  ).bind(tid, no).first();
+  if (!row) return json({ error: "not_found" }, 404);
+  row.created_iso = new Date(row.created).toISOString();
+  return json(row);
 }
 
 async function verifyTurnstile(token, ip, env) {
