@@ -38,7 +38,7 @@ window.PBERS_NEWS = [
       {
         "type": "milestone",
         "kind": "subs",
-        "name": "Moonball_PB",
+        "name": "MOON-BALL",
         "color": "#ccbb3e",
         "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
