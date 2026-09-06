@@ -22,6 +22,7 @@ export default {
     ctx.waitUntil((async () => {
       try { await dispatch(env); } catch (e) {}         // 統計取得(既存)
       try { await subscribeBatch(env); } catch (e) {}   // 購読のリース更新(1回30件ずつ、cursorで巡回)
+      try { await backupBoard(env); } catch (e) {}      // 掲示板の日次バックアップ(その日未実施なら1回)
     })());
   },
 
@@ -93,6 +94,23 @@ export default {
     if (url.pathname === "/run" && url.searchParams.get("key") === env.RUN_KEY) {
       const r = await dispatch(env);
       return new Response("dispatched: HTTP " + r.status, { status: 200 });
+    }
+
+    // ---- 掲示板バックアップ(RUN_KEYで保護) ----
+    if (url.pathname === "/board/backup" && url.searchParams.get("key") === env.RUN_KEY) {
+      return new Response(await backupBoard(env, true), { status: 200 });   // 手動で即バックアップ
+    }
+    if (url.pathname === "/board/backup/get" && url.searchParams.get("key") === env.RUN_KEY) {
+      const d = url.searchParams.get("date");                                // JSONを取得(保存/確認用)
+      const b = (d && await env.PBERS_KV.get("bak:board:" + d)) || (await env.PBERS_KV.get("bak:board:latest"));
+      return new Response(b || "{}", { headers: { "Content-Type": "application/json", ...CORS } });
+    }
+    if (url.pathname === "/board/backup/list" && url.searchParams.get("key") === env.RUN_KEY) {
+      const l = await env.PBERS_KV.list({ prefix: "bak:board:2" });
+      return json(l.keys.map((k) => k.name).sort());
+    }
+    if (url.pathname === "/board/restore" && url.searchParams.get("key") === env.RUN_KEY) {
+      return new Response(await restoreBoard(env, url.searchParams.get("date")), { status: 200 });   // バックアップから復元(全置換)
     }
 
     return new Response("ok");
@@ -443,6 +461,48 @@ async function viewCount(url, req, env) {
   const row = await env.DB.prepare("SELECT count FROM pageviews WHERE page=?1").bind(page).first();
   return json({ page: page, count: (row && row.count) || 0 });
 }
+
+/* ================= 掲示板バックアップ(KVに日次スナップショット) ================= */
+async function boardSnapshot(env) {
+  const th = await env.DB.prepare("SELECT * FROM board_threads ORDER BY id").all();
+  const po = await env.DB.prepare("SELECT * FROM board_posts ORDER BY id").all();
+  return { v: 1, at: Date.now(), threads: th.results || [], posts: po.results || [] };
+}
+async function backupBoard(env, force) {
+  if (!env.DB || !env.PBERS_KV) return "no db/kv";
+  const date = ymdJST();
+  const key = "bak:board:" + date;
+  if (!force && (await env.PBERS_KV.get(key))) return "already backed up " + date;   // 1日1回
+  let snap;
+  try { snap = await boardSnapshot(env); } catch (e) { return "snapshot failed: " + (e && e.message); }
+  const body = JSON.stringify(snap);
+  await env.PBERS_KV.put(key, body);
+  await env.PBERS_KV.put("bak:board:latest", body);
+  const l = await env.PBERS_KV.list({ prefix: "bak:board:2" });   // 日付キー(2026-...)のみ。14日分残す
+  const dates = l.keys.map((k) => k.name).sort();
+  while (dates.length > 14) { await env.PBERS_KV.delete(dates.shift()); }
+  return `backed up ${date}: ${snap.threads.length} threads / ${snap.posts.length} posts`;
+}
+async function restoreBoard(env, date) {
+  if (!env.DB || !env.PBERS_KV) return "no db/kv";
+  const key = date ? "bak:board:" + date : "bak:board:latest";
+  const body = await env.PBERS_KV.get(key);
+  if (!body) return "no backup: " + key;
+  let snap; try { snap = JSON.parse(body); } catch (e) { return "bad backup json"; }
+  const stmts = [
+    env.DB.prepare("DELETE FROM board_posts"),
+    env.DB.prepare("DELETE FROM board_threads")
+  ];
+  (snap.threads || []).forEach((t) => stmts.push(
+    env.DB.prepare("INSERT INTO board_threads(id,board,title,created,bumped,posts,ip_hash,hidden) VALUES(?1,?2,?3,?4,?5,?6,?7,?8)")
+      .bind(t.id, t.board, t.title, t.created, t.bumped, t.posts, t.ip_hash, t.hidden)));
+  (snap.posts || []).forEach((p) => stmts.push(
+    env.DB.prepare("INSERT INTO board_posts(id,thread_id,no,name,body,uid,created,ip_hash,hidden,admin) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10)")
+      .bind(p.id, p.thread_id, p.no, p.name, p.body, p.uid, p.created, p.ip_hash, p.hidden, p.admin)));
+  await env.DB.batch(stmts);   // 全置換(アトミック)
+  return `restored ${key}: ${(snap.threads || []).length} threads / ${(snap.posts || []).length} posts`;
+}
+
 async function verifyTurnstile(token, ip, env) {
   if (!token) return false;
   try {   // 外部通信の失敗で掲示板が500にならないよう保護(失敗時は不許可=クリーンな400)
