@@ -745,6 +745,11 @@ footer .brand{font-size:16px}
   padding:10px 22px;border-radius:999px;cursor:pointer;transition:background .16s}
 .bf-send:hover{background:#c33}
 .bf-send:disabled{opacity:.5;cursor:default}
+/* 整備中 */
+.board-maint{text-align:center;padding:48px 20px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
+.board-maint-ico{font-size:42px;line-height:1;margin-bottom:14px}
+.board-maint-h{font-family:var(--jp);font-weight:900;font-size:19px;color:var(--text);margin-bottom:8px}
+.board-maint-p{font-family:var(--jp);font-size:14px;color:var(--muted);line-height:1.8}
 /* 検索 */
 .bd-search-wrap{position:relative;margin-bottom:16px}
 .bd-search{width:100%;padding-right:38px}

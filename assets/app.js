@@ -5,6 +5,7 @@
   var ALL = (window.PBERS_DATA || []).slice();
   // 掲示板: 公開状態をWorkerに問い合わせ、公開 or 管理キー所持者のみタブを出す(デプロイ=即公開ではない)
   var BOARD_API = window.PBERS_BOARD_API || '';
+  var boardMaint = !!window.PBERS_BOARD_MAINTENANCE;   // 整備中フラグ(trueならAPIを叩かず案内表示)
   var boardKey = '', boardPublic = false, boardEnabled = false;
   var UPDATED = window.PBERS_UPDATED || '';
 
@@ -855,7 +856,7 @@
   function renderDashBoard() {
     var sec = document.getElementById('dash-board'), host = document.getElementById('dash-board-list');
     if (!sec || !host) return;
-    if (!boardEnabled || !BOARD_API) { sec.hidden = true; return; }
+    if (boardMaint || !boardEnabled || !BOARD_API) { sec.hidden = true; return; }   // 整備中は新着欄も隠す
     fetch(boardApi('/threads'), { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
       var ths = (d.threads || []).slice(0, 5);
       if (!ths.length) { sec.hidden = true; return; }
@@ -976,6 +977,14 @@
   }
   function renderBoard() {
     var host = document.getElementById('board-body'); if (!host) return;
+    if (boardMaint) {   // 整備中: APIを叩かず案内のみ
+      var note = document.getElementById('board-note'), status = document.getElementById('board-status');
+      if (note) note.textContent = ''; if (status) status.textContent = '';
+      host.innerHTML = '<div class="board-maint"><div class="board-maint-ico">🛠</div>' +
+        '<div class="board-maint-h">掲示板は整備中です</div>' +
+        '<div class="board-maint-p">より使いやすくするため一時的に停止しています。もうしばらくお待ちください。</div></div>';
+      return;
+    }
     boardHead();
     if (!boardEnabled) { host.innerHTML = '<div class="board-empty">準備中です。</div>'; return; }
     boardSyncFromUrl();
@@ -1157,7 +1166,15 @@
     }).catch(function () { host.innerHTML = '<button class="th-back">← スレ一覧</button><div class="board-empty">読み込みに失敗しました。</div>'; back(); });
   }
   function setupBoard() {
-    if (!VIEWS.board || !BOARD_API || GBASE !== '/') return;   // 海外版/API未設定では無効
+    if (!VIEWS.board || GBASE !== '/') return;   // 海外版では無効
+    if (boardMaint) {   // 整備中: タブは出す(クリックで案内表示)がAPIは一切叩かない
+      boardEnabled = true;
+      var tb = document.getElementById('tab-board'); if (tb) tb.hidden = false;
+      window.addEventListener('popstate', function () { if (currentView === 'board' && viewOf() === 'board') renderBoard(); });
+      if (viewOf() === 'board' && currentView !== 'board') switchTab('board', true);
+      return;
+    }
+    if (!BOARD_API) return;   // API未設定では無効
     try {   // ?boardkey=... で管理解錠。localStorageに保存しURLからは消す
       var q = new URLSearchParams(location.search);
       if (q.get('boardkey')) {
