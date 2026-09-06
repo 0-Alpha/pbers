@@ -132,9 +132,9 @@ window.PBERS_DATA = [
   {
     "name": "日本猫耳版ボール【目標9000人】",
     "subs": 12900,
-    "views": 3925401,
+    "views": 3925643,
     "subsLabel": "チャンネル登録者数 1.29万人",
-    "viewsLabel": "3,925,401回視聴",
+    "viewsLabel": "3,925,643回視聴",
     "videos": 226,
     "url": "https://www.youtube.com/channel/UCIqROVo0xBJfh5h6cQyPm7Q",
     "avatar": "https://yt3.googleusercontent.com/LpR7h9FEKhK0Va34bq-KRghVlWGkhmZQUTbd-JcnnuZ3BU17SQQjkFfh6YnFgAvVbYXcWO37Vw=s900-c-k-c0x00ffffff-no-rj",
@@ -144,9 +144,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dotto edit",
-    "subs": 9820,
+    "subs": 9830,
     "views": 7152622,
-    "subsLabel": "チャンネル登録者数 9820人",
+    "subsLabel": "チャンネル登録者数 9830人",
     "viewsLabel": "7,152,622回視聴",
     "videos": 61,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
@@ -171,9 +171,9 @@ window.PBERS_DATA = [
   {
     "name": "udonball",
     "subs": 6890,
-    "views": 1230583,
+    "views": 1230966,
     "subsLabel": "チャンネル登録者数 6890人",
-    "viewsLabel": "1,230,583回視聴",
+    "viewsLabel": "1,230,966回視聴",
     "videos": 119,
     "url": "https://www.youtube.com/channel/UCGueqNQmvtQYlGO3UL3Gf3w",
     "avatar": "https://yt3.googleusercontent.com/t-XpUkPOEssGyYn9TK4JrLG9EmGIhn565-GBvVCtqkpxDXD36l6OOb6EOlWJ_Gr92W8a_ryApcg=s900-c-k-c0x00ffffff-no-rj",
@@ -209,5 +209,5 @@ window.PBERS_DATA = [
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
-window.PBERS_UPDATED = "2026-09-06";
-window.PBERS_PREDICT = {"asOfMs": 1788706800000, "subs": {"base": 1508590, "rate": 2.2437606428339943e-05}, "views": {"base": 666076456, "rate": 0.010262165002972433}};
+window.PBERS_UPDATED = "2026-09-07";
+window.PBERS_PREDICT = {"asOfMs": 1788728400000, "subs": {"base": 1508600, "rate": 2.48324840374628e-05}, "views": {"base": 666077081, "rate": 0.010437493248054012}};
