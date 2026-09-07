@@ -516,6 +516,27 @@
   // 成長/急上昇の棒 → 個別ページへの導線用: チャンネル名から slug / アバターを引く
   var SLUG_BY_NAME = {}, AV_BY_NAME = {};
   ALL.forEach(function (d) { SLUG_BY_NAME[d.name] = d.slug || chId(d); AV_BY_NAME[d.name] = d.avatar || ''; });
+  // 掲示板の本文中に書かれたPBer名を自動でリンク&着色するための対応表と正規表現
+  // (escした名前をキーに、body(esc済)へ1パス置換。長い名前優先で部分一致を回避、3文字以上のみ対象)
+  var MENTION = {}, mentionRe = null;
+  function reEsc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  (function buildMentions() {
+    var names = [];
+    ALL.forEach(function (d) {
+      if (!d.name || String(d.name).length < 3) return;   // 短すぎる名前は誤マッチ防止で除外
+      var en = esc(d.name);
+      if (!MENTION[en]) { MENTION[en] = { slug: d.slug || chId(d), color: d.color || '#8d8986' }; names.push(en); }
+    });
+    names.sort(function (a, b) { return b.length - a.length; });
+    if (names.length) mentionRe = new RegExp(names.map(reEsc).join('|'), 'g');
+  })();
+  function mentionize(escaped) {   // esc済みテキストのみに掛ける
+    if (!mentionRe) return escaped;
+    return escaped.replace(mentionRe, function (m) {
+      var e = MENTION[m]; if (!e) return m;
+      return '<a class="ch-mention" style="color:' + e.color + '" href="' + GBASE + 'c/' + encodeURIComponent(e.slug) + '/">' + m + '</a>';
+    });
+  }
   function makeGrowCol(key) {
     var col = document.createElement('div');
     col.className = 'grow-col shown'; col.dataset.key = key;
@@ -1113,7 +1134,7 @@
               '<button type="button" class="post-re" data-no="' + p.no + '">返信</button>' +
               (boardKey ? '<button type="button" class="bc-hide" data-k="post" data-t="' + id + '" data-no="' + p.no + '" data-h="' + (p.hidden ? 0 : 1) + '">' + (p.hidden ? '表示' : '非表示') + '</button>' : '') +
             '</div>' +
-            '<div class="post-body">' + linkAnchors(esc(p.body).replace(/\n/g, '<br>')) + '</div>' +
+            '<div class="post-body">' + mentionize(linkAnchors(esc(p.body))).replace(/\n/g, '<br>') + '</div>' +
             ytEmbeds(p.body) +
           '</div>';
         }).join('') + '</div>' +
