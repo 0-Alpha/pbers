@@ -79,9 +79,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-    "subs": 116000,
+    "subs": 117000,
     "views": 47777280,
-    "subsLabel": "チャンネル登録者数 11.6万人",
+    "subsLabel": "チャンネル登録者数 11.7万人",
     "viewsLabel": "47,777,280回視聴",
     "videos": 254,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
@@ -109,7 +109,7 @@ window.PBERS_DATA = [
     "views": 15247843,
     "subsLabel": "チャンネル登録者数 2.4万人",
     "viewsLabel": "15,247,843回視聴",
-    "videos": 892,
+    "videos": 891,
     "url": "https://www.youtube.com/channel/UCfe4nCMqfTwoiMmIGqAolcQ",
     "avatar": "https://yt3.googleusercontent.com/3JZIEM7UfdCSG6s6ge7iysnTTyLWldBvHduFzlEyA2KMqsUWqUxtWKy6sL2EIlMdFlPzzJ2FlQ=s900-c-k-c0x00ffffff-no-rj",
     "color": "#ccd45e",
@@ -118,9 +118,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "くろまめ",
-    "subs": 15900,
+    "subs": 16000,
     "views": 15910441,
-    "subsLabel": "チャンネル登録者数 1.59万人",
+    "subsLabel": "チャンネル登録者数 1.6万人",
     "viewsLabel": "15,910,441回視聴",
     "videos": 68,
     "url": "https://www.youtube.com/channel/UCfJp9c3kSkIjYFevd2G1RKg",
@@ -144,11 +144,11 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dotto edit",
-    "subs": 9830,
+    "subs": 9850,
     "views": 7168416,
-    "subsLabel": "チャンネル登録者数 9830人",
+    "subsLabel": "チャンネル登録者数 9850人",
     "viewsLabel": "7,168,416回視聴",
-    "videos": 61,
+    "videos": 62,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
     "avatar": "https://yt3.googleusercontent.com/JjoolJ5faLhJzaPj3UckuOvdbEaug12ouvdocg6jk1Lw-ZS7TMNjGxAAuz0v3hb6b04v_uJ97Q=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3e66cc",
@@ -157,9 +157,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Past_Ball",
-    "subs": 7680,
+    "subs": 7690,
     "views": 3505423,
-    "subsLabel": "チャンネル登録者数 7680人",
+    "subsLabel": "チャンネル登録者数 7690人",
     "viewsLabel": "3,505,423回視聴",
     "videos": 213,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
@@ -210,4 +210,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-07";
-window.PBERS_PREDICT = {"asOfMs": 1788771600000, "subs": {"base": 1508700, "rate": 2.0550767049201484e-05}, "views": {"base": 666483328, "rate": 0.010127751361081393}};
+window.PBERS_PREDICT = {"asOfMs": 1788793200000, "subs": {"base": 1509830, "rate": 2.3563333346777974e-05}, "views": {"base": 666483328, "rate": 0.009171069176950571}};
