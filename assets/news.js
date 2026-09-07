@@ -2,7 +2,32 @@ window.PBERS_NEWS = [
   {
     "date": "2026-09-07",
     "label": "9月7日(月)",
-    "items": []
+    "items": [
+      {
+        "type": "multi_overtake",
+        "kind": "subs",
+        "name": "ニイソビボール",
+        "color": "#3ec4cc",
+        "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⚡",
+        "genre": "ポーランドボーラー",
+        "count": 2,
+        "opps": [
+          {
+            "name": "ライヒスボール【Reichsball】",
+            "color": "#5e66d4",
+            "avatar": "https://yt3.googleusercontent.com/ZT_Uape_wuD-XJYz4KzEJfX3UcxisMo3_bXo7wgbU0wtBltqG4S-KMHZBuFeP50g-8WUo1rE=s900-c-k-c0x00ffffff-no-rj"
+          },
+          {
+            "name": "かめ・さーくボール共和国",
+            "color": "#b23ecc",
+            "avatar": "https://yt3.googleusercontent.com/pmJmxVLE0mmUdGwtazGaKNHTg4eIJByKeQUYGONLj9xn5hXL-lBXiNSNjQCCBN6RcYfle0LO=s900-c-k-c0x00ffffff-no-rj"
+          }
+        ],
+        "label": "登録者数で 二枚抜き（ライヒスボール【Reichsball】・かめ・さーくボール共和国 を追い越し）",
+        "value": 9670
+      }
+    ]
   },
   {
     "date": "2026-09-06",
@@ -23,7 +48,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ニイソビボール",
-        "color": "#5e66d4",
+        "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -45,7 +70,7 @@ window.PBERS_NEWS = [
         "type": "multi_overtake",
         "kind": "subs",
         "name": "MIKUボール",
-        "color": "#5ebcd4",
+        "color": "#3ecc6b",
         "avatar": "https://yt3.googleusercontent.com/6w7QBnmhG0QOmG33OrGsxQR2cM7u-_izyc_BizYXJzvu-1MbSW2UC3X8T15rWcyY9TTgmRuYZQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⚡",
         "genre": "ポーランドボーラー",
@@ -69,7 +94,7 @@ window.PBERS_NEWS = [
         "type": "multi_overtake",
         "kind": "subs",
         "name": "ニイソビボール",
-        "color": "#5e66d4",
+        "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⚡",
         "genre": "ポーランドボーラー",
@@ -122,7 +147,7 @@ window.PBERS_NEWS = [
         "type": "multi_overtake",
         "kind": "views",
         "name": "ニイソビボール",
-        "color": "#5e66d4",
+        "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⚡",
         "genre": "ポーランドボーラー",
@@ -264,7 +289,7 @@ window.PBERS_NEWS = [
         "type": "multi_overtake",
         "kind": "subs",
         "name": "ニイソビボール",
-        "color": "#5e66d4",
+        "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⚡",
         "genre": "ポーランドボーラー",
@@ -450,7 +475,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "views",
         "name": "ニイソビボール",
-        "color": "#5e66d4",
+        "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -593,17 +618,17 @@ window.PBERS_NEWS = [
         "count": 2,
         "opps": [
           {
-            "name": "ソビエト・ロシアぼーる",
-            "color": "#3ecca8",
-            "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj"
-          },
-          {
             "name": "ケエレビQ!",
             "color": "#d4625e",
             "avatar": "https://yt3.googleusercontent.com/T7210hEFAOEDsDIQv46XXCo2mYDBeI9SShL4A4ZIo-qJE5eURzK5jy6rFAOWk2orvXdsnt-r=s900-c-k-c0x00ffffff-no-rj"
+          },
+          {
+            "name": "ソビエト・ロシアぼーる",
+            "color": "#3ecca8",
+            "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
-        "label": "投稿数で 二枚抜き（ソビエト・ロシアぼーる・ケエレビQ! を追い越し）",
+        "label": "投稿数で 二枚抜き（ケエレビQ!・ソビエト・ロシアぼーる を追い越し）",
         "value": 102
       },
       {
@@ -822,7 +847,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "subs",
         "name": "ニイソビボール",
-        "color": "#5e66d4",
+        "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -879,7 +904,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "MIKUボール",
-          "color": "#5ebcd4",
+          "color": "#3ecc6b",
           "avatar": "https://yt3.googleusercontent.com/6w7QBnmhG0QOmG33OrGsxQR2cM7u-_izyc_BizYXJzvu-1MbSW2UC3X8T15rWcyY9TTgmRuYZQ=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 3491996,
@@ -1761,7 +1786,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "subs",
         "name": "ニイソビボール",
-        "color": "#5e66d4",
+        "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -1818,7 +1843,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "渋谷区のペンギン",
-          "color": "#3ecc6b",
+          "color": "#5ebcd4",
           "avatar": "https://yt3.googleusercontent.com/UzSRTPeQjShkDU9fW2m2meYmivDymiYdGJUdfMhxQGeFCqEaGeVO3Bkvo0X-AgvDhLC_VqWRV3M=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 3403190,
@@ -1829,7 +1854,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "views",
         "name": "ニイソビボール",
-        "color": "#5e66d4",
+        "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
