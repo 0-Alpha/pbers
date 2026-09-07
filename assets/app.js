@@ -518,37 +518,52 @@
   ALL.forEach(function (d) { SLUG_BY_NAME[d.name] = d.slug || chId(d); AV_BY_NAME[d.name] = d.avatar || ''; });
   // 掲示板の本文中に書かれたPBer名を検出 → 投稿の下に「言及」注釈として表示するための対応表
   // 完全一致ではなく「正規化」して照合する: 大文字小文字・全角/半角・カタカナ/ひらがな・
-  // 「・」中点/記号/空白などの表記ゆれを吸収する。長い名前優先で部分一致を回避、正規化後3文字以上のみ対象。
-  var MENTION = [];   // { key(正規化名), name, slug, color, avatar } を key の長い順で保持
+  // 中点/記号/絵文字/装飾を吸収し、英数・かな・漢字だけで比較する。さらに:
+  //   ・末尾「ぼーる/ボール」は省略しても当たる(mnCoreで核キーも登録)
+  //   ・漢字読みや通称など正規化で吸収できないものは MENTION_ALIAS で別名を追加
+  // 1チャンネルにつき複数キーを持たせ、長いキー優先で照合。同一チャンネルは1回だけ表示。
+  var MENTION = [];   // { key, name, slug, color, avatar } を key の長い順で保持
+  var MENTION_ALIAS = {   // 登録名 → 追加で当てたい別名(読み・通称)。正規化で吸収できない分だけ手当て
+    '田中MID': ['たなか', '田中'],
+    'にこちPB': ['にこち']
+  };
   function mnNorm(s) {
     s = String(s == null ? '' : s);
     // 互換分解 + 全角英数記号→半角(NFKC)。全角カナ↔半角カナも半角化される
     try { s = s.normalize('NFKC'); } catch (e) {}
     s = s.toLowerCase();
-    // カタカナ→ひらがな (U+30A1..U+30F6)。長音符「ー」やﾞﾟは触らない
+    // カタカナ→ひらがな (U+30A1..U+30F6)
     s = s.replace(/[ァ-ヶ]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0x60); });
-    // 中点・記号・空白・引用符など「区切り/飾り」を除去(誤検出しにくいものだけ)
-    s = s.replace(/[\s・･·•‧∙°'"’”`~^|=+*/\\()\[\]{}<>「」『』【】〈〉《》～〜\-_.,!?！？:;、。／＼]/g, '');
+    // 英数字・ひらがな・長音符「ー」・漢字だけ残す(記号/絵文字/中点/空白/装飾を全部除去)
+    s = s.replace(/[^0-9a-z぀-ゟー一-鿿]/g, '');
     return s;
   }
+  function mnCore(k) { return k.replace(/ぼーる$/, ''); }   // 末尾「ぼーる/ボール」を省いた核
   (function buildMentions() {
     var seenKey = {};
+    function add(key, e, minLen) {
+      if (!key || key.length < (minLen || 3)) return;   // 短すぎるキーは誤マッチ防止で除外
+      if (seenKey[key]) return;                          // 同じキーは先勝ち(重複チャンネル対策)
+      seenKey[key] = 1; MENTION.push({ key: key, name: e.name, slug: e.slug, color: e.color, avatar: e.avatar });
+    }
     ALL.forEach(function (d) {
       if (!d.name) return;
-      var key = mnNorm(d.name);
-      if (key.length < 3) return;                 // 正規化後が短すぎる名前は誤マッチ防止で除外
-      if (seenKey[key]) return;                    // 同じ正規化名は先勝ち(重複チャンネル対策)
-      seenKey[key] = 1;
-      MENTION.push({ key: key, name: d.name, slug: d.slug || chId(d), color: d.color || '#8d8986', avatar: d.avatar || '' });
+      var e = { name: d.name, slug: d.slug || chId(d), color: d.color || '#8d8986', avatar: d.avatar || '' };
+      var full = mnNorm(d.name); add(full, e);
+      var core = mnCore(full); if (core !== full) add(core, e);   // ボール無しでも当てる
+      var al = MENTION_ALIAS[d.name];
+      if (al) al.forEach(function (a) { add(mnNorm(a), e, 2); });  // 別名は2文字から許可(例:田中)
     });
-    MENTION.sort(function (a, b) { return b.key.length - a.key.length; });   // 長い名前優先
+    MENTION.sort(function (a, b) { return b.key.length - a.key.length; });   // 長いキー優先
   })();
   function mentionsIn(body) {   // 本文から言及されたチャンネルを重複なく抽出
     if (!MENTION.length || !body) return [];
     var hay = mnNorm(body); if (!hay) return [];
-    var out = [];
+    var out = [], seenName = {};
     for (var i = 0; i < MENTION.length && out.length < 12; i++) {
-      if (hay.indexOf(MENTION[i].key) !== -1) out.push(MENTION[i]);
+      var e = MENTION[i];
+      if (seenName[e.name]) continue;                    // 同一チャンネルは1回だけ
+      if (hay.indexOf(e.key) !== -1) { seenName[e.name] = 1; out.push(e); }
     }
     return out;
   }
