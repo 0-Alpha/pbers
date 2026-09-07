@@ -517,25 +517,38 @@
   var SLUG_BY_NAME = {}, AV_BY_NAME = {};
   ALL.forEach(function (d) { SLUG_BY_NAME[d.name] = d.slug || chId(d); AV_BY_NAME[d.name] = d.avatar || ''; });
   // 掲示板の本文中に書かれたPBer名を検出 → 投稿の下に「言及」注釈として表示するための対応表
-  // (生の名前で照合。長い名前優先で部分一致を回避、3文字以上のみ対象)
-  var MENTION = {}, mentionRe = null;
-  function reEsc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  // 完全一致ではなく「正規化」して照合する: 大文字小文字・全角/半角・カタカナ/ひらがな・
+  // 「・」中点/記号/空白などの表記ゆれを吸収する。長い名前優先で部分一致を回避、正規化後3文字以上のみ対象。
+  var MENTION = [];   // { key(正規化名), name, slug, color, avatar } を key の長い順で保持
+  function mnNorm(s) {
+    s = String(s == null ? '' : s);
+    // 互換分解 + 全角英数記号→半角(NFKC)。全角カナ↔半角カナも半角化される
+    try { s = s.normalize('NFKC'); } catch (e) {}
+    s = s.toLowerCase();
+    // カタカナ→ひらがな (U+30A1..U+30F6)。長音符「ー」やﾞﾟは触らない
+    s = s.replace(/[ァ-ヶ]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0x60); });
+    // 中点・記号・空白・引用符など「区切り/飾り」を除去(誤検出しにくいものだけ)
+    s = s.replace(/[\s・･·•‧∙°'"’”`~^|=+*/\\()\[\]{}<>「」『』【】〈〉《》～〜\-_.,!?！？:;、。／＼]/g, '');
+    return s;
+  }
   (function buildMentions() {
-    var names = [];
+    var seenKey = {};
     ALL.forEach(function (d) {
-      if (!d.name || String(d.name).length < 3) return;   // 短すぎる名前は誤マッチ防止で除外
-      if (!MENTION[d.name]) { MENTION[d.name] = { name: d.name, slug: d.slug || chId(d), color: d.color || '#8d8986', avatar: d.avatar || '' }; names.push(d.name); }
+      if (!d.name) return;
+      var key = mnNorm(d.name);
+      if (key.length < 3) return;                 // 正規化後が短すぎる名前は誤マッチ防止で除外
+      if (seenKey[key]) return;                    // 同じ正規化名は先勝ち(重複チャンネル対策)
+      seenKey[key] = 1;
+      MENTION.push({ key: key, name: d.name, slug: d.slug || chId(d), color: d.color || '#8d8986', avatar: d.avatar || '' });
     });
-    names.sort(function (a, b) { return b.length - a.length; });
-    if (names.length) mentionRe = new RegExp(names.map(reEsc).join('|'), 'g');
+    MENTION.sort(function (a, b) { return b.key.length - a.key.length; });   // 長い名前優先
   })();
-  function mentionsIn(body) {   // 本文(生)から言及されたチャンネルを重複なく抽出(登場順)
-    if (!mentionRe || !body) return [];
-    var seen = {}, out = [], m; mentionRe.lastIndex = 0;
-    while ((m = mentionRe.exec(String(body)))) {
-      var e = MENTION[m[0]];
-      if (e && !seen[e.name]) { seen[e.name] = 1; out.push(e); }
-      if (out.length >= 12) break;
+  function mentionsIn(body) {   // 本文から言及されたチャンネルを重複なく抽出
+    if (!MENTION.length || !body) return [];
+    var hay = mnNorm(body); if (!hay) return [];
+    var out = [];
+    for (var i = 0; i < MENTION.length && out.length < 12; i++) {
+      if (hay.indexOf(MENTION[i].key) !== -1) out.push(MENTION[i]);
     }
     return out;
   }
