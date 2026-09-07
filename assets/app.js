@@ -944,6 +944,8 @@
   var TS_KEY = window.PBERS_TURNSTILE_SITEKEY || '';   // Turnstileサイトキー(公開・任意)
   function boardName() { try { return localStorage.getItem('pbers_board_name') || ''; } catch (e) { return ''; } }
   function saveBoardName(v) { try { localStorage.setItem('pbers_board_name', v == null ? '' : v); } catch (e) {} }
+  function boardSort() { try { var v = localStorage.getItem('pbers_board_sort'); return (v === 'new' || v === 'posts') ? v : 'bump'; } catch (e) { return 'bump'; } }
+  function saveBoardSort(v) { try { localStorage.setItem('pbers_board_sort', v); } catch (e) {} }
   // Turnstileは「公開中」かつ「非管理者」の時だけ出す(管理者はサーバ側で免除)
   function tsNeeded() { return !!TS_KEY && boardPublic && !boardKey; }
   function tsLoad() {
@@ -1046,6 +1048,11 @@
       '</form>' +
       '<div class="bd-search-wrap"><input class="bf-in bd-search" id="bd-search" maxlength="100" placeholder="🔍 スレ・書き込みを検索">' +
         '<button type="button" class="bd-sclear" id="bd-sclear" aria-label="クリア" hidden>×</button></div>' +
+      '<div class="bd-sort" id="bd-sort" role="tablist">' +
+        '<button type="button" class="bd-sort-b" data-sort="bump">最終レス順</button>' +
+        '<button type="button" class="bd-sort-b" data-sort="new">新着順</button>' +
+        '<button type="button" class="bd-sort-b" data-sort="posts">レス数順</button>' +
+      '</div>' +
       '<div class="board-list" id="board-threads"><div class="board-empty">読み込み中…</div></div>';
     document.getElementById('bt-name').value = boardName();
     var tsNew = tsMount(document.getElementById('bt-new'));
@@ -1078,7 +1085,8 @@
         var sn = (isSearch && t.snippet) ? '<div class="th-snip">' + esc(String(t.snippet).slice(0, 80)) + (String(t.snippet).length > 80 ? '…' : '') + '</div>' : '';
         return '<div class="th' + (t.hidden ? ' bc-off' : '') + '" data-id="' + t.id + '">' +
           '<div class="th-main"><div class="th-title">' + esc(t.title) + (nn > 0 ? ' <span class="th-new">新着' + nn + '</span>' : '') + '</div>' + sn +
-            '<div class="th-meta"><span class="num">' + t.posts + '</span> レス ・ 最終 ' + bWhen(t.bumped) + '</div></div>' +
+            '<div class="th-meta"><span class="num">' + t.posts + '</span> レス ・ ' +
+              (!isSearch && curSort === 'new' ? '作成 ' + bWhen(t.created) : '最終 ' + bWhen(t.bumped)) + '</div></div>' +
           (boardKey ? '<button type="button" class="bc-hide" data-k="thread" data-id="' + t.id + '" data-h="' + (t.hidden ? 0 : 1) + '">' + (t.hidden ? '表示' : '非表示') + '</button>' : '') +
         '</div>';
       }).join('');
@@ -1087,13 +1095,24 @@
       });
       if (boardKey) wireHide(box);
     }
+    var sortBar = document.getElementById('bd-sort');
+    var curSort = boardSort();
+    function markSort() {
+      sortBar.querySelectorAll('.bd-sort-b').forEach(function (b) { b.classList.toggle('on', b.dataset.sort === curSort); });
+    }
     function loadAll() {
       box.innerHTML = '<div class="board-empty">読み込み中…</div>';
-      fetch(boardApi('/threads'), { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
+      var q = curSort && curSort !== 'bump' ? '?sort=' + encodeURIComponent(curSort) : '';
+      fetch(boardApi('/threads') + q, { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
         if (d.error) { box.innerHTML = '<div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; return; }
         paint(d.threads || [], false);
       }).catch(function () { box.innerHTML = '<div class="board-empty">読み込みに失敗しました。</div>'; });
     }
+    markSort();
+    sortBar.addEventListener('click', function (e) {
+      var b = e.target.closest('.bd-sort-b'); if (!b || b.dataset.sort === curSort) return;
+      curSort = b.dataset.sort; saveBoardSort(curSort); markSort(); loadAll();
+    });
     function doSearch(q) {
       box.innerHTML = '<div class="board-empty">検索中…</div>';
       fetch(boardApi('/search') + '?q=' + encodeURIComponent(q), { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
@@ -1103,10 +1122,10 @@
     }
     var si = document.getElementById('bd-search'), sc = document.getElementById('bd-sclear'), sTimer = null;
     si.addEventListener('input', function () {
-      var q = si.value.trim(); sc.hidden = !q;
+      var q = si.value.trim(); sc.hidden = !q; sortBar.hidden = !!q;   // 検索中は並び替えを隠す
       clearTimeout(sTimer); sTimer = setTimeout(function () { if (q) doSearch(q); else loadAll(); }, 300);
     });
-    sc.addEventListener('click', function () { si.value = ''; sc.hidden = true; loadAll(); si.focus(); });
+    sc.addEventListener('click', function () { si.value = ''; sc.hidden = true; sortBar.hidden = false; loadAll(); si.focus(); });
     loadAll();
   }
   // 本文中の >>N (全角＞＞も) をアンカーリンク化。esc後の文字列に対して掛ける(> は &gt; になっている)

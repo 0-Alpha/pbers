@@ -756,6 +756,13 @@ footer .brand{font-size:16px}
 .bd-sclear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:26px;height:26px;border:0;border-radius:50%;
   background:var(--line-2);color:var(--text);font-size:15px;line-height:1;cursor:pointer}
 .bd-sclear:hover{background:var(--muted-2,var(--muted));color:#fff}
+.bd-sort{display:inline-flex;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px;margin-bottom:14px}
+.bd-sort-b{border:0;background:transparent;padding:6px 14px;border-radius:999px;font-family:var(--jp);font-weight:700;
+  font-size:12.5px;color:var(--muted);cursor:pointer;white-space:nowrap;transition:background .16s,color .16s;
+  -webkit-user-select:none;user-select:none}
+.bd-sort-b:hover{color:var(--text)}
+.bd-sort-b.on{background:rgba(255,255,255,.11);color:var(--text)}
+@media(max-width:480px){ .bd-sort-b{padding:6px 11px;font-size:12px} }
 .bd-sresult{font-family:var(--jp);font-weight:700;font-size:13px;color:var(--muted);margin-bottom:10px}
 .th-snip{font-family:var(--jp);font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.5;
   overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}

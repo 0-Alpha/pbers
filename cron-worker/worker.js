@@ -345,14 +345,17 @@ async function rateLimit(req, env, tag, seconds) {
   return true;
 }
 
+const THREAD_ORDER = { bump: "bumped DESC", new: "created DESC", posts: "posts DESC, bumped DESC" };
 async function threadList(url, req, env) {
   const g = await guard(req, env, {}); if (g.err) return json({ error: g.err }, g.status);
   const board = "general";
+  const sort = url.searchParams.get("sort");
+  const order = THREAD_ORDER[sort] || THREAD_ORDER.bump;   // 未知の値は最終レス順にフォールバック
   const sql = g.admin
-    ? "SELECT id,title,created,bumped,posts,hidden FROM board_threads WHERE board=?1 ORDER BY bumped DESC LIMIT 200"
-    : "SELECT id,title,created,bumped,posts,hidden FROM board_threads WHERE board=?1 AND hidden=0 ORDER BY bumped DESC LIMIT 200";
+    ? "SELECT id,title,created,bumped,posts,hidden FROM board_threads WHERE board=?1 ORDER BY " + order + " LIMIT 200"
+    : "SELECT id,title,created,bumped,posts,hidden FROM board_threads WHERE board=?1 AND hidden=0 ORDER BY " + order + " LIMIT 200";
   const { results } = await env.DB.prepare(sql).bind(board).all();
-  return json({ public: g.pub, admin: g.admin, threads: results || [] });
+  return json({ public: g.pub, admin: g.admin, sort: THREAD_ORDER[sort] ? sort : "bump", threads: results || [] });
 }
 async function boardSearch(url, req, env) {
   const g = await guard(req, env, {}); if (g.err) return json({ error: g.err }, g.status);
