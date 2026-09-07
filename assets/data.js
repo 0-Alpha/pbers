@@ -1898,6 +1898,19 @@ window.PBERS_DATA = [
     "slug": "nà大和ボール"
   },
   {
+    "name": "落書きポーラン",
+    "subs": 2160,
+    "views": 474925,
+    "subsLabel": "チャンネル登録者数 2160人",
+    "viewsLabel": "474,925回視聴",
+    "videos": 68,
+    "url": "https://www.youtube.com/channel/UCwS8KDNWeKRbsWXjxMwSK5Q",
+    "avatar": "https://yt3.googleusercontent.com/Ouo77fj6iT_AWSAc38PQB4NsthwSeyPFltDxRW36iEoNYpg_JDPg3lcUipXA2QxjvJLaCyYnvYk=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#66cc3e",
+    "genre": "ポーランドボーラー",
+    "slug": "落書きポーラン"
+  },
+  {
     "name": "東トルキスタンボール",
     "subs": 2140,
     "views": 397059,
@@ -1906,7 +1919,7 @@ window.PBERS_DATA = [
     "videos": 25,
     "url": "https://www.youtube.com/channel/UC9jmzFCXGdLiR75vcdxDH6A",
     "avatar": "https://yt3.googleusercontent.com/gl0PJDChU9pNvwUraC-NHdbfB-E4QFi_ACxD9BO_GSGGoUYkNmcNH6d3crXJ-8l44QeEHRjz=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#66cc3e",
+    "color": "#5ed4a5",
     "genre": "ポーランドボーラー",
     "slug": "東トルキスタンボール"
   },
@@ -1919,7 +1932,7 @@ window.PBERS_DATA = [
     "videos": 9,
     "url": "https://www.youtube.com/channel/UCTDtR89msJc6AV5t3X8H7fw",
     "avatar": "https://yt3.googleusercontent.com/JOm2bK8BIWTvVMMPnpH5pgZSCkzxxK98xNF0IeecxPHgbH_j4ZoSKeHS9A7cAWmpxQOs95sfUg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5ed4a5",
+    "color": "#3e87cc",
     "genre": "ポーランドボーラー",
     "slug": "スチロールポーランドボール"
   },
@@ -1932,7 +1945,7 @@ window.PBERS_DATA = [
     "videos": 173,
     "url": "https://www.youtube.com/channel/UC562UMBmV-_lw_T4Mqh7LKw",
     "avatar": "https://yt3.googleusercontent.com/5MvkKfH36kOCAzO08xdpTyyNDfTII_xcUbhuuvBpfnfswW8wiEM-l-k9px9ysBlVwCZF1p85=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3e87cc",
+    "color": "#895ed4",
     "genre": "ポーランドボーラー",
     "slug": "mīþ緑ボール-大緑"
   },
@@ -1945,7 +1958,7 @@ window.PBERS_DATA = [
     "videos": 44,
     "url": "https://www.youtube.com/channel/UCVSjpNF16DpI4XG0E4IXbnA",
     "avatar": "https://yt3.googleusercontent.com/_jK5l2UwBNsfjk9zVEdenHBT3eaTCeBaogOKV9JSU397tkbAGQvlyi7xnWxhn_9Ai9WGadGBUg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#895ed4",
+    "color": "#cc3ea8",
     "genre": "ポーランドボーラー",
     "slug": "宇宙千葉のpbルーム"
   },
@@ -1958,7 +1971,7 @@ window.PBERS_DATA = [
     "videos": 70,
     "url": "https://www.youtube.com/channel/UC-OzC-_SZ7TvegHVFEA4OHA",
     "avatar": "https://yt3.googleusercontent.com/RnPkMOcvXnYH93HK6sBW4Pk3Z9xk8LGY2Flq4zNhr4yE8hhoRCqIh5px60QCEfsYUCJXuiD5ng=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc3ea8",
+    "color": "#d46e5e",
     "genre": "ポーランドボーラー",
     "slug": "ミントの農場"
   },
@@ -1971,7 +1984,7 @@ window.PBERS_DATA = [
     "videos": 339,
     "url": "https://www.youtube.com/channel/UC0dTgvaZ9fN54Q-ILAhCMuw",
     "avatar": "https://yt3.googleusercontent.com/idKCYo4w5sKLb4FpUjDCoUGFI2ATRvQmRgavCKPeRW5wayDzDjKB9PnAgVEXLv6tDN2GjNBffkc=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d46e5e",
+    "color": "#c9cc3e",
     "genre": "ポーランドボーラー",
     "slug": "ソ中ボール日友好平和同盟"
   },
@@ -1984,7 +1997,7 @@ window.PBERS_DATA = [
     "videos": 114,
     "url": "https://www.youtube.com/channel/UC8RiqSKxCmtZYEk_fLze0pQ",
     "avatar": "https://yt3.googleusercontent.com/R5Hi38Yy_E05WoCxZZMME7iv1sdUgAhUTBAlkBHKmNWairzMuzn4EMJvYpL7aJycNuG4SHKeEA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#c9cc3e",
+    "color": "#6ad45e",
     "genre": "ポーランドボーラー",
     "slug": "ぴくろす"
   },
@@ -1997,11 +2010,11 @@ window.PBERS_DATA = [
     "videos": null,
     "url": "https://www.youtube.com/channel/UCD9mEEJypdqQZeSeTotItbg",
     "avatar": "",
-    "color": "#6ad45e",
+    "color": "#3eccad",
     "genre": "ポーランドボーラー",
     "slug": "ucd9meejypdqqzesetotitbg"
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-07";
-window.PBERS_PREDICT = {"asOfMs": 1788771600000, "subs": {"base": 2825480, "rate": 6.416678103982591e-05}, "views": {"base": 2194103216, "rate": 0.04773181433605783}};
+window.PBERS_PREDICT = {"asOfMs": 1788771600000, "subs": {"base": 2827640, "rate": 6.416678103982591e-05}, "views": {"base": 2194578141, "rate": 0.04773181433605783}};
