@@ -2142,7 +2142,7 @@ window.PBERS_RACE = [
       {
         "name": "SEKKI98",
         "color": "#3ecc9f",
-        "avatar": "https://yt3.googleusercontent.com/n7RskwBn8eLp8MACtbTciWLvA53zE11jWpQ0ukoJT4NCRFB4GH8_xAQ6o7Y3GRc91XSC2NPBz50=s900-c-k-c0x00ffffff-no-rj",
+        "avatar": "https://yt3.googleusercontent.com/MBflL2QxxcpYVhPgMdQ8we5mjMEyfu35V0GVlsOr9c4snYyEpopOSnyaoxaR4wgFjJAMwowQ5Q=s900-c-k-c0x00ffffff-no-rj",
         "subs": 12200,
         "history": [
           {
@@ -5132,58 +5132,10 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "旧名大日本ボール(民主)たまに復活するかも",
-        "color": "#6ed45e",
-        "avatar": "https://yt3.googleusercontent.com/fNkFvDzT54uyPaFer3z4SB4sKPue9ydsONbTT5mLcVAtbiRG3MlPYQ5zhUR4NrY1pJsZxRvr=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3190,
-        "history": [
-          {
-            "d": "2026-08-30",
-            "s": 3190
-          },
-          {
-            "d": "2026-08-31",
-            "s": 3190
-          },
-          {
-            "d": "2026-09-01",
-            "s": 3190
-          },
-          {
-            "d": "2026-09-02",
-            "s": 3190
-          },
-          {
-            "d": "2026-09-03",
-            "s": 3190
-          },
-          {
-            "d": "2026-09-04",
-            "s": 3190
-          },
-          {
-            "d": "2026-09-05",
-            "s": 3190
-          },
-          {
-            "d": "2026-09-06",
-            "s": 3190
-          },
-          {
-            "d": "2026-09-07",
-            "s": 3190
-          },
-          {
-            "d": "2026-09-08",
-            "s": 3190
-          }
-        ]
-      },
-      {
         "name": "みすい",
-        "color": "#3ecca8",
+        "color": "#6ed45e",
         "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3180,
+        "subs": 3190,
         "history": [
           {
             "d": "2026-08-22",
@@ -5260,6 +5212,54 @@ window.PBERS_RACE = [
         ]
       },
       {
+        "name": "旧名大日本ボール(民主)たまに復活するかも",
+        "color": "#3ecca8",
+        "avatar": "https://yt3.googleusercontent.com/fNkFvDzT54uyPaFer3z4SB4sKPue9ydsONbTT5mLcVAtbiRG3MlPYQ5zhUR4NrY1pJsZxRvr=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 3190,
+        "history": [
+          {
+            "d": "2026-08-30",
+            "s": 3190
+          },
+          {
+            "d": "2026-08-31",
+            "s": 3190
+          },
+          {
+            "d": "2026-09-01",
+            "s": 3190
+          },
+          {
+            "d": "2026-09-02",
+            "s": 3190
+          },
+          {
+            "d": "2026-09-03",
+            "s": 3190
+          },
+          {
+            "d": "2026-09-04",
+            "s": 3190
+          },
+          {
+            "d": "2026-09-05",
+            "s": 3190
+          },
+          {
+            "d": "2026-09-06",
+            "s": 3190
+          },
+          {
+            "d": "2026-09-07",
+            "s": 3190
+          },
+          {
+            "d": "2026-09-08",
+            "s": 3190
+          }
+        ]
+      },
+      {
         "name": "ソビエト・ロシアぼーる",
         "color": "#5e89d4",
         "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj",
@@ -5312,58 +5312,10 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "ロボキチ",
-        "color": "#873ecc",
-        "avatar": "https://yt3.googleusercontent.com/ZANmjXIpKKRDrpaem1qIr-TJ6mUYPAuv4bV3Knwo9dv1-5oqFVmml2Y4vT3XNG5kIId00SR1AQ=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3110,
-        "history": [
-          {
-            "d": "2026-08-30",
-            "s": 3080
-          },
-          {
-            "d": "2026-08-31",
-            "s": 3090
-          },
-          {
-            "d": "2026-09-01",
-            "s": 3090
-          },
-          {
-            "d": "2026-09-02",
-            "s": 3090
-          },
-          {
-            "d": "2026-09-03",
-            "s": 3090
-          },
-          {
-            "d": "2026-09-04",
-            "s": 3100
-          },
-          {
-            "d": "2026-09-05",
-            "s": 3100
-          },
-          {
-            "d": "2026-09-06",
-            "s": 3110
-          },
-          {
-            "d": "2026-09-07",
-            "s": 3110
-          },
-          {
-            "d": "2026-09-08",
-            "s": 3110
-          }
-        ]
-      },
-      {
         "name": "ウィン【肉声】【ポーランドボール】",
-        "color": "#d45ea5",
+        "color": "#873ecc",
         "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3100,
+        "subs": 3110,
         "history": [
           {
             "d": "2026-08-22",
@@ -5436,6 +5388,54 @@ window.PBERS_RACE = [
           {
             "d": "2026-09-08",
             "s": 3100
+          }
+        ]
+      },
+      {
+        "name": "ロボキチ",
+        "color": "#d45ea5",
+        "avatar": "https://yt3.googleusercontent.com/ZANmjXIpKKRDrpaem1qIr-TJ6mUYPAuv4bV3Knwo9dv1-5oqFVmml2Y4vT3XNG5kIId00SR1AQ=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 3110,
+        "history": [
+          {
+            "d": "2026-08-30",
+            "s": 3080
+          },
+          {
+            "d": "2026-08-31",
+            "s": 3090
+          },
+          {
+            "d": "2026-09-01",
+            "s": 3090
+          },
+          {
+            "d": "2026-09-02",
+            "s": 3090
+          },
+          {
+            "d": "2026-09-03",
+            "s": 3090
+          },
+          {
+            "d": "2026-09-04",
+            "s": 3100
+          },
+          {
+            "d": "2026-09-05",
+            "s": 3100
+          },
+          {
+            "d": "2026-09-06",
+            "s": 3110
+          },
+          {
+            "d": "2026-09-07",
+            "s": 3110
+          },
+          {
+            "d": "2026-09-08",
+            "s": 3110
           }
         ]
       },
