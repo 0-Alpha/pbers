@@ -1170,19 +1170,6 @@ window.PBERS_DATA = [
     "slug": "アフガンボール"
   },
   {
-    "name": "ikasumi帝国",
-    "subs": 5610,
-    "views": 979215,
-    "subsLabel": "チャンネル登録者数 5610人",
-    "viewsLabel": "979,215回視聴",
-    "videos": 39,
-    "url": "https://www.youtube.com/channel/UCmVUXrmRsAk94xhvZR9wufA",
-    "avatar": "https://yt3.googleusercontent.com/pXavDBoQWleJO0X1Cd7TrS5BP9DduNyqd0CtSqENd7k-YW0UwYkREQdZAE0mthqG4mUSPcMS8Q=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc613e",
-    "genre": "ポーランドボーラー",
-    "slug": "ikasumi帝国"
-  },
-  {
     "name": "ヴァイマル共和国ボール [底辺PBer連盟] ",
     "subs": 5300,
     "views": 3971259,
@@ -1191,7 +1178,7 @@ window.PBERS_DATA = [
     "videos": 288,
     "url": "https://www.youtube.com/channel/UChdZLH2O41ruwShCEExLzIg",
     "avatar": "https://yt3.googleusercontent.com/dQc05XhmvR-D6BpN8LxOmCx-tE2IB8BzBHGnNtg3ZbmfeSspkw4_q-_vs0-LVrBnkvb-PtibOg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#c4d45e",
+    "color": "#cc613e",
     "genre": "ポーランドボーラー",
     "slug": "ヴァイマル共和国ボール-底辺pber連盟"
   },
@@ -1204,7 +1191,7 @@ window.PBERS_DATA = [
     "videos": 28,
     "url": "https://www.youtube.com/channel/UCaqdyc_L0NJaZq-DK3O1NHA",
     "avatar": "https://yt3.googleusercontent.com/9qdwPP-NnSvcn3Vqyk_Q7yJ7rIFZ559Zl1bEqj50SL_UxoGjU-pm0KUS28B7b7pyuZtGtD5kMA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3ecc40",
+    "color": "#c4d45e",
     "genre": "ポーランドボーラー",
     "slug": "りっつんボール"
   },
@@ -1217,7 +1204,7 @@ window.PBERS_DATA = [
     "videos": 11,
     "url": "https://www.youtube.com/channel/UCSXQ56AYr-ofLLgCEDqNPtQ",
     "avatar": "https://yt3.googleusercontent.com/gKVYAADtZyXXFVJvbWXMZlantx6rBwlvA2cF1bKbz5SHrsCLpVk6858YKOOiyPx1gdY8sYzJWg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5ed4c8",
+    "color": "#3ecc40",
     "genre": "ポーランドボーラー",
     "slug": "ふぉるま"
   },
@@ -1230,7 +1217,7 @@ window.PBERS_DATA = [
     "videos": 11,
     "url": "https://www.youtube.com/channel/UC_4wlrcT4YAkAk_fHNy25IA",
     "avatar": "https://yt3.googleusercontent.com/o_O4DPGbwWHeuSrynErywkiAyWUhcEsvQdIoOj3LmPj9xCydlVwQJFzZ0hi26EL2TSgGgrhG=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3e5ccc",
+    "color": "#5ed4c8",
     "genre": "ポーランドボーラー",
     "slug": "不定期ボール1"
   },
@@ -1243,7 +1230,7 @@ window.PBERS_DATA = [
     "videos": 314,
     "url": "https://www.youtube.com/channel/UCO9_kYdgwpyWRUaf2BgVovQ",
     "avatar": "https://yt3.googleusercontent.com/dqSx0FFusMHqrzyHzUSAgX2hPTR01f9gPDBPpFTXRtHLTLgdfZWzBxvj_EUUUv9GTvCjDfZGJg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#ad5ed4",
+    "color": "#3e5ccc",
     "genre": "ポーランドボーラー",
     "slug": "くるみボール活動休止中"
   },
@@ -1256,7 +1243,7 @@ window.PBERS_DATA = [
     "videos": 111,
     "url": "https://www.youtube.com/channel/UC81gdhOscmh3elhBsBvYmGA",
     "avatar": "https://yt3.googleusercontent.com/FlejDGGK6zDJVZik6AqnxnZj13QQRkyzrivxg5bZYo6WANizJhNUcTrPuZv_-eBUE4tAh3NuPvk=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc3e7e",
+    "color": "#ad5ed4",
     "genre": "ポーランドボーラー",
     "slug": "erop-えるふぼーる"
   },
@@ -1269,7 +1256,7 @@ window.PBERS_DATA = [
     "videos": 67,
     "url": "https://www.youtube.com/channel/UCdnAJEteT_M16ZspihWqfSQ",
     "avatar": "https://yt3.googleusercontent.com/yXzwjLvaGxqpUYtLPiq0eehCASXpPn1dhRiTBpE5Z_PcwOdTSTF1lu7uEPzHcM-2o2Jv417b5w=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d4915e",
+    "color": "#cc3e7e",
     "genre": "ポーランドボーラー",
     "slug": "ていてく"
   },
@@ -1282,7 +1269,7 @@ window.PBERS_DATA = [
     "videos": 59,
     "url": "https://www.youtube.com/channel/UCzJCKSLin3HcvreE4rUapVw",
     "avatar": "https://yt3.googleusercontent.com/D3hzEmS3NlFpnNVS2bR7fw01z9KXtIt1FBIsvtSbCRkcqqZU78xQd-5veF3si6WmeqPHEZ3xyw=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#9fcc3e",
+    "color": "#d4915e",
     "genre": "ポーランドボーラー",
     "slug": "オマエナガ"
   },
@@ -1295,7 +1282,7 @@ window.PBERS_DATA = [
     "videos": 259,
     "url": "https://www.youtube.com/channel/UCGLN4EjvE2-nxXUvkb1LyGQ",
     "avatar": "https://yt3.googleusercontent.com/eS59gj4sUqncdlk0_nSnxkfIKeKASy0K5CwgIpOHv4JM4KR3XSMKM_uhXloSzt8vcLds6FiJjIA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5ed476",
+    "color": "#9fcc3e",
     "genre": "ポーランドボーラー",
     "slug": "旧食dx"
   },
@@ -1308,7 +1295,7 @@ window.PBERS_DATA = [
     "videos": 84,
     "url": "https://www.youtube.com/channel/UCsVeATSfdFgEclHWxX6g3rw",
     "avatar": "https://yt3.googleusercontent.com/zUSuCFiZuO8rrxqChp5qTpjkezlhB7gGtqwygoIvDGMvt2N_9e9Z5FfS7eEY9L8TvxdkhIRVYw=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3ec0cc",
+    "color": "#5ed476",
     "genre": "ポーランドボーラー",
     "slug": "ソラビア人民共和国連邦"
   },
@@ -1321,7 +1308,7 @@ window.PBERS_DATA = [
     "videos": 144,
     "url": "https://www.youtube.com/channel/UCKmC09NCtSlKVNP5VDULGjw",
     "avatar": "https://yt3.googleusercontent.com/d08MA9fnkNe-Afq3BznQl13_urdsh10q0R2-Kl6mvXfAl9Ib9ElsCtrvjP0tiDgdK41KohnTtQQ=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5e62d4",
+    "color": "#3ec0cc",
     "genre": "ポーランドボーラー",
     "slug": "スコミヤ228"
   },
@@ -1334,7 +1321,7 @@ window.PBERS_DATA = [
     "videos": 52,
     "url": "https://www.youtube.com/channel/UCZbTlsZfAf1cmBgLnYMfPWg",
     "avatar": "https://yt3.googleusercontent.com/WX0x2Taa65iBzUFRSgy7esb4WOcPuDaB7kYluOwNEqFZJ0tN7lMR_IL5m1pZC7b6tpNJUdSTgA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#b63ecc",
+    "color": "#5e62d4",
     "genre": "ポーランドボーラー",
     "slug": "カルマルボール"
   },
@@ -1347,7 +1334,7 @@ window.PBERS_DATA = [
     "videos": 10,
     "url": "https://www.youtube.com/channel/UCC65NgCrqSUMCe-R3Cj5O9w",
     "avatar": "https://yt3.googleusercontent.com/ScS6HM9iypOCDBOdKggwfPhnnk8le2BxxccB7H_LmgRUXx56Noe0GMr1OjcJFs-qlVzoqvHdEkk=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d45e7d",
+    "color": "#b63ecc",
     "genre": "ポーランドボーラー",
     "slug": "アドラー"
   },
@@ -1360,7 +1347,7 @@ window.PBERS_DATA = [
     "videos": 24,
     "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
     "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc953e",
+    "color": "#d45e7d",
     "genre": "ポーランドボーラー",
     "slug": "まっこゆ"
   },
@@ -1373,7 +1360,7 @@ window.PBERS_DATA = [
     "videos": 68,
     "url": "https://www.youtube.com/channel/UCfl1W6sL5-es_rWqA7bGbRQ",
     "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#99d45e",
+    "color": "#cc953e",
     "genre": "ポーランドボーラー",
     "slug": "萱口"
   },
@@ -1386,7 +1373,7 @@ window.PBERS_DATA = [
     "videos": 42,
     "url": "https://www.youtube.com/channel/UCVG_OUKKL4TDrteb9gwjdFg",
     "avatar": "https://yt3.googleusercontent.com/9UKHrb6uwc5Pka4NW96vkSd5rDkF6onWj2MAIdQtvlIrvq5TaPMbduT3ohHG7qFk9oNd_ewR=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3ecc74",
+    "color": "#99d45e",
     "genre": "ポーランドボーラー",
     "slug": "幻死帝国"
   },
@@ -1399,7 +1386,7 @@ window.PBERS_DATA = [
     "videos": 95,
     "url": "https://www.youtube.com/channel/UCOWqMzG_N3gzH1yGENiUFiA",
     "avatar": "https://yt3.googleusercontent.com/bL9lWsp29DejSdFemB__O0UqwLkgufQdMTMKh0ceh2gHNtK9eIndZqueRLInTnEefoJndg7trA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5eb5d4",
+    "color": "#3ecc74",
     "genre": "ポーランドボーラー",
     "slug": "sekumeball-せくめボール"
   },
@@ -1412,7 +1399,7 @@ window.PBERS_DATA = [
     "videos": 39,
     "url": "https://www.youtube.com/channel/UCW0M7zhWfDN-HIxAVICH6mA",
     "avatar": "https://yt3.googleusercontent.com/sAallPFcVy5VaLCFlq8lOUU0E9Y2RPLRIxv3w-ndRH97U9FkD_fq8gyv0Db5cLRDJbBJi1r_PdE=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#533ecc",
+    "color": "#5eb5d4",
     "genre": "ポーランドボーラー",
     "slug": "かき氷ボール"
   },
@@ -1425,7 +1412,7 @@ window.PBERS_DATA = [
     "videos": 117,
     "url": "https://www.youtube.com/channel/UCN3r8cMh5I68MOXV5kXJiLA",
     "avatar": "https://yt3.googleusercontent.com/Jyb_uPlk9ssENZe3msLyrrbjmcOI5zimVCAi-itbq0gbYxltaXY5IDwxqUcPzsX9-S-X5e89gx0=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d45ed0",
+    "color": "#533ecc",
     "genre": "ポーランドボーラー",
     "slug": "ttボール"
   },
@@ -1438,7 +1425,7 @@ window.PBERS_DATA = [
     "videos": 226,
     "url": "https://www.youtube.com/channel/UCyF6j5nCi7OhfDF_hI7BYhg",
     "avatar": "https://yt3.googleusercontent.com/PbxfWKaW1OPUfPeKHpZC6KfxrQVgk7BOYFJyqRr70NtHrU9YUe0lAwYx2qiVnQmGRh2p7WWS=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc3e49",
+    "color": "#d45ed0",
     "genre": "ポーランドボーラー",
     "slug": "音スポの覇者ボール日本pber連盟会長"
   },
@@ -1451,7 +1438,7 @@ window.PBERS_DATA = [
     "videos": 31,
     "url": "https://www.youtube.com/channel/UCX5ufJWJbECJFqQ61Fyvccw",
     "avatar": "https://yt3.googleusercontent.com/GiDz0I4WeuAoMqkY9Ry5bbsCNalYe-uARI5q2xjM7wqfORgaZpCNigm4ssQoWK6brrOIZLN48g=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d4bc5e",
+    "color": "#cc3e49",
     "genre": "ポーランドボーラー",
     "slug": "海ボール"
   },
@@ -1464,7 +1451,7 @@ window.PBERS_DATA = [
     "videos": 156,
     "url": "https://www.youtube.com/channel/UC10jRxM3m68xXZzJQ1_sipA",
     "avatar": "https://yt3.googleusercontent.com/Fmq0rSeYrA63jTEw-bq5rPpgd1OAXJPl6UiOQswq9XVUbztI2X-BTe5jNbcFhzVBdyemhJdIdw=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#6bcc3e",
+    "color": "#d4bc5e",
     "genre": "ポーランドボーラー",
     "slug": "ソニキパチアスカイ帝国"
   },
@@ -1477,7 +1464,7 @@ window.PBERS_DATA = [
     "videos": 72,
     "url": "https://www.youtube.com/channel/UClxlceMMTpwZeaw6MYWNfyw",
     "avatar": "https://yt3.googleusercontent.com/y8RVEHNvevvFTN1cQYoh3o9MOADhGdqU3vipZPfHeSTK27dvBqh_mV3eUal7H3DVI-XUlvvs=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5ed4a1",
+    "color": "#6bcc3e",
     "genre": "ポーランドボーラー",
     "slug": "灼熱ボール"
   },
@@ -1490,7 +1477,7 @@ window.PBERS_DATA = [
     "videos": 39,
     "url": "https://www.youtube.com/channel/UCKPfSLU4mjzIr827qkCB_jQ",
     "avatar": "https://yt3.googleusercontent.com/CHkdKGX8zFiCQWmMTl2xEr3EJIIXaHewF87qNoCH0K613phZnV8DvjrPz9t7p4whyR4ch2Gg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3e8ccc",
+    "color": "#5ed4a1",
     "genre": "ポーランドボーラー",
     "slug": "ルヒエル-rätsel"
   },
@@ -1503,7 +1490,7 @@ window.PBERS_DATA = [
     "videos": 61,
     "url": "https://www.youtube.com/channel/UCRLPISHB_5EP3O7RK2mIHpA",
     "avatar": "https://yt3.googleusercontent.com/pbUH8H8pR_rtl-D5KyL2VyJzCmM82pF5ttDsrAdmmnFqFAry_gy_VL3Z97xQbQEyxIuZHyD8oOQ=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#855ed4",
+    "color": "#3e8ccc",
     "genre": "ポーランドボーラー",
     "slug": "ymポーランドボール"
   },
@@ -1516,7 +1503,7 @@ window.PBERS_DATA = [
     "videos": 88,
     "url": "https://www.youtube.com/channel/UCz0g6kcgT2xhBkjZQXvl1xw",
     "avatar": "https://yt3.googleusercontent.com/ov6W-oIkKxOFNh3ykdT0Tw7BOvB80QZ6NC1pQgqrxgALMTiKeaDFijYoN-0GurzKHfnI30fxqA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc3ead",
+    "color": "#855ed4",
     "genre": "ポーランドボーラー",
     "slug": "askボール"
   },
@@ -1529,7 +1516,7 @@ window.PBERS_DATA = [
     "videos": 57,
     "url": "https://www.youtube.com/channel/UCtYX3q7PyNWFbykXddPJEdA",
     "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d46a5e",
+    "color": "#cc3ead",
     "genre": "ポーランドボーラー",
     "slug": "pbネオンボール"
   },
@@ -1542,7 +1529,7 @@ window.PBERS_DATA = [
     "videos": 6,
     "url": "https://www.youtube.com/channel/UCLD2_sF0PrEy-DzeFCg68ZA",
     "avatar": "https://yt3.googleusercontent.com/BNlxuUydak56xTko70YGKF-HbK9oDtcTlvn5iSS8_HKJknzja_Zgc2lMy8yQ-bsPKB5i5FxEmQ=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#ccc93e",
+    "color": "#d46a5e",
     "genre": "ポーランドボーラー",
     "slug": "クロウ"
   },
@@ -1555,7 +1542,7 @@ window.PBERS_DATA = [
     "videos": 27,
     "url": "https://www.youtube.com/channel/UCYmJ2rqzqNtXBm-gn438zGw",
     "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#6ed45e",
+    "color": "#ccc93e",
     "genre": "ポーランドボーラー",
     "slug": "みすい"
   },
@@ -1568,7 +1555,7 @@ window.PBERS_DATA = [
     "videos": 20,
     "url": "https://www.youtube.com/channel/UCGwPdoT8q-YXpUbwMEaH15w",
     "avatar": "https://yt3.googleusercontent.com/fNkFvDzT54uyPaFer3z4SB4sKPue9ydsONbTT5mLcVAtbiRG3MlPYQ5zhUR4NrY1pJsZxRvr=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3ecca8",
+    "color": "#6ed45e",
     "genre": "ポーランドボーラー",
     "slug": "旧名大日本ボール民主たまに復活するかも"
   },
@@ -1581,7 +1568,7 @@ window.PBERS_DATA = [
     "videos": 103,
     "url": "https://www.youtube.com/channel/UCYxaKOMYfjlr2dLcK6ZKwvA",
     "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5e89d4",
+    "color": "#3ecca8",
     "genre": "ポーランドボーラー",
     "slug": "ソビエトロシアぼーる"
   },
@@ -1594,7 +1581,7 @@ window.PBERS_DATA = [
     "videos": 108,
     "url": "https://www.youtube.com/channel/UCh3VbVye4ZnUM0bWM_Y809A",
     "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#873ecc",
+    "color": "#5e89d4",
     "genre": "ポーランドボーラー",
     "slug": "ウィン肉声ポーランドボール"
   },
@@ -1607,7 +1594,7 @@ window.PBERS_DATA = [
     "videos": 48,
     "url": "https://www.youtube.com/channel/UCR3fxiql3FgVodpgLg8Bo4w",
     "avatar": "https://yt3.googleusercontent.com/ZANmjXIpKKRDrpaem1qIr-TJ6mUYPAuv4bV3Knwo9dv1-5oqFVmml2Y4vT3XNG5kIId00SR1AQ=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d45ea5",
+    "color": "#873ecc",
     "genre": "ポーランドボーラー",
     "slug": "ロボキチ"
   },
@@ -1620,7 +1607,7 @@ window.PBERS_DATA = [
     "videos": 65,
     "url": "https://www.youtube.com/channel/UCREZRnCbbfasfV8sJ9Q8E0w",
     "avatar": "https://yt3.googleusercontent.com/fzkyIy9z3sbL_dOnQXGEnXtXSjAmsKk6gzGmSPgsA6OM5GdlXkBAmCr5wQN4llq_oF3UCpqrx6Y=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc663e",
+    "color": "#d45ea5",
     "genre": "ポーランドボーラー",
     "slug": "おもちすたん"
   },
@@ -1633,7 +1620,7 @@ window.PBERS_DATA = [
     "videos": 112,
     "url": "https://www.youtube.com/channel/UCZpcs1pUBxcHSEHYIjfwwCw",
     "avatar": "https://yt3.googleusercontent.com/cXpSylNTlpqGVjLykfV18UsxKIi4FQmplMTjUXchSuaznpm_Eiyp5DjsdceUfFwZ5Ecl3n06xA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#c0d45e",
+    "color": "#cc663e",
     "genre": "ポーランドボーラー",
     "slug": "クッキーシャワーボール"
   },
@@ -1646,7 +1633,7 @@ window.PBERS_DATA = [
     "videos": 69,
     "url": "https://www.youtube.com/channel/UCnnsEBpayZL_JHzdw4mnbeA",
     "avatar": "https://yt3.googleusercontent.com/bp_CX7qOIvj2-sbDMHSnoPjEuefwG0wuv94z66Nqpoz9T41wOFGREsij1THKpSkdy3PvvFxUZA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3ecc45",
+    "color": "#c0d45e",
     "genre": "ポーランドボーラー",
     "slug": "リルバシ"
   },
@@ -1659,7 +1646,7 @@ window.PBERS_DATA = [
     "videos": 36,
     "url": "https://www.youtube.com/channel/UCiIFIiNkCdfSe9_cPh5ly4g",
     "avatar": "https://yt3.googleusercontent.com/umFwtFtVUF2UJKpw6p1Ao3UqFhfBiRBi7FqicRu23AcWly1z4owc6k2TBZvgUKZ3xIX5IfIA6A=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5ed4cc",
+    "color": "#3ecc45",
     "genre": "ポーランドボーラー",
     "slug": "あへへへへへﾝ"
   },
@@ -1672,7 +1659,7 @@ window.PBERS_DATA = [
     "videos": 42,
     "url": "https://www.youtube.com/channel/UCCfKBBDK5D66hbOl455YBHg",
     "avatar": "https://yt3.googleusercontent.com/Nn0wemqXOMylFQsOcg8qBCdIVuj-OqChx5GO0sNoi8DeeZTIfaxTUCX-9beyc530JDO0BGuXCvU=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3e58cc",
+    "color": "#5ed4cc",
     "genre": "ポーランドボーラー",
     "slug": "水入り瓶"
   },
@@ -1685,7 +1672,7 @@ window.PBERS_DATA = [
     "videos": 237,
     "url": "https://www.youtube.com/channel/UCcRWc7xO2urlMP3WxI2gl6w",
     "avatar": "https://yt3.googleusercontent.com/r5WpBv1ZXrilbbIGww5PNrgU7wU3GiKncz7ciO8IaFhhhToDfhV99wvAdqmGj_3-HdpMAqwy=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#b15ed4",
+    "color": "#3e58cc",
     "genre": "ポーランドボーラー",
     "slug": "世界最強笑ボールこるからす盟主"
   },
@@ -1698,7 +1685,7 @@ window.PBERS_DATA = [
     "videos": 152,
     "url": "https://www.youtube.com/channel/UCm8lBcDz0RVa28FkJu-0nsA",
     "avatar": "https://yt3.googleusercontent.com/HZ7XUOxsbRgbmAYhAoC0SB1tKEe4cs1FQ8tIMGRsiRxuj9udUPJNRo0BW2FJiqhaA9myXQVTA1o=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc3e79",
+    "color": "#b15ed4",
     "genre": "ポーランドボーラー",
     "slug": "pbトレインボール"
   },
@@ -1711,7 +1698,7 @@ window.PBERS_DATA = [
     "videos": 70,
     "url": "https://www.youtube.com/channel/UCjEkTkSYA4CXxF9ZWE0NYIA",
     "avatar": "https://yt3.googleusercontent.com/AJHdGcVAn-OWbwFY_few-6dKd0tWEo95quy8XtZbBJb6QguSB2Me-rE6wdvDAs8W9-3JAj6mMg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d4955e",
+    "color": "#cc3e79",
     "genre": "ポーランドボーラー",
     "slug": "dre_tataドリームボール"
   },
@@ -1724,7 +1711,7 @@ window.PBERS_DATA = [
     "videos": 87,
     "url": "https://www.youtube.com/channel/UC_nnu9FMs8pkC7RbMGHyREQ",
     "avatar": "https://yt3.googleusercontent.com/XrXLTRaii_TN3m_FTr8J_fMlh1VJfhmf43mY2JzU4iNTLMMtYQR0xvyge9r5Tokxl0TNVW-wn30=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#9acc3e",
+    "color": "#d4955e",
     "genre": "ポーランドボーラー",
     "slug": "某p国の球"
   },
@@ -1737,7 +1724,7 @@ window.PBERS_DATA = [
     "videos": 84,
     "url": "https://www.youtube.com/channel/UCSEZoTqU35u_tC1SfBSI8Mw",
     "avatar": "https://yt3.googleusercontent.com/oprZ0pqHJTy8MjUDm1zELCRx66R8wLViSV6-TqJbVJ0yWJpo4DwpCmBh-7eAGTJLJG9SjEeeWuw=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5ed479",
+    "color": "#9acc3e",
     "genre": "ポーランドボーラー",
     "slug": "はやぶさ"
   },
@@ -1750,7 +1737,7 @@ window.PBERS_DATA = [
     "videos": 90,
     "url": "https://www.youtube.com/channel/UCFQYFuertkXnO7qKwqgjxeg",
     "avatar": "https://yt3.googleusercontent.com/yPg8GzkXKdGPp2zsKmyj-xHW1Q_TsshGSy0msIsUETl7Z1NSlkxbJZ7uwiXPSTxMDNFbwD2Q=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3ebbcc",
+    "color": "#5ed479",
     "genre": "ポーランドボーラー",
     "slug": "alpha_japan"
   },
@@ -1763,7 +1750,7 @@ window.PBERS_DATA = [
     "videos": 413,
     "url": "https://www.youtube.com/channel/UCXH-8i_13OHRRT3Lykz88WQ",
     "avatar": "https://yt3.googleusercontent.com/xwLdIb5B7k9l-4yfeHOTrTl9kJgtGCK35VfJ0Efs83bzU_HLtR401SYql-QiqQ_ryn5BF-SSmw=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5e5ed4",
+    "color": "#3ebbcc",
     "genre": "ポーランドボーラー",
     "slug": "さんどいつちball"
   },
@@ -1776,7 +1763,7 @@ window.PBERS_DATA = [
     "videos": 24,
     "url": "https://www.youtube.com/channel/UCHcnwrJobKTkrY032YMJ9UA",
     "avatar": "https://yt3.googleusercontent.com/6iel8PoJZ3oGlxLiaWcC5GCdzzGz2jrW8IC6JS8X2lV9AHeWBShmc3yGCUm8ISu4HcCG_z-0Wg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#bb3ecc",
+    "color": "#5e5ed4",
     "genre": "ポーランドボーラー",
     "slug": "かくめいボールpber錬成同盟盟主"
   },
@@ -1789,7 +1776,7 @@ window.PBERS_DATA = [
     "videos": 95,
     "url": "https://www.youtube.com/channel/UCRYpyKZD_7HkForFFW-7Dfw",
     "avatar": "https://yt3.googleusercontent.com/juW0175zlu8wVi5Nzp1V9it_-O1w5S8gvypZz23u-7EIZ7H41QF_ofqQDfjB_SrUdqRZ8WOM6Q=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d45e79",
+    "color": "#bb3ecc",
     "genre": "ポーランドボーラー",
     "slug": "パワーポイントボール"
   },
@@ -1802,7 +1789,7 @@ window.PBERS_DATA = [
     "videos": 102,
     "url": "https://www.youtube.com/channel/UCQL_tzMmgkL49g-zINCDrMQ",
     "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc9a3e",
+    "color": "#d45e79",
     "genre": "ポーランドボーラー",
     "slug": "ヤギソビエト"
   },
@@ -1815,7 +1802,7 @@ window.PBERS_DATA = [
     "videos": 77,
     "url": "https://www.youtube.com/channel/UCRoXku8rWoPR9SFp9eKNUtQ",
     "avatar": "https://yt3.googleusercontent.com/1AOGBu24yxa959outr-59IAyQ5LVfWIiysw2FAQDMDK_urEuXXH21dF9IQFSbDSswnuYgGc=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#95d45e",
+    "color": "#cc9a3e",
     "genre": "ポーランドボーラー",
     "slug": "そあボール"
   },
@@ -1828,7 +1815,7 @@ window.PBERS_DATA = [
     "videos": 471,
     "url": "https://www.youtube.com/channel/UCNaM6GYI9UHmGODfv7xmQ5g",
     "avatar": "https://yt3.googleusercontent.com/8x-zULuE0bf6GbydUZh3nQyTPrQ7rnZNHPQGN3mwP0bacDUOxtqn3XU0ZSOMMFXbT34D3LVPlQ=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3ecc79",
+    "color": "#95d45e",
     "genre": "ポーランドボーラー",
     "slug": "日独伊同盟ボールポーランドボール"
   },
@@ -1841,7 +1828,7 @@ window.PBERS_DATA = [
     "videos": 89,
     "url": "https://www.youtube.com/channel/UCWP-lC5-9brRl0It2Zo37EQ",
     "avatar": "https://yt3.googleusercontent.com/PwNfzNceFKQIG8HYA09DBdyKKU4OUBZdQdPix97e6bfnUO0_bBTn8HOVRJ3TeSFVqLeLRi06v4o=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5eb1d4",
+    "color": "#3ecc79",
     "genre": "ポーランドボーラー",
     "slug": "信州ボール"
   },
@@ -1854,7 +1841,7 @@ window.PBERS_DATA = [
     "videos": 300,
     "url": "https://www.youtube.com/channel/UCmaMiM9Ncoa3auc11m2pugA",
     "avatar": "https://yt3.googleusercontent.com/gtr3tkd9Ra4HMv-hciHc65Lr1q_1mClGOA7Gq4jNkAmqHimaEZYW8psX3Q86hCvN1-y33-D-0Q=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#583ecc",
+    "color": "#5eb1d4",
     "genre": "ポーランドボーラー",
     "slug": "みみけけ"
   },
@@ -1867,7 +1854,7 @@ window.PBERS_DATA = [
     "videos": 1,
     "url": "https://www.youtube.com/channel/UCAvQ7Zr39LhDq_ePoFT0NKw",
     "avatar": "https://yt3.googleusercontent.com/oQR3FLSbYKMQi1K_7qkk8PVfmLILRrYecaE-8XC2kKcQiazxJwzRa-yCeX6OxqgbmJ07vNTC=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d45ecc",
+    "color": "#583ecc",
     "genre": "ポーランドボーラー",
     "slug": "ソビエトボールussr"
   },
@@ -1880,7 +1867,7 @@ window.PBERS_DATA = [
     "videos": 126,
     "url": "https://www.youtube.com/channel/UCjzhLIRVsN3dzFxqJg1SY0g",
     "avatar": "https://yt3.googleusercontent.com/Hz2lVA05BzRhInvrAuf9In7rZKtHd1yFBo_5LrVpvaTkq4qiwvL8J4ILicyfDDJYxwQL72obTQ=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc3e45",
+    "color": "#d45ecc",
     "genre": "ポーランドボーラー",
     "slug": "ロブラネボール"
   },
@@ -1893,7 +1880,7 @@ window.PBERS_DATA = [
     "videos": 142,
     "url": "https://www.youtube.com/channel/UCeQBdGp0Rzh1O8pGouV9yyg",
     "avatar": "https://yt3.googleusercontent.com/h9LJBh8voSTpKAg1qEsum8_xqgLHPv-6JMLk324I2__hStLiaJxmCHlWdF3_GWNi2MwVMjQDdQ=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d4c05e",
+    "color": "#cc3e45",
     "genre": "ポーランドボーラー",
     "slug": "nà大和ボール"
   },
@@ -1906,7 +1893,7 @@ window.PBERS_DATA = [
     "videos": 67,
     "url": "https://www.youtube.com/channel/UCwS8KDNWeKRbsWXjxMwSK5Q",
     "avatar": "https://yt3.googleusercontent.com/Ouo77fj6iT_AWSAc38PQB4NsthwSeyPFltDxRW36iEoNYpg_JDPg3lcUipXA2QxjvJLaCyYnvYk=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#66cc3e",
+    "color": "#d4c05e",
     "genre": "ポーランドボーラー",
     "slug": "落書きポーラン"
   },
@@ -1919,7 +1906,7 @@ window.PBERS_DATA = [
     "videos": 26,
     "url": "https://www.youtube.com/channel/UC9jmzFCXGdLiR75vcdxDH6A",
     "avatar": "https://yt3.googleusercontent.com/gl0PJDChU9pNvwUraC-NHdbfB-E4QFi_ACxD9BO_GSGGoUYkNmcNH6d3crXJ-8l44QeEHRjz=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5ed4a5",
+    "color": "#66cc3e",
     "genre": "ポーランドボーラー",
     "slug": "東トルキスタンボール"
   },
@@ -1932,7 +1919,7 @@ window.PBERS_DATA = [
     "videos": 9,
     "url": "https://www.youtube.com/channel/UCTDtR89msJc6AV5t3X8H7fw",
     "avatar": "https://yt3.googleusercontent.com/JOm2bK8BIWTvVMMPnpH5pgZSCkzxxK98xNF0IeecxPHgbH_j4ZoSKeHS9A7cAWmpxQOs95sfUg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3e87cc",
+    "color": "#5ed4a5",
     "genre": "ポーランドボーラー",
     "slug": "スチロールポーランドボール"
   },
@@ -1945,7 +1932,7 @@ window.PBERS_DATA = [
     "videos": 174,
     "url": "https://www.youtube.com/channel/UC562UMBmV-_lw_T4Mqh7LKw",
     "avatar": "https://yt3.googleusercontent.com/5MvkKfH36kOCAzO08xdpTyyNDfTII_xcUbhuuvBpfnfswW8wiEM-l-k9px9ysBlVwCZF1p85=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#895ed4",
+    "color": "#3e87cc",
     "genre": "ポーランドボーラー",
     "slug": "mīþ緑ボール"
   },
@@ -1958,7 +1945,7 @@ window.PBERS_DATA = [
     "videos": 44,
     "url": "https://www.youtube.com/channel/UCVSjpNF16DpI4XG0E4IXbnA",
     "avatar": "https://yt3.googleusercontent.com/_jK5l2UwBNsfjk9zVEdenHBT3eaTCeBaogOKV9JSU397tkbAGQvlyi7xnWxhn_9Ai9WGadGBUg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc3ea8",
+    "color": "#895ed4",
     "genre": "ポーランドボーラー",
     "slug": "宇宙千葉のpbルーム"
   },
@@ -1971,7 +1958,7 @@ window.PBERS_DATA = [
     "videos": 70,
     "url": "https://www.youtube.com/channel/UC-OzC-_SZ7TvegHVFEA4OHA",
     "avatar": "https://yt3.googleusercontent.com/RnPkMOcvXnYH93HK6sBW4Pk3Z9xk8LGY2Flq4zNhr4yE8hhoRCqIh5px60QCEfsYUCJXuiD5ng=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d46e5e",
+    "color": "#cc3ea8",
     "genre": "ポーランドボーラー",
     "slug": "ミントの農場"
   },
@@ -1984,7 +1971,7 @@ window.PBERS_DATA = [
     "videos": 339,
     "url": "https://www.youtube.com/channel/UC0dTgvaZ9fN54Q-ILAhCMuw",
     "avatar": "https://yt3.googleusercontent.com/idKCYo4w5sKLb4FpUjDCoUGFI2ATRvQmRgavCKPeRW5wayDzDjKB9PnAgVEXLv6tDN2GjNBffkc=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#c9cc3e",
+    "color": "#d46e5e",
     "genre": "ポーランドボーラー",
     "slug": "ソ中ボール日友好平和同盟"
   },
@@ -1997,7 +1984,7 @@ window.PBERS_DATA = [
     "videos": 114,
     "url": "https://www.youtube.com/channel/UC8RiqSKxCmtZYEk_fLze0pQ",
     "avatar": "https://yt3.googleusercontent.com/R5Hi38Yy_E05WoCxZZMME7iv1sdUgAhUTBAlkBHKmNWairzMuzn4EMJvYpL7aJycNuG4SHKeEA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#6ad45e",
+    "color": "#c9cc3e",
     "genre": "ポーランドボーラー",
     "slug": "ぴくろす"
   },
@@ -2010,11 +1997,11 @@ window.PBERS_DATA = [
     "videos": null,
     "url": "https://www.youtube.com/channel/UCD9mEEJypdqQZeSeTotItbg",
     "avatar": "",
-    "color": "#3eccad",
+    "color": "#6ad45e",
     "genre": "ポーランドボーラー",
     "slug": "ucd9meejypdqqzesetotitbg"
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-08";
-window.PBERS_PREDICT = {"asOfMs": 1788858000000, "subs": {"base": 2831860, "rate": 5.941194437493183e-05}, "views": {"base": 2197733009, "rate": 0.04450611486805628}};
+window.PBERS_PREDICT = {"asOfMs": 1788858000000, "subs": {"base": 2826250, "rate": 5.936588922949456e-05}, "views": {"base": 2196753794, "rate": 0.04447507975318118}};

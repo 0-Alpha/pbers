@@ -36,7 +36,7 @@ window.PBERS_NEWS = [
           },
           {
             "name": "リルバシ",
-            "color": "#3ecc45",
+            "color": "#c0d45e",
             "avatar": "https://yt3.googleusercontent.com/bp_CX7qOIvj2-sbDMHSnoPjEuefwG0wuv94z66Nqpoz9T41wOFGREsij1THKpSkdy3PvvFxUZA=s900-c-k-c0x00ffffff-no-rj"
           },
           {
@@ -59,30 +59,30 @@ window.PBERS_NEWS = [
         "count": 2,
         "opps": [
           {
-            "name": "水入り瓶",
-            "color": "#3e58cc",
-            "avatar": "https://yt3.googleusercontent.com/Nn0wemqXOMylFQsOcg8qBCdIVuj-OqChx5GO0sNoi8DeeZTIfaxTUCX-9beyc530JDO0BGuXCvU=s900-c-k-c0x00ffffff-no-rj"
+            "name": "幻死帝国 ",
+            "color": "#99d45e",
+            "avatar": "https://yt3.googleusercontent.com/9UKHrb6uwc5Pka4NW96vkSd5rDkF6onWj2MAIdQtvlIrvq5TaPMbduT3ohHG7qFk9oNd_ewR=s900-c-k-c0x00ffffff-no-rj"
           },
           {
-            "name": "幻死帝国 ",
-            "color": "#3ecc74",
-            "avatar": "https://yt3.googleusercontent.com/9UKHrb6uwc5Pka4NW96vkSd5rDkF6onWj2MAIdQtvlIrvq5TaPMbduT3ohHG7qFk9oNd_ewR=s900-c-k-c0x00ffffff-no-rj"
+            "name": "水入り瓶",
+            "color": "#5ed4cc",
+            "avatar": "https://yt3.googleusercontent.com/Nn0wemqXOMylFQsOcg8qBCdIVuj-OqChx5GO0sNoi8DeeZTIfaxTUCX-9beyc530JDO0BGuXCvU=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
-        "label": "投稿数で 二枚抜き（水入り瓶・幻死帝国  を追い越し）",
+        "label": "投稿数で 二枚抜き（幻死帝国 ・水入り瓶 を追い越し）",
         "value": 43
       },
       {
         "type": "overtake",
         "kind": "subs",
         "name": "ウィン【肉声】【ポーランドボール】",
-        "color": "#873ecc",
+        "color": "#5e89d4",
         "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ロボキチ",
-          "color": "#d45ea5",
+          "color": "#873ecc",
           "avatar": "https://yt3.googleusercontent.com/ZANmjXIpKKRDrpaem1qIr-TJ6mUYPAuv4bV3Knwo9dv1-5oqFVmml2Y4vT3XNG5kIId00SR1AQ=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 3110,
@@ -116,7 +116,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヴァイマル共和国ボール [底辺PBer連盟] ",
-          "color": "#c4d45e",
+          "color": "#cc613e",
           "avatar": "https://yt3.googleusercontent.com/dQc05XhmvR-D6BpN8LxOmCx-tE2IB8BzBHGnNtg3ZbmfeSspkw4_q-_vs0-LVrBnkvb-PtibOg=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 3971259,
@@ -144,7 +144,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "views",
         "name": "カルマルボール",
-        "color": "#b63ecc",
+        "color": "#5e62d4",
         "avatar": "https://yt3.googleusercontent.com/WX0x2Taa65iBzUFRSgy7esb4WOcPuDaB7kYluOwNEqFZJ0tN7lMR_IL5m1pZC7b6tpNJUdSTgA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -167,7 +167,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ロブラネボール",
-          "color": "#cc3e45",
+          "color": "#d45ecc",
           "avatar": "https://yt3.googleusercontent.com/Hz2lVA05BzRhInvrAuf9In7rZKtHd1yFBo_5LrVpvaTkq4qiwvL8J4ILicyfDDJYxwQL72obTQ=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 126,
@@ -212,32 +212,8 @@ window.PBERS_NEWS = [
       {
         "type": "multi_overtake",
         "kind": "subs",
-        "name": "レイアルファ",
-        "color": "#db4f57",
-        "avatar": "https://yt3.googleusercontent.com/TVNAN6bSZZHGvc7hYhLs6Gnn95EKhcWj5GwqbWN00HAFA8SmXjUyKXQK6D4Ljl_S9A_8eaHn-Lk=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "⚡",
-        "genre": "ポーランドボーラー",
-        "count": 2,
-        "opps": [
-          {
-            "name": "アフガンボール",
-            "color": "#d45ea9",
-            "avatar": "https://yt3.googleusercontent.com/aOj-FnTWhrUAPjz49cHMeTuREL5cpUpsUWPVs1AuaeeMqVIrUHxeIOlHdCi0h8HukDZHL_ZQ0HA=s900-c-k-c0x00ffffff-no-rj"
-          },
-          {
-            "name": "ikasumi帝国",
-            "color": "#cc613e",
-            "avatar": "https://yt3.googleusercontent.com/pXavDBoQWleJO0X1Cd7TrS5BP9DduNyqd0CtSqENd7k-YW0UwYkREQdZAE0mthqG4mUSPcMS8Q=s900-c-k-c0x00ffffff-no-rj"
-          }
-        ],
-        "label": "登録者数で 二枚抜き（アフガンボール・ikasumi帝国 を追い越し）",
-        "value": 5660
-      },
-      {
-        "type": "multi_overtake",
-        "kind": "subs",
         "name": "【PB】ネオンボール",
-        "color": "#d46a5e",
+        "color": "#cc3ead",
         "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⚡",
         "genre": "ポーランドボーラー",
@@ -245,12 +221,12 @@ window.PBERS_NEWS = [
         "opps": [
           {
             "name": "クロウ",
-            "color": "#ccc93e",
+            "color": "#d46a5e",
             "avatar": "https://yt3.googleusercontent.com/BNlxuUydak56xTko70YGKF-HbK9oDtcTlvn5iSS8_HKJknzja_Zgc2lMy8yQ-bsPKB5i5FxEmQ=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "旧名大日本ボール(民主)たまに復活するかも",
-            "color": "#3ecca8",
+            "color": "#6ed45e",
             "avatar": "https://yt3.googleusercontent.com/fNkFvDzT54uyPaFer3z4SB4sKPue9ydsONbTT5mLcVAtbiRG3MlPYQ5zhUR4NrY1pJsZxRvr=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
@@ -261,7 +237,7 @@ window.PBERS_NEWS = [
         "type": "multi_overtake",
         "kind": "subs",
         "name": "ウィン【肉声】【ポーランドボール】",
-        "color": "#873ecc",
+        "color": "#5e89d4",
         "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⚡",
         "genre": "ポーランドボーラー",
@@ -269,12 +245,12 @@ window.PBERS_NEWS = [
         "opps": [
           {
             "name": "おもちすたん",
-            "color": "#cc663e",
+            "color": "#d45ea5",
             "avatar": "https://yt3.googleusercontent.com/fzkyIy9z3sbL_dOnQXGEnXtXSjAmsKk6gzGmSPgsA6OM5GdlXkBAmCr5wQN4llq_oF3UCpqrx6Y=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "クッキー&シャワーボール",
-            "color": "#c0d45e",
+            "color": "#cc663e",
             "avatar": "https://yt3.googleusercontent.com/cXpSylNTlpqGVjLykfV18UsxKIi4FQmplMTjUXchSuaznpm_Eiyp5DjsdceUfFwZ5Ecl3n06xA=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
@@ -284,14 +260,31 @@ window.PBERS_NEWS = [
       {
         "type": "overtake",
         "kind": "subs",
+        "name": "レイアルファ",
+        "color": "#db4f57",
+        "avatar": "https://yt3.googleusercontent.com/TVNAN6bSZZHGvc7hYhLs6Gnn95EKhcWj5GwqbWN00HAFA8SmXjUyKXQK6D4Ljl_S9A_8eaHn-Lk=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "アフガンボール",
+          "color": "#d45ea9",
+          "avatar": "https://yt3.googleusercontent.com/aOj-FnTWhrUAPjz49cHMeTuREL5cpUpsUWPVs1AuaeeMqVIrUHxeIOlHdCi0h8HukDZHL_ZQ0HA=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "opp_value": 5610,
+        "label": "登録者数で アフガンボール を追い越し",
+        "value": 5660
+      },
+      {
+        "type": "overtake",
+        "kind": "subs",
         "name": "みすい",
-        "color": "#6ed45e",
+        "color": "#ccc93e",
         "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ソビエト・ロシアぼーる",
-          "color": "#5e89d4",
+          "color": "#3ecca8",
           "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 3160,
@@ -347,7 +340,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "videos",
         "name": "みみけけ",
-        "color": "#583ecc",
+        "color": "#5eb1d4",
         "avatar": "https://yt3.googleusercontent.com/gtr3tkd9Ra4HMv-hciHc65Lr1q_1mClGOA7Gq4jNkAmqHimaEZYW8psX3Q86hCvN1-y33-D-0Q=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -406,7 +399,7 @@ window.PBERS_NEWS = [
         "type": "multi_overtake",
         "kind": "subs",
         "name": "【PB】ネオンボール",
-        "color": "#d46a5e",
+        "color": "#cc3ead",
         "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⚡",
         "genre": "ポーランドボーラー",
@@ -414,17 +407,17 @@ window.PBERS_NEWS = [
         "opps": [
           {
             "name": "ソビエト・ロシアぼーる",
-            "color": "#5e89d4",
+            "color": "#3ecca8",
             "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "おもちすたん",
-            "color": "#cc663e",
+            "color": "#d45ea5",
             "avatar": "https://yt3.googleusercontent.com/fzkyIy9z3sbL_dOnQXGEnXtXSjAmsKk6gzGmSPgsA6OM5GdlXkBAmCr5wQN4llq_oF3UCpqrx6Y=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "みすい",
-            "color": "#6ed45e",
+            "color": "#ccc93e",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
@@ -443,7 +436,7 @@ window.PBERS_NEWS = [
         "opps": [
           {
             "name": "あへへへへへﾝ",
-            "color": "#5ed4cc",
+            "color": "#3ecc45",
             "avatar": "https://yt3.googleusercontent.com/umFwtFtVUF2UJKpw6p1Ao3UqFhfBiRBi7FqicRu23AcWly1z4owc6k2TBZvgUKZ3xIX5IfIA6A=s900-c-k-c0x00ffffff-no-rj"
           },
           {
@@ -464,13 +457,13 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "subs",
         "name": "ソビエト・ロシアぼーる",
-        "color": "#5e89d4",
+        "color": "#3ecca8",
         "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ロボキチ",
-          "color": "#d45ea5",
+          "color": "#873ecc",
           "avatar": "https://yt3.googleusercontent.com/ZANmjXIpKKRDrpaem1qIr-TJ6mUYPAuv4bV3Knwo9dv1-5oqFVmml2Y4vT3XNG5kIId00SR1AQ=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 3110,
@@ -504,7 +497,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "某P国の球",
-          "color": "#9acc3e",
+          "color": "#d4955e",
           "avatar": "https://yt3.googleusercontent.com/XrXLTRaii_TN3m_FTr8J_fMlh1VJfhmf43mY2JzU4iNTLMMtYQR0xvyge9r5Tokxl0TNVW-wn30=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 2378397,
@@ -521,7 +514,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "萱口",
-          "color": "#99d45e",
+          "color": "#cc953e",
           "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 1589354,
@@ -532,7 +525,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "videos",
         "name": "【PB】トレインボール",
-        "color": "#cc3e79",
+        "color": "#b15ed4",
         "avatar": "https://yt3.googleusercontent.com/HZ7XUOxsbRgbmAYhAoC0SB1tKEe4cs1FQ8tIMGRsiRxuj9udUPJNRo0BW2FJiqhaA9myXQVTA1o=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -633,12 +626,12 @@ window.PBERS_NEWS = [
         "opps": [
           {
             "name": "ヴァイマル共和国ボール [底辺PBer連盟] ",
-            "color": "#c4d45e",
+            "color": "#cc613e",
             "avatar": "https://yt3.googleusercontent.com/dQc05XhmvR-D6BpN8LxOmCx-tE2IB8BzBHGnNtg3ZbmfeSspkw4_q-_vs0-LVrBnkvb-PtibOg=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "ふぉるま",
-            "color": "#5ed4c8",
+            "color": "#3ecc40",
             "avatar": "https://yt3.googleusercontent.com/gKVYAADtZyXXFVJvbWXMZlantx6rBwlvA2cF1bKbz5SHrsCLpVk6858YKOOiyPx1gdY8sYzJWg=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
@@ -649,7 +642,7 @@ window.PBERS_NEWS = [
         "type": "multi_overtake",
         "kind": "subs",
         "name": "【PB】ネオンボール",
-        "color": "#d46a5e",
+        "color": "#cc3ead",
         "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⚡",
         "genre": "ポーランドボーラー",
@@ -657,28 +650,28 @@ window.PBERS_NEWS = [
         "opps": [
           {
             "name": "クッキー&シャワーボール",
-            "color": "#c0d45e",
+            "color": "#cc663e",
             "avatar": "https://yt3.googleusercontent.com/cXpSylNTlpqGVjLykfV18UsxKIi4FQmplMTjUXchSuaznpm_Eiyp5DjsdceUfFwZ5Ecl3n06xA=s900-c-k-c0x00ffffff-no-rj"
           },
           {
-            "name": "ウィン【肉声】【ポーランドボール】",
-            "color": "#873ecc",
-            "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj"
+            "name": "リルバシ",
+            "color": "#c0d45e",
+            "avatar": "https://yt3.googleusercontent.com/bp_CX7qOIvj2-sbDMHSnoPjEuefwG0wuv94z66Nqpoz9T41wOFGREsij1THKpSkdy3PvvFxUZA=s900-c-k-c0x00ffffff-no-rj"
           },
           {
-            "name": "リルバシ",
-            "color": "#3ecc45",
-            "avatar": "https://yt3.googleusercontent.com/bp_CX7qOIvj2-sbDMHSnoPjEuefwG0wuv94z66Nqpoz9T41wOFGREsij1THKpSkdy3PvvFxUZA=s900-c-k-c0x00ffffff-no-rj"
+            "name": "ウィン【肉声】【ポーランドボール】",
+            "color": "#5e89d4",
+            "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
-        "label": "登録者数で 三枚抜き（クッキー&シャワーボール・ウィン【肉声】【ポーランドボール】・リルバシ を追い越し）",
+        "label": "登録者数で 三枚抜き（クッキー&シャワーボール・リルバシ・ウィン【肉声】【ポーランドボール】 を追い越し）",
         "value": 3020
       },
       {
         "type": "multi_overtake",
         "kind": "views",
         "name": "【PB】ネオンボール",
-        "color": "#d46a5e",
+        "color": "#cc3ead",
         "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⚡",
         "genre": "ポーランドボーラー",
@@ -686,7 +679,7 @@ window.PBERS_NEWS = [
         "opps": [
           {
             "name": "萱口",
-            "color": "#99d45e",
+            "color": "#cc953e",
             "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj"
           },
           {
@@ -696,7 +689,7 @@ window.PBERS_NEWS = [
           },
           {
             "name": "そあボール",
-            "color": "#95d45e",
+            "color": "#cc9a3e",
             "avatar": "https://yt3.googleusercontent.com/1AOGBu24yxa959outr-59IAyQ5LVfWIiysw2FAQDMDK_urEuXXH21dF9IQFSbDSswnuYgGc=s900-c-k-c0x00ffffff-no-rj"
           },
           {
@@ -746,7 +739,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "views",
         "name": "あへへへへへﾝ",
-        "color": "#5ed4cc",
+        "color": "#3ecc45",
         "avatar": "https://yt3.googleusercontent.com/umFwtFtVUF2UJKpw6p1Ao3UqFhfBiRBi7FqicRu23AcWly1z4owc6k2TBZvgUKZ3xIX5IfIA6A=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -797,13 +790,13 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "views",
         "name": "パワーポイントボール",
-        "color": "#d45e79",
+        "color": "#bb3ecc",
         "avatar": "https://yt3.googleusercontent.com/juW0175zlu8wVi5Nzp1V9it_-O1w5S8gvypZz23u-7EIZ7H41QF_ofqQDfjB_SrUdqRZ8WOM6Q=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "日独伊同盟ボール(ポーランドボール)",
-          "color": "#3ecc79",
+          "color": "#95d45e",
           "avatar": "https://yt3.googleusercontent.com/8x-zULuE0bf6GbydUZh3nQyTPrQ7rnZNHPQGN3mwP0bacDUOxtqn3XU0ZSOMMFXbT34D3LVPlQ=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 1239993,
@@ -820,7 +813,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "あへへへへへﾝ",
-          "color": "#5ed4cc",
+          "color": "#3ecc45",
           "avatar": "https://yt3.googleusercontent.com/umFwtFtVUF2UJKpw6p1Ao3UqFhfBiRBi7FqicRu23AcWly1z4owc6k2TBZvgUKZ3xIX5IfIA6A=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 36,
@@ -848,7 +841,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "videos",
         "name": "ソビエト・ロシアぼーる",
-        "color": "#5e89d4",
+        "color": "#3ecca8",
         "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -878,17 +871,17 @@ window.PBERS_NEWS = [
         "opps": [
           {
             "name": "不定期ボール(1)",
-            "color": "#3e5ccc",
+            "color": "#5ed4c8",
             "avatar": "https://yt3.googleusercontent.com/o_O4DPGbwWHeuSrynErywkiAyWUhcEsvQdIoOj3LmPj9xCydlVwQJFzZ0hi26EL2TSgGgrhG=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "EROP 【えるふぼーる】",
-            "color": "#cc3e7e",
+            "color": "#ad5ed4",
             "avatar": "https://yt3.googleusercontent.com/FlejDGGK6zDJVZik6AqnxnZj13QQRkyzrivxg5bZYo6WANizJhNUcTrPuZv_-eBUE4tAh3NuPvk=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "ていてく",
-            "color": "#d4915e",
+            "color": "#cc3e7e",
             "avatar": "https://yt3.googleusercontent.com/yXzwjLvaGxqpUYtLPiq0eehCASXpPn1dhRiTBpE5Z_PcwOdTSTF1lu7uEPzHcM-2o2Jv417b5w=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
@@ -907,7 +900,7 @@ window.PBERS_NEWS = [
         "opps": [
           {
             "name": "ソビエト・ロシアぼーる",
-            "color": "#5e89d4",
+            "color": "#3ecca8",
             "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj"
           },
           {
@@ -940,7 +933,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "views",
         "name": "りっつんボール",
-        "color": "#3ecc40",
+        "color": "#c4d45e",
         "avatar": "https://yt3.googleusercontent.com/9qdwPP-NnSvcn3Vqyk_Q7yJ7rIFZ559Zl1bEqj50SL_UxoGjU-pm0KUS28B7b7pyuZtGtD5kMA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -974,7 +967,7 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "videos",
         "name": "ソビエト・ロシアぼーる",
-        "color": "#5e89d4",
+        "color": "#3ecca8",
         "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
@@ -1047,7 +1040,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "videos",
         "name": "パワーポイントボール",
-        "color": "#d45e79",
+        "color": "#bb3ecc",
         "avatar": "https://yt3.googleusercontent.com/juW0175zlu8wVi5Nzp1V9it_-O1w5S8gvypZz23u-7EIZ7H41QF_ofqQDfjB_SrUdqRZ8WOM6Q=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -1066,17 +1059,17 @@ window.PBERS_NEWS = [
         "opps": [
           {
             "name": "旧食DX",
-            "color": "#5ed476",
+            "color": "#9fcc3e",
             "avatar": "https://yt3.googleusercontent.com/eS59gj4sUqncdlk0_nSnxkfIKeKASy0K5CwgIpOHv4JM4KR3XSMKM_uhXloSzt8vcLds6FiJjIA=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "ソラビア人民共和国連邦",
-            "color": "#3ec0cc",
+            "color": "#5ed476",
             "avatar": "https://yt3.googleusercontent.com/zUSuCFiZuO8rrxqChp5qTpjkezlhB7gGtqwygoIvDGMvt2N_9e9Z5FfS7eEY9L8TvxdkhIRVYw=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "スコミヤ228",
-            "color": "#5e62d4",
+            "color": "#3ec0cc",
             "avatar": "https://yt3.googleusercontent.com/d08MA9fnkNe-Afq3BznQl13_urdsh10q0R2-Kl6mvXfAl9Ib9ElsCtrvjP0tiDgdK41KohnTtQQ=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
@@ -1087,7 +1080,7 @@ window.PBERS_NEWS = [
         "type": "multi_overtake",
         "kind": "subs",
         "name": "【PB】ネオンボール",
-        "color": "#d46a5e",
+        "color": "#cc3ead",
         "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⚡",
         "genre": "ポーランドボーラー",
@@ -1095,12 +1088,12 @@ window.PBERS_NEWS = [
         "opps": [
           {
             "name": "あへへへへへﾝ",
-            "color": "#5ed4cc",
+            "color": "#3ecc45",
             "avatar": "https://yt3.googleusercontent.com/umFwtFtVUF2UJKpw6p1Ao3UqFhfBiRBi7FqicRu23AcWly1z4owc6k2TBZvgUKZ3xIX5IfIA6A=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "水入り瓶",
-            "color": "#3e58cc",
+            "color": "#5ed4cc",
             "avatar": "https://yt3.googleusercontent.com/Nn0wemqXOMylFQsOcg8qBCdIVuj-OqChx5GO0sNoi8DeeZTIfaxTUCX-9beyc530JDO0BGuXCvU=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
@@ -1111,7 +1104,7 @@ window.PBERS_NEWS = [
         "type": "multi_overtake",
         "kind": "views",
         "name": "カルマルボール",
-        "color": "#b63ecc",
+        "color": "#5e62d4",
         "avatar": "https://yt3.googleusercontent.com/WX0x2Taa65iBzUFRSgy7esb4WOcPuDaB7kYluOwNEqFZJ0tN7lMR_IL5m1pZC7b6tpNJUdSTgA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⚡",
         "genre": "ポーランドボーラー",
@@ -1119,12 +1112,12 @@ window.PBERS_NEWS = [
         "opps": [
           {
             "name": "日独伊同盟ボール(ポーランドボール)",
-            "color": "#3ecc79",
+            "color": "#95d45e",
             "avatar": "https://yt3.googleusercontent.com/8x-zULuE0bf6GbydUZh3nQyTPrQ7rnZNHPQGN3mwP0bacDUOxtqn3XU0ZSOMMFXbT34D3LVPlQ=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "パワーポイントボール",
-            "color": "#d45e79",
+            "color": "#bb3ecc",
             "avatar": "https://yt3.googleusercontent.com/juW0175zlu8wVi5Nzp1V9it_-O1w5S8gvypZz23u-7EIZ7H41QF_ofqQDfjB_SrUdqRZ8WOM6Q=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
@@ -1203,13 +1196,13 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "videos",
         "name": "ソビエト・ロシアぼーる",
-        "color": "#5e89d4",
+        "color": "#3ecca8",
         "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "パワーポイントボール",
-          "color": "#d45e79",
+          "color": "#bb3ecc",
           "avatar": "https://yt3.googleusercontent.com/juW0175zlu8wVi5Nzp1V9it_-O1w5S8gvypZz23u-7EIZ7H41QF_ofqQDfjB_SrUdqRZ8WOM6Q=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 96,
@@ -1245,12 +1238,12 @@ window.PBERS_NEWS = [
         "opps": [
           {
             "name": "まっこゆ",
-            "color": "#cc953e",
+            "color": "#d45e7d",
             "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "萱口",
-            "color": "#99d45e",
+            "color": "#cc953e",
             "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
@@ -1261,7 +1254,7 @@ window.PBERS_NEWS = [
         "type": "multi_overtake",
         "kind": "views",
         "name": "【PB】ネオンボール",
-        "color": "#d46a5e",
+        "color": "#cc3ead",
         "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⚡",
         "genre": "ポーランドボーラー",
@@ -1269,22 +1262,22 @@ window.PBERS_NEWS = [
         "opps": [
           {
             "name": "askボール",
-            "color": "#cc3ead",
+            "color": "#855ed4",
             "avatar": "https://yt3.googleusercontent.com/ov6W-oIkKxOFNh3ykdT0Tw7BOvB80QZ6NC1pQgqrxgALMTiKeaDFijYoN-0GurzKHfnI30fxqA=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "ロブラネボール",
-            "color": "#cc3e45",
+            "color": "#d45ecc",
             "avatar": "https://yt3.googleusercontent.com/Hz2lVA05BzRhInvrAuf9In7rZKtHd1yFBo_5LrVpvaTkq4qiwvL8J4ILicyfDDJYxwQL72obTQ=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "ソ中ボール日友好平和同盟",
-            "color": "#c9cc3e",
+            "color": "#d46e5e",
             "avatar": "https://yt3.googleusercontent.com/idKCYo4w5sKLb4FpUjDCoUGFI2ATRvQmRgavCKPeRW5wayDzDjKB9PnAgVEXLv6tDN2GjNBffkc=s900-c-k-c0x00ffffff-no-rj"
           },
           {
             "name": "Sekumeball  せくめボール",
-            "color": "#5eb5d4",
+            "color": "#3ecc74",
             "avatar": "https://yt3.googleusercontent.com/bL9lWsp29DejSdFemB__O0UqwLkgufQdMTMKh0ceh2gHNtK9eIndZqueRLInTnEefoJndg7trA=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
@@ -1295,7 +1288,7 @@ window.PBERS_NEWS = [
         "type": "multi_overtake",
         "kind": "videos",
         "name": "Mīþ!緑ボール　",
-        "color": "#895ed4",
+        "color": "#3e87cc",
         "avatar": "https://yt3.googleusercontent.com/5MvkKfH36kOCAzO08xdpTyyNDfTII_xcUbhuuvBpfnfswW8wiEM-l-k9px9ysBlVwCZF1p85=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⚡",
         "genre": "ポーランドボーラー",
@@ -1308,7 +1301,7 @@ window.PBERS_NEWS = [
           },
           {
             "name": "ヤギ・ソビエト",
-            "color": "#cc9a3e",
+            "color": "#d45e79",
             "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
           }
         ],
@@ -1319,13 +1312,13 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "subs",
         "name": "カルマルボール",
-        "color": "#b63ecc",
+        "color": "#5e62d4",
         "avatar": "https://yt3.googleusercontent.com/WX0x2Taa65iBzUFRSgy7esb4WOcPuDaB7kYluOwNEqFZJ0tN7lMR_IL5m1pZC7b6tpNJUdSTgA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "Sekumeball  せくめボール",
-          "color": "#5eb5d4",
+          "color": "#3ecc74",
           "avatar": "https://yt3.googleusercontent.com/bL9lWsp29DejSdFemB__O0UqwLkgufQdMTMKh0ceh2gHNtK9eIndZqueRLInTnEefoJndg7trA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 4250,
@@ -1336,13 +1329,13 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "subs",
         "name": "【PB】ネオンボール",
-        "color": "#d46a5e",
+        "color": "#cc3ead",
         "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "某P国の球",
-          "color": "#9acc3e",
+          "color": "#d4955e",
           "avatar": "https://yt3.googleusercontent.com/XrXLTRaii_TN3m_FTr8J_fMlh1VJfhmf43mY2JzU4iNTLMMtYQR0xvyge9r5Tokxl0TNVW-wn30=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 2610,
@@ -1376,7 +1369,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "東トルキスタンボール",
-          "color": "#5ed4a5",
+          "color": "#66cc3e",
           "avatar": "https://yt3.googleusercontent.com/gl0PJDChU9pNvwUraC-NHdbfB-E4QFi_ACxD9BO_GSGGoUYkNmcNH6d3crXJ-8l44QeEHRjz=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 396663,
@@ -1393,7 +1386,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 168,
@@ -1410,7 +1403,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 168,
@@ -1427,7 +1420,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 168,
@@ -1444,7 +1437,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 168,
@@ -1461,7 +1454,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 168,
@@ -1478,7 +1471,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 168,
@@ -1495,7 +1488,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 168,
@@ -1506,13 +1499,13 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "videos",
         "name": "☆ソニキパチアスカイ帝国☆",
-        "color": "#6bcc3e",
+        "color": "#d4bc5e",
         "avatar": "https://yt3.googleusercontent.com/Fmq0rSeYrA63jTEw-bq5rPpgd1OAXJPl6UiOQswq9XVUbztI2X-BTe5jNbcFhzVBdyemhJdIdw=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1529,7 +1522,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1546,7 +1539,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1563,7 +1556,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1574,13 +1567,13 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "videos",
         "name": "【PB】トレインボール",
-        "color": "#cc3e79",
+        "color": "#b15ed4",
         "avatar": "https://yt3.googleusercontent.com/HZ7XUOxsbRgbmAYhAoC0SB1tKEe4cs1FQ8tIMGRsiRxuj9udUPJNRo0BW2FJiqhaA9myXQVTA1o=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1597,12 +1590,29 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
         "label": "投稿数で ヤギ・ソビエト を追い越し",
         "value": 146
+      },
+      {
+        "type": "overtake",
+        "kind": "videos",
+        "name": "スコミヤ228",
+        "color": "#3ec0cc",
+        "avatar": "https://yt3.googleusercontent.com/d08MA9fnkNe-Afq3BznQl13_urdsh10q0R2-Kl6mvXfAl9Ib9ElsCtrvjP0tiDgdK41KohnTtQQ=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "⤴️",
+        "genre": "ポーランドボーラー",
+        "opp": {
+          "name": "ヤギ・ソビエト",
+          "color": "#d45e79",
+          "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
+        },
+        "opp_value": 102,
+        "label": "投稿数で ヤギ・ソビエト を追い越し",
+        "value": 144
       },
       {
         "type": "overtake",
@@ -1614,24 +1624,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
-          "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
-        },
-        "opp_value": 102,
-        "label": "投稿数で ヤギ・ソビエト を追い越し",
-        "value": 144
-      },
-      {
-        "type": "overtake",
-        "kind": "videos",
-        "name": "スコミヤ228",
-        "color": "#5e62d4",
-        "avatar": "https://yt3.googleusercontent.com/d08MA9fnkNe-Afq3BznQl13_urdsh10q0R2-Kl6mvXfAl9Ib9ElsCtrvjP0tiDgdK41KohnTtQQ=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "⤴️",
-        "genre": "ポーランドボーラー",
-        "opp": {
-          "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1642,13 +1635,13 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "videos",
         "name": "Nà大和ボール",
-        "color": "#d4c05e",
+        "color": "#cc3e45",
         "avatar": "https://yt3.googleusercontent.com/h9LJBh8voSTpKAg1qEsum8_xqgLHPv-6JMLk324I2__hStLiaJxmCHlWdF3_GWNi2MwVMjQDdQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1665,7 +1658,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1682,7 +1675,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1699,7 +1692,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1710,13 +1703,13 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "videos",
         "name": "ロブラネボール",
-        "color": "#cc3e45",
+        "color": "#d45ecc",
         "avatar": "https://yt3.googleusercontent.com/Hz2lVA05BzRhInvrAuf9In7rZKtHd1yFBo_5LrVpvaTkq4qiwvL8J4ILicyfDDJYxwQL72obTQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1733,7 +1726,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1750,7 +1743,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1767,7 +1760,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1784,7 +1777,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1801,7 +1794,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1818,7 +1811,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1829,13 +1822,13 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "videos",
         "name": "TTボール",
-        "color": "#d45ed0",
+        "color": "#533ecc",
         "avatar": "https://yt3.googleusercontent.com/Jyb_uPlk9ssENZe3msLyrrbjmcOI5zimVCAi-itbq0gbYxltaXY5IDwxqUcPzsX9-S-X5e89gx0=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1852,7 +1845,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1869,7 +1862,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1880,13 +1873,13 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "videos",
         "name": "ぴくろす",
-        "color": "#6ad45e",
+        "color": "#c9cc3e",
         "avatar": "https://yt3.googleusercontent.com/R5Hi38Yy_E05WoCxZZMME7iv1sdUgAhUTBAlkBHKmNWairzMuzn4EMJvYpL7aJycNuG4SHKeEA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1897,13 +1890,13 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "videos",
         "name": "クッキー&シャワーボール",
-        "color": "#c0d45e",
+        "color": "#cc663e",
         "avatar": "https://yt3.googleusercontent.com/cXpSylNTlpqGVjLykfV18UsxKIi4FQmplMTjUXchSuaznpm_Eiyp5DjsdceUfFwZ5Ecl3n06xA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1914,13 +1907,13 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "videos",
         "name": "EROP 【えるふぼーる】",
-        "color": "#cc3e7e",
+        "color": "#ad5ed4",
         "avatar": "https://yt3.googleusercontent.com/FlejDGGK6zDJVZik6AqnxnZj13QQRkyzrivxg5bZYo6WANizJhNUcTrPuZv_-eBUE4tAh3NuPvk=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1931,13 +1924,13 @@ window.PBERS_NEWS = [
         "type": "overtake",
         "kind": "videos",
         "name": "ウィン【肉声】【ポーランドボール】",
-        "color": "#873ecc",
+        "color": "#5e89d4",
         "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
         "icon": "⤴️",
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
@@ -1954,7 +1947,7 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "opp": {
           "name": "ヤギ・ソビエト",
-          "color": "#cc9a3e",
+          "color": "#d45e79",
           "avatar": "https://yt3.googleusercontent.com/dKbay1BKn0VP5DFVG6cUTQvQPow1nwQC7JAsA2dRdJC6IQtR_XnCVFxsi_Dk6Z8OwzQnmlm2DA=s900-c-k-c0x00ffffff-no-rj"
         },
         "opp_value": 102,
