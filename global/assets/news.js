@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-09-09",
+    "label": "9月9日(水)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "Dotto edit",
+        "color": "#3e66cc",
+        "avatar": "https://yt3.googleusercontent.com/JjoolJ5faLhJzaPj3UckuOvdbEaug12ouvdocg6jk1Lw-ZS7TMNjGxAAuz0v3hb6b04v_uJ97Q=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 1万人 突破",
+        "value": 10000
+      }
+    ]
+  },
+  {
     "date": "2026-09-08",
     "label": "9月8日(火)",
     "items": []
@@ -40,22 +57,5 @@ window.PBERS_NEWS = [
     "date": "2026-09-03",
     "label": "9月3日(木)",
     "items": []
-  },
-  {
-    "date": "2026-09-02",
-    "label": "9月2日(水)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "MOON-BALL",
-        "color": "#ccbb3e",
-        "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 21万人 突破",
-        "value": 210000
-      }
-    ]
   }
 ];
