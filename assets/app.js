@@ -1102,7 +1102,9 @@
         var nn = newFor(t.id, t.posts);
         var sn = (isSearch && t.snippet) ? '<div class="th-snip">' + esc(String(t.snippet).slice(0, 80)) + (String(t.snippet).length > 80 ? '…' : '') + '</div>' : '';
         return '<div class="th' + (t.hidden ? ' bc-off' : '') + '" data-id="' + t.id + '">' +
-          '<div class="th-main"><div class="th-title">' + esc(t.title) + (nn > 0 ? ' <span class="th-new">新着' + nn + '</span>' : '') + '</div>' + sn +
+          '<div class="th-main"><div class="th-title">' + esc(t.title) +
+            (t.admin ? ' <span class="th-badge">★管理人</span>' : '') +
+            (nn > 0 ? ' <span class="th-new">新着' + nn + '</span>' : '') + '</div>' + sn +
             '<div class="th-meta"><span class="num">' + t.posts + '</span> レス ・ ' +
               (!isSearch && curSort === 'new' ? '作成 ' + bWhen(t.created) : '最終 ' + bWhen(t.bumped)) + '</div></div>' +
           (boardKey ? '<button type="button" class="bc-hide" data-k="thread" data-id="' + t.id + '" data-h="' + (t.hidden ? 0 : 1) + '">' + (t.hidden ? '表示' : '非表示') + '</button>' : '') +

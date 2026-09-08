@@ -351,9 +351,11 @@ async function threadList(url, req, env) {
   const board = "general";
   const sort = url.searchParams.get("sort");
   const order = THREAD_ORDER[sort] || THREAD_ORDER.bump;   // 未知の値は最終レス順にフォールバック
+  // admin = 1レス目(=スレ主)が管理人投稿か。スキーマ変更不要で board_posts から導出。
+  const adminSel = ",(SELECT p.admin FROM board_posts p WHERE p.thread_id=t.id AND p.no=1) AS admin";
   const sql = g.admin
-    ? "SELECT id,title,created,bumped,posts,hidden FROM board_threads WHERE board=?1 ORDER BY " + order + " LIMIT 200"
-    : "SELECT id,title,created,bumped,posts,hidden FROM board_threads WHERE board=?1 AND hidden=0 ORDER BY " + order + " LIMIT 200";
+    ? "SELECT t.id,t.title,t.created,t.bumped,t.posts,t.hidden" + adminSel + " FROM board_threads t WHERE t.board=?1 ORDER BY " + order + " LIMIT 200"
+    : "SELECT t.id,t.title,t.created,t.bumped,t.posts,t.hidden" + adminSel + " FROM board_threads t WHERE t.board=?1 AND t.hidden=0 ORDER BY " + order + " LIMIT 200";
   const { results } = await env.DB.prepare(sql).bind(board).all();
   return json({ public: g.pub, admin: g.admin, sort: THREAD_ORDER[sort] ? sort : "bump", threads: results || [] });
 }
@@ -365,12 +367,12 @@ async function boardSearch(url, req, env) {
   const board = "general";
   // タイトル or 本文に一致するスレを返す。本文一致時は最初の該当レス本文を snippet に。
   const sql = g.admin
-    ? "SELECT t.id,t.title,t.posts,t.bumped,t.hidden," +
+    ? "SELECT t.id,t.title,t.posts,t.bumped,t.hidden,(SELECT pa.admin FROM board_posts pa WHERE pa.thread_id=t.id AND pa.no=1) AS admin," +
       " (SELECT p.body FROM board_posts p WHERE p.thread_id=t.id AND p.body LIKE ?2 ESCAPE '\\' ORDER BY p.no LIMIT 1) AS snippet" +
       " FROM board_threads t WHERE t.board=?1" +
       " AND (t.title LIKE ?2 ESCAPE '\\' OR EXISTS(SELECT 1 FROM board_posts p2 WHERE p2.thread_id=t.id AND p2.body LIKE ?2 ESCAPE '\\'))" +
       " ORDER BY t.bumped DESC LIMIT 50"
-    : "SELECT t.id,t.title,t.posts,t.bumped,t.hidden," +
+    : "SELECT t.id,t.title,t.posts,t.bumped,t.hidden,(SELECT pa.admin FROM board_posts pa WHERE pa.thread_id=t.id AND pa.no=1) AS admin," +
       " (SELECT p.body FROM board_posts p WHERE p.thread_id=t.id AND p.hidden=0 AND p.body LIKE ?2 ESCAPE '\\' ORDER BY p.no LIMIT 1) AS snippet" +
       " FROM board_threads t WHERE t.board=?1 AND t.hidden=0" +
       " AND (t.title LIKE ?2 ESCAPE '\\' OR EXISTS(SELECT 1 FROM board_posts p2 WHERE p2.thread_id=t.id AND p2.hidden=0 AND p2.body LIKE ?2 ESCAPE '\\'))" +
