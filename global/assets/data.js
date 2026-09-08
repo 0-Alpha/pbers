@@ -15,9 +15,9 @@ window.PBERS_DATA = [
   {
     "name": "MOON-BALL",
     "subs": 217000,
-    "views": 37819739,
+    "views": 37884748,
     "subsLabel": "チャンネル登録者数 21.7万人",
-    "viewsLabel": "37,819,739回視聴",
+    "viewsLabel": "37,884,748回視聴",
     "videos": 33,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
     "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
@@ -144,9 +144,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dotto edit",
-    "subs": 9870,
+    "subs": 9890,
     "views": 7187115,
-    "subsLabel": "チャンネル登録者数 9870人",
+    "subsLabel": "チャンネル登録者数 9890人",
     "viewsLabel": "7,187,115回視聴",
     "videos": 62,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
@@ -210,4 +210,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-08";
-window.PBERS_PREDICT = {"asOfMs": 1788814800000, "subs": {"base": 1510850, "rate": 2.5906929759579564e-05}, "views": {"base": 666772548, "rate": 0.008705455436077108}};
+window.PBERS_PREDICT = {"asOfMs": 1788836400000, "subs": {"base": 1510870, "rate": 2.384105850928339e-05}, "views": {"base": 666837557, "rate": 0.009071777874844573}};

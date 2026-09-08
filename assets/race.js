@@ -5207,7 +5207,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-08",
-            "s": 3180
+            "s": 3190
           }
         ]
       },
@@ -5315,7 +5315,7 @@ window.PBERS_RACE = [
         "name": "ウィン【肉声】【ポーランドボール】",
         "color": "#873ecc",
         "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3110,
+        "subs": 3120,
         "history": [
           {
             "d": "2026-08-22",
@@ -5387,7 +5387,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-08",
-            "s": 3100
+            "s": 3120
           }
         ]
       },
@@ -6091,7 +6091,7 @@ window.PBERS_RACE = [
         "name": "ソビエトボールUSSR",
         "color": "#d45ecc",
         "avatar": "https://yt3.googleusercontent.com/oQR3FLSbYKMQi1K_7qkk8PVfmLILRrYecaE-8XC2kKcQiazxJwzRa-yCeX6OxqgbmJ07vNTC=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 2220,
+        "subs": 2230,
         "history": [
           {
             "d": "2026-08-30",
@@ -6131,7 +6131,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-08",
-            "s": 2220
+            "s": 2230
           }
         ]
       },
