@@ -333,7 +333,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250926">
+<link rel="stylesheet" href="/assets/style.css?v=250927">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -352,7 +352,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250926"></script>
+<script src="/assets/channel.js?v=250927"></script>
 </body>
 </html>
 '''
@@ -945,7 +945,7 @@ def build_news(colors):
             continue
         P = prev_of[T]
         for metric in STEPS:
-            # (1) マイルストーン突破（段階式）
+            # マイルストーン突破（段階式）。※追い越しニュースは廃止した
             for cid in shown:
                 reached = milestone_reached(metric, gv(cid, P, metric), gv(cid, T, metric))
                 if reached is not None:
@@ -955,23 +955,6 @@ def build_news(colors):
                         "genre": genre_of(cid), "label": milestone_label(metric, reached),
                         "value": reached,
                     })
-            # (2) 追い越し（Aが直前はBの下、今回はBの上）
-            elig = [c for c in shown if gv(c, T, metric) is not None and gv(c, P, metric) is not None]
-            for a in elig:
-                ca, pa = gv(a, T, metric), gv(a, P, metric)
-                for b in elig:
-                    if a == b:
-                        continue
-                    if pa < gv(b, P, metric) and ca > gv(b, T, metric):
-                        by_date[D].append({
-                            "type": "overtake", "kind": metric, "name": names[a],
-                            "color": colors[a], "avatar": amap.get(a, ""), "icon": "⤴️",
-                            "genre": genre_of(a),
-                            "opp": {"name": names[b], "color": colors.get(b, "#8d8986"), "avatar": amap.get(b, "")},
-                            "opp_value": gv(b, T, metric),
-                            "label": "%sで %s を追い越し" % (METRICWORD[metric], names[b]),
-                            "value": ca,
-                        })
 
     korder = {"subs": 0, "views": 1, "videos": 2}
     torder = {"milestone": 0, "multi_overtake": 1, "overtake": 2}
