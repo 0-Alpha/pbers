@@ -1162,7 +1162,7 @@ window.PBERS_RACE = [
       {
         "name": "アオアオカントリー",
         "color": "#3ec9cc",
-        "avatar": "https://yt3.googleusercontent.com/bkPPCcevoRKHMXyk4MzSH9s7MWSv-oI3n6DOPjx_FtUqqm6ALXRBjPWV5tgk5Rv3k-DcbXrV8g=s900-c-k-c0x00ffffff-no-rj",
+        "avatar": "https://yt3.googleusercontent.com/iKHzhe9vetjCJG8egzjt3VK4mpxbbM7zX2aC7kfKfLGZGxVr46p4KpK052WlxoemkqY5frXeGw=s900-c-k-c0x00ffffff-no-rj",
         "subs": 17700,
         "history": [
           {
@@ -4431,7 +4431,7 @@ window.PBERS_RACE = [
         "name": "旧食DX",
         "color": "#9fcc3e",
         "avatar": "https://yt3.googleusercontent.com/eS59gj4sUqncdlk0_nSnxkfIKeKASy0K5CwgIpOHv4JM4KR3XSMKM_uhXloSzt8vcLds6FiJjIA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4710,
+        "subs": 4700,
         "history": [
           {
             "d": "2026-08-30",
@@ -4624,8 +4624,56 @@ window.PBERS_RACE = [
         ]
       },
       {
-        "name": "まっこゆ",
+        "name": "萱口",
         "color": "#d45e7d",
+        "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 4450,
+        "history": [
+          {
+            "d": "2026-08-30",
+            "s": 4400
+          },
+          {
+            "d": "2026-08-31",
+            "s": 4400
+          },
+          {
+            "d": "2026-09-01",
+            "s": 4400
+          },
+          {
+            "d": "2026-09-02",
+            "s": 4410
+          },
+          {
+            "d": "2026-09-03",
+            "s": 4410
+          },
+          {
+            "d": "2026-09-04",
+            "s": 4410
+          },
+          {
+            "d": "2026-09-05",
+            "s": 4410
+          },
+          {
+            "d": "2026-09-06",
+            "s": 4410
+          },
+          {
+            "d": "2026-09-07",
+            "s": 4410
+          },
+          {
+            "d": "2026-09-08",
+            "s": 4430
+          }
+        ]
+      },
+      {
+        "name": "まっこゆ",
+        "color": "#cc953e",
         "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
         "subs": 4450,
         "history": [
@@ -4668,54 +4716,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-09-08",
             "s": 4450
-          }
-        ]
-      },
-      {
-        "name": "萱口",
-        "color": "#cc953e",
-        "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4430,
-        "history": [
-          {
-            "d": "2026-08-30",
-            "s": 4400
-          },
-          {
-            "d": "2026-08-31",
-            "s": 4400
-          },
-          {
-            "d": "2026-09-01",
-            "s": 4400
-          },
-          {
-            "d": "2026-09-02",
-            "s": 4410
-          },
-          {
-            "d": "2026-09-03",
-            "s": 4410
-          },
-          {
-            "d": "2026-09-04",
-            "s": 4410
-          },
-          {
-            "d": "2026-09-05",
-            "s": 4410
-          },
-          {
-            "d": "2026-09-06",
-            "s": 4410
-          },
-          {
-            "d": "2026-09-07",
-            "s": 4410
-          },
-          {
-            "d": "2026-09-08",
-            "s": 4430
           }
         ]
       }
