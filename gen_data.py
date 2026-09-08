@@ -241,7 +241,7 @@ def build_edition():
         f.write("window.PBERS_PREDICT = " + json.dumps(compute_predict(colors), ensure_ascii=False) + ";\n")
     print("wrote assets/data.js (%d channels)" % len(out))
 
-    build_news(colors)
+    build_news(colors, order)
     build_growth(colors)
     build_race(colors)
     build_channel_pages(order, colors)
@@ -902,9 +902,10 @@ def build_growth(colors):
         f.write("window.PBERS_GROWTH = " + json.dumps(result, ensure_ascii=False, indent=2) + ";\n")
     print("wrote assets/growth.js (span %s days, %d trend points)" % (result["span"]["days"], len(tdays)))
 
-def build_news(colors):
+def build_news(colors, order=None):
     """history.csv から直近7日（当日含む）のマイルストーン突破を検出して news.js を出力。
-       各チャンネル・各指標について、前回記録日→当日で刻みを跨いだら「突破」ニュースにする。"""
+       各チャンネル・各指標について、前回記録日→当日で刻みを跨いだら「突破」ニュースにする。
+       あわせて外部連携用に news.json(素のJSON) と feed.xml(RSS2.0) も出力する。"""
     path = os.path.join(BASE, ED["history"])
     series, names = {}, {}
     if os.path.exists(path):
@@ -1019,5 +1020,61 @@ def build_news(colors):
         f.write("window.PBERS_NEWS = " + json.dumps(news, ensure_ascii=False, indent=2) + ";\n")
     total = sum(len(n["items"]) for n in news)
     print("wrote assets/news.js (%d days, %d news items)" % (len(news), total))
+
+    # ---- 外部連携用フィード: news.json (素のJSON) と feed.xml (RSS2.0) ----
+    # 通知ボット向け。各項目に安定した id(guid) を振り、ボット側は未見の id だけ通知すればよい。
+    slug_by_name = {d["name"]: d.get("_slug", "") for d in (order or [])}
+    site = ed_site()
+    def item_url(name):
+        s = slug_by_name.get(name, "")
+        return (site + "/c/" + urllib.parse.quote(s) + "/") if s else (site + "/news/")
+    flat = []
+    for day in news:                                   # news は新しい日が先頭・日内もソート済み
+        for it in day["items"]:
+            slug = slug_by_name.get(it["name"], "")
+            uid = "%s/%s/%s/%s" % (day["date"], it.get("kind", ""), slug or it["name"], it.get("value", ""))
+            flat.append({
+                "id": uid, "date": day["date"], "channel": it["name"], "slug": slug,
+                "metric": it.get("kind", ""), "type": it.get("type", "milestone"),
+                "label": it.get("label", ""), "value": it.get("value"),
+                "genre": it.get("genre", ""), "url": item_url(it["name"]),
+            })
+    payload = {"site": ED["label"], "updated": UPDATED,
+               "generated": datetime.datetime.now(JST).isoformat(timespec="seconds"),
+               "count": len(flat), "items": flat}
+    with open(ed_out("news.json"), "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+
+    def xesc(s):
+        return (str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+                .replace('"', "&quot;").replace("'", "&apos;"))
+    def rfc822(dstr):                                  # 日付(JST正午)を RFC822 に。RSSの pubDate 用
+        try:
+            dt = datetime.datetime.fromisoformat(dstr).replace(hour=12, minute=0, second=0, tzinfo=JST)
+        except Exception:
+            dt = datetime.datetime.now(JST)
+        return dt.strftime("%a, %d %b %Y %H:%M:%S %z")
+    feed_title = ED["label"] + " ニュース"
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>',
+             "<title>%s</title>" % xesc(feed_title),
+             '<link>%s/news/</link>' % site,
+             '<atom:link href="%s/feed.xml" rel="self" type="application/rss+xml"/>' % site,
+             "<description>ポーランドボーラー(YouTube)の登録者・総再生・投稿数のマイルストーン突破ニュース</description>",
+             "<language>ja</language>",
+             "<lastBuildDate>%s</lastBuildDate>" % rfc822(UPDATED)]
+    for it in flat:
+        title = "%s — %s" % (it["channel"], it["label"])
+        lines += ["<item>",
+                  "<title>%s</title>" % xesc(title),
+                  "<link>%s</link>" % xesc(it["url"]),
+                  '<guid isPermaLink="false">%s</guid>' % xesc(it["id"]),
+                  "<pubDate>%s</pubDate>" % rfc822(it["date"]),
+                  "<description>%s</description>" % xesc(title),
+                  "</item>"]
+    lines += ["</channel></rss>"]
+    with open(ed_out("feed.xml"), "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    print("wrote news.json + feed.xml (%d items)" % len(flat))
 
 main()
