@@ -1950,6 +1950,19 @@ window.PBERS_DATA = [
     "slug": "宇宙千葉のpbルーム"
   },
   {
+    "name": "SEA_ドイパラ🐺",
+    "subs": 2070,
+    "views": 149668,
+    "subsLabel": "チャンネル登録者数 2070人",
+    "viewsLabel": "149,668回視聴",
+    "videos": 37,
+    "url": "https://www.youtube.com/channel/UCYPjOfq7MsU0hJvC5cfPs2Q",
+    "avatar": "https://yt3.googleusercontent.com/ackmProTQJ5Ye7pWnBj2NJM-jr7xfMpu8dky2yxYr90A8m5aLAdJEDu-nJKQPvIp23gvABtHog=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#cc3ea8",
+    "genre": "ポーランドボーラー",
+    "slug": "sea_ドイパラ"
+  },
+  {
     "name": "ミントの農場",
     "subs": 2060,
     "views": 680943,
@@ -1958,7 +1971,7 @@ window.PBERS_DATA = [
     "videos": 70,
     "url": "https://www.youtube.com/channel/UC-OzC-_SZ7TvegHVFEA4OHA",
     "avatar": "https://yt3.googleusercontent.com/RnPkMOcvXnYH93HK6sBW4Pk3Z9xk8LGY2Flq4zNhr4yE8hhoRCqIh5px60QCEfsYUCJXuiD5ng=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc3ea8",
+    "color": "#d46e5e",
     "genre": "ポーランドボーラー",
     "slug": "ミントの農場"
   },
@@ -1971,7 +1984,7 @@ window.PBERS_DATA = [
     "videos": 339,
     "url": "https://www.youtube.com/channel/UC0dTgvaZ9fN54Q-ILAhCMuw",
     "avatar": "https://yt3.googleusercontent.com/idKCYo4w5sKLb4FpUjDCoUGFI2ATRvQmRgavCKPeRW5wayDzDjKB9PnAgVEXLv6tDN2GjNBffkc=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d46e5e",
+    "color": "#c9cc3e",
     "genre": "ポーランドボーラー",
     "slug": "ソ中ボール日友好平和同盟"
   },
@@ -1984,7 +1997,7 @@ window.PBERS_DATA = [
     "videos": 114,
     "url": "https://www.youtube.com/channel/UC8RiqSKxCmtZYEk_fLze0pQ",
     "avatar": "https://yt3.googleusercontent.com/R5Hi38Yy_E05WoCxZZMME7iv1sdUgAhUTBAlkBHKmNWairzMuzn4EMJvYpL7aJycNuG4SHKeEA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#c9cc3e",
+    "color": "#6ad45e",
     "genre": "ポーランドボーラー",
     "slug": "ぴくろす"
   },
@@ -1997,11 +2010,11 @@ window.PBERS_DATA = [
     "videos": null,
     "url": "https://www.youtube.com/channel/UCD9mEEJypdqQZeSeTotItbg",
     "avatar": "",
-    "color": "#6ad45e",
+    "color": "#3eccad",
     "genre": "ポーランドボーラー",
     "slug": "ucd9meejypdqqzesetotitbg"
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-08";
-window.PBERS_PREDICT = {"asOfMs": 1788858000000, "subs": {"base": 2826250, "rate": 5.936588922949456e-05}, "views": {"base": 2196753794, "rate": 0.04447507975318118}};
+window.PBERS_PREDICT = {"asOfMs": 1788858000000, "subs": {"base": 2828320, "rate": 5.936588922949456e-05}, "views": {"base": 2196903462, "rate": 0.04447507975318118}};
