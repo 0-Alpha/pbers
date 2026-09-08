@@ -412,16 +412,19 @@
 
   /* ---- channel card (used by directory + tier list) ---- */
   function chId(d) { return (d.url || '').split('/channel/')[1] || ''; }
+  // YouTubeアバター(=s900 等)を表示サイズ相当に縮小してURLを返す。一覧の画像を軽くする用。
+  function avSize(url, px) {
+    if (!url) return url;
+    return url.replace(/=s\d+/, '=s' + px).replace(/=w\d+-h\d+/, '=s' + px);
+  }
   function cardEl(d, rankNum) {
     var wrap = document.createElement('div');
     wrap.className = 'card';
-    wrap.style.borderColor = 'var(--line)';
-    wrap.addEventListener('mouseenter', function () { wrap.style.borderColor = d.color; });
-    wrap.addEventListener('mouseleave', function () { wrap.style.borderColor = 'var(--line)'; });
+    wrap.style.setProperty('--c', d.color);   // ホバー時の枠色(CSSの .card:hover が参照)
     wrap.innerHTML =
       '<a class="card-main" href="' + GBASE + 'c/' + encodeURIComponent(d.slug || chId(d)) + '/">' +
         '<span class="rk num">' + rankNum + '</span>' +
-        '<img class="av" loading="lazy" src="' + d.avatar + '" alt="" style="border-color:' + d.color + '" onerror="this.style.visibility=\'hidden\'">' +
+        '<img class="av" loading="lazy" width="48" height="48" src="' + avSize(d.avatar, 96) + '" alt="" style="border-color:' + d.color + '" onerror="this.style.visibility=\'hidden\'">' +
         '<span class="meta"><span class="cn">' + esc(d.name) + '</span>' +
         '<span class="cstats">' +
           '<span class="cstat"><i>登録者</i>' + (d.subs != null ? jp(d.subs) + '人' : '非公開') + '</span>' +
@@ -571,7 +574,7 @@
     var ms = mentionsIn(body); if (!ms.length) return '';
     return '<div class="post-mentions"><span class="pm-label">言及</span>' + ms.map(function (e) {
       return '<a class="pm-chip" href="' + GBASE + 'c/' + encodeURIComponent(e.slug) + '/" style="--c:' + e.color + '">' +
-        (e.avatar ? '<img src="' + esc(e.avatar) + '" alt="" onerror="this.style.display=\'none\'">' : '') +
+        (e.avatar ? '<img loading="lazy" width="18" height="18" src="' + esc(avSize(e.avatar, 48)) + '" alt="" onerror="this.style.display=\'none\'">' : '') +
         '<span>' + esc(e.name) + '</span></a>';
     }).join('') + '</div>';
   }
@@ -902,7 +905,7 @@
       var slug = SLUG_BY_NAME[x.name] || '', av = AV_BY_NAME[x.name] || '';
       return '<a class="dr-item" href="' + GBASE + 'c/' + encodeURIComponent(slug) + '/">' +
         '<span class="dr-rank num">' + (i + 1) + '</span>' +
-        (av ? '<img class="dr-av" src="' + esc(av) + '" alt="" onerror="this.style.visibility=\'hidden\'">' : '<span class="dr-av"></span>') +
+        (av ? '<img class="dr-av" loading="lazy" width="38" height="38" src="' + esc(avSize(av, 88)) + '" alt="" onerror="this.style.visibility=\'hidden\'">' : '<span class="dr-av"></span>') +
         '<span class="dr-name">' + esc(x.name) + '</span>' +
         '<span class="dr-rate num">+' + x.delta.toFixed(1) + '%</span></a>';
     }).join('');
