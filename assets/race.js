@@ -659,7 +659,7 @@ window.PBERS_RACE = [
         "name": "ｺﾏ",
         "color": "#5ed4c0",
         "avatar": "https://yt3.googleusercontent.com/qfIMUcBcGCqbLGk6dZfwDM1ITBKnaYjIMF7mCqKncuWK8lA1JBya8wfa2f9evEE_mbpWj-67=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 21700,
+        "subs": 21800,
         "history": [
           {
             "d": "2026-08-20",
@@ -5239,7 +5239,7 @@ window.PBERS_RACE = [
         "name": "【PB】ネオンボール",
         "color": "#855ed4",
         "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3280,
+        "subs": 3290,
         "history": [
           {
             "d": "2026-08-31",

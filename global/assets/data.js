@@ -158,9 +158,9 @@ window.PBERS_DATA = [
   {
     "name": "Past_Ball",
     "subs": 7690,
-    "views": 3507359,
+    "views": 3507974,
     "subsLabel": "チャンネル登録者数 7690人",
-    "viewsLabel": "3,507,359回視聴",
+    "viewsLabel": "3,507,974回視聴",
     "videos": 213,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
     "avatar": "https://yt3.googleusercontent.com/r8ouoXMX9iar1cjJgX7u1yaZn1Eis8ZAzmdIhpoYUYTiTUl39uZ8KU81zZBYtSr-Gs2TCuga=s900-c-k-c0x00ffffff-no-rj",
@@ -210,4 +210,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-09";
-window.PBERS_PREDICT = {"asOfMs": 1788901200000, "subs": {"base": 1511180, "rate": 1.9203201364133344e-05}, "views": {"base": 667333229, "rate": 0.008739559336127498}};
+window.PBERS_PREDICT = {"asOfMs": 1788901200000, "subs": {"base": 1511180, "rate": 1.9203201364133344e-05}, "views": {"base": 667333844, "rate": 0.008739559336127498}};
