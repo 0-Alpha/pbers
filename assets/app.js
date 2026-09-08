@@ -986,7 +986,9 @@
   function boardErr(code) {
     return ({ too_fast: '投稿の間隔があいていません（少し待ってね）', captcha: '認証に失敗しました',
       private: '現在は非公開です', db_unconfigured: '掲示板は準備中です', empty: '本文を入力してください',
-      no_title: 'タイトルを入力してください', not_found: 'スレッドが見つかりません', forbidden: '権限がありません' })[code]
+      no_title: 'タイトルを入力してください', not_found: 'スレッドが見つかりません', forbidden: '権限がありません',
+      voted: 'すでに投票済みです', closed: 'このアンケートは終了しました', no_poll: 'アンケートが見つかりません',
+      no_choice: '選択してください', single_only: '1つだけ選択してください' })[code]
       || '通信エラーが発生しました';
   }
   function boardHeaders(extra) { var h = extra || {}; if (boardKey) h['X-Board-Key'] = boardKey; return h; }
@@ -1061,6 +1063,22 @@
         '<input class="bf-in" id="bt-title" maxlength="60" placeholder="タイトル（60字まで）">' +
         '<input class="bf-in bf-name" id="bt-name" maxlength="24" placeholder="名前（任意）">' +
         '<textarea class="bf-in bf-body" id="bt-body" maxlength="2000" rows="3" placeholder="最初の書き込み…"></textarea>' +
+        '<button type="button" class="bt-poll-toggle" id="bt-poll-toggle">＋ アンケートを作成</button>' +
+        '<div class="bt-poll" id="bt-poll" hidden>' +
+          '<input class="bf-in" id="bp-q" maxlength="140" placeholder="質問（例：一番好きなPBerは？）">' +
+          '<div id="bp-opts">' +
+            '<input class="bf-in bp-opt" maxlength="60" placeholder="選択肢1">' +
+            '<input class="bf-in bp-opt" maxlength="60" placeholder="選択肢2">' +
+          '</div>' +
+          '<button type="button" class="bp-add" id="bp-add">＋ 選択肢を追加</button>' +
+          '<div class="bp-opts-row">' +
+            '<label class="bp-check"><input type="checkbox" id="bp-multi"> 複数回答を許可</label>' +
+            '<label class="bp-check"><input type="checkbox" id="bp-hide"> 投票するまで結果を隠す</label>' +
+          '</div>' +
+          '<label class="bp-days">期間 <select id="bp-days">' +
+            [1,2,3,5,7].map(function(n){return '<option value="'+n+'"'+(n===7?' selected':'')+'>'+n+'日</option>';}).join('') +
+          '</select></label>' +
+        '</div>' +
         '<div class="bf-actions"><span class="bf-msg" id="bt-msg"></span>' +
           '<button type="submit" class="bf-send" id="bt-send">スレッドを作成</button></div>' +
       '</form>' +
@@ -1074,6 +1092,31 @@
       '<div class="board-list" id="board-threads"><div class="board-empty">読み込み中…</div></div>';
     document.getElementById('bt-name').value = boardName();
     var tsNew = tsMount(document.getElementById('bt-new'));
+    // アンケート入力欄: 開閉・選択肢の追加(最大10)
+    var pollWrap = document.getElementById('bt-poll'), pollToggle = document.getElementById('bt-poll-toggle');
+    pollToggle.addEventListener('click', function () {
+      pollWrap.hidden = !pollWrap.hidden;
+      pollToggle.textContent = pollWrap.hidden ? '＋ アンケートを作成' : '－ アンケートを閉じる';
+    });
+    document.getElementById('bp-add').addEventListener('click', function () {
+      var opts = document.getElementById('bp-opts'), n = opts.querySelectorAll('.bp-opt').length;
+      if (n >= 10) { this.disabled = true; return; }
+      var inp = document.createElement('input');
+      inp.className = 'bf-in bp-opt'; inp.maxLength = 60; inp.placeholder = '選択肢' + (n + 1);
+      opts.appendChild(inp); inp.focus();
+      if (n + 1 >= 10) this.disabled = true;
+    });
+    function collectPoll() {   // 入力があれば poll オブジェクトを返す。無効なら null
+      if (pollWrap.hidden) return null;
+      var q = document.getElementById('bp-q').value.trim();
+      var options = [].slice.call(pollWrap.querySelectorAll('.bp-opt'))
+        .map(function (i) { return i.value.trim(); }).filter(Boolean).slice(0, 10);
+      if (!q || options.length < 2) return null;
+      return { question: q, options: options,
+        multi: document.getElementById('bp-multi').checked,
+        hide: document.getElementById('bp-hide').checked,
+        days: parseInt(document.getElementById('bp-days').value, 10) || 7 };
+    }
     document.getElementById('bt-new').addEventListener('submit', function (e) {
       e.preventDefault();
       var title = document.getElementById('bt-title').value.trim();
@@ -1082,9 +1125,13 @@
       var msg = document.getElementById('bt-msg'), send = document.getElementById('bt-send');
       if (!title) { msg.textContent = 'タイトルを入力してください'; return; }
       if (!body) { msg.textContent = '本文を入力してください'; return; }
+      var poll = collectPoll();
+      if (!pollWrap.hidden && !poll) { msg.textContent = 'アンケートは質問と選択肢2つ以上が必要です'; return; }
       send.disabled = true; msg.textContent = '作成中…';
+      var payload = { title: title, name: name, body: body, token: tsNew.get() };
+      if (poll) payload.poll = poll;
       fetch(boardApi('/threads'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
-        body: JSON.stringify({ title: title, name: name, body: body, token: tsNew.get() }) })
+        body: JSON.stringify(payload) })
         .then(function (r) { return r.json(); }).then(function (d) {
           send.disabled = false; tsNew.reset();
           if (d.ok) { saveBoardName(name); markMine(d.id, 1); boardGo(d.id); } else msg.textContent = boardErr(d.error);
@@ -1187,6 +1234,43 @@
         '<button type="button" class="yt-play" aria-label="再生"></button></div>';
     }).join('') + '</div>';
   }
+  function pollRemain(closes) {   // 残り時間の短い表記
+    var ms = closes - Date.now(); if (ms <= 0) return '';
+    var d = Math.floor(ms / 86400000), h = Math.floor((ms % 86400000) / 3600000);
+    if (d >= 1) return 'あと' + d + '日' + (h ? h + '時間' : '');
+    if (h >= 1) return 'あと' + h + '時間';
+    return 'まもなく終了';
+  }
+  // アンケート表示。canVote時は選択UI+投票ボタン、そうでなければ結果バー。合計投票数は常に表示。
+  function pollHtml(poll) {
+    if (!poll) return '';
+    var opts = poll.options || [], total = poll.votes || 0;
+    var canVote = !poll.voted && !poll.closed, showRes = poll.counts != null;
+    var rows = opts.map(function (o, i) {
+      var mine = poll.myChoices && poll.myChoices.indexOf(i) !== -1;
+      var c = showRes ? ((poll.counts && poll.counts[i]) || 0) : 0;
+      var pct = (showRes && total > 0) ? Math.round(c / total * 100) : 0;
+      if (canVote) {
+        return '<label class="poll-opt"><input type="' + (poll.multi ? 'checkbox' : 'radio') + '" name="poll-c" value="' + i + '">' +
+          '<span class="poll-opt-t">' + esc(o) + '</span>' +
+          (showRes ? '<span class="poll-opt-n num">' + c + '票 ' + pct + '%</span>' : '') + '</label>';
+      }
+      return '<div class="poll-res' + (mine ? ' mine' : '') + '">' +
+        '<div class="poll-res-top"><span class="poll-opt-t">' + esc(o) + (mine ? ' ✓' : '') + '</span>' +
+        '<span class="poll-res-n num">' + c + '票 (' + pct + '%)</span></div>' +
+        '<div class="poll-bar"><span style="width:' + pct + '%"></span></div></div>';
+    }).join('');
+    var status = poll.closed ? '終了しました' : pollRemain(poll.closes);
+    var foot = '<div class="poll-foot">' +
+      (canVote ? '<button type="button" class="poll-vote" id="poll-vote">投票する</button>'
+               : '<span class="poll-done">' + (poll.voted ? '✓ 投票済み' : '') + '</span>') +
+      '<span class="poll-total num">計 ' + total + '票' + (status ? ' ・ ' + status : '') + '</span></div>';
+    var note = (canVote && !showRes) ? '<div class="poll-note">投票すると結果が表示されます' + (poll.multi ? '（複数選択可）' : '') + '</div>'
+             : (canVote && poll.multi ? '<div class="poll-note">複数選択できます</div>' : '');
+    return '<div class="poll" id="poll" data-multi="' + (poll.multi ? 1 : 0) + '">' +
+      '<div class="poll-q">📊 ' + esc(poll.question) + '</div>' +
+      '<div class="poll-opts">' + rows + '</div>' + note + foot + '</div>';
+  }
   function renderThread(host, id) {
     host.innerHTML = '<div class="board-empty">読み込み中…</div>';
     var back = function () {
@@ -1199,6 +1283,7 @@
       updateBoardBadge(countNew(boardThreadsCache));          // タブの新着バッジを更新
       host.innerHTML = '<button class="th-back">← スレ一覧</button>' +
         '<h3 class="th-h">' + esc(d.thread.title) + '</h3>' +
+        pollHtml(d.poll) +
         '<div class="posts">' + posts.map(function (p) {
           return '<div class="post' + (p.hidden ? ' bc-off' : '') + (p.admin ? ' post-adm' : '') + '" id="post-' + p.no + '">' +
             '<div class="post-head"><span class="post-no num">' + p.no + '</span>' +
@@ -1242,6 +1327,18 @@
           f.setAttribute('allowfullscreen', '');
           el.replaceWith(f);
         });
+      });
+      var voteBtn = document.getElementById('poll-vote');   // アンケート投票
+      if (voteBtn) voteBtn.addEventListener('click', function () {
+        var checked = [].slice.call(host.querySelectorAll('input[name="poll-c"]:checked')).map(function (i) { return +i.value; });
+        if (!checked.length) { voteBtn.textContent = '選択してください'; return; }
+        voteBtn.disabled = true; voteBtn.textContent = '送信中…';
+        fetch(boardApi('/poll/vote'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ thread: id, choices: checked }) })
+          .then(function (r) { return r.json(); }).then(function (d) {
+            if (d.ok) { renderThread(host, id); }   // 再描画して結果を表示(投票済み状態に)
+            else { voteBtn.disabled = false; voteBtn.textContent = '投票する'; alert(boardErr(d.error)); }
+          }).catch(function () { voteBtn.disabled = false; voteBtn.textContent = '投票する'; alert('送信に失敗しました'); });
       });
       document.getElementById('rp-name').value = boardName();
       var tsRep = tsMount(document.getElementById('bt-reply'));

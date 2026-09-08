@@ -67,6 +67,7 @@ export default {
     if (url.pathname === "/api/board/thread"  && req.method === "GET")  return threadShow(url, req, env);
     if (url.pathname === "/api/board/search"  && req.method === "GET")  return boardSearch(url, req, env);
     if (url.pathname === "/api/board/posts"   && req.method === "POST") return postCreate(req, env);
+    if (url.pathname === "/api/board/poll/vote" && req.method === "POST") return pollVote(req, env);
     if (url.pathname === "/api/board/hide"    && req.method === "POST") return boardHide(req, env);
 
     // ---- ページ表示回数カウンター ----
@@ -390,7 +391,8 @@ async function threadShow(url, req, env) {
     ? "SELECT no,name,body,uid,created,hidden,admin FROM board_posts WHERE thread_id=?1 ORDER BY no ASC LIMIT 1000"
     : "SELECT no,name,body,uid,created,hidden,admin FROM board_posts WHERE thread_id=?1 AND hidden=0 ORDER BY no ASC LIMIT 1000";
   const { results } = await env.DB.prepare(sql).bind(id).all();
-  return json({ public: g.pub, admin: g.admin, thread: th, posts: results || [] });
+  const poll = await pollFor(req, env, id, g.admin);
+  return json({ public: g.pub, admin: g.admin, thread: th, posts: results || [], poll: poll });
 }
 async function threadCreate(req, env) {
   const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
@@ -416,7 +418,74 @@ async function threadCreate(req, env) {
   await env.DB.prepare(
     "INSERT INTO board_posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin,ip,ua) VALUES(?1,1,?2,?3,?4,?5,?6,0,?7,?8,?9)")
     .bind(tid, name, body, uid, now, iph, g.admin ? 1 : 0, ip, ua).run();
+  if (b.poll) { try { await createPoll(env, tid, b.poll, now); } catch (e) {} }   // スレ主のアンケート添付(任意)
   return json({ ok: true, id: tid });
+}
+// ---- アンケート(投票) ----
+// スレ主が作成時にOPへ1つ添付できる。質問+選択肢(最大10)、複数回答許可、結果を投票前に見せる/隠す、期間最大7日。
+// 票は入れ直し不可(IPハッシュで1回)。合計投票数は常に公開。テーブルは初回書込時に自動作成。
+async function ensurePolls(env) {
+  await env.DB.prepare("CREATE TABLE IF NOT EXISTS board_polls(thread_id INTEGER PRIMARY KEY, question TEXT NOT NULL, options TEXT NOT NULL, multi INTEGER DEFAULT 0, hide INTEGER DEFAULT 0, created INTEGER NOT NULL, closes INTEGER NOT NULL, counts TEXT NOT NULL, votes INTEGER DEFAULT 0)").run();
+  await env.DB.prepare("CREATE TABLE IF NOT EXISTS board_poll_votes(thread_id INTEGER NOT NULL, voter TEXT NOT NULL, choices TEXT NOT NULL, created INTEGER NOT NULL, PRIMARY KEY(thread_id, voter))").run();
+}
+async function createPoll(env, tid, p, now) {
+  if (!p || typeof p !== "object") return;
+  const question = clean(p.question, 140);
+  let options = Array.isArray(p.options) ? p.options.map((o) => clean(o, 60)).filter(Boolean).slice(0, 10) : [];
+  if (!question || options.length < 2) return;               // 質問と2択以上が無ければアンケート無し
+  const multi = p.multi ? 1 : 0, hide = p.hide ? 1 : 0;
+  let days = parseInt(p.days, 10); if (!Number.isInteger(days) || days < 1) days = 7; if (days > 7) days = 7;
+  const closes = now + days * 86400000;
+  await ensurePolls(env);
+  await env.DB.prepare("INSERT INTO board_polls(thread_id,question,options,multi,hide,created,closes,counts,votes) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,0)")
+    .bind(tid, question, JSON.stringify(options), multi, hide, now, closes, JSON.stringify(options.map(() => 0))).run();
+}
+async function pollFor(req, env, tid, admin) {
+  // threadShow用: アンケートの表示状態を組み立てる。テーブル未作成でも安全にnull。
+  let poll = null;
+  try { poll = await env.DB.prepare("SELECT * FROM board_polls WHERE thread_id=?1").bind(tid).first(); } catch (e) { return null; }
+  if (!poll) return null;
+  const ip = req.headers.get("CF-Connecting-IP") || "0";
+  const voter = await sha(ip + "|poll|" + (env.SALT || "pbers"));
+  let mine = null;
+  try { mine = await env.DB.prepare("SELECT choices FROM board_poll_votes WHERE thread_id=?1 AND voter=?2").bind(tid, voter).first(); } catch (e) {}
+  const voted = !!mine, closed = Date.now() >= poll.closes;
+  const reveal = !poll.hide || voted || closed || admin;     // 結果を見せてよいか(合計数は常に見せる)
+  let options = [], counts = [], myChoices = null;
+  try { options = JSON.parse(poll.options); } catch (e) {}
+  try { counts = JSON.parse(poll.counts); } catch (e) {}
+  if (voted) { try { myChoices = JSON.parse(mine.choices); } catch (e) {} }
+  return {
+    question: poll.question, options: options, multi: !!poll.multi, hide: !!poll.hide,
+    closes: poll.closes, closed: closed, votes: poll.votes || 0,
+    voted: voted, myChoices: myChoices, counts: reveal ? counts : null,
+  };
+}
+async function pollVote(req, env) {
+  const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
+  let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
+  const tid = parseInt(b.thread, 10); if (!tid) return json({ error: "bad_id" }, 400);
+  let poll; try { poll = await env.DB.prepare("SELECT * FROM board_polls WHERE thread_id=?1").bind(tid).first(); } catch (e) { poll = null; }
+  if (!poll) return json({ error: "no_poll" }, 404);
+  if (Date.now() >= poll.closes) return json({ error: "closed" }, 400);
+  let options = []; try { options = JSON.parse(poll.options); } catch (e) {}
+  let choices = Array.isArray(b.choices) ? b.choices.map((x) => parseInt(x, 10)).filter((x) => Number.isInteger(x) && x >= 0 && x < options.length) : [];
+  choices = [...new Set(choices)];
+  if (!choices.length) return json({ error: "no_choice" }, 400);
+  if (!poll.multi && choices.length !== 1) return json({ error: "single_only" }, 400);
+  const ip = req.headers.get("CF-Connecting-IP") || "0";
+  const voter = await sha(ip + "|poll|" + (env.SALT || "pbers"));
+  let counts = []; try { counts = JSON.parse(poll.counts); } catch (e) {}
+  if (counts.length !== options.length) counts = options.map((_, i) => counts[i] || 0);
+  choices.forEach((i) => { counts[i] = (counts[i] || 0) + 1; });
+  const total = (poll.votes || 0) + 1, now = Date.now();
+  try {
+    await env.DB.batch([                                     // PRIMARY KEY(thread_id,voter) で二重投票を防止(競合時はbatch失敗)
+      env.DB.prepare("INSERT INTO board_poll_votes(thread_id,voter,choices,created) VALUES(?1,?2,?3,?4)").bind(tid, voter, JSON.stringify(choices), now),
+      env.DB.prepare("UPDATE board_polls SET counts=?2, votes=?3 WHERE thread_id=?1").bind(tid, JSON.stringify(counts), total),
+    ]);
+  } catch (e) { return json({ error: "voted" }, 409); }       // 既に投票済み
+  return json({ ok: true, counts: counts, votes: total, myChoices: choices, closes: poll.closes });
 }
 async function postCreate(req, env) {
   const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
