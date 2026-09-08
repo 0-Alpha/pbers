@@ -816,6 +816,8 @@ footer .brand{font-size:16px}
 .post{scroll-margin-top:120px}                       /* アンカージャンプ時に固定ヘッダで隠れない余白 */
 .anchor{color:#5b8def;font-weight:700;cursor:pointer;text-decoration:none}
 .anchor:hover{text-decoration:underline}
+.post-link{color:#5b8def;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere;word-break:break-all}
+.post-link:hover{opacity:.82}
 .post-hl{animation:posthl 1.8s ease-out}
 @keyframes posthl{0%{background:rgba(91,141,239,.22)}100%{background:transparent}}
 /* YouTube埋め込み(Discord風・クリックで再生) */

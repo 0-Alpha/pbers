@@ -1152,6 +1152,19 @@
       return '<a class="anchor" data-no="' + n + '">&gt;&gt;' + n + '</a>';
     });
   }
+  // 本文中の http(s):// URL を新規タブで開くリンクに変換する。
+  // esc() 済みの文字列に掛ける前提(< が無いので [^\s<] で URL 端を判定)。
+  // 末尾の句読点・閉じ括弧はリンクから除外する。ユーザー投稿なので rel に nofollow/noopener を付与。
+  function linkUrls(s) {
+    // URLに使える文字だけを食う(日本語や空白で止まる)。&amp; 等の実体参照は & や ; がクラス内なので拾える。
+    return s.replace(/https?:\/\/[\w\-.~:/?#\[\]@!$&'()*+,;=%]+/gi, function (u) {
+      // 末尾の句読点・閉じ括弧・実体参照(&gt;等)はリンクから除外する
+      var tail = '', m = u.match(/(?:&gt;|&lt;|&quot;|&amp;|[)\]}.,!?;:'"]+)+$/);
+      if (m) { tail = u.slice(u.length - m[0].length); u = u.slice(0, u.length - m[0].length); }
+      if (!u) return tail;
+      return '<a class="post-link" href="' + u + '" target="_blank" rel="noopener noreferrer nofollow">' + u + '</a>' + tail;
+    });
+  }
   function jumpToPost(no) {
     var el = document.getElementById('post-' + no); if (!el) return;
     el.scrollIntoView({ block: 'center' });
@@ -1194,7 +1207,7 @@
               '<button type="button" class="post-re" data-no="' + p.no + '">返信</button>' +
               (boardKey ? '<button type="button" class="bc-hide" data-k="post" data-t="' + id + '" data-no="' + p.no + '" data-h="' + (p.hidden ? 0 : 1) + '">' + (p.hidden ? '表示' : '非表示') + '</button>' : '') +
             '</div>' +
-            '<div class="post-body">' + linkAnchors(esc(p.body)).replace(/\n/g, '<br>') + '</div>' +
+            '<div class="post-body">' + linkAnchors(linkUrls(esc(p.body))).replace(/\n/g, '<br>') + '</div>' +
             ytEmbeds(p.body) +
             postMentions(p.body) +
           '</div>';
