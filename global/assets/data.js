@@ -14,9 +14,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "MOON-BALL",
-    "subs": 217000,
+    "subs": 218000,
     "views": 37919178,
-    "subsLabel": "チャンネル登録者数 21.7万人",
+    "subsLabel": "チャンネル登録者数 21.8万人",
     "viewsLabel": "37,919,178回視聴",
     "videos": 33,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
@@ -122,7 +122,7 @@ window.PBERS_DATA = [
     "views": 15912764,
     "subsLabel": "チャンネル登録者数 1.61万人",
     "viewsLabel": "15,912,764回視聴",
-    "videos": 69,
+    "videos": 70,
     "url": "https://www.youtube.com/channel/UCfJp9c3kSkIjYFevd2G1RKg",
     "avatar": "https://yt3.googleusercontent.com/yV8LzkaByDse6ZVmF8XEySSyoZ6osOmQM9SmjO8FTgQPiaOwyAaD2VEH1Zx8UqAVobRkOxaVbrg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#45cc3e",
@@ -157,9 +157,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Past_Ball",
-    "subs": 7690,
+    "subs": 7700,
     "views": 3507974,
-    "subsLabel": "チャンネル登録者数 7690人",
+    "subsLabel": "チャンネル登録者数 7700人",
     "viewsLabel": "3,507,974回視聴",
     "videos": 213,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
@@ -196,9 +196,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "AJ ball",
-    "subs": 3510,
+    "subs": 3500,
     "views": 1513009,
-    "subsLabel": "チャンネル登録者数 3510人",
+    "subsLabel": "チャンネル登録者数 3500人",
     "viewsLabel": "1,513,009回視聴",
     "videos": 39,
     "url": "https://www.youtube.com/channel/UC9EPL3fLMARICtvoL6NGMBA",
@@ -210,4 +210,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-09";
-window.PBERS_PREDICT = {"asOfMs": 1788922800000, "subs": {"base": 1511390, "rate": 1.811827584546663e-05}, "views": {"base": 667333844, "rate": 0.007994829191026356}};
+window.PBERS_PREDICT = {"asOfMs": 1788922800000, "subs": {"base": 1512390, "rate": 1.811827584546663e-05}, "views": {"base": 667333844, "rate": 0.007994829191026356}};
