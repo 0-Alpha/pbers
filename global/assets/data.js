@@ -27,9 +27,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Opera_cb",
-    "subs": 189000,
+    "subs": 190000,
     "views": 88607639,
-    "subsLabel": "チャンネル登録者数 18.9万人",
+    "subsLabel": "チャンネル登録者数 19万人",
     "viewsLabel": "88,607,639回視聴",
     "videos": 142,
     "url": "https://www.youtube.com/channel/UC4bqMpF49ebuiF4TbJvFmyw",
@@ -46,7 +46,7 @@ window.PBERS_DATA = [
     "viewsLabel": "61,640,920回視聴",
     "videos": 139,
     "url": "https://www.youtube.com/channel/UCfh08MHIzScBQKh5OuG2ofA",
-    "avatar": "https://yt3.googleusercontent.com/n9AmImZqOoSBUWwNZ4HpE2mIyMYmh0rJtaenmMPdUiaq-HKiL6kpviS7s71nywpJwtNwtF0DmS8=s900-c-k-c0x00ffffff-no-rj",
+    "avatar": "https://yt3.googleusercontent.com/3a_WIUPrZ8qIxGmQJhtTv9z8vOffxcS3l9TqJK0pcQhNssFX4VJgPndXd2V3o9Hk7F7ECpFP=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3ecc9a",
     "genre": "ポーランドボーラー",
     "slug": "somen-ball"
@@ -210,4 +210,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-09";
-window.PBERS_PREDICT = {"asOfMs": 1788944400000, "subs": {"base": 1512390, "rate": 2.082576531037279e-05}, "views": {"base": 667333844, "rate": 0.007069117835235973}};
+window.PBERS_PREDICT = {"asOfMs": 1788944400000, "subs": {"base": 1513390, "rate": 2.082576531037279e-05}, "views": {"base": 667333844, "rate": 0.007069117835235973}};
