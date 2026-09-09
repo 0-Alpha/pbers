@@ -964,6 +964,10 @@
   function saveBoardName(v) { try { localStorage.setItem('pbers_board_name', v == null ? '' : v); } catch (e) {} }
   function boardSort() { try { var v = localStorage.getItem('pbers_board_sort'); return (v === 'new' || v === 'posts') ? v : 'bump'; } catch (e) { return 'bump'; } }
   function saveBoardSort(v) { try { localStorage.setItem('pbers_board_sort', v); } catch (e) {} }
+  // 自己削除キー: 投稿した端末だけが自分のレスを消せるよう、サーバ発行のキーを端末に保存
+  function delKeys() { try { return JSON.parse(localStorage.getItem('pbers_delkeys') || '{}'); } catch (e) { return {}; } }
+  function saveDelKey(thread, no, token) { if (!token) return; try { var m = delKeys(); m[thread + ':' + no] = token; localStorage.setItem('pbers_delkeys', JSON.stringify(m)); } catch (e) {} }
+  function delKeyOf(thread, no) { return delKeys()[thread + ':' + no] || ''; }
   // Turnstileは「公開中」かつ「非管理者」の時だけ出す(管理者はサーバ側で免除)
   function tsNeeded() { return !!TS_KEY && boardPublic && !boardKey; }
   function tsLoad() {
@@ -1134,7 +1138,7 @@
         body: JSON.stringify(payload) })
         .then(function (r) { return r.json(); }).then(function (d) {
           send.disabled = false; tsNew.reset();
-          if (d.ok) { saveBoardName(name); markMine(d.id, 1); boardGo(d.id); } else msg.textContent = boardErr(d.error);
+          if (d.ok) { saveBoardName(name); markMine(d.id, 1); saveDelKey(d.id, 1, d.del); boardGo(d.id); } else msg.textContent = boardErr(d.error);
         }).catch(function () { send.disabled = false; tsNew.reset(); msg.textContent = '送信に失敗しました'; });
     });
     var box = document.getElementById('board-threads');
@@ -1285,18 +1289,21 @@
         '<h3 class="th-h">' + esc(d.thread.title) + '</h3>' +
         pollHtml(d.poll) +
         '<div class="posts">' + posts.map(function (p) {
-          return '<div class="post' + (p.hidden ? ' bc-off' : '') + (p.admin ? ' post-adm' : '') + '" id="post-' + p.no + '">' +
+          var del = !p.body;                                   // 本文が空=削除済み
+          var canDel = !del && !!delKeyOf(id, p.no);           // 自分の投稿(削除キーを持っている)なら削除可
+          return '<div class="post' + (p.hidden ? ' bc-off' : '') + (p.admin ? ' post-adm' : '') + (del ? ' post-del' : '') + '" id="post-' + p.no + '">' +
             '<div class="post-head"><span class="post-no num">' + p.no + '</span>' +
               '<span class="post-name">' + esc(p.name) + '</span>' +
               (p.admin ? '<span class="post-badge">★管理人</span>' : '') +
               (p.uid ? '<span class="post-id num">ID:' + esc(p.uid) + '</span>' : '') +
               '<span class="post-time num">' + bWhen(p.created) + '</span>' +
-              '<button type="button" class="post-re" data-no="' + p.no + '">返信</button>' +
+              (del ? '' : '<button type="button" class="post-re" data-no="' + p.no + '">返信</button>') +
+              (canDel ? '<button type="button" class="post-del-btn" data-no="' + p.no + '">削除</button>' : '') +
               (boardKey ? '<button type="button" class="bc-hide" data-k="post" data-t="' + id + '" data-no="' + p.no + '" data-h="' + (p.hidden ? 0 : 1) + '">' + (p.hidden ? '表示' : '非表示') + '</button>' : '') +
             '</div>' +
-            '<div class="post-body">' + linkAnchors(linkUrls(esc(p.body))).replace(/\n/g, '<br>') + '</div>' +
-            ytEmbeds(p.body) +
-            postMentions(p.body) +
+            (del ? '<div class="post-body post-del-body">削除されました</div>'
+                 : '<div class="post-body">' + linkAnchors(linkUrls(esc(p.body))).replace(/\n/g, '<br>') + '</div>' +
+                   ytEmbeds(p.body) + postMentions(p.body)) +
           '</div>';
         }).join('') + '</div>' +
         '<form class="bt-reply" id="bt-reply" autocomplete="off">' +
@@ -1316,6 +1323,19 @@
           rb.value = (cur && !/\n$/.test(cur) ? cur + '\n' : cur) + '>>' + b.dataset.no + '\n';
           document.getElementById('bt-reply').scrollIntoView({ block: 'center' });
           rb.focus();
+        });
+      });
+      host.querySelectorAll('.post-del-btn').forEach(function (b) {   // 自分のレスの本文を削除(番号は残る)
+        b.addEventListener('click', function () {
+          var no = +b.dataset.no, token = delKeyOf(id, no);
+          if (!token) return;
+          if (!confirm('このレスの本文を削除しますか？（レス番号は残り、「削除されました」と表示されます。取り消せません）')) return;
+          b.disabled = true;
+          fetch(boardApi('/delete'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
+            body: JSON.stringify({ thread: id, no: no, token: token }) })
+            .then(function (r) { return r.json(); }).then(function (dd) {
+              if (dd.ok) renderThread(host, id); else { b.disabled = false; alert(boardErr(dd.error)); }
+            }).catch(function () { b.disabled = false; alert('通信に失敗しました'); });
         });
       });
       host.querySelectorAll('.yt-lite').forEach(function (el) {   // クリックで初めてiframe読込→その場再生
@@ -1353,7 +1373,7 @@
           body: JSON.stringify({ thread: id, name: name, body: body, token: tsRep.get() }) })
           .then(function (r) { return r.json(); }).then(function (d2) {
             send.disabled = false; tsRep.reset();
-            if (d2.ok) { saveBoardName(name); if (!myThreads()[id]) markMine(id, 0); renderThread(host, id); }   // 返信したスレも自分のスレとして追跡
+            if (d2.ok) { saveBoardName(name); if (!myThreads()[id]) markMine(id, 0); saveDelKey(id, d2.no, d2.del); renderThread(host, id); }   // 返信したスレも自分のスレとして追跡
             else msg.textContent = boardErr(d2.error);
           }).catch(function () { send.disabled = false; tsRep.reset(); msg.textContent = '送信に失敗しました'; });
       });

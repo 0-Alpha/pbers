@@ -839,6 +839,12 @@ footer .brand{font-size:16px}
 .post-re{margin-left:auto;border:1px solid var(--line-2);background:transparent;color:var(--muted);
   font-family:var(--jp);font-weight:700;font-size:11px;padding:3px 10px;border-radius:999px;cursor:pointer}
 .post-re:hover{color:var(--text);border-color:var(--muted)}
+.post-del-btn{margin:0 0 0 8px;border:1px solid var(--line-2);background:transparent;color:var(--muted);
+  font-family:var(--jp);font-weight:700;font-size:11px;padding:3px 10px;border-radius:999px;cursor:pointer}
+.post-del-btn:hover{color:var(--red);border-color:var(--red)}
+.post-del-btn:disabled{opacity:.4;cursor:default}
+.post-del-body{font-family:var(--jp);font-size:13px;color:var(--muted);font-style:italic}
+.post.post-del{opacity:.72}
 .post .bc-hide{margin:0 0 0 8px}
 .post-body{font-family:var(--jp);font-size:14.5px;line-height:1.75;color:var(--text);word-break:break-word;white-space:pre-wrap}
 /* 投稿の下に出す「言及」注釈チップ */

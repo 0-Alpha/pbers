@@ -68,6 +68,7 @@ export default {
     if (url.pathname === "/api/board/search"  && req.method === "GET")  return boardSearch(url, req, env);
     if (url.pathname === "/api/board/posts"   && req.method === "POST") return postCreate(req, env);
     if (url.pathname === "/api/board/poll/vote" && req.method === "POST") return pollVote(req, env);
+    if (url.pathname === "/api/board/delete"    && req.method === "POST") return postDelete(req, env);
     if (url.pathname === "/api/board/hide"    && req.method === "POST") return boardHide(req, env);
 
     // ---- ページ表示回数カウンター ----
@@ -328,6 +329,11 @@ function ymdJST() {                        // 日替りID用の日付(JST)
   return d.toISOString().slice(0, 10);
 }
 function clean(s, max) { return String(s == null ? "" : s).replace(/\r\n/g, "\n").trim().slice(0, max); }
+// 自己削除用の鍵。投稿のthread/no/createdとSALTから決定的に算出(保存不要)。
+// 投稿時にだけ本人へ返し、削除時に一致すれば本人と判定。SALTを知らない第三者は偽造できない。
+async function delkeyFor(env, thread, no, created) {
+  return await sha("del|" + thread + "|" + no + "|" + created + "|" + (env.SALT || "pbers"));
+}
 async function guard(req, env, { write, cost = 20 }) {
   // 閲覧/投稿の共通ガード。戻り値: {admin} または {err, status}
   if (!env.DB) return { err: "db_unconfigured", status: 503 };
@@ -419,7 +425,7 @@ async function threadCreate(req, env) {
     "INSERT INTO board_posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin,ip,ua) VALUES(?1,1,?2,?3,?4,?5,?6,0,?7,?8,?9)")
     .bind(tid, name, body, uid, now, iph, g.admin ? 1 : 0, ip, ua).run();
   if (b.poll) { try { await createPoll(env, tid, b.poll, now); } catch (e) {} }   // スレ主のアンケート添付(任意)
-  return json({ ok: true, id: tid });
+  return json({ ok: true, id: tid, del: await delkeyFor(env, tid, 1, now) });    // del=OP(1レス目)の自己削除キー
 }
 // ---- アンケート(投票) ----
 // スレ主が作成時にOPへ1つ添付できる。質問+選択肢(最大10)、複数回答許可、結果を投票前に見せる/隠す、期間最大7日。
@@ -511,7 +517,21 @@ async function postCreate(req, env) {
     "INSERT INTO board_posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin,ip,ua) VALUES(?1,?2,?3,?4,?5,?6,?7,0,?8,?9,?10)")
     .bind(tid, no, name, body, uid, now, iph, g.admin ? 1 : 0, ip, ua).run();
   await env.DB.prepare("UPDATE board_threads SET posts=?2, bumped=?3 WHERE id=?1").bind(tid, no, now).run();
-  return json({ ok: true, no });
+  return json({ ok: true, no, del: await delkeyFor(env, tid, no, now) });        // del=このレスの自己削除キー
+}
+// 自己削除: 本文だけ空にする(ソフト削除)。番号・名前・スレ構造・開示用のIP/UAは保持。
+async function postDelete(req, env) {
+  const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
+  let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
+  const tid = parseInt(b.thread, 10), no = parseInt(b.no, 10);
+  if (!tid || !no) return json({ error: "bad_id" }, 400);
+  const p = await env.DB.prepare("SELECT no,body,created,hidden FROM board_posts WHERE thread_id=?1 AND no=?2").bind(tid, no).first();
+  if (!p) return json({ error: "not_found" }, 404);
+  if (!p.body) return json({ ok: true });                                        // 既に削除済み(冪等)
+  const expected = await delkeyFor(env, tid, no, p.created);
+  if (!g.admin && String(b.token || "") !== expected) return json({ error: "forbidden" }, 403);
+  await env.DB.prepare("UPDATE board_posts SET body='' WHERE thread_id=?1 AND no=?2").bind(tid, no).run();
+  return json({ ok: true });
 }
 async function boardHide(req, env) {
   if (!env.DB) return json({ error: "db_unconfigured" }, 503);
