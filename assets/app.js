@@ -1379,6 +1379,24 @@
       });
     }).catch(function () { host.innerHTML = '<button class="th-back">← スレ一覧</button><div class="board-empty">読み込みに失敗しました。</div>'; back(); });
   }
+  // テーマ切替(ブラック標準/ホワイト)。headの先読みスクリプトが初期適用済み、ここは切替と表示更新。
+  function currentTheme() { try { return localStorage.getItem('pbers_theme') === 'light' ? 'light' : 'dark'; } catch (e) { return 'dark'; } }
+  function applyTheme(t) { if (t === 'light') document.documentElement.setAttribute('data-theme', 'light'); else document.documentElement.removeAttribute('data-theme'); }
+  function setupTheme() {
+    var btn = document.getElementById('theme-tg'); if (!btn) return;
+    function refresh() {
+      var t = currentTheme();
+      btn.textContent = t === 'light' ? '🌙' : '☀';   // 切替先を示すアイコン
+      var label = t === 'light' ? 'ブラックモードに切替' : 'ホワイトモードに切替';
+      btn.setAttribute('aria-label', label); btn.title = label;
+    }
+    refresh();
+    btn.addEventListener('click', function () {
+      var t = currentTheme() === 'light' ? 'dark' : 'light';
+      try { localStorage.setItem('pbers_theme', t); } catch (e) {}
+      applyTheme(t); refresh();
+    });
+  }
   function setupBoard() {
     if (!VIEWS.board || GBASE !== '/') return;   // 海外版では無効
     if (boardMaint) {   // 整備中: タブは出す(クリックで案内表示)がAPIは一切叩かない
@@ -2071,6 +2089,7 @@
   setupRiseSlider();
   renderDashRise();
   setupBoard();
+  setupTheme();
   setupTabs();
   setupDonutHover();
   setupColScroll();

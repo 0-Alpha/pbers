@@ -334,13 +334,15 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250934">
+<link rel="stylesheet" href="/assets/style.css?v=250935">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
 <header class="topbar"><div class="wrap">
   <a class="brand" href="../../"><span class="dot"></span><span>PB<b>ers</b></span></a>
+  <button class="theme-tg" id="theme-tg" type="button" aria-label="テーマ切替">☀</button>
 </div></header>
+<script>(function(){var b=document.getElementById('theme-tg');if(!b)return;function cur(){try{return localStorage.getItem('pbers_theme')==='light'?'light':'dark';}catch(e){return'dark';}}function ref(){var t=cur();b.textContent=t==='light'?'🌙':'☀';b.title=t==='light'?'ブラックモードに切替':'ホワイトモードに切替';b.setAttribute('aria-label',b.title);}ref();b.addEventListener('click',function(){var t=cur()==='light'?'dark':'light';try{localStorage.setItem('pbers_theme',t);}catch(e){}if(t==='light')document.documentElement.setAttribute('data-theme','light');else document.documentElement.removeAttribute('data-theme');ref();});})();</script>
 <main class="ch-page"><div class="wrap">
   <a class="ch-back" href="../../">← 一覧へ戻る</a>
   <div id="ch-root" style="--accent:{{COLOR}}">{{HEADER}}</div>
@@ -353,7 +355,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250934"></script>
+<script src="/assets/channel.js?v=250935"></script>
 </body>
 </html>
 '''

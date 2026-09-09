@@ -52,7 +52,7 @@
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250934">
+<link rel="stylesheet" href="/assets/style.css?v=250935">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -65,6 +65,7 @@
         <a class="edsw-opt" data-ed="/" href="/">日本</a>
         <a class="edsw-opt" data-ed="/global/" href="/global/">海外</a>
       </div>
+      <button class="theme-tg" id="theme-tg" type="button" aria-label="テーマ切替">☀</button>
       <div class="settings-wrap">
         <button class="gear" id="gear" aria-label="設定" aria-expanded="false">⚙</button>
         <div class="settings" id="settings" hidden>
@@ -416,10 +417,10 @@
   </div>
 </footer>
 
-<script src="/assets/data.js?v=250934"></script>
-<script src="/assets/news.js?v=250934"></script>
-<script src="/assets/growth.js?v=250934"></script>
-<script src="/assets/race.js?v=250934"></script>
-<script src="/assets/app.js?v=250934"></script>
+<script src="/assets/data.js?v=250935"></script>
+<script src="/assets/news.js?v=250935"></script>
+<script src="/assets/growth.js?v=250935"></script>
+<script src="/assets/race.js?v=250935"></script>
+<script src="/assets/app.js?v=250935"></script>
 </body>
 </html>
