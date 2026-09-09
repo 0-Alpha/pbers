@@ -1383,7 +1383,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-09",
-            "s": 17600
+            "s": 17700
           }
         ]
       },
@@ -3187,7 +3187,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-09",
-            "s": 10500
+            "s": 10600
           }
         ]
       }
@@ -4355,7 +4355,7 @@ window.PBERS_RACE = [
         "name": "ヴァイマル共和国ボール [底辺PBer連盟] ",
         "color": "#cc613e",
         "avatar": "https://yt3.googleusercontent.com/dQc05XhmvR-D6BpN8LxOmCx-tE2IB8BzBHGnNtg3ZbmfeSspkw4_q-_vs0-LVrBnkvb-PtibOg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5300,
+        "subs": 5310,
         "history": [
           {
             "d": "2026-08-22",
@@ -4431,7 +4431,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-09",
-            "s": 5300
+            "s": 5310
           }
         ]
       },
@@ -4751,7 +4751,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-09",
-            "s": 4680
+            "s": 4690
           }
         ]
       },
@@ -5319,7 +5319,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-09",
-            "s": 3250
+            "s": 3270
           }
         ]
       },
@@ -5511,7 +5511,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-09",
-            "s": 3180
+            "s": 3190
           }
         ]
       },
@@ -6219,7 +6219,7 @@ window.PBERS_RACE = [
         "name": "ソビエトボールUSSR",
         "color": "#3ecc79",
         "avatar": "https://yt3.googleusercontent.com/oQR3FLSbYKMQi1K_7qkk8PVfmLILRrYecaE-8XC2kKcQiazxJwzRa-yCeX6OxqgbmJ07vNTC=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 2270,
+        "subs": 2280,
         "history": [
           {
             "d": "2026-08-30",
@@ -6263,7 +6263,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-09",
-            "s": 2260
+            "s": 2280
           }
         ]
       },
@@ -6391,7 +6391,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-09",
-            "s": 2170
+            "s": 2160
           }
         ]
       }
