@@ -309,6 +309,7 @@ CH_TPL = '''<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>if(location.hostname==="pbers.pages.dev")location.replace("https://pbers.com"+location.pathname+location.search+location.hash);</script>
+<script>(function(){try{var q=new URLSearchParams(location.search).get('theme');if(q==='light'||q==='dark'){localStorage.setItem('pbers_theme',q);}var t=localStorage.getItem('pbers_theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
 <title>{{TITLE}} の登録者数・再生数・投稿数｜PBers</title>
 <meta name="description" content="{{TITLE}}（ポーランドボーラー）の登録者数・総再生数・投稿数の推移とデータ。PBers調べ、毎日更新。">
 <meta name="robots" content="index,follow">
@@ -333,7 +334,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250933">
+<link rel="stylesheet" href="/assets/style.css?v=250934">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -352,7 +353,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250933"></script>
+<script src="/assets/channel.js?v=250934"></script>
 </body>
 </html>
 '''
