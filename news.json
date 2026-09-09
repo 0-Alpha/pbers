@@ -1,8 +1,8 @@
 {
   "site": "PBers",
-  "updated": "2026-09-09",
-  "generated": "2026-09-10T03:38:18+09:00",
-  "count": 13,
+  "updated": "2026-09-10",
+  "generated": "2026-09-10T06:04:17+09:00",
+  "count": 9,
   "items": [
     {
       "id": "2026-09-08/subs/ニイソビボール/10000",
@@ -111,54 +111,6 @@
       "value": 100,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E3%81%AD%E3%81%A8%E3%81%88%E3%82%93/"
-    },
-    {
-      "id": "2026-09-03/subs/neille-ナユ/40000",
-      "date": "2026-09-03",
-      "channel": "Neille / ナユ",
-      "slug": "neille-ナユ",
-      "metric": "subs",
-      "type": "milestone",
-      "label": "登録者 4万人 突破",
-      "value": 40000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/neille-%E3%83%8A%E3%83%A6/"
-    },
-    {
-      "id": "2026-09-03/views/ぽぱい/5000000",
-      "date": "2026-09-03",
-      "channel": "ぽぱい",
-      "slug": "ぽぱい",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 500万回 突破",
-      "value": 5000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%BD%E3%81%B1%E3%81%84/"
-    },
-    {
-      "id": "2026-09-03/videos/ねとえん/100",
-      "date": "2026-09-03",
-      "channel": "ねとえん",
-      "slug": "ねとえん",
-      "metric": "videos",
-      "type": "milestone",
-      "label": "投稿数 100本 突破",
-      "value": 100,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%AD%E3%81%A8%E3%81%88%E3%82%93/"
-    },
-    {
-      "id": "2026-09-03/videos/パワーポイントボール/100",
-      "date": "2026-09-03",
-      "channel": "パワーポイントボール",
-      "slug": "パワーポイントボール",
-      "metric": "videos",
-      "type": "milestone",
-      "label": "投稿数 100本 突破",
-      "value": 100,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%83%91%E3%83%AF%E3%83%BC%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%83%9C%E3%83%BC%E3%83%AB/"
     }
   ]
 }
