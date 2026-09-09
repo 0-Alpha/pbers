@@ -379,7 +379,7 @@ window.PBERS_RACE = [
         "name": "ゆずボール🎣",
         "color": "#ecc233",
         "avatar": "https://yt3.googleusercontent.com/88pDjPAKENvTaKmGmwXqEHlWts-pFETX_IXmcQRIZ7mP46T-VX3O76ph6QOS1S25WKgpCE0EP68=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 44000,
+        "subs": 44100,
         "history": [
           {
             "d": "2026-08-20",
@@ -463,7 +463,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-09",
-            "s": 44000
+            "s": 44100
           }
         ]
       }
@@ -743,7 +743,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-09",
-            "s": 21700
+            "s": 21800
           }
         ]
       },
@@ -4651,7 +4651,7 @@ window.PBERS_RACE = [
         "name": "旧食DX",
         "color": "#9fcc3e",
         "avatar": "https://yt3.googleusercontent.com/eS59gj4sUqncdlk0_nSnxkfIKeKASy0K5CwgIpOHv4JM4KR3XSMKM_uhXloSzt8vcLds6FiJjIA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4700,
+        "subs": 4710,
         "history": [
           {
             "d": "2026-08-30",
@@ -4695,7 +4695,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-09",
-            "s": 4700
+            "s": 4710
           }
         ]
       },
@@ -4860,8 +4860,60 @@ window.PBERS_RACE = [
         ]
       },
       {
-        "name": "まっこゆ",
+        "name": "萱口",
         "color": "#d45e7d",
+        "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 4460,
+        "history": [
+          {
+            "d": "2026-08-30",
+            "s": 4400
+          },
+          {
+            "d": "2026-08-31",
+            "s": 4400
+          },
+          {
+            "d": "2026-09-01",
+            "s": 4400
+          },
+          {
+            "d": "2026-09-02",
+            "s": 4410
+          },
+          {
+            "d": "2026-09-03",
+            "s": 4410
+          },
+          {
+            "d": "2026-09-04",
+            "s": 4410
+          },
+          {
+            "d": "2026-09-05",
+            "s": 4410
+          },
+          {
+            "d": "2026-09-06",
+            "s": 4410
+          },
+          {
+            "d": "2026-09-07",
+            "s": 4410
+          },
+          {
+            "d": "2026-09-08",
+            "s": 4430
+          },
+          {
+            "d": "2026-09-09",
+            "s": 4460
+          }
+        ]
+      },
+      {
+        "name": "まっこゆ",
+        "color": "#cc953e",
         "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
         "subs": 4460,
         "history": [
@@ -4908,58 +4960,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-09-09",
             "s": 4460
-          }
-        ]
-      },
-      {
-        "name": "萱口",
-        "color": "#cc953e",
-        "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4450,
-        "history": [
-          {
-            "d": "2026-08-30",
-            "s": 4400
-          },
-          {
-            "d": "2026-08-31",
-            "s": 4400
-          },
-          {
-            "d": "2026-09-01",
-            "s": 4400
-          },
-          {
-            "d": "2026-09-02",
-            "s": 4410
-          },
-          {
-            "d": "2026-09-03",
-            "s": 4410
-          },
-          {
-            "d": "2026-09-04",
-            "s": 4410
-          },
-          {
-            "d": "2026-09-05",
-            "s": 4410
-          },
-          {
-            "d": "2026-09-06",
-            "s": 4410
-          },
-          {
-            "d": "2026-09-07",
-            "s": 4410
-          },
-          {
-            "d": "2026-09-08",
-            "s": 4430
-          },
-          {
-            "d": "2026-09-09",
-            "s": 4450
           }
         ]
       }
@@ -5279,7 +5279,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-09",
-            "s": 3280
+            "s": 3290
           }
         ]
       },

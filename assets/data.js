@@ -105,9 +105,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ゆずボール🎣",
-    "subs": 44000,
+    "subs": 44100,
     "views": 18487814,
-    "subsLabel": "チャンネル登録者数 4.4万人",
+    "subsLabel": "チャンネル登録者数 4.41万人",
     "viewsLabel": "18,487,814回視聴",
     "videos": 203,
     "url": "https://www.youtube.com/channel/UCGo_IzKD2-TooYrTGFt2fDA",
@@ -1067,9 +1067,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "にこちPB",
-    "subs": 6920,
+    "subs": 6930,
     "views": 448481,
-    "subsLabel": "チャンネル登録者数 6920人",
+    "subsLabel": "チャンネル登録者数 6930人",
     "viewsLabel": "448,481回視聴",
     "videos": 43,
     "url": "https://www.youtube.com/channel/UC2fMWFGgy-ENfkqlK0CUwrg",
@@ -1145,9 +1145,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "レイアルファ",
-    "subs": 5870,
+    "subs": 5880,
     "views": 3668501,
-    "subsLabel": "チャンネル登録者数 5870人",
+    "subsLabel": "チャンネル登録者数 5880人",
     "viewsLabel": "3,668,501回視聴",
     "videos": 90,
     "url": "https://www.youtube.com/channel/UCVYMXYU6j0M5Gj1xwywKDyg",
@@ -1275,9 +1275,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "旧食DX",
-    "subs": 4700,
+    "subs": 4710,
     "views": 1789081,
-    "subsLabel": "チャンネル登録者数 4700人",
+    "subsLabel": "チャンネル登録者数 4710人",
     "viewsLabel": "1,789,081回視聴",
     "videos": 259,
     "url": "https://www.youtube.com/channel/UCGLN4EjvE2-nxXUvkb1LyGQ",
@@ -1339,6 +1339,19 @@ window.PBERS_DATA = [
     "slug": "アドラー"
   },
   {
+    "name": "萱口",
+    "subs": 4460,
+    "views": 1590306,
+    "subsLabel": "チャンネル登録者数 4460人",
+    "viewsLabel": "1,590,306回視聴",
+    "videos": 69,
+    "url": "https://www.youtube.com/channel/UCfl1W6sL5-es_rWqA7bGbRQ",
+    "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#d45e7d",
+    "genre": "ポーランドボーラー",
+    "slug": "萱口"
+  },
+  {
     "name": "まっこゆ",
     "subs": 4460,
     "views": 2342099,
@@ -1347,22 +1360,9 @@ window.PBERS_DATA = [
     "videos": 24,
     "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
     "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d45e7d",
-    "genre": "ポーランドボーラー",
-    "slug": "まっこゆ"
-  },
-  {
-    "name": "萱口",
-    "subs": 4450,
-    "views": 1590306,
-    "subsLabel": "チャンネル登録者数 4450人",
-    "viewsLabel": "1,590,306回視聴",
-    "videos": 69,
-    "url": "https://www.youtube.com/channel/UCfl1W6sL5-es_rWqA7bGbRQ",
-    "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj",
     "color": "#cc953e",
     "genre": "ポーランドボーラー",
-    "slug": "萱口"
+    "slug": "まっこゆ"
   },
   {
     "name": "幻死帝国 ",
@@ -2017,4 +2017,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-09";
-window.PBERS_PREDICT = {"asOfMs": 1788901200000, "subs": {"base": 2832060, "rate": 6.274252666562001e-05}, "views": {"base": 2197666079, "rate": 0.0405507333742752}};
+window.PBERS_PREDICT = {"asOfMs": 1788922800000, "subs": {"base": 2832200, "rate": 5.8622566580015186e-05}, "views": {"base": 2197666079, "rate": 0.036763072082153805}};
