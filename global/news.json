@@ -1,9 +1,21 @@
 {
   "site": "PBers Global",
   "updated": "2026-09-09",
-  "generated": "2026-09-09T22:44:58+09:00",
-  "count": 2,
+  "generated": "2026-09-10T00:03:21+09:00",
+  "count": 3,
   "items": [
+    {
+      "id": "2026-09-09/subs/opera_cb/190000",
+      "date": "2026-09-09",
+      "channel": "Opera_cb",
+      "slug": "opera_cb",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 19万人 突破",
+      "value": 190000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/opera_cb/"
+    },
     {
       "id": "2026-09-09/subs/dotto-edit/10000",
       "date": "2026-09-09",

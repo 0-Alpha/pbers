@@ -6,6 +6,17 @@ window.PBERS_NEWS = [
       {
         "type": "milestone",
         "kind": "subs",
+        "name": "Opera_cb",
+        "color": "#79d45e",
+        "avatar": "https://yt3.googleusercontent.com/U9rqdPqWMX7a6j1Nr0HKX2yBiK40Mxy7LJbTLRWaC_lMEcHPqoKb140oquBes08LNaSzmLa4kg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 19万人 突破",
+        "value": 190000
+      },
+      {
+        "type": "milestone",
+        "kind": "subs",
         "name": "Dotto edit",
         "color": "#3e66cc",
         "avatar": "https://yt3.googleusercontent.com/JjoolJ5faLhJzaPj3UckuOvdbEaug12ouvdocg6jk1Lw-ZS7TMNjGxAAuz0v3hb6b04v_uJ97Q=s900-c-k-c0x00ffffff-no-rj",
