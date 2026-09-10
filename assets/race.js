@@ -6960,58 +6960,58 @@ window.PBERS_RACE = [
         ]
       },
       {
-        "name": "ミントの農場",
+        "name": "ソ中ボール日友好平和同盟",
         "color": "#d46e5e",
-        "avatar": "https://yt3.googleusercontent.com/RnPkMOcvXnYH93HK6sBW4Pk3Z9xk8LGY2Flq4zNhr4yE8hhoRCqIh5px60QCEfsYUCJXuiD5ng=s900-c-k-c0x00ffffff-no-rj",
+        "avatar": "https://yt3.googleusercontent.com/idKCYo4w5sKLb4FpUjDCoUGFI2ATRvQmRgavCKPeRW5wayDzDjKB9PnAgVEXLv6tDN2GjNBffkc=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2060,
         "history": [
           {
             "d": "2026-08-30",
-            "s": 2060
+            "s": 2050
           },
           {
             "d": "2026-08-31",
-            "s": 2060
+            "s": 2050
           },
           {
             "d": "2026-09-01",
-            "s": 2060
+            "s": 2050
           },
           {
             "d": "2026-09-02",
-            "s": 2060
+            "s": 2050
           },
           {
             "d": "2026-09-03",
-            "s": 2060
+            "s": 2050
           },
           {
             "d": "2026-09-04",
-            "s": 2060
+            "s": 2050
           },
           {
             "d": "2026-09-05",
-            "s": 2060
+            "s": 2050
           },
           {
             "d": "2026-09-06",
-            "s": 2060
+            "s": 2050
           },
           {
             "d": "2026-09-07",
-            "s": 2060
+            "s": 2050
           },
           {
             "d": "2026-09-08",
-            "s": 2060
+            "s": 2050
           },
           {
             "d": "2026-09-09",
-            "s": 2060
+            "s": 2050
           },
           {
             "d": "2026-09-10",
-            "s": 2060
+            "s": 2050
           }
         ]
       }
