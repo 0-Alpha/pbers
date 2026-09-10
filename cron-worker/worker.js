@@ -69,6 +69,7 @@ export default {
     if (url.pathname === "/api/board/posts"   && req.method === "POST") return postCreate(req, env);
     if (url.pathname === "/api/board/poll/vote" && req.method === "POST") return pollVote(req, env);
     if (url.pathname === "/api/board/delete"    && req.method === "POST") return postDelete(req, env);
+    if (url.pathname === "/api/board/stats"     && req.method === "GET")  return boardStats(url, req, env);
     if (url.pathname === "/api/board/hide"    && req.method === "POST") return boardHide(req, env);
 
     // ---- ページ表示回数カウンター ----
@@ -492,6 +493,31 @@ async function pollVote(req, env) {
     ]);
   } catch (e) { return json({ error: "voted" }, 409); }       // 既に投票済み
   return json({ ok: true, counts: counts, votes: total, myChoices: choices, closes: poll.closes });
+}
+// 管理者専用: 直近7日の書き込みを ip_hash 別に集計(24h/3日/7日)。同一人物の寡占を確認する用途。
+// uidは日替りで人物識別に使えないため、安定するip_hashで束ね、参考にその人が使ったuid一覧も返す。
+async function boardStats(url, req, env) {
+  const g = await guard(req, env, {}); if (g.err) return json({ error: g.err }, g.status);
+  if (!g.admin) return json({ error: "forbidden" }, 403);
+  const now = Date.now(), d1 = now - 86400000, d3 = now - 3 * 86400000, d7 = now - 7 * 86400000;
+  let results = [];
+  try { ({ results } = await env.DB.prepare("SELECT ip_hash, uid, created, hidden, admin FROM board_posts WHERE created >= ?1").bind(d7).all()); } catch (e) { results = []; }
+  const map = {}; let t24 = 0, t3 = 0, t7 = 0;
+  for (const r of (results || [])) {
+    const k = r.ip_hash || "?";
+    const m = map[k] || (map[k] = { c24: 0, c3: 0, c7: 0, uids: {}, last: 0, admin: 0 });
+    m.c7++; t7++;
+    if (r.created >= d3) { m.c3++; t3++; }
+    if (r.created >= d1) { m.c24++; t24++; }
+    if (r.uid) m.uids[r.uid] = 1;
+    if (r.admin) m.admin = 1;
+    if (r.created > m.last) m.last = r.created;
+  }
+  const rows = Object.keys(map).map((k) => ({
+    ip: k.slice(0, 12), c24: map[k].c24, c3: map[k].c3, c7: map[k].c7,
+    uids: Object.keys(map[k].uids), last: map[k].last, admin: map[k].admin,
+  })).sort((a, b) => b.c7 - a.c7 || b.c3 - a.c3);
+  return json({ ok: true, now, totals: { h24: t24, d3: t3, d7: t7 }, uniq: rows.length, rows });
 }
 async function postCreate(req, env) {
   const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);

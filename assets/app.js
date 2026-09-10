@@ -1114,6 +1114,7 @@
         '<button type="button" class="bd-sort-b" data-sort="new">新着順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="posts">レス数順</button>' +
       '</div>' +
+      (boardKey ? '<div class="bd-admin"><button type="button" class="bd-stats-btn" id="bd-stats-btn">📊 書き込み統計（管理者）</button><div class="bd-stats" id="bd-stats" hidden></div></div>' : '') +
       '<div class="board-list" id="board-threads"><div class="board-empty">読み込み中…</div></div>';
     document.getElementById('bt-name').value = boardName();
     var tsNew = tsMount(document.getElementById('bt-new'));
@@ -1204,6 +1205,32 @@
     sortBar.addEventListener('click', function (e) {
       var b = e.target.closest('.bd-sort-b'); if (!b || b.dataset.sort === curSort) return;
       curSort = b.dataset.sort; saveBoardSort(curSort); markSort(); loadAll();
+    });
+    // 管理者専用: 書き込み統計(24h/3日/7日, ip_hash別=同一人物の寡占チェック)
+    var statsBtn = document.getElementById('bd-stats-btn');
+    if (statsBtn) statsBtn.addEventListener('click', function () {
+      var panel = document.getElementById('bd-stats');
+      if (!panel.hidden) { panel.hidden = true; return; }   // トグル
+      panel.hidden = false; panel.innerHTML = '<div class="board-empty">集計中…</div>';
+      fetch(boardApi('/stats'), { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
+        if (!d.ok) { panel.innerHTML = '<div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; return; }
+        var T = d.totals, rows = d.rows || [];
+        var top7 = rows.length && T.d7 ? Math.round(rows[0].c7 / T.d7 * 100) : 0;
+        var head = '<div class="bs-sum">7日 <b>' + T.d7 + '</b>件 / 3日 <b>' + T.d3 + '</b>件 / 24h <b>' + T.h24 + '</b>件 ・ 投稿者(IP) <b>' + d.uniq + '</b>人' +
+          (top7 ? ' ・ 最多の1人が7日で <b>' + top7 + '%</b>' : '') + '</div>';
+        var body = rows.slice(0, 50).map(function (r, i) {
+          var sh = T.d7 ? Math.round(r.c7 / T.d7 * 100) : 0;
+          return '<tr' + (sh >= 40 ? ' class="bs-hot"' : '') + '><td class="num">' + (i + 1) + '</td>' +
+            '<td class="bs-ip">' + esc(r.ip) + (r.admin ? ' <span class="bs-adm">運営</span>' : '') + '</td>' +
+            '<td class="num">' + r.c24 + '</td><td class="num">' + r.c3 + '</td><td class="num">' + r.c7 + '</td>' +
+            '<td class="num">' + sh + '%</td>' +
+            '<td class="bs-uids">' + r.uids.slice(0, 6).map(esc).join(' ') + (r.uids.length > 6 ? ' +' + (r.uids.length - 6) : '') + '</td></tr>';
+        }).join('');
+        panel.innerHTML = head +
+          '<div class="bs-tablewrap"><table class="bs-table"><thead><tr><th>#</th><th>ID(IP)</th><th>24h</th><th>3日</th><th>7日</th><th>7日比</th><th>使用ID(uid)</th></tr></thead><tbody>' +
+          body + '</tbody></table></div>' +
+          '<div class="bs-note">※ IP由来のハッシュで同一人物を推定（日替りIDは別集計）。40%以上は色付き。</div>';
+      }).catch(function () { panel.innerHTML = '<div class="board-empty">通信に失敗しました。</div>'; });
     });
     function doSearch(q) {
       box.innerHTML = '<div class="board-empty">検索中…</div>';
