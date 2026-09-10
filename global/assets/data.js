@@ -10,7 +10,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/UXoyWxO_MOdKJK4kLMC988Uj9LZC9pZO13VMLEVq-4C32fBkvug-FUzSiUrbAh_mSy3zOPyfCC0=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d45e5e",
     "genre": "ポーランドボーラー",
-    "slug": "jp-ball"
+    "slug": "jp-ball",
+    "vShort": null,
+    "vLong": null
   },
   {
     "name": "MOON-BALL",
@@ -23,7 +25,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#ccbb3e",
     "genre": "ポーランドボーラー",
-    "slug": "moon-ball"
+    "slug": "moon-ball",
+    "vShort": null,
+    "vLong": null
   },
   {
     "name": "Opera_cb",
@@ -36,7 +40,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/U9rqdPqWMX7a6j1Nr0HKX2yBiK40Mxy7LJbTLRWaC_lMEcHPqoKb140oquBes08LNaSzmLa4kg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#79d45e",
     "genre": "ポーランドボーラー",
-    "slug": "opera_cb"
+    "slug": "opera_cb",
+    "vShort": null,
+    "vLong": null
   },
   {
     "name": "Somen ball",
@@ -49,7 +55,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/3a_WIUPrZ8qIxGmQJhtTv9z8vOffxcS3l9TqJK0pcQhNssFX4VJgPndXd2V3o9Hk7F7ECpFP=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3ecc9a",
     "genre": "ポーランドボーラー",
-    "slug": "somen-ball"
+    "slug": "somen-ball",
+    "vShort": null,
+    "vLong": null
   },
   {
     "name": "áíš!aispoaporu",
@@ -62,7 +70,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/PNuTtwQrRcQ7zzGQlLM54CsOYHqXfzQA3oPx8Q9o-_GTomHU_WV2SGsA7uv_oPc1XNo09Q0OAtY=s900-c-k-c0x00ffffff-no-rj",
     "color": "#5e95d4",
     "genre": "ポーランドボーラー",
-    "slug": "áíšaispoaporu"
+    "slug": "áíšaispoaporu",
+    "vShort": null,
+    "vLong": null
   },
   {
     "name": "Spheria",
@@ -75,7 +85,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/rY5kv_d4X3vrbcfFix2ZrRDmhgbmWoYErbob_0iUjOIgYbEpvNZ2gH4YHAyO4CXf1nDpMawx=s900-c-k-c0x00ffffff-no-rj",
     "color": "#793ecc",
     "genre": "ポーランドボーラー",
-    "slug": "spheria"
+    "slug": "spheria",
+    "vShort": null,
+    "vLong": null
   },
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
@@ -88,7 +100,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/6bFOwdJowJMxYBkoE3h0ws0_Lbgr8d8c0ZPgny5agUQ4OzwVqAeeD2E4RCFYEkte2VM_Bwel2w=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d45eb1",
     "genre": "ポーランドボーラー",
-    "slug": "dezinichtフヒフム-海外アカウント"
+    "slug": "dezinichtフヒフム-海外アカウント",
+    "vShort": null,
+    "vLong": null
   },
   {
     "name": "F丸",
@@ -101,7 +115,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/PR6RDCc4I4mjNrUI-SNf6aFe77FFIuoEua4QgudGPAb0lNYAGsa96UnB3RMulCGlC6qHfzUxlrI=s900-c-k-c0x00ffffff-no-rj",
     "color": "#cc583e",
     "genre": "ポーランドボーラー",
-    "slug": "f丸"
+    "slug": "f丸",
+    "vShort": null,
+    "vLong": null
   },
   {
     "name": "りょうデス",
@@ -114,7 +130,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/3JZIEM7UfdCSG6s6ge7iysnTTyLWldBvHduFzlEyA2KMqsUWqUxtWKy6sL2EIlMdFlPzzJ2FlQ=s900-c-k-c0x00ffffff-no-rj",
     "color": "#ccd45e",
     "genre": "ポーランドボーラー",
-    "slug": "りょうデス"
+    "slug": "りょうデス",
+    "vShort": 15134628,
+    "vLong": 108253
   },
   {
     "name": "くろまめ",
@@ -127,7 +145,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/yV8LzkaByDse6ZVmF8XEySSyoZ6osOmQM9SmjO8FTgQPiaOwyAaD2VEH1Zx8UqAVobRkOxaVbrg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#45cc3e",
     "genre": "ポーランドボーラー",
-    "slug": "くろまめ"
+    "slug": "くろまめ",
+    "vShort": null,
+    "vLong": null
   },
   {
     "name": "日本猫耳版ボール【目標9000人】",
@@ -140,7 +160,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/LpR7h9FEKhK0Va34bq-KRghVlWGkhmZQUTbd-JcnnuZ3BU17SQQjkFfh6YnFgAvVbYXcWO37Vw=s900-c-k-c0x00ffffff-no-rj",
     "color": "#5ed4c0",
     "genre": "ポーランドボーラー",
-    "slug": "日本猫耳版ボール目標9000人"
+    "slug": "日本猫耳版ボール目標9000人",
+    "vShort": null,
+    "vLong": null
   },
   {
     "name": "Dotto edit",
@@ -153,7 +175,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/JjoolJ5faLhJzaPj3UckuOvdbEaug12ouvdocg6jk1Lw-ZS7TMNjGxAAuz0v3hb6b04v_uJ97Q=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3e66cc",
     "genre": "ポーランドボーラー",
-    "slug": "dotto-edit"
+    "slug": "dotto-edit",
+    "vShort": null,
+    "vLong": null
   },
   {
     "name": "Past_Ball",
@@ -166,7 +190,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/r8ouoXMX9iar1cjJgX7u1yaZn1Eis8ZAzmdIhpoYUYTiTUl39uZ8KU81zZBYtSr-Gs2TCuga=s900-c-k-c0x00ffffff-no-rj",
     "color": "#a55ed4",
     "genre": "ポーランドボーラー",
-    "slug": "past_ball"
+    "slug": "past_ball",
+    "vShort": null,
+    "vLong": null
   },
   {
     "name": "udonball",
@@ -179,7 +205,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/t-XpUkPOEssGyYn9TK4JrLG9EmGIhn565-GBvVCtqkpxDXD36l6OOb6EOlWJ_Gr92W8a_ryApcg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#cc3e87",
     "genre": "ポーランドボーラー",
-    "slug": "udonball"
+    "slug": "udonball",
+    "vShort": null,
+    "vLong": null
   },
   {
     "name": "AST.アオスト Polandball",
@@ -192,7 +220,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/dOd-yxgy5PfDAsYNy3EZUgbsJ33X06RXpEYmRSK1JQz515G-lul6w2oViQdHiKQbpMIkA8TR=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d4895e",
     "genre": "ポーランドボーラー",
-    "slug": "astアオスト-polandball"
+    "slug": "astアオスト-polandball",
+    "vShort": null,
+    "vLong": null
   },
   {
     "name": "AJ ball",
@@ -205,7 +235,9 @@ window.PBERS_DATA = [
     "avatar": "https://yt3.googleusercontent.com/oBocVfsRI4xNymEO3_9zK8GmSus753e0k0d_Dm9TN5IXzxVHK7Nlea4VDStGfUaeRAX5cMc5=s900-c-k-c0x00ffffff-no-rj",
     "color": "#a8cc3e",
     "genre": "ポーランドボーラー",
-    "slug": "aj-ball"
+    "slug": "aj-ball",
+    "vShort": null,
+    "vLong": null
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];

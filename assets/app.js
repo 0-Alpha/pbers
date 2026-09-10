@@ -15,6 +15,7 @@
     videos: { key: 'videos', unit: '本', word: '投稿数',   cap: '合計投稿数 / Total Videos',         ccap: 'Videos' }
   };
   var metric = 'subs';
+  var viewMode = 'both';       // 総再生数の内訳: both/short/long(横)。総再生数のときだけ有効
   var hideBig = false;         // 登録者10万人以上を除外
   var BIG = 100000;
   var gmetric = 'subs';        // 成長タブの指標
@@ -67,7 +68,10 @@
   }
   // 「リアル予測」モードでは円グラフ・棒グラフ・一覧は登録者ベースで描画する
   function bm() { return metric === 'predict' ? 'subs' : metric; }
-  function val(d) { return d[bm()] || 0; }
+  function val(d) {
+    if (bm() === 'views' && viewMode !== 'both') return (viewMode === 'short' ? d.vShort : d.vLong) || 0;
+    return d[bm()] || 0;
+  }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (m) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[m]; }); }
   function setText(id, t) { var e = document.getElementById(id); if (e) e.textContent = t; }
   // fit the donut-center number so long values (e.g. 総再生数) never hit the ring
@@ -155,7 +159,8 @@
     total = DATA.reduce(function (s, d) { return s + val(d); }, 0);
     var max = val(DATA[0]) || 1;
 
-    setText('total-cap', METRICS[bm()].cap);
+    var capSuffix = (bm() === 'views' && viewMode !== 'both') ? (viewMode === 'short' ? '（ショート）' : '（横）') : '';
+    setText('total-cap', METRICS[bm()].cap + capSuffix);
     setText('rank-title', METRICS[bm()].word + 'ランキング');
     document.getElementById('total').innerHTML = fmt(total) + '<span class="u">' + METRICS[bm()].unit + '</span>';
     document.getElementById('total-man').textContent = jp(total) + METRICS[bm()].unit;
@@ -321,10 +326,26 @@
       metric = btn.dataset.metric;
       tgBtns.forEach(function (b) { b.classList.toggle('on', b === btn); });
       moveInd(btn);
+      syncVType();
       build();
       replay();
     });
   });
+  /* ---- 総再生数の内訳(両方/ショート/横)。総再生数選択時だけ表示 ---- */
+  var vtypeWrap = document.getElementById('vtype');
+  function syncVType() { if (vtypeWrap) vtypeWrap.hidden = (metric !== 'views'); }
+  if (vtypeWrap) {
+    vtypeWrap.querySelectorAll('.vt').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.dataset.vt === viewMode) return;
+        viewMode = b.dataset.vt;
+        vtypeWrap.querySelectorAll('.vt').forEach(function (x) { x.classList.toggle('on', x === b); });
+        build();
+        replay();
+      });
+    });
+    syncVType();
+  }
 
   /* ---- donut hover by angle (wide band, no dead gaps between slices) ---- */
   function setupDonutHover() {

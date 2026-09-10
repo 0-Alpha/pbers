@@ -217,6 +217,7 @@ def build_edition():
     shown = [d for d in data if d["id"] not in RETIRED]   # 引退者はサイトに載せない
     order = sorted(shown, key=lambda x: (x.get("subs") or 0), reverse=True)
     assign_slugs(order)   # d["_slug"] を付与
+    bt_map = load_bytype()   # 横/ショート別の再生数(bytype.json)。ダッシュボードの再生数内訳に使う
 
     colors, pi = {}, 0
     for d in order:
@@ -226,12 +227,16 @@ def build_edition():
         colors[d["id"]] = hsl((pi * 53) % 360, 0.58, 0.60 if pi % 2 == 0 else 0.52)
         pi += 1
 
+    def _tv(cid, kind):   # bytype から横/ショートの再生数(無ければ None)
+        e = bt_map.get(cid)
+        return (e.get(kind) or {}).get("views") if e else None
     out = [{
         "name": d["name"], "subs": d.get("subs"), "views": d.get("views"),
         "subsLabel": d.get("subsLabel"), "viewsLabel": d.get("viewsLabel"),
         "videos": vids(d.get("videosLabel")), "url": d["url"],
         "avatar": d["avatar"], "color": colors[d["id"]], "genre": genre_of(d["id"]),
         "slug": d["_slug"],
+        "vShort": _tv(d["id"], "short"), "vLong": _tv(d["id"], "long"),
     } for d in order]
 
     with open(ed_out("assets", "data.js"), "w", encoding="utf-8") as f:
@@ -334,7 +339,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250935">
+<link rel="stylesheet" href="/assets/style.css?v=250936">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -355,7 +360,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250935"></script>
+<script src="/assets/channel.js?v=250936"></script>
 </body>
 </html>
 '''

@@ -137,6 +137,13 @@ a{color:inherit;text-decoration:none}
 .toggle .tg.on{color:#fff}
 .toggle .tg-ind{position:absolute;z-index:1;top:4px;bottom:4px;border-radius:999px;
   background:var(--red);transition:left .28s cubic-bezier(.22,1,.36,1),width .28s cubic-bezier(.22,1,.36,1)}
+/* 総再生数の内訳(両方/ショート/横)。総再生数選択時だけ表示される小さめのピル群 */
+.vtype{display:inline-flex;gap:3px;padding:3px;background:var(--panel);border:1px solid var(--line);border-radius:999px}
+.vt{border:0;background:transparent;cursor:pointer;font-family:var(--jp);font-weight:700;font-size:12px;
+  color:var(--muted);padding:6px 13px;border-radius:999px;white-space:nowrap;transition:background .18s,color .18s}
+.vt:hover{color:var(--text)}
+.vt.on{background:var(--red);color:#fff}
+@media(max-width:480px){ .vt{padding:6px 11px;font-size:11.5px} }
 
 .total-cap{font-family:var(--num);font-weight:700;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
 .total{font-family:var(--num);font-weight:900;font-size:clamp(52px,11vw,120px);line-height:.92;letter-spacing:-.03em;margin:10px 0 4px;
