@@ -1,9 +1,57 @@
 {
   "site": "PBers",
   "updated": "2026-09-10",
-  "generated": "2026-09-10T08:16:49+09:00",
-  "count": 9,
+  "generated": "2026-09-10T12:03:35+09:00",
+  "count": 13,
   "items": [
+    {
+      "id": "2026-09-10/views/うずまき/8000000",
+      "date": "2026-09-10",
+      "channel": "うずまき🌀",
+      "slug": "うずまき",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 800万回 突破",
+      "value": 8000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%81%86%E3%81%9A%E3%81%BE%E3%81%8D/"
+    },
+    {
+      "id": "2026-09-10/views/ほわさん/4000000",
+      "date": "2026-09-10",
+      "channel": "ほわさん",
+      "slug": "ほわさん",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 400万回 突破",
+      "value": 4000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%81%BB%E3%82%8F%E3%81%95%E3%82%93/"
+    },
+    {
+      "id": "2026-09-10/views/ソビエトロシアぼーる/2000000",
+      "date": "2026-09-10",
+      "channel": "ソビエト・ロシアぼーる",
+      "slug": "ソビエトロシアぼーる",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 200万回 突破",
+      "value": 2000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%82%BD%E3%83%93%E3%82%A8%E3%83%88%E3%83%AD%E3%82%B7%E3%82%A2%E3%81%BC%E3%83%BC%E3%82%8B/"
+    },
+    {
+      "id": "2026-09-10/views/lemon_ball/1000000",
+      "date": "2026-09-10",
+      "channel": "lemon_Ball",
+      "slug": "lemon_ball",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 100万回 突破",
+      "value": 1000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/lemon_ball/"
+    },
     {
       "id": "2026-09-08/subs/ニイソビボール/10000",
       "date": "2026-09-08",
