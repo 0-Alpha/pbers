@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-09-11",
+    "label": "9月11日(金)",
+    "items": []
+  },
+  {
     "date": "2026-09-10",
     "label": "9月10日(木)",
     "items": [
@@ -151,45 +156,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "投稿数 1100本 突破",
         "value": 1100
-      }
-    ]
-  },
-  {
-    "date": "2026-09-04",
-    "label": "9月4日(金)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "こうちゃ(ポーランドボール)",
-        "color": "#ccbb3e",
-        "avatar": "https://yt3.googleusercontent.com/1cbq4WC93gSQ0ofLhwbV_cCyoCRMOPxB1nseXGGQhNuKH7hEYNyLIckvlO_OEELBCcnFduL2Eto=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 3000万回 突破",
-        "value": 30000000
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "ソビエト・ロシアぼーる",
-        "color": "#ccc93e",
-        "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 100本 突破",
-        "value": 100
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "ねとえん",
-        "color": "#d48d5e",
-        "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 100本 突破",
-        "value": 100
       }
     ]
   }
