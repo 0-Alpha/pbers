@@ -91,9 +91,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-    "subs": 117000,
+    "subs": 118000,
     "views": 48435061,
-    "subsLabel": "チャンネル登録者数 11.7万人",
+    "subsLabel": "チャンネル登録者数 11.8万人",
     "viewsLabel": "48,435,061回視聴",
     "videos": 255,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
@@ -140,7 +140,7 @@ window.PBERS_DATA = [
     "views": 15967141,
     "subsLabel": "チャンネル登録者数 1.62万人",
     "viewsLabel": "15,967,141回視聴",
-    "videos": 70,
+    "videos": 71,
     "url": "https://www.youtube.com/channel/UCfJp9c3kSkIjYFevd2G1RKg",
     "avatar": "https://yt3.googleusercontent.com/yV8LzkaByDse6ZVmF8XEySSyoZ6osOmQM9SmjO8FTgQPiaOwyAaD2VEH1Zx8UqAVobRkOxaVbrg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#45cc3e",
@@ -166,9 +166,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dotto edit",
-    "subs": 10400,
+    "subs": 10500,
     "views": 7461731,
-    "subsLabel": "チャンネル登録者数 1.04万人",
+    "subsLabel": "チャンネル登録者数 1.05万人",
     "viewsLabel": "7,461,731回視聴",
     "videos": 62,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-10";
-window.PBERS_PREDICT = {"asOfMs": 1789030800000, "subs": {"base": 1513700, "rate": 1.8840708187277507e-05}, "views": {"base": 669810603, "rate": 0.014450186703624485}};
+window.PBERS_PREDICT = {"asOfMs": 1789030800000, "subs": {"base": 1514800, "rate": 1.8840708187277507e-05}, "views": {"base": 669810603, "rate": 0.014450186703624485}};
