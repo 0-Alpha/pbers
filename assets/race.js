@@ -95,7 +95,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-10",
-            "s": 397000
+            "s": 398000
           }
         ]
       },
@@ -483,7 +483,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-10",
-            "s": 44300
+            "s": 44400
           }
         ]
       }
@@ -1547,7 +1547,7 @@ window.PBERS_RACE = [
         "name": "ほわさん",
         "color": "#5ebcd4",
         "avatar": "https://yt3.googleusercontent.com/o_UU1jTdSppc-PeIiGPVGWVzy-mIJZNObIdpmqvGRjQJPMHKsPqU1oPhqE4ryLzVocO-2vgx=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 15100,
+        "subs": 15200,
         "history": [
           {
             "d": "2026-08-21",
@@ -1631,7 +1631,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-10",
-            "s": 15100
+            "s": 15200
           }
         ]
       },
@@ -1875,7 +1875,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-10",
-            "s": 14800
+            "s": 14900
           }
         ]
       }
@@ -3539,7 +3539,7 @@ window.PBERS_RACE = [
         "name": "ゆうボール",
         "color": "#d4b95e",
         "avatar": "https://yt3.googleusercontent.com/dDe-vpE0ub720mNouK763bXlq37V8dRRy6yQbJBUGfPobeaj40ktPUSvtcbo66HAkI9dk46oAA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 7140,
+        "subs": 7150,
         "history": [
           {
             "d": "2026-08-22",
@@ -3619,7 +3619,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-10",
-            "s": 7140
+            "s": 7150
           }
         ]
       },
@@ -3943,7 +3943,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-10",
-            "s": 7050
+            "s": 7060
           }
         ]
       },
@@ -4223,7 +4223,7 @@ window.PBERS_RACE = [
         "name": "レイアルファ",
         "color": "#db4f57",
         "avatar": "https://yt3.googleusercontent.com/TVNAN6bSZZHGvc7hYhLs6Gnn95EKhcWj5GwqbWN00HAFA8SmXjUyKXQK6D4Ljl_S9A_8eaHn-Lk=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 6010,
+        "subs": 6020,
         "history": [
           {
             "d": "2026-08-21",
@@ -4307,7 +4307,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-10",
-            "s": 5990
+            "s": 6020
           }
         ]
       },
@@ -5415,7 +5415,7 @@ window.PBERS_RACE = [
         "name": "【PB】ネオンボール",
         "color": "#855ed4",
         "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3430,
+        "subs": 3440,
         "history": [
           {
             "d": "2026-08-31",
@@ -5459,7 +5459,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-10",
-            "s": 3400
+            "s": 3440
           }
         ]
       }
@@ -5575,7 +5575,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-10",
-            "s": 3210
+            "s": 3240
           }
         ]
       },
@@ -5663,7 +5663,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-10",
-            "s": 3220
+            "s": 3230
           }
         ]
       }
@@ -6483,7 +6483,7 @@ window.PBERS_RACE = [
         "name": "ソビエトボールUSSR",
         "color": "#95d45e",
         "avatar": "https://yt3.googleusercontent.com/oQR3FLSbYKMQi1K_7qkk8PVfmLILRrYecaE-8XC2kKcQiazxJwzRa-yCeX6OxqgbmJ07vNTC=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 2330,
+        "subs": 2340,
         "history": [
           {
             "d": "2026-08-30",
@@ -6531,7 +6531,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-10",
-            "s": 2310
+            "s": 2340
           }
         ]
       },
@@ -6960,58 +6960,58 @@ window.PBERS_RACE = [
         ]
       },
       {
-        "name": "ソ中ボール日友好平和同盟",
+        "name": "ミントの農場",
         "color": "#d46e5e",
-        "avatar": "https://yt3.googleusercontent.com/idKCYo4w5sKLb4FpUjDCoUGFI2ATRvQmRgavCKPeRW5wayDzDjKB9PnAgVEXLv6tDN2GjNBffkc=s900-c-k-c0x00ffffff-no-rj",
+        "avatar": "https://yt3.googleusercontent.com/RnPkMOcvXnYH93HK6sBW4Pk3Z9xk8LGY2Flq4zNhr4yE8hhoRCqIh5px60QCEfsYUCJXuiD5ng=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2060,
         "history": [
           {
             "d": "2026-08-30",
-            "s": 2050
+            "s": 2060
           },
           {
             "d": "2026-08-31",
-            "s": 2050
+            "s": 2060
           },
           {
             "d": "2026-09-01",
-            "s": 2050
+            "s": 2060
           },
           {
             "d": "2026-09-02",
-            "s": 2050
+            "s": 2060
           },
           {
             "d": "2026-09-03",
-            "s": 2050
+            "s": 2060
           },
           {
             "d": "2026-09-04",
-            "s": 2050
+            "s": 2060
           },
           {
             "d": "2026-09-05",
-            "s": 2050
+            "s": 2060
           },
           {
             "d": "2026-09-06",
-            "s": 2050
+            "s": 2060
           },
           {
             "d": "2026-09-07",
-            "s": 2050
+            "s": 2060
           },
           {
             "d": "2026-09-08",
-            "s": 2050
+            "s": 2060
           },
           {
             "d": "2026-09-09",
-            "s": 2050
+            "s": 2060
           },
           {
             "d": "2026-09-10",
-            "s": 2050
+            "s": 2060
           }
         ]
       }
