@@ -16,9 +16,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "MOON-BALL",
-    "subs": 218000,
+    "subs": 219000,
     "views": 38903314,
-    "subsLabel": "チャンネル登録者数 21.8万人",
+    "subsLabel": "チャンネル登録者数 21.9万人",
     "viewsLabel": "38,903,314回視聴",
     "videos": 33,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
@@ -152,9 +152,9 @@ window.PBERS_DATA = [
   {
     "name": "日本猫耳版ボール【目標9000人】",
     "subs": 12900,
-    "views": 3927206,
+    "views": 3927466,
     "subsLabel": "チャンネル登録者数 1.29万人",
-    "viewsLabel": "3,927,206回視聴",
+    "viewsLabel": "3,927,466回視聴",
     "videos": 226,
     "url": "https://www.youtube.com/channel/UCIqROVo0xBJfh5h6cQyPm7Q",
     "avatar": "https://yt3.googleusercontent.com/LpR7h9FEKhK0Va34bq-KRghVlWGkhmZQUTbd-JcnnuZ3BU17SQQjkFfh6YnFgAvVbYXcWO37Vw=s900-c-k-c0x00ffffff-no-rj",
@@ -196,10 +196,10 @@ window.PBERS_DATA = [
   },
   {
     "name": "udonball",
-    "subs": 6890,
-    "views": 1233167,
-    "subsLabel": "チャンネル登録者数 6890人",
-    "viewsLabel": "1,233,167回視聴",
+    "subs": 6900,
+    "views": 1233491,
+    "subsLabel": "チャンネル登録者数 6900人",
+    "viewsLabel": "1,233,491回視聴",
     "videos": 119,
     "url": "https://www.youtube.com/channel/UCGueqNQmvtQYlGO3UL3Gf3w",
     "avatar": "https://yt3.googleusercontent.com/t-XpUkPOEssGyYn9TK4JrLG9EmGIhn565-GBvVCtqkpxDXD36l6OOb6EOlWJ_Gr92W8a_ryApcg=s900-c-k-c0x00ffffff-no-rj",
@@ -211,9 +211,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "AST.アオスト Polandball",
-    "subs": 3600,
+    "subs": 3610,
     "views": 1745780,
-    "subsLabel": "チャンネル登録者数 3600人",
+    "subsLabel": "チャンネル登録者数 3610人",
     "viewsLabel": "1,745,780回視聴",
     "videos": 32,
     "url": "https://www.youtube.com/channel/UC0oyndW7j5GS5NIb8ww7cxw",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-11";
-window.PBERS_PREDICT = {"asOfMs": 1789095600000, "subs": {"base": 1515210, "rate": 1.9363507908005128e-05}, "views": {"base": 670623925, "rate": 0.012650762937182466}};
+window.PBERS_PREDICT = {"asOfMs": 1789117200000, "subs": {"base": 1516230, "rate": 2.1679394089894144e-05}, "views": {"base": 670624509, "rate": 0.013361504890781258}};
