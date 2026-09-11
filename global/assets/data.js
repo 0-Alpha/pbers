@@ -166,9 +166,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dotto edit",
-    "subs": 10800,
+    "subs": 10900,
     "views": 7542518,
-    "subsLabel": "チャンネル登録者数 1.08万人",
+    "subsLabel": "チャンネル登録者数 1.09万人",
     "viewsLabel": "7,542,518回視聴",
     "videos": 62,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
@@ -181,9 +181,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Past_Ball",
-    "subs": 7700,
+    "subs": 7710,
     "views": 3518182,
-    "subsLabel": "チャンネル登録者数 7700人",
+    "subsLabel": "チャンネル登録者数 7710人",
     "viewsLabel": "3,518,182回視聴",
     "videos": 213,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
@@ -227,9 +227,9 @@ window.PBERS_DATA = [
   {
     "name": "AJ ball",
     "subs": 3510,
-    "views": 1517819,
+    "views": 1517973,
     "subsLabel": "チャンネル登録者数 3510人",
-    "viewsLabel": "1,517,819回視聴",
+    "viewsLabel": "1,517,973回視聴",
     "videos": 39,
     "url": "https://www.youtube.com/channel/UC9EPL3fLMARICtvoL6NGMBA",
     "avatar": "https://yt3.googleusercontent.com/oBocVfsRI4xNymEO3_9zK8GmSus753e0k0d_Dm9TN5IXzxVHK7Nlea4VDStGfUaeRAX5cMc5=s900-c-k-c0x00ffffff-no-rj",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-11";
-window.PBERS_PREDICT = {"asOfMs": 1789074000000, "subs": {"base": 1515100, "rate": 2.0150801658156977e-05}, "views": {"base": 670206111, "rate": 0.01380488949533436}};
+window.PBERS_PREDICT = {"asOfMs": 1789095600000, "subs": {"base": 1515210, "rate": 1.9363507908005128e-05}, "views": {"base": 670206265, "rate": 0.012650762937182466}};

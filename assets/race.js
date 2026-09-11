@@ -4303,7 +4303,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 6680
+            "s": 6690
           }
         ]
       },
@@ -4599,7 +4599,7 @@ window.PBERS_RACE = [
         "name": "ヴァイマル共和国ボール [底辺PBer連盟] ",
         "color": "#cc613e",
         "avatar": "https://yt3.googleusercontent.com/dQc05XhmvR-D6BpN8LxOmCx-tE2IB8BzBHGnNtg3ZbmfeSspkw4_q-_vs0-LVrBnkvb-PtibOg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5330,
+        "subs": 5340,
         "history": [
           {
             "d": "2026-08-22",
@@ -4683,7 +4683,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 5330
+            "s": 5340
           }
         ]
       },
@@ -5123,7 +5123,7 @@ window.PBERS_RACE = [
         "name": "まっこゆ",
         "color": "#b63ecc",
         "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4480,
+        "subs": 4490,
         "history": [
           {
             "d": "2026-08-30",
@@ -5175,7 +5175,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 4470
+            "s": 4490
           }
         ]
       },
@@ -5663,7 +5663,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 3440
+            "s": 3450
           }
         ]
       },
@@ -6375,7 +6375,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 2750
+            "s": 2740
           }
         ]
       },
@@ -6831,7 +6831,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 2430
+            "s": 2450
           }
         ]
       }

@@ -2,7 +2,19 @@ window.PBERS_NEWS = [
   {
     "date": "2026-09-11",
     "label": "9月11日(金)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ソビエト・カチューシャボール☭\n\n",
+        "color": "#a1d45e",
+        "avatar": "https://yt3.googleusercontent.com/sMSaJPx-WM3QbFxYx4rhDM6Q1LzCxlkV6UemWeCURFSX6Ll2VikhIEX1Hmz_GxDkGmfBeQ-r=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 600万回 突破",
+        "value": 6000000
+      }
+    ]
   },
   {
     "date": "2026-09-10",
