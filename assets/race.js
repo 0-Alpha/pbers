@@ -199,7 +199,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 329000
+            "s": 330000
           }
         ]
       },
@@ -299,7 +299,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 302000
+            "s": 303000
           }
         ]
       }
@@ -403,7 +403,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 44500
+            "s": 44600
           }
         ]
       },
@@ -1503,7 +1503,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 17700
+            "s": 17800
           }
         ]
       },
@@ -1599,7 +1599,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 17700
+            "s": 17800
           }
         ]
       }
@@ -1798,16 +1798,12 @@ window.PBERS_RACE = [
             "s": 15100
           }
         ]
-      }
-    ]
-  },
-  {
-    "members": [
+      },
       {
         "name": "ぽぱい",
         "color": "#d05ed4",
         "avatar": "https://yt3.googleusercontent.com/L3pk3ep8wkIecdtlqzMo73d35IfjEFnmRmvLRb_9f41cuQeUDpXNZIHP4XI4cMu5xxRR6TWkRqg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 14900,
+        "subs": 15000,
         "history": [
           {
             "d": "2026-08-21",
@@ -1895,67 +1891,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 14900
-          }
-        ]
-      },
-      {
-        "name": "Türkiye👑キプロスball",
-        "color": "#cc3e53",
-        "avatar": "https://yt3.googleusercontent.com/WBViJaIICezH_uSU7qpm3-mZ6dwuAlZ59RE4LPIFWt-jg8a2U_zJNpFKr0yPh4kcAU9ayn8j=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 14900,
-        "history": [
-          {
-            "d": "2026-08-30",
-            "s": 14800
-          },
-          {
-            "d": "2026-08-31",
-            "s": 14800
-          },
-          {
-            "d": "2026-09-01",
-            "s": 14800
-          },
-          {
-            "d": "2026-09-02",
-            "s": 14800
-          },
-          {
-            "d": "2026-09-03",
-            "s": 14800
-          },
-          {
-            "d": "2026-09-04",
-            "s": 14800
-          },
-          {
-            "d": "2026-09-05",
-            "s": 14800
-          },
-          {
-            "d": "2026-09-06",
-            "s": 14800
-          },
-          {
-            "d": "2026-09-07",
-            "s": 14800
-          },
-          {
-            "d": "2026-09-08",
-            "s": 14800
-          },
-          {
-            "d": "2026-09-09",
-            "s": 14800
-          },
-          {
-            "d": "2026-09-10",
-            "s": 14900
-          },
-          {
-            "d": "2026-09-11",
-            "s": 14900
+            "s": 15000
           }
         ]
       }
@@ -2995,7 +2931,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 11600
+            "s": 11700
           }
         ]
       }
@@ -3771,7 +3707,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 9610
+            "s": 9620
           }
         ]
       }
@@ -4283,7 +4219,7 @@ window.PBERS_RACE = [
         "name": "にこちPB",
         "color": "#815ed4",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 7070,
+        "subs": 7080,
         "history": [
           {
             "d": "2026-08-21",
@@ -4371,7 +4307,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 7040
+            "s": 7080
           }
         ]
       },
@@ -4751,7 +4687,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 6030
+            "s": 6040
           }
         ]
       },
@@ -5255,7 +5191,7 @@ window.PBERS_RACE = [
         "name": "ソラビア人民共和国連邦",
         "color": "#5ed476",
         "avatar": "https://yt3.googleusercontent.com/zUSuCFiZuO8rrxqChp5qTpjkezlhB7gGtqwygoIvDGMvt2N_9e9Z5FfS7eEY9L8TvxdkhIRVYw=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4690,
+        "subs": 4680,
         "history": [
           {
             "d": "2026-08-30",
@@ -5307,7 +5243,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 4690
+            "s": 4680
           }
         ]
       },
@@ -5431,7 +5367,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 4490
+            "s": 4510
           }
         ]
       },
@@ -5491,7 +5427,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 4470
+            "s": 4480
           }
         ]
       },
@@ -5551,7 +5487,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 4470
+            "s": 4480
           }
         ]
       }
@@ -5804,62 +5740,58 @@ window.PBERS_RACE = [
         ]
       },
       {
-        "name": "ルヒエル+ Rätsel +",
+        "name": "【PB】ネオンボール",
         "color": "#5ed4a1",
-        "avatar": "https://yt3.googleusercontent.com/CHkdKGX8zFiCQWmMTl2xEr3EJIIXaHewF87qNoCH0K613phZnV8DvjrPz9t7p4whyR4ch2Gg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3510,
+        "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 3520,
         "history": [
           {
-            "d": "2026-08-30",
-            "s": 3480
-          },
-          {
             "d": "2026-08-31",
-            "s": 3490
+            "s": 2450
           },
           {
             "d": "2026-09-01",
-            "s": 3490
+            "s": 2590
           },
           {
             "d": "2026-09-02",
-            "s": 3500
+            "s": 2710
           },
           {
             "d": "2026-09-03",
-            "s": 3500
+            "s": 2830
           },
           {
             "d": "2026-09-04",
-            "s": 3500
+            "s": 2900
           },
           {
             "d": "2026-09-05",
-            "s": 3500
+            "s": 3020
           },
           {
             "d": "2026-09-06",
-            "s": 3510
+            "s": 3160
           },
           {
             "d": "2026-09-07",
-            "s": 3510
+            "s": 3230
           },
           {
             "d": "2026-09-08",
-            "s": 3510
+            "s": 3280
           },
           {
             "d": "2026-09-09",
-            "s": 3510
+            "s": 3360
           },
           {
             "d": "2026-09-10",
-            "s": 3510
+            "s": 3440
           },
           {
             "d": "2026-09-11",
-            "s": 3500
+            "s": 3520
           }
         ]
       }
@@ -5923,7 +5855,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 3260
+            "s": 3270
           }
         ]
       },
@@ -6075,7 +6007,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 3230
+            "s": 3240
           }
         ]
       }
@@ -6911,7 +6843,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 2470
+            "s": 2510
           }
         ]
       },
@@ -7095,7 +7027,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-11",
-            "s": 2340
+            "s": 2350
           }
         ]
       },
