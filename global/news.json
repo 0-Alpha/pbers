@@ -1,8 +1,8 @@
 {
   "site": "PBers Global",
-  "updated": "2026-09-11",
-  "generated": "2026-09-12T03:34:38+09:00",
-  "count": 3,
+  "updated": "2026-09-12",
+  "generated": "2026-09-12T06:03:38+09:00",
+  "count": 2,
   "items": [
     {
       "id": "2026-09-09/subs/opera_cb/190000",
@@ -25,18 +25,6 @@
       "type": "milestone",
       "label": "登録者 1万人 突破",
       "value": 10000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/global/c/dotto-edit/"
-    },
-    {
-      "id": "2026-09-05/views/dotto-edit/7000000",
-      "date": "2026-09-05",
-      "channel": "Dotto edit",
-      "slug": "dotto-edit",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 700万回 突破",
-      "value": 7000000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/global/c/dotto-edit/"
     }

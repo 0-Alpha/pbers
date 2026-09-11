@@ -122,9 +122,9 @@ window.PBERS_DATA = [
   {
     "name": "りょうデス",
     "subs": 24000,
-    "views": 15248023,
+    "views": 15248003,
     "subsLabel": "チャンネル登録者数 2.4万人",
-    "viewsLabel": "15,248,023回視聴",
+    "viewsLabel": "15,248,003回視聴",
     "videos": 891,
     "url": "https://www.youtube.com/channel/UCfe4nCMqfTwoiMmIGqAolcQ",
     "avatar": "https://yt3.googleusercontent.com/3JZIEM7UfdCSG6s6ge7iysnTTyLWldBvHduFzlEyA2KMqsUWqUxtWKy6sL2EIlMdFlPzzJ2FlQ=s900-c-k-c0x00ffffff-no-rj",
@@ -152,9 +152,9 @@ window.PBERS_DATA = [
   {
     "name": "日本猫耳版ボール【目標9000人】",
     "subs": 12900,
-    "views": 3927466,
+    "views": 3927587,
     "subsLabel": "チャンネル登録者数 1.29万人",
-    "viewsLabel": "3,927,466回視聴",
+    "viewsLabel": "3,927,587回視聴",
     "videos": 226,
     "url": "https://www.youtube.com/channel/UCIqROVo0xBJfh5h6cQyPm7Q",
     "avatar": "https://yt3.googleusercontent.com/LpR7h9FEKhK0Va34bq-KRghVlWGkhmZQUTbd-JcnnuZ3BU17SQQjkFfh6YnFgAvVbYXcWO37Vw=s900-c-k-c0x00ffffff-no-rj",
@@ -166,9 +166,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dotto edit",
-    "subs": 11100,
+    "subs": 11200,
     "views": 7763008,
-    "subsLabel": "チャンネル登録者数 1.11万人",
+    "subsLabel": "チャンネル登録者数 1.12万人",
     "viewsLabel": "7,763,008回視聴",
     "videos": 62,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
@@ -241,5 +241,5 @@ window.PBERS_DATA = [
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
-window.PBERS_UPDATED = "2026-09-11";
-window.PBERS_PREDICT = {"asOfMs": 1789138800000, "subs": {"base": 1516430, "rate": 1.9925309136731004e-05}, "views": {"base": 671079750, "rate": 0.013153763399593081}};
+window.PBERS_UPDATED = "2026-09-12";
+window.PBERS_PREDICT = {"asOfMs": 1789160400000, "subs": {"base": 1516530, "rate": 1.9073599912559105e-05}, "views": {"base": 671079851, "rate": 0.013017982346743543}};

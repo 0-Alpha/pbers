@@ -5,7 +5,7 @@
 <atom:link href="https://pbers.com/global/feed.xml" rel="self" type="application/rss+xml"/>
 <description>ポーランドボーラー(YouTube)の登録者・総再生・投稿数のマイルストーン突破ニュース</description>
 <language>ja</language>
-<lastBuildDate>Fri, 11 Sep 2026 12:00:00 +0900</lastBuildDate>
+<lastBuildDate>Sat, 12 Sep 2026 12:00:00 +0900</lastBuildDate>
 <item>
 <title>Opera_cb — 登録者 19万人 突破</title>
 <link>https://pbers.com/global/c/opera_cb/</link>
@@ -19,12 +19,5 @@
 <guid isPermaLink="false">2026-09-09/subs/dotto-edit/10000</guid>
 <pubDate>Wed, 09 Sep 2026 12:00:00 +0900</pubDate>
 <description>Dotto edit — 登録者 1万人 突破</description>
-</item>
-<item>
-<title>Dotto edit — 総再生数 700万回 突破</title>
-<link>https://pbers.com/global/c/dotto-edit/</link>
-<guid isPermaLink="false">2026-09-05/views/dotto-edit/7000000</guid>
-<pubDate>Sat, 05 Sep 2026 12:00:00 +0900</pubDate>
-<description>Dotto edit — 総再生数 700万回 突破</description>
 </item>
 </channel></rss>

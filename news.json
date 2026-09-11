@@ -1,9 +1,21 @@
 {
   "site": "PBers",
-  "updated": "2026-09-11",
-  "generated": "2026-09-12T03:34:38+09:00",
-  "count": 13,
+  "updated": "2026-09-12",
+  "generated": "2026-09-12T06:03:38+09:00",
+  "count": 12,
   "items": [
+    {
+      "id": "2026-09-12/views/ニイソビボール/4000000",
+      "date": "2026-09-12",
+      "channel": "ニイソビボール",
+      "slug": "ニイソビボール",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 400万回 突破",
+      "value": 4000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%83%8B%E3%82%A4%E3%82%BD%E3%83%93%E3%83%9C%E3%83%BC%E3%83%AB/"
+    },
     {
       "id": "2026-09-11/subs/みかんぼーる/330000",
       "date": "2026-09-11",
@@ -135,30 +147,6 @@
       "value": 300,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E3%81%BF%E3%81%BF%E3%81%91%E3%81%91/"
-    },
-    {
-      "id": "2026-09-05/views/なごみん/3000000",
-      "date": "2026-09-05",
-      "channel": "なごみん",
-      "slug": "なごみん",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 300万回 突破",
-      "value": 3000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%AA%E3%81%94%E3%81%BF%E3%82%93/"
-    },
-    {
-      "id": "2026-09-05/videos/なるほど地理/1100",
-      "date": "2026-09-05",
-      "channel": "なるほど地理",
-      "slug": "なるほど地理",
-      "metric": "videos",
-      "type": "milestone",
-      "label": "投稿数 1100本 突破",
-      "value": 1100,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%AA%E3%82%8B%E3%81%BB%E3%81%A9%E5%9C%B0%E7%90%86/"
     }
   ]
 }

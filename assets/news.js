@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-09-12",
+    "label": "9月12日(土)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ニイソビボール",
+        "color": "#40cc3e",
+        "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 400万回 突破",
+        "value": 4000000
+      }
+    ]
+  },
+  {
     "date": "2026-09-11",
     "label": "9月11日(金)",
     "items": [
@@ -68,7 +85,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ソビエト・ロシアぼーる",
-        "color": "#d46a5e",
+        "color": "#ccc93e",
         "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -151,34 +168,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "投稿数 300本 突破",
         "value": 300
-      }
-    ]
-  },
-  {
-    "date": "2026-09-05",
-    "label": "9月5日(土)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "なごみん",
-        "color": "#7e3ecc",
-        "avatar": "https://yt3.googleusercontent.com/sejttmaZGPCSjyOiW-llk9T7ukJmjKJYIbBhWfXk3Vg7c0qdft3H20u3FM3iH_DxyLY115R5=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 300万回 突破",
-        "value": 3000000
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "なるほど地理",
-        "color": "#d45e5e",
-        "avatar": "https://yt3.googleusercontent.com/gNv7_1OO5KoHNGHTucUfub1OS8J0Q48iz0hDl49mNXF3ZugBFYxEJckd0zeLUC3lxnitdxI9=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 1100本 突破",
-        "value": 1100
       }
     ]
   }
