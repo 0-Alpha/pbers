@@ -1,8 +1,8 @@
 {
   "site": "PBers",
-  "updated": "2026-09-12",
-  "generated": "2026-09-13T02:47:28+09:00",
-  "count": 13,
+  "updated": "2026-09-13",
+  "generated": "2026-09-13T06:04:07+09:00",
+  "count": 10,
   "items": [
     {
       "id": "2026-09-12/subs/フヒフム/400000",
@@ -123,42 +123,6 @@
       "value": 10000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E3%83%8B%E3%82%A4%E3%82%BD%E3%83%93%E3%83%9C%E3%83%BC%E3%83%AB/"
-    },
-    {
-      "id": "2026-09-06/subs/田中mid/300000",
-      "date": "2026-09-06",
-      "channel": "田中MID",
-      "slug": "田中mid",
-      "metric": "subs",
-      "type": "milestone",
-      "label": "登録者 30万人 突破",
-      "value": 300000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E7%94%B0%E4%B8%ADmid/"
-    },
-    {
-      "id": "2026-09-06/views/ニイソビボール/3000000",
-      "date": "2026-09-06",
-      "channel": "ニイソビボール",
-      "slug": "ニイソビボール",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 300万回 突破",
-      "value": 3000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%83%8B%E3%82%A4%E3%82%BD%E3%83%93%E3%83%9C%E3%83%BC%E3%83%AB/"
-    },
-    {
-      "id": "2026-09-06/videos/みみけけ/300",
-      "date": "2026-09-06",
-      "channel": "みみけけ",
-      "slug": "みみけけ",
-      "metric": "videos",
-      "type": "milestone",
-      "label": "投稿数 300本 突破",
-      "value": 300,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%BF%E3%81%BF%E3%81%91%E3%81%91/"
     }
   ]
 }

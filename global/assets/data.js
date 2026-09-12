@@ -152,9 +152,9 @@ window.PBERS_DATA = [
   {
     "name": "日本猫耳版ボール【目標9000人】",
     "subs": 12900,
-    "views": 3927798,
+    "views": 3928126,
     "subsLabel": "チャンネル登録者数 1.29万人",
-    "viewsLabel": "3,927,798回視聴",
+    "viewsLabel": "3,928,126回視聴",
     "videos": 226,
     "url": "https://www.youtube.com/channel/UCIqROVo0xBJfh5h6cQyPm7Q",
     "avatar": "https://yt3.googleusercontent.com/LpR7h9FEKhK0Va34bq-KRghVlWGkhmZQUTbd-JcnnuZ3BU17SQQjkFfh6YnFgAvVbYXcWO37Vw=s900-c-k-c0x00ffffff-no-rj",
@@ -166,9 +166,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dotto edit",
-    "subs": 11500,
+    "subs": 11600,
     "views": 7999761,
-    "subsLabel": "チャンネル登録者数 1.15万人",
+    "subsLabel": "チャンネル登録者数 1.16万人",
     "viewsLabel": "7,999,761回視聴",
     "videos": 62,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
@@ -227,9 +227,9 @@ window.PBERS_DATA = [
   {
     "name": "AJ ball",
     "subs": 3510,
-    "views": 1518794,
+    "views": 1519187,
     "subsLabel": "チャンネル登録者数 3510人",
-    "viewsLabel": "1,518,794回視聴",
+    "viewsLabel": "1,519,187回視聴",
     "videos": 39,
     "url": "https://www.youtube.com/channel/UC9EPL3fLMARICtvoL6NGMBA",
     "avatar": "https://yt3.googleusercontent.com/oBocVfsRI4xNymEO3_9zK8GmSus753e0k0d_Dm9TN5IXzxVHK7Nlea4VDStGfUaeRAX5cMc5=s900-c-k-c0x00ffffff-no-rj",
@@ -241,5 +241,5 @@ window.PBERS_DATA = [
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
-window.PBERS_UPDATED = "2026-09-12";
-window.PBERS_PREDICT = {"asOfMs": 1789225200000, "subs": {"base": 1518950, "rate": 1.89795524138593e-05}, "views": {"base": 670964418, "rate": 0.012011551174873871}};
+window.PBERS_UPDATED = "2026-09-13";
+window.PBERS_PREDICT = {"asOfMs": 1789246800000, "subs": {"base": 1519050, "rate": 2.2451100068615672e-05}, "views": {"base": 670965139, "rate": 0.012557485506256814}};

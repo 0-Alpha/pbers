@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-09-13",
+    "label": "9月13日(日)",
+    "items": []
+  },
+  {
     "date": "2026-09-12",
     "label": "9月12日(土)",
     "items": [
@@ -142,44 +147,5 @@ window.PBERS_NEWS = [
     "date": "2026-09-07",
     "label": "9月7日(月)",
     "items": []
-  },
-  {
-    "date": "2026-09-06",
-    "label": "9月6日(日)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "田中MID",
-        "color": "#2f80ed",
-        "avatar": "https://yt3.googleusercontent.com/mnFY8X_lmtyW54Uh5ocg1QJQVTxTRKG9XDdrGAhxFZpPPJzhsGue-cMHqLBCsIRF4hBHjsLU=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 30万人 突破",
-        "value": 300000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ニイソビボール",
-        "color": "#76d45e",
-        "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 300万回 突破",
-        "value": 3000000
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "みみけけ",
-        "color": "#d45ecc",
-        "avatar": "https://yt3.googleusercontent.com/gtr3tkd9Ra4HMv-hciHc65Lr1q_1mClGOA7Gq4jNkAmqHimaEZYW8psX3Q86hCvN1-y33-D-0Q=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 300本 突破",
-        "value": 300
-      }
-    ]
   }
 ];
