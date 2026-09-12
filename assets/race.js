@@ -991,7 +991,7 @@ window.PBERS_RACE = [
         "name": "ｺﾏ",
         "color": "#5ed4c0",
         "avatar": "https://yt3.googleusercontent.com/qfIMUcBcGCqbLGk6dZfwDM1ITBKnaYjIMF7mCqKncuWK8lA1JBya8wfa2f9evEE_mbpWj-67=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 21900,
+        "subs": 21800,
         "history": [
           {
             "d": "2026-08-20",
@@ -4559,7 +4559,7 @@ window.PBERS_RACE = [
         "name": "にこちPB",
         "color": "#d4b95e",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 7160,
+        "subs": 7170,
         "history": [
           {
             "d": "2026-08-21",
@@ -5788,8 +5788,76 @@ window.PBERS_RACE = [
         ]
       },
       {
-        "name": "ソラビア人民共和国連邦",
+        "name": "カルマルボール",
         "color": "#5ed476",
+        "avatar": "https://yt3.googleusercontent.com/WX0x2Taa65iBzUFRSgy7esb4WOcPuDaB7kYluOwNEqFZJ0tN7lMR_IL5m1pZC7b6tpNJUdSTgA=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 4700,
+        "history": [
+          {
+            "d": "2026-08-30",
+            "s": 4030
+          },
+          {
+            "d": "2026-08-31",
+            "s": 4110
+          },
+          {
+            "d": "2026-09-01",
+            "s": 4160
+          },
+          {
+            "d": "2026-09-02",
+            "s": 4260
+          },
+          {
+            "d": "2026-09-03",
+            "s": 4360
+          },
+          {
+            "d": "2026-09-04",
+            "s": 4410
+          },
+          {
+            "d": "2026-09-05",
+            "s": 4490
+          },
+          {
+            "d": "2026-09-06",
+            "s": 4530
+          },
+          {
+            "d": "2026-09-07",
+            "s": 4580
+          },
+          {
+            "d": "2026-09-08",
+            "s": 4620
+          },
+          {
+            "d": "2026-09-09",
+            "s": 4630
+          },
+          {
+            "d": "2026-09-10",
+            "s": 4640
+          },
+          {
+            "d": "2026-09-11",
+            "s": 4660
+          },
+          {
+            "d": "2026-09-12",
+            "s": 4680
+          },
+          {
+            "d": "2026-09-13",
+            "s": 4690
+          }
+        ]
+      },
+      {
+        "name": "ソラビア人民共和国連邦",
+        "color": "#3ec0cc",
         "avatar": "https://yt3.googleusercontent.com/zUSuCFiZuO8rrxqChp5qTpjkezlhB7gGtqwygoIvDGMvt2N_9e9Z5FfS7eEY9L8TvxdkhIRVYw=s900-c-k-c0x00ffffff-no-rj",
         "subs": 4690,
         "history": [
@@ -5848,74 +5916,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-09-12",
             "s": 4690
-          },
-          {
-            "d": "2026-09-13",
-            "s": 4690
-          }
-        ]
-      },
-      {
-        "name": "カルマルボール",
-        "color": "#3ec0cc",
-        "avatar": "https://yt3.googleusercontent.com/WX0x2Taa65iBzUFRSgy7esb4WOcPuDaB7kYluOwNEqFZJ0tN7lMR_IL5m1pZC7b6tpNJUdSTgA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4690,
-        "history": [
-          {
-            "d": "2026-08-30",
-            "s": 4030
-          },
-          {
-            "d": "2026-08-31",
-            "s": 4110
-          },
-          {
-            "d": "2026-09-01",
-            "s": 4160
-          },
-          {
-            "d": "2026-09-02",
-            "s": 4260
-          },
-          {
-            "d": "2026-09-03",
-            "s": 4360
-          },
-          {
-            "d": "2026-09-04",
-            "s": 4410
-          },
-          {
-            "d": "2026-09-05",
-            "s": 4490
-          },
-          {
-            "d": "2026-09-06",
-            "s": 4530
-          },
-          {
-            "d": "2026-09-07",
-            "s": 4580
-          },
-          {
-            "d": "2026-09-08",
-            "s": 4620
-          },
-          {
-            "d": "2026-09-09",
-            "s": 4630
-          },
-          {
-            "d": "2026-09-10",
-            "s": 4640
-          },
-          {
-            "d": "2026-09-11",
-            "s": 4660
-          },
-          {
-            "d": "2026-09-12",
-            "s": 4680
           },
           {
             "d": "2026-09-13",
@@ -6207,7 +6207,7 @@ window.PBERS_RACE = [
         "name": "【PB】ネオンボール",
         "color": "#cc3e49",
         "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3660,
+        "subs": 3670,
         "history": [
           {
             "d": "2026-08-31",
@@ -6720,78 +6720,10 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "askボール",
-        "color": "#ccc93e",
-        "avatar": "https://yt3.googleusercontent.com/ov6W-oIkKxOFNh3ykdT0Tw7BOvB80QZ6NC1pQgqrxgALMTiKeaDFijYoN-0GurzKHfnI30fxqA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3270,
-        "history": [
-          {
-            "d": "2026-08-30",
-            "s": 3260
-          },
-          {
-            "d": "2026-08-31",
-            "s": 3260
-          },
-          {
-            "d": "2026-09-01",
-            "s": 3260
-          },
-          {
-            "d": "2026-09-02",
-            "s": 3270
-          },
-          {
-            "d": "2026-09-03",
-            "s": 3260
-          },
-          {
-            "d": "2026-09-04",
-            "s": 3260
-          },
-          {
-            "d": "2026-09-05",
-            "s": 3260
-          },
-          {
-            "d": "2026-09-06",
-            "s": 3260
-          },
-          {
-            "d": "2026-09-07",
-            "s": 3260
-          },
-          {
-            "d": "2026-09-08",
-            "s": 3270
-          },
-          {
-            "d": "2026-09-09",
-            "s": 3270
-          },
-          {
-            "d": "2026-09-10",
-            "s": 3270
-          },
-          {
-            "d": "2026-09-11",
-            "s": 3270
-          },
-          {
-            "d": "2026-09-12",
-            "s": 3270
-          },
-          {
-            "d": "2026-09-13",
-            "s": 3270
-          }
-        ]
-      },
-      {
         "name": "ウィン【肉声】【ポーランドボール】",
-        "color": "#6ed45e",
+        "color": "#ccc93e",
         "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3260,
+        "subs": 3270,
         "history": [
           {
             "d": "2026-08-22",
@@ -6884,6 +6816,74 @@ window.PBERS_RACE = [
           {
             "d": "2026-09-13",
             "s": 3260
+          }
+        ]
+      },
+      {
+        "name": "askボール",
+        "color": "#6ed45e",
+        "avatar": "https://yt3.googleusercontent.com/ov6W-oIkKxOFNh3ykdT0Tw7BOvB80QZ6NC1pQgqrxgALMTiKeaDFijYoN-0GurzKHfnI30fxqA=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 3270,
+        "history": [
+          {
+            "d": "2026-08-30",
+            "s": 3260
+          },
+          {
+            "d": "2026-08-31",
+            "s": 3260
+          },
+          {
+            "d": "2026-09-01",
+            "s": 3260
+          },
+          {
+            "d": "2026-09-02",
+            "s": 3270
+          },
+          {
+            "d": "2026-09-03",
+            "s": 3260
+          },
+          {
+            "d": "2026-09-04",
+            "s": 3260
+          },
+          {
+            "d": "2026-09-05",
+            "s": 3260
+          },
+          {
+            "d": "2026-09-06",
+            "s": 3260
+          },
+          {
+            "d": "2026-09-07",
+            "s": 3260
+          },
+          {
+            "d": "2026-09-08",
+            "s": 3270
+          },
+          {
+            "d": "2026-09-09",
+            "s": 3270
+          },
+          {
+            "d": "2026-09-10",
+            "s": 3270
+          },
+          {
+            "d": "2026-09-11",
+            "s": 3270
+          },
+          {
+            "d": "2026-09-12",
+            "s": 3270
+          },
+          {
+            "d": "2026-09-13",
+            "s": 3270
           }
         ]
       }
