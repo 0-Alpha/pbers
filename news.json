@@ -1,9 +1,21 @@
 {
   "site": "PBers",
   "updated": "2026-09-13",
-  "generated": "2026-09-13T17:20:11+09:00",
-  "count": 10,
+  "generated": "2026-09-13T18:03:42+09:00",
+  "count": 11,
   "items": [
+    {
+      "id": "2026-09-13/views/ばかわたし/5000000",
+      "date": "2026-09-13",
+      "channel": "ばかわたし",
+      "slug": "ばかわたし",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 500万回 突破",
+      "value": 5000000,
+      "genre": "PBerer",
+      "url": "https://pbers.com/c/%E3%81%B0%E3%81%8B%E3%82%8F%E3%81%9F%E3%81%97/"
+    },
     {
       "id": "2026-09-12/subs/フヒフム/400000",
       "date": "2026-09-12",

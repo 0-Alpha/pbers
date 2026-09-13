@@ -2,7 +2,19 @@ window.PBERS_NEWS = [
   {
     "date": "2026-09-13",
     "label": "9月13日(日)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ばかわたし",
+        "color": "#5eb9d4",
+        "avatar": "https://yt3.googleusercontent.com/8Q3AkB3SLb49XqB1aR0hp3jyCVu5hS_YrBkjoYn-0FkHttGhP6gadqK2oaOqadgMcjYFYhR1=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "PBerer",
+        "label": "総再生数 500万回 突破",
+        "value": 5000000
+      }
+    ]
   },
   {
     "date": "2026-09-12",
