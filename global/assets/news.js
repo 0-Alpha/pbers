@@ -2,7 +2,30 @@ window.PBERS_NEWS = [
   {
     "date": "2026-09-13",
     "label": "9月13日(日)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "MOON-BALL",
+        "color": "#ccbb3e",
+        "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 22万人 突破",
+        "value": 220000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "Dotto edit",
+        "color": "#3e66cc",
+        "avatar": "https://yt3.googleusercontent.com/JjoolJ5faLhJzaPj3UckuOvdbEaug12ouvdocg6jk1Lw-ZS7TMNjGxAAuz0v3hb6b04v_uJ97Q=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 800万回 突破",
+        "value": 8000000
+      }
+    ]
   },
   {
     "date": "2026-09-12",

@@ -75,7 +75,7 @@ window.PBERS_RACE = [
         "name": "MOON-BALL",
         "color": "#ccbb3e",
         "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 219000,
+        "subs": 220000,
         "history": [
           {
             "d": "2026-08-30",
@@ -135,7 +135,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-13",
-            "s": 219000
+            "s": 220000
           }
         ]
       },

@@ -1,9 +1,33 @@
 {
   "site": "PBers Global",
   "updated": "2026-09-13",
-  "generated": "2026-09-13T08:05:26+09:00",
-  "count": 2,
+  "generated": "2026-09-13T12:04:00+09:00",
+  "count": 4,
   "items": [
+    {
+      "id": "2026-09-13/subs/moon-ball/220000",
+      "date": "2026-09-13",
+      "channel": "MOON-BALL",
+      "slug": "moon-ball",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 22万人 突破",
+      "value": 220000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/moon-ball/"
+    },
+    {
+      "id": "2026-09-13/views/dotto-edit/8000000",
+      "date": "2026-09-13",
+      "channel": "Dotto edit",
+      "slug": "dotto-edit",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 800万回 突破",
+      "value": 8000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/dotto-edit/"
+    },
     {
       "id": "2026-09-09/subs/opera_cb/190000",
       "date": "2026-09-09",
