@@ -115,7 +115,7 @@ window.PBERS_RACE = [
         "name": "Æž!みかんぼーる🍊",
         "color": "#eba864",
         "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 336000,
+        "subs": 337000,
         "history": [
           {
             "d": "2026-08-20",
@@ -2476,8 +2476,76 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "ちまちもヒエナ ",
+        "name": "ニイソビボール",
         "color": "#cc3eb6",
+        "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 12800,
+        "history": [
+          {
+            "d": "2026-08-30",
+            "s": 7410
+          },
+          {
+            "d": "2026-08-31",
+            "s": 7700
+          },
+          {
+            "d": "2026-09-01",
+            "s": 7980
+          },
+          {
+            "d": "2026-09-02",
+            "s": 8240
+          },
+          {
+            "d": "2026-09-03",
+            "s": 8460
+          },
+          {
+            "d": "2026-09-04",
+            "s": 8680
+          },
+          {
+            "d": "2026-09-05",
+            "s": 9100
+          },
+          {
+            "d": "2026-09-06",
+            "s": 9520
+          },
+          {
+            "d": "2026-09-07",
+            "s": 9940
+          },
+          {
+            "d": "2026-09-08",
+            "s": 10400
+          },
+          {
+            "d": "2026-09-09",
+            "s": 10700
+          },
+          {
+            "d": "2026-09-10",
+            "s": 11200
+          },
+          {
+            "d": "2026-09-11",
+            "s": 11700
+          },
+          {
+            "d": "2026-09-12",
+            "s": 12300
+          },
+          {
+            "d": "2026-09-13",
+            "s": 12700
+          }
+        ]
+      },
+      {
+        "name": "ちまちもヒエナ ",
+        "color": "#d4625e",
         "avatar": "https://yt3.googleusercontent.com/1PHK2GcjaoI7T3lY9QSzv0fHXDKeupVL2xkXG97XANZ1YNzOCjWsk16o0dUnpsbmWklPJpWb4w=s900-c-k-c0x00ffffff-no-rj",
         "subs": 12700,
         "history": [
@@ -2581,7 +2649,7 @@ window.PBERS_RACE = [
       },
       {
         "name": "レメラボール / 🌈🌙【えるめす】",
-        "color": "#d4625e",
+        "color": "#ccc03e",
         "avatar": "https://yt3.googleusercontent.com/PgMT_pQ_UrNxFF8c66TxiZAc14EW2SJikKgha9sBh6PlKPTkW6Evdg8exa07dWNyAVQYenXUNg=s900-c-k-c0x00ffffff-no-rj",
         "subs": 12700,
         "history": [
@@ -2676,74 +2744,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-09-12",
             "s": 12700
-          },
-          {
-            "d": "2026-09-13",
-            "s": 12700
-          }
-        ]
-      },
-      {
-        "name": "ニイソビボール",
-        "color": "#ccc03e",
-        "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 12700,
-        "history": [
-          {
-            "d": "2026-08-30",
-            "s": 7410
-          },
-          {
-            "d": "2026-08-31",
-            "s": 7700
-          },
-          {
-            "d": "2026-09-01",
-            "s": 7980
-          },
-          {
-            "d": "2026-09-02",
-            "s": 8240
-          },
-          {
-            "d": "2026-09-03",
-            "s": 8460
-          },
-          {
-            "d": "2026-09-04",
-            "s": 8680
-          },
-          {
-            "d": "2026-09-05",
-            "s": 9100
-          },
-          {
-            "d": "2026-09-06",
-            "s": 9520
-          },
-          {
-            "d": "2026-09-07",
-            "s": 9940
-          },
-          {
-            "d": "2026-09-08",
-            "s": 10400
-          },
-          {
-            "d": "2026-09-09",
-            "s": 10700
-          },
-          {
-            "d": "2026-09-10",
-            "s": 11200
-          },
-          {
-            "d": "2026-09-11",
-            "s": 11700
-          },
-          {
-            "d": "2026-09-12",
-            "s": 12300
           },
           {
             "d": "2026-09-13",
@@ -4227,7 +4227,7 @@ window.PBERS_RACE = [
         "name": "スーパーボール",
         "color": "#cc903e",
         "avatar": "https://yt3.googleusercontent.com/0NhkSRTABECyIyqd1bt9OTglE5rGWYcMHAcf2beADzj__HG6GqRKGdMZmBnQlWwY2eZ46Gjbkg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 9170,
+        "subs": 9190,
         "history": [
           {
             "d": "2026-08-30",
@@ -4403,7 +4403,7 @@ window.PBERS_RACE = [
         "name": "にこちPB",
         "color": "#d4b95e",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 7200,
+        "subs": 7220,
         "history": [
           {
             "d": "2026-08-21",
@@ -4507,7 +4507,7 @@ window.PBERS_RACE = [
         "name": "ゆうボール",
         "color": "#6fcc3e",
         "avatar": "https://yt3.googleusercontent.com/dDe-vpE0ub720mNouK763bXlq37V8dRRy6yQbJBUGfPobeaj40ktPUSvtcbo66HAkI9dk46oAA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 7160,
+        "subs": 7170,
         "history": [
           {
             "d": "2026-08-22",
@@ -5287,7 +5287,7 @@ window.PBERS_RACE = [
         "name": "りっつんボール",
         "color": "#c4d45e",
         "avatar": "https://yt3.googleusercontent.com/9qdwPP-NnSvcn3Vqyk_Q7yJ7rIFZ559Zl1bEqj50SL_UxoGjU-pm0KUS28B7b7pyuZtGtD5kMA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5300,
+        "subs": 5310,
         "history": [
           {
             "d": "2026-08-30",
@@ -5703,7 +5703,7 @@ window.PBERS_RACE = [
         "name": "スコミヤ228",
         "color": "#3ec0cc",
         "avatar": "https://yt3.googleusercontent.com/d08MA9fnkNe-Afq3BznQl13_urdsh10q0R2-Kl6mvXfAl9Ib9ElsCtrvjP0tiDgdK41KohnTtQQ=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4680,
+        "subs": 4690,
         "history": [
           {
             "d": "2026-08-30",
@@ -5911,7 +5911,7 @@ window.PBERS_RACE = [
         "name": "",
         "color": "#99d45e",
         "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4460,
+        "subs": 4470,
         "history": []
       }
     ]
@@ -6130,7 +6130,7 @@ window.PBERS_RACE = [
         "name": "みすい",
         "color": "#855ed4",
         "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3510,
+        "subs": 3520,
         "history": [
           {
             "d": "2026-08-22",
@@ -6302,7 +6302,7 @@ window.PBERS_RACE = [
         "name": "ウィン【肉声ポーランドボール】",
         "color": "#3ecca8",
         "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3280,
+        "subs": 3290,
         "history": [
           {
             "d": "2026-08-22",
@@ -6959,8 +6959,44 @@ window.PBERS_RACE = [
         ]
       },
       {
-        "name": "某P国の球",
+        "name": "落書きポーラン",
         "color": "#5e5ed4",
+        "avatar": "https://yt3.googleusercontent.com/cxdFaxFBOXsbpkleNJOxqeGaP-2KB1W-6YksDgXqXl4g3XMilwTNJw_dcDk1SuZ_dgtnwdXRGg=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 2620,
+        "history": [
+          {
+            "d": "2026-09-07",
+            "s": 2170
+          },
+          {
+            "d": "2026-09-08",
+            "s": 2170
+          },
+          {
+            "d": "2026-09-09",
+            "s": 2200
+          },
+          {
+            "d": "2026-09-10",
+            "s": 2430
+          },
+          {
+            "d": "2026-09-11",
+            "s": 2510
+          },
+          {
+            "d": "2026-09-12",
+            "s": 2570
+          },
+          {
+            "d": "2026-09-13",
+            "s": 2610
+          }
+        ]
+      },
+      {
+        "name": "某P国の球",
+        "color": "#bb3ecc",
         "avatar": "https://yt3.googleusercontent.com/XrXLTRaii_TN3m_FTr8J_fMlh1VJfhmf43mY2JzU4iNTLMMtYQR0xvyge9r5Tokxl0TNVW-wn30=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2610,
         "history": [
@@ -7019,42 +7055,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-09-12",
             "s": 2610
-          },
-          {
-            "d": "2026-09-13",
-            "s": 2610
-          }
-        ]
-      },
-      {
-        "name": "落書きポーラン",
-        "color": "#bb3ecc",
-        "avatar": "https://yt3.googleusercontent.com/cxdFaxFBOXsbpkleNJOxqeGaP-2KB1W-6YksDgXqXl4g3XMilwTNJw_dcDk1SuZ_dgtnwdXRGg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 2610,
-        "history": [
-          {
-            "d": "2026-09-07",
-            "s": 2170
-          },
-          {
-            "d": "2026-09-08",
-            "s": 2170
-          },
-          {
-            "d": "2026-09-09",
-            "s": 2200
-          },
-          {
-            "d": "2026-09-10",
-            "s": 2430
-          },
-          {
-            "d": "2026-09-11",
-            "s": 2510
-          },
-          {
-            "d": "2026-09-12",
-            "s": 2570
           },
           {
             "d": "2026-09-13",
