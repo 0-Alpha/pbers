@@ -500,7 +500,7 @@ window.PBERS_DATA = [
     "views": 8903006,
     "subsLabel": "チャンネル登録者数 1.78万人",
     "viewsLabel": "8,903,006回視聴",
-    "videos": 255,
+    "videos": 256,
     "url": "https://www.youtube.com/channel/UCYhJeY5hQxjCB5onai17ExA",
     "avatar": "https://yt3.googleusercontent.com/Ky8R9pg8h7UvmF53F7Bv9forW3gIMrGUzI2JuRlUaX_Lzf19_45Sif5nf5BqRdQy0WDtPvGvLw=s900-c-k-c0x00ffffff-no-rj",
     "color": "#ad3ecc",
@@ -635,7 +635,7 @@ window.PBERS_DATA = [
     "views": 23774148,
     "subsLabel": "チャンネル登録者数 1.45万人",
     "viewsLabel": "23,774,148回視聴",
-    "videos": 43,
+    "videos": 44,
     "url": "https://www.youtube.com/channel/UC5nTC9yBAAxfaefKiXB7cZw",
     "avatar": "https://yt3.googleusercontent.com/OKTvYCqWkuYG-s3iq1dydM6YDas44QIY_hQxl1bPLPQbGzbLUe-ljaKZ4AoJu1kb1r2PI0GPXnI=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d4b55e",
@@ -1261,9 +1261,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "田所浩二",
-    "subs": 6680,
+    "subs": 6670,
     "views": 2047810,
-    "subsLabel": "チャンネル登録者数 6680人",
+    "subsLabel": "チャンネル登録者数 6670人",
     "viewsLabel": "2,047,810回視聴",
     "videos": 37,
     "url": "https://www.youtube.com/channel/UCvOfNL3MjhbjxAU8U9Fi9uQ",
@@ -1771,9 +1771,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ソビエト・ロシアぼーる",
-    "subs": 3460,
+    "subs": 3450,
     "views": 2163369,
-    "subsLabel": "チャンネル登録者数 3460人",
+    "subsLabel": "チャンネル登録者数 3450人",
     "viewsLabel": "2,163,369回視聴",
     "videos": 107,
     "url": "https://www.youtube.com/channel/UCYxaKOMYfjlr2dLcK6ZKwvA",
@@ -1892,9 +1892,9 @@ window.PBERS_DATA = [
   {
     "name": "クッキー&シャワーボール",
     "subs": 3010,
-    "views": 815751,
+    "views": 815789,
     "subsLabel": "チャンネル登録者数 3010人",
-    "viewsLabel": "815,751回視聴",
+    "viewsLabel": "815,789回視聴",
     "videos": 112,
     "url": "https://www.youtube.com/channel/UCZpcs1pUBxcHSEHYIjfwwCw",
     "avatar": "https://yt3.googleusercontent.com/cXpSylNTlpqGVjLykfV18UsxKIi4FQmplMTjUXchSuaznpm_Eiyp5DjsdceUfFwZ5Ecl3n06xA=s900-c-k-c0x00ffffff-no-rj",
@@ -2447,4 +2447,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-14";
-window.PBERS_PREDICT = {"asOfMs": 1789354800000, "subs": {"base": 2887500, "rate": 7.344041705458007e-05}, "views": {"base": 2235480492, "rate": 0.07009434247032857}};
+window.PBERS_PREDICT = {"asOfMs": 1789376400000, "subs": {"base": 2887480, "rate": 7.276591926346785e-05}, "views": {"base": 2235480530, "rate": 0.06992449471409434}};

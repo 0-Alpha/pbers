@@ -223,7 +223,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 337000
+            "s": 338000
           }
         ]
       },
@@ -4455,7 +4455,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 9200
+            "s": 9220
           }
         ]
       },
@@ -4563,7 +4563,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 9160
+            "s": 9150
           }
         ]
       }
@@ -4675,7 +4675,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 7230
+            "s": 7240
           }
         ]
       },
@@ -5283,7 +5283,7 @@ window.PBERS_RACE = [
         "name": "田所浩二",
         "color": "#72d45e",
         "avatar": "https://yt3.googleusercontent.com/Ht3xBUYGa1q7jf81ZNMimtHDeFwJg9OGx0uVryQc6VfR5cmzW942vpj0LrAFe9-C0gj9Blv9cH0=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 6680,
+        "subs": 6670,
         "history": [
           {
             "d": "2026-08-22",
@@ -5379,7 +5379,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 6680
+            "s": 6670
           }
         ]
       }
@@ -5487,7 +5487,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 5340
+            "s": 5350
           }
         ]
       },
@@ -5855,7 +5855,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 4730
+            "s": 4740
           }
         ]
       },
@@ -6091,7 +6091,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 4510
+            "s": 4550
           }
         ]
       },
@@ -6311,7 +6311,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 4450
+            "s": 4460
           }
         ]
       }
@@ -6455,7 +6455,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 3760
+            "s": 3770
           }
         ]
       }
@@ -6711,7 +6711,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 3530
+            "s": 3540
           }
         ]
       },
@@ -6867,7 +6867,7 @@ window.PBERS_RACE = [
         "name": "ソビエト・ロシアぼーる",
         "color": "#ccc93e",
         "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3460,
+        "subs": 3450,
         "history": [
           {
             "d": "2026-08-30",
@@ -7647,7 +7647,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 2810
+            "s": 2830
           }
         ]
       },
@@ -7795,7 +7795,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 2740
+            "s": 2750
           }
         ]
       },
@@ -7911,7 +7911,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 2630
+            "s": 2640
           }
         ]
       },
@@ -7983,7 +7983,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 2630
+            "s": 2620
           }
         ]
       },
@@ -8351,7 +8351,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 2500
+            "s": 2490
           }
         ]
       },
@@ -8567,7 +8567,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 2340
+            "s": 2350
           }
         ]
       }
@@ -9115,7 +9115,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 2070
+            "s": 2080
           }
         ]
       }
@@ -9155,7 +9155,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 2080
+            "s": 2070
           }
         ]
       },
