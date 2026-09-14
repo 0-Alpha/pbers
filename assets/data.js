@@ -1081,9 +1081,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ばかわたし",
-    "subs": 8770,
+    "subs": 8760,
     "views": 5037109,
-    "subsLabel": "チャンネル登録者数 8770人",
+    "subsLabel": "チャンネル登録者数 8760人",
     "viewsLabel": "5,037,109回視聴",
     "videos": 93,
     "url": "https://www.youtube.com/channel/UCnZNY63Txhu4ot3l2lbicOA",
@@ -1425,21 +1425,6 @@ window.PBERS_DATA = [
     "vLong": null
   },
   {
-    "name": "ていてく",
-    "subs": 5000,
-    "views": 1855913,
-    "subsLabel": "チャンネル登録者数 5000人",
-    "viewsLabel": "1,855,913回視聴",
-    "videos": 68,
-    "url": "https://www.youtube.com/channel/UCdnAJEteT_M16ZspihWqfSQ",
-    "avatar": "https://yt3.googleusercontent.com/yXzwjLvaGxqpUYtLPiq0eehCASXpPn1dhRiTBpE5Z_PcwOdTSTF1lu7uEPzHcM-2o2Jv417b5w=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#ad5ed4",
-    "genre": "ポーランドボーラー",
-    "slug": "ていてく",
-    "vShort": null,
-    "vLong": null
-  },
-  {
     "name": "くるみボール(活動休止中)",
     "subs": 4990,
     "views": 1831564,
@@ -1448,9 +1433,24 @@ window.PBERS_DATA = [
     "videos": 314,
     "url": "https://www.youtube.com/channel/UCO9_kYdgwpyWRUaf2BgVovQ",
     "avatar": "https://yt3.googleusercontent.com/dqSx0FFusMHqrzyHzUSAgX2hPTR01f9gPDBPpFTXRtHLTLgdfZWzBxvj_EUUUv9GTvCjDfZGJg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc3e7e",
+    "color": "#ad5ed4",
     "genre": "ポーランドボーラー",
     "slug": "くるみボール活動休止中",
+    "vShort": null,
+    "vLong": null
+  },
+  {
+    "name": "ていてく",
+    "subs": 4990,
+    "views": 1855913,
+    "subsLabel": "チャンネル登録者数 4990人",
+    "viewsLabel": "1,855,913回視聴",
+    "videos": 68,
+    "url": "https://www.youtube.com/channel/UCdnAJEteT_M16ZspihWqfSQ",
+    "avatar": "https://yt3.googleusercontent.com/yXzwjLvaGxqpUYtLPiq0eehCASXpPn1dhRiTBpE5Z_PcwOdTSTF1lu7uEPzHcM-2o2Jv417b5w=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#cc3e7e",
+    "genre": "ポーランドボーラー",
+    "slug": "ていてく",
     "vShort": null,
     "vLong": null
   },
@@ -1471,9 +1471,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "カルマルボール",
-    "subs": 4760,
+    "subs": 4770,
     "views": 1436185,
-    "subsLabel": "チャンネル登録者数 4760人",
+    "subsLabel": "チャンネル登録者数 4770人",
     "viewsLabel": "1,436,185回視聴",
     "videos": 54,
     "url": "https://www.youtube.com/channel/UCZbTlsZfAf1cmBgLnYMfPWg",
@@ -1531,9 +1531,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ハッホチャンネル",
-    "subs": 4630,
+    "subs": 4640,
     "views": 1746550,
-    "subsLabel": "チャンネル登録者数 4630人",
+    "subsLabel": "チャンネル登録者数 4640人",
     "viewsLabel": "1,746,550回視聴",
     "videos": 124,
     "url": "https://www.youtube.com/channel/UCpgQli0Snj3llxm7f-1A8IQ",
@@ -1771,9 +1771,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ソビエト・ロシアぼーる",
-    "subs": 3460,
+    "subs": 3470,
     "views": 2163369,
-    "subsLabel": "チャンネル登録者数 3460人",
+    "subsLabel": "チャンネル登録者数 3470人",
     "viewsLabel": "2,163,369回視聴",
     "videos": 107,
     "url": "https://www.youtube.com/channel/UCYxaKOMYfjlr2dLcK6ZKwvA",
@@ -2447,4 +2447,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-14";
-window.PBERS_PREDICT = {"asOfMs": 1789398000000, "subs": {"base": 2890430, "rate": 7.941348315059728e-05}, "views": {"base": 2235480530, "rate": 0.06375559964912164}};
+window.PBERS_PREDICT = {"asOfMs": 1789398000000, "subs": {"base": 2890450, "rate": 7.941348315059728e-05}, "views": {"base": 2235480530, "rate": 0.06375559964912164}};
