@@ -20,7 +20,7 @@ window.PBERS_DATA = [
     "views": 39289545,
     "subsLabel": "チャンネル登録者数 22万人",
     "viewsLabel": "39,289,545回視聴",
-    "videos": 31,
+    "videos": 32,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
     "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#ccbb3e",
@@ -106,9 +106,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "F丸",
-    "subs": 33700,
+    "subs": 33600,
     "views": 29686808,
-    "subsLabel": "チャンネル登録者数 3.37万人",
+    "subsLabel": "チャンネル登録者数 3.36万人",
     "viewsLabel": "29,686,808回視聴",
     "videos": 89,
     "url": "https://www.youtube.com/channel/UCEJRQBqXi3z3UXnHdueIvJg",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-14";
-window.PBERS_PREDICT = {"asOfMs": 1789376400000, "subs": {"base": 1521490, "rate": 1.9677442208985804e-05}, "views": {"base": 672697912, "rate": 0.01314112149689106}};
+window.PBERS_PREDICT = {"asOfMs": 1789398000000, "subs": {"base": 1521390, "rate": 1.720181305282774e-05}, "views": {"base": 672697912, "rate": 0.01204863074370515}};
