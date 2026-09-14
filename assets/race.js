@@ -2123,7 +2123,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 15300
+            "s": 15400
           }
         ]
       },
@@ -2567,7 +2567,7 @@ window.PBERS_RACE = [
         "name": "ニイソビボール",
         "color": "#cc3eb6",
         "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 12900,
+        "subs": 13000,
         "history": [
           {
             "d": "2026-08-30",
@@ -2631,7 +2631,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 12900
+            "s": 13000
           }
         ]
       }
@@ -4455,7 +4455,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 9190
+            "s": 9200
           }
         ]
       },
@@ -4575,7 +4575,7 @@ window.PBERS_RACE = [
         "name": "にこちPB",
         "color": "#d4b95e",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 7220,
+        "subs": 7230,
         "history": [
           {
             "d": "2026-08-21",
@@ -4675,7 +4675,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 7220
+            "s": 7230
           }
         ]
       },
@@ -5063,7 +5063,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 7090
+            "s": 7100
           }
         ]
       },
@@ -6080,8 +6080,24 @@ window.PBERS_RACE = [
         ]
       },
       {
-        "name": "アドラー",
+        "name": "ハッホチャンネル",
         "color": "#cc953e",
+        "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 4510,
+        "history": [
+          {
+            "d": "2026-09-13",
+            "s": 4480
+          },
+          {
+            "d": "2026-09-14",
+            "s": 4510
+          }
+        ]
+      },
+      {
+        "name": "アドラー",
+        "color": "#99d45e",
         "avatar": "https://yt3.googleusercontent.com/ScS6HM9iypOCDBOdKggwfPhnnk8le2BxxccB7H_LmgRUXx56Noe0GMr1OjcJFs-qlVzoqvHdEkk=s900-c-k-c0x00ffffff-no-rj",
         "subs": 4500,
         "history": [
@@ -6148,22 +6164,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-09-14",
             "s": 4500
-          }
-        ]
-      },
-      {
-        "name": "ハッホチャンネル",
-        "color": "#99d45e",
-        "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4500,
-        "history": [
-          {
-            "d": "2026-09-13",
-            "s": 4480
-          },
-          {
-            "d": "2026-09-14",
-            "s": 4490
           }
         ]
       }
@@ -6491,7 +6491,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 3520
+            "s": 3530
           }
         ]
       },
@@ -6572,8 +6572,80 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "YMポーランドボール",
+        "name": "ソビエト・ロシアぼーる",
         "color": "#ccc93e",
+        "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 3450,
+        "history": [
+          {
+            "d": "2026-08-30",
+            "s": 3060
+          },
+          {
+            "d": "2026-08-31",
+            "s": 3070
+          },
+          {
+            "d": "2026-09-01",
+            "s": 3070
+          },
+          {
+            "d": "2026-09-02",
+            "s": 3070
+          },
+          {
+            "d": "2026-09-03",
+            "s": 3070
+          },
+          {
+            "d": "2026-09-04",
+            "s": 3080
+          },
+          {
+            "d": "2026-09-05",
+            "s": 3090
+          },
+          {
+            "d": "2026-09-06",
+            "s": 3120
+          },
+          {
+            "d": "2026-09-07",
+            "s": 3160
+          },
+          {
+            "d": "2026-09-08",
+            "s": 3160
+          },
+          {
+            "d": "2026-09-09",
+            "s": 3170
+          },
+          {
+            "d": "2026-09-10",
+            "s": 3240
+          },
+          {
+            "d": "2026-09-11",
+            "s": 3270
+          },
+          {
+            "d": "2026-09-12",
+            "s": 3310
+          },
+          {
+            "d": "2026-09-13",
+            "s": 3390
+          },
+          {
+            "d": "2026-09-14",
+            "s": 3450
+          }
+        ]
+      },
+      {
+        "name": "YMポーランドボール",
+        "color": "#6ed45e",
         "avatar": "https://yt3.googleusercontent.com/pbUH8H8pR_rtl-D5KyL2VyJzCmM82pF5ttDsrAdmmnFqFAry_gy_VL3Z97xQbQEyxIuZHyD8oOQ=s900-c-k-c0x00ffffff-no-rj",
         "subs": 3450,
         "history": [
@@ -6642,78 +6714,6 @@ window.PBERS_RACE = [
             "s": 3450
           }
         ]
-      },
-      {
-        "name": "ソビエト・ロシアぼーる",
-        "color": "#6ed45e",
-        "avatar": "https://yt3.googleusercontent.com/_uV7HxGga2gPQTXakZwFeuEuhHR92Eg5jYBHpGAIwtU9k7eVKceLIu0WSps9DwmFq1BOi-L60Q=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3440,
-        "history": [
-          {
-            "d": "2026-08-30",
-            "s": 3060
-          },
-          {
-            "d": "2026-08-31",
-            "s": 3070
-          },
-          {
-            "d": "2026-09-01",
-            "s": 3070
-          },
-          {
-            "d": "2026-09-02",
-            "s": 3070
-          },
-          {
-            "d": "2026-09-03",
-            "s": 3070
-          },
-          {
-            "d": "2026-09-04",
-            "s": 3080
-          },
-          {
-            "d": "2026-09-05",
-            "s": 3090
-          },
-          {
-            "d": "2026-09-06",
-            "s": 3120
-          },
-          {
-            "d": "2026-09-07",
-            "s": 3160
-          },
-          {
-            "d": "2026-09-08",
-            "s": 3160
-          },
-          {
-            "d": "2026-09-09",
-            "s": 3170
-          },
-          {
-            "d": "2026-09-10",
-            "s": 3240
-          },
-          {
-            "d": "2026-09-11",
-            "s": 3270
-          },
-          {
-            "d": "2026-09-12",
-            "s": 3310
-          },
-          {
-            "d": "2026-09-13",
-            "s": 3390
-          },
-          {
-            "d": "2026-09-14",
-            "s": 3420
-          }
-        ]
       }
     ]
   },
@@ -6723,7 +6723,7 @@ window.PBERS_RACE = [
         "name": "ウィン【肉声ポーランドボール】",
         "color": "#3ecca8",
         "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3290,
+        "subs": 3300,
         "history": [
           {
             "d": "2026-08-22",
@@ -6819,7 +6819,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 3290
+            "s": 3300
           }
         ]
       },
@@ -7419,7 +7419,7 @@ window.PBERS_RACE = [
         "name": "わのさち【和の幸】",
         "color": "#d4955e",
         "avatar": "https://yt3.googleusercontent.com/sa2_oq5pSFp0qtqAOo0T2P_IVLq7UdddgxohTNFYpGAPKqf4x-RZJeYW9sJjtcAVWy2IMDrVpg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 2800,
+        "subs": 2810,
         "history": [
           {
             "d": "2026-09-13",
@@ -7427,7 +7427,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-14",
-            "s": 2790
+            "s": 2810
           }
         ]
       }
