@@ -150,11 +150,10 @@ FIXED = {
 # ここに書いた文章はチャンネルページ冒頭に「独自解説」として表示される(SEO/独自性向上・AdSense対策)。
 # 追加は "チャンネルID": "説明文" を足すだけ。
 CHANNEL_DESC = {
-    # フヒフム(下書き。運営の言葉に書き換えてOK)
+    # フヒフム
     "UCkjdTrE4hiJ4qNOV7NPGSSw":
         "フヒフムは、日本のポーランドボール系YouTuber（ポーランドボーラー）のなかでも屈指の人気を誇るチャンネル。"
-        "国や地域を丸いキャラクター（ボール）に擬人化するポーランドボールのスタイルで、テンポの良いショート動画を中心に"
-        "歴史・地理ネタをわかりやすく描き、多くのファンを集めています。",
+        "ロング動画・ショート動画のどちらも高い再生数を記録しており、特に定期的なロング動画の投稿が魅力です。",
 }
 
 def hsl(h, s, l):
@@ -350,7 +349,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250939">
+<link rel="stylesheet" href="/assets/style.css?v=250940">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -371,7 +370,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250939"></script>
+<script src="/assets/channel.js?v=250940"></script>
 </body>
 </html>
 '''
