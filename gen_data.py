@@ -146,6 +146,17 @@ FIXED = {
     "UCpOhdzl-CTUQ8xHonbVWsZw": "#4ec3e6",  # うずまき (水色)
 }
 
+# 手書きの独自説明文(任意)。チャンネルID -> 文章。空行(\n\n)で段落分け。
+# ここに書いた文章はチャンネルページ冒頭に「独自解説」として表示される(SEO/独自性向上・AdSense対策)。
+# 追加は "チャンネルID": "説明文" を足すだけ。
+CHANNEL_DESC = {
+    # フヒフム(下書き。運営の言葉に書き換えてOK)
+    "UCkjdTrE4hiJ4qNOV7NPGSSw":
+        "フヒフムは、日本のポーランドボール系YouTuber（ポーランドボーラー）のなかでも屈指の人気を誇るチャンネル。"
+        "国や地域を丸いキャラクター（ボール）に擬人化するポーランドボールのスタイルで、テンポの良いショート動画を中心に"
+        "歴史・地理ネタをわかりやすく描き、多くのファンを集めています。",
+}
+
 def hsl(h, s, l):
     r, g, b = colorsys.hls_to_rgb(h / 360, l, s)
     return "#%02x%02x%02x" % (round(r * 255), round(g * 255), round(b * 255))
@@ -339,7 +350,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250938">
+<link rel="stylesheet" href="/assets/style.css?v=250939">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -360,7 +371,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250938"></script>
+<script src="/assets/channel.js?v=250939"></script>
 </body>
 </html>
 '''
@@ -385,9 +396,50 @@ def _stat_tile(label, v, unit):
             '<div class="v num">%s<small>%s</small></div>'
             '<div class="sub">%s%s</div></div>') % (label, "{:,}".format(v), unit, _jp(v), unit)
 
-def ch_header_html(d, videos, rank, total, esc, bytype_html=""):
+def ch_auto_desc(d, rank, total, vcount, growth7, bt):
+    """データから独自の解説文を組み立てる(数字の羅列でなく“読める文章”にして付加価値を出す)。"""
+    name = d["name"]; subs = d.get("subs"); views = d.get("views")
+    parts = [name + " は、国や地域を丸いキャラクターに擬人化する「ポーランドボール」系のYouTubeチャンネル（ポーランドボーラー）です。"]
+    facts = []
+    if subs is not None:
+        facts.append("登録者数は約%s人（PBers掲載%d局中%d位）" % (_jp(subs), total, rank))
+    if views is not None:
+        facts.append("総再生数は約%s回" % _jp(views))
+    if vcount is not None:
+        facts.append("投稿数は%d本" % vcount)
+    if facts:
+        parts.append("、".join(facts) + "です。")
+    if growth7 is not None and subs:
+        prev = subs - growth7
+        if growth7 > 0:
+            pct = (growth7 / prev * 100) if prev > 0 else 0
+            parts.append("直近7日間で登録者が約+%s人（約+%.1f%%）と伸びています。" % ("{:,}".format(growth7), pct))
+        elif growth7 < 0:
+            parts.append("直近7日間の登録者数はやや減少しています。")
+        else:
+            parts.append("直近7日間の登録者数はほぼ横ばいです。")
+    if bt:
+        sv = (bt.get("short") or {}).get("views") or 0
+        lv = (bt.get("long") or {}).get("views") or 0
+        if sv + lv > 0:
+            sp = round(sv / (sv + lv) * 100)
+            if sp >= 60:
+                parts.append("動画はショート中心で、総再生数の約%d%%がショートによるものです。" % sp)
+            elif sp <= 40:
+                parts.append("横動画（ロング）中心で、総再生数の約%d%%が横動画によるものです。" % (100 - sp))
+            else:
+                parts.append("ショートと横動画をバランスよく投稿しています。")
+    parts.append("数値はYouTubeの公開情報をもとにPBersが毎日自動集計しており、推移グラフや日本・海外ランキングでの順位も確認できます。")
+    return " ".join(parts)
+
+def ch_header_html(d, videos, rank, total, esc, bytype_html="", growth7=None, bt=None):
     """チャンネル個別ページのヘッダを静的HTMLで生成(SEO用に名前・数値・説明文を本文に載せる)。"""
     name = esc(d["name"])
+    man = CHANNEL_DESC.get(d["id"], "").strip()
+    man_html = ""
+    if man:
+        man_html = "".join('<p class="ch-desc-man">' + esc(par.strip()) + '</p>' for par in man.split("\n\n") if par.strip())
+    auto_html = '<p class="ch-desc">' + esc(ch_auto_desc(d, rank, total, videos, growth7, bt)) + '</p>'
     return (
         '<div class="ch-head">'
           '<img class="ch-av" src="' + esc(d["avatar"]) + '" alt="' + name + ' のアイコン" onerror="this.style.visibility=\'hidden\'">'
@@ -408,6 +460,9 @@ def ch_header_html(d, videos, rank, total, esc, bytype_html=""):
           _stat_tile("投稿数", videos, "本") +
         '</div>'
         + bytype_html +
+        '<div class="ch-about"><div class="sec-head"><h2>このチャンネルについて <span class="en">About</span></h2></div>'
+          + man_html + auto_html +
+        '</div>'
         '<div class="sec-head" style="margin-top:34px"><h2>推移 <span class="en">History</span></h2>'
           '<span class="note" id="ch-note"></span></div>'
         '<div class="controls" style="justify-content:flex-start"><div class="toggle" id="ch-toggle">'
@@ -588,7 +643,8 @@ def build_channel_pages(order, colors):
               "videos": vcount,
               "url": d["url"], "avatar": d["avatar"], "color": colors[cid],
               "genre": genre_of(cid), "rank": i + 1, "total": total}
-        header = (ch_header_html(d, vcount, i + 1, total, _html.escape, ch_bytype_html(bt_map.get(cid)))
+        header = (ch_header_html(d, vcount, i + 1, total, _html.escape, ch_bytype_html(bt_map.get(cid)),
+                                 growth7=growth_map.get(cid), bt=bt_map.get(cid))
                   + ch_footer_html(order, i, growth_map, _html.escape))
         page = (CH_TPL
                 .replace("{{TITLE}}", _html.escape(d["name"]))

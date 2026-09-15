@@ -369,6 +369,9 @@ section.block{padding:46px 0}
 .ch-tile .v small{font-size:14px;color:var(--muted);font-weight:700;margin-left:3px}
 .ch-tile .sub{font-family:var(--num);font-weight:700;font-size:12.5px;color:var(--muted);margin-top:7px;min-height:16px}
 @media(max-width:620px){ .ch-stats{grid-template-columns:1fr} }
+.ch-about{margin-top:30px}
+.ch-desc-man{font-family:var(--jp);font-size:15px;line-height:1.9;color:var(--text);margin:0 0 12px}
+.ch-desc{font-family:var(--jp);font-size:14px;line-height:1.9;color:var(--muted);margin:0}
 
 /* ---------- channel page: 動画タイプ別(ロング/ショート比率＋1本あたり平均) ---------- */
 .bt{--bt-long:#5b8def;--bt-short:#e0554b;background:var(--panel-2,var(--panel));border:1px solid var(--line);
