@@ -17,9 +17,9 @@ window.PBERS_DATA = [
   {
     "name": "MOON-BALL",
     "subs": 221000,
-    "views": 39235572,
+    "views": 39314843,
     "subsLabel": "チャンネル登録者数 22.1万人",
-    "viewsLabel": "39,235,572回視聴",
+    "viewsLabel": "39,314,843回視聴",
     "videos": 32,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
     "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-15";
-window.PBERS_PREDICT = {"asOfMs": 1789484400000, "subs": {"base": 1523510, "rate": 2.0927130577737884e-05}, "views": {"base": 673265109, "rate": 0.010649461300305564}};
+window.PBERS_PREDICT = {"asOfMs": 1789484400000, "subs": {"base": 1523510, "rate": 2.0927130577737884e-05}, "views": {"base": 673344380, "rate": 0.010649461300305564}};
