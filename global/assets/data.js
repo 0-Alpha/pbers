@@ -1,9 +1,9 @@
 window.PBERS_DATA = [
   {
     "name": "JP-BALL",
-    "subs": 438000,
+    "subs": 439000,
     "views": 166057775,
-    "subsLabel": "チャンネル登録者数 43.8万人",
+    "subsLabel": "チャンネル登録者数 43.9万人",
     "viewsLabel": "166,057,775回視聴",
     "videos": 128,
     "url": "https://www.youtube.com/channel/UCZ-zUkkdNTYAYDgkDyeb_hA",
@@ -181,9 +181,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Past_Ball",
-    "subs": 7730,
+    "subs": 7740,
     "views": 3529353,
-    "subsLabel": "チャンネル登録者数 7730人",
+    "subsLabel": "チャンネル登録者数 7740人",
     "viewsLabel": "3,529,353回視聴",
     "videos": 213,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-15";
-window.PBERS_PREDICT = {"asOfMs": 1789462800000, "subs": {"base": 1522500, "rate": 2.0265420746626467e-05}, "views": {"base": 673265109, "rate": 0.011646993920021134}};
+window.PBERS_PREDICT = {"asOfMs": 1789462800000, "subs": {"base": 1523510, "rate": 2.0265420746626467e-05}, "views": {"base": 673265109, "rate": 0.011646993920021134}};
