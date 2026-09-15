@@ -2,7 +2,19 @@ window.PBERS_NEWS = [
   {
     "date": "2026-09-15",
     "label": "9月15日(火)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "Æž!みかんぼーる🍊",
+        "color": "#eba864",
+        "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 34万人 突破",
+        "value": 340000
+      }
+    ]
   },
   {
     "date": "2026-09-14",

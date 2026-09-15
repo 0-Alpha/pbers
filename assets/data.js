@@ -35,7 +35,7 @@ window.PBERS_DATA = [
     "views": 222967661,
     "subsLabel": "チャンネル登録者数 30.5万人",
     "viewsLabel": "222,967,661回視聴",
-    "videos": 277,
+    "videos": 278,
     "url": "https://www.youtube.com/channel/UC6BwO1hK3hHd-Hr43jokcyg",
     "avatar": "https://yt3.googleusercontent.com/mnFY8X_lmtyW54Uh5ocg1QJQVTxTRKG9XDdrGAhxFZpPPJzhsGue-cMHqLBCsIRF4hBHjsLU=s900-c-k-c0x00ffffff-no-rj",
     "color": "#2f80ed",
@@ -1036,9 +1036,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "スーパーボール",
-    "subs": 9290,
+    "subs": 9300,
     "views": 5063251,
-    "subsLabel": "チャンネル登録者数 9290人",
+    "subsLabel": "チャンネル登録者数 9300人",
     "viewsLabel": "5,063,251回視聴",
     "videos": 279,
     "url": "https://www.youtube.com/channel/UCsoMWL2O3xnXe4VQMC3TDmw",
@@ -1352,9 +1352,9 @@ window.PBERS_DATA = [
   {
     "name": "ヴァイマル共和国ボール [底辺PBer連盟] ",
     "subs": 5350,
-    "views": 3975870,
+    "views": 3976317,
     "subsLabel": "チャンネル登録者数 5350人",
-    "viewsLabel": "3,975,870回視聴",
+    "viewsLabel": "3,976,317回視聴",
     "videos": 289,
     "url": "https://www.youtube.com/channel/UChdZLH2O41ruwShCEExLzIg",
     "avatar": "https://yt3.googleusercontent.com/dQc05XhmvR-D6BpN8LxOmCx-tE2IB8BzBHGnNtg3ZbmfeSspkw4_q-_vs0-LVrBnkvb-PtibOg=s900-c-k-c0x00ffffff-no-rj",
@@ -1456,9 +1456,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "オマエナガ",
-    "subs": 4870,
+    "subs": 4880,
     "views": 2165077,
-    "subsLabel": "チャンネル登録者数 4870人",
+    "subsLabel": "チャンネル登録者数 4880人",
     "viewsLabel": "2,165,077回視聴",
     "videos": 59,
     "url": "https://www.youtube.com/channel/UCzJCKSLin3HcvreE4rUapVw",
@@ -1485,6 +1485,21 @@ window.PBERS_DATA = [
     "vLong": null
   },
   {
+    "name": "ハッホチャンネル",
+    "subs": 4720,
+    "views": 1816497,
+    "subsLabel": "チャンネル登録者数 4720人",
+    "viewsLabel": "1,816,497回視聴",
+    "videos": 124,
+    "url": "https://www.youtube.com/channel/UCpgQli0Snj3llxm7f-1A8IQ",
+    "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#5ed476",
+    "genre": "ポーランドボーラー",
+    "slug": "ハッホチャンネル",
+    "vShort": 1708120,
+    "vLong": 5037
+  },
+  {
     "name": "旧食DX",
     "subs": 4710,
     "views": 1790546,
@@ -1493,26 +1508,11 @@ window.PBERS_DATA = [
     "videos": 259,
     "url": "https://www.youtube.com/channel/UCGLN4EjvE2-nxXUvkb1LyGQ",
     "avatar": "https://yt3.googleusercontent.com/eS59gj4sUqncdlk0_nSnxkfIKeKASy0K5CwgIpOHv4JM4KR3XSMKM_uhXloSzt8vcLds6FiJjIA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5ed476",
+    "color": "#3ec0cc",
     "genre": "ポーランドボーラー",
     "slug": "旧食dx",
     "vShort": null,
     "vLong": null
-  },
-  {
-    "name": "ハッホチャンネル",
-    "subs": 4710,
-    "views": 1816497,
-    "subsLabel": "チャンネル登録者数 4710人",
-    "viewsLabel": "1,816,497回視聴",
-    "videos": 124,
-    "url": "https://www.youtube.com/channel/UCpgQli0Snj3llxm7f-1A8IQ",
-    "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3ec0cc",
-    "genre": "ポーランドボーラー",
-    "slug": "ハッホチャンネル",
-    "vShort": 1708120,
-    "vLong": 5037
   },
   {
     "name": "スコミヤ228",
@@ -1561,9 +1561,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "萱口",
-    "subs": 4540,
+    "subs": 4550,
     "views": 1621039,
-    "subsLabel": "チャンネル登録者数 4540人",
+    "subsLabel": "チャンネル登録者数 4550人",
     "viewsLabel": "1,621,039回視聴",
     "videos": 70,
     "url": "https://www.youtube.com/channel/UCfl1W6sL5-es_rWqA7bGbRQ",
@@ -2195,7 +2195,7 @@ window.PBERS_DATA = [
     "views": 1264427,
     "subsLabel": "チャンネル登録者数 2310人",
     "viewsLabel": "1,264,427回視聴",
-    "videos": 464,
+    "videos": 449,
     "url": "https://www.youtube.com/channel/UCNaM6GYI9UHmGODfv7xmQ5g",
     "avatar": "https://yt3.googleusercontent.com/8x-zULuE0bf6GbydUZh3nQyTPrQ7rnZNHPQGN3mwP0bacDUOxtqn3XU0ZSOMMFXbT34D3LVPlQ=s900-c-k-c0x00ffffff-no-rj",
     "color": "#66cc3e",
@@ -2447,4 +2447,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-15";
-window.PBERS_PREDICT = {"asOfMs": 1789441200000, "subs": {"base": 2892620, "rate": 6.801699718381673e-05}, "views": {"base": 2239133371, "rate": 0.06484871768076315}};
+window.PBERS_PREDICT = {"asOfMs": 1789462800000, "subs": {"base": 2892660, "rate": 6.922487952747316e-05}, "views": {"base": 2239133818, "rate": 0.06216018962162225}};
