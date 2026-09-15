@@ -61,9 +61,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "こうちゃ(ポーランドボール)",
-    "subs": 57900,
+    "subs": 58000,
     "views": 30723074,
-    "subsLabel": "チャンネル登録者数 5.79万人",
+    "subsLabel": "チャンネル登録者数 5.8万人",
     "viewsLabel": "30,723,074回視聴",
     "videos": 124,
     "url": "https://www.youtube.com/channel/UCScWUYsYXgrDN8AVIRJLtLw",
@@ -80,7 +80,7 @@ window.PBERS_DATA = [
     "views": 27719739,
     "subsLabel": "チャンネル登録者数 5.48万人",
     "viewsLabel": "27,719,739回視聴",
-    "videos": 954,
+    "videos": 955,
     "url": "https://www.youtube.com/channel/UC_qD8VahU0Fr3q1SKg6kYtg",
     "avatar": "https://yt3.googleusercontent.com/f__uscB73pTTt5p7rHmCpVYVZcLrsZP-lWyHAOciK2Fx-IGcXFuDN1vRJTzsBRhp8LF7g60YVQ=s900-c-k-c0x00ffffff-no-rj",
     "color": "#e01e26",
@@ -1471,9 +1471,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "カルマルボール",
-    "subs": 4860,
+    "subs": 4870,
     "views": 1440020,
-    "subsLabel": "チャンネル登録者数 4860人",
+    "subsLabel": "チャンネル登録者数 4870人",
     "viewsLabel": "1,440,020回視聴",
     "videos": 56,
     "url": "https://www.youtube.com/channel/UCZbTlsZfAf1cmBgLnYMfPWg",
@@ -1936,9 +1936,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "あへへへへへﾝ",
-    "subs": 2900,
+    "subs": 2910,
     "views": 3122518,
-    "subsLabel": "チャンネル登録者数 2900人",
+    "subsLabel": "チャンネル登録者数 2910人",
     "viewsLabel": "3,122,518回視聴",
     "videos": 36,
     "url": "https://www.youtube.com/channel/UCiIFIiNkCdfSe9_cPh5ly4g",
@@ -2447,4 +2447,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-15";
-window.PBERS_PREDICT = {"asOfMs": 1789462800000, "subs": {"base": 2894610, "rate": 6.922487952747316e-05}, "views": {"base": 2239133818, "rate": 0.06216018962162225}};
+window.PBERS_PREDICT = {"asOfMs": 1789484400000, "subs": {"base": 2894730, "rate": 7.081879995941263e-05}, "views": {"base": 2239133818, "rate": 0.05681393779717247}};

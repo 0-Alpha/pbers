@@ -231,7 +231,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-15",
-            "s": 340000
+            "s": 341000
           }
         ]
       },
@@ -1395,7 +1395,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-15",
-            "s": 17900
+            "s": 18000
           }
         ]
       },
@@ -1735,7 +1735,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-15",
-            "s": 16200
+            "s": 16300
           }
         ]
       },
@@ -4343,7 +4343,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-15",
-            "s": 9620
+            "s": 9630
           }
         ]
       },
@@ -5643,7 +5643,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-15",
-            "s": 5020
+            "s": 5030
           }
         ]
       },
@@ -5807,7 +5807,7 @@ window.PBERS_RACE = [
         "name": "カルマルボール",
         "color": "#9fcc3e",
         "avatar": "https://yt3.googleusercontent.com/WX0x2Taa65iBzUFRSgy7esb4WOcPuDaB7kYluOwNEqFZJ0tN7lMR_IL5m1pZC7b6tpNJUdSTgA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4860,
+        "subs": 4870,
         "history": [
           {
             "d": "2026-08-30",
@@ -5875,7 +5875,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-15",
-            "s": 4830
+            "s": 4870
           }
         ]
       }
@@ -6187,7 +6187,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-15",
-            "s": 4570
+            "s": 4580
           }
         ]
       },
@@ -6263,7 +6263,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-15",
-            "s": 4550
+            "s": 4570
           }
         ]
       }
@@ -6419,7 +6419,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-15",
-            "s": 4480
+            "s": 4490
           }
         ]
       }
@@ -7583,7 +7583,7 @@ window.PBERS_RACE = [
         "name": "あへへへへへﾝ",
         "color": "#b15ed4",
         "avatar": "https://yt3.googleusercontent.com/umFwtFtVUF2UJKpw6p1Ao3UqFhfBiRBi7FqicRu23AcWly1z4owc6k2TBZvgUKZ3xIX5IfIA6A=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 2900,
+        "subs": 2910,
         "history": [
           {
             "d": "2026-08-30",
@@ -7651,7 +7651,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-15",
-            "s": 2900
+            "s": 2910
           }
         ]
       },
@@ -7671,7 +7671,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-15",
-            "s": 2880
+            "s": 2890
           }
         ]
       }
@@ -8547,7 +8547,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-15",
-            "s": 2350
+            "s": 2360
           }
         ]
       },
@@ -8935,7 +8935,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-15",
-            "s": 2120
+            "s": 2140
           }
         ]
       },
