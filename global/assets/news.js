@@ -5,6 +5,17 @@ window.PBERS_NEWS = [
     "items": [
       {
         "type": "milestone",
+        "kind": "subs",
+        "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
+        "color": "#d45eb1",
+        "avatar": "https://yt3.googleusercontent.com/6bFOwdJowJMxYBkoE3h0ws0_Lbgr8d8c0ZPgny5agUQ4OzwVqAeeD2E4RCFYEkte2VM_Bwel2w=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 12万人 突破",
+        "value": 120000
+      },
+      {
+        "type": "milestone",
         "kind": "views",
         "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
         "color": "#d45eb1",

@@ -1,9 +1,21 @@
 {
   "site": "PBers Global",
   "updated": "2026-09-16",
-  "generated": "2026-09-16T23:14:45+09:00",
-  "count": 4,
+  "generated": "2026-09-17T00:04:03+09:00",
+  "count": 5,
   "items": [
+    {
+      "id": "2026-09-16/subs/dezinichtフヒフム-海外アカウント/120000",
+      "date": "2026-09-16",
+      "channel": "Dezinicht【Æž!フヒフム 海外アカウント】",
+      "slug": "dezinichtフヒフム-海外アカウント",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 12万人 突破",
+      "value": 120000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/dezinicht%E3%83%95%E3%83%92%E3%83%95%E3%83%A0-%E6%B5%B7%E5%A4%96%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/"
+    },
     {
       "id": "2026-09-16/views/dezinichtフヒフム-海外アカウント/50000000",
       "date": "2026-09-16",
