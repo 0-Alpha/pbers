@@ -20,7 +20,7 @@ window.PBERS_DATA = [
     "views": 39361250,
     "subsLabel": "チャンネル登録者数 22.1万人",
     "viewsLabel": "39,361,250回視聴",
-    "videos": 32,
+    "videos": 28,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
     "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#ccbb3e",
@@ -91,9 +91,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-    "subs": 119000,
+    "subs": 120000,
     "views": 50091589,
-    "subsLabel": "チャンネル登録者数 11.9万人",
+    "subsLabel": "チャンネル登録者数 12万人",
     "viewsLabel": "50,091,589回視聴",
     "videos": 258,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
@@ -166,9 +166,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dotto edit",
-    "subs": 11900,
+    "subs": 11400,
     "views": 8286800,
-    "subsLabel": "チャンネル登録者数 1.19万人",
+    "subsLabel": "チャンネル登録者数 1.14万人",
     "viewsLabel": "8,286,800回視聴",
     "videos": 62,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
@@ -185,7 +185,7 @@ window.PBERS_DATA = [
     "views": 3531171,
     "subsLabel": "チャンネル登録者数 7730人",
     "viewsLabel": "3,531,171回視聴",
-    "videos": 213,
+    "videos": 214,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
     "avatar": "https://yt3.googleusercontent.com/r8ouoXMX9iar1cjJgX7u1yaZn1Eis8ZAzmdIhpoYUYTiTUl39uZ8KU81zZBYtSr-Gs2TCuga=s900-c-k-c0x00ffffff-no-rj",
     "color": "#a55ed4",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-16";
-window.PBERS_PREDICT = {"asOfMs": 1789549200000, "subs": {"base": 1521500, "rate": 9.643405717161057e-06}, "views": {"base": 673920634, "rate": 0.010650667365298712}};
+window.PBERS_PREDICT = {"asOfMs": 1789549200000, "subs": {"base": 1522000, "rate": 9.643405717161057e-06}, "views": {"base": 673920634, "rate": 0.010650667365298712}};
