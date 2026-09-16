@@ -1,8 +1,8 @@
 {
   "site": "PBers",
-  "updated": "2026-09-16",
-  "generated": "2026-09-17T03:56:47+09:00",
-  "count": 11,
+  "updated": "2026-09-17",
+  "generated": "2026-09-17T06:03:45+09:00",
+  "count": 6,
   "items": [
     {
       "id": "2026-09-15/subs/みかんぼーる/340000",
@@ -75,66 +75,6 @@
       "value": 6000000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E3%82%BD%E3%83%93%E3%82%A8%E3%83%88%E3%82%AB%E3%83%81%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A3%E3%83%9C%E3%83%BC%E3%83%AB/"
-    },
-    {
-      "id": "2026-09-10/views/うずまき/8000000",
-      "date": "2026-09-10",
-      "channel": "うずまき🌀",
-      "slug": "うずまき",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 800万回 突破",
-      "value": 8000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%86%E3%81%9A%E3%81%BE%E3%81%8D/"
-    },
-    {
-      "id": "2026-09-10/views/ほわさん/4000000",
-      "date": "2026-09-10",
-      "channel": "ほわさん",
-      "slug": "ほわさん",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 400万回 突破",
-      "value": 4000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%BB%E3%82%8F%E3%81%95%E3%82%93/"
-    },
-    {
-      "id": "2026-09-10/views/レイアルファ/4000000",
-      "date": "2026-09-10",
-      "channel": "レイアルファ",
-      "slug": "レイアルファ",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 400万回 突破",
-      "value": 4000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%83%AC%E3%82%A4%E3%82%A2%E3%83%AB%E3%83%95%E3%82%A1/"
-    },
-    {
-      "id": "2026-09-10/views/ソビエトロシアぼーる/2000000",
-      "date": "2026-09-10",
-      "channel": "ソビエト・ロシアぼーる",
-      "slug": "ソビエトロシアぼーる",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 200万回 突破",
-      "value": 2000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%82%BD%E3%83%93%E3%82%A8%E3%83%88%E3%83%AD%E3%82%B7%E3%82%A2%E3%81%BC%E3%83%BC%E3%82%8B/"
-    },
-    {
-      "id": "2026-09-10/views/lemon_ball/1000000",
-      "date": "2026-09-10",
-      "channel": "lemon_Ball",
-      "slug": "lemon_ball",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 100万回 突破",
-      "value": 1000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/lemon_ball/"
     }
   ]
 }
