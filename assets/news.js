@@ -2,7 +2,30 @@ window.PBERS_NEWS = [
   {
     "date": "2026-09-17",
     "label": "9月17日(木)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": " ゼリョーヌィボール　活停中",
+        "color": "#a55ed4",
+        "avatar": "https://yt3.googleusercontent.com/h212WQooy6cDooAN4i3o7utLAZzgAV5nNo9ofNaIrQDAETaqLFxtL8sXOGoJpuJXjVkQ4h_LUYs=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 600万回 突破",
+        "value": 6000000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ハッホチャンネル",
+        "color": "#5ed476",
+        "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 200万回 突破",
+        "value": 2000000
+      }
+    ]
   },
   {
     "date": "2026-09-16",
