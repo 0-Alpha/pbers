@@ -680,12 +680,13 @@ def build_view_pages():
     print("wrote view pages (%s)" % "/".join(VIEW_ROUTES))
 
 def build_sitemap(order):
-    urls = [ed_site() + "/"] + [ed_site() + "/c/" + urllib.parse.quote(d["_slug"]) + "/" for d in order]
+    # (URL, changefreq) の順で列挙。lastmod は実データの最終更新日(UPDATED)を付与しクロール優先度を上げる。
+    urls = [(ed_site() + "/", "daily")] + [(ed_site() + "/c/" + urllib.parse.quote(d["_slug"]) + "/", "daily") for d in order]
     if not ED["sub"]:                       # プライバシーポリシーは通常サイト側のみ
-        urls.append(ed_site() + "/privacy/")
+        urls.append((ed_site() + "/privacy/", "monthly"))
     body = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    for u in urls:
-        body += '  <url><loc>%s</loc><changefreq>daily</changefreq></url>\n' % u
+    for u, cf in urls:
+        body += '  <url><loc>%s</loc><lastmod>%s</lastmod><changefreq>%s</changefreq></url>\n' % (u, UPDATED, cf)
     body += '</urlset>\n'
     with open(ed_out("sitemap-pbers.xml"), "w", encoding="utf-8") as f:
         f.write(body)
