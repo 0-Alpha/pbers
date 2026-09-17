@@ -541,9 +541,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ソビエト・カチューシャボール☭\n\n",
-    "subs": 16100,
+    "subs": 16200,
     "views": 6284170,
-    "subsLabel": "チャンネル登録者数 1.61万人",
+    "subsLabel": "チャンネル登録者数 1.62万人",
     "viewsLabel": "6,284,170回視聴",
     "videos": 372,
     "url": "https://www.youtube.com/channel/UCeVN-gQR83mALrvJ-fwd7Ig",
@@ -1396,9 +1396,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "カルマルボール",
-    "subs": 5090,
+    "subs": 5100,
     "views": 1617641,
-    "subsLabel": "チャンネル登録者数 5090人",
+    "subsLabel": "チャンネル登録者数 5100人",
     "viewsLabel": "1,617,641回視聴",
     "videos": 60,
     "url": "https://www.youtube.com/channel/UCZbTlsZfAf1cmBgLnYMfPWg",
@@ -1907,9 +1907,9 @@ window.PBERS_DATA = [
   {
     "name": "リルバシ",
     "subs": 2990,
-    "views": 3233991,
+    "views": 3234035,
     "subsLabel": "チャンネル登録者数 2990人",
-    "viewsLabel": "3,233,991回視聴",
+    "viewsLabel": "3,234,035回視聴",
     "videos": 69,
     "url": "https://www.youtube.com/channel/UCnnsEBpayZL_JHzdw4mnbeA",
     "avatar": "https://yt3.googleusercontent.com/bp_CX7qOIvj2-sbDMHSnoPjEuefwG0wuv94z66Nqpoz9T41wOFGREsij1THKpSkdy3PvvFxUZA=s900-c-k-c0x00ffffff-no-rj",
@@ -1996,9 +1996,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Mīþ!緑ボール　",
-    "subs": 2720,
+    "subs": 2730,
     "views": 257091,
-    "subsLabel": "チャンネル登録者数 2720人",
+    "subsLabel": "チャンネル登録者数 2730人",
     "viewsLabel": "257,091回視聴",
     "videos": 192,
     "url": "https://www.youtube.com/channel/UC562UMBmV-_lw_T4Mqh7LKw",
@@ -2447,4 +2447,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-17";
-window.PBERS_PREDICT = {"asOfMs": 1789635600000, "subs": {"base": 2892200, "rate": 1.9345394891397023e-05}, "views": {"base": 2248928226, "rate": 0.0604382290575315}};
+window.PBERS_PREDICT = {"asOfMs": 1789657200000, "subs": {"base": 2892320, "rate": 2.2101012459178194e-05}, "views": {"base": 2248928270, "rate": 0.055374250429126755}};
