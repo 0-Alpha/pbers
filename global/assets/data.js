@@ -2,9 +2,9 @@ window.PBERS_DATA = [
   {
     "name": "JP-BALL",
     "subs": 438000,
-    "views": 166092615,
+    "views": 166108596,
     "subsLabel": "チャンネル登録者数 43.8万人",
-    "viewsLabel": "166,092,615回視聴",
+    "viewsLabel": "166,108,596回視聴",
     "videos": 128,
     "url": "https://www.youtube.com/channel/UCZ-zUkkdNTYAYDgkDyeb_hA",
     "avatar": "https://yt3.googleusercontent.com/UXoyWxO_MOdKJK4kLMC988Uj9LZC9pZO13VMLEVq-4C32fBkvug-FUzSiUrbAh_mSy3zOPyfCC0=s900-c-k-c0x00ffffff-no-rj",
@@ -167,9 +167,9 @@ window.PBERS_DATA = [
   {
     "name": "Dotto edit",
     "subs": 11400,
-    "views": 8304282,
+    "views": 8317112,
     "subsLabel": "チャンネル登録者数 1.14万人",
-    "viewsLabel": "8,304,282回視聴",
+    "viewsLabel": "8,317,112回視聴",
     "videos": 62,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
     "avatar": "https://yt3.googleusercontent.com/JjoolJ5faLhJzaPj3UckuOvdbEaug12ouvdocg6jk1Lw-ZS7TMNjGxAAuz0v3hb6b04v_uJ97Q=s900-c-k-c0x00ffffff-no-rj",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-17";
-window.PBERS_PREDICT = {"asOfMs": 1789592400000, "subs": {"base": 1522010, "rate": 1.0125965775770644e-05}, "views": {"base": 674192066, "rate": 0.009848025463014361}};
+window.PBERS_PREDICT = {"asOfMs": 1789614000000, "subs": {"base": 1522010, "rate": 9.281826025440964e-06}, "views": {"base": 674220877, "rate": 0.008791975065105028}};
