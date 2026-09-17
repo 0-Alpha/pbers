@@ -137,9 +137,9 @@ window.PBERS_DATA = [
   {
     "name": "くろまめ",
     "subs": 16300,
-    "views": 16046277,
+    "views": 16047192,
     "subsLabel": "チャンネル登録者数 1.63万人",
-    "viewsLabel": "16,046,277回視聴",
+    "viewsLabel": "16,047,192回視聴",
     "videos": 78,
     "url": "https://www.youtube.com/channel/UCfJp9c3kSkIjYFevd2G1RKg",
     "avatar": "https://yt3.googleusercontent.com/yV8LzkaByDse6ZVmF8XEySSyoZ6osOmQM9SmjO8FTgQPiaOwyAaD2VEH1Zx8UqAVobRkOxaVbrg=s900-c-k-c0x00ffffff-no-rj",
@@ -166,9 +166,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dotto edit",
-    "subs": 11400,
+    "subs": 11000,
     "views": 8318992,
-    "subsLabel": "チャンネル登録者数 1.14万人",
+    "subsLabel": "チャンネル登録者数 1.1万人",
     "viewsLabel": "8,318,992回視聴",
     "videos": 62,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
@@ -181,9 +181,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Past_Ball",
-    "subs": 7730,
+    "subs": 7740,
     "views": 3535773,
-    "subsLabel": "チャンネル登録者数 7730人",
+    "subsLabel": "チャンネル登録者数 7740人",
     "viewsLabel": "3,535,773回視聴",
     "videos": 214,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-17";
-window.PBERS_PREDICT = {"asOfMs": 1789635600000, "subs": {"base": 1520000, "rate": 1.081647800529225e-06}, "views": {"base": 674162358, "rate": 0.009089999616412946}};
+window.PBERS_PREDICT = {"asOfMs": 1789635600000, "subs": {"base": 1519610, "rate": 1.081647800529225e-06}, "views": {"base": 674163273, "rate": 0.009089999616412946}};
