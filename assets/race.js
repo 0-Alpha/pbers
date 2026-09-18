@@ -4799,7 +4799,7 @@ window.PBERS_RACE = [
         "name": "かめ・さーくボール共和国",
         "color": "#5e66d4",
         "avatar": "https://yt3.googleusercontent.com/pmJmxVLE0mmUdGwtazGaKNHTg4eIJByKeQUYGONLj9xn5hXL-lBXiNSNjQCCBN6RcYfle0LO=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 9650,
+        "subs": 9660,
         "history": [
           {
             "d": "2026-08-21",
@@ -5171,7 +5171,7 @@ window.PBERS_RACE = [
         "name": "にこちPB",
         "color": "#cc3e4e",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 7590,
+        "subs": 7600,
         "history": [
           {
             "d": "2026-08-21",
@@ -7376,8 +7376,92 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "Sekumeball  せくめボール",
+        "name": "【PB】ネオンボール",
         "color": "#533ecc",
+        "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 4300,
+        "history": [
+          {
+            "d": "2026-08-31",
+            "s": 2450
+          },
+          {
+            "d": "2026-09-01",
+            "s": 2590
+          },
+          {
+            "d": "2026-09-02",
+            "s": 2710
+          },
+          {
+            "d": "2026-09-03",
+            "s": 2830
+          },
+          {
+            "d": "2026-09-04",
+            "s": 2900
+          },
+          {
+            "d": "2026-09-05",
+            "s": 3020
+          },
+          {
+            "d": "2026-09-06",
+            "s": 3160
+          },
+          {
+            "d": "2026-09-07",
+            "s": 3230
+          },
+          {
+            "d": "2026-09-08",
+            "s": 3280
+          },
+          {
+            "d": "2026-09-09",
+            "s": 3360
+          },
+          {
+            "d": "2026-09-10",
+            "s": 3440
+          },
+          {
+            "d": "2026-09-11",
+            "s": 3520
+          },
+          {
+            "d": "2026-09-12",
+            "s": 3660
+          },
+          {
+            "d": "2026-09-13",
+            "s": 3750
+          },
+          {
+            "d": "2026-09-14",
+            "s": 3780
+          },
+          {
+            "d": "2026-09-15",
+            "s": 3860
+          },
+          {
+            "d": "2026-09-16",
+            "s": 3910
+          },
+          {
+            "d": "2026-09-17",
+            "s": 3920
+          },
+          {
+            "d": "2026-09-18",
+            "s": 4250
+          }
+        ]
+      },
+      {
+        "name": "Sekumeball  せくめボール",
+        "color": "#d45ed0",
         "avatar": "https://yt3.googleusercontent.com/bL9lWsp29DejSdFemB__O0UqwLkgufQdMTMKh0ceh2gHNtK9eIndZqueRLInTnEefoJndg7trA=s900-c-k-c0x00ffffff-no-rj",
         "subs": 4260,
         "history": [
@@ -7460,90 +7544,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-09-18",
             "s": 4260
-          }
-        ]
-      },
-      {
-        "name": "【PB】ネオンボール",
-        "color": "#d45ed0",
-        "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4250,
-        "history": [
-          {
-            "d": "2026-08-31",
-            "s": 2450
-          },
-          {
-            "d": "2026-09-01",
-            "s": 2590
-          },
-          {
-            "d": "2026-09-02",
-            "s": 2710
-          },
-          {
-            "d": "2026-09-03",
-            "s": 2830
-          },
-          {
-            "d": "2026-09-04",
-            "s": 2900
-          },
-          {
-            "d": "2026-09-05",
-            "s": 3020
-          },
-          {
-            "d": "2026-09-06",
-            "s": 3160
-          },
-          {
-            "d": "2026-09-07",
-            "s": 3230
-          },
-          {
-            "d": "2026-09-08",
-            "s": 3280
-          },
-          {
-            "d": "2026-09-09",
-            "s": 3360
-          },
-          {
-            "d": "2026-09-10",
-            "s": 3440
-          },
-          {
-            "d": "2026-09-11",
-            "s": 3520
-          },
-          {
-            "d": "2026-09-12",
-            "s": 3660
-          },
-          {
-            "d": "2026-09-13",
-            "s": 3750
-          },
-          {
-            "d": "2026-09-14",
-            "s": 3780
-          },
-          {
-            "d": "2026-09-15",
-            "s": 3860
-          },
-          {
-            "d": "2026-09-16",
-            "s": 3910
-          },
-          {
-            "d": "2026-09-17",
-            "s": 3920
-          },
-          {
-            "d": "2026-09-18",
-            "s": 4250
           }
         ]
       }
