@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-09-19",
+    "label": "9月19日(土)",
+    "items": []
+  },
+  {
     "date": "2026-09-18",
     "label": "9月18日(金)",
     "items": [
@@ -107,34 +112,6 @@ window.PBERS_NEWS = [
         "genre": "PBerer",
         "label": "総再生数 500万回 突破",
         "value": 5000000
-      }
-    ]
-  },
-  {
-    "date": "2026-09-12",
-    "label": "9月12日(土)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "Æž!フヒフム",
-        "color": "#9b51e0",
-        "avatar": "https://yt3.googleusercontent.com/o0-EijPjZl_g0OcDfSJdv78d6uG6Ba0RxPPeI4spBOdIZqL842tVa_BsE8_cNxZLHRwd8PmZEA=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 40万人 突破",
-        "value": 400000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ニイソビボール",
-        "color": "#74cc3e",
-        "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 400万回 突破",
-        "value": 4000000
       }
     ]
   }
