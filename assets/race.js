@@ -2427,7 +2427,7 @@ window.PBERS_RACE = [
         "name": "まるッとわかる地理の裏話",
         "color": "#cc3e53",
         "avatar": "https://yt3.googleusercontent.com/OKTvYCqWkuYG-s3iq1dydM6YDas44QIY_hQxl1bPLPQbGzbLUe-ljaKZ4AoJu1kb1r2PI0GPXnI=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 15100,
+        "subs": 15200,
         "history": [
           {
             "d": "2026-08-22",
@@ -2539,7 +2539,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-18",
-            "s": 15100
+            "s": 15200
           }
         ]
       }
@@ -3552,130 +3552,10 @@ window.PBERS_RACE = [
         ]
       },
       {
-        "name": "なごみん",
-        "color": "#5e91d4",
-        "avatar": "https://yt3.googleusercontent.com/sejttmaZGPCSjyOiW-llk9T7ukJmjKJYIbBhWfXk3Vg7c0qdft3H20u3FM3iH_DxyLY115R5=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 12300,
-        "history": [
-          {
-            "d": "2026-08-22",
-            "s": 11600
-          },
-          {
-            "d": "2026-08-23",
-            "s": 11700
-          },
-          {
-            "d": "2026-08-24",
-            "s": 11700
-          },
-          {
-            "d": "2026-08-25",
-            "s": 11700
-          },
-          {
-            "d": "2026-08-26",
-            "s": 11800
-          },
-          {
-            "d": "2026-08-27",
-            "s": 11800
-          },
-          {
-            "d": "2026-08-28",
-            "s": 11800
-          },
-          {
-            "d": "2026-08-29",
-            "s": 11900
-          },
-          {
-            "d": "2026-08-30",
-            "s": 11900
-          },
-          {
-            "d": "2026-08-31",
-            "s": 11900
-          },
-          {
-            "d": "2026-09-01",
-            "s": 11900
-          },
-          {
-            "d": "2026-09-02",
-            "s": 12000
-          },
-          {
-            "d": "2026-09-03",
-            "s": 12000
-          },
-          {
-            "d": "2026-09-04",
-            "s": 12000
-          },
-          {
-            "d": "2026-09-05",
-            "s": 12100
-          },
-          {
-            "d": "2026-09-06",
-            "s": 12100
-          },
-          {
-            "d": "2026-09-07",
-            "s": 12100
-          },
-          {
-            "d": "2026-09-08",
-            "s": 12100
-          },
-          {
-            "d": "2026-09-09",
-            "s": 12100
-          },
-          {
-            "d": "2026-09-10",
-            "s": 12200
-          },
-          {
-            "d": "2026-09-11",
-            "s": 12200
-          },
-          {
-            "d": "2026-09-12",
-            "s": 12200
-          },
-          {
-            "d": "2026-09-13",
-            "s": 12200
-          },
-          {
-            "d": "2026-09-14",
-            "s": 12200
-          },
-          {
-            "d": "2026-09-15",
-            "s": 12200
-          },
-          {
-            "d": "2026-09-16",
-            "s": 12300
-          },
-          {
-            "d": "2026-09-17",
-            "s": 12300
-          },
-          {
-            "d": "2026-09-18",
-            "s": 12300
-          }
-        ]
-      },
-      {
         "name": "カミヤ kamiya【ポーランドボール】",
-        "color": "#7e3ecc",
+        "color": "#5e91d4",
         "avatar": "https://yt3.googleusercontent.com/owf5QKUnNYr0ZfO_AtXo6uyQCTIcpT6-ih6SZkmUdtSOFBx5eiDlRZlDOxeQd04kHlirE4HRQA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 12200,
+        "subs": 12300,
         "history": [
           {
             "d": "2026-08-21",
@@ -3791,7 +3671,127 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-18",
+            "s": 12300
+          }
+        ]
+      },
+      {
+        "name": "なごみん",
+        "color": "#7e3ecc",
+        "avatar": "https://yt3.googleusercontent.com/sejttmaZGPCSjyOiW-llk9T7ukJmjKJYIbBhWfXk3Vg7c0qdft3H20u3FM3iH_DxyLY115R5=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 12300,
+        "history": [
+          {
+            "d": "2026-08-22",
+            "s": 11600
+          },
+          {
+            "d": "2026-08-23",
+            "s": 11700
+          },
+          {
+            "d": "2026-08-24",
+            "s": 11700
+          },
+          {
+            "d": "2026-08-25",
+            "s": 11700
+          },
+          {
+            "d": "2026-08-26",
+            "s": 11800
+          },
+          {
+            "d": "2026-08-27",
+            "s": 11800
+          },
+          {
+            "d": "2026-08-28",
+            "s": 11800
+          },
+          {
+            "d": "2026-08-29",
+            "s": 11900
+          },
+          {
+            "d": "2026-08-30",
+            "s": 11900
+          },
+          {
+            "d": "2026-08-31",
+            "s": 11900
+          },
+          {
+            "d": "2026-09-01",
+            "s": 11900
+          },
+          {
+            "d": "2026-09-02",
+            "s": 12000
+          },
+          {
+            "d": "2026-09-03",
+            "s": 12000
+          },
+          {
+            "d": "2026-09-04",
+            "s": 12000
+          },
+          {
+            "d": "2026-09-05",
+            "s": 12100
+          },
+          {
+            "d": "2026-09-06",
+            "s": 12100
+          },
+          {
+            "d": "2026-09-07",
+            "s": 12100
+          },
+          {
+            "d": "2026-09-08",
+            "s": 12100
+          },
+          {
+            "d": "2026-09-09",
+            "s": 12100
+          },
+          {
+            "d": "2026-09-10",
             "s": 12200
+          },
+          {
+            "d": "2026-09-11",
+            "s": 12200
+          },
+          {
+            "d": "2026-09-12",
+            "s": 12200
+          },
+          {
+            "d": "2026-09-13",
+            "s": 12200
+          },
+          {
+            "d": "2026-09-14",
+            "s": 12200
+          },
+          {
+            "d": "2026-09-15",
+            "s": 12200
+          },
+          {
+            "d": "2026-09-16",
+            "s": 12300
+          },
+          {
+            "d": "2026-09-17",
+            "s": 12300
+          },
+          {
+            "d": "2026-09-18",
+            "s": 12300
           }
         ]
       }
@@ -5403,7 +5403,7 @@ window.PBERS_RACE = [
         "name": "にこちPB",
         "color": "#cc3e4e",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 7520,
+        "subs": 7530,
         "history": [
           {
             "d": "2026-08-21",
@@ -5519,7 +5519,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-18",
-            "s": 7490
+            "s": 7530
           }
         ]
       },
@@ -6063,7 +6063,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-18",
-            "s": 7110
+            "s": 7100
           }
         ]
       },
@@ -6759,7 +6759,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-18",
-            "s": 5310
+            "s": 5320
           }
         ]
       }
@@ -6768,8 +6768,40 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "ふぉるま",
+        "name": "ハッホチャンネル",
         "color": "#3ecc40",
+        "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 5250,
+        "history": [
+          {
+            "d": "2026-09-13",
+            "s": 4480
+          },
+          {
+            "d": "2026-09-14",
+            "s": 4630
+          },
+          {
+            "d": "2026-09-15",
+            "s": 4790
+          },
+          {
+            "d": "2026-09-16",
+            "s": 4890
+          },
+          {
+            "d": "2026-09-17",
+            "s": 4830
+          },
+          {
+            "d": "2026-09-18",
+            "s": 5250
+          }
+        ]
+      },
+      {
+        "name": "ふぉるま",
+        "color": "#5ed4c8",
         "avatar": "https://yt3.googleusercontent.com/gKVYAADtZyXXFVJvbWXMZlantx6rBwlvA2cF1bKbz5SHrsCLpVk6858YKOOiyPx1gdY8sYzJWg=s900-c-k-c0x00ffffff-no-rj",
         "subs": 5240,
         "history": [
@@ -6856,42 +6888,10 @@ window.PBERS_RACE = [
         ]
       },
       {
-        "name": "ハッホチャンネル",
-        "color": "#5ed4c8",
-        "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5240,
-        "history": [
-          {
-            "d": "2026-09-13",
-            "s": 4480
-          },
-          {
-            "d": "2026-09-14",
-            "s": 4630
-          },
-          {
-            "d": "2026-09-15",
-            "s": 4790
-          },
-          {
-            "d": "2026-09-16",
-            "s": 4890
-          },
-          {
-            "d": "2026-09-17",
-            "s": 4830
-          },
-          {
-            "d": "2026-09-18",
-            "s": 5220
-          }
-        ]
-      },
-      {
         "name": "カルマルボール",
         "color": "#3e5ccc",
         "avatar": "https://yt3.googleusercontent.com/WX0x2Taa65iBzUFRSgy7esb4WOcPuDaB7kYluOwNEqFZJ0tN7lMR_IL5m1pZC7b6tpNJUdSTgA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5200,
+        "subs": 5220,
         "history": [
           {
             "d": "2026-08-30",
@@ -6971,7 +6971,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-18",
-            "s": 5150
+            "s": 5220
           }
         ]
       }
@@ -7151,7 +7151,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-18",
-            "s": 5030
+            "s": 5040
           }
         ]
       },
@@ -7687,7 +7687,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-18",
-            "s": 4510
+            "s": 4520
           }
         ]
       }
@@ -8167,7 +8167,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-18",
-            "s": 3530
+            "s": 3540
           }
         ]
       }
