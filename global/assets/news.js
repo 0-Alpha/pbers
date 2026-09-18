@@ -91,7 +91,7 @@ window.PBERS_NEWS = [
         "kind": "views",
         "name": "Dotto edit",
         "color": "#3e66cc",
-        "avatar": "https://yt3.googleusercontent.com/JjoolJ5faLhJzaPj3UckuOvdbEaug12ouvdocg6jk1Lw-ZS7TMNjGxAAuz0v3hb6b04v_uJ97Q=s900-c-k-c0x00ffffff-no-rj",
+        "avatar": "https://yt3.googleusercontent.com/2tzadDOT5LXLSGWtWna4kvAUl__O0G2II67NQfuamve633NvIEAz_YVPiFMO38mB4DAnyhqQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "総再生数 800万回 突破",

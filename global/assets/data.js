@@ -91,9 +91,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-    "subs": 120000,
+    "subs": 121000,
     "views": 50523402,
-    "subsLabel": "チャンネル登録者数 12万人",
+    "subsLabel": "チャンネル登録者数 12.1万人",
     "viewsLabel": "50,523,402回視聴",
     "videos": 260,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
@@ -110,7 +110,7 @@ window.PBERS_DATA = [
     "views": 29856106,
     "subsLabel": "チャンネル登録者数 3.37万人",
     "viewsLabel": "29,856,106回視聴",
-    "videos": 89,
+    "videos": 90,
     "url": "https://www.youtube.com/channel/UCEJRQBqXi3z3UXnHdueIvJg",
     "avatar": "https://yt3.googleusercontent.com/Eb7oF7_gJoeiQyuS-21ATyVE_gLBpI3G7VsWd-yeL9LWPjYxsJ-kmBr4a0Ji03bMbK6-D5gZ=s900-c-k-c0x00ffffff-no-rj",
     "color": "#cc583e",
@@ -136,9 +136,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "くろまめ",
-    "subs": 16600,
+    "subs": 16700,
     "views": 16051048,
-    "subsLabel": "チャンネル登録者数 1.66万人",
+    "subsLabel": "チャンネル登録者数 1.67万人",
     "viewsLabel": "16,051,048回視聴",
     "videos": 79,
     "url": "https://www.youtube.com/channel/UCfJp9c3kSkIjYFevd2G1RKg",
@@ -172,7 +172,7 @@ window.PBERS_DATA = [
     "viewsLabel": "8,332,533回視聴",
     "videos": 62,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
-    "avatar": "https://yt3.googleusercontent.com/JjoolJ5faLhJzaPj3UckuOvdbEaug12ouvdocg6jk1Lw-ZS7TMNjGxAAuz0v3hb6b04v_uJ97Q=s900-c-k-c0x00ffffff-no-rj",
+    "avatar": "https://yt3.googleusercontent.com/2tzadDOT5LXLSGWtWna4kvAUl__O0G2II67NQfuamve633NvIEAz_YVPiFMO38mB4DAnyhqQ=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3e66cc",
     "genre": "ポーランドボーラー",
     "slug": "dotto-edit",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-18";
-window.PBERS_PREDICT = {"asOfMs": 1789722000000, "subs": {"base": 1525940, "rate": 1.9901723106198883e-05}, "views": {"base": 674509847, "rate": 0.008007379116795957}};
+window.PBERS_PREDICT = {"asOfMs": 1789722000000, "subs": {"base": 1527040, "rate": 1.9901723106198883e-05}, "views": {"base": 674509847, "rate": 0.008007379116795957}};
