@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-19";
-window.PBERS_PREDICT = {"asOfMs": 1789808400000, "subs": {"base": 1527460, "rate": 1.8313660070141414e-05}, "views": {"base": 674769122, "rate": 0.009482551264767812}};
+window.PBERS_PREDICT = {"asOfMs": 1789830000000, "subs": {"base": 1527460, "rate": 1.7216364924986645e-05}, "views": {"base": 674769122, "rate": 0.008598990582310532}};
