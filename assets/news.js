@@ -1,14 +1,19 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-09-20",
+    "label": "9月20日(日)",
+    "items": []
+  },
+  {
     "date": "2026-09-19",
     "label": "9月19日(土)",
     "items": [
       {
         "type": "milestone",
         "kind": "views",
-        "name": "世界最強(笑)ボール【こるからす盟主】",
-        "color": "#3ebbcc",
-        "avatar": "https://yt3.googleusercontent.com/r5WpBv1ZXrilbbIGww5PNrgU7wU3GiKncz7ciO8IaFhhhToDfhV99wvAdqmGj_3-HdpMAqwy=s900-c-k-c0x00ffffff-no-rj",
+        "name": "【PB】ネオンボール",
+        "color": "#533ecc",
+        "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "総再生数 200万回 突破",
@@ -17,9 +22,9 @@ window.PBERS_NEWS = [
       {
         "type": "milestone",
         "kind": "views",
-        "name": "【PB】ネオンボール",
-        "color": "#533ecc",
-        "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
+        "name": "世界最強(笑)ボール【こるからす盟主】",
+        "color": "#3ebbcc",
+        "avatar": "https://yt3.googleusercontent.com/r5WpBv1ZXrilbbIGww5PNrgU7wU3GiKncz7ciO8IaFhhhToDfhV99wvAdqmGj_3-HdpMAqwy=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "総再生数 200万回 突破",
@@ -120,22 +125,5 @@ window.PBERS_NEWS = [
     "date": "2026-09-14",
     "label": "9月14日(月)",
     "items": []
-  },
-  {
-    "date": "2026-09-13",
-    "label": "9月13日(日)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ばかわたし",
-        "color": "#5eb9d4",
-        "avatar": "https://yt3.googleusercontent.com/8Q3AkB3SLb49XqB1aR0hp3jyCVu5hS_YrBkjoYn-0FkHttGhP6gadqK2oaOqadgMcjYFYhR1=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "PBerer",
-        "label": "総再生数 500万回 突破",
-        "value": 5000000
-      }
-    ]
   }
 ];
