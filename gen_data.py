@@ -682,7 +682,9 @@ def build_view_pages():
 def build_sitemap(order):
     # (URL, changefreq) の順で列挙。lastmod は実データの最終更新日(UPDATED)を付与しクロール優先度を上げる。
     urls = [(ed_site() + "/", "daily")] + [(ed_site() + "/c/" + urllib.parse.quote(d["_slug"]) + "/", "daily") for d in order]
-    if not ED["sub"]:                       # プライバシーポリシーは通常サイト側のみ
+    if not ED["sub"]:                       # 解説・運営者・プライバシーは通常サイト側のみ
+        urls.append((ed_site() + "/about/", "monthly"))
+        urls.append((ed_site() + "/operator/", "monthly"))
         urls.append((ed_site() + "/privacy/", "monthly"))
     body = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     for u, cf in urls:
