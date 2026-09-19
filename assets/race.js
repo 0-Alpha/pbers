@@ -4955,7 +4955,7 @@ window.PBERS_RACE = [
         "name": "mikan帝国ぼーる",
         "color": "#d45e81",
         "avatar": "https://yt3.googleusercontent.com/-Y6Ti_gGzDnNm2svjgNPePAmAgZxSUNre5HdSRPn9ttLJSM-6tSD8RGrCpjgNsFSGiH8XRmAros=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 9520,
+        "subs": 9510,
         "history": [
           {
             "d": "2026-08-21",
@@ -5179,7 +5179,7 @@ window.PBERS_RACE = [
         "name": "ゆうボール",
         "color": "#6fcc3e",
         "avatar": "https://yt3.googleusercontent.com/dDe-vpE0ub720mNouK763bXlq37V8dRRy6yQbJBUGfPobeaj40ktPUSvtcbo66HAkI9dk46oAA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 7190,
+        "subs": 7200,
         "history": [
           {
             "d": "2026-08-22",
@@ -8999,7 +8999,7 @@ window.PBERS_RACE = [
         "name": "某P国の球",
         "color": "#d45e79",
         "avatar": "https://yt3.googleusercontent.com/XrXLTRaii_TN3m_FTr8J_fMlh1VJfhmf43mY2JzU4iNTLMMtYQR0xvyge9r5Tokxl0TNVW-wn30=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 2610,
+        "subs": 2620,
         "history": [
           {
             "d": "2026-08-30",
