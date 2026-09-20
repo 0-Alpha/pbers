@@ -2,9 +2,9 @@ window.PBERS_DATA = [
   {
     "name": "JP-BALL",
     "subs": 438000,
-    "views": 166192929,
+    "views": 166201678,
     "subsLabel": "チャンネル登録者数 43.8万人",
-    "viewsLabel": "166,192,929回視聴",
+    "viewsLabel": "166,201,678回視聴",
     "videos": 128,
     "url": "https://www.youtube.com/channel/UCZ-zUkkdNTYAYDgkDyeb_hA",
     "avatar": "https://yt3.googleusercontent.com/UXoyWxO_MOdKJK4kLMC988Uj9LZC9pZO13VMLEVq-4C32fBkvug-FUzSiUrbAh_mSy3zOPyfCC0=s900-c-k-c0x00ffffff-no-rj",
@@ -47,9 +47,9 @@ window.PBERS_DATA = [
   {
     "name": "Somen ball",
     "subs": 164000,
-    "views": 61413098,
+    "views": 61423323,
     "subsLabel": "チャンネル登録者数 16.4万人",
-    "viewsLabel": "61,413,098回視聴",
+    "viewsLabel": "61,423,323回視聴",
     "videos": 120,
     "url": "https://www.youtube.com/channel/UCfh08MHIzScBQKh5OuG2ofA",
     "avatar": "https://yt3.googleusercontent.com/3a_WIUPrZ8qIxGmQJhtTv9z8vOffxcS3l9TqJK0pcQhNssFX4VJgPndXd2V3o9Hk7F7ECpFP=s900-c-k-c0x00ffffff-no-rj",
@@ -92,9 +92,9 @@ window.PBERS_DATA = [
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
     "subs": 116000,
-    "views": 51263963,
+    "views": 51351202,
     "subsLabel": "チャンネル登録者数 11.6万人",
-    "viewsLabel": "51,263,963回視聴",
+    "viewsLabel": "51,351,202回視聴",
     "videos": 261,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
     "avatar": "https://yt3.googleusercontent.com/6bFOwdJowJMxYBkoE3h0ws0_Lbgr8d8c0ZPgny5agUQ4OzwVqAeeD2E4RCFYEkte2VM_Bwel2w=s900-c-k-c0x00ffffff-no-rj",
@@ -167,9 +167,9 @@ window.PBERS_DATA = [
   {
     "name": "Dotto edit",
     "subs": 11200,
-    "views": 8411337,
+    "views": 8419838,
     "subsLabel": "チャンネル登録者数 1.12万人",
-    "viewsLabel": "8,411,337回視聴",
+    "viewsLabel": "8,419,838回視聴",
     "videos": 63,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
     "avatar": "https://yt3.googleusercontent.com/2tzadDOT5LXLSGWtWna4kvAUl__O0G2II67NQfuamve633NvIEAz_YVPiFMO38mB4DAnyhqQ=s900-c-k-c0x00ffffff-no-rj",
@@ -182,9 +182,9 @@ window.PBERS_DATA = [
   {
     "name": "Past_Ball",
     "subs": 7710,
-    "views": 3546658,
+    "views": 3547700,
     "subsLabel": "チャンネル登録者数 7710人",
-    "viewsLabel": "3,546,658回視聴",
+    "viewsLabel": "3,547,700回視聴",
     "videos": 214,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
     "avatar": "https://yt3.googleusercontent.com/r8ouoXMX9iar1cjJgX7u1yaZn1Eis8ZAzmdIhpoYUYTiTUl39uZ8KU81zZBYtSr-Gs2TCuga=s900-c-k-c0x00ffffff-no-rj",
@@ -212,9 +212,9 @@ window.PBERS_DATA = [
   {
     "name": "AST.アオスト Polandball",
     "subs": 3670,
-    "views": 1756409,
+    "views": 1756920,
     "subsLabel": "チャンネル登録者数 3670人",
-    "viewsLabel": "1,756,409回視聴",
+    "viewsLabel": "1,756,920回視聴",
     "videos": 32,
     "url": "https://www.youtube.com/channel/UC0oyndW7j5GS5NIb8ww7cxw",
     "avatar": "https://yt3.googleusercontent.com/dOd-yxgy5PfDAsYNy3EZUgbsJ33X06RXpEYmRSK1JQz515G-lul6w2oViQdHiKQbpMIkA8TR=s900-c-k-c0x00ffffff-no-rj",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-20";
-window.PBERS_PREDICT = {"asOfMs": 1789894800000, "subs": {"base": 1510350, "rate": 1.4678210349312505e-06}, "views": {"base": 675687592, "rate": 0.009688149111487038}};
+window.PBERS_PREDICT = {"asOfMs": 1789916400000, "subs": {"base": 1510350, "rate": 1.3118222797405695e-06}, "views": {"base": 675803859, "rate": 0.009455737632626585}};
