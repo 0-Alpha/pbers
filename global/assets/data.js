@@ -32,9 +32,9 @@ window.PBERS_DATA = [
   {
     "name": "Opera_cb",
     "subs": 190000,
-    "views": 88197898,
+    "views": 88218451,
     "subsLabel": "チャンネル登録者数 19万人",
-    "viewsLabel": "88,197,898回視聴",
+    "viewsLabel": "88,218,451回視聴",
     "videos": 142,
     "url": "https://www.youtube.com/channel/UC4bqMpF49ebuiF4TbJvFmyw",
     "avatar": "https://yt3.googleusercontent.com/U9rqdPqWMX7a6j1Nr0HKX2yBiK40Mxy7LJbTLRWaC_lMEcHPqoKb140oquBes08LNaSzmLa4kg=s900-c-k-c0x00ffffff-no-rj",
@@ -152,9 +152,9 @@ window.PBERS_DATA = [
   {
     "name": "日本猫耳版ボール【目標9000人】",
     "subs": 12900,
-    "views": 3930872,
+    "views": 3931048,
     "subsLabel": "チャンネル登録者数 1.29万人",
-    "viewsLabel": "3,930,872回視聴",
+    "viewsLabel": "3,931,048回視聴",
     "videos": 226,
     "url": "https://www.youtube.com/channel/UCIqROVo0xBJfh5h6cQyPm7Q",
     "avatar": "https://yt3.googleusercontent.com/LpR7h9FEKhK0Va34bq-KRghVlWGkhmZQUTbd-JcnnuZ3BU17SQQjkFfh6YnFgAvVbYXcWO37Vw=s900-c-k-c0x00ffffff-no-rj",
@@ -197,9 +197,9 @@ window.PBERS_DATA = [
   {
     "name": "udonball",
     "subs": 6890,
-    "views": 1239765,
+    "views": 1239922,
     "subsLabel": "チャンネル登録者数 6890人",
-    "viewsLabel": "1,239,765回視聴",
+    "viewsLabel": "1,239,922回視聴",
     "videos": 119,
     "url": "https://www.youtube.com/channel/UCGueqNQmvtQYlGO3UL3Gf3w",
     "avatar": "https://yt3.googleusercontent.com/t-XpUkPOEssGyYn9TK4JrLG9EmGIhn565-GBvVCtqkpxDXD36l6OOb6EOlWJ_Gr92W8a_ryApcg=s900-c-k-c0x00ffffff-no-rj",
@@ -227,9 +227,9 @@ window.PBERS_DATA = [
   {
     "name": "AJ ball",
     "subs": 3480,
-    "views": 1523880,
+    "views": 1524115,
     "subsLabel": "チャンネル登録者数 3480人",
-    "viewsLabel": "1,523,880回視聴",
+    "viewsLabel": "1,524,115回視聴",
     "videos": 39,
     "url": "https://www.youtube.com/channel/UC9EPL3fLMARICtvoL6NGMBA",
     "avatar": "https://yt3.googleusercontent.com/oBocVfsRI4xNymEO3_9zK8GmSus753e0k0d_Dm9TN5IXzxVHK7Nlea4VDStGfUaeRAX5cMc5=s900-c-k-c0x00ffffff-no-rj",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-20";
-window.PBERS_PREDICT = {"asOfMs": 1789916400000, "subs": {"base": 1510350, "rate": 1.3118222797405695e-06}, "views": {"base": 675803859, "rate": 0.009455737632626585}};
+window.PBERS_PREDICT = {"asOfMs": 1789916400000, "subs": {"base": 1510350, "rate": 1.3118222797405695e-06}, "views": {"base": 675824980, "rate": 0.009455737632626585}};

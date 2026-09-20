@@ -7275,7 +7275,7 @@ window.PBERS_RACE = [
         "name": "旧食DX",
         "color": "#5ed476",
         "avatar": "https://yt3.googleusercontent.com/eS59gj4sUqncdlk0_nSnxkfIKeKASy0K5CwgIpOHv4JM4KR3XSMKM_uhXloSzt8vcLds6FiJjIA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4720,
+        "subs": 4710,
         "history": [
           {
             "d": "2026-08-30",
@@ -7467,7 +7467,7 @@ window.PBERS_RACE = [
         "name": "まっこゆ",
         "color": "#5e62d4",
         "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4660,
+        "subs": 4670,
         "history": [
           {
             "d": "2026-08-30",
