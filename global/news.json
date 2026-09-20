@@ -1,9 +1,21 @@
 {
   "site": "PBers Global",
   "updated": "2026-09-20",
-  "generated": "2026-09-20T17:36:58+09:00",
-  "count": 4,
+  "generated": "2026-09-20T18:03:25+09:00",
+  "count": 5,
   "items": [
+    {
+      "id": "2026-09-20/views/f丸/30000000",
+      "date": "2026-09-20",
+      "channel": "F丸",
+      "slug": "f丸",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 3000万回 突破",
+      "value": 30000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/f%E4%B8%B8/"
+    },
     {
       "id": "2026-09-18/subs/dezinichtフヒフム-海外アカウント/120000",
       "date": "2026-09-18",

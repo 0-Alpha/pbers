@@ -2,7 +2,19 @@ window.PBERS_NEWS = [
   {
     "date": "2026-09-20",
     "label": "9月20日(日)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "F丸",
+        "color": "#cc583e",
+        "avatar": "https://yt3.googleusercontent.com/Eb7oF7_gJoeiQyuS-21ATyVE_gLBpI3G7VsWd-yeL9LWPjYxsJ-kmBr4a0Ji03bMbK6-D5gZ=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 3000万回 突破",
+        "value": 30000000
+      }
+    ]
   },
   {
     "date": "2026-09-19",
