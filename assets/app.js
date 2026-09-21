@@ -985,6 +985,9 @@
   function saveBoardName(v) { try { localStorage.setItem('pbers_board_name', v == null ? '' : v); } catch (e) {} }
   function boardSort() { try { var v = localStorage.getItem('pbers_board_sort'); return (v === 'new' || v === 'posts' || v === 'hot') ? v : 'bump'; } catch (e) { return 'bump'; } }
   function saveBoardSort(v) { try { localStorage.setItem('pbers_board_sort', v); } catch (e) {} }
+  // 広告枠プレビュー(管理者のみ): 0=なし / 3 / 5 枠。実広告ではなく配置イメージの確認用。
+  function adPreview() { try { var v = parseInt(localStorage.getItem('pbers_board_adpreview'), 10); return (v === 3 || v === 5) ? v : 0; } catch (e) { return 0; } }
+  function saveAdPreview(v) { try { localStorage.setItem('pbers_board_adpreview', String(v)); } catch (e) {} }
   // 自己削除キー: 投稿した端末だけが自分のレスを消せるよう、サーバ発行のキーを端末に保存
   function delKeys() { try { return JSON.parse(localStorage.getItem('pbers_delkeys') || '{}'); } catch (e) { return {}; } }
   function saveDelKey(thread, no, token) { if (!token) return; try { var m = delKeys(); m[thread + ':' + no] = token; localStorage.setItem('pbers_delkeys', JSON.stringify(m)); } catch (e) {} }
@@ -1115,7 +1118,13 @@
         '<button type="button" class="bd-sort-b" data-sort="posts">レス数順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="hot">勢い順</button>' +
       '</div>' +
-      (boardKey ? '<div class="bd-admin"><button type="button" class="bd-stats-btn" id="bd-stats-btn">📊 書き込み統計（管理者）</button><div class="bd-stats" id="bd-stats" hidden></div></div>' : '') +
+      (boardKey ? '<div class="bd-admin"><button type="button" class="bd-stats-btn" id="bd-stats-btn">📊 書き込み統計（管理者）</button>' +
+        '<span class="bd-adctl" id="bd-adctl">広告プレビュー: ' +
+          '<button type="button" class="bd-adb" data-ad="0">なし</button>' +
+          '<button type="button" class="bd-adb" data-ad="3">3枠</button>' +
+          '<button type="button" class="bd-adb" data-ad="5">5枠</button>' +
+        '</span>' +
+        '<div class="bd-stats" id="bd-stats" hidden></div></div>' : '') +
       '<div class="board-list" id="board-threads"><div class="board-empty">読み込み中…</div></div>';
     document.getElementById('bt-name').value = boardName();
     var tsNew = tsMount(document.getElementById('bt-new'));
@@ -1165,31 +1174,73 @@
         }).catch(function () { send.disabled = false; tsNew.reset(); msg.textContent = '送信に失敗しました'; });
     });
     var box = document.getElementById('board-threads');
-    function paint(ths, isSearch, q) {
-      if (!isSearch) { boardThreadsCache = ths; updateBoardBadge(countNew(ths)); }
+    var PAGE_SIZE = 50, boardPage = 0, curList = [], curIsSearch = false, curQ = '';
+    function adBox(label) {   // 広告枠プレビュー(管理者のみ表示・実広告ではない)
+      return '<div class="ad-slot"><span class="ad-slot-tag">広告スペース（プレビュー・管理者のみ表示）</span>' +
+        '<span class="ad-slot-sub">' + label + '</span></div>';
+    }
+    function withAds(rows, isSearch) {   // rows(HTML配列)に広告枠プレビューを差し込む。トップ+記事内(n-2)+ボトム
+      var n = (boardKey && !isSearch) ? adPreview() : 0;
+      if (!n) return rows.join('');
+      var infeed = Math.max(0, n - 2);
+      var step = infeed > 0 ? Math.max(1, Math.floor(rows.length / (infeed + 1))) : rows.length + 1;
+      var out = [adBox('トップ')], inserted = 0;
+      rows.forEach(function (r, i) {
+        out.push(r);
+        if (infeed > 0 && (i + 1) % step === 0 && inserted < infeed && i < rows.length - 1) { out.push(adBox('記事内')); inserted++; }
+      });
+      out.push(adBox('ボトム'));
+      return out.join('');
+    }
+    function threadRow(t, isSearch) {
+      var nn = newFor(t.id, t.posts);
+      var sn = (isSearch && t.snippet) ? '<div class="th-snip">' + esc(String(t.snippet).slice(0, 80)) + (String(t.snippet).length > 80 ? '…' : '') + '</div>' : '';
+      return '<div class="th' + (t.hidden ? ' bc-off' : '') + '" data-id="' + t.id + '">' +
+        '<div class="th-main"><div class="th-title">' + esc(t.title) +
+          (t.admin ? ' <span class="th-badge">★管理人</span>' : '') +
+          (nn > 0 ? ' <span class="th-new">新着' + nn + '</span>' : '') + '</div>' + sn +
+          '<div class="th-meta"><span class="num">' + t.posts + '</span> レス ・ ' +
+            (!isSearch && curSort === 'hot' ? '<span class="th-hot">勢い ' + (t.hot != null ? t.hot : '—') + '</span> ・ 最終 ' + bWhen(t.bumped)
+             : !isSearch && curSort === 'new' ? '作成 ' + bWhen(t.created)
+             : '最終 ' + bWhen(t.bumped)) + '</div></div>' +
+        (boardKey ? '<button type="button" class="bc-hide" data-k="thread" data-id="' + t.id + '" data-h="' + (t.hidden ? 0 : 1) + '">' + (t.hidden ? '表示' : '非表示') + '</button>' : '') +
+      '</div>';
+    }
+    function renderList() {   // 現在のスレ一覧を50件/ページで描画(クライアント側ページ送り)
+      var ths = curList, isSearch = curIsSearch, q = curQ;
       if (!ths.length) {
         box.innerHTML = '<div class="board-empty">' + (isSearch ? '「' + esc(q) + '」に一致するスレッドはありません。' : 'まだスレッドがありません。最初のスレッドを立ててみよう。') + '</div>';
         return;
       }
+      var pages = Math.ceil(ths.length / PAGE_SIZE);
+      if (boardPage >= pages) boardPage = pages - 1;
+      if (boardPage < 0) boardPage = 0;
+      var slice = ths.slice(boardPage * PAGE_SIZE, boardPage * PAGE_SIZE + PAGE_SIZE);
       var head = isSearch ? '<div class="bd-sresult">「' + esc(q) + '」の結果 ' + ths.length + '件</div>' : '';
-      box.innerHTML = head + ths.map(function (t) {
-        var nn = newFor(t.id, t.posts);
-        var sn = (isSearch && t.snippet) ? '<div class="th-snip">' + esc(String(t.snippet).slice(0, 80)) + (String(t.snippet).length > 80 ? '…' : '') + '</div>' : '';
-        return '<div class="th' + (t.hidden ? ' bc-off' : '') + '" data-id="' + t.id + '">' +
-          '<div class="th-main"><div class="th-title">' + esc(t.title) +
-            (t.admin ? ' <span class="th-badge">★管理人</span>' : '') +
-            (nn > 0 ? ' <span class="th-new">新着' + nn + '</span>' : '') + '</div>' + sn +
-            '<div class="th-meta"><span class="num">' + t.posts + '</span> レス ・ ' +
-              (!isSearch && curSort === 'hot' ? '<span class="th-hot">勢い ' + (t.hot != null ? t.hot : '—') + '</span> ・ 最終 ' + bWhen(t.bumped)
-               : !isSearch && curSort === 'new' ? '作成 ' + bWhen(t.created)
-               : '最終 ' + bWhen(t.bumped)) + '</div></div>' +
-          (boardKey ? '<button type="button" class="bc-hide" data-k="thread" data-id="' + t.id + '" data-h="' + (t.hidden ? 0 : 1) + '">' + (t.hidden ? '表示' : '非表示') + '</button>' : '') +
-        '</div>';
-      }).join('');
+      var rows = slice.map(function (t) { return threadRow(t, isSearch); });
+      var pager = pages > 1 ? '<div class="bd-pager">' +
+          '<button type="button" class="bd-pg" data-pg="prev"' + (boardPage <= 0 ? ' disabled' : '') + '>← 前</button>' +
+          '<span class="bd-pg-info">' + (boardPage + 1) + ' / ' + pages + 'ページ（' + ths.length + 'スレ）</span>' +
+          '<button type="button" class="bd-pg" data-pg="next"' + (boardPage >= pages - 1 ? ' disabled' : '') + '>次 →</button>' +
+        '</div>' : '';
+      box.innerHTML = head + withAds(rows, isSearch) + pager;
       box.querySelectorAll('.th').forEach(function (el) {
         el.querySelector('.th-main').addEventListener('click', function () { boardGo(+el.dataset.id); });
       });
       if (boardKey) wireHide(box);
+      box.querySelectorAll('.bd-pg').forEach(function (b) {
+        b.addEventListener('click', function () {
+          if (b.disabled) return;
+          boardPage += (b.dataset.pg === 'next' ? 1 : -1);
+          renderList();
+          box.scrollIntoView({ block: 'start' });
+        });
+      });
+    }
+    function paint(ths, isSearch, q) {
+      if (!isSearch) { boardThreadsCache = ths; updateBoardBadge(countNew(ths)); }
+      curList = ths || []; curIsSearch = !!isSearch; curQ = q || ''; boardPage = 0;
+      renderList();
     }
     var sortBar = document.getElementById('bd-sort');
     var curSort = boardSort();
@@ -1209,6 +1260,16 @@
       var b = e.target.closest('.bd-sort-b'); if (!b || b.dataset.sort === curSort) return;
       curSort = b.dataset.sort; saveBoardSort(curSort); markSort(); loadAll();
     });
+    // 管理者専用: 広告枠プレビュー(なし/3枠/5枠)
+    var adCtl = document.getElementById('bd-adctl');
+    if (adCtl) {
+      var markAd = function () { adCtl.querySelectorAll('.bd-adb').forEach(function (b) { b.classList.toggle('on', +b.dataset.ad === adPreview()); }); };
+      markAd();
+      adCtl.addEventListener('click', function (e) {
+        var b = e.target.closest('.bd-adb'); if (!b) return;
+        saveAdPreview(+b.dataset.ad); markAd(); renderList();
+      });
+    }
     // 管理者専用: 書き込み統計(24h/3日/7日, ip_hash別=同一人物の寡占チェック)
     var statsBtn = document.getElementById('bd-stats-btn');
     if (statsBtn) statsBtn.addEventListener('click', function () {
