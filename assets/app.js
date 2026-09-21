@@ -988,6 +988,29 @@
   // 広告枠プレビュー(管理者のみ): 0=なし / 3 / 5 枠。実広告ではなく配置イメージの確認用。
   function adPreview() { try { var v = parseInt(localStorage.getItem('pbers_board_adpreview'), 10); return (v === 3 || v === 5) ? v : 0; } catch (e) { return 0; } }
   function saveAdPreview(v) { try { localStorage.setItem('pbers_board_adpreview', String(v)); } catch (e) {} }
+  // サイト全体の広告枠プレビュー(管理者のみ・全ページ): '' / 'rails'(左右) / 'banner'(上部) / 'both'
+  function isAdminLS() { try { return !!localStorage.getItem('pbers_board_key'); } catch (e) { return false; } }
+  function adSite() { try { var v = localStorage.getItem('pbers_ad_site'); return (v === 'rails' || v === 'banner' || v === 'both') ? v : ''; } catch (e) { return ''; } }
+  function saveAdSite(v) { try { localStorage.setItem('pbers_ad_site', v || ''); } catch (e) {} }
+  function applyAdPreview() {   // 左右レール/上部バナーの枠プレビューを body に出し入れ(実広告ではない)
+    var mode = isAdminLS() ? adSite() : '';
+    ['left', 'right'].forEach(function (side) {
+      var id = 'adrail-' + side, el = document.getElementById(id), want = (mode === 'rails' || mode === 'both');
+      if (want && !el) {
+        el = document.createElement('div'); el.id = id; el.className = 'ad-rail ad-rail-' + side;
+        el.innerHTML = '<div class="ad-rail-in"><b>広告</b><span>左右レール<br>プレビュー<br>管理者のみ</span></div>';
+        document.body.appendChild(el);
+      } else if (!want && el) { el.remove(); }
+    });
+    var bel = document.getElementById('adbanner'), wantB = (mode === 'banner' || mode === 'both');
+    var tabs = document.querySelector('.tabs');
+    if (wantB && !bel && tabs) {   // ヘッダ/タブを隠さないよう、タブ直下の通常フローに差し込む
+      bel = document.createElement('div'); bel.id = 'adbanner'; bel.className = 'ad-banner';
+      bel.innerHTML = '<span>広告スペース（上部バナー・プレビュー・管理者のみ表示）</span>';
+      tabs.insertAdjacentElement('afterend', bel);
+    } else if (!wantB && bel) { bel.remove(); }
+    document.body.classList.toggle('ad-rails-on', mode === 'rails' || mode === 'both');
+  }
   // 自己削除キー: 投稿した端末だけが自分のレスを消せるよう、サーバ発行のキーを端末に保存
   function delKeys() { try { return JSON.parse(localStorage.getItem('pbers_delkeys') || '{}'); } catch (e) { return {}; } }
   function saveDelKey(thread, no, token) { if (!token) return; try { var m = delKeys(); m[thread + ':' + no] = token; localStorage.setItem('pbers_delkeys', JSON.stringify(m)); } catch (e) {} }
@@ -2092,6 +2115,21 @@
       listEl.appendChild(it);
     });
     updateGenreCounts();
+    if (isAdminLS()) {   // 管理者のみ: サイト全体の広告枠プレビュー(左右/上部)
+      var ad = document.createElement('div'); ad.className = 'settings-ad';
+      ad.innerHTML = '<div class="settings-title" style="margin-top:14px">広告プレビュー（管理者）</div>' +
+        '<div class="sad-row" id="sad-row">' +
+          '<button type="button" class="sad-b" data-adsite="">なし</button>' +
+          '<button type="button" class="sad-b" data-adsite="rails">左右</button>' +
+          '<button type="button" class="sad-b" data-adsite="banner">上部</button>' +
+          '<button type="button" class="sad-b" data-adsite="both">左右＋上部</button>' +
+        '</div><div class="sad-note">全ページに枠イメージを表示（実広告ではありません）</div>';
+      panel.appendChild(ad);
+      var row = ad.querySelector('#sad-row');
+      var markAdSite = function () { row.querySelectorAll('.sad-b').forEach(function (b) { b.classList.toggle('on', (b.dataset.adsite || '') === adSite()); }); };
+      markAdSite();
+      row.addEventListener('click', function (e) { var b = e.target.closest('.sad-b'); if (!b) return; saveAdSite(b.dataset.adsite || ''); markAdSite(); applyAdPreview(); });
+    }
     gear.addEventListener('click', function (e) {
       e.stopPropagation();
       var willOpen = panel.hidden; panel.hidden = !willOpen;
@@ -2202,6 +2240,7 @@
   renderDashRise();
   setupBoard();
   setupTheme();
+  applyAdPreview();
   setupTabs();
   setupDonutHover();
   setupColScroll();

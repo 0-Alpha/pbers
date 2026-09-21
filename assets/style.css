@@ -838,6 +838,26 @@ footer .brand{font-size:16px}
 .bd-pg:hover:not(:disabled){border-color:var(--muted)}
 .bd-pg:disabled{opacity:.4;cursor:default}
 .bd-pg-info{font-family:var(--jp);font-size:12.5px;color:var(--muted)}
+/* 設定パネル内: サイト全体の広告プレビュー切替(管理者) */
+.sad-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.sad-b{border:1px solid var(--line-2);background:transparent;color:var(--muted);font-family:var(--jp);font-weight:700;
+  font-size:12px;padding:5px 10px;border-radius:8px;cursor:pointer}
+.sad-b:hover{color:var(--text);border-color:var(--muted)}
+.sad-b.on{background:var(--red);color:#fff;border-color:var(--red)}
+.sad-note{font-family:var(--jp);font-size:10.5px;color:var(--muted);margin-top:7px;line-height:1.5}
+/* 左右レール広告枠プレビュー(実広告ではない・管理者のみ・広い画面のみ) */
+.ad-rail{position:fixed;top:120px;bottom:20px;width:160px;z-index:30;display:none;pointer-events:none}
+.ad-rail-left{left:14px}
+.ad-rail-right{right:14px}
+.ad-rail-in{height:100%;max-height:640px;border:2px dashed var(--line-2);border-radius:12px;background:rgba(172,28,28,.05);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;font-family:var(--jp);color:var(--muted)}
+.ad-rail-in b{font-size:15px;color:var(--muted)}
+.ad-rail-in span{font-size:11px;line-height:1.6}
+@media(min-width:1560px){ .ad-rail{display:block} }   /* 本文(最大1200px)と左右枠が重ならない幅でのみ表示 */
+/* 上部バナー広告枠プレビュー(タブ直下・通常フロー) */
+.ad-banner{max-width:var(--maxw);margin:14px auto 0;padding:0 22px;box-sizing:border-box}
+.ad-banner span{display:flex;align-items:center;justify-content:center;min-height:90px;border:2px dashed var(--line-2);border-radius:12px;
+  background:rgba(172,28,28,.06);font-family:var(--jp);font-weight:700;font-size:12.5px;color:var(--muted);text-align:center}
 .th-snip{font-family:var(--jp);font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.5;
   overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 /* スレッド一覧 */
