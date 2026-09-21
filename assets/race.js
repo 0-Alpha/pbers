@@ -6111,7 +6111,7 @@ window.PBERS_RACE = [
         "name": "にこちPB",
         "color": "#4e3ecc",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 8070,
+        "subs": 8080,
         "history": [
           {
             "d": "2026-08-21",
