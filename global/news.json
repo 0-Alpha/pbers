@@ -1,9 +1,33 @@
 {
   "site": "PBers Global",
   "updated": "2026-09-21",
-  "generated": "2026-09-21T08:17:31+09:00",
-  "count": 5,
+  "generated": "2026-09-21T12:03:46+09:00",
+  "count": 7,
   "items": [
+    {
+      "id": "2026-09-21/subs/moon-ball/220000",
+      "date": "2026-09-21",
+      "channel": "MOON-BALL",
+      "slug": "moon-ball",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 22万人 突破",
+      "value": 220000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/moon-ball/"
+    },
+    {
+      "id": "2026-09-21/subs/dezinichtフヒフム-海外アカウント/120000",
+      "date": "2026-09-21",
+      "channel": "Dezinicht【Æž!フヒフム 海外アカウント】",
+      "slug": "dezinichtフヒフム-海外アカウント",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 12万人 突破",
+      "value": 120000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/dezinicht%E3%83%95%E3%83%92%E3%83%95%E3%83%A0-%E6%B5%B7%E5%A4%96%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/"
+    },
     {
       "id": "2026-09-20/views/f丸/30000000",
       "date": "2026-09-20",
