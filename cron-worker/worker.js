@@ -358,14 +358,26 @@ async function threadList(url, req, env) {
   const g = await guard(req, env, {}); if (g.err) return json({ error: g.err }, g.status);
   const board = "general";
   const sort = url.searchParams.get("sort");
-  const order = THREAD_ORDER[sort] || THREAD_ORDER.bump;   // 未知の値は最終レス順にフォールバック
+  const hot = sort === "hot";                              // 勢い順(今伸びてるスレ)はJS側で算出
+  const order = hot ? THREAD_ORDER.bump : (THREAD_ORDER[sort] || THREAD_ORDER.bump);   // 未知の値は最終レス順にフォールバック
   // admin = 1レス目(=スレ主)が管理人投稿か。スキーマ変更不要で board_posts から導出。
   const adminSel = ",(SELECT p.admin FROM board_posts p WHERE p.thread_id=t.id AND p.no=1) AS admin";
   const sql = g.admin
     ? "SELECT t.id,t.title,t.created,t.bumped,t.posts,t.hidden" + adminSel + " FROM board_threads t WHERE t.board=?1 ORDER BY " + order + " LIMIT 200"
     : "SELECT t.id,t.title,t.created,t.bumped,t.posts,t.hidden" + adminSel + " FROM board_threads t WHERE t.board=?1 AND t.hidden=0 ORDER BY " + order + " LIMIT 200";
   const { results } = await env.DB.prepare(sql).bind(board).all();
-  return json({ public: g.pub, admin: g.admin, sort: THREAD_ORDER[sort] ? sort : "bump", threads: results || [] });
+  let rows = results || [];
+  let outSort = THREAD_ORDER[sort] ? sort : "bump";
+  if (hot) {
+    const now = Date.now();
+    rows = rows.map((r) => {                                // 勢い ≒ 1日あたりのレス数(経過時間+2hで新スレの過大評価を抑制)
+      const ageH = Math.max(0, now - (r.created || now)) / 3600000;
+      const mo = (r.posts || 1) * 24 / (ageH + 2);
+      return Object.assign({}, r, { hot: Math.round(mo * 10) / 10 });
+    }).sort((a, b) => b.hot - a.hot);
+    outSort = "hot";
+  }
+  return json({ public: g.pub, admin: g.admin, sort: outSort, threads: rows });
 }
 async function boardSearch(url, req, env) {
   const g = await guard(req, env, {}); if (g.err) return json({ error: g.err }, g.status);

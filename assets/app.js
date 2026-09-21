@@ -983,7 +983,7 @@
   var TS_KEY = window.PBERS_TURNSTILE_SITEKEY || '';   // Turnstileサイトキー(公開・任意)
   function boardName() { try { return localStorage.getItem('pbers_board_name') || ''; } catch (e) { return ''; } }
   function saveBoardName(v) { try { localStorage.setItem('pbers_board_name', v == null ? '' : v); } catch (e) {} }
-  function boardSort() { try { var v = localStorage.getItem('pbers_board_sort'); return (v === 'new' || v === 'posts') ? v : 'bump'; } catch (e) { return 'bump'; } }
+  function boardSort() { try { var v = localStorage.getItem('pbers_board_sort'); return (v === 'new' || v === 'posts' || v === 'hot') ? v : 'bump'; } catch (e) { return 'bump'; } }
   function saveBoardSort(v) { try { localStorage.setItem('pbers_board_sort', v); } catch (e) {} }
   // 自己削除キー: 投稿した端末だけが自分のレスを消せるよう、サーバ発行のキーを端末に保存
   function delKeys() { try { return JSON.parse(localStorage.getItem('pbers_delkeys') || '{}'); } catch (e) { return {}; } }
@@ -1113,6 +1113,7 @@
         '<button type="button" class="bd-sort-b" data-sort="bump">最終レス順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="new">新着順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="posts">レス数順</button>' +
+        '<button type="button" class="bd-sort-b" data-sort="hot">🔥勢い順</button>' +
       '</div>' +
       (boardKey ? '<div class="bd-admin"><button type="button" class="bd-stats-btn" id="bd-stats-btn">📊 書き込み統計（管理者）</button><div class="bd-stats" id="bd-stats" hidden></div></div>' : '') +
       '<div class="board-list" id="board-threads"><div class="board-empty">読み込み中…</div></div>';
@@ -1179,7 +1180,9 @@
             (t.admin ? ' <span class="th-badge">★管理人</span>' : '') +
             (nn > 0 ? ' <span class="th-new">新着' + nn + '</span>' : '') + '</div>' + sn +
             '<div class="th-meta"><span class="num">' + t.posts + '</span> レス ・ ' +
-              (!isSearch && curSort === 'new' ? '作成 ' + bWhen(t.created) : '最終 ' + bWhen(t.bumped)) + '</div></div>' +
+              (!isSearch && curSort === 'hot' ? '<span class="th-hot">🔥 勢い ' + (t.hot != null ? t.hot : '—') + '</span> ・ 最終 ' + bWhen(t.bumped)
+               : !isSearch && curSort === 'new' ? '作成 ' + bWhen(t.created)
+               : '最終 ' + bWhen(t.bumped)) + '</div></div>' +
           (boardKey ? '<button type="button" class="bc-hide" data-k="thread" data-id="' + t.id + '" data-h="' + (t.hidden ? 0 : 1) + '">' + (t.hidden ? '表示' : '非表示') + '</button>' : '') +
         '</div>';
       }).join('');

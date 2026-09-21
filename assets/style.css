@@ -792,7 +792,8 @@ footer .brand{font-size:16px}
 .bd-sclear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:26px;height:26px;border:0;border-radius:50%;
   background:var(--line-2);color:var(--text);font-size:15px;line-height:1;cursor:pointer}
 .bd-sclear:hover{background:var(--muted-2,var(--muted));color:#fff}
-.bd-sort{display:inline-flex;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px;margin-bottom:14px}
+.bd-sort{display:inline-flex;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:3px;margin-bottom:14px;max-width:100%}
+.th-hot{color:var(--red);font-weight:800}
 .bd-sort-b{border:0;background:transparent;padding:6px 14px;border-radius:999px;font-family:var(--jp);font-weight:700;
   font-size:12.5px;color:var(--muted);cursor:pointer;white-space:nowrap;transition:background .16s,color .16s;
   -webkit-user-select:none;user-select:none}
