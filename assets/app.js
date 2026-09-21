@@ -1113,7 +1113,7 @@
         '<button type="button" class="bd-sort-b" data-sort="bump">最終レス順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="new">新着順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="posts">レス数順</button>' +
-        '<button type="button" class="bd-sort-b" data-sort="hot">🔥勢い順</button>' +
+        '<button type="button" class="bd-sort-b" data-sort="hot">勢い順</button>' +
       '</div>' +
       (boardKey ? '<div class="bd-admin"><button type="button" class="bd-stats-btn" id="bd-stats-btn">📊 書き込み統計（管理者）</button><div class="bd-stats" id="bd-stats" hidden></div></div>' : '') +
       '<div class="board-list" id="board-threads"><div class="board-empty">読み込み中…</div></div>';
@@ -1180,7 +1180,7 @@
             (t.admin ? ' <span class="th-badge">★管理人</span>' : '') +
             (nn > 0 ? ' <span class="th-new">新着' + nn + '</span>' : '') + '</div>' + sn +
             '<div class="th-meta"><span class="num">' + t.posts + '</span> レス ・ ' +
-              (!isSearch && curSort === 'hot' ? '<span class="th-hot">🔥 勢い ' + (t.hot != null ? t.hot : '—') + '</span> ・ 最終 ' + bWhen(t.bumped)
+              (!isSearch && curSort === 'hot' ? '<span class="th-hot">勢い ' + (t.hot != null ? t.hot : '—') + '</span> ・ 最終 ' + bWhen(t.bumped)
                : !isSearch && curSort === 'new' ? '作成 ' + bWhen(t.created)
                : '最終 ' + bWhen(t.bumped)) + '</div></div>' +
           (boardKey ? '<button type="button" class="bc-hide" data-k="thread" data-id="' + t.id + '" data-h="' + (t.hidden ? 0 : 1) + '">' + (t.hidden ? '表示' : '非表示') + '</button>' : '') +
