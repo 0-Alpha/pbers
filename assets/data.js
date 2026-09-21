@@ -601,11 +601,11 @@ window.PBERS_DATA = [
   },
   {
     "name": "まるッとわかる地理の裏話",
-    "subs": 15500,
+    "subs": 15600,
     "views": 25784241,
-    "subsLabel": "チャンネル登録者数 1.55万人",
+    "subsLabel": "チャンネル登録者数 1.56万人",
     "viewsLabel": "25,784,241回視聴",
-    "videos": 48,
+    "videos": 49,
     "url": "https://www.youtube.com/channel/UC5nTC9yBAAxfaefKiXB7cZw",
     "avatar": "https://yt3.googleusercontent.com/OKTvYCqWkuYG-s3iq1dydM6YDas44QIY_hQxl1bPLPQbGzbLUe-ljaKZ4AoJu1kb1r2PI0GPXnI=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d05ed4",
@@ -935,7 +935,7 @@ window.PBERS_DATA = [
     "views": 8214307,
     "subsLabel": "チャンネル登録者数 1.07万人",
     "viewsLabel": "8,214,307回視聴",
-    "videos": 120,
+    "videos": 121,
     "url": "https://www.youtube.com/channel/UCrRZolgBJ0K-yGqFKGbUVkw",
     "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d48d5e",
@@ -1640,7 +1640,7 @@ window.PBERS_DATA = [
     "views": 1485362,
     "subsLabel": "チャンネル登録者数 4270人",
     "viewsLabel": "1,485,362回視聴",
-    "videos": 96,
+    "videos": 97,
     "url": "https://www.youtube.com/channel/UCOWqMzG_N3gzH1yGENiUFiA",
     "avatar": "https://yt3.googleusercontent.com/bL9lWsp29DejSdFemB__O0UqwLkgufQdMTMKh0ceh2gHNtK9eIndZqueRLInTnEefoJndg7trA=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d45ed0",
@@ -2447,4 +2447,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-21";
-window.PBERS_PREDICT = {"asOfMs": 1789959600000, "subs": {"base": 2924210, "rate": 0.00013339224797375996}, "views": {"base": 2263471931, "rate": 0.04712469528249935}};
+window.PBERS_PREDICT = {"asOfMs": 1789981200000, "subs": {"base": 2924310, "rate": 0.00013130895602748963}, "views": {"base": 2263471931, "rate": 0.042654331790821315}};
