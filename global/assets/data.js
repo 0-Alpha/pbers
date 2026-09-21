@@ -2,9 +2,9 @@ window.PBERS_DATA = [
   {
     "name": "JP-BALL",
     "subs": 439000,
-    "views": 166201678,
+    "views": 166229029,
     "subsLabel": "チャンネル登録者数 43.9万人",
-    "viewsLabel": "166,201,678回視聴",
+    "viewsLabel": "166,229,029回視聴",
     "videos": 128,
     "url": "https://www.youtube.com/channel/UCZ-zUkkdNTYAYDgkDyeb_hA",
     "avatar": "https://yt3.googleusercontent.com/UXoyWxO_MOdKJK4kLMC988Uj9LZC9pZO13VMLEVq-4C32fBkvug-FUzSiUrbAh_mSy3zOPyfCC0=s900-c-k-c0x00ffffff-no-rj",
@@ -62,9 +62,9 @@ window.PBERS_DATA = [
   {
     "name": "áíš!aispoaporu",
     "subs": 138000,
-    "views": 94901310,
+    "views": 94945598,
     "subsLabel": "チャンネル登録者数 13.8万人",
-    "viewsLabel": "94,901,310回視聴",
+    "viewsLabel": "94,945,598回視聴",
     "videos": 1055,
     "url": "https://www.youtube.com/channel/UC1swbrz9S2VKVABS673ACgQ",
     "avatar": "https://yt3.googleusercontent.com/PNuTtwQrRcQ7zzGQlLM54CsOYHqXfzQA3oPx8Q9o-_GTomHU_WV2SGsA7uv_oPc1XNo09Q0OAtY=s900-c-k-c0x00ffffff-no-rj",
@@ -137,9 +137,9 @@ window.PBERS_DATA = [
   {
     "name": "くろまめ",
     "subs": 17100,
-    "views": 16367287,
+    "views": 16424218,
     "subsLabel": "チャンネル登録者数 1.71万人",
-    "viewsLabel": "16,367,287回視聴",
+    "viewsLabel": "16,424,218回視聴",
     "videos": 82,
     "url": "https://www.youtube.com/channel/UCfJp9c3kSkIjYFevd2G1RKg",
     "avatar": "https://yt3.googleusercontent.com/yV8LzkaByDse6ZVmF8XEySSyoZ6osOmQM9SmjO8FTgQPiaOwyAaD2VEH1Zx8UqAVobRkOxaVbrg=s900-c-k-c0x00ffffff-no-rj",
@@ -197,9 +197,9 @@ window.PBERS_DATA = [
   {
     "name": "udonball",
     "subs": 6910,
-    "views": 1239922,
+    "views": 1240613,
     "subsLabel": "チャンネル登録者数 6910人",
-    "viewsLabel": "1,239,922回視聴",
+    "viewsLabel": "1,240,613回視聴",
     "videos": 119,
     "url": "https://www.youtube.com/channel/UCGueqNQmvtQYlGO3UL3Gf3w",
     "avatar": "https://yt3.googleusercontent.com/t-XpUkPOEssGyYn9TK4JrLG9EmGIhn565-GBvVCtqkpxDXD36l6OOb6EOlWJ_Gr92W8a_ryApcg=s900-c-k-c0x00ffffff-no-rj",
@@ -241,5 +241,5 @@ window.PBERS_DATA = [
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
-window.PBERS_UPDATED = "2026-09-21";
-window.PBERS_PREDICT = {"asOfMs": 1790002800000, "subs": {"base": 1529800, "rate": 3.428052751161887e-05}, "views": {"base": 676097528, "rate": 0.0071654920448122016}};
+window.PBERS_UPDATED = "2026-09-22";
+window.PBERS_PREDICT = {"asOfMs": 1790024400000, "subs": {"base": 1529800, "rate": 3.180793556062752e-05}, "views": {"base": 676226789, "rate": 0.007450653343576791}};

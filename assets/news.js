@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-09-22",
+    "label": "9月22日(火)",
+    "items": []
+  },
+  {
     "date": "2026-09-21",
     "label": "9月21日(月)",
     "items": [
@@ -28,9 +33,9 @@ window.PBERS_NEWS = [
       {
         "type": "milestone",
         "kind": "subs",
-        "name": "ねとえん",
-        "color": "#d48d5e",
-        "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
+        "name": "ほすとぼーる",
+        "color": "#cc3e82",
+        "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "登録者 1万人 突破",
@@ -50,9 +55,9 @@ window.PBERS_NEWS = [
       {
         "type": "milestone",
         "kind": "subs",
-        "name": "ほすとぼーる",
-        "color": "#cc3e82",
-        "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
+        "name": "ねとえん",
+        "color": "#d48d5e",
+        "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "登録者 1万人 突破",
@@ -175,22 +180,5 @@ window.PBERS_NEWS = [
     "date": "2026-09-16",
     "label": "9月16日(水)",
     "items": []
-  },
-  {
-    "date": "2026-09-15",
-    "label": "9月15日(火)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "Æž!みかんぼーる🍊",
-        "color": "#eba864",
-        "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 34万人 突破",
-        "value": 340000
-      }
-    ]
   }
 ];

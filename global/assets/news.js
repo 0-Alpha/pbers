@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-09-22",
+    "label": "9月22日(火)",
+    "items": []
+  },
+  {
     "date": "2026-09-21",
     "label": "9月21日(月)",
     "items": [
@@ -96,23 +101,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "総再生数 5000万回 突破",
         "value": 50000000
-      }
-    ]
-  },
-  {
-    "date": "2026-09-15",
-    "label": "9月15日(火)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-        "color": "#d45eb1",
-        "avatar": "https://yt3.googleusercontent.com/6bFOwdJowJMxYBkoE3h0ws0_Lbgr8d8c0ZPgny5agUQ4OzwVqAeeD2E4RCFYEkte2VM_Bwel2w=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 12万人 突破",
-        "value": 120000
       }
     ]
   }
