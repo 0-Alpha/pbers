@@ -1126,6 +1126,7 @@
         '</div>' +
         '<input class="bf-in bf-name" id="bt-name" maxlength="24" placeholder="名前（任意）">' +
         '<textarea class="bf-in bf-body" id="bt-body" maxlength="2000" rows="3" placeholder="最初の書き込み…"></textarea>' +
+        '<div class="bf-hint">画像は <b>imgur</b> のURL（例: https://i.imgur.com/xxxx.png）を貼ると表示されます。YouTube のURLも埋め込みされます。</div>' +
         '<button type="button" class="bt-poll-toggle" id="bt-poll-toggle">＋ アンケートを作成</button>' +
         '<div class="bt-poll" id="bt-poll" hidden>' +
           '<input class="bf-in" id="bp-q" maxlength="140" placeholder="質問（例：一番好きなPBerは？）">' +
@@ -1410,6 +1411,25 @@
         '<button type="button" class="yt-play" aria-label="再生"></button></div>';
     }).join('') + '</div>';
   }
+  // 本文中の imgur 画像URL(最大4件)を直リンクに正規化。信頼できる imgur のみ許可(自前ホストなし)。
+  function imgurUrls(text) {
+    var re = /https?:\/\/(?:i\.)?imgur\.com\/(?!a\/|gallery\/|t\/|user\/)([A-Za-z0-9]{5,12})(\.(?:jpe?g|png|gif|gifv|webp))?/gi;
+    var out = [], seen = {}, m;
+    while ((m = re.exec(String(text || ''))) && out.length < 4) {
+      var id = m[1]; if (seen[id]) continue; seen[id] = 1;
+      var ext = (m[2] || '.jpg').toLowerCase().replace('.jpeg', '.jpg').replace('.gifv', '.gif');
+      out.push('https://i.imgur.com/' + id + ext);
+    }
+    return out;
+  }
+  // Discord風: imgur画像をインライン表示(遅延読込・高さ制限、クリックで原寸を新規タブ)。
+  function imgEmbeds(body) {
+    var us = imgurUrls(body); if (!us.length) return '';
+    return '<div class="img-embeds">' + us.map(function (u) {
+      return '<a class="img-embed" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">' +
+        '<img loading="lazy" src="' + esc(u) + '" alt="" onerror="this.closest(\'.img-embed\').style.display=\'none\'"></a>';
+    }).join('') + '</div>';
+  }
   function pollRemain(closes) {   // 残り時間の短い表記
     var ms = closes - Date.now(); if (ms <= 0) return '';
     var d = Math.floor(ms / 86400000), h = Math.floor((ms % 86400000) / 3600000);
@@ -1475,10 +1495,11 @@
             '</div>' +
             (del ? '<div class="post-body post-del-body">削除されました</div>'
                  : '<div class="post-body">' + linkAnchors(linkUrls(esc(p.body))).replace(/\n/g, '<br>') + '</div>' +
-                   ytEmbeds(p.body) + postMentions(p.body)) +
+                   ytEmbeds(p.body) + imgEmbeds(p.body) + postMentions(p.body)) +
           '</div>';
         }).join('') + '</div>' +
         '<form class="bt-reply" id="bt-reply" autocomplete="off">' +
+          '<div class="bf-hint">画像は <b>imgur</b> のURL、動画は YouTube のURLを貼ると表示されます。</div>' +
           '<input class="bf-in bf-name" id="rp-name" maxlength="24" placeholder="名前（任意）">' +
           '<textarea class="bf-in bf-body" id="rp-body" maxlength="2000" rows="3" placeholder="返信を書く…"></textarea>' +
           '<div class="bf-actions"><span class="bf-msg" id="rp-msg"></span>' +

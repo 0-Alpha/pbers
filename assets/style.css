@@ -976,6 +976,12 @@ footer .brand{font-size:16px}
 .post-hl{animation:posthl 1.8s ease-out}
 @keyframes posthl{0%{background:rgba(91,141,239,.22)}100%{background:transparent}}
 /* YouTube埋め込み(Discord風・クリックで再生) */
+.bf-hint{font-family:var(--jp);font-size:11px;color:var(--muted);line-height:1.6;margin:-2px 0 2px}
+.bf-hint b{color:var(--text)}
+/* imgur画像の埋め込み */
+.img-embeds{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.img-embed{display:inline-block;line-height:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.img-embed img{display:block;max-width:min(100%,340px);max-height:360px;width:auto;height:auto;object-fit:contain}
 .yt-embeds{display:flex;flex-direction:column;gap:10px;margin-top:10px}
 .yt-lite{position:relative;width:100%;max-width:480px;aspect-ratio:16/9;background:#000 center/cover no-repeat;
   border-radius:10px;cursor:pointer;overflow:hidden;border:1px solid var(--line)}
