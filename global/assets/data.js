@@ -152,9 +152,9 @@ window.PBERS_DATA = [
   {
     "name": "日本猫耳版ボール【目標9000人】",
     "subs": 12900,
-    "views": 3931558,
+    "views": 3931621,
     "subsLabel": "チャンネル登録者数 1.29万人",
-    "viewsLabel": "3,931,558回視聴",
+    "viewsLabel": "3,931,621回視聴",
     "videos": 226,
     "url": "https://www.youtube.com/channel/UCIqROVo0xBJfh5h6cQyPm7Q",
     "avatar": "https://yt3.googleusercontent.com/LpR7h9FEKhK0Va34bq-KRghVlWGkhmZQUTbd-JcnnuZ3BU17SQQjkFfh6YnFgAvVbYXcWO37Vw=s900-c-k-c0x00ffffff-no-rj",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-22";
-window.PBERS_PREDICT = {"asOfMs": 1790067600000, "subs": {"base": 1529900, "rate": 2.638218133533429e-05}, "views": {"base": 676482983, "rate": 0.007271865499101059}};
+window.PBERS_PREDICT = {"asOfMs": 1790089200000, "subs": {"base": 1529900, "rate": 2.3816288191483458e-05}, "views": {"base": 676483046, "rate": 0.006965775081251679}};
