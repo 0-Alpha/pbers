@@ -985,6 +985,19 @@
   function saveBoardName(v) { try { localStorage.setItem('pbers_board_name', v == null ? '' : v); } catch (e) {} }
   function boardSort() { try { var v = localStorage.getItem('pbers_board_sort'); return (v === 'new' || v === 'posts' || v === 'hot') ? v : 'bump'; } catch (e) { return 'bump'; } }
   function saveBoardSort(v) { try { localStorage.setItem('pbers_board_sort', v); } catch (e) {} }
+  // スレの種別タグ(PB主)。キー -> ラベル/色。未指定・不明は pb 扱い。
+  var TAGS = {
+    pb: { label: 'PB', color: '#ac1c1c' },
+    neta: { label: 'ネタ', color: '#e07b2c' },
+    kousatsu: { label: '考察・分析', color: '#3a72d6' },
+    shitsumon: { label: '質問', color: '#40a86a' },
+    oekaki: { label: 'お絵描き', color: '#9b51e0' },
+    unei: { label: '運営・お知らせ', color: '#8d8986' },
+    zatsudan: { label: '雑談・その他', color: '#6a6663' }
+  };
+  var TAG_ORDER = ['pb', 'neta', 'kousatsu', 'shitsumon', 'oekaki', 'unei', 'zatsudan'];
+  function tagKey(k) { return TAGS[k] ? k : 'pb'; }       // null/不明は pb
+  function tagChip(k) { var t = TAGS[tagKey(k)]; return '<span class="th-tag" style="--tc:' + t.color + '">' + t.label + '</span>'; }
   // 広告枠プレビュー(管理者のみ): 0=なし / 3 / 5 枠。実広告ではなく配置イメージの確認用。
   function adPreview() { try { var v = parseInt(localStorage.getItem('pbers_board_adpreview'), 10); return (v === 3 || v === 5) ? v : 0; } catch (e) { return 0; } }
   function saveAdPreview(v) { try { localStorage.setItem('pbers_board_adpreview', String(v)); } catch (e) {} }
@@ -1112,6 +1125,9 @@
       '<form class="bt-new" id="bt-new" autocomplete="off">' +
         '<div class="bt-new-h">スレッドを立てる</div>' +
         '<input class="bf-in" id="bt-title" maxlength="60" placeholder="タイトル（60字まで）">' +
+        '<div class="bt-tagsel" id="bt-tagsel"><span class="bt-tagsel-l">種別</span>' +
+          TAG_ORDER.map(function (k) { return '<button type="button" class="bt-tg' + (k === 'pb' ? ' on' : '') + '" data-tag="' + k + '" style="--tc:' + TAGS[k].color + '">' + TAGS[k].label + '</button>'; }).join('') +
+        '</div>' +
         '<input class="bf-in bf-name" id="bt-name" maxlength="24" placeholder="名前（任意）">' +
         '<textarea class="bf-in bf-body" id="bt-body" maxlength="2000" rows="3" placeholder="最初の書き込み…"></textarea>' +
         '<button type="button" class="bt-poll-toggle" id="bt-poll-toggle">＋ アンケートを作成</button>' +
@@ -1141,6 +1157,10 @@
         '<button type="button" class="bd-sort-b" data-sort="posts">レス数順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="hot">勢い順</button>' +
       '</div>' +
+      '<div class="bd-tagfilter" id="bd-tagfilter"><span class="bd-tf-l">絞り込み</span>' +
+        '<button type="button" class="bd-tf on" data-tf="">すべて</button>' +
+        TAG_ORDER.map(function (k) { return '<button type="button" class="bd-tf" data-tf="' + k + '" style="--tc:' + TAGS[k].color + '">' + TAGS[k].label + '</button>'; }).join('') +
+      '</div>' +
       (boardKey ? '<div class="bd-admin"><button type="button" class="bd-stats-btn" id="bd-stats-btn">📊 書き込み統計（管理者）</button>' +
         '<span class="bd-adctl" id="bd-adctl">広告プレビュー: ' +
           '<button type="button" class="bd-adb" data-ad="0">なし</button>' +
@@ -1150,6 +1170,13 @@
         '<div class="bd-stats" id="bd-stats" hidden></div></div>' : '') +
       '<div class="board-list" id="board-threads"><div class="board-empty">読み込み中…</div></div>';
     document.getElementById('bt-name').value = boardName();
+    // 種別タグの選択(デフォルトPB)
+    var tagSel = document.getElementById('bt-tagsel'), newTag = 'pb';
+    tagSel.addEventListener('click', function (e) {
+      var b = e.target.closest('.bt-tg'); if (!b) return;
+      newTag = b.dataset.tag;
+      tagSel.querySelectorAll('.bt-tg').forEach(function (x) { x.classList.toggle('on', x === b); });
+    });
     var tsNew = tsMount(document.getElementById('bt-new'));
     // アンケート入力欄: 開閉・選択肢の追加(最大10)
     var pollWrap = document.getElementById('bt-poll'), pollToggle = document.getElementById('bt-poll-toggle');
@@ -1187,7 +1214,7 @@
       var poll = collectPoll();
       if (!pollWrap.hidden && !poll) { msg.textContent = 'アンケートは質問と選択肢2つ以上が必要です'; return; }
       send.disabled = true; msg.textContent = '作成中…';
-      var payload = { title: title, name: name, body: body, token: tsNew.get() };
+      var payload = { title: title, name: name, body: body, token: tsNew.get(), tag: newTag };
       if (poll) payload.poll = poll;
       fetch(boardApi('/threads'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify(payload) })
@@ -1197,7 +1224,7 @@
         }).catch(function () { send.disabled = false; tsNew.reset(); msg.textContent = '送信に失敗しました'; });
     });
     var box = document.getElementById('board-threads');
-    var PAGE_SIZE = 50, boardPage = 0, curList = [], curIsSearch = false, curQ = '';
+    var PAGE_SIZE = 50, boardPage = 0, curList = [], curIsSearch = false, curQ = '', boardTagFilter = '';
     function adBox(label) {   // 広告枠プレビュー(管理者のみ表示・実広告ではない)
       return '<div class="ad-slot"><span class="ad-slot-tag">広告スペース（プレビュー・管理者のみ表示）</span>' +
         '<span class="ad-slot-sub">' + label + '</span></div>';
@@ -1219,7 +1246,7 @@
       var nn = newFor(t.id, t.posts);
       var sn = (isSearch && t.snippet) ? '<div class="th-snip">' + esc(String(t.snippet).slice(0, 80)) + (String(t.snippet).length > 80 ? '…' : '') + '</div>' : '';
       return '<div class="th' + (t.hidden ? ' bc-off' : '') + '" data-id="' + t.id + '">' +
-        '<div class="th-main"><div class="th-title">' + esc(t.title) +
+        '<div class="th-main"><div class="th-title">' + tagChip(t.tag) + ' ' + esc(t.title) +
           (t.admin ? ' <span class="th-badge">★管理人</span>' : '') +
           (nn > 0 ? ' <span class="th-new">新着' + nn + '</span>' : '') + '</div>' + sn +
           '<div class="th-meta"><span class="num">' + t.posts + '</span> レス ・ ' +
@@ -1229,10 +1256,14 @@
         (boardKey ? '<button type="button" class="bc-hide" data-k="thread" data-id="' + t.id + '" data-h="' + (t.hidden ? 0 : 1) + '">' + (t.hidden ? '表示' : '非表示') + '</button>' : '') +
       '</div>';
     }
-    function renderList() {   // 現在のスレ一覧を50件/ページで描画(クライアント側ページ送り)
-      var ths = curList, isSearch = curIsSearch, q = curQ;
+    function renderList() {   // 現在のスレ一覧を50件/ページで描画(クライアント側ページ送り・種別で絞り込み)
+      var isSearch = curIsSearch, q = curQ;
+      var ths = (!isSearch && boardTagFilter) ? curList.filter(function (t) { return tagKey(t.tag) === boardTagFilter; }) : curList;
       if (!ths.length) {
-        box.innerHTML = '<div class="board-empty">' + (isSearch ? '「' + esc(q) + '」に一致するスレッドはありません。' : 'まだスレッドがありません。最初のスレッドを立ててみよう。') + '</div>';
+        box.innerHTML = '<div class="board-empty">' +
+          (isSearch ? '「' + esc(q) + '」に一致するスレッドはありません。'
+           : boardTagFilter ? '「' + TAGS[boardTagFilter].label + '」のスレッドはありません。'
+           : 'まだスレッドがありません。最初のスレッドを立ててみよう。') + '</div>';
         return;
       }
       var pages = Math.ceil(ths.length / PAGE_SIZE);
@@ -1282,6 +1313,15 @@
     sortBar.addEventListener('click', function (e) {
       var b = e.target.closest('.bd-sort-b'); if (!b || b.dataset.sort === curSort) return;
       curSort = b.dataset.sort; saveBoardSort(curSort); markSort(); loadAll();
+    });
+    // 種別フィルタ(すべて/各タグ)。クライアント側で絞り込み
+    var tagFilter = document.getElementById('bd-tagfilter');
+    if (tagFilter) tagFilter.addEventListener('click', function (e) {
+      var b = e.target.closest('.bd-tf'); if (!b) return;
+      var v = b.dataset.tf || ''; if (v === boardTagFilter) return;
+      boardTagFilter = v; boardPage = 0;
+      tagFilter.querySelectorAll('.bd-tf').forEach(function (x) { x.classList.toggle('on', x === b); });
+      renderList();
     });
     // 管理者専用: 広告枠プレビュー(なし/3枠/5枠)
     var adCtl = document.getElementById('bd-adctl');
@@ -1421,7 +1461,7 @@
       seenThread(id, d.thread.posts);                         // 閲覧=このスレは既読に
       updateBoardBadge(countNew(boardThreadsCache));          // タブの新着バッジを更新
       host.innerHTML = '<button class="th-back">← スレ一覧</button>' +
-        '<h3 class="th-h">' + esc(d.thread.title) + '</h3>' +
+        '<h3 class="th-h">' + tagChip(d.tag) + ' ' + esc(d.thread.title) + '</h3>' +
         pollHtml(d.poll) +
         '<div class="posts">' + posts.map(function (p) {
           var del = !p.body;                                   // 本文が空=削除済み

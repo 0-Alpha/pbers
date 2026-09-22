@@ -794,6 +794,24 @@ footer .brand{font-size:16px}
 .bd-sclear:hover{background:var(--muted-2,var(--muted));color:#fff}
 .bd-sort{display:inline-flex;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:3px;margin-bottom:14px;max-width:100%}
 .th-hot{color:var(--red);font-weight:800}
+/* スレ種別タグ */
+.th-tag{display:inline-block;font-family:var(--jp);font-weight:800;font-size:10.5px;line-height:1;color:var(--tc,var(--red));
+  border:1px solid var(--tc,var(--red));padding:2px 7px;border-radius:999px;vertical-align:middle;margin-right:3px;white-space:nowrap}
+.th-h .th-tag{font-size:12px;padding:3px 9px}
+/* スレ作成: 種別選択 */
+.bt-tagsel{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.bt-tagsel-l{font-family:var(--jp);font-weight:700;font-size:12px;color:var(--muted);margin-right:2px}
+.bt-tg{border:1px solid var(--line-2);background:transparent;color:var(--muted);font-family:var(--jp);font-weight:700;
+  font-size:12px;padding:5px 11px;border-radius:999px;cursor:pointer}
+.bt-tg:hover{color:var(--text);border-color:var(--tc,var(--muted))}
+.bt-tg.on{background:var(--tc,var(--red));border-color:var(--tc,var(--red));color:#fff}
+/* 種別フィルタ */
+.bd-tagfilter{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:14px}
+.bd-tf-l{font-family:var(--jp);font-weight:700;font-size:12px;color:var(--muted);margin-right:2px}
+.bd-tf{border:1px solid var(--line-2);background:transparent;color:var(--muted);font-family:var(--jp);font-weight:700;
+  font-size:12px;padding:5px 11px;border-radius:999px;cursor:pointer}
+.bd-tf:hover{color:var(--text);border-color:var(--tc,var(--muted))}
+.bd-tf.on{background:var(--tc,var(--red));border-color:var(--tc,var(--red));color:#fff}
 .bd-sort-b{border:0;background:transparent;padding:6px 14px;border-radius:999px;font-family:var(--jp);font-weight:700;
   font-size:12.5px;color:var(--muted);cursor:pointer;white-space:nowrap;transition:background .16s,color .16s;
   -webkit-user-select:none;user-select:none}

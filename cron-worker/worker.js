@@ -330,6 +330,11 @@ function ymdJST() {                        // 日替りID用の日付(JST)
   return d.toISOString().slice(0, 10);
 }
 function clean(s, max) { return String(s == null ? "" : s).replace(/\r\n/g, "\n").trim().slice(0, max); }
+// スレの種別タグ(PB主)。キーのみ許可、未知/未指定は 'pb'。テーブルは初回書込時に自動作成。
+const TAG_SET = new Set(["pb", "neta", "kousatsu", "shitsumon", "oekaki", "unei", "zatsudan"]);
+async function ensureTags(env) {
+  await env.DB.prepare("CREATE TABLE IF NOT EXISTS board_tags(thread_id INTEGER PRIMARY KEY, tag TEXT NOT NULL)").run();
+}
 // 自己削除用の鍵。投稿のthread/no/createdとSALTから決定的に算出(保存不要)。
 // 投稿時にだけ本人へ返し、削除時に一致すれば本人と判定。SALTを知らない第三者は偽造できない。
 async function delkeyFor(env, thread, no, created) {
@@ -360,8 +365,9 @@ async function threadList(url, req, env) {
   const sort = url.searchParams.get("sort");
   const hot = sort === "hot";                              // 勢い順(今伸びてるスレ)はJS側で算出
   const order = hot ? THREAD_ORDER.bump : (THREAD_ORDER[sort] || THREAD_ORDER.bump);   // 未知の値は最終レス順にフォールバック
-  // admin = 1レス目(=スレ主)が管理人投稿か。スキーマ変更不要で board_posts から導出。
-  const adminSel = ",(SELECT p.admin FROM board_posts p WHERE p.thread_id=t.id AND p.no=1) AS admin";
+  try { await ensureTags(env); } catch (e) {}              // タグ表(無ければ作成)。サブクエリの参照先を保証
+  // admin = 1レス目(=スレ主)が管理人投稿か。スキーマ変更不要で board_posts から導出。tag = 種別(無ければpb扱い)
+  const adminSel = ",(SELECT p.admin FROM board_posts p WHERE p.thread_id=t.id AND p.no=1) AS admin,(SELECT tg.tag FROM board_tags tg WHERE tg.thread_id=t.id) AS tag";
   const sql = g.admin
     ? "SELECT t.id,t.title,t.created,t.bumped,t.posts,t.hidden" + adminSel + " FROM board_threads t WHERE t.board=?1 ORDER BY " + order + " LIMIT 200"
     : "SELECT t.id,t.title,t.created,t.bumped,t.posts,t.hidden" + adminSel + " FROM board_threads t WHERE t.board=?1 AND t.hidden=0 ORDER BY " + order + " LIMIT 200";
@@ -411,7 +417,9 @@ async function threadShow(url, req, env) {
     : "SELECT no,name,body,uid,created,hidden,admin FROM board_posts WHERE thread_id=?1 AND hidden=0 ORDER BY no ASC LIMIT 1000";
   const { results } = await env.DB.prepare(sql).bind(id).all();
   const poll = await pollFor(req, env, id, g.admin);
-  return json({ public: g.pub, admin: g.admin, thread: th, posts: results || [], poll: poll });
+  let tag = null;
+  try { await ensureTags(env); const tr = await env.DB.prepare("SELECT tag FROM board_tags WHERE thread_id=?1").bind(id).first(); tag = tr ? tr.tag : null; } catch (e) {}
+  return json({ public: g.pub, admin: g.admin, thread: th, tag: tag, posts: results || [], poll: poll });
 }
 async function threadCreate(req, env) {
   const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
@@ -437,6 +445,8 @@ async function threadCreate(req, env) {
   await env.DB.prepare(
     "INSERT INTO board_posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin,ip,ua) VALUES(?1,1,?2,?3,?4,?5,?6,0,?7,?8,?9)")
     .bind(tid, name, body, uid, now, iph, g.admin ? 1 : 0, ip, ua).run();
+  var tag = TAG_SET.has(b.tag) ? b.tag : "pb";   // 種別タグ(PB主・未指定はpb)
+  try { await ensureTags(env); await env.DB.prepare("INSERT OR REPLACE INTO board_tags(thread_id,tag) VALUES(?1,?2)").bind(tid, tag).run(); } catch (e) {}
   if (b.poll) { try { await createPoll(env, tid, b.poll, now); } catch (e) {} }   // スレ主のアンケート添付(任意)
   return json({ ok: true, id: tid, del: await delkeyFor(env, tid, 1, now) });    // del=OP(1レス目)の自己削除キー
 }
