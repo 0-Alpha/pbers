@@ -332,8 +332,11 @@ function ymdJST() {                        // 日替りID用の日付(JST)
 function clean(s, max) { return String(s == null ? "" : s).replace(/\r\n/g, "\n").trim().slice(0, max); }
 // スレの種別タグ(PB主)。キーのみ許可、未知/未指定は 'pb'。テーブルは初回書込時に自動作成。
 const TAG_SET = new Set(["pb", "neta", "kousatsu", "shitsumon", "oekaki", "unei", "zatsudan"]);
+let _tagsReady = false;   // DDLは1回だけ(isolate単位)。毎リクエストの書き込み往復を無くす
 async function ensureTags(env) {
+  if (_tagsReady) return;
   await env.DB.prepare("CREATE TABLE IF NOT EXISTS board_tags(thread_id INTEGER PRIMARY KEY, tag TEXT NOT NULL)").run();
+  _tagsReady = true;
 }
 // 自己削除用の鍵。投稿のthread/no/createdとSALTから決定的に算出(保存不要)。
 // 投稿時にだけ本人へ返し、削除時に一致すれば本人と判定。SALTを知らない第三者は偽造できない。
@@ -415,11 +418,13 @@ async function threadShow(url, req, env) {
   const sql = g.admin
     ? "SELECT no,name,body,uid,created,hidden,admin FROM board_posts WHERE thread_id=?1 ORDER BY no ASC LIMIT 1000"
     : "SELECT no,name,body,uid,created,hidden,admin FROM board_posts WHERE thread_id=?1 AND hidden=0 ORDER BY no ASC LIMIT 1000";
-  const { results } = await env.DB.prepare(sql).bind(id).all();
-  const poll = await pollFor(req, env, id, g.admin);
-  let tag = null;
-  try { await ensureTags(env); const tr = await env.DB.prepare("SELECT tag FROM board_tags WHERE thread_id=?1").bind(id).first(); tag = tr ? tr.tag : null; } catch (e) {}
-  return json({ public: g.pub, admin: g.admin, thread: th, tag: tag, posts: results || [], poll: poll });
+  // レス・タグ・アンケートを並列取得(D1往復の待ち時間を短縮)
+  const [postsRes, tagRes, poll] = await Promise.all([
+    env.DB.prepare(sql).bind(id).all(),
+    env.DB.prepare("SELECT tag FROM board_tags WHERE thread_id=?1").bind(id).first().catch(() => null),
+    pollFor(req, env, id, g.admin),
+  ]);
+  return json({ public: g.pub, admin: g.admin, thread: th, tag: tagRes ? tagRes.tag : null, posts: (postsRes && postsRes.results) || [], poll: poll });
 }
 async function threadCreate(req, env) {
   const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
@@ -453,9 +458,12 @@ async function threadCreate(req, env) {
 // ---- アンケート(投票) ----
 // スレ主が作成時にOPへ1つ添付できる。質問+選択肢(最大10)、複数回答許可、結果を投票前に見せる/隠す、期間最大7日。
 // 票は入れ直し不可(IPハッシュで1回)。合計投票数は常に公開。テーブルは初回書込時に自動作成。
+let _pollsReady = false;   // DDLは1回だけ(isolate単位)
 async function ensurePolls(env) {
+  if (_pollsReady) return;
   await env.DB.prepare("CREATE TABLE IF NOT EXISTS board_polls(thread_id INTEGER PRIMARY KEY, question TEXT NOT NULL, options TEXT NOT NULL, multi INTEGER DEFAULT 0, hide INTEGER DEFAULT 0, created INTEGER NOT NULL, closes INTEGER NOT NULL, counts TEXT NOT NULL, votes INTEGER DEFAULT 0)").run();
   await env.DB.prepare("CREATE TABLE IF NOT EXISTS board_poll_votes(thread_id INTEGER NOT NULL, voter TEXT NOT NULL, choices TEXT NOT NULL, created INTEGER NOT NULL, PRIMARY KEY(thread_id, voter))").run();
+  _pollsReady = true;
 }
 async function createPoll(env, tid, p, now) {
   if (!p || typeof p !== "object") return;
@@ -471,13 +479,16 @@ async function createPoll(env, tid, p, now) {
 }
 async function pollFor(req, env, tid, admin) {
   // threadShow用: アンケートの表示状態を組み立てる。テーブル未作成でも安全にnull。
-  let poll = null;
-  try { poll = await env.DB.prepare("SELECT * FROM board_polls WHERE thread_id=?1").bind(tid).first(); } catch (e) { return null; }
-  if (!poll) return null;
   const ip = req.headers.get("CF-Connecting-IP") || "0";
   const voter = await sha(ip + "|poll|" + (env.SALT || "pbers"));
-  let mine = null;
-  try { mine = await env.DB.prepare("SELECT choices FROM board_poll_votes WHERE thread_id=?1 AND voter=?2").bind(tid, voter).first(); } catch (e) {}
+  let poll = null, mine = null;
+  try {   // アンケート本体と自分の投票を並列取得(テーブル未作成なら例外→null)
+    [poll, mine] = await Promise.all([
+      env.DB.prepare("SELECT * FROM board_polls WHERE thread_id=?1").bind(tid).first(),
+      env.DB.prepare("SELECT choices FROM board_poll_votes WHERE thread_id=?1 AND voter=?2").bind(tid, voter).first(),
+    ]);
+  } catch (e) { return null; }
+  if (!poll) return null;
   const voted = !!mine, closed = Date.now() >= poll.closes;
   const reveal = !poll.hide || voted || closed || admin;     // 結果を見せてよいか(合計数は常に見せる)
   let options = [], counts = [], myChoices = null;
