@@ -2,9 +2,9 @@ window.PBERS_DATA = [
   {
     "name": "JP-BALL",
     "subs": 439000,
-    "views": 166240740,
+    "views": 166245340,
     "subsLabel": "チャンネル登録者数 43.9万人",
-    "viewsLabel": "166,240,740回視聴",
+    "viewsLabel": "166,245,340回視聴",
     "videos": 128,
     "url": "https://www.youtube.com/channel/UCZ-zUkkdNTYAYDgkDyeb_hA",
     "avatar": "https://yt3.googleusercontent.com/UXoyWxO_MOdKJK4kLMC988Uj9LZC9pZO13VMLEVq-4C32fBkvug-FUzSiUrbAh_mSy3zOPyfCC0=s900-c-k-c0x00ffffff-no-rj",
@@ -47,9 +47,9 @@ window.PBERS_DATA = [
   {
     "name": "Somen ball",
     "subs": 165000,
-    "views": 61371417,
+    "views": 61377524,
     "subsLabel": "チャンネル登録者数 16.5万人",
-    "viewsLabel": "61,371,417回視聴",
+    "viewsLabel": "61,377,524回視聴",
     "videos": 119,
     "url": "https://www.youtube.com/channel/UCfh08MHIzScBQKh5OuG2ofA",
     "avatar": "https://yt3.googleusercontent.com/3a_WIUPrZ8qIxGmQJhtTv9z8vOffxcS3l9TqJK0pcQhNssFX4VJgPndXd2V3o9Hk7F7ECpFP=s900-c-k-c0x00ffffff-no-rj",
@@ -65,7 +65,7 @@ window.PBERS_DATA = [
     "views": 94964153,
     "subsLabel": "チャンネル登録者数 13.8万人",
     "viewsLabel": "94,964,153回視聴",
-    "videos": 1055,
+    "videos": 1056,
     "url": "https://www.youtube.com/channel/UC1swbrz9S2VKVABS673ACgQ",
     "avatar": "https://yt3.googleusercontent.com/PNuTtwQrRcQ7zzGQlLM54CsOYHqXfzQA3oPx8Q9o-_GTomHU_WV2SGsA7uv_oPc1XNo09Q0OAtY=s900-c-k-c0x00ffffff-no-rj",
     "color": "#5e95d4",
@@ -122,9 +122,9 @@ window.PBERS_DATA = [
   {
     "name": "りょうデス",
     "subs": 24000,
-    "views": 15254853,
+    "views": 15255047,
     "subsLabel": "チャンネル登録者数 2.4万人",
-    "viewsLabel": "15,254,853回視聴",
+    "viewsLabel": "15,255,047回視聴",
     "videos": 891,
     "url": "https://www.youtube.com/channel/UCfe4nCMqfTwoiMmIGqAolcQ",
     "avatar": "https://yt3.googleusercontent.com/3JZIEM7UfdCSG6s6ge7iysnTTyLWldBvHduFzlEyA2KMqsUWqUxtWKy6sL2EIlMdFlPzzJ2FlQ=s900-c-k-c0x00ffffff-no-rj",
@@ -212,9 +212,9 @@ window.PBERS_DATA = [
   {
     "name": "AST.アオスト Polandball",
     "subs": 3680,
-    "views": 1758137,
+    "views": 1758778,
     "subsLabel": "チャンネル登録者数 3680人",
-    "viewsLabel": "1,758,137回視聴",
+    "viewsLabel": "1,758,778回視聴",
     "videos": 32,
     "url": "https://www.youtube.com/channel/UC0oyndW7j5GS5NIb8ww7cxw",
     "avatar": "https://yt3.googleusercontent.com/dOd-yxgy5PfDAsYNy3EZUgbsJ33X06RXpEYmRSK1JQz515G-lul6w2oViQdHiKQbpMIkA8TR=s900-c-k-c0x00ffffff-no-rj",
@@ -226,10 +226,10 @@ window.PBERS_DATA = [
   },
   {
     "name": "AJ ball",
-    "subs": 3520,
-    "views": 1524624,
-    "subsLabel": "チャンネル登録者数 3520人",
-    "viewsLabel": "1,524,624回視聴",
+    "subs": 3510,
+    "views": 1524911,
+    "subsLabel": "チャンネル登録者数 3510人",
+    "viewsLabel": "1,524,911回視聴",
     "videos": 39,
     "url": "https://www.youtube.com/channel/UC9EPL3fLMARICtvoL6NGMBA",
     "avatar": "https://yt3.googleusercontent.com/oBocVfsRI4xNymEO3_9zK8GmSus753e0k0d_Dm9TN5IXzxVHK7Nlea4VDStGfUaeRAX5cMc5=s900-c-k-c0x00ffffff-no-rj",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-22";
-window.PBERS_PREDICT = {"asOfMs": 1790046000000, "subs": {"base": 1529910, "rate": 2.9172899778525418e-05}, "views": {"base": 676399505, "rate": 0.006729954968470127}};
+window.PBERS_PREDICT = {"asOfMs": 1790067600000, "subs": {"base": 1529900, "rate": 2.638218133533429e-05}, "views": {"base": 676411334, "rate": 0.007271865499101059}};
