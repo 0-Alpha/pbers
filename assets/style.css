@@ -795,8 +795,9 @@ footer .brand{font-size:16px}
 .bd-sort{display:inline-flex;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:3px;margin-bottom:14px;max-width:100%}
 .th-hot{color:var(--red);font-weight:800}
 /* スレ種別タグ */
-.th-tag{display:inline-block;font-family:var(--jp);font-weight:800;font-size:10.5px;line-height:1;color:var(--tc,var(--red));
-  background:#fff;border:1px solid var(--line-2);padding:3px 9px;border-radius:999px;vertical-align:middle;white-space:nowrap}
+.th-tag{display:inline-block;font-family:var(--jp);font-weight:700;font-size:10.5px;line-height:1;color:#fff;
+  background:transparent;border:1px solid var(--line-2);padding:3px 9px;border-radius:999px;vertical-align:middle;white-space:nowrap}
+:root[data-theme="light"] .th-tag{color:var(--muted)}   /* ライトは白文字だと読めないので暗めに */
 .th>.th-tag{flex:none;align-self:center;margin-right:15px}   /* スレ一覧: 行の右端に配置 */
 .th-h .th-tag{font-size:12px;padding:3px 9px;margin-left:4px}
 /* スレ作成: 種別選択 */
