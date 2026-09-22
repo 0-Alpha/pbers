@@ -1,7 +1,7 @@
 {
   "site": "PBers",
   "updated": "2026-09-22",
-  "generated": "2026-09-22T16:47:34+09:00",
+  "generated": "2026-09-22T17:34:17+09:00",
   "count": 13,
   "items": [
     {
@@ -29,16 +29,16 @@
       "url": "https://pbers.com/c/%E7%94%B0%E4%B8%ADmid/"
     },
     {
-      "id": "2026-09-21/subs/練乳ソビエト共和国ぼーる/10000",
+      "id": "2026-09-21/subs/ねとえん/10000",
       "date": "2026-09-21",
-      "channel": "練乳=ソビエト共和国ぼーる",
-      "slug": "練乳ソビエト共和国ぼーる",
+      "channel": "ねとえん",
+      "slug": "ねとえん",
       "metric": "subs",
       "type": "milestone",
       "label": "登録者 1万人 突破",
       "value": 10000,
       "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E7%B7%B4%E4%B9%B3%E3%82%BD%E3%83%93%E3%82%A8%E3%83%88%E5%85%B1%E5%92%8C%E5%9B%BD%E3%81%BC%E3%83%BC%E3%82%8B/"
+      "url": "https://pbers.com/c/%E3%81%AD%E3%81%A8%E3%81%88%E3%82%93/"
     },
     {
       "id": "2026-09-21/subs/ほすとぼーる/10000",
@@ -53,16 +53,16 @@
       "url": "https://pbers.com/c/%E3%81%BB%E3%81%99%E3%81%A8%E3%81%BC%E3%83%BC%E3%82%8B/"
     },
     {
-      "id": "2026-09-21/subs/ねとえん/10000",
+      "id": "2026-09-21/subs/練乳ソビエト共和国ぼーる/10000",
       "date": "2026-09-21",
-      "channel": "ねとえん",
-      "slug": "ねとえん",
+      "channel": "練乳=ソビエト共和国ぼーる",
+      "slug": "練乳ソビエト共和国ぼーる",
       "metric": "subs",
       "type": "milestone",
       "label": "登録者 1万人 突破",
       "value": 10000,
       "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%AD%E3%81%A8%E3%81%88%E3%82%93/"
+      "url": "https://pbers.com/c/%E7%B7%B4%E4%B9%B3%E3%82%BD%E3%83%93%E3%82%A8%E3%83%88%E5%85%B1%E5%92%8C%E5%9B%BD%E3%81%BC%E3%83%BC%E3%82%8B/"
     },
     {
       "id": "2026-09-21/views/フヒフム/400000000",
@@ -77,18 +77,6 @@
       "url": "https://pbers.com/c/%E3%83%95%E3%83%92%E3%83%95%E3%83%A0/"
     },
     {
-      "id": "2026-09-19/views/pbネオンボール/2000000",
-      "date": "2026-09-19",
-      "channel": "【PB】ネオンボール",
-      "slug": "pbネオンボール",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 200万回 突破",
-      "value": 2000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/pb%E3%83%8D%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%AB/"
-    },
-    {
       "id": "2026-09-19/views/世界最強笑ボールこるからす盟主/2000000",
       "date": "2026-09-19",
       "channel": "世界最強(笑)ボール【こるからす盟主】",
@@ -99,6 +87,18 @@
       "value": 2000000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E4%B8%96%E7%95%8C%E6%9C%80%E5%BC%B7%E7%AC%91%E3%83%9C%E3%83%BC%E3%83%AB%E3%81%93%E3%82%8B%E3%81%8B%E3%82%89%E3%81%99%E7%9B%9F%E4%B8%BB/"
+    },
+    {
+      "id": "2026-09-19/views/pbネオンボール/2000000",
+      "date": "2026-09-19",
+      "channel": "【PB】ネオンボール",
+      "slug": "pbネオンボール",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 200万回 突破",
+      "value": 2000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/pb%E3%83%8D%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%AB/"
     },
     {
       "id": "2026-09-18/subs/みかんぼーる/340000",
