@@ -988,14 +988,10 @@
   // スレの種別タグ(PB主)。キー -> ラベル/色。未指定・不明は pb 扱い。
   var TAGS = {
     pb: { label: 'PB', color: '#ac1c1c' },
-    neta: { label: 'ネタ', color: '#e07b2c' },
-    kousatsu: { label: '考察・分析', color: '#3a72d6' },
-    shitsumon: { label: '質問', color: '#40a86a' },
-    oekaki: { label: 'お絵描き', color: '#9b51e0' },
     unei: { label: '運営・お知らせ', color: '#8d8986' },
     zatsudan: { label: '雑談・その他', color: '#6a6663' }
   };
-  var TAG_ORDER = ['pb', 'neta', 'kousatsu', 'shitsumon', 'oekaki', 'unei', 'zatsudan'];
+  var TAG_ORDER = ['pb', 'unei', 'zatsudan'];
   function tagKey(k) { return TAGS[k] ? k : 'pb'; }       // null/不明は pb
   function tagChip(k) { var t = TAGS[tagKey(k)]; return '<span class="th-tag" style="--tc:' + t.color + '">' + t.label + '</span>'; }
   // 広告枠プレビュー(管理者のみ): 0=なし / 3 / 5 枠。実広告ではなく配置イメージの確認用。
