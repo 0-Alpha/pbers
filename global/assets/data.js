@@ -211,9 +211,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "AST.アオスト Polandball",
-    "subs": 3680,
+    "subs": 3690,
     "views": 1759034,
-    "subsLabel": "チャンネル登録者数 3680人",
+    "subsLabel": "チャンネル登録者数 3690人",
     "viewsLabel": "1,759,034回視聴",
     "videos": 32,
     "url": "https://www.youtube.com/channel/UC0oyndW7j5GS5NIb8ww7cxw",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-23";
-window.PBERS_PREDICT = {"asOfMs": 1790110800000, "subs": {"base": 1530900, "rate": 2.601733587926479e-05}, "views": {"base": 676566853, "rate": 0.00664202661915962}};
+window.PBERS_PREDICT = {"asOfMs": 1790110800000, "subs": {"base": 1530910, "rate": 2.601733587926479e-05}, "views": {"base": 676566853, "rate": 0.00664202661915962}};
