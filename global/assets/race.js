@@ -215,7 +215,7 @@ window.PBERS_RACE = [
         "name": "Opera_cb",
         "color": "#79d45e",
         "avatar": "https://yt3.googleusercontent.com/U9rqdPqWMX7a6j1Nr0HKX2yBiK40Mxy7LJbTLRWaC_lMEcHPqoKb140oquBes08LNaSzmLa4kg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 190000,
+        "subs": 191000,
         "history": [
           {
             "d": "2026-08-30",
