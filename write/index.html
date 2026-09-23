@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem('pbers_theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
+<title>記事エディタ｜PBers</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/png" href="/favicon.png">
+<meta name="theme-color" content="#151515">
+<link rel="stylesheet" href="/assets/style.css?v=250951">
+<style>
+.wr{max-width:1100px;margin:0 auto;padding:18px 16px 60px}
+.wr h1{font-family:var(--jp);font-weight:900;font-size:22px;margin:6px 0 4px}
+.wr .sub{color:var(--muted);font-size:12.5px;margin-bottom:16px}
+.keybar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.keybar input{flex:1;min-width:160px}
+.wr input,.wr textarea,.wr select{width:100%;background:var(--bar);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px 11px;font:inherit;font-size:14px}
+.wr textarea{resize:vertical;line-height:1.7;font-family:var(--jp)}
+.wr label{display:block;font-size:12px;color:var(--muted);margin:12px 0 4px;font-weight:700}
+.btn{background:var(--red);color:#fff;border:0;border-radius:9px;padding:9px 16px;font-weight:800;font-size:13.5px;cursor:pointer;width:auto}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn.sm{padding:6px 11px;font-size:12.5px}
+.btn.danger{background:transparent;border:1px solid var(--red);color:var(--red)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.list{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 13px;border-bottom:1px solid var(--line);cursor:pointer}
+.li:last-child{border-bottom:0}
+.li:hover{background:var(--bar)}
+.li .t{font-weight:700;font-size:13.5px}
+.li .s{font-size:11px;color:var(--muted)}
+.pill{font-size:10.5px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.pill.pub{border-color:#2e7d32;color:#4caf50}
+.prev{border:1px solid var(--line);border-radius:12px;padding:4px 18px;min-height:200px;max-height:70vh;overflow:auto}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;padding:10px 12px;border:1px solid var(--line);border-radius:10px}
+.toggle-sw{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.msg{font-size:12.5px;color:var(--muted);min-height:18px;margin-top:6px}
+.hint{font-size:11.5px;color:var(--muted);margin-top:3px}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="/"><span class="dot"></span><span>PB<b>ers</b></span></a>
+  <a class="foot-link" href="/articles/" style="font-size:13px">記事一覧を見る →</a>
+</div></header>
+
+<div class="wr">
+  <h1>記事エディタ</h1>
+  <div class="sub">note風に直接書いて保存できます。保存先はサーバー(D1)。公開ページは <code>/articles/</code> にSSRで表示されます。</div>
+
+  <div class="keybar" id="keybar">
+    <span style="font-size:12.5px;color:var(--muted)">管理キー:</span>
+    <input id="key" type="password" placeholder="掲示板の管理キー" autocomplete="off">
+    <button class="btn sm" id="key-save">ログイン</button>
+    <span class="msg" id="key-msg"></span>
+  </div>
+
+  <div id="app" class="hidden">
+    <div class="toolbar">
+      <div class="toggle-sw">
+        <label style="margin:0"><input type="checkbox" id="pub-sw" style="width:auto"> セクション全体を一般公開する</label>
+        <span id="pub-state" class="pill">—</span>
+      </div>
+      <div class="row">
+        <button class="btn ghost sm" id="new-btn">＋ 新規</button>
+        <span class="msg" id="top-msg"></span>
+      </div>
+    </div>
+
+    <div class="list" id="list"></div>
+
+    <div class="grid">
+      <div>
+        <label>タイトル</label>
+        <input id="f-title" placeholder="記事タイトル">
+        <label>スラッグ (URL・空なら自動)</label>
+        <input id="f-slug" placeholder="polandball-towa">
+        <div class="hint">公開URL: /articles/<span id="slug-echo">…</span>/</div>
+        <label>説明 (検索・一覧に出る要約)</label>
+        <input id="f-desc" placeholder="120字程度">
+        <label>タグ (カンマ区切り)</label>
+        <input id="f-tags" placeholder="解説, 入門">
+        <label>状態</label>
+        <select id="f-status">
+          <option value="draft">下書き (管理者のみ)</option>
+          <option value="published">公開</option>
+        </select>
+        <label>本文 (Markdown)</label>
+        <textarea id="f-body" rows="18" placeholder="## 見出し&#10;&#10;本文。**太字** *斜体* [リンク](/board/) ![画像](https://i.imgur.com/xxxx.png)&#10;- 箇条書き&#10;&gt; 引用"></textarea>
+        <div class="hint">## 見出し / - 箇条書き / **太字** / *斜体* / [リンク](url) / ![画像](url) / &gt; 引用 / --- 区切り線</div>
+        <div class="row" style="margin-top:14px">
+          <button class="btn" id="save-btn">保存</button>
+          <button class="btn ghost sm" id="view-btn">公開ページを開く</button>
+          <button class="btn danger sm" id="del-btn">削除</button>
+        </div>
+        <div class="msg" id="edit-msg"></div>
+      </div>
+      <div>
+        <label>プレビュー</label>
+        <div class="prev article" id="prev"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var API = "https://pbers-cron.myray0629.workers.dev/api/articles";
+var KEY = "";
+var oldSlug = "";   // 編集中記事の元スラッグ(リネーム対応)
+
+function $(id){ return document.getElementById(id); }
+function setCookie(v){ try{ document.cookie = "pbers_ak="+encodeURIComponent(v)+";path=/;max-age=31536000;SameSite=Lax"; }catch(e){} }
+function hdr(){ return { "Content-Type":"application/json", "X-Board-Key": KEY }; }
+
+/* --- Markdown プレビュー(Worker/gen_data と同等) --- */
+function mdEsc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function mdInline(s){
+  s=mdEsc(s);
+  s=s.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g,function(m,a,u){return '<img src="'+u+'" alt="'+a+'" loading="lazy">';});
+  s=s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,function(m,t,u){return '<a href="'+u+'"'+(/^https?:/.test(u)?' target="_blank" rel="noopener"':'')+'>'+t+'</a>';});
+  s=s.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");
+  s=s.replace(/(^|[^*])\*([^*]+)\*(?!\*)/g,"$1<em>$2</em>");
+  s=s.replace(/`([^`]+)`/g,"<code>$1</code>");
+  return s;
+}
+function mdToHtml(md){
+  var lines=String(md||"").replace(/\r\n?/g,"\n").split("\n"), out=[], para=[], i=0;
+  function flush(){ if(para.length){ var t=para.join(" ").trim(); if(t) out.push("<p>"+mdInline(t)+"</p>"); para=[]; } }
+  while(i<lines.length){
+    var st=lines[i].trim();
+    if(!st){ flush(); i++; continue; }
+    if(/^-{3,}$/.test(st)){ flush(); out.push("<hr>"); i++; continue; }
+    var m=st.match(/^(#{1,6})\s+(.*)$/);
+    if(m){ flush(); var lv=m[1].length, tag=lv<=2?"h2":(lv===3?"h3":"h4"); out.push("<"+tag+">"+mdInline(m[2].trim())+"</"+tag+">"); i++; continue; }
+    if(st[0]===">"){ flush(); var buf=[]; while(i<lines.length && lines[i].trim()[0]===">"){ buf.push(lines[i].replace(/^\s*>\s?/,"")); i++; } out.push("<blockquote>"+mdInline(buf.join(" ").trim())+"</blockquote>"); continue; }
+    if(/^[-*]\s+/.test(st)){ flush(); var it=[]; while(i<lines.length && /^[-*]\s+/.test(lines[i].trim())){ it.push(lines[i].trim().replace(/^[-*]\s+/,"")); i++; } out.push("<ul>"+it.map(function(x){return "<li>"+mdInline(x)+"</li>";}).join("")+"</ul>"); continue; }
+    if(/^\d+\.\s+/.test(st)){ flush(); var it2=[]; while(i<lines.length && /^\d+\.\s+/.test(lines[i].trim())){ it2.push(lines[i].trim().replace(/^\d+\.\s+/,"")); i++; } out.push("<ol>"+it2.map(function(x){return "<li>"+mdInline(x)+"</li>";}).join("")+"</ol>"); continue; }
+    para.push(st); i++;
+  }
+  flush();
+  return out.join("\n");
+}
+function slugify(s){ return String(s||"").trim().toLowerCase().replace(/[^\w぀-ヿ一-鿿-]+/g,"-").replace(/^-+|-+$/g,"").slice(0,80); }
+
+function renderPreview(){ $("prev").innerHTML = mdToHtml($("f-body").value); }
+function echoSlug(){ var s=$("f-slug").value.trim()||slugify($("f-title").value)||"…"; $("slug-echo").textContent=s; }
+
+/* --- 一覧 --- */
+function loadList(){
+  fetch(API+"/list",{headers:hdr()}).then(function(r){return r.json();}).then(function(d){
+    var el=$("list"); el.innerHTML="";
+    if(!d.items||!d.items.length){ el.innerHTML='<div class="li"><span class="s">まだ記事がありません。「＋ 新規」から作成できます。</span></div>'; return; }
+    d.items.forEach(function(a){
+      var div=document.createElement("div"); div.className="li";
+      div.innerHTML='<div><div class="t">'+mdEsc(a.title)+'</div><div class="s">/articles/'+a.slug+'/</div></div>'+
+        '<span class="pill '+(a.status==="published"?"pub":"")+'">'+(a.status==="published"?"公開":"下書き")+'</span>';
+      div.onclick=function(){ openArticle(a.slug); };
+      el.appendChild(div);
+    });
+  }).catch(function(){ $("top-msg").textContent="一覧の取得に失敗しました。"; });
+}
+function openArticle(slug){
+  fetch(API+"/raw?slug="+encodeURIComponent(slug),{headers:hdr()}).then(function(r){return r.json();}).then(function(a){
+    if(!a.found){ return; }
+    oldSlug=a.slug;
+    $("f-title").value=a.title||""; $("f-slug").value=a.slug||"";
+    $("f-desc").value=a.description||""; $("f-tags").value=a.tags||"";
+    $("f-status").value=a.status||"draft"; $("f-body").value=a.body||"";
+    renderPreview(); echoSlug(); $("edit-msg").textContent="読み込みました。";
+    window.scrollTo({top:document.querySelector(".grid").offsetTop-60,behavior:"smooth"});
+  });
+}
+function newArticle(){
+  oldSlug="";
+  $("f-title").value=""; $("f-slug").value=""; $("f-desc").value=""; $("f-tags").value="";
+  $("f-status").value="draft"; $("f-body").value="";
+  renderPreview(); echoSlug(); $("edit-msg").textContent="新規記事";
+}
+function save(){
+  var payload={ oldSlug:oldSlug, slug:$("f-slug").value.trim(), title:$("f-title").value.trim(),
+    description:$("f-desc").value.trim(), tags:$("f-tags").value.trim(),
+    status:$("f-status").value, body:$("f-body").value };
+  if(!payload.title){ $("edit-msg").textContent="タイトルは必須です。"; return; }
+  $("edit-msg").textContent="保存中…";
+  fetch(API+"/save",{method:"POST",headers:hdr(),body:JSON.stringify(payload)}).then(function(r){return r.json();}).then(function(d){
+    if(d.ok){ oldSlug=d.slug; $("f-slug").value=d.slug; echoSlug(); $("edit-msg").textContent="保存しました ("+(d.status==="published"?"公開":"下書き")+")"; loadList(); }
+    else{ $("edit-msg").textContent="保存失敗: "+(d.error||"unknown"); }
+  }).catch(function(){ $("edit-msg").textContent="通信エラー。"; });
+}
+function del(){
+  if(!oldSlug){ newArticle(); return; }
+  if(!confirm("この記事を削除しますか？")) return;
+  fetch(API+"/delete",{method:"POST",headers:hdr(),body:JSON.stringify({slug:oldSlug})}).then(function(r){return r.json();}).then(function(){ newArticle(); loadList(); $("edit-msg").textContent="削除しました。"; });
+}
+function loadPublic(){
+  fetch(API+"/public",{headers:hdr()}).then(function(r){return r.json();}).then(function(d){
+    $("pub-sw").checked=!!d.public;
+    $("pub-state").textContent=d.public?"公開中":"管理者のみ";
+    $("pub-state").className="pill"+(d.public?" pub":"");
+  });
+}
+function setPublic(on){
+  fetch(API+"/public",{method:"POST",headers:hdr(),body:JSON.stringify({on:on?1:0})}).then(function(r){return r.json();}).then(function(d){
+    $("pub-state").textContent=d.public?"公開中":"管理者のみ";
+    $("pub-state").className="pill"+(d.public?" pub":"");
+    $("top-msg").textContent=d.public?"記事セクションを一般公開しました。":"記事セクションを管理者のみに戻しました。";
+  });
+}
+
+function login(k){
+  KEY=k; try{ localStorage.setItem("pbers_board_key",k); }catch(e){} setCookie(k);
+  // 認証チェック
+  fetch(API+"/public",{headers:hdr()}).then(function(r){return r.json();}).then(function(d){
+    if(d.admin){ $("keybar").classList.add("hidden"); $("app").classList.remove("hidden"); loadList(); loadPublic(); }
+    else{ $("key-msg").textContent="キーが違うか、管理者ではありません。"; }
+  }).catch(function(){ $("key-msg").textContent="通信エラー。"; });
+}
+
+$("key-save").onclick=function(){ var k=$("key").value.trim(); if(k) login(k); };
+$("key").addEventListener("keydown",function(e){ if(e.key==="Enter"){ var k=$("key").value.trim(); if(k) login(k); } });
+$("new-btn").onclick=newArticle;
+$("save-btn").onclick=save;
+$("del-btn").onclick=del;
+$("view-btn").onclick=function(){ var s=$("f-slug").value.trim()||slugify($("f-title").value); if(s) window.open("/articles/"+encodeURIComponent(s)+"/","_blank"); };
+$("pub-sw").onchange=function(){ setPublic($("pub-sw").checked); };
+$("f-body").addEventListener("input",renderPreview);
+$("f-title").addEventListener("input",echoSlug);
+$("f-slug").addEventListener("input",echoSlug);
+
+// 既存キーがあれば自動ログイン
+(function(){ var k=""; try{ k=localStorage.getItem("pbers_board_key")||""; }catch(e){} if(k){ $("key").value=k; login(k); } })();
+</script>
+</body>
+</html>

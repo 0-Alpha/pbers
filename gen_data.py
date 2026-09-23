@@ -260,8 +260,7 @@ def build_edition():
     build_growth(colors)
     build_race(colors)
     build_channel_pages(order, colors)
-    if not ED["sub"]:          # 記事(読み物)は通常サイト側のみ
-        build_articles()
+    # 記事(/articles/)は D1 + Pages Functions(SSR)へ移行済み。ここでは静的生成しない。
     build_view_pages()
     build_sitemap(order)
 
@@ -933,6 +932,30 @@ def build_articles():
     print("wrote %d article page(s) + /articles/ index%s"
           % (len(metas), " [admin-only]" if admin_only else ""))
 
+ARTICLES_API = "https://pbers-cron.myray0629.workers.dev/api/articles/list"
+
+def fetch_published_articles():
+    """一般公開ONのとき、published 記事の (slug,date) を Worker から取得。
+       非公開(gated)や失敗時は空。sitemapに載せる用(SSR本体はPages Functions)。"""
+    try:
+        import urllib.request
+        with urllib.request.urlopen(ARTICLES_API, timeout=8) as r:
+            d = json.loads(r.read().decode("utf-8"))
+    except Exception as e:
+        print("articles fetch skipped:", e)
+        return []
+    out = []
+    for a in (d.get("items") or []):
+        if a.get("status") != "published":
+            continue
+        ms = a.get("updated") or a.get("created") or 0
+        try:
+            date = datetime.datetime.utcfromtimestamp(ms / 1000 + 9 * 3600).strftime("%Y-%m-%d")
+        except Exception:
+            date = UPDATED
+        out.append({"slug": a.get("slug"), "date": date})
+    return out
+
 def build_sitemap(order):
     # (URL, changefreq) の順で列挙。lastmod は実データの最終更新日(UPDATED)を付与しクロール優先度を上げる。
     urls = [(ed_site() + "/", "daily")] + [(ed_site() + "/c/" + urllib.parse.quote(d["_slug"]) + "/", "daily") for d in order]
@@ -941,11 +964,12 @@ def build_sitemap(order):
         urls.append((ed_site() + "/about/", "monthly"))
         urls.append((ed_site() + "/operator/", "monthly"))
         urls.append((ed_site() + "/privacy/", "monthly"))
-        if not ARTICLES_ADMIN_ONLY:          # 管理者限定の間は /articles/ も出さない
+        arts = fetch_published_articles()    # 一般公開ON時のみ published 記事が返る(D1/Worker)
+        if arts:
             urls.append((ed_site() + "/articles/", "weekly"))
-        for slug, date in ARTICLES_META:
-            u = ed_site() + "/articles/" + urllib.parse.quote(slug) + "/"
-            urls.append((u, "monthly")); art_dates[u] = date
+            for a in arts:
+                u = ed_site() + "/articles/" + urllib.parse.quote(a["slug"]) + "/"
+                urls.append((u, "monthly")); art_dates[u] = a.get("date") or UPDATED
     body = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     for u, cf in urls:
         lm = art_dates.get(u, UPDATED)

@@ -72,6 +72,15 @@ export default {
     if (url.pathname === "/api/board/stats"     && req.method === "GET")  return boardStats(url, req, env);
     if (url.pathname === "/api/board/hide"    && req.method === "POST") return boardHide(req, env);
 
+    // ---- 記事(articles): note風エディタで直打ち保存 / Pages FunctionsがSSRで読む ----
+    if (url.pathname === "/api/articles/list"   && req.method === "GET")  return artList(url, req, env);
+    if (url.pathname === "/api/articles/page"   && req.method === "GET")  return artPage(url, req, env);
+    if (url.pathname === "/api/articles/raw"    && req.method === "GET")  return artRaw(url, req, env);
+    if (url.pathname === "/api/articles/save"   && req.method === "POST") return artSave(req, env);
+    if (url.pathname === "/api/articles/delete" && req.method === "POST") return artDelete(req, env);
+    if (url.pathname === "/api/articles/public" && req.method === "GET")  return json({ public: await articlesPublic(env), admin: isAdmin(req, env) });
+    if (url.pathname === "/api/articles/public" && req.method === "POST") return artPublicSet(req, env);
+
     // ---- ページ表示回数カウンター ----
     if (url.pathname === "/api/views" && req.method === "GET") return viewCount(url, req, env);
 
@@ -698,3 +707,178 @@ async function verifyTurnstile(token, ip, env) {
     return false;
   }
 }
+
+/* ================= 記事(articles) ================= *
+ * D1: board_articles(slug PK, title, body[Markdown], description, tags, status[draft|published], created, updated)
+ * 公開状態は KV 'articles_public' ("1"で一般公開)。管理はエディタ /write/ から。
+ * 認証は掲示板と同じ X-Board-Key(=env.BOARD_KEY)。Pages Functions は cookie 'pbers_ak' を
+ * X-Board-Key に載せ替えて呼ぶので、管理者は SSR ページでも中身が見える。
+ */
+let _artReady = false;
+async function ensureArticles(env) {
+  if (_artReady) return;
+  await env.DB.prepare("CREATE TABLE IF NOT EXISTS board_articles(slug TEXT PRIMARY KEY, title TEXT NOT NULL, body TEXT NOT NULL, description TEXT DEFAULT '', tags TEXT DEFAULT '', status TEXT DEFAULT 'draft', created INTEGER NOT NULL, updated INTEGER NOT NULL)").run();
+  _artReady = true;
+  try {   // 初回のみ見本記事を1本シード(空のときだけ)
+    const c = await env.DB.prepare("SELECT COUNT(*) AS n FROM board_articles").first();
+    if (c && c.n === 0) {
+      const now = Date.now();
+      await env.DB.prepare("INSERT INTO board_articles(slug,title,body,description,tags,status,created,updated) VALUES(?1,?2,?3,?4,?5,?6,?7,?8)")
+        .bind("polandball-towa", SEED_ART.title, SEED_ART.body, SEED_ART.description, SEED_ART.tags, "published", now, now).run();
+    }
+  } catch (e) {}
+}
+async function articlesPublic(env) {
+  try { return (await env.PBERS_KV.get("articles_public")) === "1"; } catch (e) { return false; }
+}
+function slugify(s) {
+  return String(s || "").trim().toLowerCase()
+    .replace(/[^\w぀-ヿ一-鿿-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80) || ("a" + Date.now());
+}
+async function artList(url, req, env) {
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  await ensureArticles(env);
+  const admin = isAdmin(req, env), pub = await articlesPublic(env);
+  if (!pub && !admin) return json({ public: pub, admin: false, gated: true, items: [] });
+  const sql = admin
+    ? "SELECT slug,title,description,tags,status,created,updated FROM board_articles ORDER BY updated DESC"
+    : "SELECT slug,title,description,tags,status,created,updated FROM board_articles WHERE status='published' ORDER BY created DESC";
+  const { results } = await env.DB.prepare(sql).all();
+  return json({ public: pub, admin, gated: false, items: results || [] });
+}
+async function artPage(url, req, env) {
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  await ensureArticles(env);
+  const slug = (url.searchParams.get("slug") || "").slice(0, 120);
+  const admin = isAdmin(req, env), pub = await articlesPublic(env);
+  if (!slug) {   // index(一覧)用
+    if (!pub && !admin) return json({ public: pub, admin, gated: true, index: true, items: [] });
+    const sql = admin
+      ? "SELECT slug,title,description,tags,status,created,updated FROM board_articles ORDER BY (status='published') DESC, created DESC"
+      : "SELECT slug,title,description,tags,status,created,updated FROM board_articles WHERE status='published' ORDER BY created DESC";
+    const { results } = await env.DB.prepare(sql).all();
+    return json({ public: pub, admin, gated: false, index: true, items: results || [] });
+  }
+  const a = await env.DB.prepare("SELECT * FROM board_articles WHERE slug=?1").bind(slug).first();
+  if (!a) return json({ public: pub, admin, found: false });
+  const viewable = admin || (pub && a.status === "published");
+  if (!viewable) return json({ public: pub, admin, found: true, gated: true, status: a.status });
+  return json({
+    public: pub, admin, found: true, gated: false, status: a.status,
+    slug: a.slug, title: a.title, description: a.description || "",
+    tags: (a.tags || "").split(",").map((s) => s.trim()).filter(Boolean),
+    created: a.created, updated: a.updated, html: mdToHtml(a.body || "")
+  });
+}
+async function artRaw(url, req, env) {
+  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  await ensureArticles(env);
+  const slug = (url.searchParams.get("slug") || "").slice(0, 120);
+  const a = await env.DB.prepare("SELECT * FROM board_articles WHERE slug=?1").bind(slug).first();
+  if (!a) return json({ found: false });
+  return json({ found: true, slug: a.slug, title: a.title, body: a.body, description: a.description || "", tags: a.tags || "", status: a.status, created: a.created, updated: a.updated });
+}
+async function artSave(req, env) {
+  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  await ensureArticles(env);
+  let b; try { b = await req.json(); } catch (e) { return json({ error: "bad_json" }, 400); }
+  const title = clean(b.title, 200), body = clean(b.body, 60000);
+  if (!title) return json({ error: "no_title" }, 400);
+  let slug = clean(b.slug, 120); if (!slug) slug = slugify(title);
+  const desc = clean(b.description, 300), tags = clean(b.tags, 200);
+  const status = b.status === "published" ? "published" : "draft";
+  const now = Date.now();
+  const old = clean(b.oldSlug, 120);
+  let created = now;
+  const ex = await env.DB.prepare("SELECT created FROM board_articles WHERE slug=?1").bind(old || slug).first();
+  if (ex) created = ex.created;
+  if (old && old !== slug) { try { await env.DB.prepare("DELETE FROM board_articles WHERE slug=?1").bind(old).run(); } catch (e) {} }
+  await env.DB.prepare("INSERT INTO board_articles(slug,title,body,description,tags,status,created,updated) VALUES(?1,?2,?3,?4,?5,?6,?7,?8) ON CONFLICT(slug) DO UPDATE SET title=?2,body=?3,description=?4,tags=?5,status=?6,updated=?8")
+    .bind(slug, title, body, desc, tags, status, created, now).run();
+  return json({ ok: true, slug, status });
+}
+async function artDelete(req, env) {
+  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  await ensureArticles(env);
+  let b; try { b = await req.json(); } catch (e) { return json({ error: "bad_json" }, 400); }
+  await env.DB.prepare("DELETE FROM board_articles WHERE slug=?1").bind(clean(b.slug, 120)).run();
+  return json({ ok: true });
+}
+async function artPublicSet(req, env) {
+  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  let b; try { b = await req.json(); } catch (e) { b = {}; }
+  const on = b.on === 1 || b.on === "1" || b.on === true;
+  await env.PBERS_KV.put("articles_public", on ? "1" : "0");
+  return json({ ok: true, public: on });
+}
+
+/* Markdown → HTML(簡易)。gen_data.py の pure-python 版と同等の記法に対応。 */
+function mdEsc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+function mdInline(s) {
+  s = mdEsc(s);
+  s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (m, a, u) => '<img src="' + u + '" alt="' + a + '" loading="lazy">');
+  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, u) => '<a href="' + u + '"' + (/^https?:/.test(u) ? ' target="_blank" rel="noopener"' : '') + '>' + t + '</a>');
+  s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  s = s.replace(/(^|[^*])\*([^*]+)\*(?!\*)/g, "$1<em>$2</em>");
+  s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
+  return s;
+}
+function mdToHtml(md) {
+  const lines = String(md || "").replace(/\r\n?/g, "\n").split("\n");
+  const out = []; let para = [], i = 0;
+  const flush = () => { if (para.length) { const t = para.join(" ").trim(); if (t) out.push("<p>" + mdInline(t) + "</p>"); para = []; } };
+  while (i < lines.length) {
+    const st = lines[i].trim();
+    if (!st) { flush(); i++; continue; }
+    if (/^-{3,}$/.test(st)) { flush(); out.push("<hr>"); i++; continue; }
+    let m = st.match(/^(#{1,6})\s+(.*)$/);
+    if (m) { flush(); const lv = m[1].length, tag = lv <= 2 ? "h2" : (lv === 3 ? "h3" : "h4"); out.push("<" + tag + ">" + mdInline(m[2].trim()) + "</" + tag + ">"); i++; continue; }
+    if (st[0] === ">") { flush(); const buf = []; while (i < lines.length && lines[i].trim()[0] === ">") { buf.push(lines[i].replace(/^\s*>\s?/, "")); i++; } out.push("<blockquote>" + mdInline(buf.join(" ").trim()) + "</blockquote>"); continue; }
+    if (/^[-*]\s+/.test(st)) { flush(); const it = []; while (i < lines.length && /^[-*]\s+/.test(lines[i].trim())) { it.push(lines[i].trim().replace(/^[-*]\s+/, "")); i++; } out.push("<ul>" + it.map((x) => "<li>" + mdInline(x) + "</li>").join("") + "</ul>"); continue; }
+    if (/^\d+\.\s+/.test(st)) { flush(); const it = []; while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) { it.push(lines[i].trim().replace(/^\d+\.\s+/, "")); i++; } out.push("<ol>" + it.map((x) => "<li>" + mdInline(x) + "</li>").join("") + "</ol>"); continue; }
+    para.push(st); i++;
+  }
+  flush();
+  return out.join("\n");
+}
+
+const SEED_ART = {
+  title: "ポーランドボールとは？ 歴史・ルール・日本での広がりをやさしく解説",
+  description: "ポーランドボール(Polandball／カントリーボール)とは何かを、誕生の歴史から独特の作画ルール、日本での「ポーランドボーラー(PBer)」文化の広がりまで、はじめての人にもわかりやすく解説します。",
+  tags: "解説,入門,ポーランドボール",
+  body: [
+    "**ポーランドボール(Polandball)** は、国や地域を「丸いキャラクター(ボール)」として描き、その国旗をまとわせて、歴史や国際関係、あるあるネタを風刺・コメディとして表現するインターネット発の文化です。「**カントリーボール(Countryball)**」とも呼ばれます。この記事では、ポーランドボールとは何かを、はじめての人にもわかるように整理して紹介します。",
+    "",
+    "## どんなもの？ ひと目でわかる特徴",
+    "",
+    "ポーランドボールの世界には、ゆるやかに共有されている「お約束」があります。",
+    "",
+    "- **国＝ボール**：それぞれの国を、国旗の模様をつけた丸い球体として描く。",
+    "- **味のある作画**：あえて手描き風・ラフなタッチで描かれることが多く、素朴さそのものが魅力になっている。",
+    "- **独特の言葉づかい**：わざと崩した英語(ブロークンイングリッシュ)でしゃべるのが定番。カタコトな感じがコメディを生む。",
+    "- **国ごとのキャラ付け**：歴史や地理、国民性のステレオタイプを、あくまでネタとしてデフォルメして描く。",
+    "",
+    "こうした「様式」を共有しているからこそ、作者が違っても同じ世界観として楽しめるのがポーランドボールの面白いところです。",
+    "",
+    "## 名前の由来と歴史",
+    "",
+    "ポーランドボールは、2009年ごろに海外のインターネット掲示板(イメージボード)の国際交流板で生まれたとされています。ある投稿者が、ポーランドをネタにした簡素な絵のコマ漫画を投稿したのが広まりのきっかけと言われ、そこから「国をボールとして描く」というスタイルが世界中のユーザーに模倣され、ジャンルとして定着していきました。",
+    "",
+    "「ポーランドボール」という名前はこの発祥に由来しますが、今では特定の国に限らず、世界中の国・地域が登場する総称として使われています。掲示板からReddit、そしてYouTubeやSNSへと舞台を移しながら、10年以上にわたって作られ続けている、息の長いネットカルチャーです。",
+    "",
+    "## 日本での広がり ―「ポーランドボーラー(PBer)」",
+    "",
+    "日本でも、ポーランドボールを題材にした動画を作るクリエイターが数多く活動しています。こうした作り手は親しみを込めて **「ポーランドボーラー(PBer)」** と呼ばれます。",
+    "",
+    "日本のポーランドボーラーの作品は、世界史・地理・国際情勢をテーマにしたものが多く、合成音声やゆっくり系のナレーションを用いた解説スタイルと相性が良いのが特徴です。ショート動画で気軽に楽しめるものから、じっくり作り込まれたロング動画まで、作風の幅もどんどん広がっています。",
+    "",
+    "## PBersでできること",
+    "",
+    "このサイト **[PBers](/)** では、日本で活動するポーランドボーラーの登録者数・総再生数・投稿数などの公開データを横断的に集計し、ランキングや成長の推移としてまとめています。ファン同士が語り合える[掲示板](/board/)もあります。",
+    "",
+    "> ポーランドボールは、国という大きなものを「丸くてかわいいボール」に落とし込み、歴史や国際関係を身近に感じさせてくれる文化です。まずは気になった作品をひとつ、のぞいてみてください。"
+  ].join("\n")
+};
