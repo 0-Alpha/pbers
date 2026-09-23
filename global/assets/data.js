@@ -2,9 +2,9 @@ window.PBERS_DATA = [
   {
     "name": "JP-BALL",
     "subs": 439000,
-    "views": 166259867,
+    "views": 166273661,
     "subsLabel": "チャンネル登録者数 43.9万人",
-    "viewsLabel": "166,259,867回視聴",
+    "viewsLabel": "166,273,661回視聴",
     "videos": 128,
     "url": "https://www.youtube.com/channel/UCZ-zUkkdNTYAYDgkDyeb_hA",
     "avatar": "https://yt3.googleusercontent.com/UXoyWxO_MOdKJK4kLMC988Uj9LZC9pZO13VMLEVq-4C32fBkvug-FUzSiUrbAh_mSy3zOPyfCC0=s900-c-k-c0x00ffffff-no-rj",
@@ -17,9 +17,9 @@ window.PBERS_DATA = [
   {
     "name": "MOON-BALL",
     "subs": 223000,
-    "views": 39307156,
+    "views": 39324189,
     "subsLabel": "チャンネル登録者数 22.3万人",
-    "viewsLabel": "39,307,156回視聴",
+    "viewsLabel": "39,324,189回視聴",
     "videos": 29,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
     "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
@@ -32,9 +32,9 @@ window.PBERS_DATA = [
   {
     "name": "Opera_cb",
     "subs": 191000,
-    "views": 88337336,
+    "views": 88361683,
     "subsLabel": "チャンネル登録者数 19.1万人",
-    "viewsLabel": "88,337,336回視聴",
+    "viewsLabel": "88,361,683回視聴",
     "videos": 142,
     "url": "https://www.youtube.com/channel/UC4bqMpF49ebuiF4TbJvFmyw",
     "avatar": "https://yt3.googleusercontent.com/U9rqdPqWMX7a6j1Nr0HKX2yBiK40Mxy7LJbTLRWaC_lMEcHPqoKb140oquBes08LNaSzmLa4kg=s900-c-k-c0x00ffffff-no-rj",
@@ -47,9 +47,9 @@ window.PBERS_DATA = [
   {
     "name": "Somen ball",
     "subs": 165000,
-    "views": 61518848,
+    "views": 61549503,
     "subsLabel": "チャンネル登録者数 16.5万人",
-    "viewsLabel": "61,518,848回視聴",
+    "viewsLabel": "61,549,503回視聴",
     "videos": 119,
     "url": "https://www.youtube.com/channel/UCfh08MHIzScBQKh5OuG2ofA",
     "avatar": "https://yt3.googleusercontent.com/3a_WIUPrZ8qIxGmQJhtTv9z8vOffxcS3l9TqJK0pcQhNssFX4VJgPndXd2V3o9Hk7F7ECpFP=s900-c-k-c0x00ffffff-no-rj",
@@ -62,9 +62,9 @@ window.PBERS_DATA = [
   {
     "name": "áíš!aispoaporu",
     "subs": 138000,
-    "views": 95011139,
+    "views": 95042749,
     "subsLabel": "チャンネル登録者数 13.8万人",
-    "viewsLabel": "95,011,139回視聴",
+    "viewsLabel": "95,042,749回視聴",
     "videos": 1057,
     "url": "https://www.youtube.com/channel/UC1swbrz9S2VKVABS673ACgQ",
     "avatar": "https://yt3.googleusercontent.com/PNuTtwQrRcQ7zzGQlLM54CsOYHqXfzQA3oPx8Q9o-_GTomHU_WV2SGsA7uv_oPc1XNo09Q0OAtY=s900-c-k-c0x00ffffff-no-rj",
@@ -77,9 +77,9 @@ window.PBERS_DATA = [
   {
     "name": "Spheria",
     "subs": 131000,
-    "views": 92477627,
+    "views": 92483558,
     "subsLabel": "チャンネル登録者数 13.1万人",
-    "viewsLabel": "92,477,627回視聴",
+    "viewsLabel": "92,483,558回視聴",
     "videos": 67,
     "url": "https://www.youtube.com/channel/UCyedH2V27OuhZclf5wfXhlg",
     "avatar": "https://yt3.googleusercontent.com/rY5kv_d4X3vrbcfFix2ZrRDmhgbmWoYErbob_0iUjOIgYbEpvNZ2gH4YHAyO4CXf1nDpMawx=s900-c-k-c0x00ffffff-no-rj",
@@ -92,9 +92,9 @@ window.PBERS_DATA = [
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
     "subs": 122000,
-    "views": 51660273,
+    "views": 51749376,
     "subsLabel": "チャンネル登録者数 12.2万人",
-    "viewsLabel": "51,660,273回視聴",
+    "viewsLabel": "51,749,376回視聴",
     "videos": 261,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
     "avatar": "https://yt3.googleusercontent.com/6bFOwdJowJMxYBkoE3h0ws0_Lbgr8d8c0ZPgny5agUQ4OzwVqAeeD2E4RCFYEkte2VM_Bwel2w=s900-c-k-c0x00ffffff-no-rj",
@@ -107,9 +107,9 @@ window.PBERS_DATA = [
   {
     "name": "F丸",
     "subs": 33900,
-    "views": 30066799,
+    "views": 30071729,
     "subsLabel": "チャンネル登録者数 3.39万人",
-    "viewsLabel": "30,066,799回視聴",
+    "viewsLabel": "30,071,729回視聴",
     "videos": 91,
     "url": "https://www.youtube.com/channel/UCEJRQBqXi3z3UXnHdueIvJg",
     "avatar": "https://yt3.googleusercontent.com/Eb7oF7_gJoeiQyuS-21ATyVE_gLBpI3G7VsWd-yeL9LWPjYxsJ-kmBr4a0Ji03bMbK6-D5gZ=s900-c-k-c0x00ffffff-no-rj",
@@ -122,9 +122,9 @@ window.PBERS_DATA = [
   {
     "name": "りょうデス",
     "subs": 24000,
-    "views": 15255625,
+    "views": 15255919,
     "subsLabel": "チャンネル登録者数 2.4万人",
-    "viewsLabel": "15,255,625回視聴",
+    "viewsLabel": "15,255,919回視聴",
     "videos": 891,
     "url": "https://www.youtube.com/channel/UCfe4nCMqfTwoiMmIGqAolcQ",
     "avatar": "https://yt3.googleusercontent.com/3JZIEM7UfdCSG6s6ge7iysnTTyLWldBvHduFzlEyA2KMqsUWqUxtWKy6sL2EIlMdFlPzzJ2FlQ=s900-c-k-c0x00ffffff-no-rj",
@@ -137,9 +137,9 @@ window.PBERS_DATA = [
   {
     "name": "くろまめ",
     "subs": 17200,
-    "views": 16504593,
+    "views": 16523048,
     "subsLabel": "チャンネル登録者数 1.72万人",
-    "viewsLabel": "16,504,593回視聴",
+    "viewsLabel": "16,523,048回視聴",
     "videos": 83,
     "url": "https://www.youtube.com/channel/UCfJp9c3kSkIjYFevd2G1RKg",
     "avatar": "https://yt3.googleusercontent.com/yV8LzkaByDse6ZVmF8XEySSyoZ6osOmQM9SmjO8FTgQPiaOwyAaD2VEH1Zx8UqAVobRkOxaVbrg=s900-c-k-c0x00ffffff-no-rj",
@@ -167,9 +167,9 @@ window.PBERS_DATA = [
   {
     "name": "Dotto edit",
     "subs": 12000,
-    "views": 8469521,
+    "views": 8474300,
     "subsLabel": "チャンネル登録者数 1.2万人",
-    "viewsLabel": "8,469,521回視聴",
+    "viewsLabel": "8,474,300回視聴",
     "videos": 63,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
     "avatar": "https://yt3.googleusercontent.com/2tzadDOT5LXLSGWtWna4kvAUl__O0G2II67NQfuamve633NvIEAz_YVPiFMO38mB4DAnyhqQ=s900-c-k-c0x00ffffff-no-rj",
@@ -197,9 +197,9 @@ window.PBERS_DATA = [
   {
     "name": "udonball",
     "subs": 6910,
-    "views": 1241721,
+    "views": 1242188,
     "subsLabel": "チャンネル登録者数 6910人",
-    "viewsLabel": "1,241,721回視聴",
+    "viewsLabel": "1,242,188回視聴",
     "videos": 119,
     "url": "https://www.youtube.com/channel/UCGueqNQmvtQYlGO3UL3Gf3w",
     "avatar": "https://yt3.googleusercontent.com/t-XpUkPOEssGyYn9TK4JrLG9EmGIhn565-GBvVCtqkpxDXD36l6OOb6EOlWJ_Gr92W8a_ryApcg=s900-c-k-c0x00ffffff-no-rj",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-23";
-window.PBERS_PREDICT = {"asOfMs": 1790175600000, "subs": {"base": 1530920, "rate": 2.0670544641203465e-05}, "views": {"base": 676880334, "rate": 0.0062155841338856046}};
+window.PBERS_PREDICT = {"asOfMs": 1790175600000, "subs": {"base": 1530920, "rate": 2.0670544641203465e-05}, "views": {"base": 677121732, "rate": 0.0062155841338856046}};

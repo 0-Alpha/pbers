@@ -7259,7 +7259,7 @@ window.PBERS_RACE = [
         "name": "カルマルボール",
         "color": "#cc613e",
         "avatar": "https://yt3.googleusercontent.com/WX0x2Taa65iBzUFRSgy7esb4WOcPuDaB7kYluOwNEqFZJ0tN7lMR_IL5m1pZC7b6tpNJUdSTgA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5670,
+        "subs": 5680,
         "history": [
           {
             "d": "2026-08-30",
@@ -8199,7 +8199,7 @@ window.PBERS_RACE = [
         "name": "MakkoyuCB",
         "color": "#5e62d4",
         "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4730,
+        "subs": 4750,
         "history": [
           {
             "d": "2026-08-30",
@@ -8419,7 +8419,7 @@ window.PBERS_RACE = [
         "name": "【PB】ネオンボール",
         "color": "#d45e7d",
         "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 4690,
+        "subs": 4700,
         "history": [
           {
             "d": "2026-08-31",
@@ -9291,7 +9291,7 @@ window.PBERS_RACE = [
         "name": "ルヒエル+ Rätsel +",
         "color": "#cc3ead",
         "avatar": "https://yt3.googleusercontent.com/CHkdKGX8zFiCQWmMTl2xEr3EJIIXaHewF87qNoCH0K613phZnV8DvjrPz9t7p4whyR4ch2Gg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3550,
+        "subs": 3560,
         "history": [
           {
             "d": "2026-08-30",
@@ -9947,7 +9947,7 @@ window.PBERS_RACE = [
         "name": "東トルキスタンボール",
         "color": "#c0d45e",
         "avatar": "https://yt3.googleusercontent.com/gl0PJDChU9pNvwUraC-NHdbfB-E4QFi_ACxD9BO_GSGGoUYkNmcNH6d3crXJ-8l44QeEHRjz=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3210,
+        "subs": 3220,
         "history": [
           {
             "d": "2026-08-30",
@@ -12424,8 +12424,116 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "ミントの農場",
+        "name": "ソ中ボール日友好平和同盟",
         "color": "#cc6b3e",
+        "avatar": "https://yt3.googleusercontent.com/idKCYo4w5sKLb4FpUjDCoUGFI2ATRvQmRgavCKPeRW5wayDzDjKB9PnAgVEXLv6tDN2GjNBffkc=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 2060,
+        "history": [
+          {
+            "d": "2026-08-30",
+            "s": 2050
+          },
+          {
+            "d": "2026-08-31",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-01",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-02",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-03",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-04",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-05",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-06",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-07",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-08",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-09",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-10",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-11",
+            "s": 2060
+          },
+          {
+            "d": "2026-09-12",
+            "s": 2060
+          },
+          {
+            "d": "2026-09-13",
+            "s": 2060
+          },
+          {
+            "d": "2026-09-14",
+            "s": 2060
+          },
+          {
+            "d": "2026-09-15",
+            "s": 2060
+          },
+          {
+            "d": "2026-09-16",
+            "s": 2060
+          },
+          {
+            "d": "2026-09-17",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-18",
+            "s": 2060
+          },
+          {
+            "d": "2026-09-19",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-20",
+            "s": 2060
+          },
+          {
+            "d": "2026-09-21",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-22",
+            "s": 2050
+          },
+          {
+            "d": "2026-09-23",
+            "s": 2050
+          }
+        ]
+      },
+      {
+        "name": "ミントの農場",
+        "color": "#bcd45e",
         "avatar": "https://yt3.googleusercontent.com/RnPkMOcvXnYH93HK6sBW4Pk3Z9xk8LGY2Flq4zNhr4yE8hhoRCqIh5px60QCEfsYUCJXuiD5ng=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2060,
         "history": [
@@ -12528,114 +12636,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-09-23",
             "s": 2060
-          }
-        ]
-      },
-      {
-        "name": "ソ中ボール日友好平和同盟",
-        "color": "#bcd45e",
-        "avatar": "https://yt3.googleusercontent.com/idKCYo4w5sKLb4FpUjDCoUGFI2ATRvQmRgavCKPeRW5wayDzDjKB9PnAgVEXLv6tDN2GjNBffkc=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 2050,
-        "history": [
-          {
-            "d": "2026-08-30",
-            "s": 2050
-          },
-          {
-            "d": "2026-08-31",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-01",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-02",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-03",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-04",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-05",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-06",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-07",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-08",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-09",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-10",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-11",
-            "s": 2060
-          },
-          {
-            "d": "2026-09-12",
-            "s": 2060
-          },
-          {
-            "d": "2026-09-13",
-            "s": 2060
-          },
-          {
-            "d": "2026-09-14",
-            "s": 2060
-          },
-          {
-            "d": "2026-09-15",
-            "s": 2060
-          },
-          {
-            "d": "2026-09-16",
-            "s": 2060
-          },
-          {
-            "d": "2026-09-17",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-18",
-            "s": 2060
-          },
-          {
-            "d": "2026-09-19",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-20",
-            "s": 2060
-          },
-          {
-            "d": "2026-09-21",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-22",
-            "s": 2050
-          },
-          {
-            "d": "2026-09-23",
-            "s": 2050
           }
         ]
       }
