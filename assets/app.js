@@ -2107,8 +2107,10 @@
   function npDate(ms) {
     try { var d = new Date(Number(ms) + 9 * 3600e3); return d.getUTCFullYear() + '年' + (d.getUTCMonth() + 1) + '月' + d.getUTCDate() + '日'; } catch (e) { return ''; }
   }
+  function hasWriteKey() { try { return !!(localStorage.getItem('pbers_write_key') || localStorage.getItem('pbers_board_key')); } catch (e) { return false; } }
   function renderPaper() {
     var host = document.getElementById('paper-list'); if (!host) return;
+    var wl = document.getElementById('paper-write'); if (wl) wl.hidden = !hasWriteKey();   // 書く導線は鍵所持者のみ
     if (!ARTICLES_API) { host.innerHTML = '<div class="nf-none">新聞は準備中です。</div>'; return; }
     host.innerHTML = '<div class="nf-none">読み込み中…</div>';
     fetch(ARTICLES_API + '/list?view=paper', { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
