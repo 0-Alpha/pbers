@@ -151,9 +151,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "BALL420",
-    "subs": 33400,
+    "subs": 33500,
     "views": 34866100,
-    "subsLabel": "チャンネル登録者数 3.34万人",
+    "subsLabel": "チャンネル登録者数 3.35万人",
     "viewsLabel": "34,866,100回視聴",
     "videos": 576,
     "url": "https://www.youtube.com/channel/UC9SB9xRrmdZ9Jt0aXkWuCOg",
@@ -556,9 +556,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ぽぱい",
-    "subs": 16000,
+    "subs": 16100,
     "views": 5914837,
-    "subsLabel": "チャンネル登録者数 1.6万人",
+    "subsLabel": "チャンネル登録者数 1.61万人",
     "viewsLabel": "5,914,837回視聴",
     "videos": 34,
     "url": "https://www.youtube.com/channel/UCaMxGSc7gfuS8YRuSzr_nuQ",
@@ -1096,9 +1096,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "にこちPB",
-    "subs": 8510,
+    "subs": 8520,
     "views": 1068922,
-    "subsLabel": "チャンネル登録者数 8510人",
+    "subsLabel": "チャンネル登録者数 8520人",
     "viewsLabel": "1,068,922回視聴",
     "videos": 73,
     "url": "https://www.youtube.com/channel/UC2fMWFGgy-ENfkqlK0CUwrg",
@@ -1515,6 +1515,21 @@ window.PBERS_DATA = [
     "vLong": null
   },
   {
+    "name": "MakkoyuCB",
+    "subs": 4730,
+    "views": 2535186,
+    "subsLabel": "チャンネル登録者数 4730人",
+    "viewsLabel": "2,535,186回視聴",
+    "videos": 29,
+    "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
+    "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#5e62d4",
+    "genre": "ポーランドボーラー",
+    "slug": "makkoyucb",
+    "vShort": null,
+    "vLong": null
+  },
+  {
     "name": "旧食DX",
     "subs": 4720,
     "views": 1792662,
@@ -1523,24 +1538,9 @@ window.PBERS_DATA = [
     "videos": 259,
     "url": "https://www.youtube.com/channel/UCGLN4EjvE2-nxXUvkb1LyGQ",
     "avatar": "https://yt3.googleusercontent.com/eS59gj4sUqncdlk0_nSnxkfIKeKASy0K5CwgIpOHv4JM4KR3XSMKM_uhXloSzt8vcLds6FiJjIA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#5e62d4",
-    "genre": "ポーランドボーラー",
-    "slug": "旧食dx",
-    "vShort": null,
-    "vLong": null
-  },
-  {
-    "name": "MakkoyuCB",
-    "subs": 4720,
-    "views": 2535186,
-    "subsLabel": "チャンネル登録者数 4720人",
-    "viewsLabel": "2,535,186回視聴",
-    "videos": 29,
-    "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
-    "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#b63ecc",
     "genre": "ポーランドボーラー",
-    "slug": "makkoyucb",
+    "slug": "旧食dx",
     "vShort": null,
     "vLong": null
   },
@@ -1681,9 +1681,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "みすい",
-    "subs": 3790,
+    "subs": 3800,
     "views": 1526499,
-    "subsLabel": "チャンネル登録者数 3790人",
+    "subsLabel": "チャンネル登録者数 3800人",
     "viewsLabel": "1,526,499回視聴",
     "videos": 31,
     "url": "https://www.youtube.com/channel/UCYmJ2rqzqNtXBm-gn438zGw",
@@ -2401,9 +2401,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ぴくろす",
-    "subs": 2010,
+    "subs": 2000,
     "views": 903438,
-    "subsLabel": "チャンネル登録者数 2010人",
+    "subsLabel": "チャンネル登録者数 2000人",
     "viewsLabel": "903,438回視聴",
     "videos": 114,
     "url": "https://www.youtube.com/channel/UC8RiqSKxCmtZYEk_fLze0pQ",
@@ -2447,4 +2447,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-23";
-window.PBERS_PREDICT = {"asOfMs": 1790154000000, "subs": {"base": 2938070, "rate": 0.00010290675254645588}, "views": {"base": 2279331395, "rate": 0.06609682016996056}};
+window.PBERS_PREDICT = {"asOfMs": 1790175600000, "subs": {"base": 2938290, "rate": 0.00010233202906202951}, "views": {"base": 2279331395, "rate": 0.06059585237153452}};
