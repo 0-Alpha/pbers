@@ -95,7 +95,7 @@ window.PBERS_DATA = [
     "views": 51749376,
     "subsLabel": "チャンネル登録者数 12.2万人",
     "viewsLabel": "51,749,376回視聴",
-    "videos": 261,
+    "videos": 262,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
     "avatar": "https://yt3.googleusercontent.com/6bFOwdJowJMxYBkoE3h0ws0_Lbgr8d8c0ZPgny5agUQ4OzwVqAeeD2E4RCFYEkte2VM_Bwel2w=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d45eb1",
