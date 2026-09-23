@@ -2131,23 +2131,25 @@
   }
   /* ---- 「その他」タブメニュー(ニュース / ゲーム) ---- */
   (function () {
-    var wrap = document.getElementById('tab-more'), btn = document.getElementById('tab-more-btn'), menu = document.getElementById('tab-more-menu');
-    if (!wrap || !btn || !menu) return;
+    var btn = document.getElementById('tab-more-btn'), menu = document.getElementById('tab-more-menu');
+    if (!btn || !menu) return;
+    // .tabs は backdrop-filter を持ち fixed の基準になってしまうので、メニューを body 直下へ出す
+    document.body.appendChild(menu);
     function close() { menu.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
-      var willOpen = menu.hidden;
-      if (willOpen) {   // .tabs は overflow:auto でクリップされるため、メニューは fixed で配置
-        var r = btn.getBoundingClientRect();
-        menu.style.top = (r.bottom + 2) + 'px';
-        menu.style.right = Math.max(6, window.innerWidth - r.right) + 'px';
-        menu.style.left = 'auto';
-      }
-      menu.hidden = !willOpen;
-      btn.setAttribute('aria-expanded', String(willOpen));
+      if (!menu.hidden) { close(); return; }
+      menu.hidden = false;   // ボタンの左下に付け、画面外に出る分だけ内側へ寄せる
+      var r = btn.getBoundingClientRect();
+      var mw = menu.offsetWidth || 150;
+      var left = Math.max(8, Math.min(r.left, window.innerWidth - mw - 8));
+      menu.style.left = left + 'px';
+      menu.style.right = 'auto';
+      menu.style.top = (r.bottom + 2) + 'px';
+      btn.setAttribute('aria-expanded', 'true');
     });
     menu.querySelectorAll('.tmi').forEach(function (b) { b.addEventListener('click', function () { close(); switchTab(b.dataset.view); }); });
-    document.addEventListener('click', function (e) { if (!wrap.contains(e.target)) close(); });
+    document.addEventListener('click', function (e) { if (e.target !== btn && !btn.contains(e.target) && !menu.contains(e.target)) close(); });
   })();
 
   /* ---- race: close-race subscriber trends ---- */
