@@ -5,7 +5,14 @@
 <atom:link href="https://pbers.com/feed.xml" rel="self" type="application/rss+xml"/>
 <description>ポーランドボーラー(YouTube)の登録者・総再生・投稿数のマイルストーン突破ニュース</description>
 <language>ja</language>
-<lastBuildDate>Wed, 23 Sep 2026 12:00:00 +0900</lastBuildDate>
+<lastBuildDate>Thu, 24 Sep 2026 12:00:00 +0900</lastBuildDate>
+<item>
+<title>ミルー帝国-はんぺん[PB] — 総再生数 900万回 突破</title>
+<link>https://pbers.com/c/%E3%83%9F%E3%83%AB%E3%83%BC%E5%B8%9D%E5%9B%BD-%E3%81%AF%E3%82%93%E3%81%BA%E3%82%93pb/</link>
+<guid isPermaLink="false">2026-09-24/views/ミルー帝国-はんぺんpb/9000000</guid>
+<pubDate>Thu, 24 Sep 2026 12:00:00 +0900</pubDate>
+<description>ミルー帝国-はんぺん[PB] — 総再生数 900万回 突破</description>
+</item>
 <item>
 <title>にこちPB — 総再生数 100万回 突破</title>
 <link>https://pbers.com/c/%E3%81%AB%E3%81%93%E3%81%A1pb/</link>
@@ -35,13 +42,6 @@
 <description>田中MID — 登録者 30万人 突破</description>
 </item>
 <item>
-<title>ほすとぼーる — 登録者 1万人 突破</title>
-<link>https://pbers.com/c/%E3%81%BB%E3%81%99%E3%81%A8%E3%81%BC%E3%83%BC%E3%82%8B/</link>
-<guid isPermaLink="false">2026-09-21/subs/ほすとぼーる/10000</guid>
-<pubDate>Mon, 21 Sep 2026 12:00:00 +0900</pubDate>
-<description>ほすとぼーる — 登録者 1万人 突破</description>
-</item>
-<item>
 <title>ねとえん — 登録者 1万人 突破</title>
 <link>https://pbers.com/c/%E3%81%AD%E3%81%A8%E3%81%88%E3%82%93/</link>
 <guid isPermaLink="false">2026-09-21/subs/ねとえん/10000</guid>
@@ -54,6 +54,13 @@
 <guid isPermaLink="false">2026-09-21/subs/練乳ソビエト共和国ぼーる/10000</guid>
 <pubDate>Mon, 21 Sep 2026 12:00:00 +0900</pubDate>
 <description>練乳=ソビエト共和国ぼーる — 登録者 1万人 突破</description>
+</item>
+<item>
+<title>ほすとぼーる — 登録者 1万人 突破</title>
+<link>https://pbers.com/c/%E3%81%BB%E3%81%99%E3%81%A8%E3%81%BC%E3%83%BC%E3%82%8B/</link>
+<guid isPermaLink="false">2026-09-21/subs/ほすとぼーる/10000</guid>
+<pubDate>Mon, 21 Sep 2026 12:00:00 +0900</pubDate>
+<description>ほすとぼーる — 登録者 1万人 突破</description>
 </item>
 <item>
 <title>Æž!フヒフム — 総再生数 4億回 突破</title>
@@ -96,19 +103,5 @@
 <guid isPermaLink="false">2026-09-18/views/ニイソビボール/5000000</guid>
 <pubDate>Fri, 18 Sep 2026 12:00:00 +0900</pubDate>
 <description>ニイソビボール — 総再生数 500万回 突破</description>
-</item>
-<item>
-<title> ゼリョーヌィボール　活停中 — 総再生数 600万回 突破</title>
-<link>https://pbers.com/c/%E3%82%BC%E3%83%AA%E3%83%A7%E3%83%BC%E3%83%8C%E3%82%A3%E3%83%9C%E3%83%BC%E3%83%AB-%E6%B4%BB%E5%81%9C%E4%B8%AD/</link>
-<guid isPermaLink="false">2026-09-17/views/ゼリョーヌィボール-活停中/6000000</guid>
-<pubDate>Thu, 17 Sep 2026 12:00:00 +0900</pubDate>
-<description> ゼリョーヌィボール　活停中 — 総再生数 600万回 突破</description>
-</item>
-<item>
-<title>ハッホチャンネル — 総再生数 200万回 突破</title>
-<link>https://pbers.com/c/%E3%83%8F%E3%83%83%E3%83%9B%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB/</link>
-<guid isPermaLink="false">2026-09-17/views/ハッホチャンネル/2000000</guid>
-<pubDate>Thu, 17 Sep 2026 12:00:00 +0900</pubDate>
-<description>ハッホチャンネル — 総再生数 200万回 突破</description>
 </item>
 </channel></rss>
