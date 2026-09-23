@@ -5,6 +5,8 @@
   var ALL = (window.PBERS_DATA || []).slice();
   // 掲示板: 公開状態をWorkerに問い合わせ、公開 or 管理キー所持者のみタブを出す(デプロイ=即公開ではない)
   var BOARD_API = window.PBERS_BOARD_API || '';
+  // 記事(新聞)API。掲示板と同じWorker。/api/board -> /api/articles
+  var ARTICLES_API = window.PBERS_ARTICLES_API || BOARD_API.replace(/\/api\/board$/, '/api/articles');
   var boardMaint = !!window.PBERS_BOARD_MAINTENANCE;   // 整備中フラグ(trueならAPIを叩かず案内表示)
   var boardKey = '', boardPublic = false, boardEnabled = false;
   var UPDATED = window.PBERS_UPDATED || '';
@@ -1676,7 +1678,7 @@
       if (v === 'dashboard') { replay(); if (metric === 'predict') enterPredictUI(); }
       else if (v === 'growth') { renderTrend(); playGrowth(); }
       else if (v === 'rising') { playRise(); }
-      else if (v === 'news') renderNewsFeed();
+      else if (v === 'news') renderNewsView();
       else if (v === 'race') renderRace();
       else if (v === 'game') renderGame();
       else if (v === 'videos') renderVideos();
@@ -2096,6 +2098,56 @@
       host.querySelectorAll('.nf-story').forEach(function (s) { s.classList.add('in'); });
     }
   }
+
+  /* ---- ニュースタブ: 突破ニュース / 新聞(記事) の切替 ---- */
+  var newsView = 'milestone';
+  function npDate(ms) {
+    try { var d = new Date(Number(ms) + 9 * 3600e3); return d.getUTCFullYear() + '年' + (d.getUTCMonth() + 1) + '月' + d.getUTCDate() + '日'; } catch (e) { return ''; }
+  }
+  function renderNewsPaper() {
+    var host = document.getElementById('news-paper'); if (!host) return;
+    if (!ARTICLES_API) { host.innerHTML = '<div class="nf-none">新聞は準備中です。</div>'; return; }
+    host.innerHTML = '<div class="nf-none">読み込み中…</div>';
+    fetch(ARTICLES_API + '/list', { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
+      var items = d.items || [];
+      if (!items.length) {
+        host.innerHTML = '<div class="nf-none">' + (d.gated ? '新聞は現在準備中です。公開までもうしばらくお待ちください。' : 'まだ記事がありません。') + '</div>';
+        return;
+      }
+      host.innerHTML = '<div class="art-list np-list">' + items.map(function (a) {
+        var tags = (a.tags || '').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+        var draft = a.status !== 'published' ? '<span class="art-tag" style="border-color:var(--red);color:var(--red)">下書き</span>' : '';
+        return '<a class="art-card" href="/articles/' + encodeURIComponent(a.slug) + '/">' +
+          '<div class="art-date">' + npDate(a.created) + '</div>' +
+          '<h2>' + esc(a.title) + '</h2>' +
+          (a.description ? '<p>' + esc(a.description) + '</p>' : '') +
+          '<div class="art-tags">' + tags.map(function (t) { return '<span class="art-tag">' + esc(t) + '</span>'; }).join('') + draft + '</div>' +
+          '</a>';
+      }).join('') + '</div>';
+    }).catch(function () { host.innerHTML = '<div class="nf-none">読み込みに失敗しました。</div>'; });
+  }
+  function setNewsView(v) {
+    newsView = (v === 'paper') ? 'paper' : 'milestone';
+    var sw = document.getElementById('news-sw');
+    if (sw) sw.querySelectorAll('.nsw').forEach(function (b) { b.classList.toggle('on', b.dataset.nv === newsView); });
+    var feed = document.getElementById('news-feed'), paper = document.getElementById('news-paper'), note = document.getElementById('news-note');
+    if (newsView === 'paper') {
+      if (feed) feed.hidden = true; if (paper) paper.hidden = false;
+      if (note) note.textContent = 'PBers運営の解説・特集記事';
+      renderNewsPaper();
+    } else {
+      if (paper) paper.hidden = true; if (feed) feed.hidden = false;
+      if (note) note.textContent = '下にスクロールで再生 / 直近7日';
+      renderNewsFeed();
+    }
+  }
+  function renderNewsView() { setNewsView(newsView); }
+  (function () {
+    var sw = document.getElementById('news-sw'); if (!sw) return;
+    sw.querySelectorAll('.nsw').forEach(function (b) {
+      b.addEventListener('click', function () { setNewsView(b.dataset.nv); });
+    });
+  })();
 
   /* ---- race: close-race subscriber trends ---- */
   function buildRaceChart(el) {

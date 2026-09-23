@@ -1042,3 +1042,10 @@ footer .brand{font-size:16px}
 .art-empty{color:var(--muted);font-size:14px}
 .art-gate .doc-page{text-align:center;padding-top:60px}
 .art-gate h1{margin-bottom:12px}
+
+/* ニュースタブの種類切替(突破ニュース / 新聞) */
+.news-sw{display:inline-flex;gap:4px;background:var(--bar);border:1px solid var(--line);border-radius:999px;padding:4px;margin:2px 0 22px}
+.nsw{appearance:none;border:0;background:transparent;color:var(--muted);font-family:var(--jp);font-weight:800;font-size:13px;padding:7px 17px;border-radius:999px;cursor:pointer;transition:background .15s,color .15s}
+.nsw.on{background:var(--red);color:#fff}
+.nsw:not(.on):hover{color:var(--text)}
+.np-list{margin-top:2px}

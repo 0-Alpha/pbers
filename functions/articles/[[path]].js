@@ -4,7 +4,7 @@
 // 管理者判定: cookie 'pbers_ak' を Worker の X-Board-Key に載せ替えて問い合わせる。
 // 非公開(articles_public!=1)の間は noindex + 非管理者には「準備中」を表示。
 const WORKER = "https://pbers-cron.myray0629.workers.dev";
-const VER = "250951";
+const VER = "250952";
 const SITE = "https://pbers.com";
 
 function esc(s) {
