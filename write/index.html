@@ -118,7 +118,7 @@
 
     <div class="panel admin-only hidden" id="writers-panel">
       <h3>寄稿者(ライター)管理</h3>
-      <div class="hint" style="margin:0 0 12px">名前を登録すると寄稿者キーを発行します。そのキーを本人に渡すと、本人が /write/ からログインして記事を書けます（公開はあなたの承認制）。</div>
+      <div class="hint" style="margin:0 0 12px">名前を登録すると寄稿者キーを発行します。本人に渡すと、その人が /write/ から自分の記事を書いて<b>自分で公開</b>できます（直接公開）。気になる記事はあなたが修正・非公開化・削除できます。</div>
       <div class="row">
         <input id="w-name" placeholder="寄稿者の表示名" style="flex:1;min-width:160px">
         <button class="btn sm" id="w-add">キー発行</button>
@@ -180,8 +180,8 @@ function configureRole(){
     sel.innerHTML = '<option value="draft">下書き</option><option value="review">申請中</option><option value="published">公開</option>';
     $("status-hint").textContent = "「公開」で新聞に掲載されます（一般公開トグルがONの時）。";
   }else{
-    sel.innerHTML = '<option value="draft">下書き（自分だけ）</option><option value="review">提出（公開を申請）</option>';
-    $("status-hint").textContent = "「提出」にすると管理者に公開申請が届きます。公開は管理者が行います。";
+    sel.innerHTML = '<option value="draft">下書き（自分だけ）</option><option value="published">公開</option>';
+    $("status-hint").textContent = "「公開」にすると新聞にそのまま掲載されます（新聞が一般公開中のとき）。";
   }
 }
 
@@ -207,9 +207,7 @@ function openArticle(slug){
     $("f-title").value=a.title||""; $("f-slug").value=a.slug||"";
     $("f-desc").value=a.description||""; $("f-tags").value=a.tags||"";
     if($("f-author")) $("f-author").value=a.author||"";
-    var st=a.status||"draft";
-    if(ROLE!=="admin" && st==="published") st="review";
-    $("f-status").value=st;
+    $("f-status").value=a.status||"draft";
     $("f-body").value=a.body||"";
     renderPreview(); echoSlug(); $("edit-msg").textContent="読み込みました（現在: "+statusLabel(a.status)+"）";
     window.scrollTo({top:document.querySelector(".grid").offsetTop-60,behavior:"smooth"});

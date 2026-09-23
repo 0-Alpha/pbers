@@ -859,10 +859,9 @@ async function artSave(req, env) {
   // ライターは自分の記事のみ編集可
   if (a.role === "writer" && ex && (ex.author_token || "") !== a.token) return json({ error: "not_owner" }, 403);
   const created = ex ? ex.created : now;
-  // ステータス: 管理者は draft/review/published 任意。ライターは draft か review(提出)のみ、公開は不可。
-  let status;
-  if (a.role === "admin") status = ["draft", "review", "published"].indexOf(b.status) >= 0 ? b.status : "draft";
-  else status = b.status === "review" ? "review" : "draft";
+  // ステータス: 直接公開モード。管理者・寄稿者とも draft/review/published を設定可能
+  // (寄稿者は自分の記事のみ。所有権チェックは上で実施済み)。
+  const status = ["draft", "review", "published"].indexOf(b.status) >= 0 ? b.status : "draft";
   // 著者: ライターは自分名固定。管理者は入力があれば設定、無ければ既存を保持。
   let author, author_token;
   if (a.role === "writer") { author = a.name; author_token = a.token; }
