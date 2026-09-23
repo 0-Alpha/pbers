@@ -369,7 +369,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250957">
+<link rel="stylesheet" href="/assets/style.css?v=250958">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -390,7 +390,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250957"></script>
+<script src="/assets/channel.js?v=250958"></script>
 </body>
 </html>
 '''
@@ -679,7 +679,7 @@ def build_channel_pages(order, colors):
             f.write(page)
     print("wrote %d channel pages" % total)
 
-VIEW_ROUTES = ("growth", "rising", "news", "race", "game", "videos", "channels", "board")
+VIEW_ROUTES = ("growth", "rising", "news", "paper", "race", "game", "videos", "channels", "board")
 
 def build_view_pages():
     """SPAタブの実URL(/growth/ 等)への直アクセス・リロード用に index.html の複製を置く。
@@ -829,7 +829,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250957">
+<link rel="stylesheet" href="/assets/style.css?v=250958">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>''' + ld + '''
 </head>
 <body>
@@ -952,6 +952,31 @@ def build_articles():
           % (len(metas), " [admin-only]" if admin_only else ""))
 
 
+ARTICLES_API = "https://pbers-cron.myray0629.workers.dev/api/articles/list"
+
+def fetch_published_articles():
+    """一般公開ONのとき、published 記事の (slug,date) を Worker から取得。
+       非公開(gated)や失敗時は空。sitemapに載せる用(SSR本体はPages Functions)。"""
+    try:
+        import urllib.request
+        req = urllib.request.Request(ARTICLES_API, headers={"User-Agent": "pbers-build/1.0"})
+        with urllib.request.urlopen(req, timeout=8) as r:
+            d = json.loads(r.read().decode("utf-8"))
+    except Exception as e:
+        print("articles fetch skipped:", e)
+        return []
+    out = []
+    for a in (d.get("items") or []):
+        if a.get("status") != "published":
+            continue
+        ms = a.get("updated") or a.get("created") or 0
+        try:
+            date = datetime.datetime.utcfromtimestamp(ms / 1000 + 9 * 3600).strftime("%Y-%m-%d")
+        except Exception:
+            date = UPDATED
+        out.append({"slug": a.get("slug"), "date": date})
+    return out
+
 def build_sitemap(order):
     # (URL, changefreq) の順で列挙。lastmod は実データの最終更新日(UPDATED)を付与しクロール優先度を上げる。
     urls = [(ed_site() + "/", "daily")] + [(ed_site() + "/c/" + urllib.parse.quote(d["_slug"]) + "/", "daily") for d in order]
@@ -960,6 +985,12 @@ def build_sitemap(order):
         urls.append((ed_site() + "/about/", "monthly"))
         urls.append((ed_site() + "/operator/", "monthly"))
         urls.append((ed_site() + "/privacy/", "monthly"))
+        arts = fetch_published_articles()    # 一般公開ON時のみ published 記事が返る(D1/Worker)
+        if arts:
+            urls.append((ed_site() + "/articles/", "weekly"))
+            for a in arts:
+                u = ed_site() + "/articles/" + urllib.parse.quote(a["slug"]) + "/"
+                urls.append((u, "monthly")); art_dates[u] = a.get("date") or UPDATED
     body = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     for u, cf in urls:
         lm = art_dates.get(u, UPDATED)

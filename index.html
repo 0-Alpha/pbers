@@ -52,7 +52,7 @@
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250957">
+<link rel="stylesheet" href="/assets/style.css?v=250958">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -89,6 +89,7 @@
     <div class="tab-more" id="tab-more">
       <button class="tab-more-btn" id="tab-more-btn" type="button" aria-haspopup="true" aria-expanded="false">その他 ▾</button>
       <div class="tab-more-menu" id="tab-more-menu" hidden>
+        <button class="tmi" type="button" data-view="paper">新聞</button>
         <button class="tmi" type="button" data-view="news">ニュース</button>
         <button class="tmi" type="button" data-view="game">ゲーム</button>
       </div>
@@ -344,6 +345,19 @@
   </section>
 </main>
 
+<!-- 新聞(記事一覧) view -->
+<main id="view-paper" hidden>
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>新聞 <span class="en">Newspaper</span></h2>
+        <a class="note" id="paper-write" href="/write/" hidden>✎ 記事を書く</a>
+      </div>
+      <div id="paper-list"></div>
+    </div>
+  </section>
+</main>
+
 <!-- RACE (close races) view -->
 <main id="view-race" hidden>
   <section class="block" style="padding-top:40px">
@@ -427,10 +441,10 @@
   </div>
 </footer>
 
-<script src="/assets/data.js?v=250957"></script>
-<script src="/assets/news.js?v=250957"></script>
-<script src="/assets/growth.js?v=250957"></script>
-<script src="/assets/race.js?v=250957"></script>
-<script src="/assets/app.js?v=250957"></script>
+<script src="/assets/data.js?v=250958"></script>
+<script src="/assets/news.js?v=250958"></script>
+<script src="/assets/growth.js?v=250958"></script>
+<script src="/assets/race.js?v=250958"></script>
+<script src="/assets/app.js?v=250958"></script>
 </body>
 </html>
