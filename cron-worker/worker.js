@@ -80,6 +80,10 @@ export default {
     if (url.pathname === "/api/articles/delete" && req.method === "POST") return artDelete(req, env);
     if (url.pathname === "/api/articles/public" && req.method === "GET")  return json({ public: await articlesPublic(env), admin: isAdmin(req, env) });
     if (url.pathname === "/api/articles/public" && req.method === "POST") return artPublicSet(req, env);
+    if (url.pathname === "/api/articles/me"      && req.method === "GET")  return artMe(req, env);
+    if (url.pathname === "/api/articles/writers" && req.method === "GET")  return artWriters(req, env);
+    if (url.pathname === "/api/articles/writers" && req.method === "POST") return artWriterAdd(req, env);
+    if (url.pathname === "/api/articles/writers/delete" && req.method === "POST") return artWriterDel(req, env);
 
     // ---- ページ表示回数カウンター ----
     if (url.pathname === "/api/views" && req.method === "GET") return viewCount(url, req, env);
@@ -718,6 +722,11 @@ let _artReady = false;
 async function ensureArticles(env) {
   if (_artReady) return;
   await env.DB.prepare("CREATE TABLE IF NOT EXISTS board_articles(slug TEXT PRIMARY KEY, title TEXT NOT NULL, body TEXT NOT NULL, description TEXT DEFAULT '', tags TEXT DEFAULT '', status TEXT DEFAULT 'draft', created INTEGER NOT NULL, updated INTEGER NOT NULL)").run();
+  // 著者カラム(既存テーブルには後付け。存在時はエラーになるので握りつぶす)
+  try { await env.DB.prepare("ALTER TABLE board_articles ADD COLUMN author TEXT DEFAULT ''").run(); } catch (e) {}
+  try { await env.DB.prepare("ALTER TABLE board_articles ADD COLUMN author_token TEXT DEFAULT ''").run(); } catch (e) {}
+  // 寄稿者(ライター)ロスター。管理者が name を登録すると token を発行して本人へ渡す。
+  await env.DB.prepare("CREATE TABLE IF NOT EXISTS board_writers(token TEXT PRIMARY KEY, name TEXT NOT NULL, created INTEGER NOT NULL)").run();
   _artReady = true;
   try {   // 初回のみ見本記事を1本シード(空のときだけ)
     const c = await env.DB.prepare("SELECT COUNT(*) AS n FROM board_articles").first();
@@ -731,20 +740,73 @@ async function ensureArticles(env) {
 async function articlesPublic(env) {
   try { return (await env.PBERS_KV.get("articles_public")) === "1"; } catch (e) { return false; }
 }
+// 記事の権限判定: 管理者(BOARD_KEY) / 寄稿者(board_writers の token) / なし。X-Board-Key を使う。
+async function authRole(req, env) {
+  const k = req.headers.get("X-Board-Key") || "";
+  if (!k) return { role: null, name: "", token: "" };
+  if (env.BOARD_KEY && k === env.BOARD_KEY) return { role: "admin", name: "運営", token: "" };
+  try {
+    await ensureArticles(env);
+    const w = await env.DB.prepare("SELECT token,name FROM board_writers WHERE token=?1").bind(k).first();
+    if (w) return { role: "writer", name: w.name, token: w.token };
+  } catch (e) {}
+  return { role: null, name: "", token: "" };
+}
+function genToken() {
+  return "w_" + [...crypto.getRandomValues(new Uint8Array(12))].map((x) => x.toString(16).padStart(2, "0")).join("");
+}
+async function artMe(req, env) { const a = await authRole(req, env); return json({ role: a.role, name: a.name }); }
+async function artWriters(req, env) {
+  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  await ensureArticles(env);
+  const { results } = await env.DB.prepare("SELECT token,name,created FROM board_writers ORDER BY created DESC").all();
+  return json({ ok: true, writers: results || [] });
+}
+async function artWriterAdd(req, env) {
+  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  await ensureArticles(env);
+  let b; try { b = await req.json(); } catch (e) { b = {}; }
+  const name = clean(b.name, 40); if (!name) return json({ error: "no_name" }, 400);
+  const token = genToken();
+  await env.DB.prepare("INSERT INTO board_writers(token,name,created) VALUES(?1,?2,?3)").bind(token, name, Date.now()).run();
+  return json({ ok: true, token, name });
+}
+async function artWriterDel(req, env) {
+  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  await ensureArticles(env);
+  let b; try { b = await req.json(); } catch (e) { b = {}; }
+  await env.DB.prepare("DELETE FROM board_writers WHERE token=?1").bind(clean(b.token, 60)).run();
+  return json({ ok: true });
+}
 function slugify(s) {
   return String(s || "").trim().toLowerCase()
     .replace(/[^\w぀-ヿ一-鿿-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80) || ("a" + Date.now());
 }
+const ART_COLS = "SELECT slug,title,description,tags,status,author,created,updated FROM board_articles";
 async function artList(url, req, env) {
   if (!env.DB) return json({ error: "db_unconfigured" }, 503);
   await ensureArticles(env);
-  const admin = isAdmin(req, env), pub = await articlesPublic(env);
-  if (!pub && !admin) return json({ public: pub, admin: false, gated: true, items: [] });
-  const sql = admin
-    ? "SELECT slug,title,description,tags,status,created,updated FROM board_articles ORDER BY updated DESC"
-    : "SELECT slug,title,description,tags,status,created,updated FROM board_articles WHERE status='published' ORDER BY created DESC";
-  const { results } = await env.DB.prepare(sql).all();
-  return json({ public: pub, admin, gated: false, items: results || [] });
+  const a = await authRole(req, env), pub = await articlesPublic(env);
+  const view = url.searchParams.get("view");   // 'paper'=公開ページ用(published のみ) / 既定=エディタ用(役割別)
+  if (view === "paper") {
+    if (!pub && a.role !== "admin") return json({ public: pub, role: a.role, admin: a.role === "admin", gated: true, items: [] });
+    const { results } = await env.DB.prepare(ART_COLS + " WHERE status='published' ORDER BY created DESC").all();
+    return json({ public: pub, role: a.role, admin: a.role === "admin", gated: false, items: results || [] });
+  }
+  if (a.role === "admin") {
+    const { results } = await env.DB.prepare(ART_COLS + " ORDER BY (status='review') DESC, updated DESC").all();
+    return json({ public: pub, role: "admin", admin: true, gated: false, items: results || [] });
+  }
+  if (a.role === "writer") {
+    const { results } = await env.DB.prepare(ART_COLS + " WHERE author_token=?1 ORDER BY updated DESC").bind(a.token).all();
+    return json({ public: pub, role: "writer", admin: false, gated: false, items: results || [] });
+  }
+  if (!pub) return json({ public: pub, role: null, admin: false, gated: true, items: [] });
+  const { results } = await env.DB.prepare(ART_COLS + " WHERE status='published' ORDER BY created DESC").all();
+  return json({ public: pub, role: null, admin: false, gated: false, items: results || [] });
 }
 async function artPage(url, req, env) {
   if (!env.DB) return json({ error: "db_unconfigured" }, 503);
@@ -765,22 +827,25 @@ async function artPage(url, req, env) {
   if (!viewable) return json({ public: pub, admin, found: true, gated: true, status: a.status });
   return json({
     public: pub, admin, found: true, gated: false, status: a.status,
-    slug: a.slug, title: a.title, description: a.description || "",
+    slug: a.slug, title: a.title, description: a.description || "", author: a.author || "",
     tags: (a.tags || "").split(",").map((s) => s.trim()).filter(Boolean),
     created: a.created, updated: a.updated, html: mdToHtml(a.body || "")
   });
 }
 async function artRaw(url, req, env) {
-  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  const a = await authRole(req, env);
+  if (a.role !== "admin" && a.role !== "writer") return json({ error: "forbidden" }, 403);
   if (!env.DB) return json({ error: "db_unconfigured" }, 503);
   await ensureArticles(env);
   const slug = (url.searchParams.get("slug") || "").slice(0, 120);
-  const a = await env.DB.prepare("SELECT * FROM board_articles WHERE slug=?1").bind(slug).first();
-  if (!a) return json({ found: false });
-  return json({ found: true, slug: a.slug, title: a.title, body: a.body, description: a.description || "", tags: a.tags || "", status: a.status, created: a.created, updated: a.updated });
+  const row = await env.DB.prepare("SELECT * FROM board_articles WHERE slug=?1").bind(slug).first();
+  if (!row) return json({ found: false });
+  if (a.role === "writer" && (row.author_token || "") !== a.token) return json({ error: "not_owner" }, 403);
+  return json({ found: true, slug: row.slug, title: row.title, body: row.body, description: row.description || "", tags: row.tags || "", status: row.status, author: row.author || "", created: row.created, updated: row.updated });
 }
 async function artSave(req, env) {
-  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  const a = await authRole(req, env);
+  if (a.role !== "admin" && a.role !== "writer") return json({ error: "forbidden" }, 403);
   if (!env.DB) return json({ error: "db_unconfigured" }, 503);
   await ensureArticles(env);
   let b; try { b = await req.json(); } catch (e) { return json({ error: "bad_json" }, 400); }
@@ -788,23 +853,41 @@ async function artSave(req, env) {
   if (!title) return json({ error: "no_title" }, 400);
   let slug = clean(b.slug, 120); if (!slug) slug = slugify(title);
   const desc = clean(b.description, 300), tags = clean(b.tags, 200);
-  const status = b.status === "published" ? "published" : "draft";
   const now = Date.now();
   const old = clean(b.oldSlug, 120);
-  let created = now;
-  const ex = await env.DB.prepare("SELECT created FROM board_articles WHERE slug=?1").bind(old || slug).first();
-  if (ex) created = ex.created;
+  const ex = await env.DB.prepare("SELECT created,author,author_token FROM board_articles WHERE slug=?1").bind(old || slug).first();
+  // ライターは自分の記事のみ編集可
+  if (a.role === "writer" && ex && (ex.author_token || "") !== a.token) return json({ error: "not_owner" }, 403);
+  const created = ex ? ex.created : now;
+  // ステータス: 管理者は draft/review/published 任意。ライターは draft か review(提出)のみ、公開は不可。
+  let status;
+  if (a.role === "admin") status = ["draft", "review", "published"].indexOf(b.status) >= 0 ? b.status : "draft";
+  else status = b.status === "review" ? "review" : "draft";
+  // 著者: ライターは自分名固定。管理者は入力があれば設定、無ければ既存を保持。
+  let author, author_token;
+  if (a.role === "writer") { author = a.name; author_token = a.token; }
+  else {
+    author = ex ? (ex.author || "") : "";
+    if (typeof b.author === "string" && b.author.trim()) author = clean(b.author, 60);
+    author_token = ex ? (ex.author_token || "") : "";
+  }
   if (old && old !== slug) { try { await env.DB.prepare("DELETE FROM board_articles WHERE slug=?1").bind(old).run(); } catch (e) {} }
-  await env.DB.prepare("INSERT INTO board_articles(slug,title,body,description,tags,status,created,updated) VALUES(?1,?2,?3,?4,?5,?6,?7,?8) ON CONFLICT(slug) DO UPDATE SET title=?2,body=?3,description=?4,tags=?5,status=?6,updated=?8")
-    .bind(slug, title, body, desc, tags, status, created, now).run();
+  await env.DB.prepare("INSERT INTO board_articles(slug,title,body,description,tags,status,author,author_token,created,updated) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10) ON CONFLICT(slug) DO UPDATE SET title=?2,body=?3,description=?4,tags=?5,status=?6,author=?7,author_token=?8,updated=?10")
+    .bind(slug, title, body, desc, tags, status, author, author_token, created, now).run();
   return json({ ok: true, slug, status });
 }
 async function artDelete(req, env) {
-  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  const a = await authRole(req, env);
+  if (a.role !== "admin" && a.role !== "writer") return json({ error: "forbidden" }, 403);
   if (!env.DB) return json({ error: "db_unconfigured" }, 503);
   await ensureArticles(env);
   let b; try { b = await req.json(); } catch (e) { return json({ error: "bad_json" }, 400); }
-  await env.DB.prepare("DELETE FROM board_articles WHERE slug=?1").bind(clean(b.slug, 120)).run();
+  const slug = clean(b.slug, 120);
+  if (a.role === "writer") {
+    const row = await env.DB.prepare("SELECT author_token FROM board_articles WHERE slug=?1").bind(slug).first();
+    if (row && (row.author_token || "") !== a.token) return json({ error: "not_owner" }, 403);
+  }
+  await env.DB.prepare("DELETE FROM board_articles WHERE slug=?1").bind(slug).run();
   return json({ ok: true });
 }
 async function artPublicSet(req, env) {

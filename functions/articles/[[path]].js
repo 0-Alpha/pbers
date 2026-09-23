@@ -4,7 +4,7 @@
 // 管理者判定: cookie 'pbers_ak' を Worker の X-Board-Key に載せ替えて問い合わせる。
 // 非公開(articles_public!=1)の間は noindex + 非管理者には「準備中」を表示。
 const WORKER = "https://pbers-cron.myray0629.workers.dev";
-const VER = "250954";
+const VER = "250955";
 const SITE = "https://pbers.com";
 
 function esc(s) {
@@ -105,8 +105,9 @@ function indexBody(d) {
 
 function articleBody(d) {
   const meta = '<div class="art-meta"><time datetime="' + isoDate(d.created) + '">' + fmtDate(d.created) + "</time>" +
+    (d.author ? '<span class="art-by">文: ' + esc(d.author) + "</span>" : "") +
     (d.tags && d.tags.length ? '<span class="art-tags">' + tagsHtml(d.tags) + "</span>" : "") +
-    (d.status !== "published" ? '<span class="art-tag" style="border-color:var(--red);color:var(--red)">下書き(管理者のみ)</span>' : "") +
+    (d.status !== "published" ? '<span class="art-tag" style="border-color:var(--red);color:var(--red)">' + (d.status === "review" ? "申請中(管理者のみ)" : "下書き(管理者のみ)") + "</span>" : "") +
     "</div>";
   return '<main><div class="doc-page article">' +
     '<a class="doc-back" href="/articles/">← 記事一覧へ</a>' +

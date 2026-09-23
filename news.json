@@ -1,7 +1,7 @@
 {
   "site": "PBers",
   "updated": "2026-09-23",
-  "generated": "2026-09-23T20:41:43+09:00",
+  "generated": "2026-09-23T20:59:51+09:00",
   "count": 15,
   "items": [
     {
@@ -65,18 +65,6 @@
       "url": "https://pbers.com/c/%E7%B7%B4%E4%B9%B3%E3%82%BD%E3%83%93%E3%82%A8%E3%83%88%E5%85%B1%E5%92%8C%E5%9B%BD%E3%81%BC%E3%83%BC%E3%82%8B/"
     },
     {
-      "id": "2026-09-21/subs/ほすとぼーる/10000",
-      "date": "2026-09-21",
-      "channel": "ほすとぼーる",
-      "slug": "ほすとぼーる",
-      "metric": "subs",
-      "type": "milestone",
-      "label": "登録者 1万人 突破",
-      "value": 10000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%BB%E3%81%99%E3%81%A8%E3%81%BC%E3%83%BC%E3%82%8B/"
-    },
-    {
       "id": "2026-09-21/subs/ねとえん/10000",
       "date": "2026-09-21",
       "channel": "ねとえん",
@@ -87,6 +75,18 @@
       "value": 10000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E3%81%AD%E3%81%A8%E3%81%88%E3%82%93/"
+    },
+    {
+      "id": "2026-09-21/subs/ほすとぼーる/10000",
+      "date": "2026-09-21",
+      "channel": "ほすとぼーる",
+      "slug": "ほすとぼーる",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 1万人 突破",
+      "value": 10000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%81%BB%E3%81%99%E3%81%A8%E3%81%BC%E3%83%BC%E3%82%8B/"
     },
     {
       "id": "2026-09-21/views/フヒフム/400000000",

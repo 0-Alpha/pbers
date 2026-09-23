@@ -1052,3 +1052,4 @@ footer .brand{font-size:16px}
 .tmi{display:block;width:100%;text-align:left;border:0;background:transparent;color:var(--text);font-family:var(--jp);font-weight:700;font-size:13.5px;padding:9px 12px;border-radius:7px;cursor:pointer}
 .tmi:hover{background:rgba(128,128,128,.15)}
 .np-list{margin-top:2px}
+.art-by{color:var(--muted)}

@@ -2111,7 +2111,7 @@
     var host = document.getElementById('paper-list'); if (!host) return;
     if (!ARTICLES_API) { host.innerHTML = '<div class="nf-none">新聞は準備中です。</div>'; return; }
     host.innerHTML = '<div class="nf-none">読み込み中…</div>';
-    fetch(ARTICLES_API + '/list', { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
+    fetch(ARTICLES_API + '/list?view=paper', { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
       var items = d.items || [];
       if (!items.length) {
         host.innerHTML = '<div class="nf-none">' + (d.gated ? '新聞は現在準備中です。公開までもうしばらくお待ちください。' : 'まだ記事がありません。') + '</div>';
@@ -2119,12 +2119,11 @@
       }
       host.innerHTML = '<div class="art-list np-list">' + items.map(function (a) {
         var tags = (a.tags || '').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
-        var draft = a.status !== 'published' ? '<span class="art-tag" style="border-color:var(--red);color:var(--red)">下書き</span>' : '';
         return '<a class="art-card" href="/articles/' + encodeURIComponent(a.slug) + '/">' +
-          '<div class="art-date">' + npDate(a.created) + '</div>' +
+          '<div class="art-date">' + npDate(a.created) + (a.author ? ' ・ 文: ' + esc(a.author) : '') + '</div>' +
           '<h2>' + esc(a.title) + '</h2>' +
           (a.description ? '<p>' + esc(a.description) + '</p>' : '') +
-          '<div class="art-tags">' + tags.map(function (t) { return '<span class="art-tag">' + esc(t) + '</span>'; }).join('') + draft + '</div>' +
+          '<div class="art-tags">' + tags.map(function (t) { return '<span class="art-tag">' + esc(t) + '</span>'; }).join('') + '</div>' +
           '</a>';
       }).join('') + '</div>';
     }).catch(function () { host.innerHTML = '<div class="nf-none">読み込みに失敗しました。</div>'; });
