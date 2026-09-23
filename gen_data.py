@@ -260,6 +260,8 @@ def build_edition():
     build_growth(colors)
     build_race(colors)
     build_channel_pages(order, colors)
+    if not ED["sub"]:          # 記事(読み物)は通常サイト側のみ
+        build_articles()
     build_view_pages()
     build_sitemap(order)
 
@@ -349,7 +351,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250949">
+<link rel="stylesheet" href="/assets/style.css?v=250950">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -364,13 +366,13 @@ CH_TPL = '''<!doctype html>
 </div></main>
 <footer><div class="wrap">
   <a class="brand" href="../../"><span class="dot"></span><span>PB<b>ers</b></span></a>
-  <div>データ出典: YouTube 各チャンネル公開情報 ・ <a class="foot-link" href="/privacy/">プライバシーポリシー</a></div>
+  <div>データ出典: YouTube 各チャンネル公開情報 ・ <a class="foot-link" href="/articles/">記事</a> ・ <a class="foot-link" href="/privacy/">プライバシーポリシー</a></div>
   <div class="foot-note">チャンネル名・アイコン・サムネイル等の権利は各制作者に帰属します。当サイトは識別・参照目的で表示しています。掲載の削除をご希望の場合は <a href="mailto:contact@pbers.com">contact@pbers.com</a> までご連絡ください。</div>
   <div class="view-count" id="view-count" hidden>👁 このページの表示回数 <span class="num" id="view-count-n">—</span></div>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250949"></script>
+<script src="/assets/channel.js?v=250950"></script>
 </body>
 </html>
 '''
@@ -679,16 +681,251 @@ def build_view_pages():
             f.write(html_src)
     print("wrote view pages (%s)" % "/".join(VIEW_ROUTES))
 
+# ============================================================================
+#  記事(読み物/特集) システム
+#  articles/*.md を静的HTMLページ(/articles/<slug>/)+ 一覧(/articles/)に変換。
+#  掲示板と違い本文がHTMLなのでクローラーが全文読める= SEO/AdSenseの資産になる。
+#  依存を増やさないため Markdown は pure-python の簡易レンダラで処理する。
+# ============================================================================
+ARTICLES_META = []   # build_articles() が (slug, date, title) を積む。sitemap で使用。
+
+def _md_inline(s):
+    """行内Markdown → HTML。先にエスケープしてから記法を適用(安全)。"""
+    import html as _h
+    s = _h.escape(s, quote=False)
+    # 画像 ![alt](url)
+    s = re.sub(r'!\[([^\]]*)\]\(([^)\s]+)\)',
+               lambda m: '<img src="%s" alt="%s" loading="lazy">' % (m.group(2), m.group(1)), s)
+    # リンク [text](url) — 外部は別タブ
+    def _lnk(m):
+        url, txt = m.group(2), m.group(1)
+        ext = ' target="_blank" rel="noopener"' if url.startswith('http') else ''
+        return '<a href="%s"%s>%s</a>' % (url, ext, txt)
+    s = re.sub(r'\[([^\]]+)\]\(([^)\s]+)\)', _lnk, s)
+    s = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', s)         # **太字**
+    s = re.sub(r'(?<!\*)\*([^*]+)\*(?!\*)', r'<em>\1</em>', s)         # *斜体*
+    s = re.sub(r'`([^`]+)`', r'<code>\1</code>', s)                   # `コード`
+    return s
+
+def md_to_html(md):
+    """ブロックMarkdown → HTML。見出し/段落/リスト/引用/区切り/画像に対応。"""
+    lines = md.replace('\r\n', '\n').replace('\r', '\n').split('\n')
+    out, para, i, n = [], [], 0, len(lines)
+    def flush():
+        if para:
+            txt = ' '.join(para).strip()
+            if txt:
+                out.append('<p>' + _md_inline(txt) + '</p>')
+            para.clear()
+    while i < n:
+        st = lines[i].strip()
+        if not st:
+            flush(); i += 1; continue
+        if re.match(r'^-{3,}$', st):                                  # --- 区切り線
+            flush(); out.append('<hr>'); i += 1; continue
+        m = re.match(r'^(#{1,6})\s+(.*)$', st)                        # 見出し(#はh2始まりに寄せる)
+        if m:
+            flush()
+            lv = len(m.group(1))
+            tag = 'h2' if lv <= 2 else ('h3' if lv == 3 else 'h4')
+            out.append('<%s>%s</%s>' % (tag, _md_inline(m.group(2).strip()), tag))
+            i += 1; continue
+        if st.startswith('>'):                                       # > 引用(連続行)
+            flush(); buf = []
+            while i < n and lines[i].strip().startswith('>'):
+                buf.append(re.sub(r'^\s*>\s?', '', lines[i])); i += 1
+            out.append('<blockquote>' + _md_inline(' '.join(x.strip() for x in buf)) + '</blockquote>')
+            continue
+        if re.match(r'^[-*]\s+', st):                                 # - 箇条書き
+            flush(); items = []
+            while i < n and re.match(r'^[-*]\s+', lines[i].strip()):
+                items.append(re.sub(r'^[-*]\s+', '', lines[i].strip())); i += 1
+            out.append('<ul>' + ''.join('<li>%s</li>' % _md_inline(x) for x in items) + '</ul>')
+            continue
+        if re.match(r'^\d+\.\s+', st):                                # 1. 番号付き
+            flush(); items = []
+            while i < n and re.match(r'^\d+\.\s+', lines[i].strip()):
+                items.append(re.sub(r'^\d+\.\s+', '', lines[i].strip())); i += 1
+            out.append('<ol>' + ''.join('<li>%s</li>' % _md_inline(x) for x in items) + '</ol>')
+            continue
+        para.append(st); i += 1
+    flush()
+    return '\n'.join(out)
+
+def parse_article(path):
+    """front matter( --- で囲む ) + 本文Markdown を読む。"""
+    raw = open(path, encoding='utf-8').read().replace('\r\n', '\n')
+    meta, body = {}, raw
+    if raw.startswith('---'):
+        end = raw.find('\n---', 3)
+        if end != -1:
+            for ln in raw[3:end].strip('\n').split('\n'):
+                if ':' in ln:
+                    k, v = ln.split(':', 1)
+                    meta[k.strip()] = v.strip()
+            body = raw[end + 4:].lstrip('\n')
+    return meta, body
+
+def _art_head(title, desc, canonical, jsonld=""):
+    """記事系ページ共通の<head>。about/operatorと同じ構成(テーマ/閲覧数/AdSense)。"""
+    import html as _h
+    t = _h.escape(title); d = _h.escape(desc)
+    ld = ('\n<script type="application/ld+json">%s</script>' % jsonld) if jsonld else ""
+    return ('''<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>if(location.hostname==="pbers.pages.dev")location.replace("https://pbers.com"+location.pathname+location.search+location.hash);</script>
+<script>(function(){try{var q=new URLSearchParams(location.search).get('theme');if(q==='light'||q==='dark'){localStorage.setItem('pbers_theme',q);}var t=localStorage.getItem('pbers_theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
+<title>''' + t + '''｜PBers</title>
+<meta name="description" content="''' + d + '''">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="''' + canonical + '''">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#151515">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="PBers">
+<meta property="og:title" content="''' + t + '''｜PBers">
+<meta property="og:description" content="''' + d + '''">
+<meta property="og:url" content="''' + canonical + '''">
+<meta property="og:image" content="https://pbers.com/favicon.png">
+<meta name="twitter:card" content="summary">
+<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}</script>
+<script>window.PBERS_VIEWS_API = "https://pbers-cron.myray0629.workers.dev/api/views";
+(function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/assets/style.css?v=250950">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>''' + ld + '''
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="/"><span class="dot"></span><span>PB<b>ers</b></span></a>
+  <button class="theme-tg" id="theme-tg" type="button" aria-label="テーマ切替">☀</button>
+</div></header>
+<script>(function(){var b=document.getElementById('theme-tg');if(!b)return;function cur(){try{return localStorage.getItem('pbers_theme')==='light'?'light':'dark';}catch(e){return'dark';}}function ref(){var t=cur();b.textContent=t==='light'?'🌙':'☀';b.title=t==='light'?'ブラックモードに切替':'ホワイトモードに切替';b.setAttribute('aria-label',b.title);}ref();b.addEventListener('click',function(){var t=cur()==='light'?'dark':'light';try{localStorage.setItem('pbers_theme',t);}catch(e){}if(t==='light')document.documentElement.setAttribute('data-theme','light');else document.documentElement.removeAttribute('data-theme');ref();});})();</script>
+''')
+
+_ART_FOOTER = '''<footer><div class="wrap">
+  <a class="brand" href="/"><span class="dot"></span><span>PB<b>ers</b></span></a>
+  <div>データ出典: YouTube 各チャンネル公開情報 ・ <a class="foot-link" href="/articles/">記事</a> ・ <a class="foot-link" href="/about/">PBersとは</a> ・ <a class="foot-link" href="/privacy/">プライバシーポリシー</a></div>
+  <div class="view-count" id="view-count" hidden>👁 このページの表示回数 <span class="num" id="view-count-n">—</span></div>
+</div></footer>
+</body>
+</html>'''
+
+def _fmt_date(s):
+    """YYYY-MM-DD → 日本語表記。パースできなければそのまま。"""
+    try:
+        y, m, d = s.split('-')
+        return "%s年%s月%s日" % (int(y), int(m), int(d))
+    except Exception:
+        return s
+
+def build_articles():
+    """articles/*.md を /articles/<slug>/ と /articles/ 一覧に変換(通常サイト側のみ)。"""
+    import html as _h
+    src_dir = os.path.join(BASE, "articles")
+    metas = []
+    if os.path.isdir(src_dir):
+        for fn in os.listdir(src_dir):
+            if not fn.endswith(".md") or fn.startswith("_") or fn.startswith("."):
+                continue   # _下書き.md / _template.md 等は非公開(スキップ)
+            meta, body = parse_article(os.path.join(src_dir, fn))
+            slug = meta.get("slug") or os.path.splitext(fn)[0]
+            title = meta.get("title") or slug
+            date = meta.get("date") or UPDATED
+            desc = meta.get("description") or ""
+            tags = [t.strip() for t in (meta.get("tags") or "").split(",") if t.strip()]
+            metas.append({"slug": slug, "title": title, "date": date,
+                          "desc": desc, "tags": tags, "body": body})
+    metas.sort(key=lambda x: x["date"], reverse=True)   # 新着順
+
+    for a in metas:
+        canonical = "%s/articles/%s/" % (SITE, urllib.parse.quote(a["slug"]))
+        jsonld = json.dumps({
+            "@context": "https://schema.org", "@type": "Article",
+            "headline": a["title"], "description": a["desc"],
+            "datePublished": a["date"], "dateModified": a["date"],
+            "inLanguage": "ja",
+            "author": {"@type": "Organization", "name": "PBers 運営"},
+            "publisher": {"@type": "Organization", "name": "PBers",
+                          "logo": {"@type": "ImageObject", "url": "https://pbers.com/favicon.png"}},
+            "image": "https://pbers.com/favicon.png",
+            "mainEntityOfPage": canonical,
+        }, ensure_ascii=False)
+        tags_html = "".join('<span class="art-tag">%s</span>' % _h.escape(t) for t in a["tags"])
+        head = _art_head(a["title"], a["desc"], canonical, jsonld)
+        html_out = head + (
+            '<main><div class="doc-page article">'
+            '<a class="doc-back" href="/articles/">← 記事一覧へ</a>'
+            '<h1>' + _h.escape(a["title"]) + '</h1>'
+            '<div class="art-meta"><time datetime="' + a["date"] + '">' + _fmt_date(a["date"]) + '</time>'
+            + (('<span class="art-tags">' + tags_html + '</span>') if tags_html else '') +
+            '</div>'
+            + md_to_html(a["body"]) +
+            '<hr><p class="art-foot-note">この記事は PBers 運営による解説記事です。ご指摘・ご要望は '
+            '<a href="mailto:contact@pbers.com">contact@pbers.com</a> まで。</p>'
+            '<p><a class="doc-back" href="/articles/">← 記事一覧へ戻る</a></p>'
+            '</div></main>' + _ART_FOOTER)
+        d = ed_out("articles", a["slug"])
+        os.makedirs(d, exist_ok=True)
+        with open(os.path.join(d, "index.html"), "w", encoding="utf-8") as f:
+            f.write(html_out)
+
+    # 一覧ページ /articles/
+    cards = []
+    for a in metas:
+        href = "/articles/%s/" % urllib.parse.quote(a["slug"])
+        tags_html = "".join('<span class="art-tag">%s</span>' % _h.escape(t) for t in a["tags"])
+        cards.append(
+            '<a class="art-card" href="' + href + '">'
+            '<div class="art-date">' + _fmt_date(a["date"]) + '</div>'
+            '<h2>' + _h.escape(a["title"]) + '</h2>'
+            + (('<p>' + _h.escape(a["desc"]) + '</p>') if a["desc"] else '')
+            + (('<div class="art-tags">' + tags_html + '</div>') if tags_html else '')
+            + '</a>')
+    empty = '<p class="art-empty">記事は準備中です。もうしばらくお待ちください。</p>'
+    idx_canonical = SITE + "/articles/"
+    idx_head = _art_head(
+        "記事・特集｜ポーランドボール解説",
+        "ポーランドボール(Polandball)やポーランドボーラー(PBer)についての解説・特集記事。歴史・文化・注目チャンネルなどをまとめています。",
+        idx_canonical,
+        json.dumps({"@context": "https://schema.org", "@type": "CollectionPage",
+                    "name": "記事・特集｜PBers", "url": idx_canonical, "inLanguage": "ja"},
+                   ensure_ascii=False))
+    idx_html = idx_head + (
+        '<main><div class="doc-page">'
+        '<a class="doc-back" href="/">← トップへ戻る</a>'
+        '<h1>記事・特集</h1>'
+        '<div class="doc-sub">ポーランドボールとPBer文化についての解説・読み物。</div>'
+        '<div class="art-list">' + ("".join(cards) if cards else empty) + '</div>'
+        '</div></main>' + _ART_FOOTER)
+    os.makedirs(ed_out("articles"), exist_ok=True)
+    with open(ed_out("articles", "index.html"), "w", encoding="utf-8") as f:
+        f.write(idx_html)
+
+    ARTICLES_META[:] = [(a["slug"], a["date"]) for a in metas]
+    print("wrote %d article page(s) + /articles/ index" % len(metas))
+
 def build_sitemap(order):
     # (URL, changefreq) の順で列挙。lastmod は実データの最終更新日(UPDATED)を付与しクロール優先度を上げる。
     urls = [(ed_site() + "/", "daily")] + [(ed_site() + "/c/" + urllib.parse.quote(d["_slug"]) + "/", "daily") for d in order]
-    if not ED["sub"]:                       # 解説・運営者・プライバシーは通常サイト側のみ
+    art_dates = {}                          # 記事URL→公開日(個別lastmod)
+    if not ED["sub"]:                       # 解説・運営者・プライバシー・記事は通常サイト側のみ
         urls.append((ed_site() + "/about/", "monthly"))
         urls.append((ed_site() + "/operator/", "monthly"))
         urls.append((ed_site() + "/privacy/", "monthly"))
+        urls.append((ed_site() + "/articles/", "weekly"))
+        for slug, date in ARTICLES_META:
+            u = ed_site() + "/articles/" + urllib.parse.quote(slug) + "/"
+            urls.append((u, "monthly")); art_dates[u] = date
     body = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     for u, cf in urls:
-        body += '  <url><loc>%s</loc><lastmod>%s</lastmod><changefreq>%s</changefreq></url>\n' % (u, UPDATED, cf)
+        lm = art_dates.get(u, UPDATED)
+        body += '  <url><loc>%s</loc><lastmod>%s</lastmod><changefreq>%s</changefreq></url>\n' % (u, lm, cf)
     body += '</urlset>\n'
     with open(ed_out("sitemap-pbers.xml"), "w", encoding="utf-8") as f:
         f.write(body)
