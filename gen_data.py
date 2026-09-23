@@ -351,7 +351,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250950">
+<link rel="stylesheet" href="/assets/style.css?v=250951">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -366,13 +366,13 @@ CH_TPL = '''<!doctype html>
 </div></main>
 <footer><div class="wrap">
   <a class="brand" href="../../"><span class="dot"></span><span>PB<b>ers</b></span></a>
-  <div>データ出典: YouTube 各チャンネル公開情報 ・ <a class="foot-link" href="/articles/">記事</a> ・ <a class="foot-link" href="/privacy/">プライバシーポリシー</a></div>
+  <div>データ出典: YouTube 各チャンネル公開情報 ・ <a class="foot-link" href="/privacy/">プライバシーポリシー</a></div>
   <div class="foot-note">チャンネル名・アイコン・サムネイル等の権利は各制作者に帰属します。当サイトは識別・参照目的で表示しています。掲載の削除をご希望の場合は <a href="mailto:contact@pbers.com">contact@pbers.com</a> までご連絡ください。</div>
   <div class="view-count" id="view-count" hidden>👁 このページの表示回数 <span class="num" id="view-count-n">—</span></div>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250950"></script>
+<script src="/assets/channel.js?v=250951"></script>
 </body>
 </html>
 '''
@@ -688,6 +688,20 @@ def build_view_pages():
 #  依存を増やさないため Markdown は pure-python の簡易レンダラで処理する。
 # ============================================================================
 ARTICLES_META = []   # build_articles() が (slug, date, title) を積む。sitemap で使用。
+# True の間は記事セクションを「管理者のみ閲覧」にする(掲示板の管理キー localStorage
+# 'pbers_board_key' 保持者だけ本文表示。非管理者は準備中。noindex + sitemap除外)。
+# 一般公開する準備ができたら False にするだけでよい。
+ARTICLES_ADMIN_ONLY = True
+
+_ART_GATE = ('<div id="art-gate" class="art-gate"><div class="doc-page">'
+             '<a class="doc-back" href="/">← トップへ戻る</a>'
+             '<h1>準備中</h1>'
+             '<p>このセクションは現在、管理者のみ閲覧できます。公開までもうしばらくお待ちください。</p>'
+             '</div></div>')
+_ART_GATE_SCRIPT = ('<script>(function(){var ok=false;try{ok=!!localStorage.getItem("pbers_board_key");}'
+                    'catch(e){}var m=document.getElementById("art-main"),g=document.getElementById("art-gate");'
+                    'if(ok){if(m)m.hidden=false;if(g&&g.parentNode)g.parentNode.removeChild(g);}'
+                    'else{if(g)g.hidden=false;}})();</script>')
 
 def _md_inline(s):
     """行内Markdown → HTML。先にエスケープしてから記法を適用(安全)。"""
@@ -766,7 +780,7 @@ def parse_article(path):
             body = raw[end + 4:].lstrip('\n')
     return meta, body
 
-def _art_head(title, desc, canonical, jsonld=""):
+def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
     """記事系ページ共通の<head>。about/operatorと同じ構成(テーマ/閲覧数/AdSense)。"""
     import html as _h
     t = _h.escape(title); d = _h.escape(desc)
@@ -780,7 +794,7 @@ def _art_head(title, desc, canonical, jsonld=""):
 <script>(function(){try{var q=new URLSearchParams(location.search).get('theme');if(q==='light'||q==='dark'){localStorage.setItem('pbers_theme',q);}var t=localStorage.getItem('pbers_theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
 <title>''' + t + '''｜PBers</title>
 <meta name="description" content="''' + d + '''">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="''' + robots + '''">
 <link rel="canonical" href="''' + canonical + '''">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="manifest" href="/manifest.webmanifest">
@@ -797,7 +811,7 @@ def _art_head(title, desc, canonical, jsonld=""):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250950">
+<link rel="stylesheet" href="/assets/style.css?v=250951">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>''' + ld + '''
 </head>
 <body>
@@ -843,6 +857,12 @@ def build_articles():
                           "desc": desc, "tags": tags, "body": body})
     metas.sort(key=lambda x: x["date"], reverse=True)   # 新着順
 
+    admin_only = ARTICLES_ADMIN_ONLY
+    robots   = "noindex,follow" if admin_only else "index,follow"
+    main_open = '<main id="art-main" hidden>' if admin_only else '<main>'
+    gate      = _ART_GATE if admin_only else ''
+    gate_js   = _ART_GATE_SCRIPT if admin_only else ''
+
     for a in metas:
         canonical = "%s/articles/%s/" % (SITE, urllib.parse.quote(a["slug"]))
         jsonld = json.dumps({
@@ -857,9 +877,9 @@ def build_articles():
             "mainEntityOfPage": canonical,
         }, ensure_ascii=False)
         tags_html = "".join('<span class="art-tag">%s</span>' % _h.escape(t) for t in a["tags"])
-        head = _art_head(a["title"], a["desc"], canonical, jsonld)
-        html_out = head + (
-            '<main><div class="doc-page article">'
+        head = _art_head(a["title"], a["desc"], canonical, jsonld, robots)
+        html_out = head + gate + (
+            main_open + '<div class="doc-page article">'
             '<a class="doc-back" href="/articles/">← 記事一覧へ</a>'
             '<h1>' + _h.escape(a["title"]) + '</h1>'
             '<div class="art-meta"><time datetime="' + a["date"] + '">' + _fmt_date(a["date"]) + '</time>'
@@ -869,7 +889,7 @@ def build_articles():
             '<hr><p class="art-foot-note">この記事は PBers 運営による解説記事です。ご指摘・ご要望は '
             '<a href="mailto:contact@pbers.com">contact@pbers.com</a> まで。</p>'
             '<p><a class="doc-back" href="/articles/">← 記事一覧へ戻る</a></p>'
-            '</div></main>' + _ART_FOOTER)
+            '</div></main>' + gate_js + _ART_FOOTER)
         d = ed_out("articles", a["slug"])
         os.makedirs(d, exist_ok=True)
         with open(os.path.join(d, "index.html"), "w", encoding="utf-8") as f:
@@ -895,20 +915,23 @@ def build_articles():
         idx_canonical,
         json.dumps({"@context": "https://schema.org", "@type": "CollectionPage",
                     "name": "記事・特集｜PBers", "url": idx_canonical, "inLanguage": "ja"},
-                   ensure_ascii=False))
-    idx_html = idx_head + (
-        '<main><div class="doc-page">'
+                   ensure_ascii=False),
+        robots)
+    idx_html = idx_head + gate + (
+        main_open + '<div class="doc-page">'
         '<a class="doc-back" href="/">← トップへ戻る</a>'
         '<h1>記事・特集</h1>'
         '<div class="doc-sub">ポーランドボールとPBer文化についての解説・読み物。</div>'
         '<div class="art-list">' + ("".join(cards) if cards else empty) + '</div>'
-        '</div></main>' + _ART_FOOTER)
+        '</div></main>' + gate_js + _ART_FOOTER)
     os.makedirs(ed_out("articles"), exist_ok=True)
     with open(ed_out("articles", "index.html"), "w", encoding="utf-8") as f:
         f.write(idx_html)
 
-    ARTICLES_META[:] = [(a["slug"], a["date"]) for a in metas]
-    print("wrote %d article page(s) + /articles/ index" % len(metas))
+    # 管理者限定の間は sitemap から除外(検索に出さない)
+    ARTICLES_META[:] = [] if admin_only else [(a["slug"], a["date"]) for a in metas]
+    print("wrote %d article page(s) + /articles/ index%s"
+          % (len(metas), " [admin-only]" if admin_only else ""))
 
 def build_sitemap(order):
     # (URL, changefreq) の順で列挙。lastmod は実データの最終更新日(UPDATED)を付与しクロール優先度を上げる。
@@ -918,7 +941,8 @@ def build_sitemap(order):
         urls.append((ed_site() + "/about/", "monthly"))
         urls.append((ed_site() + "/operator/", "monthly"))
         urls.append((ed_site() + "/privacy/", "monthly"))
-        urls.append((ed_site() + "/articles/", "weekly"))
+        if not ARTICLES_ADMIN_ONLY:          # 管理者限定の間は /articles/ も出さない
+            urls.append((ed_site() + "/articles/", "weekly"))
         for slug, date in ARTICLES_META:
             u = ed_site() + "/articles/" + urllib.parse.quote(slug) + "/"
             urls.append((u, "monthly")); art_dates[u] = date

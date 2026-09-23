@@ -1040,3 +1040,5 @@ footer .brand{font-size:16px}
 .art-card p{margin:0 0 9px;color:var(--muted);font-size:13px;line-height:1.7}
 .art-card .art-tags{margin-top:2px}
 .art-empty{color:var(--muted);font-size:14px}
+.art-gate .doc-page{text-align:center;padding-top:60px}
+.art-gate h1{margin-bottom:12px}
