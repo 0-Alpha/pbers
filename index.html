@@ -52,7 +52,7 @@
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250952">
+<link rel="stylesheet" href="/assets/style.css?v=250953">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -81,13 +81,19 @@
   <div class="wrap">
     <button class="tab on" data-view="dashboard">ダッシュボード</button>
     <button class="tab" data-view="board" id="tab-board" hidden>掲示板</button>
+    <button class="tab" data-view="paper">新聞</button>
     <button class="tab" data-view="growth">成長</button>
     <button class="tab" data-view="rising">急上昇</button>
-    <button class="tab" data-view="news">ニュース</button>
     <button class="tab" data-view="race">レース</button>
-    <button class="tab" data-view="game">ゲーム</button>
     <button class="tab" data-view="videos">最新動画</button>
     <button class="tab" data-view="channels">チャンネル一覧</button>
+    <div class="tab-more" id="tab-more">
+      <button class="tab-more-btn" id="tab-more-btn" type="button" aria-haspopup="true" aria-expanded="false">その他 ▾</button>
+      <div class="tab-more-menu" id="tab-more-menu" hidden>
+        <button class="tmi" type="button" data-view="news">ニュース</button>
+        <button class="tmi" type="button" data-view="game">ゲーム</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -332,14 +338,22 @@
     <div class="wrap">
       <div class="sec-head">
         <h2>ニュース <span class="en">News Feed</span></h2>
-        <span class="note" id="news-note">下にスクロールで再生 / 直近7日</span>
-      </div>
-      <div class="news-sw" id="news-sw" role="tablist" aria-label="ニュースの種類">
-        <button class="nsw on" type="button" data-nv="milestone">突破ニュース</button>
-        <button class="nsw" type="button" data-nv="paper">新聞</button>
+        <span class="note">下にスクロールで再生 / 直近7日</span>
       </div>
       <div id="news-feed"></div>
-      <div id="news-paper" hidden></div>
+    </div>
+  </section>
+</main>
+
+<!-- 新聞(記事一覧) view -->
+<main id="view-paper" hidden>
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>新聞 <span class="en">Newspaper</span></h2>
+        <span class="note">PBers運営の解説・特集記事</span>
+      </div>
+      <div id="paper-list"></div>
     </div>
   </section>
 </main>
@@ -427,10 +441,10 @@
   </div>
 </footer>
 
-<script src="/assets/data.js?v=250952"></script>
-<script src="/assets/news.js?v=250952"></script>
-<script src="/assets/growth.js?v=250952"></script>
-<script src="/assets/race.js?v=250952"></script>
-<script src="/assets/app.js?v=250952"></script>
+<script src="/assets/data.js?v=250953"></script>
+<script src="/assets/news.js?v=250953"></script>
+<script src="/assets/growth.js?v=250953"></script>
+<script src="/assets/race.js?v=250953"></script>
+<script src="/assets/app.js?v=250953"></script>
 </body>
 </html>

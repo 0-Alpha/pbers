@@ -1043,9 +1043,12 @@ footer .brand{font-size:16px}
 .art-gate .doc-page{text-align:center;padding-top:60px}
 .art-gate h1{margin-bottom:12px}
 
-/* ニュースタブの種類切替(突破ニュース / 新聞) */
-.news-sw{display:inline-flex;gap:4px;background:var(--bar);border:1px solid var(--line);border-radius:999px;padding:4px;margin:2px 0 22px}
-.nsw{appearance:none;border:0;background:transparent;color:var(--muted);font-family:var(--jp);font-weight:800;font-size:13px;padding:7px 17px;border-radius:999px;cursor:pointer;transition:background .15s,color .15s}
-.nsw.on{background:var(--red);color:#fff}
-.nsw:not(.on):hover{color:var(--text)}
+/* タブバーの「その他」ドロップダウン(ニュース / ゲーム) */
+.tab-more{position:relative;flex:none;display:flex;align-items:center}
+.tab-more-btn{border:0;background:transparent;cursor:pointer;font-family:var(--jp);font-weight:700;font-size:14px;color:var(--muted);white-space:nowrap;padding:15px 18px;border-bottom:2px solid transparent;transition:color .18s,border-color .18s;-webkit-user-select:none;user-select:none}
+.tab-more-btn:hover{color:var(--text)}
+.tab-more-btn.on{color:var(--text);border-bottom-color:var(--red)}
+.tab-more-menu{position:fixed;z-index:60;background:var(--bar);border:1px solid var(--line);border-radius:10px;padding:6px;min-width:150px;box-shadow:0 10px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px)}
+.tmi{display:block;width:100%;text-align:left;border:0;background:transparent;color:var(--text);font-family:var(--jp);font-weight:700;font-size:13.5px;padding:9px 12px;border-radius:7px;cursor:pointer}
+.tmi:hover{background:rgba(128,128,128,.15)}
 .np-list{margin-top:2px}
