@@ -5,8 +5,6 @@
   var ALL = (window.PBERS_DATA || []).slice();
   // 掲示板: 公開状態をWorkerに問い合わせ、公開 or 管理キー所持者のみタブを出す(デプロイ=即公開ではない)
   var BOARD_API = window.PBERS_BOARD_API || '';
-  // 記事(新聞)API。掲示板と同じWorker。/api/board -> /api/articles
-  var ARTICLES_API = window.PBERS_ARTICLES_API || BOARD_API.replace(/\/api\/board$/, '/api/articles');
   var boardMaint = !!window.PBERS_BOARD_MAINTENANCE;   // 整備中フラグ(trueならAPIを叩かず案内表示)
   var boardKey = '', boardPublic = false, boardEnabled = false;
   var UPDATED = window.PBERS_UPDATED || '';
@@ -1645,7 +1643,6 @@
     growth:    document.getElementById('view-growth'),
     rising:    document.getElementById('view-rising'),
     news:      document.getElementById('view-news'),
-    paper:     document.getElementById('view-paper'),
     race:      document.getElementById('view-race'),
     game:      document.getElementById('view-game'),
     videos:    document.getElementById('view-videos'),
@@ -1682,7 +1679,6 @@
       else if (v === 'growth') { renderTrend(); playGrowth(); }
       else if (v === 'rising') { playRise(); }
       else if (v === 'news') renderNewsFeed();
-      else if (v === 'paper') renderPaper();
       else if (v === 'race') renderRace();
       else if (v === 'game') renderGame();
       else if (v === 'videos') renderVideos();
@@ -2103,33 +2099,6 @@
     }
   }
 
-  /* ---- 新聞(記事一覧)タブ ---- */
-  function npDate(ms) {
-    try { var d = new Date(Number(ms) + 9 * 3600e3); return d.getUTCFullYear() + '年' + (d.getUTCMonth() + 1) + '月' + d.getUTCDate() + '日'; } catch (e) { return ''; }
-  }
-  function hasWriteKey() { try { return !!(localStorage.getItem('pbers_write_key') || localStorage.getItem('pbers_board_key')); } catch (e) { return false; } }
-  function renderPaper() {
-    var host = document.getElementById('paper-list'); if (!host) return;
-    var wl = document.getElementById('paper-write'); if (wl) wl.hidden = !hasWriteKey();   // 書く導線は鍵所持者のみ
-    if (!ARTICLES_API) { host.innerHTML = '<div class="nf-none">新聞は準備中です。</div>'; return; }
-    host.innerHTML = '<div class="nf-none">読み込み中…</div>';
-    fetch(ARTICLES_API + '/list?view=paper', { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
-      var items = d.items || [];
-      if (!items.length) {
-        host.innerHTML = '<div class="nf-none">' + (d.gated ? '新聞は現在準備中です。公開までもうしばらくお待ちください。' : 'まだ記事がありません。') + '</div>';
-        return;
-      }
-      host.innerHTML = '<div class="art-list np-list">' + items.map(function (a) {
-        var tags = (a.tags || '').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
-        return '<a class="art-card" href="/articles/' + encodeURIComponent(a.slug) + '/">' +
-          '<div class="art-date">' + npDate(a.created) + (a.author ? ' ・ 文: ' + esc(a.author) : '') + '</div>' +
-          '<h2>' + esc(a.title) + '</h2>' +
-          (a.description ? '<p>' + esc(a.description) + '</p>' : '') +
-          '<div class="art-tags">' + tags.map(function (t) { return '<span class="art-tag">' + esc(t) + '</span>'; }).join('') + '</div>' +
-          '</a>';
-      }).join('') + '</div>';
-    }).catch(function () { host.innerHTML = '<div class="nf-none">読み込みに失敗しました。</div>'; });
-  }
   /* ---- 「その他」タブメニュー(ニュース / ゲーム) ---- */
   (function () {
     var btn = document.getElementById('tab-more-btn'), menu = document.getElementById('tab-more-menu');
