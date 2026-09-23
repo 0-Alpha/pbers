@@ -20,7 +20,7 @@ window.PBERS_DATA = [
     "views": 39307156,
     "subsLabel": "チャンネル登録者数 22.3万人",
     "viewsLabel": "39,307,156回視聴",
-    "videos": 28,
+    "videos": 29,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
     "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#ccbb3e",
@@ -50,7 +50,7 @@ window.PBERS_DATA = [
     "views": 61518848,
     "subsLabel": "チャンネル登録者数 16.5万人",
     "viewsLabel": "61,518,848回視聴",
-    "videos": 120,
+    "videos": 119,
     "url": "https://www.youtube.com/channel/UCfh08MHIzScBQKh5OuG2ofA",
     "avatar": "https://yt3.googleusercontent.com/3a_WIUPrZ8qIxGmQJhtTv9z8vOffxcS3l9TqJK0pcQhNssFX4VJgPndXd2V3o9Hk7F7ECpFP=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3ecc9a",
@@ -181,11 +181,11 @@ window.PBERS_DATA = [
   },
   {
     "name": "Past_Ball",
-    "subs": 7800,
+    "subs": 7810,
     "views": 3553385,
-    "subsLabel": "チャンネル登録者数 7800人",
+    "subsLabel": "チャンネル登録者数 7810人",
     "viewsLabel": "3,553,385回視聴",
-    "videos": 214,
+    "videos": 215,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
     "avatar": "https://yt3.googleusercontent.com/r8ouoXMX9iar1cjJgX7u1yaZn1Eis8ZAzmdIhpoYUYTiTUl39uZ8KU81zZBYtSr-Gs2TCuga=s900-c-k-c0x00ffffff-no-rj",
     "color": "#a55ed4",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-23";
-window.PBERS_PREDICT = {"asOfMs": 1790154000000, "subs": {"base": 1530910, "rate": 2.2702623130230846e-05}, "views": {"base": 676880334, "rate": 0.006790375621005011}};
+window.PBERS_PREDICT = {"asOfMs": 1790154000000, "subs": {"base": 1530920, "rate": 2.2702623130230846e-05}, "views": {"base": 676880334, "rate": 0.006790375621005011}};
