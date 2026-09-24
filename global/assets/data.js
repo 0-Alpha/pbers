@@ -50,7 +50,7 @@ window.PBERS_DATA = [
     "views": 61569791,
     "subsLabel": "チャンネル登録者数 16.5万人",
     "viewsLabel": "61,569,791回視聴",
-    "videos": 119,
+    "videos": 118,
     "url": "https://www.youtube.com/channel/UCfh08MHIzScBQKh5OuG2ofA",
     "avatar": "https://yt3.googleusercontent.com/3a_WIUPrZ8qIxGmQJhtTv9z8vOffxcS3l9TqJK0pcQhNssFX4VJgPndXd2V3o9Hk7F7ECpFP=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3ecc9a",
@@ -91,9 +91,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-    "subs": 122000,
+    "subs": 123000,
     "views": 51806459,
-    "subsLabel": "チャンネル登録者数 12.2万人",
+    "subsLabel": "チャンネル登録者数 12.3万人",
     "viewsLabel": "51,806,459回視聴",
     "videos": 262,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
@@ -136,9 +136,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "くろまめ",
-    "subs": 17200,
+    "subs": 17300,
     "views": 16539366,
-    "subsLabel": "チャンネル登録者数 1.72万人",
+    "subsLabel": "チャンネル登録者数 1.73万人",
     "viewsLabel": "16,539,366回視聴",
     "videos": 84,
     "url": "https://www.youtube.com/channel/UCfJp9c3kSkIjYFevd2G1RKg",
@@ -181,9 +181,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Past_Ball",
-    "subs": 7810,
+    "subs": 7820,
     "views": 3555672,
-    "subsLabel": "チャンネル登録者数 7810人",
+    "subsLabel": "チャンネル登録者数 7820人",
     "viewsLabel": "3,555,672回視聴",
     "videos": 215,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-24";
-window.PBERS_PREDICT = {"asOfMs": 1790240400000, "subs": {"base": 1530920, "rate": 1.6688000847231987e-05}, "views": {"base": 677287416, "rate": 0.006126386993514823}};
+window.PBERS_PREDICT = {"asOfMs": 1790240400000, "subs": {"base": 1532030, "rate": 1.6688000847231987e-05}, "views": {"base": 677287416, "rate": 0.006126386993514823}};
