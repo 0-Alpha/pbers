@@ -17,9 +17,9 @@ window.PBERS_DATA = [
   {
     "name": "MOON-BALL",
     "subs": 223000,
-    "views": 39324189,
+    "views": 39333740,
     "subsLabel": "チャンネル登録者数 22.3万人",
-    "viewsLabel": "39,324,189回視聴",
+    "viewsLabel": "39,333,740回視聴",
     "videos": 29,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
     "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
@@ -47,9 +47,9 @@ window.PBERS_DATA = [
   {
     "name": "Somen ball",
     "subs": 165000,
-    "views": 61549503,
+    "views": 61569791,
     "subsLabel": "チャンネル登録者数 16.5万人",
-    "viewsLabel": "61,549,503回視聴",
+    "viewsLabel": "61,569,791回視聴",
     "videos": 119,
     "url": "https://www.youtube.com/channel/UCfh08MHIzScBQKh5OuG2ofA",
     "avatar": "https://yt3.googleusercontent.com/3a_WIUPrZ8qIxGmQJhtTv9z8vOffxcS3l9TqJK0pcQhNssFX4VJgPndXd2V3o9Hk7F7ECpFP=s900-c-k-c0x00ffffff-no-rj",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-24";
-window.PBERS_PREDICT = {"asOfMs": 1790197200000, "subs": {"base": 1530920, "rate": 1.8954973011226233e-05}, "views": {"base": 677123942, "rate": 0.006634570978072724}};
+window.PBERS_PREDICT = {"asOfMs": 1790218800000, "subs": {"base": 1530920, "rate": 1.738178689012987e-05}, "views": {"base": 677153781, "rate": 0.006200163628458519}};
