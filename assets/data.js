@@ -16,9 +16,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Æž!みかんぼーる🍊",
-    "subs": 357000,
+    "subs": 358000,
     "views": 443074864,
-    "subsLabel": "チャンネル登録者数 35.7万人",
+    "subsLabel": "チャンネル登録者数 35.8万人",
     "viewsLabel": "443,074,864回視聴",
     "videos": 455,
     "url": "https://www.youtube.com/channel/UCRCQ3G1d0DM2krO-Fx5LOuQ",
@@ -80,7 +80,7 @@ window.PBERS_DATA = [
     "views": 27811950,
     "subsLabel": "チャンネル登録者数 5.49万人",
     "viewsLabel": "27,811,950回視聴",
-    "videos": 964,
+    "videos": 965,
     "url": "https://www.youtube.com/channel/UC_qD8VahU0Fr3q1SKg6kYtg",
     "avatar": "https://yt3.googleusercontent.com/f__uscB73pTTt5p7rHmCpVYVZcLrsZP-lWyHAOciK2Fx-IGcXFuDN1vRJTzsBRhp8LF7g60YVQ=s900-c-k-c0x00ffffff-no-rj",
     "color": "#e01e26",
@@ -600,6 +600,21 @@ window.PBERS_DATA = [
     "vLong": 0
   },
   {
+    "name": "ニイソビボール",
+    "subs": 15900,
+    "views": 5644385,
+    "subsLabel": "チャンネル登録者数 1.59万人",
+    "viewsLabel": "5,644,385回視聴",
+    "videos": 60,
+    "url": "https://www.youtube.com/channel/UCpaHKFWTUu4hyr_MafHXppA",
+    "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#d05ed4",
+    "genre": "ポーランドボーラー",
+    "slug": "ニイソビボール",
+    "vShort": null,
+    "vLong": null
+  },
+  {
     "name": "ほわさん",
     "subs": 15800,
     "views": 4228729,
@@ -608,26 +623,11 @@ window.PBERS_DATA = [
     "videos": 90,
     "url": "https://www.youtube.com/channel/UCqJGrZl5WavKUk1sz1R34cQ",
     "avatar": "https://yt3.googleusercontent.com/o_UU1jTdSppc-PeIiGPVGWVzy-mIJZNObIdpmqvGRjQJPMHKsPqU1oPhqE4ryLzVocO-2vgx=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d05ed4",
+    "color": "#cc3e53",
     "genre": "ポーランドボーラー",
     "slug": "ほわさん",
     "vShort": 2283746,
     "vLong": 1594474
-  },
-  {
-    "name": "ニイソビボール",
-    "subs": 15800,
-    "views": 5644385,
-    "subsLabel": "チャンネル登録者数 1.58万人",
-    "viewsLabel": "5,644,385回視聴",
-    "videos": 60,
-    "url": "https://www.youtube.com/channel/UCpaHKFWTUu4hyr_MafHXppA",
-    "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc3e53",
-    "genre": "ポーランドボーラー",
-    "slug": "ニイソビボール",
-    "vShort": null,
-    "vLong": null
   },
   {
     "name": "渋谷区のペンギン",
@@ -1486,9 +1486,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "オマエナガ",
-    "subs": 4890,
+    "subs": 4900,
     "views": 2172331,
-    "subsLabel": "チャンネル登録者数 4890人",
+    "subsLabel": "チャンネル登録者数 4900人",
     "viewsLabel": "2,172,331回視聴",
     "videos": 59,
     "url": "https://www.youtube.com/channel/UCzJCKSLin3HcvreE4rUapVw",
@@ -1501,9 +1501,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "MakkoyuCB",
-    "subs": 4790,
+    "subs": 4800,
     "views": 2538580,
-    "subsLabel": "チャンネル登録者数 4790人",
+    "subsLabel": "チャンネル登録者数 4800人",
     "viewsLabel": "2,538,580回視聴",
     "videos": 29,
     "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
@@ -1531,9 +1531,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "【PB】ネオンボール",
-    "subs": 4730,
+    "subs": 4740,
     "views": 2368776,
-    "subsLabel": "チャンネル登録者数 4730人",
+    "subsLabel": "チャンネル登録者数 4740人",
     "viewsLabel": "2,368,776回視聴",
     "videos": 74,
     "url": "https://www.youtube.com/channel/UCtYX3q7PyNWFbykXddPJEdA",
@@ -2032,7 +2032,7 @@ window.PBERS_DATA = [
     "viewsLabel": "514,390回視聴",
     "videos": 154,
     "url": "https://www.youtube.com/channel/UCm8lBcDz0RVa28FkJu-0nsA",
-    "avatar": "https://yt3.googleusercontent.com/lFBxDx1bMZS5g6awXlP8XPaQZR_iDymedlodcm0NNafNhvjlbG6BF4GJ1a8ldz1Q6wV_Qsc_6g=s900-c-k-c0x00ffffff-no-rj",
+    "avatar": "https://yt3.googleusercontent.com/HZ7XUOxsbRgbmAYhAoC0SB1tKEe4cs1FQ8tIMGRsiRxuj9udUPJNRo0BW2FJiqhaA9myXQVTA1o=s900-c-k-c0x00ffffff-no-rj",
     "color": "#5e5ed4",
     "genre": "ポーランドボーラー",
     "slug": "pbトレインボール",
@@ -2447,4 +2447,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-24";
-window.PBERS_PREDICT = {"asOfMs": 1790262000000, "subs": {"base": 2943770, "rate": 9.428506144236596e-05}, "views": {"base": 2285281993, "rate": 0.06174568914415491}};
+window.PBERS_PREDICT = {"asOfMs": 1790262000000, "subs": {"base": 2944900, "rate": 9.428506144236596e-05}, "views": {"base": 2285281993, "rate": 0.06174568914415491}};
