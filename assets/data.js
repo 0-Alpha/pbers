@@ -1096,9 +1096,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "にこちPB",
-    "subs": 8680,
+    "subs": 8690,
     "views": 1135267,
-    "subsLabel": "チャンネル登録者数 8680人",
+    "subsLabel": "チャンネル登録者数 8690人",
     "viewsLabel": "1,135,267回視聴",
     "videos": 75,
     "url": "https://www.youtube.com/channel/UC2fMWFGgy-ENfkqlK0CUwrg",
@@ -1291,9 +1291,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "カカポボール🦜",
-    "subs": 6550,
+    "subs": 6560,
     "views": 4216782,
-    "subsLabel": "チャンネル登録者数 6550人",
+    "subsLabel": "チャンネル登録者数 6560人",
     "viewsLabel": "4,216,782回視聴",
     "videos": 86,
     "url": "https://www.youtube.com/channel/UCq7LWvE7EDAvLZ_5jctGQ3w",
@@ -1351,9 +1351,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "カルマルボール",
-    "subs": 5890,
+    "subs": 5900,
     "views": 1980055,
-    "subsLabel": "チャンネル登録者数 5890人",
+    "subsLabel": "チャンネル登録者数 5900人",
     "viewsLabel": "1,980,055回視聴",
     "videos": 65,
     "url": "https://www.youtube.com/channel/UCZbTlsZfAf1cmBgLnYMfPWg",
@@ -1486,9 +1486,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "オマエナガ",
-    "subs": 4900,
+    "subs": 4890,
     "views": 2172331,
-    "subsLabel": "チャンネル登録者数 4900人",
+    "subsLabel": "チャンネル登録者数 4890人",
     "viewsLabel": "2,172,331回視聴",
     "videos": 59,
     "url": "https://www.youtube.com/channel/UCzJCKSLin3HcvreE4rUapVw",
@@ -1696,9 +1696,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ソビエト・ロシアぼーる",
-    "subs": 3690,
+    "subs": 3700,
     "views": 2322199,
-    "subsLabel": "チャンネル登録者数 3690人",
+    "subsLabel": "チャンネル登録者数 3700人",
     "viewsLabel": "2,322,199回視聴",
     "videos": 115,
     "url": "https://www.youtube.com/channel/UCYxaKOMYfjlr2dLcK6ZKwvA",
@@ -2032,7 +2032,7 @@ window.PBERS_DATA = [
     "viewsLabel": "514,390回視聴",
     "videos": 154,
     "url": "https://www.youtube.com/channel/UCm8lBcDz0RVa28FkJu-0nsA",
-    "avatar": "https://yt3.googleusercontent.com/HZ7XUOxsbRgbmAYhAoC0SB1tKEe4cs1FQ8tIMGRsiRxuj9udUPJNRo0BW2FJiqhaA9myXQVTA1o=s900-c-k-c0x00ffffff-no-rj",
+    "avatar": "https://yt3.googleusercontent.com/lFBxDx1bMZS5g6awXlP8XPaQZR_iDymedlodcm0NNafNhvjlbG6BF4GJ1a8ldz1Q6wV_Qsc_6g=s900-c-k-c0x00ffffff-no-rj",
     "color": "#5e5ed4",
     "genre": "ポーランドボーラー",
     "slug": "pbトレインボール",
@@ -2447,4 +2447,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-24";
-window.PBERS_PREDICT = {"asOfMs": 1790240400000, "subs": {"base": 2943740, "rate": 9.818486501002142e-05}, "views": {"base": 2285281993, "rate": 0.06734246362616401}};
+window.PBERS_PREDICT = {"asOfMs": 1790262000000, "subs": {"base": 2943770, "rate": 9.428506144236596e-05}, "views": {"base": 2285281993, "rate": 0.06174568914415491}};
