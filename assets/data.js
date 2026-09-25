@@ -2400,6 +2400,21 @@ window.PBERS_DATA = [
     "vLong": null
   },
   {
+    "name": "ドイツベルギーball🇧🇪",
+    "subs": 2020,
+    "views": 1312399,
+    "subsLabel": "チャンネル登録者数 2020人",
+    "viewsLabel": "1,312,399回視聴",
+    "videos": 87,
+    "url": "https://www.youtube.com/channel/UC2_aj_pxZV9zcyplD4KP-8w",
+    "avatar": "https://yt3.googleusercontent.com/7EsHt0eTCzIYJJwMJ02aTX42M5nCW4wQ7IC7xvwuD8tCahJmzRJx6el9mydPOB0teBnHRybAUA=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#3ecc49",
+    "genre": "ポーランドボーラー",
+    "slug": "ドイツベルギーball",
+    "vShort": null,
+    "vLong": null
+  },
+  {
     "name": "ぴくろす",
     "subs": 2000,
     "views": 903640,
@@ -2408,7 +2423,7 @@ window.PBERS_DATA = [
     "videos": 114,
     "url": "https://www.youtube.com/channel/UC8RiqSKxCmtZYEk_fLze0pQ",
     "avatar": "https://yt3.googleusercontent.com/R5Hi38Yy_E05WoCxZZMME7iv1sdUgAhUTBAlkBHKmNWairzMuzn4EMJvYpL7aJycNuG4SHKeEA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3ecc49",
+    "color": "#5ed4d0",
     "genre": "ポーランドボーラー",
     "slug": "ぴくろす",
     "vShort": null,
@@ -2423,7 +2438,7 @@ window.PBERS_DATA = [
     "videos": null,
     "url": "https://www.youtube.com/channel/UCD9mEEJypdqQZeSeTotItbg",
     "avatar": "",
-    "color": "#5ed4d0",
+    "color": "#3e53cc",
     "genre": "ポーランドボーラー",
     "slug": "ucd9meejypdqqzesetotitbg",
     "vShort": 6204904,
@@ -2438,7 +2453,7 @@ window.PBERS_DATA = [
     "videos": null,
     "url": "https://www.youtube.com/channel/UCYPjOfq7MsU0hJvC5cfPs2Q",
     "avatar": "",
-    "color": "#3e53cc",
+    "color": "#b55ed4",
     "genre": "ポーランドボーラー",
     "slug": "ucypjofq7msu0hjvc5cfps2q",
     "vShort": 154017,
@@ -2447,4 +2462,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-25";
-window.PBERS_PREDICT = {"asOfMs": 1790326800000, "subs": {"base": 2948870, "rate": 8.798265289532451e-05}, "views": {"base": 2287733888, "rate": 0.055645303343462495}};
+window.PBERS_PREDICT = {"asOfMs": 1790326800000, "subs": {"base": 2950890, "rate": 8.798265289532451e-05}, "views": {"base": 2289046287, "rate": 0.055645303343462495}};
