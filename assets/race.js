@@ -311,7 +311,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 359000
+            "s": 360000
           }
         ]
       },
@@ -467,7 +467,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 309000
+            "s": 310000
           }
         ]
       }
@@ -2767,7 +2767,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 16100
+            "s": 16200
           }
         ]
       }
@@ -4451,7 +4451,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 12400
+            "s": 12500
           }
         ]
       }
@@ -5219,7 +5219,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 12100
+            "s": 12200
           }
         ]
       }
@@ -5831,7 +5831,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 10700
+            "s": 10800
           }
         ]
       },
@@ -6139,7 +6139,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 10300
+            "s": 10400
           }
         ]
       },
@@ -6871,7 +6871,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 9460
+            "s": 9470
           }
         ]
       }
@@ -7171,7 +7171,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 7180
+            "s": 7170
           }
         ]
       },
@@ -8047,7 +8047,7 @@ window.PBERS_RACE = [
         "name": "りっつんボール",
         "color": "#3ecc40",
         "avatar": "https://yt3.googleusercontent.com/9qdwPP-NnSvcn3Vqyk_Q7yJ7rIFZ559Zl1bEqj50SL_UxoGjU-pm0KUS28B7b7pyuZtGtD5kMA=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 5370,
+        "subs": 5380,
         "history": [
           {
             "d": "2026-08-30",
@@ -8155,7 +8155,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 5370
+            "s": 5380
           }
         ]
       },
@@ -8771,7 +8771,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 4740
+            "s": 4760
           }
         ]
       },
@@ -9003,7 +9003,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 4710
+            "s": 4720
           }
         ]
       }
@@ -9507,7 +9507,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 3940
+            "s": 3950
           }
         ]
       },
@@ -10479,7 +10479,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 3330
+            "s": 3350
           }
         ]
       }
@@ -10491,7 +10491,7 @@ window.PBERS_RACE = [
         "name": "東トルキスタンボール",
         "color": "#873ecc",
         "avatar": "https://yt3.googleusercontent.com/gl0PJDChU9pNvwUraC-NHdbfB-E4QFi_ACxD9BO_GSGGoUYkNmcNH6d3crXJ-8l44QeEHRjz=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3290,
+        "subs": 3300,
         "history": [
           {
             "d": "2026-08-30",
@@ -10599,7 +10599,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-09-25",
-            "s": 3290
+            "s": 3300
           }
         ]
       },
@@ -13520,11 +13520,16 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "",
+        "name": "ドイツベルギーball🇧🇪",
         "color": "#3ecc49",
         "avatar": "https://yt3.googleusercontent.com/7EsHt0eTCzIYJJwMJ02aTX42M5nCW4wQ7IC7xvwuD8tCahJmzRJx6el9mydPOB0teBnHRybAUA=s900-c-k-c0x00ffffff-no-rj",
         "subs": 2020,
-        "history": []
+        "history": [
+          {
+            "d": "2026-09-25",
+            "s": 2020
+          }
+        ]
       },
       {
         "name": "ぴくろす",

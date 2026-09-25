@@ -13,6 +13,61 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "登録者 41万人 突破",
         "value": 410000
+      },
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "Æž!みかんぼーる🍊",
+        "color": "#eba864",
+        "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 36万人 突破",
+        "value": 360000
+      },
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "田中MID",
+        "color": "#2f80ed",
+        "avatar": "https://yt3.googleusercontent.com/mnFY8X_lmtyW54Uh5ocg1QJQVTxTRKG9XDdrGAhxFZpPPJzhsGue-cMHqLBCsIRF4hBHjsLU=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 31万人 突破",
+        "value": 310000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ぽぱい",
+        "color": "#3ecc6b",
+        "avatar": "https://yt3.googleusercontent.com/L3pk3ep8wkIecdtlqzMo73d35IfjEFnmRmvLRb_9f41cuQeUDpXNZIHP4XI4cMu5xxRR6TWkRqg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 600万回 突破",
+        "value": 6000000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ハッホチャンネル",
+        "color": "#ccc43e",
+        "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 300万回 突破",
+        "value": 3000000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "カルマルボール",
+        "color": "#d45ea9",
+        "avatar": "https://yt3.googleusercontent.com/WX0x2Taa65iBzUFRSgy7esb4WOcPuDaB7kYluOwNEqFZJ0tN7lMR_IL5m1pZC7b6tpNJUdSTgA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 200万回 突破",
+        "value": 2000000
       }
     ]
   },
@@ -95,17 +150,6 @@ window.PBERS_NEWS = [
       {
         "type": "milestone",
         "kind": "subs",
-        "name": "練乳=ソビエト共和国ぼーる",
-        "color": "#a95ed4",
-        "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 1万人 突破",
-        "value": 10000
-      },
-      {
-        "type": "milestone",
-        "kind": "subs",
         "name": "ねとえん",
         "color": "#cc3e82",
         "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
@@ -120,6 +164,17 @@ window.PBERS_NEWS = [
         "name": "ほすとぼーる",
         "color": "#d48d5e",
         "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 1万人 突破",
+        "value": 10000
+      },
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "練乳=ソビエト共和国ぼーる",
+        "color": "#a95ed4",
+        "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "登録者 1万人 突破",
@@ -150,9 +205,9 @@ window.PBERS_NEWS = [
       {
         "type": "milestone",
         "kind": "views",
-        "name": "世界最強(笑)ボール【こるからす盟主】",
-        "color": "#bb3ecc",
-        "avatar": "https://yt3.googleusercontent.com/r5WpBv1ZXrilbbIGww5PNrgU7wU3GiKncz7ciO8IaFhhhToDfhV99wvAdqmGj_3-HdpMAqwy=s900-c-k-c0x00ffffff-no-rj",
+        "name": "【PB】ネオンボール",
+        "color": "#5e62d4",
+        "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "総再生数 200万回 突破",
@@ -161,9 +216,9 @@ window.PBERS_NEWS = [
       {
         "type": "milestone",
         "kind": "views",
-        "name": "【PB】ネオンボール",
-        "color": "#5e62d4",
-        "avatar": "https://yt3.googleusercontent.com/gGFyxlBLw9dRA5SenawzuwNWD8ECvirQvjjzRGFjVngWt__14WnvD1fdpReHV_f7sGMbt_oV=s900-c-k-c0x00ffffff-no-rj",
+        "name": "世界最強(笑)ボール【こるからす盟主】",
+        "color": "#bb3ecc",
+        "avatar": "https://yt3.googleusercontent.com/r5WpBv1ZXrilbbIGww5PNrgU7wU3GiKncz7ciO8IaFhhhToDfhV99wvAdqmGj_3-HdpMAqwy=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "総再生数 200万回 突破",
