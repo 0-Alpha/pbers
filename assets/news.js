@@ -5,6 +5,17 @@ window.PBERS_NEWS = [
     "items": [
       {
         "type": "milestone",
+        "kind": "views",
+        "name": "ニイソビボール",
+        "color": "#cc8c3e",
+        "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 600万回 突破",
+        "value": 6000000
+      },
+      {
+        "type": "milestone",
         "kind": "videos",
         "name": "練乳=ソビエト共和国ぼーる",
         "color": "#5ed4c4",
