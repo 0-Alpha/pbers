@@ -167,6 +167,17 @@ window.PBERS_NEWS = [
       {
         "type": "milestone",
         "kind": "subs",
+        "name": "ねとえん",
+        "color": "#cc3e82",
+        "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 1万人 突破",
+        "value": 10000
+      },
+      {
+        "type": "milestone",
+        "kind": "subs",
         "name": "練乳=ソビエト共和国ぼーる",
         "color": "#3e61cc",
         "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
@@ -181,17 +192,6 @@ window.PBERS_NEWS = [
         "name": "ほすとぼーる",
         "color": "#d48d5e",
         "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 1万人 突破",
-        "value": 10000
-      },
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "ねとえん",
-        "color": "#cc3e82",
-        "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "登録者 1万人 突破",

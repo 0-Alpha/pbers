@@ -210,6 +210,21 @@ window.PBERS_DATA = [
     "vLong": null
   },
   {
+    "name": "MakkoyuCB",
+    "subs": 4810,
+    "views": 2594946,
+    "subsLabel": "チャンネル登録者数 4810人",
+    "viewsLabel": "2,594,946回視聴",
+    "videos": 29,
+    "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
+    "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#d4895e",
+    "genre": "ポーランドボーラー",
+    "slug": "makkoyucb",
+    "vShort": null,
+    "vLong": null
+  },
+  {
     "name": "AST.アオスト Polandball",
     "subs": 3690,
     "views": 1762028,
@@ -218,7 +233,7 @@ window.PBERS_DATA = [
     "videos": 32,
     "url": "https://www.youtube.com/channel/UC0oyndW7j5GS5NIb8ww7cxw",
     "avatar": "https://yt3.googleusercontent.com/dOd-yxgy5PfDAsYNy3EZUgbsJ33X06RXpEYmRSK1JQz515G-lul6w2oViQdHiKQbpMIkA8TR=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d4895e",
+    "color": "#a8cc3e",
     "genre": "ポーランドボーラー",
     "slug": "astアオスト-polandball",
     "vShort": null,
@@ -233,7 +248,7 @@ window.PBERS_DATA = [
     "videos": 39,
     "url": "https://www.youtube.com/channel/UC9EPL3fLMARICtvoL6NGMBA",
     "avatar": "https://yt3.googleusercontent.com/oBocVfsRI4xNymEO3_9zK8GmSus753e0k0d_Dm9TN5IXzxVHK7Nlea4VDStGfUaeRAX5cMc5=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#a8cc3e",
+    "color": "#5ed46e",
     "genre": "ポーランドボーラー",
     "slug": "aj-ball",
     "vShort": null,
@@ -242,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-26";
-window.PBERS_PREDICT = {"asOfMs": 1790391600000, "subs": {"base": 1533270, "rate": 1.4025727842297426e-05}, "views": {"base": 677890069, "rate": 0.005630587771110301}};
+window.PBERS_PREDICT = {"asOfMs": 1790391600000, "subs": {"base": 1538080, "rate": 1.4025727842297426e-05}, "views": {"base": 680485015, "rate": 0.005630587771110301}};
