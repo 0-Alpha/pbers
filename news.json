@@ -1,9 +1,21 @@
 {
   "site": "PBers",
   "updated": "2026-09-26",
-  "generated": "2026-09-26T08:59:42+09:00",
-  "count": 15,
+  "generated": "2026-09-26T12:04:11+09:00",
+  "count": 16,
   "items": [
+    {
+      "id": "2026-09-26/videos/練乳ソビエト共和国ぼーる/100",
+      "date": "2026-09-26",
+      "channel": "練乳=ソビエト共和国ぼーる",
+      "slug": "練乳ソビエト共和国ぼーる",
+      "metric": "videos",
+      "type": "milestone",
+      "label": "投稿数 100本 突破",
+      "value": 100,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E7%B7%B4%E4%B9%B3%E3%82%BD%E3%83%93%E3%82%A8%E3%83%88%E5%85%B1%E5%92%8C%E5%9B%BD%E3%81%BC%E3%83%BC%E3%82%8B/"
+    },
     {
       "id": "2026-09-25/subs/フヒフム/410000",
       "date": "2026-09-25",
@@ -101,16 +113,16 @@
       "url": "https://pbers.com/c/%E3%81%AB%E3%81%93%E3%81%A1pb/"
     },
     {
-      "id": "2026-09-22/videos/Mīþ!緑ボール　/200",
+      "id": "2026-09-22/videos/mīþ緑ボール/200",
       "date": "2026-09-22",
       "channel": "Mīþ!緑ボール　",
-      "slug": "",
+      "slug": "mīþ緑ボール",
       "metric": "videos",
       "type": "milestone",
       "label": "投稿数 200本 突破",
       "value": 200,
       "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/news/"
+      "url": "https://pbers.com/c/m%C4%AB%C3%BE%E7%B7%91%E3%83%9C%E3%83%BC%E3%83%AB/"
     },
     {
       "id": "2026-09-21/subs/みかんぼーる/350000",

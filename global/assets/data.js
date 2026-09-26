@@ -65,7 +65,7 @@ window.PBERS_DATA = [
     "views": 95124311,
     "subsLabel": "チャンネル登録者数 13.9万人",
     "viewsLabel": "95,124,311回視聴",
-    "videos": 1058,
+    "videos": 1057,
     "url": "https://www.youtube.com/channel/UC1swbrz9S2VKVABS673ACgQ",
     "avatar": "https://yt3.googleusercontent.com/PNuTtwQrRcQ7zzGQlLM54CsOYHqXfzQA3oPx8Q9o-_GTomHU_WV2SGsA7uv_oPc1XNo09Q0OAtY=s900-c-k-c0x00ffffff-no-rj",
     "color": "#5e95d4",
@@ -181,9 +181,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Past_Ball",
-    "subs": 7840,
+    "subs": 7850,
     "views": 3566514,
-    "subsLabel": "チャンネル登録者数 7840人",
+    "subsLabel": "チャンネル登録者数 7850人",
     "viewsLabel": "3,566,514回視聴",
     "videos": 216,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
@@ -242,4 +242,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-26";
-window.PBERS_PREDICT = {"asOfMs": 1790370000000, "subs": {"base": 1533260, "rate": 1.5289827436160708e-05}, "views": {"base": 677890069, "rate": 0.006147276051268575}};
+window.PBERS_PREDICT = {"asOfMs": 1790391600000, "subs": {"base": 1533270, "rate": 1.4025727842297426e-05}, "views": {"base": 677890069, "rate": 0.005630587771110301}};

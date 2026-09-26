@@ -2,7 +2,19 @@ window.PBERS_NEWS = [
   {
     "date": "2026-09-26",
     "label": "9月26日(土)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "videos",
+        "name": "練乳=ソビエト共和国ぼーる",
+        "color": "#3e61cc",
+        "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "投稿数 100本 突破",
+        "value": 100
+      }
+    ]
   },
   {
     "date": "2026-09-25",
@@ -56,7 +68,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ハッホチャンネル",
-        "color": "#d4665e",
+        "color": "#ccc43e",
         "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -67,7 +79,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "カルマルボール",
-        "color": "#823ecc",
+        "color": "#d45ea9",
         "avatar": "https://yt3.googleusercontent.com/WX0x2Taa65iBzUFRSgy7esb4WOcPuDaB7kYluOwNEqFZJ0tN7lMR_IL5m1pZC7b6tpNJUdSTgA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -117,8 +129,8 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "videos",
         "name": "Mīþ!緑ボール　",
-        "color": "#3ecc49",
-        "avatar": "",
+        "color": "#3ecca8",
+        "avatar": "https://yt3.googleusercontent.com/u8aBN9IgdtDNLdPBrf2eUpD5BxWunLkp-1KZdniLvNNZr16SR9CI33SmqYJx0f1RpkitmSEH=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "投稿数 200本 突破",
@@ -156,7 +168,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "subs",
         "name": "練乳=ソビエト共和国ぼーる",
-        "color": "#5ed4c4",
+        "color": "#3e61cc",
         "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -167,7 +179,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "subs",
         "name": "ほすとぼーる",
-        "color": "#cc3e82",
+        "color": "#d48d5e",
         "avatar": "https://yt3.googleusercontent.com/f4ooYRubjjTkn32hlDgGVtoUyKMMY5DSdmcJwLexUVaCz6MDWivY2xof2QHOibb3neOvZY8a=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -178,7 +190,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "subs",
         "name": "ねとえん",
-        "color": "#a95ed4",
+        "color": "#cc3e82",
         "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
