@@ -1103,6 +1103,58 @@
       });
     });
   }
+  // 管理者専用モデレーション: 完全削除(レス/スレ)・uid一括削除・IP ban
+  function wireAdminMod(scope, refresh) {
+    refresh = refresh || renderBoard;
+    scope.querySelectorAll('.bc-del').forEach(function (b) {
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (!confirm('このレスを完全削除しますか？（行ごと消去・取り消し不可）')) return;
+        b.disabled = true;
+        fetch(boardApi('/delete'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ thread: +b.dataset.t, no: +b.dataset.no, hard: true }) })
+          .then(function (r) { return r.json(); }).then(function (d) { if (d.ok) refresh(); else { b.disabled = false; alert(boardErr(d.error)); } })
+          .catch(function () { b.disabled = false; alert('通信に失敗しました'); });
+      });
+    });
+    scope.querySelectorAll('.bc-delth').forEach(function (b) {
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (!confirm('このスレを完全削除しますか？（全レス・投票も消去・取り消し不可）')) return;
+        b.disabled = true;
+        fetch(boardApi('/hide'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ kind: 'thread', id: +b.dataset.id, hard: true }) })
+          .then(function (r) { return r.json(); }).then(function (d) { if (d.ok) boardGo(null); else { b.disabled = false; alert(boardErr(d.error)); } })
+          .catch(function () { b.disabled = false; alert('通信に失敗しました'); });
+      });
+    });
+    scope.querySelectorAll('.bc-purge').forEach(function (b) {
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var uid = b.dataset.uid;
+        var contains = prompt('ID:' + uid + ' の投稿を一括削除します。\n特定の文字列を含むレスだけ消すならその文字列を入力（空欄＝このIDの全レス削除）。\n例: 荒らしリンクの一部', '');
+        if (contains === null) return;
+        if (!confirm('ID:' + uid + ' のレスを一括削除します。よろしいですか？（取り消し不可）')) return;
+        fetch(boardApi('/purge'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ uid: uid, contains: contains }) })
+          .then(function (r) { return r.json(); }).then(function (d) {
+            if (d.ok) { alert(d.deleted + '件のレスを削除、' + d.hiddenThreads + '件のスレを非表示にしました'); refresh(); }
+            else alert(boardErr(d.error));
+          }).catch(function () { alert('通信に失敗しました'); });
+      });
+    });
+    scope.querySelectorAll('.bc-ban').forEach(function (b) {
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var uid = b.dataset.uid;
+        if (!confirm('ID:' + uid + ' のIPをbanしますか？\n同じIPからの今後の投稿を拒否します。\n※同じIPを共有する別人も巻き込む可能性があります。')) return;
+        fetch(boardApi('/ban'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ uid: uid, on: true }) })
+          .then(function (r) { return r.json(); }).then(function (d) { alert(d.ok ? 'banしました' : boardErr(d.error)); })
+          .catch(function () { alert('通信に失敗しました'); });
+      });
+    });
+  }
   function renderBoard() {
     var host = document.getElementById('board-body'); if (!host) return;
     if (boardMaint) {   // 整備中: APIを叩かず案内のみ
@@ -1254,6 +1306,7 @@
              : '最終 ' + bWhen(t.bumped)) + '</div></div>' +
         tagChip(t.tag) +
         (boardKey ? '<button type="button" class="bc-hide" data-k="thread" data-id="' + t.id + '" data-h="' + (t.hidden ? 0 : 1) + '">' + (t.hidden ? '表示' : '非表示') + '</button>' : '') +
+        (boardKey ? '<button type="button" class="bmod bc-delth" data-id="' + t.id + '">完全削除</button>' : '') +
       '</div>';
     }
     function renderList() {   // 現在のスレ一覧を50件/ページで描画(クライアント側ページ送り・種別で絞り込み)
@@ -1281,7 +1334,7 @@
       box.querySelectorAll('.th').forEach(function (el) {
         el.querySelector('.th-main').addEventListener('click', function () { boardGo(+el.dataset.id); });
       });
-      if (boardKey) wireHide(box);
+      if (boardKey) { wireHide(box); wireAdminMod(box, function () { renderThreadList(host); }); }
       box.querySelectorAll('.bd-pg').forEach(function (b) {
         b.addEventListener('click', function () {
           if (b.disabled) return;
@@ -1481,6 +1534,7 @@
       updateBoardBadge(countNew(boardThreadsCache));          // タブの新着バッジを更新
       host.innerHTML = '<button class="th-back">← スレ一覧</button>' +
         '<h3 class="th-h">' + tagChip(d.tag) + ' ' + esc(d.thread.title) + '</h3>' +
+        (boardKey ? '<div class="bmod-bar"><button type="button" class="bmod bc-delth" data-id="' + id + '">スレを完全削除</button></div>' : '') +
         pollHtml(d.poll) +
         '<div class="posts">' + posts.map(function (p) {
           var del = !p.body;                                   // 本文が空=削除済み
@@ -1494,6 +1548,8 @@
               (del ? '' : '<button type="button" class="post-re" data-no="' + p.no + '">返信</button>') +
               (canDel ? '<button type="button" class="post-del-btn" data-no="' + p.no + '">削除</button>' : '') +
               (boardKey ? '<button type="button" class="bc-hide" data-k="post" data-t="' + id + '" data-no="' + p.no + '" data-h="' + (p.hidden ? 0 : 1) + '">' + (p.hidden ? '表示' : '非表示') + '</button>' : '') +
+              (boardKey ? '<button type="button" class="bmod bc-del" data-t="' + id + '" data-no="' + p.no + '">完全削除</button>' +
+                (p.uid ? '<button type="button" class="bmod bc-purge" data-uid="' + esc(p.uid) + '">ID一括</button><button type="button" class="bmod bc-ban" data-uid="' + esc(p.uid) + '">ban</button>' : '') : '') +
             '</div>' +
             (del ? '<div class="post-body post-del-body">削除されました</div>'
                  : '<div class="post-body">' + linkAnchors(linkUrls(esc(p.body))).replace(/\n/g, '<br>') + '</div>' +
@@ -1508,7 +1564,7 @@
             '<button type="submit" class="bf-send" id="rp-send">返信する</button></div>' +
         '</form>';
       back();
-      if (d.admin) wireHide(host);
+      if (d.admin) { wireHide(host); wireAdminMod(host, function () { renderThread(host, id); }); }
       host.querySelectorAll('.anchor').forEach(function (a) {
         a.addEventListener('click', function () { jumpToPost(a.dataset.no); });
       });

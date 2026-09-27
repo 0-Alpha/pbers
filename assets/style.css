@@ -897,6 +897,12 @@ footer .brand{font-size:16px}
 .bc-hide{align-self:flex-start;margin:11px 12px 0 0;border:1px solid var(--line-2);background:transparent;color:var(--muted);
   font-family:var(--jp);font-weight:700;font-size:11px;padding:3px 10px;border-radius:999px;cursor:pointer;flex:none}
 .bc-hide:hover{color:var(--text);border-color:var(--muted)}
+/* 管理者モデレーション(完全削除/一括/ban)。赤系で危険操作を明示 */
+.bmod{align-self:flex-start;margin:11px 6px 0 0;border:1px solid var(--red);background:transparent;color:var(--red);
+  font-family:var(--jp);font-weight:700;font-size:11px;padding:3px 10px;border-radius:999px;cursor:pointer;flex:none}
+.bmod:hover{background:var(--red);color:#fff}
+.post .bmod{margin:0 0 0 6px}
+.bmod-bar{margin:8px 0 4px}
 /* スレッド詳細 */
 .th-back{border:1px solid var(--line);background:var(--panel);color:var(--muted);font-family:var(--jp);font-weight:700;
   font-size:13px;padding:8px 15px;border-radius:999px;cursor:pointer;margin-bottom:16px}

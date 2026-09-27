@@ -71,6 +71,8 @@ export default {
     if (url.pathname === "/api/board/delete"    && req.method === "POST") return postDelete(req, env);
     if (url.pathname === "/api/board/stats"     && req.method === "GET")  return boardStats(url, req, env);
     if (url.pathname === "/api/board/hide"    && req.method === "POST") return boardHide(req, env);
+    if (url.pathname === "/api/board/purge"   && req.method === "POST") return boardPurge(req, env);
+    if (url.pathname === "/api/board/ban"     && req.method === "POST") return boardBan(req, env);
 
     // ---- 記事(articles): note風エディタで直打ち保存 / Pages FunctionsがSSRで読む ----
     if (url.pathname === "/api/articles/list"   && req.method === "GET")  return artList(url, req, env);
@@ -361,8 +363,14 @@ async function guard(req, env, { write, cost = 20 }) {
   if (!env.DB) return { err: "db_unconfigured", status: 503 };
   const pub = env.BOARD_PUBLIC === "1", admin = isAdmin(req, env);
   if (!pub && !admin) return { err: "private", status: 403 };
+  if (write && !admin) {   // 出禁(IP ban)チェック: banされたIPからの投稿を拒否
+    const ip = req.headers.get("CF-Connecting-IP") || "0";
+    const iph = await sha(ip + "|" + (env.SALT || "pbers"));
+    try { if (await env.PBERS_KV.get("bban:" + iph)) return { err: "banned", status: 403 }; } catch (e) {}
+  }
   return { admin, pub };
 }
+function likeEsc(s) { return String(s == null ? "" : s).replace(/[\\%_]/g, "\\$&"); }
 async function rateLimit(req, env, tag, seconds) {
   // KVのexpirationTTLは最低60秒。15秒等の短い制限も出せるよう「最終投稿時刻」を保存して経過で判定。
   const ip = req.headers.get("CF-Connecting-IP") || "0";
@@ -599,6 +607,10 @@ async function postDelete(req, env) {
   if (!tid || !no) return json({ error: "bad_id" }, 400);
   const p = await env.DB.prepare("SELECT no,body,created,hidden FROM board_posts WHERE thread_id=?1 AND no=?2").bind(tid, no).first();
   if (!p) return json({ error: "not_found" }, 404);
+  if (g.admin && b.hard) {                                                       // 管理者: 行ごと完全削除(取り消し不可)
+    await env.DB.prepare("DELETE FROM board_posts WHERE thread_id=?1 AND no=?2").bind(tid, no).run();
+    return json({ ok: true, hard: true });
+  }
   if (!p.body) return json({ ok: true });                                        // 既に削除済み(冪等)
   const expected = await delkeyFor(env, tid, no, p.created);
   if (!g.admin && String(b.token || "") !== expected) return json({ error: "forbidden" }, 403);
@@ -612,6 +624,14 @@ async function boardHide(req, env) {
   const hide = b.hide === false ? 0 : 1;
   if (b.kind === "thread") {
     const id = parseInt(b.id, 10); if (!id) return json({ error: "bad_id" }, 400);
+    if (b.hard) {                                                                // スレを完全削除(レス・タグ・投票も一緒に)
+      await env.DB.prepare("DELETE FROM board_posts WHERE thread_id=?1").bind(id).run();
+      await env.DB.prepare("DELETE FROM board_threads WHERE id=?1").bind(id).run();
+      try { await env.DB.prepare("DELETE FROM board_tags WHERE thread_id=?1").bind(id).run(); } catch (e) {}
+      try { await env.DB.prepare("DELETE FROM board_polls WHERE thread_id=?1").bind(id).run(); } catch (e) {}
+      try { await env.DB.prepare("DELETE FROM board_poll_votes WHERE thread_id=?1").bind(id).run(); } catch (e) {}
+      return json({ ok: true, hard: true });
+    }
     await env.DB.prepare("UPDATE board_threads SET hidden=?2 WHERE id=?1").bind(id, hide).run();
   } else {                                   // レス1件を非表示(thread_id + no で指定)
     const tid = parseInt(b.thread, 10), no = parseInt(b.no, 10);
@@ -619,6 +639,50 @@ async function boardHide(req, env) {
     await env.DB.prepare("UPDATE board_posts SET hidden=?3 WHERE thread_id=?1 AND no=?2").bind(tid, no, hide).run();
   }
   return json({ ok: true });
+}
+// 管理者: 指定uidのレスを一括完全削除。contains(本文に含む文字列)で対象を絞れる。
+// exclude=["tid:no",...] で残したいレスを除外(＝荒らし以外を保留できる)。OPが消えたスレは自動で非表示。
+async function boardPurge(req, env) {
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
+  const uid = clean(b.uid, 8);
+  if (!uid) return json({ error: "no_uid" }, 400);
+  const contains = clean(b.contains, 200);
+  const exclude = Array.isArray(b.exclude) ? b.exclude.map(String) : [];
+  let sql = "SELECT thread_id,no FROM board_posts WHERE uid=?1", binds = [uid];
+  if (contains) { sql += " AND body LIKE ?2 ESCAPE '\\'"; binds.push("%" + likeEsc(contains) + "%"); }
+  const { results } = await env.DB.prepare(sql).bind(...binds).all();
+  let deleted = 0; const hit = new Set();
+  for (const r of (results || [])) {
+    if (exclude.indexOf(r.thread_id + ":" + r.no) !== -1) continue;
+    await env.DB.prepare("DELETE FROM board_posts WHERE thread_id=?1 AND no=?2").bind(r.thread_id, r.no).run();
+    deleted++; hit.add(r.thread_id);
+  }
+  let hiddenThreads = 0;                                                         // OP(1レス目)が消えたスレは非表示に
+  for (const tid of hit) {
+    const op = await env.DB.prepare("SELECT no FROM board_posts WHERE thread_id=?1 AND no=1").bind(tid).first();
+    if (!op) { await env.DB.prepare("UPDATE board_threads SET hidden=1 WHERE id=?1").bind(tid).run(); hiddenThreads++; }
+  }
+  return json({ ok: true, deleted, hiddenThreads });
+}
+// 管理者: IP出禁。uid か ip_hash を指定。uid からは投稿のip_hashを解決してban。on=false で解除。
+async function boardBan(req, env) {
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
+  const on = b.on === false ? false : true;
+  let iph = clean(b.iph, 64);
+  if (!iph && b.uid) {
+    const row = await env.DB.prepare("SELECT ip_hash FROM board_posts WHERE uid=?1 AND ip_hash IS NOT NULL AND ip_hash<>'' ORDER BY created DESC LIMIT 1").bind(clean(b.uid, 8)).first();
+    if (row) iph = row.ip_hash;
+  }
+  if (!iph) return json({ error: "no_target" }, 400);
+  try {
+    if (on) await env.PBERS_KV.put("bban:" + iph, "1");
+    else await env.PBERS_KV.delete("bban:" + iph);
+  } catch (e) { return json({ error: "kv" }, 500); }
+  return json({ ok: true, banned: on, iph });
 }
 /* ページ表示回数: D1テーブル pageviews(page TEXT PRIMARY KEY, count INTEGER)。
  * ?page=<パス>&hit=1 で加算(重複はクライアント側でその日1回に制御)。?hit無しは閲覧のみ。 */
