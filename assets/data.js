@@ -16,9 +16,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Æž!みかんぼーる🍊",
-    "subs": 365000,
+    "subs": 366000,
     "views": 451611772,
-    "subsLabel": "チャンネル登録者数 36.5万人",
+    "subsLabel": "チャンネル登録者数 36.6万人",
     "viewsLabel": "451,611,772回視聴",
     "videos": 458,
     "url": "https://www.youtube.com/channel/UCRCQ3G1d0DM2krO-Fx5LOuQ",
@@ -526,9 +526,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ニイソビボール",
-    "subs": 17000,
+    "subs": 17100,
     "views": 6078217,
-    "subsLabel": "チャンネル登録者数 1.7万人",
+    "subsLabel": "チャンネル登録者数 1.71万人",
     "viewsLabel": "6,078,217回視聴",
     "videos": 60,
     "url": "https://www.youtube.com/channel/UCpaHKFWTUu4hyr_MafHXppA",
@@ -632,9 +632,9 @@ window.PBERS_DATA = [
   {
     "name": "渋谷区のペンギン",
     "subs": 15200,
-    "views": 3437937,
+    "views": 3438821,
     "subsLabel": "チャンネル登録者数 1.52万人",
-    "viewsLabel": "3,437,937回視聴",
+    "viewsLabel": "3,438,821回視聴",
     "videos": 53,
     "url": "https://www.youtube.com/channel/UCw4mBghvckZ6kRp1KF3PP2g",
     "avatar": "https://yt3.googleusercontent.com/UzSRTPeQjShkDU9fW2m2meYmivDymiYdGJUdfMhxQGeFCqEaGeVO3Bkvo0X-AgvDhLC_VqWRV3M=s900-c-k-c0x00ffffff-no-rj",
@@ -871,9 +871,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "練乳=ソビエト共和国ぼーる",
-    "subs": 11400,
+    "subs": 11500,
     "views": 1961520,
-    "subsLabel": "チャンネル登録者数 1.14万人",
+    "subsLabel": "チャンネル登録者数 1.15万人",
     "viewsLabel": "1,961,520回視聴",
     "videos": 101,
     "url": "https://www.youtube.com/channel/UCXn5jlX_q9OtdFqDgC7fj8Q",
@@ -1126,9 +1126,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ハッホチャンネル",
-    "subs": 7800,
+    "subs": 7810,
     "views": 3390812,
-    "subsLabel": "チャンネル登録者数 7800人",
+    "subsLabel": "チャンネル登録者数 7810人",
     "viewsLabel": "3,390,812回視聴",
     "videos": 128,
     "url": "https://www.youtube.com/channel/UCpgQli0Snj3llxm7f-1A8IQ",
@@ -1321,9 +1321,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "カルマルボール",
-    "subs": 6420,
+    "subs": 6430,
     "views": 2282921,
-    "subsLabel": "チャンネル登録者数 6420人",
+    "subsLabel": "チャンネル登録者数 6430人",
     "viewsLabel": "2,282,921回視聴",
     "videos": 65,
     "url": "https://www.youtube.com/channel/UCZbTlsZfAf1cmBgLnYMfPWg",
@@ -1621,9 +1621,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Sekumeball  せくめボール",
-    "subs": 4320,
+    "subs": 4330,
     "views": 1540676,
-    "subsLabel": "チャンネル登録者数 4320人",
+    "subsLabel": "チャンネル登録者数 4330人",
     "viewsLabel": "1,540,676回視聴",
     "videos": 98,
     "url": "https://www.youtube.com/channel/UCOWqMzG_N3gzH1yGENiUFiA",
@@ -1770,6 +1770,21 @@ window.PBERS_DATA = [
     "vLong": null
   },
   {
+    "name": "東トルキスタンボール",
+    "subs": 3540,
+    "views": 774664,
+    "subsLabel": "チャンネル登録者数 3540人",
+    "viewsLabel": "774,664回視聴",
+    "videos": 34,
+    "url": "https://www.youtube.com/channel/UC9jmzFCXGdLiR75vcdxDH6A",
+    "avatar": "https://yt3.googleusercontent.com/gl0PJDChU9pNvwUraC-NHdbfB-E4QFi_ACxD9BO_GSGGoUYkNmcNH6d3crXJ-8l44QeEHRjz=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#ccc93e",
+    "genre": "ポーランドボーラー",
+    "slug": "東トルキスタンボール",
+    "vShort": null,
+    "vLong": null
+  },
+  {
     "name": "☆ソニキパチアスカイ帝国☆",
     "subs": 3530,
     "views": 1938589,
@@ -1778,24 +1793,9 @@ window.PBERS_DATA = [
     "videos": 156,
     "url": "https://www.youtube.com/channel/UC10jRxM3m68xXZzJQ1_sipA",
     "avatar": "https://yt3.googleusercontent.com/Fmq0rSeYrA63jTEw-bq5rPpgd1OAXJPl6UiOQswq9XVUbztI2X-BTe5jNbcFhzVBdyemhJdIdw=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#ccc93e",
-    "genre": "ポーランドボーラー",
-    "slug": "ソニキパチアスカイ帝国",
-    "vShort": null,
-    "vLong": null
-  },
-  {
-    "name": "東トルキスタンボール",
-    "subs": 3530,
-    "views": 774664,
-    "subsLabel": "チャンネル登録者数 3530人",
-    "viewsLabel": "774,664回視聴",
-    "videos": 34,
-    "url": "https://www.youtube.com/channel/UC9jmzFCXGdLiR75vcdxDH6A",
-    "avatar": "https://yt3.googleusercontent.com/gl0PJDChU9pNvwUraC-NHdbfB-E4QFi_ACxD9BO_GSGGoUYkNmcNH6d3crXJ-8l44QeEHRjz=s900-c-k-c0x00ffffff-no-rj",
     "color": "#6ed45e",
     "genre": "ポーランドボーラー",
-    "slug": "東トルキスタンボール",
+    "slug": "ソニキパチアスカイ帝国",
     "vShort": null,
     "vLong": null
   },
@@ -2012,9 +2012,9 @@ window.PBERS_DATA = [
   {
     "name": "水入り瓶",
     "subs": 2810,
-    "views": 692642,
+    "views": 692773,
     "subsLabel": "チャンネル登録者数 2810人",
-    "viewsLabel": "692,642回視聴",
+    "viewsLabel": "692,773回視聴",
     "videos": 42,
     "url": "https://www.youtube.com/channel/UCCfKBBDK5D66hbOl455YBHg",
     "avatar": "https://yt3.googleusercontent.com/Nn0wemqXOMylFQsOcg8qBCdIVuj-OqChx5GO0sNoi8DeeZTIfaxTUCX-9beyc530JDO0BGuXCvU=s900-c-k-c0x00ffffff-no-rj",
@@ -2597,4 +2597,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-27";
-window.PBERS_PREDICT = {"asOfMs": 1790521200000, "subs": {"base": 2990420, "rate": 0.00011510885641829865}, "views": {"base": 2310190218, "rate": 0.07128319789037939}};
+window.PBERS_PREDICT = {"asOfMs": 1790521200000, "subs": {"base": 2991660, "rate": 0.00011510885641829865}, "views": {"base": 2310191233, "rate": 0.07128319789037939}};
