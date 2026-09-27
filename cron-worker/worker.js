@@ -399,6 +399,10 @@ async function urlSpamBlocked(env, tokens, tid) {   // 記録はしない。閾�
   }
   return false;
 }
+function nameHasUrl(name) { return /https?:\/\//i.test(String(name || "")); }   // 名前欄にURL=荒らしサイン
+async function autoBanIp(env, iph, days) {   // IPを自動ban(既定3日で自動失効)
+  try { await env.PBERS_KV.put("bban:" + iph, "1", days > 0 ? { expirationTtl: days * 86400 } : undefined); } catch (e) {}
+}
 async function urlSpamRecord(env, tokens, tid) {   // このスレでのURL出現を記録(TTL付き)
   const now = Date.now();
   for (const tok of tokens) {
@@ -497,6 +501,7 @@ async function threadCreate(req, env) {
   const ip = req.headers.get("CF-Connecting-IP") || "0";
   var spamToks = urlTokens(title + " " + body);   // タイトルも対象(荒らしはタイトルにURLを入れる)
   if (!g.admin) {
+    if (nameHasUrl(name)) { await autoBanIp(env, await sha(ip + "|" + (env.SALT || "pbers")), 3); return json({ error: "banned" }, 403); }
     if (env.TURNSTILE_SECRET && !(await verifyTurnstile(b.token, ip, env))) return json({ error: "captcha" }, 400);
     if (spamToks.length && await urlSpamBlocked(env, spamToks, 0)) return json({ error: "url_spam" }, 429);
     if (!(await rateLimit(req, env, "th", 60))) return json({ error: "too_fast" }, 429);
@@ -628,6 +633,7 @@ async function postCreate(req, env) {
   const ip = req.headers.get("CF-Connecting-IP") || "0";
   var spamToks = urlTokens(body);
   if (!g.admin) {
+    if (nameHasUrl(name)) { await autoBanIp(env, await sha(ip + "|" + (env.SALT || "pbers")), 3); return json({ error: "banned" }, 403); }
     if (env.TURNSTILE_SECRET && !(await verifyTurnstile(b.token, ip, env))) return json({ error: "captcha" }, 400);
     if (spamToks.length && await urlSpamBlocked(env, spamToks, tid)) return json({ error: "url_spam" }, 429);
     if (!(await rateLimit(req, env, "po", 15))) return json({ error: "too_fast" }, 429);
