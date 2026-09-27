@@ -73,6 +73,7 @@ export default {
     if (url.pathname === "/api/board/hide"    && req.method === "POST") return boardHide(req, env);
     if (url.pathname === "/api/board/purge"   && req.method === "POST") return boardPurge(req, env);
     if (url.pathname === "/api/board/ban"     && req.method === "POST") return boardBan(req, env);
+    if (url.pathname === "/api/board/imgur"   && req.method === "GET")  return imgurResolve(url, env);
 
     // ---- 記事(articles): note風エディタで直打ち保存 / Pages FunctionsがSSRで読む ----
     if (url.pathname === "/api/articles/list"   && req.method === "GET")  return artList(url, req, env);
@@ -722,6 +723,25 @@ async function boardPurge(req, env) {
   return json({ ok: true, deleted, hiddenThreads });
 }
 // 管理者: IP出禁。uid か ip_hash を指定。uid からは投稿のip_hashを解決してban。on=false で解除。
+// imgurアルバム(/a/ ・/gallery/)の代表画像(og:image=1枚目)を解決して返す。結果はKVにキャッシュ。
+// クライアントはCORSでアルバムページを取れないのでWorker側で取得する。
+async function imgurResolve(url, env) {
+  const a = (url.searchParams.get("a") || "").replace(/[^A-Za-z0-9]/g, "").slice(0, 20);
+  if (!a) return json({ error: "bad_id" }, 400);
+  const ck = "imgur:" + a;
+  try { const c = await env.PBERS_KV.get(ck); if (c !== null) return json({ ok: true, img: c || null }); } catch (e) {}
+  let img = null;
+  try {
+    const r = await fetch("https://imgur.com/a/" + a, { headers: { "User-Agent": "Mozilla/5.0 (compatible; pbers/1.0)", "Accept-Language": "en" } });
+    const h = await r.text();
+    const m = h.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)
+           || h.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i);
+    if (m) img = m[1].split("?")[0].replace(/&amp;/g, "&");
+    if (img && !/^https:\/\/i\.imgur\.com\//i.test(img)) img = null;   // i.imgur.com の直画像だけ許可
+  } catch (e) {}
+  try { await env.PBERS_KV.put(ck, img || "", { expirationTtl: img ? 2592000 : 3600 }); } catch (e) {}   // 成功30日/失敗1h
+  return json({ ok: true, img: img });
+}
 async function boardBan(req, env) {
   if (!env.DB) return json({ error: "db_unconfigured" }, 503);
   if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);

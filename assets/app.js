@@ -1488,6 +1488,31 @@
         '<img loading="lazy" src="' + esc(u) + '" alt="" onerror="this.closest(\'.img-embed\').style.display=\'none\'"></a>';
     }).join('') + '</div>';
   }
+  // imgurアルバム(/a/・/gallery/)の代表画像(1枚目)。CORSで直接取れないのでWorkerに解決させ、後で埋める。
+  function imgurAlbumIds(text) {
+    var re = /https?:\/\/(?:m\.|www\.)?imgur\.com\/(?:a|gallery)\/([A-Za-z0-9]{4,12})/gi, out = [], seen = {}, m;
+    while ((m = re.exec(String(text || ''))) && out.length < 3) { if (!seen[m[1]]) { seen[m[1]] = 1; out.push(m[1]); } }
+    return out;
+  }
+  function imgAlbumEmbeds(body) {
+    var ids = imgurAlbumIds(body); if (!ids.length) return '';
+    return '<div class="img-embeds">' + ids.map(function (id) {
+      return '<a class="img-embed" href="https://imgur.com/a/' + esc(id) + '" target="_blank" rel="noopener noreferrer" data-imgalb="' + esc(id) + '" hidden>' +
+        '<img loading="lazy" alt=""></a>';
+    }).join('') + '</div>';
+  }
+  function resolveImgAlbums(scope) {   // 描画後にアルバムの代表画像を取得して埋める
+    scope.querySelectorAll('[data-imgalb]').forEach(function (el) {
+      var id = el.dataset.imgalb;
+      fetch(boardApi('/imgur') + '?a=' + encodeURIComponent(id)).then(function (r) { return r.json(); }).then(function (d) {
+        if (d && d.img) {
+          var img = el.querySelector('img');
+          img.onerror = function () { el.hidden = true; };
+          img.src = d.img; el.hidden = false;
+        }
+      }).catch(function () {});
+    });
+  }
   function pollRemain(closes) {   // 残り時間の短い表記
     var ms = closes - Date.now(); if (ms <= 0) return '';
     var d = Math.floor(ms / 86400000), h = Math.floor((ms % 86400000) / 3600000);
@@ -1556,7 +1581,7 @@
             '</div>' +
             (del ? '<div class="post-body post-del-body">削除されました</div>'
                  : '<div class="post-body">' + linkAnchors(linkUrls(esc(p.body))).replace(/\n/g, '<br>') + '</div>' +
-                   ytEmbeds(p.body) + imgEmbeds(p.body) + postMentions(p.body)) +
+                   ytEmbeds(p.body) + imgEmbeds(p.body) + imgAlbumEmbeds(p.body) + postMentions(p.body)) +
           '</div>';
         }).join('') + '</div>' +
         '<form class="bt-reply" id="bt-reply" autocomplete="off">' +
@@ -1567,6 +1592,7 @@
             '<button type="submit" class="bf-send" id="rp-send">返信する</button></div>' +
         '</form>';
       back();
+      resolveImgAlbums(host);   // imgurアルバムの代表画像を後から埋める
       if (d.admin) { wireHide(host); wireAdminMod(host, function () { renderThread(host, id); }); }
       host.querySelectorAll('.anchor').forEach(function (a) {
         a.addEventListener('click', function () { jumpToPost(a.dataset.no); });
