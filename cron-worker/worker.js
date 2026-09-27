@@ -678,11 +678,13 @@ async function boardBan(req, env) {
     if (row) iph = row.ip_hash;
   }
   if (!iph) return json({ error: "no_target" }, 400);
+  // 期間: days(日数)。既定3日、0で無期限。モバイルのIP使い回しによる巻き込み防止のため自動失効が既定。
+  const days = (b.days === 0 || b.days === "0") ? 0 : (parseInt(b.days, 10) || 3);
   try {
-    if (on) await env.PBERS_KV.put("bban:" + iph, "1");
+    if (on) await env.PBERS_KV.put("bban:" + iph, "1", days > 0 ? { expirationTtl: days * 86400 } : undefined);
     else await env.PBERS_KV.delete("bban:" + iph);
   } catch (e) { return json({ error: "kv" }, 500); }
-  return json({ ok: true, banned: on, iph });
+  return json({ ok: true, banned: on, iph, days: on ? days : 0 });
 }
 /* ページ表示回数: D1テーブル pageviews(page TEXT PRIMARY KEY, count INTEGER)。
  * ?page=<パス>&hit=1 で加算(重複はクライアント側でその日1回に制御)。?hit無しは閲覧のみ。 */

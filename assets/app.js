@@ -1147,10 +1147,12 @@
       b.addEventListener('click', function (e) {
         e.stopPropagation();
         var uid = b.dataset.uid;
-        if (!confirm('ID:' + uid + ' のIPをbanしますか？\n同じIPからの今後の投稿を拒否します。\n※同じIPを共有する別人も巻き込む可能性があります。')) return;
+        var days = prompt('ID:' + uid + ' のIPをbanします。\n何日間？（空欄=3日 / 0=無期限）\n※モバイルはIP使い回しがあるため、数日での自動失効を推奨。', '3');
+        if (days === null) return;
+        days = (days === '') ? 3 : (parseInt(days, 10) || 0);
         fetch(boardApi('/ban'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
-          body: JSON.stringify({ uid: uid, on: true }) })
-          .then(function (r) { return r.json(); }).then(function (d) { alert(d.ok ? 'banしました' : boardErr(d.error)); })
+          body: JSON.stringify({ uid: uid, on: true, days: days }) })
+          .then(function (r) { return r.json(); }).then(function (d) { alert(d.ok ? ('banしました（' + (d.days ? d.days + '日で自動解除' : '無期限') + '）') : boardErr(d.error)); })
           .catch(function () { alert('通信に失敗しました'); });
       });
     });
