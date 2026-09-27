@@ -371,6 +371,45 @@ async function guard(req, env, { write, cost = 20 }) {
   return { admin, pub };
 }
 function likeEsc(s) { return String(s == null ? "" : s).replace(/[\\%_]/g, "\\$&"); }
+// ---- 同一URL連投ブロック(ID非依存) ----
+// 荒らしはIPを変えて逃げられるが「同じ動画リンクを短時間に複数スレへ撒く手口」は変わらない。
+// URLを正規化(YouTubeは動画ID)し、直近URL_WINDOWで別スレに URL_MAX_THREADS 回以上出たら以降は拒否。
+const URL_WINDOW_MS = 10 * 60 * 1000;   // 集計ウィンドウ(10分)
+const URL_MAX_THREADS = 3;              // 同一URLが直近10分でこの数の別スレに出たら以降ブロック
+function urlTokens(text) {
+  const s = String(text || ""), toks = new Set(), re = /https?:\/\/[^\s<>"']+/gi;
+  let m;
+  while ((m = re.exec(s))) {
+    const u = m[0];
+    const ym = u.match(/(?:youtube\.com\/(?:watch\?[^ ]*?\bv=|shorts\/|live\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
+    if (ym) { toks.add("yt:" + ym[1]); continue; }              // YouTubeは動画IDに正規化(パラメータ違いを無視)
+    const n = u.replace(/^https?:\/\//i, "").split(/[?#]/)[0].replace(/[)\]}>,.。、!！?？]+$/, "").toLowerCase();
+    if (n) toks.add("u:" + n);
+  }
+  return [...toks].slice(0, 10);
+}
+async function urlSpamKey(tok) { return "us:" + (await sha(tok)).slice(0, 24); }
+async function urlSpamBlocked(env, tokens, tid) {   // 記録はしない。閾値超なら true
+  const now = Date.now();
+  for (const tok of tokens) {
+    let list;
+    try { list = JSON.parse((await env.PBERS_KV.get(await urlSpamKey(tok))) || "[]"); } catch (e) { list = []; }
+    const others = new Set(list.filter((e) => now - (e.t || 0) < URL_WINDOW_MS && e.tid !== tid).map((e) => e.tid));
+    if (others.size >= URL_MAX_THREADS) return true;
+  }
+  return false;
+}
+async function urlSpamRecord(env, tokens, tid) {   // このスレでのURL出現を記録(TTL付き)
+  const now = Date.now();
+  for (const tok of tokens) {
+    const key = await urlSpamKey(tok);
+    let list;
+    try { list = JSON.parse((await env.PBERS_KV.get(key)) || "[]"); } catch (e) { list = []; }
+    list = list.filter((e) => now - (e.t || 0) < URL_WINDOW_MS);
+    if (!list.some((e) => e.tid === tid)) list.push({ t: now, tid: tid });
+    try { await env.PBERS_KV.put(key, JSON.stringify(list.slice(-40)), { expirationTtl: Math.ceil(URL_WINDOW_MS / 1000) + 60 }); } catch (e) {}
+  }
+}
 async function rateLimit(req, env, tag, seconds) {
   // KVのexpirationTTLは最低60秒。15秒等の短い制限も出せるよう「最終投稿時刻」を保存して経過で判定。
   const ip = req.headers.get("CF-Connecting-IP") || "0";
@@ -456,8 +495,10 @@ async function threadCreate(req, env) {
   if (!body) return json({ error: "empty" }, 400);
   const name = clean(b.name, 24) || "名無し";
   const ip = req.headers.get("CF-Connecting-IP") || "0";
+  var spamToks = urlTokens(title + " " + body);   // タイトルも対象(荒らしはタイトルにURLを入れる)
   if (!g.admin) {
     if (env.TURNSTILE_SECRET && !(await verifyTurnstile(b.token, ip, env))) return json({ error: "captcha" }, 400);
+    if (spamToks.length && await urlSpamBlocked(env, spamToks, 0)) return json({ error: "url_spam" }, 429);
     if (!(await rateLimit(req, env, "th", 60))) return json({ error: "too_fast" }, 429);
   }
   const iph = await sha(ip + "|" + (env.SALT || "pbers"));
@@ -474,6 +515,7 @@ async function threadCreate(req, env) {
   var tag = TAG_SET.has(b.tag) ? b.tag : "pb";   // 種別タグ(PB主・未指定はpb)
   try { await ensureTags(env); await env.DB.prepare("INSERT OR REPLACE INTO board_tags(thread_id,tag) VALUES(?1,?2)").bind(tid, tag).run(); } catch (e) {}
   if (b.poll) { try { await createPoll(env, tid, b.poll, now); } catch (e) {} }   // スレ主のアンケート添付(任意)
+  if (!g.admin && spamToks.length) await urlSpamRecord(env, spamToks, tid);       // 同一URL連投カウントに記録
   return json({ ok: true, id: tid, del: await delkeyFor(env, tid, 1, now) });    // del=OP(1レス目)の自己削除キー
 }
 // ---- アンケート(投票) ----
@@ -584,8 +626,10 @@ async function postCreate(req, env) {
   const th = await env.DB.prepare("SELECT id,posts,hidden FROM board_threads WHERE id=?1").bind(tid).first();
   if (!th || th.hidden) return json({ error: "not_found" }, 404);
   const ip = req.headers.get("CF-Connecting-IP") || "0";
+  var spamToks = urlTokens(body);
   if (!g.admin) {
     if (env.TURNSTILE_SECRET && !(await verifyTurnstile(b.token, ip, env))) return json({ error: "captcha" }, 400);
+    if (spamToks.length && await urlSpamBlocked(env, spamToks, tid)) return json({ error: "url_spam" }, 429);
     if (!(await rateLimit(req, env, "po", 15))) return json({ error: "too_fast" }, 429);
   }
   const iph = await sha(ip + "|" + (env.SALT || "pbers"));
@@ -597,6 +641,7 @@ async function postCreate(req, env) {
     "INSERT INTO board_posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin,ip,ua) VALUES(?1,?2,?3,?4,?5,?6,?7,0,?8,?9,?10)")
     .bind(tid, no, name, body, uid, now, iph, g.admin ? 1 : 0, ip, ua).run();
   await env.DB.prepare("UPDATE board_threads SET posts=?2, bumped=?3 WHERE id=?1").bind(tid, no, now).run();
+  if (!g.admin && spamToks.length) await urlSpamRecord(env, spamToks, tid);       // 同一URL連投カウントに記録
   return json({ ok: true, no, del: await delkeyFor(env, tid, no, now) });        // del=このレスの自己削除キー
 }
 // 自己削除: 本文だけ空にする(ソフト削除)。番号・名前・スレ構造・開示用のIP/UAは保持。
