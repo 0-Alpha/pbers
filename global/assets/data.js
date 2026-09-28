@@ -140,7 +140,7 @@ window.PBERS_DATA = [
     "views": 16661775,
     "subsLabel": "チャンネル登録者数 1.74万人",
     "viewsLabel": "16,661,775回視聴",
-    "videos": 85,
+    "videos": 86,
     "url": "https://www.youtube.com/channel/UCfJp9c3kSkIjYFevd2G1RKg",
     "avatar": "https://yt3.googleusercontent.com/yV8LzkaByDse6ZVmF8XEySSyoZ6osOmQM9SmjO8FTgQPiaOwyAaD2VEH1Zx8UqAVobRkOxaVbrg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#45cc3e",
@@ -196,9 +196,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "udonball",
-    "subs": 6910,
+    "subs": 6920,
     "views": 1245385,
-    "subsLabel": "チャンネル登録者数 6910人",
+    "subsLabel": "チャンネル登録者数 6920人",
     "viewsLabel": "1,245,385回視聴",
     "videos": 119,
     "url": "https://www.youtube.com/channel/UCGueqNQmvtQYlGO3UL3Gf3w",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-28";
-window.PBERS_PREDICT = {"asOfMs": 1790564400000, "subs": {"base": 1540470, "rate": 1.3021171253773626e-05}, "views": {"base": 681666624, "rate": 0.007074087269794803}};
+window.PBERS_PREDICT = {"asOfMs": 1790586000000, "subs": {"base": 1540480, "rate": 1.1561794737272538e-05}, "views": {"base": 681666624, "rate": 0.00647629791428732}};
