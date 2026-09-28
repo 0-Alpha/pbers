@@ -20,7 +20,7 @@ window.PBERS_DATA = [
     "views": 39485618,
     "subsLabel": "チャンネル登録者数 22.4万人",
     "viewsLabel": "39,485,618回視聴",
-    "videos": 29,
+    "videos": 30,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
     "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#ccbb3e",
@@ -50,7 +50,7 @@ window.PBERS_DATA = [
     "views": 61286085,
     "subsLabel": "チャンネル登録者数 16.5万人",
     "viewsLabel": "61,286,085回視聴",
-    "videos": 116,
+    "videos": 117,
     "url": "https://www.youtube.com/channel/UCfh08MHIzScBQKh5OuG2ofA",
     "avatar": "https://yt3.googleusercontent.com/3a_WIUPrZ8qIxGmQJhtTv9z8vOffxcS3l9TqJK0pcQhNssFX4VJgPndXd2V3o9Hk7F7ECpFP=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3ecc9a",
@@ -91,9 +91,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-    "subs": 124000,
+    "subs": 125000,
     "views": 52872966,
-    "subsLabel": "チャンネル登録者数 12.4万人",
+    "subsLabel": "チャンネル登録者数 12.5万人",
     "viewsLabel": "52,872,966回視聴",
     "videos": 264,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
@@ -211,9 +211,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "MakkoyuCB",
-    "subs": 4870,
+    "subs": 4880,
     "views": 2603589,
-    "subsLabel": "チャンネル登録者数 4870人",
+    "subsLabel": "チャンネル登録者数 4880人",
     "viewsLabel": "2,603,589回視聴",
     "videos": 30,
     "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-28";
-window.PBERS_PREDICT = {"asOfMs": 1790586000000, "subs": {"base": 1540480, "rate": 1.1561794737272538e-05}, "views": {"base": 681666624, "rate": 0.00647629791428732}};
+window.PBERS_PREDICT = {"asOfMs": 1790607600000, "subs": {"base": 1541490, "rate": 1.4864567483449945e-05}, "views": {"base": 681666624, "rate": 0.00586946502992797}};
