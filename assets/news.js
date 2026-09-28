@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-09-29",
+    "label": "9月29日(火)",
+    "items": []
+  },
+  {
     "date": "2026-09-28",
     "label": "9月28日(月)",
     "items": []
@@ -29,7 +34,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ニイソビボール",
-        "color": "#a1d45e",
+        "color": "#cc8c3e",
         "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -90,7 +95,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ぽぱい",
-        "color": "#cc8c3e",
+        "color": "#a1d45e",
         "avatar": "https://yt3.googleusercontent.com/L3pk3ep8wkIecdtlqzMo73d35IfjEFnmRmvLRb_9f41cuQeUDpXNZIHP4XI4cMu5xxRR6TWkRqg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -142,33 +147,5 @@ window.PBERS_NEWS = [
     "date": "2026-09-23",
     "label": "9月23日(水)",
     "items": []
-  },
-  {
-    "date": "2026-09-22",
-    "label": "9月22日(火)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "にこちPB",
-        "color": "#9dd45e",
-        "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 100万回 突破",
-        "value": 1000000
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "Mīþ!緑ボール　",
-        "color": "#ccc93e",
-        "avatar": "https://yt3.googleusercontent.com/u8aBN9IgdtDNLdPBrf2eUpD5BxWunLkp-1KZdniLvNNZr16SR9CI33SmqYJx0f1RpkitmSEH=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 200本 突破",
-        "value": 200
-      }
-    ]
   }
 ];
