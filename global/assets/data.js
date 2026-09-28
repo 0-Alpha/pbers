@@ -77,9 +77,9 @@ window.PBERS_DATA = [
   {
     "name": "Spheria",
     "subs": 131000,
-    "views": 92534595,
+    "views": 92542858,
     "subsLabel": "チャンネル登録者数 13.1万人",
-    "viewsLabel": "92,534,595回視聴",
+    "viewsLabel": "92,542,858回視聴",
     "videos": 67,
     "url": "https://www.youtube.com/channel/UCyedH2V27OuhZclf5wfXhlg",
     "avatar": "https://yt3.googleusercontent.com/rY5kv_d4X3vrbcfFix2ZrRDmhgbmWoYErbob_0iUjOIgYbEpvNZ2gH4YHAyO4CXf1nDpMawx=s900-c-k-c0x00ffffff-no-rj",
@@ -152,9 +152,9 @@ window.PBERS_DATA = [
   {
     "name": "日本猫耳版ボール【目標9000人】",
     "subs": 12900,
-    "views": 3932944,
+    "views": 3933139,
     "subsLabel": "チャンネル登録者数 1.29万人",
-    "viewsLabel": "3,932,944回視聴",
+    "viewsLabel": "3,933,139回視聴",
     "videos": 226,
     "url": "https://www.youtube.com/channel/UCIqROVo0xBJfh5h6cQyPm7Q",
     "avatar": "https://yt3.googleusercontent.com/LpR7h9FEKhK0Va34bq-KRghVlWGkhmZQUTbd-JcnnuZ3BU17SQQjkFfh6YnFgAvVbYXcWO37Vw=s900-c-k-c0x00ffffff-no-rj",
@@ -211,9 +211,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "MakkoyuCB",
-    "subs": 4840,
+    "subs": 4870,
     "views": 2603589,
-    "subsLabel": "チャンネル登録者数 4840人",
+    "subsLabel": "チャンネル登録者数 4870人",
     "viewsLabel": "2,603,589回視聴",
     "videos": 30,
     "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-28";
-window.PBERS_PREDICT = {"asOfMs": 1790542800000, "subs": {"base": 1540440, "rate": 1.63663578253108e-05}, "views": {"base": 681658166, "rate": 0.007186637909725039}};
+window.PBERS_PREDICT = {"asOfMs": 1790564400000, "subs": {"base": 1540470, "rate": 1.3021171253773626e-05}, "views": {"base": 681666624, "rate": 0.007074087269794803}};
