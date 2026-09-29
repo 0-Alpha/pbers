@@ -586,9 +586,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "まるッとわかる地理の裏話",
-    "subs": 16300,
+    "subs": 16400,
     "views": 27728559,
-    "subsLabel": "チャンネル登録者数 1.63万人",
+    "subsLabel": "チャンネル登録者数 1.64万人",
     "viewsLabel": "27,728,559回視聴",
     "videos": 53,
     "url": "https://www.youtube.com/channel/UC5nTC9yBAAxfaefKiXB7cZw",
@@ -976,9 +976,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "スーパーボール",
-    "subs": 9860,
+    "subs": 9870,
     "views": 5116489,
-    "subsLabel": "チャンネル登録者数 9860人",
+    "subsLabel": "チャンネル登録者数 9870人",
     "viewsLabel": "5,116,489回視聴",
     "videos": 287,
     "url": "https://www.youtube.com/channel/UCsoMWL2O3xnXe4VQMC3TDmw",
@@ -1456,9 +1456,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "【PB】ネオンボール",
-    "subs": 5080,
+    "subs": 5100,
     "views": 2576267,
-    "subsLabel": "チャンネル登録者数 5080人",
+    "subsLabel": "チャンネル登録者数 5100人",
     "viewsLabel": "2,576,267回視聴",
     "videos": 78,
     "url": "https://www.youtube.com/channel/UCtYX3q7PyNWFbykXddPJEdA",
@@ -1775,7 +1775,7 @@ window.PBERS_DATA = [
     "views": 303490,
     "subsLabel": "チャンネル登録者数 3570人",
     "viewsLabel": "303,490回視聴",
-    "videos": 214,
+    "videos": 215,
     "url": "https://www.youtube.com/channel/UC562UMBmV-_lw_T4Mqh7LKw",
     "avatar": "https://yt3.googleusercontent.com/u8aBN9IgdtDNLdPBrf2eUpD5BxWunLkp-1KZdniLvNNZr16SR9CI33SmqYJx0f1RpkitmSEH=s900-c-k-c0x00ffffff-no-rj",
     "color": "#ccc93e",
@@ -1877,9 +1877,9 @@ window.PBERS_DATA = [
   {
     "name": "クロウ",
     "subs": 3230,
-    "views": 451854,
+    "views": 451981,
     "subsLabel": "チャンネル登録者数 3230人",
-    "viewsLabel": "451,854回視聴",
+    "viewsLabel": "451,981回視聴",
     "videos": 6,
     "url": "https://www.youtube.com/channel/UCLD2_sF0PrEy-DzeFCg68ZA",
     "avatar": "https://yt3.googleusercontent.com/BNlxuUydak56xTko70YGKF-HbK9oDtcTlvn5iSS8_HKJknzja_Zgc2lMy8yQ-bsPKB5i5FxEmQ=s900-c-k-c0x00ffffff-no-rj",
@@ -1966,9 +1966,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "あへへへへへﾝ",
-    "subs": 2990,
+    "subs": 3000,
     "views": 3163723,
-    "subsLabel": "チャンネル登録者数 2990人",
+    "subsLabel": "チャンネル登録者数 3000人",
     "viewsLabel": "3,163,723回視聴",
     "videos": 34,
     "url": "https://www.youtube.com/channel/UCiIFIiNkCdfSe9_cPh5ly4g",
@@ -2000,7 +2000,7 @@ window.PBERS_DATA = [
     "views": 600779,
     "subsLabel": "チャンネル登録者数 2960人",
     "viewsLabel": "600,779回視聴",
-    "videos": 81,
+    "videos": 82,
     "url": "https://www.youtube.com/channel/UCtcoS9W_dfVbV6IbNE4klMA",
     "avatar": "https://yt3.googleusercontent.com/jzCO1OxVUz10rGgxaCD4KGU4au7QZ43-npLTZBHoqsMScPBf2vgvuMeGQfVIjrfyDyC3wbOt=s900-c-k-c0x00ffffff-no-rj",
     "color": "#5ed479",
@@ -2162,9 +2162,9 @@ window.PBERS_DATA = [
   {
     "name": "はやぶさ",
     "subs": 2530,
-    "views": 945194,
+    "views": 945234,
     "subsLabel": "チャンネル登録者数 2530人",
-    "viewsLabel": "945,194回視聴",
+    "viewsLabel": "945,234回視聴",
     "videos": 84,
     "url": "https://www.youtube.com/channel/UCSEZoTqU35u_tC1SfBSI8Mw",
     "avatar": "https://yt3.googleusercontent.com/oprZ0pqHJTy8MjUDm1zELCRx66R8wLViSV6-TqJbVJ0yWJpo4DwpCmBh-7eAGTJLJG9SjEeeWuw=s900-c-k-c0x00ffffff-no-rj",
@@ -2251,9 +2251,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "そあボール",
-    "subs": 2380,
+    "subs": 2390,
     "views": 1582437,
-    "subsLabel": "チャンネル登録者数 2380人",
+    "subsLabel": "チャンネル登録者数 2390人",
     "viewsLabel": "1,582,437回視聴",
     "videos": 80,
     "url": "https://www.youtube.com/channel/UCRoXku8rWoPR9SFp9eKNUtQ",
@@ -2597,4 +2597,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-29";
-window.PBERS_PREDICT = {"asOfMs": 1790629200000, "subs": {"base": 2998670, "rate": 8.504839607287491e-05}, "views": {"base": 2313564967, "rate": 0.05298235171588267}};
+window.PBERS_PREDICT = {"asOfMs": 1790650800000, "subs": {"base": 2998820, "rate": 7.899445237710451e-05}, "views": {"base": 2313565134, "rate": 0.049466440390815776}};
