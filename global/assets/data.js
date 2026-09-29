@@ -46,9 +46,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Somen ball",
-    "subs": 165000,
+    "subs": 166000,
     "views": 61348113,
-    "subsLabel": "チャンネル登録者数 16.5万人",
+    "subsLabel": "チャンネル登録者数 16.6万人",
     "viewsLabel": "61,348,113回視聴",
     "videos": 118,
     "url": "https://www.youtube.com/channel/UCfh08MHIzScBQKh5OuG2ofA",
@@ -91,9 +91,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-    "subs": 125000,
+    "subs": 126000,
     "views": 53507293,
-    "subsLabel": "チャンネル登録者数 12.5万人",
+    "subsLabel": "チャンネル登録者数 12.6万人",
     "viewsLabel": "53,507,293回視聴",
     "videos": 265,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
@@ -211,9 +211,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "MakkoyuCB",
-    "subs": 4890,
+    "subs": 4900,
     "views": 2628434,
-    "subsLabel": "チャンネル登録者数 4890人",
+    "subsLabel": "チャンネル登録者数 4900人",
     "viewsLabel": "2,628,434回視聴",
     "videos": 30,
     "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-29";
-window.PBERS_PREDICT = {"asOfMs": 1790694000000, "subs": {"base": 1542510, "rate": 1.4736340940674314e-05}, "views": {"base": 682737427, "rate": 0.008132353474206266}};
+window.PBERS_PREDICT = {"asOfMs": 1790694000000, "subs": {"base": 1544520, "rate": 1.4736340940674314e-05}, "views": {"base": 682737427, "rate": 0.008132353474206266}};
