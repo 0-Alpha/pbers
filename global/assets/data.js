@@ -152,9 +152,9 @@ window.PBERS_DATA = [
   {
     "name": "日本猫耳版ボール【目標9000人】",
     "subs": 12900,
-    "views": 3933671,
+    "views": 3933968,
     "subsLabel": "チャンネル登録者数 1.29万人",
-    "viewsLabel": "3,933,671回視聴",
+    "viewsLabel": "3,933,968回視聴",
     "videos": 226,
     "url": "https://www.youtube.com/channel/UCIqROVo0xBJfh5h6cQyPm7Q",
     "avatar": "https://yt3.googleusercontent.com/LpR7h9FEKhK0Va34bq-KRghVlWGkhmZQUTbd-JcnnuZ3BU17SQQjkFfh6YnFgAvVbYXcWO37Vw=s900-c-k-c0x00ffffff-no-rj",
@@ -212,9 +212,9 @@ window.PBERS_DATA = [
   {
     "name": "MakkoyuCB",
     "subs": 4900,
-    "views": 2628434,
+    "views": 2633492,
     "subsLabel": "チャンネル登録者数 4900人",
-    "viewsLabel": "2,628,434回視聴",
+    "viewsLabel": "2,633,492回視聴",
     "videos": 30,
     "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
     "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-09-30";
-window.PBERS_PREDICT = {"asOfMs": 1790758800000, "subs": {"base": 1544520, "rate": 1.8159026751440385e-05}, "views": {"base": 683630412, "rate": 0.009890775552663766}};
+window.PBERS_PREDICT = {"asOfMs": 1790758800000, "subs": {"base": 1544520, "rate": 1.8159026751440385e-05}, "views": {"base": 683635767, "rate": 0.009890775552663766}};
