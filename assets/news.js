@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-01",
+    "label": "10月1日(木)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ねとえん",
+        "color": "#cc3e82",
+        "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 900万回 突破",
+        "value": 9000000
+      }
+    ]
+  },
+  {
     "date": "2026-09-30",
     "label": "9月30日(水)",
     "items": [
@@ -163,23 +180,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "総再生数 200万回 突破",
         "value": 2000000
-      }
-    ]
-  },
-  {
-    "date": "2026-09-24",
-    "label": "9月24日(木)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ミルー帝国-はんぺん[PB]",
-        "color": "#d45e85",
-        "avatar": "https://yt3.googleusercontent.com/Ky8R9pg8h7UvmF53F7Bv9forW3gIMrGUzI2JuRlUaX_Lzf19_45Sif5nf5BqRdQy0WDtPvGvLw=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 900万回 突破",
-        "value": 9000000
       }
     ]
   }
