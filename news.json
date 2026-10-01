@@ -1,9 +1,21 @@
 {
   "site": "PBers",
-  "updated": "2026-10-01",
-  "generated": "2026-10-02T05:23:32+09:00",
-  "count": 13,
+  "updated": "2026-10-02",
+  "generated": "2026-10-02T06:03:59+09:00",
+  "count": 8,
   "items": [
+    {
+      "id": "2026-10-02/views/ユラミア連邦共和国/9000000",
+      "date": "2026-10-02",
+      "channel": "ユラミア連邦共和国",
+      "slug": "ユラミア連邦共和国",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 900万回 突破",
+      "value": 9000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%83%A6%E3%83%A9%E3%83%9F%E3%82%A2%E9%80%A3%E9%82%A6%E5%85%B1%E5%92%8C%E5%9B%BD/"
+    },
     {
       "id": "2026-10-01/views/ねとえん/9000000",
       "date": "2026-10-01",
@@ -87,78 +99,6 @@
       "value": 100,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E7%B7%B4%E4%B9%B3%E3%82%BD%E3%83%93%E3%82%A8%E3%83%88%E5%85%B1%E5%92%8C%E5%9B%BD%E3%81%BC%E3%83%BC%E3%82%8B/"
-    },
-    {
-      "id": "2026-09-25/subs/フヒフム/410000",
-      "date": "2026-09-25",
-      "channel": "Æž!フヒフム",
-      "slug": "フヒフム",
-      "metric": "subs",
-      "type": "milestone",
-      "label": "登録者 41万人 突破",
-      "value": 410000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%83%95%E3%83%92%E3%83%95%E3%83%A0/"
-    },
-    {
-      "id": "2026-09-25/subs/みかんぼーる/360000",
-      "date": "2026-09-25",
-      "channel": "Æž!みかんぼーる🍊",
-      "slug": "みかんぼーる",
-      "metric": "subs",
-      "type": "milestone",
-      "label": "登録者 36万人 突破",
-      "value": 360000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%BF%E3%81%8B%E3%82%93%E3%81%BC%E3%83%BC%E3%82%8B/"
-    },
-    {
-      "id": "2026-09-25/subs/田中mid/310000",
-      "date": "2026-09-25",
-      "channel": "田中MID",
-      "slug": "田中mid",
-      "metric": "subs",
-      "type": "milestone",
-      "label": "登録者 31万人 突破",
-      "value": 310000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E7%94%B0%E4%B8%ADmid/"
-    },
-    {
-      "id": "2026-09-25/views/ぽぱい/6000000",
-      "date": "2026-09-25",
-      "channel": "ぽぱい",
-      "slug": "ぽぱい",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 600万回 突破",
-      "value": 6000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%BD%E3%81%B1%E3%81%84/"
-    },
-    {
-      "id": "2026-09-25/views/ハッホチャンネル/3000000",
-      "date": "2026-09-25",
-      "channel": "ハッホチャンネル",
-      "slug": "ハッホチャンネル",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 300万回 突破",
-      "value": 3000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%83%8F%E3%83%83%E3%83%9B%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB/"
-    },
-    {
-      "id": "2026-09-25/views/カルマルボール/2000000",
-      "date": "2026-09-25",
-      "channel": "カルマルボール",
-      "slug": "カルマルボール",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 200万回 突破",
-      "value": 2000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%82%AB%E3%83%AB%E3%83%9E%E3%83%AB%E3%83%9C%E3%83%BC%E3%83%AB/"
     }
   ]
 }

@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-02",
+    "label": "10月2日(金)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ユラミア連邦共和国",
+        "color": "#cc5c3e",
+        "avatar": "https://yt3.googleusercontent.com/zb3DJtqgEv4eDPHRmrgrZ9ZrOKPoVfym9o0Q0cO0HzerM2-br1DD7-qR8YWYGmTcklK81tqq4g=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 900万回 突破",
+        "value": 9000000
+      }
+    ]
+  },
+  {
     "date": "2026-10-01",
     "label": "10月1日(木)",
     "items": [
@@ -108,78 +125,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "投稿数 100本 突破",
         "value": 100
-      }
-    ]
-  },
-  {
-    "date": "2026-09-25",
-    "label": "9月25日(金)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "Æž!フヒフム",
-        "color": "#9b51e0",
-        "avatar": "https://yt3.googleusercontent.com/o0-EijPjZl_g0OcDfSJdv78d6uG6Ba0RxPPeI4spBOdIZqL842tVa_BsE8_cNxZLHRwd8PmZEA=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 41万人 突破",
-        "value": 410000
-      },
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "Æž!みかんぼーる🍊",
-        "color": "#eba864",
-        "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 36万人 突破",
-        "value": 360000
-      },
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "田中MID",
-        "color": "#2f80ed",
-        "avatar": "https://yt3.googleusercontent.com/mnFY8X_lmtyW54Uh5ocg1QJQVTxTRKG9XDdrGAhxFZpPPJzhsGue-cMHqLBCsIRF4hBHjsLU=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 31万人 突破",
-        "value": 310000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ぽぱい",
-        "color": "#3ec9cc",
-        "avatar": "https://yt3.googleusercontent.com/L3pk3ep8wkIecdtlqzMo73d35IfjEFnmRmvLRb_9f41cuQeUDpXNZIHP4XI4cMu5xxRR6TWkRqg=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 600万回 突破",
-        "value": 6000000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ハッホチャンネル",
-        "color": "#d45ed4",
-        "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 300万回 突破",
-        "value": 3000000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "カルマルボール",
-        "color": "#72d45e",
-        "avatar": "https://yt3.googleusercontent.com/WX0x2Taa65iBzUFRSgy7esb4WOcPuDaB7kYluOwNEqFZJ0tN7lMR_IL5m1pZC7b6tpNJUdSTgA=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 200万回 突破",
-        "value": 2000000
       }
     ]
   }
