@@ -91,9 +91,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-    "subs": 126000,
+    "subs": 127000,
     "views": 54329496,
-    "subsLabel": "チャンネル登録者数 12.6万人",
+    "subsLabel": "チャンネル登録者数 12.7万人",
     "viewsLabel": "54,329,496回視聴",
     "videos": 267,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
@@ -181,9 +181,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Past_Ball",
-    "subs": 7880,
+    "subs": 7890,
     "views": 3592187,
-    "subsLabel": "チャンネル登録者数 7880人",
+    "subsLabel": "チャンネル登録者数 7890人",
     "viewsLabel": "3,592,187回視聴",
     "videos": 216,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-01";
-window.PBERS_PREDICT = {"asOfMs": 1790802000000, "subs": {"base": 1544520, "rate": 1.5257169198298455e-05}, "views": {"base": 684014876, "rate": 0.008240627803362113}};
+window.PBERS_PREDICT = {"asOfMs": 1790823600000, "subs": {"base": 1545530, "rate": 1.824452772856849e-05}, "views": {"base": 684014876, "rate": 0.009144568286816085}};
