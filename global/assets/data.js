@@ -136,9 +136,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "くろまめ",
-    "subs": 17400,
+    "subs": 17500,
     "views": 16708047,
-    "subsLabel": "チャンネル登録者数 1.74万人",
+    "subsLabel": "チャンネル登録者数 1.75万人",
     "viewsLabel": "16,708,047回視聴",
     "videos": 86,
     "url": "https://www.youtube.com/channel/UCfJp9c3kSkIjYFevd2G1RKg",
@@ -211,9 +211,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "MakkoyuCB",
-    "subs": 4900,
+    "subs": 4910,
     "views": 2637335,
-    "subsLabel": "チャンネル登録者数 4900人",
+    "subsLabel": "チャンネル登録者数 4910人",
     "viewsLabel": "2,637,335回視聴",
     "videos": 30,
     "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-01";
-window.PBERS_PREDICT = {"asOfMs": 1790845200000, "subs": {"base": 1545530, "rate": 1.6727509292135653e-05}, "views": {"base": 684549358, "rate": 0.010591146968692292}};
+window.PBERS_PREDICT = {"asOfMs": 1790845200000, "subs": {"base": 1545640, "rate": 1.6727509292135653e-05}, "views": {"base": 684549358, "rate": 0.010591146968692292}};
