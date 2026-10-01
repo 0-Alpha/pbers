@@ -152,7 +152,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ぽぱい",
-        "color": "#5e6ad4",
+        "color": "#3ec9cc",
         "avatar": "https://yt3.googleusercontent.com/L3pk3ep8wkIecdtlqzMo73d35IfjEFnmRmvLRb_9f41cuQeUDpXNZIHP4XI4cMu5xxRR6TWkRqg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
