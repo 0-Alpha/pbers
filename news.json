@@ -1,8 +1,8 @@
 {
   "site": "PBers",
   "updated": "2026-10-02",
-  "generated": "2026-10-02T12:03:49+09:00",
-  "count": 8,
+  "generated": "2026-10-02T18:03:44+09:00",
+  "count": 10,
   "items": [
     {
       "id": "2026-10-02/views/ユラミア連邦共和国/9000000",
@@ -13,6 +13,30 @@
       "type": "milestone",
       "label": "総再生数 900万回 突破",
       "value": 9000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%83%A6%E3%83%A9%E3%83%9F%E3%82%A2%E9%80%A3%E9%82%A6%E5%85%B1%E5%92%8C%E5%9B%BD/"
+    },
+    {
+      "id": "2026-10-02/views/ハッホチャンネル/4000000",
+      "date": "2026-10-02",
+      "channel": "ハッホチャンネル",
+      "slug": "ハッホチャンネル",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 400万回 突破",
+      "value": 4000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%83%8F%E3%83%83%E3%83%9B%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB/"
+    },
+    {
+      "id": "2026-10-02/videos/ユラミア連邦共和国/100",
+      "date": "2026-10-02",
+      "channel": "ユラミア連邦共和国",
+      "slug": "ユラミア連邦共和国",
+      "metric": "videos",
+      "type": "milestone",
+      "label": "投稿数 100本 突破",
+      "value": 100,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E3%83%A6%E3%83%A9%E3%83%9F%E3%82%A2%E9%80%A3%E9%82%A6%E5%85%B1%E5%92%8C%E5%9B%BD/"
     },
