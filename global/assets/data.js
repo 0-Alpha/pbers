@@ -77,9 +77,9 @@ window.PBERS_DATA = [
   {
     "name": "Spheria",
     "subs": 132000,
-    "views": 92593134,
+    "views": 92599958,
     "subsLabel": "チャンネル登録者数 13.2万人",
-    "viewsLabel": "92,593,134回視聴",
+    "viewsLabel": "92,599,958回視聴",
     "videos": 67,
     "url": "https://www.youtube.com/channel/UCyedH2V27OuhZclf5wfXhlg",
     "avatar": "https://yt3.googleusercontent.com/rY5kv_d4X3vrbcfFix2ZrRDmhgbmWoYErbob_0iUjOIgYbEpvNZ2gH4YHAyO4CXf1nDpMawx=s900-c-k-c0x00ffffff-no-rj",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-02";
-window.PBERS_PREDICT = {"asOfMs": 1790931600000, "subs": {"base": 1546740, "rate": 1.5668267433711535e-05}, "views": {"base": 685657594, "rate": 0.011701900142724722}};
+window.PBERS_PREDICT = {"asOfMs": 1790931600000, "subs": {"base": 1546740, "rate": 1.5668267433711535e-05}, "views": {"base": 685664418, "rate": 0.011701900142724722}};
