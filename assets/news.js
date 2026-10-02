@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-03",
+    "label": "10月3日(土)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "【PB】ネオンボール",
+        "color": "#c4d45e",
+        "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 300万回 突破",
+        "value": 3000000
+      }
+    ]
+  },
+  {
     "date": "2026-10-02",
     "label": "10月2日(金)",
     "items": [
@@ -119,34 +136,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "総再生数 4.5億回 突破",
         "value": 450000000
-      }
-    ]
-  },
-  {
-    "date": "2026-09-26",
-    "label": "9月26日(土)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ニイソビボール",
-        "color": "#3ec9cc",
-        "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 600万回 突破",
-        "value": 6000000
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "練乳=ソビエト共和国ぼーる",
-        "color": "#40cc3e",
-        "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 100本 突破",
-        "value": 100
       }
     ]
   }
