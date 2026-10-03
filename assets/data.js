@@ -1982,9 +1982,9 @@ window.PBERS_DATA = [
   {
     "name": "リルバシ",
     "subs": 3010,
-    "views": 3238476,
+    "views": 3238651,
     "subsLabel": "チャンネル登録者数 3010人",
-    "viewsLabel": "3,238,476回視聴",
+    "viewsLabel": "3,238,651回視聴",
     "videos": 69,
     "url": "https://www.youtube.com/channel/UCnnsEBpayZL_JHzdw4mnbeA",
     "avatar": "https://yt3.googleusercontent.com/bp_CX7qOIvj2-sbDMHSnoPjEuefwG0wuv94z66Nqpoz9T41wOFGREsij1THKpSkdy3PvvFxUZA=s900-c-k-c0x00ffffff-no-rj",
@@ -2117,9 +2117,9 @@ window.PBERS_DATA = [
   {
     "name": "DRE_Tata《ドリームボール》",
     "subs": 2620,
-    "views": 312981,
+    "views": 313001,
     "subsLabel": "チャンネル登録者数 2620人",
-    "viewsLabel": "312,981回視聴",
+    "viewsLabel": "313,001回視聴",
     "videos": 70,
     "url": "https://www.youtube.com/channel/UCjEkTkSYA4CXxF9ZWE0NYIA",
     "avatar": "https://yt3.googleusercontent.com/AJHdGcVAn-OWbwFY_few-6dKd0tWEo95quy8XtZbBJb6QguSB2Me-rE6wdvDAs8W9-3JAj6mMg=s900-c-k-c0x00ffffff-no-rj",
@@ -2612,4 +2612,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-03";
-window.PBERS_PREDICT = {"asOfMs": 1791018000000, "subs": {"base": 3029310, "rate": 7.749330757806332e-05}, "views": {"base": 2340840851, "rate": 0.06201943770951104}};
+window.PBERS_PREDICT = {"asOfMs": 1791018000000, "subs": {"base": 3029310, "rate": 7.749330757806332e-05}, "views": {"base": 2340841046, "rate": 0.06201943770951104}};
