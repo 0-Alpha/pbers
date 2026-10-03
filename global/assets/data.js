@@ -95,7 +95,7 @@ window.PBERS_DATA = [
     "views": 56068017,
     "subsLabel": "チャンネル登録者数 12.8万人",
     "viewsLabel": "56,068,017回視聴",
-    "videos": 268,
+    "videos": 269,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
     "avatar": "https://yt3.googleusercontent.com/lvLkO7Ig6HXvN9Dk5i1JUKiyrI5U-rnlu-CWg2j70hBbBCTkyxhTY0BKHSMXeYioRntEPDRE=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d45eb1",
@@ -106,9 +106,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "F丸",
-    "subs": 34100,
+    "subs": 34200,
     "views": 30162795,
-    "subsLabel": "チャンネル登録者数 3.41万人",
+    "subsLabel": "チャンネル登録者数 3.42万人",
     "viewsLabel": "30,162,795回視聴",
     "videos": 92,
     "url": "https://www.youtube.com/channel/UCEJRQBqXi3z3UXnHdueIvJg",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-03";
-window.PBERS_PREDICT = {"asOfMs": 1790974800000, "subs": {"base": 1546760, "rate": 1.3212498847915544e-05}, "views": {"base": 686477121, "rate": 0.013071460387202662}};
+window.PBERS_PREDICT = {"asOfMs": 1790974800000, "subs": {"base": 1546860, "rate": 1.3212498847915544e-05}, "views": {"base": 686477121, "rate": 0.013071460387202662}};
