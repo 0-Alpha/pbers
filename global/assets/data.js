@@ -242,9 +242,9 @@ window.PBERS_DATA = [
   {
     "name": "AJ ball",
     "subs": 3530,
-    "views": 1529439,
+    "views": 1529746,
     "subsLabel": "チャンネル登録者数 3530人",
-    "viewsLabel": "1,529,439回視聴",
+    "viewsLabel": "1,529,746回視聴",
     "videos": 39,
     "url": "https://www.youtube.com/channel/UC9EPL3fLMARICtvoL6NGMBA",
     "avatar": "https://yt3.googleusercontent.com/oBocVfsRI4xNymEO3_9zK8GmSus753e0k0d_Dm9TN5IXzxVHK7Nlea4VDStGfUaeRAX5cMc5=s900-c-k-c0x00ffffff-no-rj",
@@ -256,5 +256,5 @@ window.PBERS_DATA = [
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
-window.PBERS_UPDATED = "2026-10-03";
-window.PBERS_PREDICT = {"asOfMs": 1791039600000, "subs": {"base": 1547960, "rate": 1.404077468541347e-05}, "views": {"base": 686927131, "rate": 0.015537859791393086}};
+window.PBERS_UPDATED = "2026-10-04";
+window.PBERS_PREDICT = {"asOfMs": 1791061200000, "subs": {"base": 1547960, "rate": 1.2924389790613414e-05}, "views": {"base": 686927438, "rate": 0.014275068145943304}};

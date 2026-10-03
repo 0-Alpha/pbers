@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-04",
+    "label": "10月4日(日)",
+    "items": []
+  },
+  {
     "date": "2026-10-03",
     "label": "10月3日(土)",
     "items": [
@@ -132,22 +137,5 @@ window.PBERS_NEWS = [
     "date": "2026-09-28",
     "label": "9月28日(月)",
     "items": []
-  },
-  {
-    "date": "2026-09-27",
-    "label": "9月27日(日)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "Æž!みかんぼーる🍊",
-        "color": "#eba864",
-        "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 4.5億回 突破",
-        "value": 450000000
-      }
-    ]
   }
 ];
