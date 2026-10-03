@@ -79,7 +79,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ねとえん",
-        "color": "#5ed4c4",
+        "color": "#40cc3e",
         "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",

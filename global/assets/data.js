@@ -95,7 +95,7 @@ window.PBERS_DATA = [
     "views": 57205199,
     "subsLabel": "チャンネル登録者数 12.9万人",
     "viewsLabel": "57,205,199回視聴",
-    "videos": 269,
+    "videos": 270,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
     "avatar": "https://yt3.googleusercontent.com/lvLkO7Ig6HXvN9Dk5i1JUKiyrI5U-rnlu-CWg2j70hBbBCTkyxhTY0BKHSMXeYioRntEPDRE=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d45eb1",
@@ -181,9 +181,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Past_Ball",
-    "subs": 7900,
+    "subs": 7910,
     "views": 3598747,
-    "subsLabel": "チャンネル登録者数 7900人",
+    "subsLabel": "チャンネル登録者数 7910人",
     "viewsLabel": "3,598,747回視聴",
     "videos": 216,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
@@ -211,9 +211,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "MakkoyuCB",
-    "subs": 4910,
+    "subs": 4920,
     "views": 2644959,
-    "subsLabel": "チャンネル登録者数 4910人",
+    "subsLabel": "チャンネル登録者数 4920人",
     "viewsLabel": "2,644,959回視聴",
     "videos": 31,
     "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-04";
-window.PBERS_PREDICT = {"asOfMs": 1791061200000, "subs": {"base": 1547960, "rate": 1.2924389790613414e-05}, "views": {"base": 686927438, "rate": 0.014275068145943304}};
+window.PBERS_PREDICT = {"asOfMs": 1791061200000, "subs": {"base": 1547980, "rate": 1.2924389790613414e-05}, "views": {"base": 686927438, "rate": 0.014275068145943304}};
