@@ -77,9 +77,9 @@ window.PBERS_DATA = [
   {
     "name": "Spheria",
     "subs": 132000,
-    "views": 92614692,
+    "views": 92622398,
     "subsLabel": "チャンネル登録者数 13.2万人",
-    "viewsLabel": "92,614,692回視聴",
+    "viewsLabel": "92,622,398回視聴",
     "videos": 67,
     "url": "https://www.youtube.com/channel/UCyedH2V27OuhZclf5wfXhlg",
     "avatar": "https://yt3.googleusercontent.com/rY5kv_d4X3vrbcfFix2ZrRDmhgbmWoYErbob_0iUjOIgYbEpvNZ2gH4YHAyO4CXf1nDpMawx=s900-c-k-c0x00ffffff-no-rj",
@@ -106,9 +106,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "F丸",
-    "subs": 34200,
+    "subs": 34300,
     "views": 30215710,
-    "subsLabel": "チャンネル登録者数 3.42万人",
+    "subsLabel": "チャンネル登録者数 3.43万人",
     "viewsLabel": "30,215,710回視聴",
     "videos": 92,
     "url": "https://www.youtube.com/channel/UCEJRQBqXi3z3UXnHdueIvJg",
@@ -182,9 +182,9 @@ window.PBERS_DATA = [
   {
     "name": "Past_Ball",
     "subs": 7900,
-    "views": 3597315,
+    "views": 3598747,
     "subsLabel": "チャンネル登録者数 7900人",
-    "viewsLabel": "3,597,315回視聴",
+    "viewsLabel": "3,598,747回視聴",
     "videos": 216,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
     "avatar": "https://yt3.googleusercontent.com/r8ouoXMX9iar1cjJgX7u1yaZn1Eis8ZAzmdIhpoYUYTiTUl39uZ8KU81zZBYtSr-Gs2TCuga=s900-c-k-c0x00ffffff-no-rj",
@@ -227,9 +227,9 @@ window.PBERS_DATA = [
   {
     "name": "AST.アオスト Polandball",
     "subs": 3700,
-    "views": 1766770,
+    "views": 1767065,
     "subsLabel": "チャンネル登録者数 3700人",
-    "viewsLabel": "1,766,770回視聴",
+    "viewsLabel": "1,767,065回視聴",
     "videos": 32,
     "url": "https://www.youtube.com/channel/UC0oyndW7j5GS5NIb8ww7cxw",
     "avatar": "https://yt3.googleusercontent.com/dOd-yxgy5PfDAsYNy3EZUgbsJ33X06RXpEYmRSK1JQz515G-lul6w2oViQdHiKQbpMIkA8TR=s900-c-k-c0x00ffffff-no-rj",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-03";
-window.PBERS_PREDICT = {"asOfMs": 1791039600000, "subs": {"base": 1547860, "rate": 1.404077468541347e-05}, "views": {"base": 686917698, "rate": 0.015537859791393086}};
+window.PBERS_PREDICT = {"asOfMs": 1791039600000, "subs": {"base": 1547960, "rate": 1.404077468541347e-05}, "views": {"base": 686927131, "rate": 0.015537859791393086}};
