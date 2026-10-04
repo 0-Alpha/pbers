@@ -122,9 +122,9 @@ window.PBERS_DATA = [
   {
     "name": "りょうデス",
     "subs": 24000,
-    "views": 15263347,
+    "views": 15263083,
     "subsLabel": "チャンネル登録者数 2.4万人",
-    "viewsLabel": "15,263,347回視聴",
+    "viewsLabel": "15,263,083回視聴",
     "videos": 891,
     "url": "https://www.youtube.com/channel/UCfe4nCMqfTwoiMmIGqAolcQ",
     "avatar": "https://yt3.googleusercontent.com/3JZIEM7UfdCSG6s6ge7iysnTTyLWldBvHduFzlEyA2KMqsUWqUxtWKy6sL2EIlMdFlPzzJ2FlQ=s900-c-k-c0x00ffffff-no-rj",
@@ -242,9 +242,9 @@ window.PBERS_DATA = [
   {
     "name": "AJ ball",
     "subs": 3530,
-    "views": 1529979,
+    "views": 1530188,
     "subsLabel": "チャンネル登録者数 3530人",
-    "viewsLabel": "1,529,979回視聴",
+    "viewsLabel": "1,530,188回視聴",
     "videos": 39,
     "url": "https://www.youtube.com/channel/UC9EPL3fLMARICtvoL6NGMBA",
     "avatar": "https://yt3.googleusercontent.com/oBocVfsRI4xNymEO3_9zK8GmSus753e0k0d_Dm9TN5IXzxVHK7Nlea4VDStGfUaeRAX5cMc5=s900-c-k-c0x00ffffff-no-rj",
@@ -256,5 +256,5 @@ window.PBERS_DATA = [
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
-window.PBERS_UPDATED = "2026-10-04";
-window.PBERS_PREDICT = {"asOfMs": 1791126000000, "subs": {"base": 1549100, "rate": 1.4324119010853583e-05}, "views": {"base": 688038523, "rate": 0.014898973953743944}};
+window.PBERS_UPDATED = "2026-10-05";
+window.PBERS_PREDICT = {"asOfMs": 1791147600000, "subs": {"base": 1549100, "rate": 1.3173699102369545e-05}, "views": {"base": 688038468, "rate": 0.014159734786422828}};

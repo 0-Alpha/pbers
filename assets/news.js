@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-05",
+    "label": "10月5日(月)",
+    "items": []
+  },
+  {
     "date": "2026-10-04",
     "label": "10月4日(日)",
     "items": [
@@ -74,7 +79,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ユラミア連邦共和国",
-        "color": "#d45ead",
+        "color": "#cc5c3e",
         "avatar": "https://yt3.googleusercontent.com/zb3DJtqgEv4eDPHRmrgrZ9ZrOKPoVfym9o0Q0cO0HzerM2-br1DD7-qR8YWYGmTcklK81tqq4g=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -96,7 +101,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "videos",
         "name": "ユラミア連邦共和国",
-        "color": "#d45ead",
+        "color": "#cc5c3e",
         "avatar": "https://yt3.googleusercontent.com/zb3DJtqgEv4eDPHRmrgrZ9ZrOKPoVfym9o0Q0cO0HzerM2-br1DD7-qR8YWYGmTcklK81tqq4g=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -158,7 +163,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "練乳=ソビエト共和国ぼーる",
-        "color": "#cc5c3e",
+        "color": "#7e3ecc",
         "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -166,10 +171,5 @@ window.PBERS_NEWS = [
         "value": 2000000
       }
     ]
-  },
-  {
-    "date": "2026-09-28",
-    "label": "9月28日(月)",
-    "items": []
   }
 ];
