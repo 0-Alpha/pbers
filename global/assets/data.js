@@ -46,9 +46,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Somen ball",
-    "subs": 166000,
+    "subs": 167000,
     "views": 60659507,
-    "subsLabel": "チャンネル登録者数 16.6万人",
+    "subsLabel": "チャンネル登録者数 16.7万人",
     "viewsLabel": "60,659,507回視聴",
     "videos": 112,
     "url": "https://www.youtube.com/channel/UCfh08MHIzScBQKh5OuG2ofA",
@@ -95,7 +95,7 @@ window.PBERS_DATA = [
     "views": 58030039,
     "subsLabel": "チャンネル登録者数 13万人",
     "viewsLabel": "58,030,039回視聴",
-    "videos": 270,
+    "videos": 271,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
     "avatar": "https://yt3.googleusercontent.com/lvLkO7Ig6HXvN9Dk5i1JUKiyrI5U-rnlu-CWg2j70hBbBCTkyxhTY0BKHSMXeYioRntEPDRE=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d45eb1",
@@ -122,9 +122,9 @@ window.PBERS_DATA = [
   {
     "name": "りょうデス",
     "subs": 24000,
-    "views": 15263083,
+    "views": 15263347,
     "subsLabel": "チャンネル登録者数 2.4万人",
-    "viewsLabel": "15,263,083回視聴",
+    "viewsLabel": "15,263,347回視聴",
     "videos": 891,
     "url": "https://www.youtube.com/channel/UCfe4nCMqfTwoiMmIGqAolcQ",
     "avatar": "https://yt3.googleusercontent.com/3JZIEM7UfdCSG6s6ge7iysnTTyLWldBvHduFzlEyA2KMqsUWqUxtWKy6sL2EIlMdFlPzzJ2FlQ=s900-c-k-c0x00ffffff-no-rj",
@@ -181,9 +181,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Past_Ball",
-    "subs": 7920,
+    "subs": 7930,
     "views": 3600890,
-    "subsLabel": "チャンネル登録者数 7920人",
+    "subsLabel": "チャンネル登録者数 7930人",
     "viewsLabel": "3,600,890回視聴",
     "videos": 218,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-05";
-window.PBERS_PREDICT = {"asOfMs": 1791147600000, "subs": {"base": 1549100, "rate": 1.3173699102369545e-05}, "views": {"base": 688038468, "rate": 0.014159734786422828}};
+window.PBERS_PREDICT = {"asOfMs": 1791147600000, "subs": {"base": 1550110, "rate": 1.3173699102369545e-05}, "views": {"base": 688038732, "rate": 0.014159734786422828}};
