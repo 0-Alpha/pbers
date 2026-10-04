@@ -2,7 +2,19 @@ window.PBERS_NEWS = [
   {
     "date": "2026-10-04",
     "label": "10月4日(日)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "スーパーボール",
+        "color": "#5e66d4",
+        "avatar": "https://yt3.googleusercontent.com/0NhkSRTABECyIyqd1bt9OTglE5rGWYcMHAcf2beADzj__HG6GqRKGdMZmBnQlWwY2eZ46Gjbkg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 1万人 突破",
+        "value": 10000
+      }
+    ]
   },
   {
     "date": "2026-10-03",
@@ -40,7 +52,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ユラミア連邦共和国",
-        "color": "#7e3ecc",
+        "color": "#d45ead",
         "avatar": "https://yt3.googleusercontent.com/zb3DJtqgEv4eDPHRmrgrZ9ZrOKPoVfym9o0Q0cO0HzerM2-br1DD7-qR8YWYGmTcklK81tqq4g=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -62,7 +74,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "videos",
         "name": "ユラミア連邦共和国",
-        "color": "#7e3ecc",
+        "color": "#d45ead",
         "avatar": "https://yt3.googleusercontent.com/zb3DJtqgEv4eDPHRmrgrZ9ZrOKPoVfym9o0Q0cO0HzerM2-br1DD7-qR8YWYGmTcklK81tqq4g=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -79,7 +91,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ねとえん",
-        "color": "#3ecc9f",
+        "color": "#d4625e",
         "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",

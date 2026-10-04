@@ -2,7 +2,19 @@ window.PBERS_NEWS = [
   {
     "date": "2026-10-04",
     "label": "10月4日(日)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
+        "color": "#d45eb1",
+        "avatar": "https://yt3.googleusercontent.com/lvLkO7Ig6HXvN9Dk5i1JUKiyrI5U-rnlu-CWg2j70hBbBCTkyxhTY0BKHSMXeYioRntEPDRE=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 13万人 突破",
+        "value": 130000
+      }
+    ]
   },
   {
     "date": "2026-10-03",
