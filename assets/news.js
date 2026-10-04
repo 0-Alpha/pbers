@@ -13,6 +13,28 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "登録者 1万人 突破",
         "value": 10000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ニイソビボール",
+        "color": "#d4895e",
+        "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 700万回 突破",
+        "value": 7000000
+      },
+      {
+        "type": "milestone",
+        "kind": "videos",
+        "name": "パワーポイントボール",
+        "color": "#cc3e45",
+        "avatar": "https://yt3.googleusercontent.com/juW0175zlu8wVi5Nzp1V9it_-O1w5S8gvypZz23u-7EIZ7H41QF_ofqQDfjB_SrUdqRZ8WOM6Q=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "投稿数 100本 突破",
+        "value": 100
       }
     ]
   },
@@ -91,7 +113,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ねとえん",
-        "color": "#d4625e",
+        "color": "#7d5ed4",
         "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -136,7 +158,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "練乳=ソビエト共和国ぼーる",
-        "color": "#40cc3e",
+        "color": "#cc5c3e",
         "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
