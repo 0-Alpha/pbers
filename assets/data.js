@@ -76,9 +76,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "さとボール",
-    "subs": 54900,
+    "subs": 55000,
     "views": 27897803,
-    "subsLabel": "チャンネル登録者数 5.49万人",
+    "subsLabel": "チャンネル登録者数 5.5万人",
     "viewsLabel": "27,897,803回視聴",
     "videos": 976,
     "url": "https://www.youtube.com/channel/UC_qD8VahU0Fr3q1SKg6kYtg",
@@ -785,7 +785,7 @@ window.PBERS_DATA = [
     "views": 3241747,
     "subsLabel": "チャンネル登録者数 1.27万人",
     "viewsLabel": "3,241,747回視聴",
-    "videos": 90,
+    "videos": 91,
     "url": "https://www.youtube.com/channel/UCw38uDxuGOKl_4CXuXs4xGg",
     "avatar": "https://yt3.googleusercontent.com/sejttmaZGPCSjyOiW-llk9T7ukJmjKJYIbBhWfXk3Vg7c0qdft3H20u3FM3iH_DxyLY115R5=s900-c-k-c0x00ffffff-no-rj",
     "color": "#5e91d4",
@@ -901,9 +901,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "にこちPB",
-    "subs": 11500,
+    "subs": 11600,
     "views": 2317207,
-    "subsLabel": "チャンネル登録者数 1.15万人",
+    "subsLabel": "チャンネル登録者数 1.16万人",
     "viewsLabel": "2,317,207回視聴",
     "videos": 96,
     "url": "https://www.youtube.com/channel/UC2fMWFGgy-ENfkqlK0CUwrg",
@@ -1066,9 +1066,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ハッホチャンネル",
-    "subs": 9280,
+    "subs": 9290,
     "views": 4389469,
-    "subsLabel": "チャンネル登録者数 9280人",
+    "subsLabel": "チャンネル登録者数 9290人",
     "viewsLabel": "4,389,469回視聴",
     "videos": 130,
     "url": "https://www.youtube.com/channel/UCpgQli0Snj3llxm7f-1A8IQ",
@@ -1351,9 +1351,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "【PB】ネオンボール",
-    "subs": 6120,
+    "subs": 6140,
     "views": 3305079,
-    "subsLabel": "チャンネル登録者数 6120人",
+    "subsLabel": "チャンネル登録者数 6140人",
     "viewsLabel": "3,305,079回視聴",
     "videos": 85,
     "url": "https://www.youtube.com/channel/UCtYX3q7PyNWFbykXddPJEdA",
@@ -1426,9 +1426,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "萱口",
-    "subs": 5350,
+    "subs": 5360,
     "views": 1842785,
-    "subsLabel": "チャンネル登録者数 5350人",
+    "subsLabel": "チャンネル登録者数 5360人",
     "viewsLabel": "1,842,785回視聴",
     "videos": 72,
     "url": "https://www.youtube.com/channel/UCfl1W6sL5-es_rWqA7bGbRQ",
@@ -1636,9 +1636,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "みすい",
-    "subs": 4190,
+    "subs": 4200,
     "views": 1678202,
-    "subsLabel": "チャンネル登録者数 4190人",
+    "subsLabel": "チャンネル登録者数 4200人",
     "viewsLabel": "1,678,202回視聴",
     "videos": 32,
     "url": "https://www.youtube.com/channel/UCYmJ2rqzqNtXBm-gn438zGw",
@@ -1785,6 +1785,21 @@ window.PBERS_DATA = [
     "vLong": null
   },
   {
+    "name": "ウィン【肉声ポーランドボール】",
+    "subs": 3530,
+    "views": 476091,
+    "subsLabel": "チャンネル登録者数 3530人",
+    "viewsLabel": "476,091回視聴",
+    "videos": 109,
+    "url": "https://www.youtube.com/channel/UCh3VbVye4ZnUM0bWM_Y809A",
+    "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#6ed45e",
+    "genre": "ポーランドボーラー",
+    "slug": "ウィン肉声ポーランドボール",
+    "vShort": 3788,
+    "vLong": 456100
+  },
+  {
     "name": "☆ソニキパチアスカイ帝国☆",
     "subs": 3530,
     "views": 1939056,
@@ -1793,26 +1808,11 @@ window.PBERS_DATA = [
     "videos": 156,
     "url": "https://www.youtube.com/channel/UC10jRxM3m68xXZzJQ1_sipA",
     "avatar": "https://yt3.googleusercontent.com/Fmq0rSeYrA63jTEw-bq5rPpgd1OAXJPl6UiOQswq9XVUbztI2X-BTe5jNbcFhzVBdyemhJdIdw=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#6ed45e",
+    "color": "#3ecca8",
     "genre": "ポーランドボーラー",
     "slug": "ソニキパチアスカイ帝国",
     "vShort": null,
     "vLong": null
-  },
-  {
-    "name": "ウィン【肉声ポーランドボール】",
-    "subs": 3520,
-    "views": 476091,
-    "subsLabel": "チャンネル登録者数 3520人",
-    "viewsLabel": "476,091回視聴",
-    "videos": 109,
-    "url": "https://www.youtube.com/channel/UCh3VbVye4ZnUM0bWM_Y809A",
-    "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3ecca8",
-    "genre": "ポーランドボーラー",
-    "slug": "ウィン肉声ポーランドボール",
-    "vShort": 3788,
-    "vLong": 456100
   },
   {
     "name": "灼熱ボール",
@@ -2612,4 +2612,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-04";
-window.PBERS_PREDICT = {"asOfMs": 1791104400000, "subs": {"base": 3036540, "rate": 8.660122858866187e-05}, "views": {"base": 2345748648, "rate": 0.062397560823991845}};
+window.PBERS_PREDICT = {"asOfMs": 1791104400000, "subs": {"base": 3036800, "rate": 8.660122858866187e-05}, "views": {"base": 2345748648, "rate": 0.062397560823991845}};
