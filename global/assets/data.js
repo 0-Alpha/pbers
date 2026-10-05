@@ -2,9 +2,9 @@ window.PBERS_DATA = [
   {
     "name": "JP-BALL",
     "subs": 439000,
-    "views": 166598196,
+    "views": 166608495,
     "subsLabel": "チャンネル登録者数 43.9万人",
-    "viewsLabel": "166,598,196回視聴",
+    "viewsLabel": "166,608,495回視聴",
     "videos": 128,
     "url": "https://www.youtube.com/channel/UCZ-zUkkdNTYAYDgkDyeb_hA",
     "avatar": "https://yt3.googleusercontent.com/UXoyWxO_MOdKJK4kLMC988Uj9LZC9pZO13VMLEVq-4C32fBkvug-FUzSiUrbAh_mSy3zOPyfCC0=s900-c-k-c0x00ffffff-no-rj",
@@ -91,9 +91,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-    "subs": 130000,
+    "subs": 131000,
     "views": 58648412,
-    "subsLabel": "チャンネル登録者数 13万人",
+    "subsLabel": "チャンネル登録者数 13.1万人",
     "viewsLabel": "58,648,412回視聴",
     "videos": 271,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
@@ -181,9 +181,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Past_Ball",
-    "subs": 7930,
+    "subs": 7940,
     "views": 3606499,
-    "subsLabel": "チャンネル登録者数 7930人",
+    "subsLabel": "チャンネル登録者数 7940人",
     "viewsLabel": "3,606,499回視聴",
     "videos": 218,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
@@ -200,7 +200,7 @@ window.PBERS_DATA = [
     "views": 1252311,
     "subsLabel": "チャンネル登録者数 6930人",
     "viewsLabel": "1,252,311回視聴",
-    "videos": 121,
+    "videos": 116,
     "url": "https://www.youtube.com/channel/UCGueqNQmvtQYlGO3UL3Gf3w",
     "avatar": "https://yt3.googleusercontent.com/t-XpUkPOEssGyYn9TK4JrLG9EmGIhn565-GBvVCtqkpxDXD36l6OOb6EOlWJ_Gr92W8a_ryApcg=s900-c-k-c0x00ffffff-no-rj",
     "color": "#cc3e87",
@@ -211,9 +211,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "MakkoyuCB",
-    "subs": 4930,
+    "subs": 4940,
     "views": 2649917,
-    "subsLabel": "チャンネル登録者数 4930人",
+    "subsLabel": "チャンネル登録者数 4940人",
     "viewsLabel": "2,649,917回視聴",
     "videos": 30,
     "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-05";
-window.PBERS_PREDICT = {"asOfMs": 1791190800000, "subs": {"base": 1551220, "rate": 1.8848839410219274e-05}, "views": {"base": 688944986, "rate": 0.01572134743072825}};
+window.PBERS_PREDICT = {"asOfMs": 1791212400000, "subs": {"base": 1552240, "rate": 2.1628936860161955e-05}, "views": {"base": 688955285, "rate": 0.014448557257713037}};

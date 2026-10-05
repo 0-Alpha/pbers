@@ -1,9 +1,33 @@
 {
   "site": "PBers",
   "updated": "2026-10-05",
-  "generated": "2026-10-05T19:27:23+09:00",
-  "count": 12,
+  "generated": "2026-10-06T00:04:04+09:00",
+  "count": 14,
   "items": [
+    {
+      "id": "2026-10-05/subs/みかんぼーる/380000",
+      "date": "2026-10-05",
+      "channel": "Æž!みかんぼーる🍊",
+      "slug": "みかんぼーる",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 38万人 突破",
+      "value": 380000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%81%BF%E3%81%8B%E3%82%93%E3%81%BC%E3%83%BC%E3%82%8B/"
+    },
+    {
+      "id": "2026-10-05/subs/ニイソビボール/20000",
+      "date": "2026-10-05",
+      "channel": "ニイソビボール",
+      "slug": "ニイソビボール",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 2万人 突破",
+      "value": 20000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%83%8B%E3%82%A4%E3%82%BD%E3%83%93%E3%83%9C%E3%83%BC%E3%83%AB/"
+    },
     {
       "id": "2026-10-04/subs/スーパーボール/10000",
       "date": "2026-10-04",
