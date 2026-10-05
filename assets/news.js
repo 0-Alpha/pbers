@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-06",
+    "label": "10月6日(火)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ポインちゃん",
+        "color": "#3ecc45",
+        "avatar": "https://yt3.googleusercontent.com/YpfccRdcmHcKNh8v_Lm23KXns5ZqBdalWyotdHmPdrwWK5T2cXpV3kXiqsbub0M3_kOBz6o0=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 300万回 突破",
+        "value": 3000000
+      }
+    ]
+  },
+  {
     "date": "2026-10-05",
     "label": "10月5日(月)",
     "items": [
@@ -175,23 +192,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "登録者 1万人 突破",
         "value": 10000
-      }
-    ]
-  },
-  {
-    "date": "2026-09-29",
-    "label": "9月29日(火)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "練乳=ソビエト共和国ぼーる",
-        "color": "#ccc03e",
-        "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 200万回 突破",
-        "value": 2000000
       }
     ]
   }
