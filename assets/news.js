@@ -163,7 +163,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "練乳=ソビエト共和国ぼーる",
-        "color": "#5e91d4",
+        "color": "#3ecc9f",
         "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
