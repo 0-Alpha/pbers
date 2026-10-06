@@ -2,9 +2,9 @@ window.PBERS_DATA = [
   {
     "name": "JP-BALL",
     "subs": 439000,
-    "views": 166608495,
+    "views": 166612700,
     "subsLabel": "チャンネル登録者数 43.9万人",
-    "viewsLabel": "166,608,495回視聴",
+    "viewsLabel": "166,612,700回視聴",
     "videos": 128,
     "url": "https://www.youtube.com/channel/UCZ-zUkkdNTYAYDgkDyeb_hA",
     "avatar": "https://yt3.googleusercontent.com/UXoyWxO_MOdKJK4kLMC988Uj9LZC9pZO13VMLEVq-4C32fBkvug-FUzSiUrbAh_mSy3zOPyfCC0=s900-c-k-c0x00ffffff-no-rj",
@@ -106,10 +106,10 @@ window.PBERS_DATA = [
   },
   {
     "name": "F丸",
-    "subs": 34500,
-    "views": 30340153,
-    "subsLabel": "チャンネル登録者数 3.45万人",
-    "viewsLabel": "30,340,153回視聴",
+    "subs": 34600,
+    "views": 30354152,
+    "subsLabel": "チャンネル登録者数 3.46万人",
+    "viewsLabel": "30,354,152回視聴",
     "videos": 92,
     "url": "https://www.youtube.com/channel/UCEJRQBqXi3z3UXnHdueIvJg",
     "avatar": "https://yt3.googleusercontent.com/Eb7oF7_gJoeiQyuS-21ATyVE_gLBpI3G7VsWd-yeL9LWPjYxsJ-kmBr4a0Ji03bMbK6-D5gZ=s900-c-k-c0x00ffffff-no-rj",
@@ -167,9 +167,9 @@ window.PBERS_DATA = [
   {
     "name": "Dotto edit",
     "subs": 12300,
-    "views": 8769787,
+    "views": 8770940,
     "subsLabel": "チャンネル登録者数 1.23万人",
-    "viewsLabel": "8,769,787回視聴",
+    "viewsLabel": "8,770,940回視聴",
     "videos": 64,
     "url": "https://www.youtube.com/channel/UCQySCPjitaeZQqbgcKcofeQ",
     "avatar": "https://yt3.googleusercontent.com/2tzadDOT5LXLSGWtWna4kvAUl__O0G2II67NQfuamve633NvIEAz_YVPiFMO38mB4DAnyhqQ=s900-c-k-c0x00ffffff-no-rj",
@@ -181,9 +181,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Past_Ball",
-    "subs": 7940,
+    "subs": 7950,
     "views": 3608882,
-    "subsLabel": "チャンネル登録者数 7940人",
+    "subsLabel": "チャンネル登録者数 7950人",
     "viewsLabel": "3,608,882回視聴",
     "videos": 218,
     "url": "https://www.youtube.com/channel/UC61bxgiYRsBGZ04-x_M8zFw",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-06";
-window.PBERS_PREDICT = {"asOfMs": 1791234000000, "subs": {"base": 1552240, "rate": 1.9833822550987055e-05}, "views": {"base": 689335457, "rate": 0.01487367039610529}};
+window.PBERS_PREDICT = {"asOfMs": 1791255600000, "subs": {"base": 1552350, "rate": 1.8651340921471383e-05}, "views": {"base": 689354814, "rate": 0.013709970326800543}};
