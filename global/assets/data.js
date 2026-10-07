@@ -16,9 +16,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "MOON-BALL",
-    "subs": 224000,
+    "subs": 225000,
     "views": 39957701,
-    "subsLabel": "チャンネル登録者数 22.4万人",
+    "subsLabel": "チャンネル登録者数 22.5万人",
     "viewsLabel": "39,957,701回視聴",
     "videos": 30,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
@@ -75,6 +75,21 @@ window.PBERS_DATA = [
     "vLong": null
   },
   {
+    "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
+    "subs": 132000,
+    "views": 59609167,
+    "subsLabel": "チャンネル登録者数 13.2万人",
+    "viewsLabel": "59,609,167回視聴",
+    "videos": 272,
+    "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
+    "avatar": "https://yt3.googleusercontent.com/lvLkO7Ig6HXvN9Dk5i1JUKiyrI5U-rnlu-CWg2j70hBbBCTkyxhTY0BKHSMXeYioRntEPDRE=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#793ecc",
+    "genre": "ポーランドボーラー",
+    "slug": "dezinichtフヒフム-海外アカウント",
+    "vShort": null,
+    "vLong": null
+  },
+  {
     "name": "Spheria",
     "subs": 132000,
     "views": 92697583,
@@ -83,24 +98,9 @@ window.PBERS_DATA = [
     "videos": 68,
     "url": "https://www.youtube.com/channel/UCyedH2V27OuhZclf5wfXhlg",
     "avatar": "https://yt3.googleusercontent.com/rY5kv_d4X3vrbcfFix2ZrRDmhgbmWoYErbob_0iUjOIgYbEpvNZ2gH4YHAyO4CXf1nDpMawx=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#793ecc",
-    "genre": "ポーランドボーラー",
-    "slug": "spheria",
-    "vShort": null,
-    "vLong": null
-  },
-  {
-    "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-    "subs": 131000,
-    "views": 59609167,
-    "subsLabel": "チャンネル登録者数 13.1万人",
-    "viewsLabel": "59,609,167回視聴",
-    "videos": 271,
-    "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
-    "avatar": "https://yt3.googleusercontent.com/lvLkO7Ig6HXvN9Dk5i1JUKiyrI5U-rnlu-CWg2j70hBbBCTkyxhTY0BKHSMXeYioRntEPDRE=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d45eb1",
     "genre": "ポーランドボーラー",
-    "slug": "dezinichtフヒフム-海外アカウント",
+    "slug": "spheria",
     "vShort": null,
     "vLong": null
   },
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-07";
-window.PBERS_PREDICT = {"asOfMs": 1791320400000, "subs": {"base": 1553480, "rate": 1.7653027901690888e-05}, "views": {"base": 690502296, "rate": 0.014841217789264137}};
+window.PBERS_PREDICT = {"asOfMs": 1791320400000, "subs": {"base": 1555480, "rate": 1.7653027901690888e-05}, "views": {"base": 690502296, "rate": 0.014841217789264137}};
