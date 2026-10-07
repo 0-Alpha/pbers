@@ -1040,10 +1040,28 @@ async function artPublicSet(req, env) {
 
 /* Markdown → HTML(簡易)。gen_data.py の pure-python 版と同等の記法に対応。 */
 function mdEsc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+// 属性値を安全化する。u は mdEsc 済み(& < > は実体化済み)前提。
+// (1) javascript:/data:/vbscript:/file: 等の危険スキームを拒否(http/https/mailto と相対URLのみ許可)、
+// (2) 属性を抜け出せる引用符(" ')を実体化。戻り値が null のときはリンク/画像にせずテキスト表示する。
+function mdSafeUrl(u) {
+  var probe = String(u == null ? "" : u).replace(/&amp;/g, "&").replace(/[\u0000- ]+/g, "").toLowerCase();
+  if (/^(?:javascript|data|vbscript|file):/.test(probe)) return null;          // 危険スキームは不許可
+  var scheme = (probe.match(/^([a-z][a-z0-9+.\-]*):/) || [])[1];                // スキームがあれば許可リストで判定
+  if (scheme && scheme !== "http" && scheme !== "https" && scheme !== "mailto") return null;
+  return String(u).replace(/"/g, "&quot;").replace(/'/g, "&#39;");             // 属性破壊防止
+}
+function mdAttrEsc(s) { return String(s == null ? "" : s).replace(/"/g, "&quot;"); }   // alt など属性用に引用符を無害化
 function mdInline(s) {
   s = mdEsc(s);
-  s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (m, a, u) => '<img src="' + u + '" alt="' + a + '" loading="lazy">');
-  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, u) => '<a href="' + u + '"' + (/^https?:/.test(u) ? ' target="_blank" rel="noopener"' : '') + '>' + t + '</a>');
+  s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (m, a, u) => {
+    const su = mdSafeUrl(u);
+    return su ? '<img src="' + su + '" alt="' + mdAttrEsc(a) + '" loading="lazy">' : a;   // 危険URLはaltテキストのみ
+  });
+  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, u) => {
+    const su = mdSafeUrl(u);
+    if (!su) return t;                                                          // 危険URLはリンク化せずテキストのみ
+    return '<a href="' + su + '"' + (/^https?:/i.test(su) ? ' target="_blank" rel="noopener"' : '') + '>' + t + '</a>';
+  });
   s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   s = s.replace(/(^|[^*])\*([^*]+)\*(?!\*)/g, "$1<em>$2</em>");
   s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
