@@ -1,8 +1,8 @@
 {
   "site": "PBers",
   "updated": "2026-10-07",
-  "generated": "2026-10-07T19:17:29+09:00",
-  "count": 16,
+  "generated": "2026-10-08T00:04:16+09:00",
+  "count": 17,
   "items": [
     {
       "id": "2026-10-07/views/ゆずボール/20000000",
@@ -27,6 +27,18 @@
       "value": 3000000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E3%81%AB%E3%81%93%E3%81%A1pb/"
+    },
+    {
+      "id": "2026-10-07/views/萱口/2000000",
+      "date": "2026-10-07",
+      "channel": "萱口",
+      "slug": "萱口",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 200万回 突破",
+      "value": 2000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E8%90%B1%E5%8F%A3/"
     },
     {
       "id": "2026-10-06/views/ポインちゃん/3000000",
