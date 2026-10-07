@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-08",
+    "label": "10月8日(木)",
+    "items": []
+  },
+  {
     "date": "2026-10-07",
     "label": "10月7日(水)",
     "items": [
@@ -208,23 +213,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "投稿数 100本 突破",
         "value": 100
-      }
-    ]
-  },
-  {
-    "date": "2026-10-01",
-    "label": "10月1日(木)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ねとえん",
-        "color": "#5ed499",
-        "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 900万回 突破",
-        "value": 9000000
       }
     ]
   }
