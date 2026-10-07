@@ -57,7 +57,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "東トルキスタンボール",
-        "color": "#cc3e49",
+        "color": "#d4bc5e",
         "avatar": "https://yt3.googleusercontent.com/W2OQUuU2k1jXKfUVPRWKakalgRNpqLru73npMGx5OH8rmzeWgrIiV1Kfll9_21Ep7ThG2-Hx=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
