@@ -6,6 +6,17 @@ window.PBERS_NEWS = [
       {
         "type": "milestone",
         "kind": "views",
+        "name": "なぽりたんぼーる!!",
+        "color": "#5ed46e",
+        "avatar": "https://yt3.googleusercontent.com/cgKkkofz-kGsbqVy2T6imA2bHpnVt2dT5fWXi8lePnlHa6p_KyhQCJ63Al_qjzB09nAGRrcOpg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 1000万回 突破",
+        "value": 10000000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
         "name": "ぽぱい",
         "color": "#a8cc3e",
         "avatar": "https://yt3.googleusercontent.com/L3pk3ep8wkIecdtlqzMo73d35IfjEFnmRmvLRb_9f41cuQeUDpXNZIHP4XI4cMu5xxRR6TWkRqg=s900-c-k-c0x00ffffff-no-rj",

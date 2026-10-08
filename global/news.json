@@ -1,9 +1,21 @@
 {
   "site": "PBers Global",
   "updated": "2026-10-08",
-  "generated": "2026-10-08T19:36:06+09:00",
-  "count": 3,
+  "generated": "2026-10-09T00:03:17+09:00",
+  "count": 4,
   "items": [
+    {
+      "id": "2026-10-08/subs/áíšaispoaporu/140000",
+      "date": "2026-10-08",
+      "channel": "áíš!aispoaporu",
+      "slug": "áíšaispoaporu",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 14万人 突破",
+      "value": 140000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/%C3%A1%C3%AD%C5%A1aispoaporu/"
+    },
     {
       "id": "2026-10-08/views/dezinichtフヒフム-海外アカウント/60000000",
       "date": "2026-10-08",
