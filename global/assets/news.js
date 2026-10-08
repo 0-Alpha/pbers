@@ -13,6 +13,17 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "総再生数 6000万回 突破",
         "value": 60000000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "MOON-BALL",
+        "color": "#ccbb3e",
+        "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 4000万回 突破",
+        "value": 40000000
       }
     ]
   },
