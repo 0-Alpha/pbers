@@ -1276,9 +1276,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "【PB】ネオンボール",
-    "subs": 7020,
+    "subs": 7030,
     "views": 3709616,
-    "subsLabel": "チャンネル登録者数 7020人",
+    "subsLabel": "チャンネル登録者数 7030人",
     "viewsLabel": "3,709,616回視聴",
     "videos": 89,
     "url": "https://www.youtube.com/channel/UCtYX3q7PyNWFbykXddPJEdA",
@@ -1291,9 +1291,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "レイアルファ",
-    "subs": 6840,
+    "subs": 6830,
     "views": 4805430,
-    "subsLabel": "チャンネル登録者数 6840人",
+    "subsLabel": "チャンネル登録者数 6830人",
     "viewsLabel": "4,805,430回視聴",
     "videos": 91,
     "url": "https://www.youtube.com/channel/UCVYMXYU6j0M5Gj1xwywKDyg",
@@ -1365,6 +1365,21 @@ window.PBERS_DATA = [
     "vLong": 105495
   },
   {
+    "name": "萱口",
+    "subs": 6040,
+    "views": 2048354,
+    "subsLabel": "チャンネル登録者数 6040人",
+    "viewsLabel": "2,048,354回視聴",
+    "videos": 72,
+    "url": "https://www.youtube.com/channel/UCfl1W6sL5-es_rWqA7bGbRQ",
+    "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#c4d45e",
+    "genre": "ポーランドボーラー",
+    "slug": "萱口",
+    "vShort": null,
+    "vLong": null
+  },
+  {
     "name": "フラルランドBALL",
     "subs": 6030,
     "views": 2770408,
@@ -1373,26 +1388,11 @@ window.PBERS_DATA = [
     "videos": 148,
     "url": "https://www.youtube.com/channel/UCyFwf6UZ3uhUq1Kheyz_uWw",
     "avatar": "https://yt3.googleusercontent.com/RTVP3eF7bfMrOnTsaM9lLLML7W9ac2r3wp0LygdE9pTb_yDNn53asi17hxqe6OzmHBA4t2NLjg=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#c4d45e",
+    "color": "#3ecc40",
     "genre": "ポーランドボーラー",
     "slug": "フラルランドball",
     "vShort": 2664107,
     "vLong": 74387
-  },
-  {
-    "name": "萱口",
-    "subs": 6030,
-    "views": 2048354,
-    "subsLabel": "チャンネル登録者数 6030人",
-    "viewsLabel": "2,048,354回視聴",
-    "videos": 72,
-    "url": "https://www.youtube.com/channel/UCfl1W6sL5-es_rWqA7bGbRQ",
-    "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3ecc40",
-    "genre": "ポーランドボーラー",
-    "slug": "萱口",
-    "vShort": null,
-    "vLong": null
   },
   {
     "name": "アフガンボール",
@@ -1471,9 +1471,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "不定期ボール(1)",
-    "subs": 5140,
+    "subs": 5130,
     "views": 1073577,
-    "subsLabel": "チャンネル登録者数 5140人",
+    "subsLabel": "チャンネル登録者数 5130人",
     "viewsLabel": "1,073,577回視聴",
     "videos": 11,
     "url": "https://www.youtube.com/channel/UC_4wlrcT4YAkAk_fHNy25IA",
@@ -2612,4 +2612,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-08";
-window.PBERS_PREDICT = {"asOfMs": 1791406800000, "subs": {"base": 3058500, "rate": 7.445387620244102e-05}, "views": {"base": 2360283853, "rate": 0.0514788570262267}};
+window.PBERS_PREDICT = {"asOfMs": 1791428400000, "subs": {"base": 3058500, "rate": 7.23592731403892e-05}, "views": {"base": 2360283853, "rate": 0.04584700213967242}};
