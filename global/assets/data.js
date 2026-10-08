@@ -16,9 +16,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "MOON-BALL",
-    "subs": 225000,
+    "subs": 224000,
     "views": 39991504,
-    "subsLabel": "チャンネル登録者数 22.5万人",
+    "subsLabel": "チャンネル登録者数 22.4万人",
     "viewsLabel": "39,991,504回視聴",
     "videos": 30,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
@@ -80,7 +80,7 @@ window.PBERS_DATA = [
     "views": 60122938,
     "subsLabel": "チャンネル登録者数 13.2万人",
     "viewsLabel": "60,122,938回視聴",
-    "videos": 272,
+    "videos": 273,
     "url": "https://www.youtube.com/channel/UCYs_v0vuLKeCI--nTS1a5Dw",
     "avatar": "https://yt3.googleusercontent.com/lvLkO7Ig6HXvN9Dk5i1JUKiyrI5U-rnlu-CWg2j70hBbBCTkyxhTY0BKHSMXeYioRntEPDRE=s900-c-k-c0x00ffffff-no-rj",
     "color": "#793ecc",
@@ -122,9 +122,9 @@ window.PBERS_DATA = [
   {
     "name": "りょうデス",
     "subs": 24000,
-    "views": 15264757,
+    "views": 15265200,
     "subsLabel": "チャンネル登録者数 2.4万人",
-    "viewsLabel": "15,264,757回視聴",
+    "viewsLabel": "15,265,200回視聴",
     "videos": 891,
     "url": "https://www.youtube.com/channel/UCfe4nCMqfTwoiMmIGqAolcQ",
     "avatar": "https://yt3.googleusercontent.com/3JZIEM7UfdCSG6s6ge7iysnTTyLWldBvHduFzlEyA2KMqsUWqUxtWKy6sL2EIlMdFlPzzJ2FlQ=s900-c-k-c0x00ffffff-no-rj",
@@ -226,9 +226,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "AST.アオスト Polandball",
-    "subs": 3710,
+    "subs": 3700,
     "views": 1769073,
-    "subsLabel": "チャンネル登録者数 3710人",
+    "subsLabel": "チャンネル登録者数 3700人",
     "viewsLabel": "1,769,073回視聴",
     "videos": 32,
     "url": "https://www.youtube.com/channel/UC0oyndW7j5GS5NIb8ww7cxw",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-08";
-window.PBERS_PREDICT = {"asOfMs": 1791406800000, "subs": {"base": 1555680, "rate": 1.972682000941345e-05}, "views": {"base": 691396418, "rate": 0.013672928346291396}};
+window.PBERS_PREDICT = {"asOfMs": 1791406800000, "subs": {"base": 1554670, "rate": 1.972682000941345e-05}, "views": {"base": 691396861, "rate": 0.013672928346291396}};
