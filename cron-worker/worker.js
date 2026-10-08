@@ -441,8 +441,8 @@ async function threadList(url, req, env) {
   // admin = 1レス目(=スレ主)が管理人投稿か。スキーマ変更不要で board_posts から導出。tag = 種別(無ければpb扱い)
   const adminSel = ",(SELECT p.admin FROM board_posts p WHERE p.thread_id=t.id AND p.no=1) AS admin,(SELECT tg.tag FROM board_tags tg WHERE tg.thread_id=t.id) AS tag";
   const sql = g.admin
-    ? "SELECT t.id,t.title,t.created,t.bumped,t.posts,t.hidden" + adminSel + " FROM board_threads t WHERE t.board=?1 ORDER BY " + order + " LIMIT 200"
-    : "SELECT t.id,t.title,t.created,t.bumped,t.posts,t.hidden" + adminSel + " FROM board_threads t WHERE t.board=?1 AND t.hidden=0 ORDER BY " + order + " LIMIT 200";
+    ? "SELECT t.id,t.title,t.created,t.bumped,t.posts,t.hidden" + adminSel + " FROM board_threads t WHERE t.board=?1 ORDER BY " + order + " LIMIT 1000"
+    : "SELECT t.id,t.title,t.created,t.bumped,t.posts,t.hidden" + adminSel + " FROM board_threads t WHERE t.board=?1 AND t.hidden=0 ORDER BY " + order + " LIMIT 1000";
   const { results } = await env.DB.prepare(sql).bind(board).all();
   let rows = results || [];
   let outSort = THREAD_ORDER[sort] ? sort : "bump";
