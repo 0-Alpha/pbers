@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-09",
+    "label": "10月9日(金)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ぱふball",
+        "color": "#45cc3e",
+        "avatar": "https://yt3.googleusercontent.com/PGTvcj4FN_eQ8Cvs9-f17837doHi0C9Zvctb1JF5kSBUPfQsvHq3dGziIdetTDDBOxAklbz5V0E=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 700万回 突破",
+        "value": 7000000
+      }
+    ]
+  },
+  {
     "date": "2026-10-08",
     "label": "10月8日(木)",
     "items": [
@@ -197,45 +214,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "総再生数 200万回 突破",
         "value": 2000000
-      }
-    ]
-  },
-  {
-    "date": "2026-10-02",
-    "label": "10月2日(金)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ユラミア連邦共和国",
-        "color": "#cc5c3e",
-        "avatar": "https://yt3.googleusercontent.com/zb3DJtqgEv4eDPHRmrgrZ9ZrOKPoVfym9o0Q0cO0HzerM2-br1DD7-qR8YWYGmTcklK81tqq4g=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 900万回 突破",
-        "value": 9000000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ハッホチャンネル",
-        "color": "#d45e81",
-        "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 400万回 突破",
-        "value": 4000000
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "ユラミア連邦共和国",
-        "color": "#cc5c3e",
-        "avatar": "https://yt3.googleusercontent.com/zb3DJtqgEv4eDPHRmrgrZ9ZrOKPoVfym9o0Q0cO0HzerM2-br1DD7-qR8YWYGmTcklK81tqq4g=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 100本 突破",
-        "value": 100
       }
     ]
   }

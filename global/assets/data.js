@@ -212,9 +212,9 @@ window.PBERS_DATA = [
   {
     "name": "MakkoyuCB",
     "subs": 4960,
-    "views": 2663981,
+    "views": 2666060,
     "subsLabel": "チャンネル登録者数 4960人",
-    "viewsLabel": "2,663,981回視聴",
+    "viewsLabel": "2,666,060回視聴",
     "videos": 31,
     "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
     "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
@@ -256,5 +256,5 @@ window.PBERS_DATA = [
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
-window.PBERS_UPDATED = "2026-10-08";
-window.PBERS_PREDICT = {"asOfMs": 1791471600000, "subs": {"base": 1555780, "rate": 1.7003096929658893e-05}, "views": {"base": 692761701, "rate": 0.014774194743533461}};
+window.PBERS_UPDATED = "2026-10-09";
+window.PBERS_PREDICT = {"asOfMs": 1791493200000, "subs": {"base": 1555780, "rate": 1.5554653308569732e-05}, "views": {"base": 692763780, "rate": 0.014413241159054818}};
