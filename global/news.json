@@ -1,9 +1,21 @@
 {
   "site": "PBers Global",
   "updated": "2026-10-09",
-  "generated": "2026-10-09T10:16:24+09:00",
-  "count": 4,
+  "generated": "2026-10-09T12:03:35+09:00",
+  "count": 5,
   "items": [
+    {
+      "id": "2026-10-09/subs/somen-ball/170000",
+      "date": "2026-10-09",
+      "channel": "Somen ball",
+      "slug": "somen-ball",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 17万人 突破",
+      "value": 170000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/somen-ball/"
+    },
     {
       "id": "2026-10-08/subs/áíšaispoaporu/140000",
       "date": "2026-10-08",

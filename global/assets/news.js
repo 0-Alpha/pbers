@@ -2,7 +2,19 @@ window.PBERS_NEWS = [
   {
     "date": "2026-10-09",
     "label": "10月9日(金)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "Somen ball",
+        "color": "#3ecc9a",
+        "avatar": "https://yt3.googleusercontent.com/3a_WIUPrZ8qIxGmQJhtTv9z8vOffxcS3l9TqJK0pcQhNssFX4VJgPndXd2V3o9Hk7F7ECpFP=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 17万人 突破",
+        "value": 170000
+      }
+    ]
   },
   {
     "date": "2026-10-08",
