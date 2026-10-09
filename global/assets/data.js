@@ -32,9 +32,9 @@ window.PBERS_DATA = [
   {
     "name": "Opera_cb",
     "subs": 192000,
-    "views": 89039833,
+    "views": 89066164,
     "subsLabel": "チャンネル登録者数 19.2万人",
-    "viewsLabel": "89,039,833回視聴",
+    "viewsLabel": "89,066,164回視聴",
     "videos": 142,
     "url": "https://www.youtube.com/channel/UC4bqMpF49ebuiF4TbJvFmyw",
     "avatar": "https://yt3.googleusercontent.com/U9rqdPqWMX7a6j1Nr0HKX2yBiK40Mxy7LJbTLRWaC_lMEcHPqoKb140oquBes08LNaSzmLa4kg=s900-c-k-c0x00ffffff-no-rj",
@@ -122,9 +122,9 @@ window.PBERS_DATA = [
   {
     "name": "りょうデス",
     "subs": 24000,
-    "views": 15266092,
+    "views": 15265737,
     "subsLabel": "チャンネル登録者数 2.4万人",
-    "viewsLabel": "15,266,092回視聴",
+    "viewsLabel": "15,265,737回視聴",
     "videos": 891,
     "url": "https://www.youtube.com/channel/UCfe4nCMqfTwoiMmIGqAolcQ",
     "avatar": "https://yt3.googleusercontent.com/3JZIEM7UfdCSG6s6ge7iysnTTyLWldBvHduFzlEyA2KMqsUWqUxtWKy6sL2EIlMdFlPzzJ2FlQ=s900-c-k-c0x00ffffff-no-rj",
@@ -227,9 +227,9 @@ window.PBERS_DATA = [
   {
     "name": "AST.アオスト Polandball",
     "subs": 3700,
-    "views": 1769831,
+    "views": 1769535,
     "subsLabel": "チャンネル登録者数 3700人",
-    "viewsLabel": "1,769,831回視聴",
+    "viewsLabel": "1,769,535回視聴",
     "videos": 32,
     "url": "https://www.youtube.com/channel/UC0oyndW7j5GS5NIb8ww7cxw",
     "avatar": "https://yt3.googleusercontent.com/dOd-yxgy5PfDAsYNy3EZUgbsJ33X06RXpEYmRSK1JQz515G-lul6w2oViQdHiKQbpMIkA8TR=s900-c-k-c0x00ffffff-no-rj",
@@ -256,5 +256,5 @@ window.PBERS_DATA = [
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
-window.PBERS_UPDATED = "2026-10-09";
-window.PBERS_PREDICT = {"asOfMs": 1791558000000, "subs": {"base": 1560900, "rate": 3.082925094701706e-05}, "views": {"base": 693421609, "rate": 0.01105133940356355}};
+window.PBERS_UPDATED = "2026-10-10";
+window.PBERS_PREDICT = {"asOfMs": 1791579600000, "subs": {"base": 1560900, "rate": 2.826682223509324e-05}, "views": {"base": 693447289, "rate": 0.01253965038717293}};

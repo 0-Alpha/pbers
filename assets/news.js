@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-10",
+    "label": "10月10日(土)",
+    "items": []
+  },
+  {
     "date": "2026-10-09",
     "label": "10月9日(金)",
     "items": [
@@ -74,7 +79,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "萱口",
-        "color": "#cc613e",
+        "color": "#c4d45e",
         "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -91,7 +96,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ポインちゃん",
-        "color": "#cc663e",
+        "color": "#c0d45e",
         "avatar": "https://yt3.googleusercontent.com/YpfccRdcmHcKNh8v_Lm23KXns5ZqBdalWyotdHmPdrwWK5T2cXpV3kXiqsbub0M3_kOBz6o0=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -102,7 +107,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "東トルキスタンボール",
-        "color": "#d45ed0",
+        "color": "#cc3e49",
         "avatar": "https://yt3.googleusercontent.com/W2OQUuU2k1jXKfUVPRWKakalgRNpqLru73npMGx5OH8rmzeWgrIiV1Kfll9_21Ep7ThG2-Hx=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -180,40 +185,12 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "videos",
         "name": "パワーポイントボール",
-        "color": "#d45ecc",
+        "color": "#cc3e45",
         "avatar": "https://yt3.googleusercontent.com/juW0175zlu8wVi5Nzp1V9it_-O1w5S8gvypZz23u-7EIZ7H41QF_ofqQDfjB_SrUdqRZ8WOM6Q=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "投稿数 100本 突破",
         "value": 100
-      }
-    ]
-  },
-  {
-    "date": "2026-10-03",
-    "label": "10月3日(土)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "【PB】ネオンボール",
-        "color": "#d45e76",
-        "avatar": "",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 300万回 突破",
-        "value": 3000000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "にこちPB",
-        "color": "#7e3ecc",
-        "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 200万回 突破",
-        "value": 2000000
       }
     ]
   }
