@@ -16,9 +16,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "MOON-BALL",
-    "subs": 224000,
+    "subs": 225000,
     "views": 40031538,
-    "subsLabel": "チャンネル登録者数 22.4万人",
+    "subsLabel": "チャンネル登録者数 22.5万人",
     "viewsLabel": "40,031,538回視聴",
     "videos": 30,
     "url": "https://www.youtube.com/channel/UCa-Pej_sn8Uw_mwXLKZiuIg",
@@ -50,7 +50,7 @@ window.PBERS_DATA = [
     "views": 61379092,
     "subsLabel": "チャンネル登録者数 17万人",
     "viewsLabel": "61,379,092回視聴",
-    "videos": 114,
+    "videos": 115,
     "url": "https://www.youtube.com/channel/UCfh08MHIzScBQKh5OuG2ofA",
     "avatar": "https://yt3.googleusercontent.com/3a_WIUPrZ8qIxGmQJhtTv9z8vOffxcS3l9TqJK0pcQhNssFX4VJgPndXd2V3o9Hk7F7ECpFP=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3ecc9a",
@@ -106,9 +106,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "F丸",
-    "subs": 35000,
+    "subs": 35100,
     "views": 30586270,
-    "subsLabel": "チャンネル登録者数 3.5万人",
+    "subsLabel": "チャンネル登録者数 3.51万人",
     "viewsLabel": "30,586,270回視聴",
     "videos": 92,
     "url": "https://www.youtube.com/channel/UCEJRQBqXi3z3UXnHdueIvJg",
@@ -211,9 +211,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "MakkoyuCB",
-    "subs": 4960,
+    "subs": 4970,
     "views": 2666264,
-    "subsLabel": "チャンネル登録者数 4960人",
+    "subsLabel": "チャンネル登録者数 4970人",
     "viewsLabel": "2,666,264回視聴",
     "videos": 31,
     "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-09";
-window.PBERS_PREDICT = {"asOfMs": 1791536400000, "subs": {"base": 1559790, "rate": 2.472559583614454e-05}, "views": {"base": 692816083, "rate": 0.012108586143743563}};
+window.PBERS_PREDICT = {"asOfMs": 1791558000000, "subs": {"base": 1560900, "rate": 3.082925094701706e-05}, "views": {"base": 692816083, "rate": 0.01105133940356355}};

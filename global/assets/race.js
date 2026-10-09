@@ -179,7 +179,7 @@ window.PBERS_RACE = [
         "name": "MOON-BALL",
         "color": "#ccbb3e",
         "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 224000,
+        "subs": 225000,
         "history": [
           {
             "d": "2026-08-30",
@@ -343,7 +343,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-10-09",
-            "s": 224000
+            "s": 225000
           }
         ]
       },
@@ -515,7 +515,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-10-09",
-            "s": 191000
+            "s": 192000
           }
         ]
       }
