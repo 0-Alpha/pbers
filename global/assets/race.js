@@ -7,7 +7,7 @@ window.PBERS_RACE = [
         "name": "JP-BALL",
         "color": "#d45e5e",
         "avatar": "https://yt3.googleusercontent.com/UXoyWxO_MOdKJK4kLMC988Uj9LZC9pZO13VMLEVq-4C32fBkvug-FUzSiUrbAh_mSy3zOPyfCC0=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 439000,
+        "subs": 440000,
         "history": [
           {
             "d": "2026-08-30",
@@ -171,7 +171,7 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-10-09",
-            "s": 439000
+            "s": 440000
           }
         ]
       },

@@ -1,9 +1,21 @@
 {
   "site": "PBers Global",
   "updated": "2026-10-09",
-  "generated": "2026-10-09T12:03:35+09:00",
-  "count": 5,
+  "generated": "2026-10-09T18:04:00+09:00",
+  "count": 6,
   "items": [
+    {
+      "id": "2026-10-09/subs/jp-ball/440000",
+      "date": "2026-10-09",
+      "channel": "JP-BALL",
+      "slug": "jp-ball",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 44万人 突破",
+      "value": 440000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/jp-ball/"
+    },
     {
       "id": "2026-10-09/subs/somen-ball/170000",
       "date": "2026-10-09",
