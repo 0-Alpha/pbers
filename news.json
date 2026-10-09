@@ -1,7 +1,7 @@
 {
   "site": "PBers",
   "updated": "2026-10-09",
-  "generated": "2026-10-10T00:03:37+09:00",
+  "generated": "2026-10-10T05:09:13+09:00",
   "count": 16,
   "items": [
     {
@@ -173,16 +173,16 @@
       "url": "https://pbers.com/c/%E3%83%91%E3%83%AF%E3%83%BC%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%83%9C%E3%83%BC%E3%83%AB/"
     },
     {
-      "id": "2026-10-03/views/pbネオンボール/3000000",
+      "id": "2026-10-03/views/【PB】ネオンボール/3000000",
       "date": "2026-10-03",
       "channel": "【PB】ネオンボール",
-      "slug": "pbネオンボール",
+      "slug": "",
       "metric": "views",
       "type": "milestone",
       "label": "総再生数 300万回 突破",
       "value": 3000000,
       "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/pb%E3%83%8D%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%AB/"
+      "url": "https://pbers.com/news/"
     },
     {
       "id": "2026-10-03/views/にこちpb/2000000",
