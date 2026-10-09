@@ -31,9 +31,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Opera_cb",
-    "subs": 191000,
+    "subs": 192000,
     "views": 89039833,
-    "subsLabel": "チャンネル登録者数 19.1万人",
+    "subsLabel": "チャンネル登録者数 19.2万人",
     "viewsLabel": "89,039,833回視聴",
     "videos": 142,
     "url": "https://www.youtube.com/channel/UC4bqMpF49ebuiF4TbJvFmyw",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-09";
-window.PBERS_PREDICT = {"asOfMs": 1791536400000, "subs": {"base": 1558790, "rate": 2.472559583614454e-05}, "views": {"base": 692816083, "rate": 0.012108586143743563}};
+window.PBERS_PREDICT = {"asOfMs": 1791536400000, "subs": {"base": 1559790, "rate": 2.472559583614454e-05}, "views": {"base": 692816083, "rate": 0.012108586143743563}};
