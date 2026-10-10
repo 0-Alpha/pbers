@@ -122,9 +122,9 @@ window.PBERS_DATA = [
   {
     "name": "りょうデス",
     "subs": 24000,
-    "views": 15265737,
+    "views": 15266092,
     "subsLabel": "チャンネル登録者数 2.4万人",
-    "viewsLabel": "15,265,737回視聴",
+    "viewsLabel": "15,266,092回視聴",
     "videos": 891,
     "url": "https://www.youtube.com/channel/UCfe4nCMqfTwoiMmIGqAolcQ",
     "avatar": "https://yt3.googleusercontent.com/3JZIEM7UfdCSG6s6ge7iysnTTyLWldBvHduFzlEyA2KMqsUWqUxtWKy6sL2EIlMdFlPzzJ2FlQ=s900-c-k-c0x00ffffff-no-rj",
@@ -136,9 +136,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "くろまめ",
-    "subs": 17500,
+    "subs": 17600,
     "views": 16769060,
-    "subsLabel": "チャンネル登録者数 1.75万人",
+    "subsLabel": "チャンネル登録者数 1.76万人",
     "viewsLabel": "16,769,060回視聴",
     "videos": 87,
     "url": "https://www.youtube.com/channel/UCfJp9c3kSkIjYFevd2G1RKg",
@@ -152,9 +152,9 @@ window.PBERS_DATA = [
   {
     "name": "日本猫耳版ボール【目標9000人】",
     "subs": 12900,
-    "views": 3936043,
+    "views": 3936242,
     "subsLabel": "チャンネル登録者数 1.29万人",
-    "viewsLabel": "3,936,043回視聴",
+    "viewsLabel": "3,936,242回視聴",
     "videos": 226,
     "url": "https://www.youtube.com/channel/UCIqROVo0xBJfh5h6cQyPm7Q",
     "avatar": "https://yt3.googleusercontent.com/LpR7h9FEKhK0Va34bq-KRghVlWGkhmZQUTbd-JcnnuZ3BU17SQQjkFfh6YnFgAvVbYXcWO37Vw=s900-c-k-c0x00ffffff-no-rj",
@@ -217,7 +217,7 @@ window.PBERS_DATA = [
     "viewsLabel": "2,667,675回視聴",
     "videos": 31,
     "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
-    "avatar": "https://yt3.googleusercontent.com/hjjCWivGhpM4EVuC5b7s_348ApR8gtFBiidgDSrDyeDKh2hbDdR-3kA-lK91jIFkMFWqXqufvg=s900-c-k-c0x00ffffff-no-rj",
+    "avatar": "https://yt3.googleusercontent.com/EmCmPqVVu3ilFAwRmJXJAzQb_a9lOxkm977x-S6cexdCBatRFHH-x79gDOsY4G50L-gqHIlA=s900-c-k-c0x00ffffff-no-rj",
     "color": "#d4895e",
     "genre": "ポーランドボーラー",
     "slug": "makkoyucb",
@@ -227,9 +227,9 @@ window.PBERS_DATA = [
   {
     "name": "AST.アオスト Polandball",
     "subs": 3700,
-    "views": 1769535,
+    "views": 1769831,
     "subsLabel": "チャンネル登録者数 3700人",
-    "viewsLabel": "1,769,535回視聴",
+    "viewsLabel": "1,769,831回視聴",
     "videos": 32,
     "url": "https://www.youtube.com/channel/UC0oyndW7j5GS5NIb8ww7cxw",
     "avatar": "https://yt3.googleusercontent.com/dOd-yxgy5PfDAsYNy3EZUgbsJ33X06RXpEYmRSK1JQz515G-lul6w2oViQdHiKQbpMIkA8TR=s900-c-k-c0x00ffffff-no-rj",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-10";
-window.PBERS_PREDICT = {"asOfMs": 1791579600000, "subs": {"base": 1560900, "rate": 2.826682223509324e-05}, "views": {"base": 693447289, "rate": 0.01253965038717293}};
+window.PBERS_PREDICT = {"asOfMs": 1791579600000, "subs": {"base": 1561000, "rate": 2.826682223509324e-05}, "views": {"base": 693448139, "rate": 0.01253965038717293}};
