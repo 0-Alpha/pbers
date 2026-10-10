@@ -415,7 +415,10 @@ CH_TPL = '''<!doctype html>
 
 def _sig3(x):
     d = 2 if x < 10 else (1 if x < 100 else 0)
-    return ("%.*f" % (d, x)).rstrip("0").rstrip(".")
+    s = "%.*f" % (d, x)
+    # 末尾ゼロの除去は「小数点以下」だけに限定する。小数点が無い整数(例 2010, 690)に
+    # rstrip('0') を掛けると桁が落ちて 1/10 表示になるため(例 2010万→201万)。
+    return (s.rstrip("0").rstrip(".") if "." in s else s)
 
 def _jp(n):
     if n is None:
