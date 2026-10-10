@@ -1,9 +1,45 @@
 {
   "site": "PBers",
   "updated": "2026-10-10",
-  "generated": "2026-10-10T12:03:24+09:00",
-  "count": 14,
+  "generated": "2026-10-10T18:03:47+09:00",
+  "count": 17,
   "items": [
+    {
+      "id": "2026-10-10/subs/ハッホチャンネル/10000",
+      "date": "2026-10-10",
+      "channel": "ハッホチャンネル",
+      "slug": "ハッホチャンネル",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 1万人 突破",
+      "value": 10000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%83%8F%E3%83%83%E3%83%9B%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB/"
+    },
+    {
+      "id": "2026-10-10/views/玄米ボール/6000000",
+      "date": "2026-10-10",
+      "channel": "玄米ボール🍚",
+      "slug": "玄米ボール",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 600万回 突破",
+      "value": 6000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E7%8E%84%E7%B1%B3%E3%83%9C%E3%83%BC%E3%83%AB/"
+    },
+    {
+      "id": "2026-10-10/views/pbネオンボール/4000000",
+      "date": "2026-10-10",
+      "channel": "【PB】ネオンボール",
+      "slug": "pbネオンボール",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 400万回 突破",
+      "value": 4000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/pb%E3%83%8D%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%AB/"
+    },
     {
       "id": "2026-10-09/views/ぱふball/7000000",
       "date": "2026-10-09",

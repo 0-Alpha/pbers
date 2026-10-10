@@ -2,7 +2,41 @@ window.PBERS_NEWS = [
   {
     "date": "2026-10-10",
     "label": "10月10日(土)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "ハッホチャンネル",
+        "color": "#b23ecc",
+        "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 1万人 突破",
+        "value": 10000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "玄米ボール🍚",
+        "color": "#a3cc3e",
+        "avatar": "https://yt3.googleusercontent.com/OZQ7LsHl8T-Sl5BYycGb1Rtq-ciSrxEc4HLna525rT78ok08Fyewy8ymbmVYc5YdkYyTuuDZrw=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 600万回 突破",
+        "value": 6000000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "【PB】ネオンボール",
+        "color": "#6fcc3e",
+        "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 400万回 突破",
+        "value": 4000000
+      }
+    ]
   },
   {
     "date": "2026-10-09",
