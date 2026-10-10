@@ -20,7 +20,8 @@ const FEED_MAX = 100;      // feedに保持する最大件数(投稿順タイム
 export default {
   async scheduled(event, env, ctx) {
     ctx.waitUntil((async () => {
-      try { await dispatch(env); } catch (e) {}         // 統計取得(既存)
+      // 統計取得(fetch/record/gen)は GitHub Actions のスケジュール(daily.yml, 1日1回JST0時台)に一本化した。
+      // ここからは dispatch しない(以前は6時間ごとに叩いて二重起動していた)。手動は /run?key=RUN_KEY で可。
       try { await subscribeBatch(env); } catch (e) {}   // 購読のリース更新(1回30件ずつ、cursorで巡回)
       try { await backupBoard(env); } catch (e) {}      // 掲示板の日次バックアップ(その日未実施なら1回)
       try { await purgeOldIps(env); } catch (e) {}      // 保管期間を過ぎたIP/UAを削除
