@@ -122,9 +122,9 @@ window.PBERS_DATA = [
   {
     "name": "りょうデス",
     "subs": 24000,
-    "views": 15266092,
+    "views": 15266618,
     "subsLabel": "チャンネル登録者数 2.4万人",
-    "viewsLabel": "15,266,092回視聴",
+    "viewsLabel": "15,266,618回視聴",
     "videos": 891,
     "url": "https://www.youtube.com/channel/UCfe4nCMqfTwoiMmIGqAolcQ",
     "avatar": "https://yt3.googleusercontent.com/3JZIEM7UfdCSG6s6ge7iysnTTyLWldBvHduFzlEyA2KMqsUWqUxtWKy6sL2EIlMdFlPzzJ2FlQ=s900-c-k-c0x00ffffff-no-rj",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-10";
-window.PBERS_PREDICT = {"asOfMs": 1791622800000, "subs": {"base": 1561120, "rate": 2.425099938383237e-05}, "views": {"base": 694144919, "rate": 0.013190321167613038}};
+window.PBERS_PREDICT = {"asOfMs": 1791622800000, "subs": {"base": 1561120, "rate": 2.425099938383237e-05}, "views": {"base": 694145445, "rate": 0.013190321167613038}};
