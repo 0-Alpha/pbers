@@ -106,9 +106,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "F丸",
-    "subs": 35100,
+    "subs": 35200,
     "views": 30614570,
-    "subsLabel": "チャンネル登録者数 3.51万人",
+    "subsLabel": "チャンネル登録者数 3.52万人",
     "viewsLabel": "30,614,570回視聴",
     "videos": 92,
     "url": "https://www.youtube.com/channel/UCEJRQBqXi3z3UXnHdueIvJg",
@@ -257,4 +257,4 @@ window.PBERS_DATA = [
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
 window.PBERS_UPDATED = "2026-10-10";
-window.PBERS_PREDICT = {"asOfMs": 1791579600000, "subs": {"base": 1561000, "rate": 2.826682223509324e-05}, "views": {"base": 693448139, "rate": 0.01253965038717293}};
+window.PBERS_PREDICT = {"asOfMs": 1791601200000, "subs": {"base": 1561100, "rate": 2.6353973453210787e-05}, "views": {"base": 693448139, "rate": 0.011193055185776802}};
