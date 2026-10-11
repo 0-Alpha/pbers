@@ -404,10 +404,13 @@ async function urlSpamBlocked(env, tokens, tid) {   // 記録はしない。閾�
 // 手動管理のNGネーム・リスト(部分一致)。IPローテーション荒らしはIPが変わっても名前が同じことが多く、
 // 名前で弾くのが最も確実。ここに登録した文字列を名前に含む投稿は拒否＆自動ban。追加はこの配列に足すだけ。
 const NG_NAMES = ["69のカルシウム"];
-// 名前欄が荒らしサイン(URL / 「荒らし」/ NGネーム を含む)なら自動banの対象
+// 名前欄が荒らしサイン(URL / 「荒らし」/ NGネーム / 私用領域文字 を含む)なら自動banの対象
 function nameBannable(name) {
   const s = String(name || "");
   if (/https?:\/\//i.test(s) || s.indexOf("荒らし") !== -1) return true;
+  // 私用領域(PUA U+E000–U+F8FF)文字を含む名前は、偽装名(例: 「69のカルシウム」風にU+F8F0等で作った名前)が大半。
+  // 正規ユーザーはまず使わないため強いシグナルとしてブロックする。
+  if (/[-]/.test(s)) return true;
   for (const ng of NG_NAMES) { if (ng && s.indexOf(ng) !== -1) return true; }
   return false;
 }
