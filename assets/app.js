@@ -1051,7 +1051,8 @@
       no_title: 'タイトルを入力してください', not_found: 'スレッドが見つかりません', forbidden: '権限がありません',
       voted: 'すでに投票済みです', closed: 'このアンケートは終了しました', no_poll: 'アンケートが見つかりません',
       no_choice: '選択してください', single_only: '1つだけ選択してください',
-      url_spam: '同じURLが短時間に貼られすぎています。しばらく待つか、別の内容で投稿してください。', banned: '現在この回線からは投稿できません' })[code]
+      url_spam: '同じURLが短時間に貼られすぎています。しばらく待つか、別の内容で投稿してください。', banned: '現在この回線からは投稿できません',
+      flood: '同じ文字・絵文字の連投はできません。内容のある投稿をお願いします。' })[code]
       || '通信エラーが発生しました';
   }
   function boardHeaders(extra) { var h = extra || {}; if (boardKey) h['X-Board-Key'] = boardKey; return h; }

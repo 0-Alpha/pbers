@@ -401,10 +401,22 @@ async function urlSpamBlocked(env, tokens, tid) {   // 記録はしない。閾�
   }
   return false;
 }
-// 名前欄が荒らしサイン(URL / 「荒らし」を含む)なら自動banの対象
+// 手動管理のNGネーム・リスト(部分一致)。IPローテーション荒らしはIPが変わっても名前が同じことが多く、
+// 名前で弾くのが最も確実。ここに登録した文字列を名前に含む投稿は拒否＆自動ban。追加はこの配列に足すだけ。
+const NG_NAMES = ["69のカルシウム"];
+// 名前欄が荒らしサイン(URL / 「荒らし」/ NGネーム を含む)なら自動banの対象
 function nameBannable(name) {
   const s = String(name || "");
-  return /https?:\/\//i.test(s) || s.indexOf("荒らし") !== -1;
+  if (/https?:\/\//i.test(s) || s.indexOf("荒らし") !== -1) return true;
+  for (const ng of NG_NAMES) { if (ng && s.indexOf(ng) !== -1) return true; }
+  return false;
+}
+// 連投フラッド検知(ID/名前非依存)。本文が空白除去で30文字以上かつ「文字種が2以下」の
+// 単一文字/絵文字の壁(例: ⬜️の連打)は荒らしとみなして拒否する。誤爆を避けるため種類3以上は通す。
+function floodBody(body) {
+  const s = String(body || "").replace(/\s+/g, "");
+  if (s.length < 30) return false;
+  return new Set(Array.from(s)).size <= 2;
 }
 async function autoBanIp(env, iph, days) {   // IPを自動ban(既定3日で自動失効)
   try { await env.PBERS_KV.put("bban:" + iph, "1", days > 0 ? { expirationTtl: days * 86400 } : undefined); } catch (e) {}
@@ -508,6 +520,7 @@ async function threadCreate(req, env) {
   var spamToks = urlTokens(title + " " + body);   // タイトルも対象(荒らしはタイトルにURLを入れる)
   if (!g.admin) {
     if (nameBannable(name)) { await autoBanIp(env, await sha(ip + "|" + (env.SALT || "pbers")), 3); return json({ error: "banned" }, 403); }
+    if (floodBody(body) || floodBody(title)) return json({ error: "flood" }, 429);   // 単一文字/絵文字の連投壁を拒否
     if (env.TURNSTILE_SECRET && !(await verifyTurnstile(b.token, ip, env))) return json({ error: "captcha" }, 400);
     if (spamToks.length && await urlSpamBlocked(env, spamToks, 0)) return json({ error: "url_spam" }, 429);
     if (!(await rateLimit(req, env, "th", 60))) return json({ error: "too_fast" }, 429);
@@ -640,6 +653,7 @@ async function postCreate(req, env) {
   var spamToks = urlTokens(body);
   if (!g.admin) {
     if (nameBannable(name)) { await autoBanIp(env, await sha(ip + "|" + (env.SALT || "pbers")), 3); return json({ error: "banned" }, 403); }
+    if (floodBody(body)) return json({ error: "flood" }, 429);   // 単一文字/絵文字の連投壁を拒否
     if (env.TURNSTILE_SECRET && !(await verifyTurnstile(b.token, ip, env))) return json({ error: "captcha" }, 400);
     if (spamToks.length && await urlSpamBlocked(env, spamToks, tid)) return json({ error: "url_spam" }, 429);
     if (!(await rateLimit(req, env, "po", 15))) return json({ error: "too_fast" }, 429);
