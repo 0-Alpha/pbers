@@ -48,6 +48,9 @@ function shell(o) {
     '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
     '<link rel="stylesheet" href="/assets/style.css?v=' + VER + '">\n' +
+    '<!-- Google tag (gtag.js) -->\n' +
+    '<script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>\n' +
+    "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>\n" +
     '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>' + ld + "\n" +
     "</head>\n<body>\n" +
     '<header class="topbar"><div class="wrap">\n' +
