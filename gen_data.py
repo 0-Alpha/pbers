@@ -124,6 +124,7 @@ RETIRED = {
     "UCPgo3vhueVGcmxye8KXomag",  # 削除済み (name=ID・取得不可。2026-08 確認)
     "UCxo0gJCLvrgRdAGuPlpz4Pw",  # 英仏マン (引退済み)
     "UC0dwNfKKsU48BC_jlVzJdig",  # ノキア (引退済み)
+    "UCvOfNL3MjhbjxAU8U9Fi9uQ",  # 田所浩二 (引退済み)
 }
 
 # 指定の固定カラー(チャンネルID -> hex)

@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-12",
+    "label": "10月12日(月)",
+    "items": []
+  },
+  {
     "date": "2026-10-11",
     "label": "10月11日(日)",
     "items": [
@@ -73,7 +78,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ポルスカ速報",
-        "color": "#3ecc79",
+        "color": "#95d45e",
         "avatar": "https://yt3.googleusercontent.com/HELcQkx-Jbh1xsZY2NINImepeGpl29LpnBm8LusJmyzCAA2g1X3R5JsQDebniGz_j0DXUWMGfA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -218,7 +223,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "萱口",
-        "color": "#c4d45e",
+        "color": "#cc613e",
         "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -235,7 +240,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ポインちゃん",
-        "color": "#c0d45e",
+        "color": "#cc663e",
         "avatar": "https://yt3.googleusercontent.com/YpfccRdcmHcKNh8v_Lm23KXns5ZqBdalWyotdHmPdrwWK5T2cXpV3kXiqsbub0M3_kOBz6o0=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -246,7 +251,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "東トルキスタンボール",
-        "color": "#cc3e49",
+        "color": "#d45ed0",
         "avatar": "https://yt3.googleusercontent.com/W2OQUuU2k1jXKfUVPRWKakalgRNpqLru73npMGx5OH8rmzeWgrIiV1Kfll9_21Ep7ThG2-Hx=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -263,34 +268,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "投稿数 100本 突破",
         "value": 100
-      }
-    ]
-  },
-  {
-    "date": "2026-10-05",
-    "label": "10月5日(月)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "Æž!みかんぼーる🍊",
-        "color": "#eba864",
-        "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 38万人 突破",
-        "value": 380000
-      },
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "ニイソビボール",
-        "color": "#a55ed4",
-        "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 2万人 突破",
-        "value": 20000
       }
     ]
   }
