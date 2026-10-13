@@ -1,9 +1,33 @@
 {
   "site": "PBers",
   "updated": "2026-10-13",
-  "generated": "2026-10-13T07:32:59+09:00",
-  "count": 19,
+  "generated": "2026-10-14T05:43:36+09:00",
+  "count": 22,
   "items": [
+    {
+      "id": "2026-10-13/views/にこちpb/4000000",
+      "date": "2026-10-13",
+      "channel": "にこちPB",
+      "slug": "にこちpb",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 400万回 突破",
+      "value": 4000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%81%AB%E3%81%93%E3%81%A1pb/"
+    },
+    {
+      "id": "2026-10-13/views/カルマルボール/3000000",
+      "date": "2026-10-13",
+      "channel": "カルマルボール",
+      "slug": "カルマルボール",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 300万回 突破",
+      "value": 3000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%82%AB%E3%83%AB%E3%83%9E%E3%83%AB%E3%83%9C%E3%83%BC%E3%83%AB/"
+    },
     {
       "id": "2026-10-13/videos/sekumeball-せくめボール/100",
       "date": "2026-10-13",
@@ -15,6 +39,18 @@
       "value": 100,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/sekumeball-%E3%81%9B%E3%81%8F%E3%82%81%E3%83%9C%E3%83%BC%E3%83%AB/"
+    },
+    {
+      "id": "2026-10-13/videos/skyball_pb/100",
+      "date": "2026-10-13",
+      "channel": "SkyBall_PB",
+      "slug": "skyball_pb",
+      "metric": "videos",
+      "type": "milestone",
+      "label": "投稿数 100本 突破",
+      "value": 100,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/skyball_pb/"
     },
     {
       "id": "2026-10-11/subs/フヒフム/420000",
