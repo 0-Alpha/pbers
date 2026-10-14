@@ -1094,3 +1094,6 @@ footer .brand{font-size:16px}
 .board-ad>*{margin-left:auto;margin-right:auto}
 /* オーバーレイ広告表示中(スマホ)はジャンプボタンを上へ退避(被り回避) */
 @media (max-width:640px){ body.admax-overlay-on .th-jump{ bottom:110px } }
+/* PC全ページ右余白の縦レール広告(160×600)。コンテンツに被らない幅でのみ表示 */
+.admax-rail{position:fixed;right:10px;top:50%;transform:translateY(-50%);z-index:20;width:160px}
+@media (max-width:1539px){ .admax-rail{display:none} }

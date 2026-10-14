@@ -1159,14 +1159,30 @@
       });
     });
   }
-  // 忍者AdMax(320×100 インライン)を掲示板に1回だけ描画する。
-  // 元タグは document.write を使うためSPAで動的挿入すると白紙化する → 非同期方式(div+config+s.js)で安全に。
-  // 枠(#board-ad)は #board-body の外にあるので、スレ一覧/スレ表示の再描画では消えない。
+  // 忍者AdMax: 元タグは document.write を使いSPAで素挿入すると白紙化するため、非同期方式(config+s.js)で描画する。
+  // 複数のバナーが同時期に読み込まれると window.admaxbanner を上書きし合って競合するため、
+  // s.js の読み込みを「1件ずつ直列(前のs.jsのonload後に次)」で処理するキューにする。
+  var _admaxQueue = [], _admaxBusy = false;
+  function admaxEnqueue(item) { _admaxQueue.push(item); admaxPump(); }
+  function admaxPump() {
+    if (_admaxBusy || !_admaxQueue.length) return;
+    _admaxBusy = true;
+    var it = _admaxQueue.shift();
+    try {
+      if (it.banner) window.admaxbanner = it.banner;
+      if (it.overlay) window.admaxoverlay = it.overlay;
+      var s = document.createElement('script');
+      s.src = 'https://adm.shinobi.jp/st/s.js'; s.async = true; s.charset = 'utf-8';
+      s.onload = s.onerror = function () { _admaxBusy = false; setTimeout(admaxPump, 60); };
+      document.body.appendChild(s);
+    } catch (e) { _admaxBusy = false; }
+  }
+  // 掲示板のインライン広告(PC=728×90 / スマホ=320×100)＋スマホ下部オーバーレイ。
+  // 枠(#board-ad)は #board-body の外なので、スレ一覧/表示の再描画では消えない。
   var _boardAdMounted = false;
   function mountBoardAd() {
     if (_boardAdMounted) return;
     var slot = document.getElementById('board-ad'); if (!slot) return;
-    // 画面幅でPC(728×90)とスマホ(320×100)の広告を出し分ける。該当幅の広告だけ読み込む(非表示impressionを出さない)。
     var mobile = !window.matchMedia || window.matchMedia('(max-width: 640px)').matches;
     var tag = mobile ? '20a942021ac638a96ebffdc419a46daf' : 'f3d43853a6cd1b6c280d8e74870c530a';
     var w = mobile ? 320 : 728, h = mobile ? 100 : 90;
@@ -1175,14 +1191,27 @@
       var id = 'admax-board-ad';
       slot.innerHTML = '<div id="' + id + '" style="display:inline-block"></div>';
       slot.hidden = false;
-      window.admaxbanner = { admax_id: id, tag_id: tag, type: 'b', width: w, height: h };
+      var item = { banner: { admax_id: id, tag_id: tag, type: 'b', width: w, height: h } };
       if (mobile) {   // スマホ: 下部追従オーバーレイ。被り回避用にbodyへ目印を付ける
-        window.admaxoverlay = { tag_id: '1d3fdd6af38d554b2b67601b0a3d8714', type: 'o' };
+        item.overlay = { tag_id: '1d3fdd6af38d554b2b67601b0a3d8714', type: 'o' };
         try { document.body.classList.add('admax-overlay-on'); } catch (e) {}
       }
-      var s = document.createElement('script');
-      s.src = 'https://adm.shinobi.jp/st/s.js'; s.async = true; s.charset = 'utf-8';
-      document.body.appendChild(s);
+      admaxEnqueue(item);
+    } catch (e) {}
+  }
+  // PC専用・全ページ右余白の縦長レール(160×600)。コンテンツ(最大1200px)に被らない幅でのみ表示。
+  var _railMounted = false;
+  function mountRightRail() {
+    if (_railMounted) return;
+    if (!window.matchMedia || !window.matchMedia('(min-width: 1540px)').matches) return;
+    try {
+      _railMounted = true;
+      var id = 'admax-rail-160x600';
+      var wrap = document.createElement('div');
+      wrap.className = 'admax-rail';
+      wrap.innerHTML = '<div id="' + id + '" style="display:inline-block"></div>';
+      document.body.appendChild(wrap);
+      admaxEnqueue({ banner: { admax_id: id, tag_id: 'e692bc71cb95dfd32e455f25fac1732e', type: 'b', width: 160, height: 600 } });
     } catch (e) {}
   }
   function renderBoard() {
@@ -1928,6 +1957,7 @@
     // URLをクリーンなパスに正規化(#growth → /growth)。掲示板の ?t=<id>(スレ直リンク)は保持する
     history.replaceState({ view: initial }, '', pathOf(initial) + (initial === 'board' ? location.search : ''));
     if (initial !== 'dashboard') switchTab(initial, true);
+    mountRightRail();   // PC全ページ右余白の縦レール広告(広い画面のみ)
   }
 
   /* ---- news feed (animated: 3D milestone bars + crossing overtakes) ---- */
