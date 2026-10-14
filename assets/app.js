@@ -1159,6 +1159,24 @@
       });
     });
   }
+  // 忍者AdMax(320×100 インライン)を掲示板に1回だけ描画する。
+  // 元タグは document.write を使うためSPAで動的挿入すると白紙化する → 非同期方式(div+config+s.js)で安全に。
+  // 枠(#board-ad)は #board-body の外にあるので、スレ一覧/スレ表示の再描画では消えない。
+  var _boardAdMounted = false;
+  function mountBoardAd() {
+    if (_boardAdMounted) return;
+    var slot = document.getElementById('board-ad'); if (!slot) return;
+    try {
+      _boardAdMounted = true;
+      var id = 'admax-board-320x100';
+      slot.innerHTML = '<div id="' + id + '" style="display:inline-block"></div>';
+      slot.hidden = false;
+      window.admaxbanner = { admax_id: id, tag_id: '20a942021ac638a96ebffdc419a46daf', type: 'b', width: 320, height: 100 };
+      var s = document.createElement('script');
+      s.src = 'https://adm.shinobi.jp/st/s.js'; s.async = true; s.charset = 'utf-8';
+      document.body.appendChild(s);
+    } catch (e) {}
+  }
   function renderBoard() {
     var host = document.getElementById('board-body'); if (!host) return;
     if (boardMaint) {   // 整備中: APIを叩かず案内のみ
@@ -1172,6 +1190,7 @@
     boardHead();
     if (!boardEnabled) { host.innerHTML = '<div class="board-empty">準備中です。</div>'; return; }
     boardSyncFromUrl();
+    mountBoardAd();   // 掲示板を開いた時だけ広告を1回ロード(他タブでは読み込まない)
     if (boardThreadId) renderThread(host, boardThreadId); else renderThreadList(host);
   }
   function renderThreadList(host) {
