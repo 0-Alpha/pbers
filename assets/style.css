@@ -1092,3 +1092,5 @@ footer .brand{font-size:16px}
 /* 掲示板の広告枠(忍者AdMax 320×100 インライン) */
 .board-ad{display:flex;justify-content:center;align-items:flex-start;text-align:center;margin:2px 0 16px;min-height:100px}
 .board-ad>*{margin-left:auto;margin-right:auto}
+/* オーバーレイ広告表示中(スマホ)はジャンプボタンを上へ退避(被り回避) */
+@media (max-width:640px){ body.admax-overlay-on .th-jump{ bottom:110px } }
