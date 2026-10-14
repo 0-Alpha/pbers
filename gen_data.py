@@ -125,6 +125,7 @@ RETIRED = {
     "UCxo0gJCLvrgRdAGuPlpz4Pw",  # 英仏マン (引退済み)
     "UC0dwNfKKsU48BC_jlVzJdig",  # ノキア (引退済み)
     "UCvOfNL3MjhbjxAU8U9Fi9uQ",  # 田所浩二 (引退済み)
+    "UCdrDC3QVzRjxHcS7m3EDPxg",  # 吉田彩音の世界情勢解説チャンネル (引退済み)
 }
 
 # 指定の固定カラー(チャンネルID -> hex)
