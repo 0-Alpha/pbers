@@ -1072,10 +1072,15 @@ footer .brand{font-size:16px}
 .bs-grid-wrap{overflow-x:auto;max-width:100%}
 .bs-grid{border-collapse:collapse}
 .bs-grid td{border:1px solid var(--line-2);padding:0}
-.bs-cell{width:92px;min-width:92px;background:transparent;border:none;color:var(--text);font-family:var(--jp);font-size:13px;padding:7px 8px}
+.bs-cell{width:92px;min-width:92px;background:transparent;border:none;color:var(--text);font-family:var(--jp);font-size:16px;padding:7px 8px}
 .bs-cell:focus{outline:none}
 .bs-cell.bs-sel{box-shadow:inset 0 0 0 2px var(--red)}
 /* 表示側(読み取り) */
 .sheet-wrap{overflow-x:auto;max-width:100%;margin:4px 0 12px}
 .sheet{border-collapse:collapse;font-family:var(--jp);font-size:13px}
 .sheet td{border:1px solid var(--line-2);padding:7px 10px;color:var(--text);white-space:pre-wrap;vertical-align:top;min-width:60px}
+/* 表エディタ: モバイル最適化(列を詰めて見える範囲を拡大・パレットを押しやすく) */
+@media (max-width:640px){
+  .bs-cell{width:72px;min-width:72px}
+  .bs-sw{width:30px;height:30px}
+}
