@@ -504,12 +504,13 @@ async function threadShow(url, req, env) {
     ? "SELECT no,name,body,uid,created,hidden,admin FROM board_posts WHERE thread_id=?1 ORDER BY no ASC LIMIT 1000"
     : "SELECT no,name,body,uid,created,hidden,admin FROM board_posts WHERE thread_id=?1 AND hidden=0 ORDER BY no ASC LIMIT 1000";
   // レス・タグ・アンケートを並列取得(D1往復の待ち時間を短縮)
-  const [postsRes, tagRes, poll] = await Promise.all([
+  const [postsRes, tagRes, poll, sheet] = await Promise.all([
     env.DB.prepare(sql).bind(id).all(),
     env.DB.prepare("SELECT tag FROM board_tags WHERE thread_id=?1").bind(id).first().catch(() => null),
     pollFor(req, env, id, g.admin),
+    sheetFor(env, id),
   ]);
-  return json({ public: g.pub, admin: g.admin, thread: th, tag: tagRes ? tagRes.tag : null, posts: (postsRes && postsRes.results) || [], poll: poll });
+  return json({ public: g.pub, admin: g.admin, thread: th, tag: tagRes ? tagRes.tag : null, posts: (postsRes && postsRes.results) || [], poll: poll, sheet: sheet });
 }
 async function threadCreate(req, env) {
   const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
@@ -542,6 +543,7 @@ async function threadCreate(req, env) {
   var tag = TAG_SET.has(b.tag) ? b.tag : "pb";   // 種別タグ(PB主・未指定はpb)
   try { await ensureTags(env); await env.DB.prepare("INSERT OR REPLACE INTO board_tags(thread_id,tag) VALUES(?1,?2)").bind(tid, tag).run(); } catch (e) {}
   if (b.poll) { try { await createPoll(env, tid, b.poll, now); } catch (e) {} }   // スレ主のアンケート添付(任意)
+  if (b.sheet) { try { await createSheet(env, tid, b.sheet, now); } catch (e) {} }  // スレ主の表添付(任意)
   if (!g.admin && spamToks.length) await urlSpamRecord(env, spamToks, tid);       // 同一URL連投カウントに記録
   return json({ ok: true, id: tid, del: await delkeyFor(env, tid, 1, now) });    // del=OP(1レス目)の自己削除キー
 }
@@ -566,6 +568,47 @@ async function createPoll(env, tid, p, now) {
   await ensurePolls(env);
   await env.DB.prepare("INSERT INTO board_polls(thread_id,question,options,multi,hide,created,closes,counts,votes) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,0)")
     .bind(tid, question, JSON.stringify(options), multi, hide, now, closes, JSON.stringify(options.map(() => 0))).run();
+}
+
+/* ---- 表(スプレッドシート風)をスレッドに添付 ---- *
+ * board_ 接頭辞(dopatterとのD1共有衝突回避)。色は固定16色パレットのindex(0-15)のみ保存し、
+ * 任意のCSS色文字列は受け取らない(CSSインジェクション防止)。セル文字は保存時に長さ制限・描画時にエスケープ。 */
+const SHEET_MAX_COLS = 8, SHEET_MAX_ROWS = 12, SHEET_CELL_MAX = 50;
+let _sheetsReady = false;
+async function ensureSheets(env) {
+  if (_sheetsReady) return;
+  await env.DB.prepare("CREATE TABLE IF NOT EXISTS board_sheets(thread_id INTEGER PRIMARY KEY, data TEXT NOT NULL, created INTEGER NOT NULL)").run();
+  _sheetsReady = true;
+}
+async function createSheet(env, tid, t, now) {
+  if (!t || typeof t !== "object") return;
+  let rows = parseInt(t.rows, 10), cols = parseInt(t.cols, 10);
+  if (!(rows >= 1) || !(cols >= 1)) return;
+  rows = Math.min(rows, SHEET_MAX_ROWS); cols = Math.min(cols, SHEET_MAX_COLS);
+  const grid = Array.isArray(t.grid) ? t.grid : [];
+  const out = []; let hasContent = false;
+  for (let r = 0; r < rows; r++) {
+    const row = Array.isArray(grid[r]) ? grid[r] : [];
+    const orow = [];
+    for (let c = 0; c < cols; c++) {
+      const cell = (row[c] && typeof row[c] === "object") ? row[c] : {};
+      const v = clean(cell.v, SHEET_CELL_MAX);
+      let col = parseInt(cell.c, 10); if (!(col >= 0 && col <= 15)) col = -1;   // 0-15のみ。範囲外は色なし
+      if (v) hasContent = true;
+      orow.push({ v: v, c: col });
+    }
+    out.push(orow);
+  }
+  if (!hasContent) return;   // 中身が空の表は作らない
+  await ensureSheets(env);
+  await env.DB.prepare("INSERT INTO board_sheets(thread_id,data,created) VALUES(?1,?2,?3)")
+    .bind(tid, JSON.stringify({ rows: rows, cols: cols, grid: out }), now).run();
+}
+async function sheetFor(env, tid) {   // threadShow用: 無ければnull、壊れていてもnull
+  try {
+    const row = await env.DB.prepare("SELECT data FROM board_sheets WHERE thread_id=?1").bind(tid).first();
+    return row && row.data ? JSON.parse(row.data) : null;
+  } catch (e) { return null; }
 }
 async function pollFor(req, env, tid, admin) {
   // threadShow用: アンケートの表示状態を組み立てる。テーブル未作成でも安全にnull。
@@ -704,6 +747,7 @@ async function boardHide(req, env) {
       try { await env.DB.prepare("DELETE FROM board_tags WHERE thread_id=?1").bind(id).run(); } catch (e) {}
       try { await env.DB.prepare("DELETE FROM board_polls WHERE thread_id=?1").bind(id).run(); } catch (e) {}
       try { await env.DB.prepare("DELETE FROM board_poll_votes WHERE thread_id=?1").bind(id).run(); } catch (e) {}
+      try { await env.DB.prepare("DELETE FROM board_sheets WHERE thread_id=?1").bind(id).run(); } catch (e) {}
       return json({ ok: true, hard: true });
     }
     await env.DB.prepare("UPDATE board_threads SET hidden=?2 WHERE id=?1").bind(id, hide).run();
