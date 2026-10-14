@@ -1688,8 +1688,19 @@
           '<textarea class="bf-in bf-body" id="rp-body" maxlength="2000" rows="3" placeholder="返信を書く…"></textarea>' +
           '<div class="bf-actions"><span class="bf-msg" id="rp-msg"></span>' +
             '<button type="submit" class="bf-send" id="rp-send">返信する</button></div>' +
-        '</form>';
+        '</form>' +
+        '<div class="th-jump"><button type="button" class="th-jb" id="th-jump-up" aria-label="一番上へ" title="一番上へ">▲</button>' +
+          '<button type="button" class="th-jb" id="th-jump-dn" aria-label="最新レス・返信へ" title="最新レス・返信へ">▼</button></div>';
       back();
+      (function () {   // レス数が多い時用: 一番上/最新(返信欄)へワンタップで移動
+        var ju = document.getElementById('th-jump-up'), jd = document.getElementById('th-jump-dn');
+        if (ju) ju.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        if (jd) jd.addEventListener('click', function () {
+          var f = document.getElementById('bt-reply');
+          if (f) f.scrollIntoView({ behavior: 'smooth', block: 'end' });
+          else window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        });
+      })();
       resolveImgAlbums(host);   // imgurアルバムの代表画像を後から埋める
       if (d.admin) { wireHide(host); wireAdminMod(host, function () { renderThread(host, id); }); }
       host.querySelectorAll('.anchor').forEach(function (a) {
