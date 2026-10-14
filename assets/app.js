@@ -1165,15 +1165,17 @@
   var _boardAdMounted = false;
   function mountBoardAd() {
     if (_boardAdMounted) return;
-    // スマホ専用(320×100)。PC幅では広告自体を読み込まない(非表示impressionを出さないため)。
-    if (!window.matchMedia || !window.matchMedia('(max-width: 640px)').matches) return;
     var slot = document.getElementById('board-ad'); if (!slot) return;
+    // 画面幅でPC(728×90)とスマホ(320×100)の広告を出し分ける。該当幅の広告だけ読み込む(非表示impressionを出さない)。
+    var mobile = !window.matchMedia || window.matchMedia('(max-width: 640px)').matches;
+    var tag = mobile ? '20a942021ac638a96ebffdc419a46daf' : 'f3d43853a6cd1b6c280d8e74870c530a';
+    var w = mobile ? 320 : 728, h = mobile ? 100 : 90;
     try {
       _boardAdMounted = true;
-      var id = 'admax-board-320x100';
+      var id = 'admax-board-ad';
       slot.innerHTML = '<div id="' + id + '" style="display:inline-block"></div>';
       slot.hidden = false;
-      window.admaxbanner = { admax_id: id, tag_id: '20a942021ac638a96ebffdc419a46daf', type: 'b', width: 320, height: 100 };
+      window.admaxbanner = { admax_id: id, tag_id: tag, type: 'b', width: w, height: h };
       var s = document.createElement('script');
       s.src = 'https://adm.shinobi.jp/st/s.js'; s.async = true; s.charset = 'utf-8';
       document.body.appendChild(s);
