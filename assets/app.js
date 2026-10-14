@@ -1176,6 +1176,7 @@
       slot.innerHTML = '<div id="' + id + '" style="display:inline-block"></div>';
       slot.hidden = false;
       window.admaxbanner = { admax_id: id, tag_id: tag, type: 'b', width: w, height: h };
+      if (mobile) window.admaxoverlay = { tag_id: '1d3fdd6af38d554b2b67601b0a3d8714', type: 'o' };   // スマホ: 下部追従オーバーレイ
       var s = document.createElement('script');
       s.src = 'https://adm.shinobi.jp/st/s.js'; s.async = true; s.charset = 'utf-8';
       document.body.appendChild(s);
