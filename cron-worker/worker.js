@@ -573,7 +573,7 @@ async function createPoll(env, tid, p, now) {
 /* ---- 表(スプレッドシート風)をスレッドに添付 ---- *
  * board_ 接頭辞(dopatterとのD1共有衝突回避)。色は固定16色パレットのindex(0-15)のみ保存し、
  * 任意のCSS色文字列は受け取らない(CSSインジェクション防止)。セル文字は保存時に長さ制限・描画時にエスケープ。 */
-const SHEET_MAX_COLS = 12, SHEET_MAX_ROWS = 30, SHEET_CELL_MAX = 200;
+const SHEET_MAX_COLS = 8, SHEET_MAX_ROWS = 12, SHEET_CELL_MAX = 50;
 let _sheetsReady = false;
 async function ensureSheets(env) {
   if (_sheetsReady) return;

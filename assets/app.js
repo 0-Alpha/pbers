@@ -1273,7 +1273,7 @@
     // 表(スプレッドシート風)入力: 開閉・行列の増減・セル着色(固定16色パレットのindexを保持)
     var sheetWrap = document.getElementById('bt-sheet'), sheetToggle = document.getElementById('bt-sheet-toggle');
     var sheetGrid = document.getElementById('bs-grid');
-    var bsRows = 3, bsCols = 3, bsMaxRows = 30, bsMaxCols = 12, bsSelected = null;
+    var bsRows = 3, bsCols = 3, bsMaxRows = 12, bsMaxCols = 8, bsSelected = null;
     function bsRenderPalette() {
       var pal = document.getElementById('bs-pal'); if (!pal) return;
       var h = '<button type="button" class="bs-sw bs-sw-none" data-ci="-1" title="なし">×</button>';
@@ -1299,7 +1299,7 @@
           var key = r + ',' + c, p = prev[key] || {}, ci = (p.c == null ? -1 : parseInt(p.c, 10));
           if (!(ci >= 0 && ci <= 15)) ci = -1;
           var bg = ci >= 0 ? (' style="background:' + SHEET_PALETTE[ci] + '55"') : '';
-          html += '<td><input class="bs-cell" data-rc="' + key + '" data-ci="' + ci + '" maxlength="200" value="' + esc(p.v || '') + '"' + bg + '></td>';
+          html += '<td><input class="bs-cell" data-rc="' + key + '" data-ci="' + ci + '" maxlength="50" value="' + esc(p.v || '') + '"' + bg + '></td>';
         }
         html += '</tr>';
       }
