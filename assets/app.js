@@ -1165,6 +1165,8 @@
   var _boardAdMounted = false;
   function mountBoardAd() {
     if (_boardAdMounted) return;
+    // スマホ専用(320×100)。PC幅では広告自体を読み込まない(非表示impressionを出さないため)。
+    if (!window.matchMedia || !window.matchMedia('(max-width: 640px)').matches) return;
     var slot = document.getElementById('board-ad'); if (!slot) return;
     try {
       _boardAdMounted = true;
