@@ -1201,6 +1201,18 @@
             [1,2,3,5,7].map(function(n){return '<option value="'+n+'"'+(n===7?' selected':'')+'>'+n+'日</option>';}).join('') +
           '</select></label>' +
         '</div>' +
+        '<button type="button" class="bt-poll-toggle" id="bt-sheet-toggle">＋ 表を作成</button>' +
+        '<div class="bt-sheet" id="bt-sheet" hidden>' +
+          '<div class="bs-ctrl">' +
+            '<button type="button" class="bs-btn" id="bs-addrow">＋行</button>' +
+            '<button type="button" class="bs-btn" id="bs-delrow">－行</button>' +
+            '<button type="button" class="bs-btn" id="bs-addcol">＋列</button>' +
+            '<button type="button" class="bs-btn" id="bs-delcol">－列</button>' +
+          '</div>' +
+          '<div class="bs-pal" id="bs-pal"></div>' +
+          '<div class="bs-grid-wrap"><table class="bs-grid" id="bs-grid"></table></div>' +
+          '<div class="bf-hint">セルに文字・数値を入力できます。セルを選んでから上の色をクリックすると背景色が付きます（「なし」で消去）。</div>' +
+        '</div>' +
         '<div class="bf-actions"><span class="bf-msg" id="bt-msg"></span>' +
           '<button type="submit" class="bf-send" id="bt-send">スレッドを作成</button></div>' +
       '</form>' +
@@ -1258,6 +1270,75 @@
         hide: document.getElementById('bp-hide').checked,
         days: parseInt(document.getElementById('bp-days').value, 10) || 7 };
     }
+    // 表(スプレッドシート風)入力: 開閉・行列の増減・セル着色(固定16色パレットのindexを保持)
+    var sheetWrap = document.getElementById('bt-sheet'), sheetToggle = document.getElementById('bt-sheet-toggle');
+    var sheetGrid = document.getElementById('bs-grid');
+    var bsRows = 3, bsCols = 3, bsMaxRows = 30, bsMaxCols = 12, bsSelected = null;
+    function bsRenderPalette() {
+      var pal = document.getElementById('bs-pal'); if (!pal) return;
+      var h = '<button type="button" class="bs-sw bs-sw-none" data-ci="-1" title="なし">×</button>';
+      for (var i = 0; i < SHEET_PALETTE.length; i++) h += '<button type="button" class="bs-sw" data-ci="' + i + '" style="background:' + SHEET_PALETTE[i] + '"></button>';
+      pal.innerHTML = h;
+      pal.querySelectorAll('.bs-sw').forEach(function (b) {
+        b.addEventListener('click', function () {
+          if (!bsSelected) return;
+          var ci = parseInt(b.dataset.ci, 10);
+          bsSelected.dataset.ci = ci;
+          bsSelected.style.background = ci >= 0 ? (SHEET_PALETTE[ci] + '55') : '';
+        });
+      });
+    }
+    function bsBuild() {
+      if (!sheetGrid) return;
+      var prev = {};   // 作り直し前に既存の値・色を退避
+      sheetGrid.querySelectorAll('input[data-rc]').forEach(function (i) { prev[i.dataset.rc] = { v: i.value, c: i.dataset.ci }; });
+      var html = '';
+      for (var r = 0; r < bsRows; r++) {
+        html += '<tr>';
+        for (var c = 0; c < bsCols; c++) {
+          var key = r + ',' + c, p = prev[key] || {}, ci = (p.c == null ? -1 : parseInt(p.c, 10));
+          if (!(ci >= 0 && ci <= 15)) ci = -1;
+          var bg = ci >= 0 ? (' style="background:' + SHEET_PALETTE[ci] + '55"') : '';
+          html += '<td><input class="bs-cell" data-rc="' + key + '" data-ci="' + ci + '" maxlength="200" value="' + esc(p.v || '') + '"' + bg + '></td>';
+        }
+        html += '</tr>';
+      }
+      sheetGrid.innerHTML = html;
+      sheetGrid.querySelectorAll('input.bs-cell').forEach(function (i) {
+        i.addEventListener('focus', function () {
+          if (bsSelected) bsSelected.classList.remove('bs-sel');
+          bsSelected = i; i.classList.add('bs-sel');
+        });
+      });
+    }
+    if (sheetToggle) {
+      sheetToggle.addEventListener('click', function () {
+        sheetWrap.hidden = !sheetWrap.hidden;
+        sheetToggle.textContent = sheetWrap.hidden ? '＋ 表を作成' : '－ 表を閉じる';
+        if (!sheetWrap.hidden && sheetGrid && !sheetGrid.children.length) { bsRenderPalette(); bsBuild(); }
+      });
+      document.getElementById('bs-addrow').addEventListener('click', function () { if (bsRows < bsMaxRows) { bsRows++; bsBuild(); } });
+      document.getElementById('bs-delrow').addEventListener('click', function () { if (bsRows > 1) { bsRows--; bsBuild(); } });
+      document.getElementById('bs-addcol').addEventListener('click', function () { if (bsCols < bsMaxCols) { bsCols++; bsBuild(); } });
+      document.getElementById('bs-delcol').addEventListener('click', function () { if (bsCols > 1) { bsCols--; bsBuild(); } });
+    }
+    function collectSheet() {   // 入力があれば sheet を返す。中身が空ならnull
+      if (!sheetWrap || sheetWrap.hidden || !sheetGrid) return null;
+      var grid = [], has = false;
+      for (var r = 0; r < bsRows; r++) {
+        var row = [];
+        for (var c = 0; c < bsCols; c++) {
+          var inp = sheetGrid.querySelector('input[data-rc="' + r + ',' + c + '"]');
+          var v = inp ? inp.value.trim() : '';
+          var ci = inp ? parseInt(inp.dataset.ci, 10) : -1; if (!(ci >= 0 && ci <= 15)) ci = -1;
+          if (v) has = true;
+          row.push({ v: v, c: ci });
+        }
+        grid.push(row);
+      }
+      if (!has) return null;
+      return { rows: bsRows, cols: bsCols, grid: grid };
+    }
     document.getElementById('bt-new').addEventListener('submit', function (e) {
       e.preventDefault();
       var title = document.getElementById('bt-title').value.trim();
@@ -1271,6 +1352,8 @@
       send.disabled = true; msg.textContent = '作成中…';
       var payload = { title: title, name: name, body: body, token: tsNew.get(), tag: newTag };
       if (poll) payload.poll = poll;
+      var sheet = collectSheet();
+      if (sheet) payload.sheet = sheet;
       fetch(boardApi('/threads'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
         body: JSON.stringify(payload) })
         .then(function (r) { return r.json(); }).then(function (d) {
@@ -1521,6 +1604,19 @@
     if (h >= 1) return 'あと' + h + '時間';
     return 'まもなく終了';
   }
+  // 表(スプレッドシート風)の固定16色パレット。保存されるのはこの配列のindex(0-15)のみ。描画時に背景色へ使う。
+  var SHEET_PALETTE = ['#ef4444','#f97316','#f59e0b','#eab308','#84cc16','#22c55e','#10b981','#14b8a6','#06b6d4','#3b82f6','#6366f1','#8b5cf6','#a855f7','#ec4899','#78716c','#1f2937'];
+  function sheetHtml(sheet) {
+    if (!sheet || !sheet.grid || !sheet.grid.length) return '';
+    var rows = sheet.grid.map(function (row) {
+      return '<tr>' + (row || []).map(function (cell) {
+        var ci = (cell && typeof cell.c === 'number') ? cell.c : -1;   // 色はindexのみ。パレット外は無色(=CSSインジェクション不可)
+        var bg = (ci >= 0 && ci < SHEET_PALETTE.length) ? ' style="background:' + SHEET_PALETTE[ci] + '55"' : '';
+        return '<td' + bg + '>' + esc((cell && cell.v) || '') + '</td>';   // セル文字はエスケープ
+      }).join('') + '</tr>';
+    }).join('');
+    return '<div class="sheet-wrap"><table class="sheet">' + rows + '</table></div>';
+  }
   // アンケート表示。canVote時は選択UI+投票ボタン、そうでなければ結果バー。合計投票数は常に表示。
   function pollHtml(poll) {
     if (!poll) return '';
@@ -1565,6 +1661,7 @@
         '<h3 class="th-h">' + tagChip(d.tag) + ' ' + esc(d.thread.title) + '</h3>' +
         (boardKey ? '<div class="bmod-bar"><button type="button" class="bmod bc-delth" data-id="' + id + '">スレを完全削除</button></div>' : '') +
         pollHtml(d.poll) +
+        sheetHtml(d.sheet) +
         '<div class="posts">' + posts.map(function (p) {
           var del = !p.body;                                   // 本文が空=削除済み
           var canDel = !del && !!delKeyOf(id, p.no);           // 自分の投稿(削除キーを持っている)なら削除可
