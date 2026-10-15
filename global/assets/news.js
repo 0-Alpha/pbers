@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-15",
+    "label": "10月15日(木)",
+    "items": []
+  },
+  {
     "date": "2026-10-14",
     "label": "10月14日(水)",
     "items": []
@@ -49,45 +54,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "登録者 17万人 突破",
         "value": 170000
-      }
-    ]
-  },
-  {
-    "date": "2026-10-08",
-    "label": "10月8日(木)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "áíš!aispoaporu",
-        "color": "#5e95d4",
-        "avatar": "https://yt3.googleusercontent.com/mQlwNSmmU-29KT9BqTMwslDToctWAj36QEO7WV7EFpaJyESOtkcBg8nDukwPOkPMSMSBnwHjjQ=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 14万人 突破",
-        "value": 140000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-        "color": "#793ecc",
-        "avatar": "https://yt3.googleusercontent.com/lvLkO7Ig6HXvN9Dk5i1JUKiyrI5U-rnlu-CWg2j70hBbBCTkyxhTY0BKHSMXeYioRntEPDRE=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 6000万回 突破",
-        "value": 60000000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "MOON-BALL",
-        "color": "#ccbb3e",
-        "avatar": "https://yt3.googleusercontent.com/OO1kEXKAZOEY7CId014FH4nUVOwHY6iE4w0OTdoHZd3TbHY4lvhWNnByhVCc_tDbh5Np0vYCHwg=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 4000万回 突破",
-        "value": 40000000
       }
     ]
   }

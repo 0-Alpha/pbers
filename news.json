@@ -1,8 +1,8 @@
 {
   "site": "PBers",
   "updated": "2026-10-14",
-  "generated": "2026-10-15T04:25:51+09:00",
-  "count": 20,
+  "generated": "2026-10-15T20:28:06+09:00",
+  "count": 18,
   "items": [
     {
       "id": "2026-10-14/subs/みかんぼーる/390000",
@@ -219,30 +219,6 @@
       "value": 7000000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E3%81%B1%E3%81%B5ball/"
-    },
-    {
-      "id": "2026-10-08/views/なぽりたんぼーる/10000000",
-      "date": "2026-10-08",
-      "channel": "なぽりたんぼーる!!",
-      "slug": "なぽりたんぼーる",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 1000万回 突破",
-      "value": 10000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%AA%E3%81%BD%E3%82%8A%E3%81%9F%E3%82%93%E3%81%BC%E3%83%BC%E3%82%8B/"
-    },
-    {
-      "id": "2026-10-08/views/ぽぱい/7000000",
-      "date": "2026-10-08",
-      "channel": "ぽぱい",
-      "slug": "ぽぱい",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 700万回 突破",
-      "value": 7000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%BD%E3%81%B1%E3%81%84/"
     }
   ]
 }

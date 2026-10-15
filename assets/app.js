@@ -2536,7 +2536,7 @@
     var api = window.PBERS_VIDEOS_API; if (!api) return Promise.resolve([]);
     if (!force && VIDEOS_CACHE && (Date.now() - VIDEOS_TS < 45000)) return Promise.resolve(VIDEOS_CACHE);
     return fetch(api).then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
-      list = (list || []).filter(function (v) { return v.title && v.title !== 'YouTube video feed'; })
+      list = (list || []).filter(function (v) { return v.title && v.title !== 'YouTube video feed' && chById(v.cid); })   // 掲載中のチャンネルのみ(引退・削除は除外)
                          .sort(function (a, b) { return (Date.parse(b.published) || 0) - (Date.parse(a.published) || 0); });
       VIDEOS_CACHE = list; VIDEOS_TS = Date.now(); return list;
     }).catch(function () { return VIDEOS_CACHE || []; });

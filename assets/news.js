@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-15",
+    "label": "10月15日(木)",
+    "items": []
+  },
+  {
     "date": "2026-10-14",
     "label": "10月14日(水)",
     "items": [
@@ -225,34 +230,6 @@ window.PBERS_NEWS = [
         "name": "ぱふball",
         "color": "#3e66cc",
         "avatar": "https://yt3.googleusercontent.com/PGTvcj4FN_eQ8Cvs9-f17837doHi0C9Zvctb1JF5kSBUPfQsvHq3dGziIdetTDDBOxAklbz5V0E=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 700万回 突破",
-        "value": 7000000
-      }
-    ]
-  },
-  {
-    "date": "2026-10-08",
-    "label": "10月8日(木)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "なぽりたんぼーる!!",
-        "color": "#5ed46e",
-        "avatar": "https://yt3.googleusercontent.com/cgKkkofz-kGsbqVy2T6imA2bHpnVt2dT5fWXi8lePnlHa6p_KyhQCJ63Al_qjzB09nAGRrcOpg=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 1000万回 突破",
-        "value": 10000000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ぽぱい",
-        "color": "#a8cc3e",
-        "avatar": "https://yt3.googleusercontent.com/L3pk3ep8wkIecdtlqzMo73d35IfjEFnmRmvLRb_9f41cuQeUDpXNZIHP4XI4cMu5xxRR6TWkRqg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "総再生数 700万回 突破",

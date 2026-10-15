@@ -1,8 +1,8 @@
 {
   "site": "PBers Global",
   "updated": "2026-10-14",
-  "generated": "2026-10-15T04:25:53+09:00",
-  "count": 5,
+  "generated": "2026-10-15T20:28:07+09:00",
+  "count": 2,
   "items": [
     {
       "id": "2026-10-09/subs/jp-ball/440000",
@@ -27,42 +27,6 @@
       "value": 170000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/global/c/somen-ball/"
-    },
-    {
-      "id": "2026-10-08/subs/áíšaispoaporu/140000",
-      "date": "2026-10-08",
-      "channel": "áíš!aispoaporu",
-      "slug": "áíšaispoaporu",
-      "metric": "subs",
-      "type": "milestone",
-      "label": "登録者 14万人 突破",
-      "value": 140000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/global/c/%C3%A1%C3%AD%C5%A1aispoaporu/"
-    },
-    {
-      "id": "2026-10-08/views/dezinichtフヒフム-海外アカウント/60000000",
-      "date": "2026-10-08",
-      "channel": "Dezinicht【Æž!フヒフム 海外アカウント】",
-      "slug": "dezinichtフヒフム-海外アカウント",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 6000万回 突破",
-      "value": 60000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/global/c/dezinicht%E3%83%95%E3%83%92%E3%83%95%E3%83%A0-%E6%B5%B7%E5%A4%96%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/"
-    },
-    {
-      "id": "2026-10-08/views/moon-ball/40000000",
-      "date": "2026-10-08",
-      "channel": "MOON-BALL",
-      "slug": "moon-ball",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 4000万回 突破",
-      "value": 40000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/global/c/moon-ball/"
     }
   ]
 }
