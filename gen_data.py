@@ -699,7 +699,8 @@ def build_channel_pages(order, colors):
                 .replace("{{COLOR}}", colors[cid])
                 .replace("{{HEADER}}", header)
                 .replace("{{CH}}", json.dumps(ch, ensure_ascii=False))
-                .replace("{{HIST}}", json.dumps(HH, ensure_ascii=False)))
+                .replace("{{HIST}}", json.dumps(HH, ensure_ascii=False))
+                .replace('name="robots" content="index,follow"', 'name="robots" content="noindex,follow"'))   # 薄い自動ページはnoindexで逃がす(AdSense/品質対策)
         os.makedirs(os.path.join(cdir, slug), exist_ok=True)
         with open(os.path.join(cdir, slug, "index.html"), "w", encoding="utf-8") as f:
             f.write(page)
@@ -1008,7 +1009,7 @@ def fetch_published_articles():
 
 def build_sitemap(order):
     # (URL, changefreq) の順で列挙。lastmod は実データの最終更新日(UPDATED)を付与しクロール優先度を上げる。
-    urls = [(ed_site() + "/", "daily")] + [(ed_site() + "/c/" + urllib.parse.quote(d["_slug"]) + "/", "daily") for d in order]
+    urls = [(ed_site() + "/", "daily")]   # チャンネルページはnoindexにしたためsitemapから除外
     art_dates = {}                          # 記事URL→公開日(個別lastmod)
     if not ED["sub"]:                       # 解説・運営者・プライバシー・記事は通常サイト側のみ
         urls.append((ed_site() + "/about/", "monthly"))
