@@ -1,9 +1,21 @@
 {
   "site": "PBers",
-  "updated": "2026-10-15",
-  "generated": "2026-10-16T04:10:02+09:00",
+  "updated": "2026-10-16",
+  "generated": "2026-10-17T03:51:49+09:00",
   "count": 18,
   "items": [
+    {
+      "id": "2026-10-16/videos/うずまき/200",
+      "date": "2026-10-16",
+      "channel": "うずまき🌀",
+      "slug": "うずまき",
+      "metric": "videos",
+      "type": "milestone",
+      "label": "投稿数 200本 突破",
+      "value": 200,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%81%86%E3%81%9A%E3%81%BE%E3%81%8D/"
+    },
     {
       "id": "2026-10-14/subs/みかんぼーる/390000",
       "date": "2026-10-14",
@@ -207,18 +219,6 @@
       "value": 100,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E3%82%B1%E3%82%A8%E3%83%AC%E3%83%93q/"
-    },
-    {
-      "id": "2026-10-09/views/ぱふball/7000000",
-      "date": "2026-10-09",
-      "channel": "ぱふball",
-      "slug": "ぱふball",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 700万回 突破",
-      "value": 7000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%B1%E3%81%B5ball/"
     }
   ]
 }

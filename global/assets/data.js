@@ -2,9 +2,9 @@ window.PBERS_DATA = [
   {
     "name": "JP-BALL",
     "subs": 440000,
-    "views": 166899262,
+    "views": 166931669,
     "subsLabel": "チャンネル登録者数 44万人",
-    "viewsLabel": "166,899,262回視聴",
+    "viewsLabel": "166,931,669回視聴",
     "videos": 128,
     "url": "https://www.youtube.com/channel/UCZ-zUkkdNTYAYDgkDyeb_hA",
     "avatar": "https://yt3.googleusercontent.com/UXoyWxO_MOdKJK4kLMC988Uj9LZC9pZO13VMLEVq-4C32fBkvug-FUzSiUrbAh_mSy3zOPyfCC0=s900-c-k-c0x00ffffff-no-rj",
@@ -47,9 +47,9 @@ window.PBERS_DATA = [
   {
     "name": "Somen ball",
     "subs": 171000,
-    "views": 62066223,
+    "views": 62133644,
     "subsLabel": "チャンネル登録者数 17.1万人",
-    "viewsLabel": "62,066,223回視聴",
+    "viewsLabel": "62,133,644回視聴",
     "videos": 118,
     "url": "https://www.youtube.com/channel/UCfh08MHIzScBQKh5OuG2ofA",
     "avatar": "https://yt3.googleusercontent.com/3a_WIUPrZ8qIxGmQJhtTv9z8vOffxcS3l9TqJK0pcQhNssFX4VJgPndXd2V3o9Hk7F7ECpFP=s900-c-k-c0x00ffffff-no-rj",
@@ -106,9 +106,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "F丸",
-    "subs": 36000,
+    "subs": 36200,
     "views": 31040678,
-    "subsLabel": "チャンネル登録者数 3.6万人",
+    "subsLabel": "チャンネル登録者数 3.62万人",
     "viewsLabel": "31,040,678回視聴",
     "videos": 93,
     "url": "https://www.youtube.com/channel/UCEJRQBqXi3z3UXnHdueIvJg",
@@ -122,9 +122,9 @@ window.PBERS_DATA = [
   {
     "name": "りょうデス",
     "subs": 24000,
-    "views": 15269350,
+    "views": 15270157,
     "subsLabel": "チャンネル登録者数 2.4万人",
-    "viewsLabel": "15,269,350回視聴",
+    "viewsLabel": "15,270,157回視聴",
     "videos": 891,
     "url": "https://www.youtube.com/channel/UCfe4nCMqfTwoiMmIGqAolcQ",
     "avatar": "https://yt3.googleusercontent.com/3JZIEM7UfdCSG6s6ge7iysnTTyLWldBvHduFzlEyA2KMqsUWqUxtWKy6sL2EIlMdFlPzzJ2FlQ=s900-c-k-c0x00ffffff-no-rj",
@@ -137,9 +137,9 @@ window.PBERS_DATA = [
   {
     "name": "くろまめ",
     "subs": 17800,
-    "views": 16910655,
+    "views": 16929148,
     "subsLabel": "チャンネル登録者数 1.78万人",
-    "viewsLabel": "16,910,655回視聴",
+    "viewsLabel": "16,929,148回視聴",
     "videos": 90,
     "url": "https://www.youtube.com/channel/UCfJp9c3kSkIjYFevd2G1RKg",
     "avatar": "https://yt3.googleusercontent.com/yV8LzkaByDse6ZVmF8XEySSyoZ6osOmQM9SmjO8FTgQPiaOwyAaD2VEH1Zx8UqAVobRkOxaVbrg=s900-c-k-c0x00ffffff-no-rj",
@@ -211,9 +211,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "MakkoyuCB",
-    "subs": 5100,
+    "subs": 5130,
     "views": 2756955,
-    "subsLabel": "チャンネル登録者数 5100人",
+    "subsLabel": "チャンネル登録者数 5130人",
     "viewsLabel": "2,756,955回視聴",
     "videos": 32,
     "url": "https://www.youtube.com/channel/UCL2O1gyawq0sYCuO-rZ6DeA",
@@ -226,10 +226,10 @@ window.PBERS_DATA = [
   },
   {
     "name": "AST.アオスト Polandball",
-    "subs": 3720,
-    "views": 1772727,
-    "subsLabel": "チャンネル登録者数 3720人",
-    "viewsLabel": "1,772,727回視聴",
+    "subs": 3710,
+    "views": 1773246,
+    "subsLabel": "チャンネル登録者数 3710人",
+    "viewsLabel": "1,773,246回視聴",
     "videos": 32,
     "url": "https://www.youtube.com/channel/UC0oyndW7j5GS5NIb8ww7cxw",
     "avatar": "https://yt3.googleusercontent.com/dOd-yxgy5PfDAsYNy3EZUgbsJ33X06RXpEYmRSK1JQz515G-lul6w2oViQdHiKQbpMIkA8TR=s900-c-k-c0x00ffffff-no-rj",
@@ -241,9 +241,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "AJ ball",
-    "subs": 3540,
+    "subs": 3530,
     "views": 1534710,
-    "subsLabel": "チャンネル登録者数 3540人",
+    "subsLabel": "チャンネル登録者数 3530人",
     "viewsLabel": "1,534,710回視聴",
     "videos": 39,
     "url": "https://www.youtube.com/channel/UC9EPL3fLMARICtvoL6NGMBA",
@@ -256,5 +256,5 @@ window.PBERS_DATA = [
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
-window.PBERS_UPDATED = "2026-10-15";
-window.PBERS_PREDICT = {"asOfMs": 1792076400000, "subs": {"base": 1567410, "rate": 1.920408451673309e-05}, "views": {"base": 699501225, "rate": 0.01229043979594087}};
+window.PBERS_UPDATED = "2026-10-16";
+window.PBERS_PREDICT = {"asOfMs": 1792162800000, "subs": {"base": 1567620, "rate": 1.0142166814517185e-05}, "views": {"base": 699620872, "rate": 0.010110843871931115}};
