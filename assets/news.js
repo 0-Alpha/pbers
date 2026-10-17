@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-17",
+    "label": "10月17日(土)",
+    "items": []
+  },
+  {
     "date": "2026-10-16",
     "label": "10月16日(金)",
     "items": [
@@ -173,67 +178,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "総再生数 100万回 突破",
         "value": 1000000
-      }
-    ]
-  },
-  {
-    "date": "2026-10-10",
-    "label": "10月10日(土)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "ハッホチャンネル",
-        "color": "#d48d5e",
-        "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 1万人 突破",
-        "value": 10000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "まるッとわかる地理の裏話",
-        "color": "#a1d45e",
-        "avatar": "https://yt3.googleusercontent.com/OKTvYCqWkuYG-s3iq1dydM6YDas44QIY_hQxl1bPLPQbGzbLUe-ljaKZ4AoJu1kb1r2PI0GPXnI=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 3000万回 突破",
-        "value": 30000000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "玄米ボール🍚",
-        "color": "#a3cc3e",
-        "avatar": "https://yt3.googleusercontent.com/OZQ7LsHl8T-Sl5BYycGb1Rtq-ciSrxEc4HLna525rT78ok08Fyewy8ymbmVYc5YdkYyTuuDZrw=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 600万回 突破",
-        "value": 6000000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "【PB】ネオンボール",
-        "color": "#d45ed4",
-        "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 400万回 突破",
-        "value": 4000000
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "ケエレビQ!",
-        "color": "#7e3ecc",
-        "avatar": "https://yt3.googleusercontent.com/T7210hEFAOEDsDIQv46XXCo2mYDBeI9SShL4A4ZIo-qJE5eURzK5jy6rFAOWk2orvXdsnt-r=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 100本 突破",
-        "value": 100
       }
     ]
   }

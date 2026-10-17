@@ -450,6 +450,19 @@ const THREAD_ORDER = { bump: "bumped DESC", new: "created DESC", posts: "posts D
 async function threadList(url, req, env) {
   const g = await guard(req, env, {}); if (g.err) return json({ error: g.err }, g.status);
   const board = "general";
+  // 軽量モード(D1の読み取り行数対策): 全スレ一覧は1回で約450行×3を読むため、
+  // トップの新着欄(?limit=5)やタブの新着バッジ(?ids=自分のスレ)ではサブクエリ無しで必要分だけ読む。
+  const ids = (url.searchParams.get("ids") || "").split(",").map((x) => parseInt(x, 10)).filter((x) => x > 0).slice(0, 50);
+  const lim = parseInt(url.searchParams.get("limit"), 10);
+  if (ids.length) {
+    const ph = ids.map((_, i) => "?" + (i + 1)).join(",");
+    const { results } = await env.DB.prepare("SELECT id,title,created,bumped,posts FROM board_threads WHERE id IN (" + ph + ") AND hidden=0").bind(...ids).all();
+    return json({ public: g.pub, admin: g.admin, sort: "bump", threads: results || [] });
+  }
+  if (lim > 0 && lim <= 50) {
+    const { results } = await env.DB.prepare("SELECT id,title,created,bumped,posts FROM board_threads WHERE board=?1 AND hidden=0 ORDER BY bumped DESC LIMIT ?2").bind(board, lim).all();
+    return json({ public: g.pub, admin: g.admin, sort: "bump", threads: results || [] });
+  }
   const sort = url.searchParams.get("sort");
   const hot = sort === "hot";                              // 勢い順(今伸びてるスレ)はJS側で算出
   const order = hot ? THREAD_ORDER.bump : (THREAD_ORDER[sort] || THREAD_ORDER.bump);   // 未知の値は最終レス順にフォールバック

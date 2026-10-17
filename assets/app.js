@@ -942,7 +942,7 @@
     var sec = document.getElementById('dash-board'), host = document.getElementById('dash-board-list');
     if (!sec || !host) return;
     if (boardMaint || !boardEnabled || !BOARD_API) { sec.hidden = true; return; }   // 整備中は新着欄も隠す
-    fetch(boardApi('/threads'), { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
+    fetch(boardApi('/threads') + '?limit=5', { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {   // 5件だけ読む(D1読み取り節約)
       var ths = (d.threads || []).slice(0, 5);
       if (!ths.length) { sec.hidden = true; return; }
       sec.hidden = false;
@@ -1565,7 +1565,7 @@
     var si = document.getElementById('bd-search'), sc = document.getElementById('bd-sclear'), sTimer = null;
     si.addEventListener('input', function () {
       var q = si.value.trim(); sc.hidden = !q; sortBar.hidden = !!q;   // 検索中は並び替えを隠す
-      clearTimeout(sTimer); sTimer = setTimeout(function () { if (q) doSearch(q); else loadAll(); }, 300);
+      clearTimeout(sTimer); sTimer = setTimeout(function () { if (q) doSearch(q); else loadAll(); }, 700);   // 検索は全レスを走査するので打鍵中は待つ
     });
     sc.addEventListener('click', function () { si.value = ''; sc.hidden = true; sortBar.hidden = false; loadAll(); si.focus(); });
     loadAll();
@@ -1872,8 +1872,9 @@
       if (boardEnabled && tabBtn) tabBtn.hidden = false;
       renderDashBoard();   // 公開中ならダッシュボードに新着スレッドを表示
       // 自分が関わったスレがあれば、読込時に新着返信を背後でチェックしてタブにバッジを出す
-      if (boardEnabled && Object.keys(myThreads()).length) {
-        fetch(boardApi('/threads'), { headers: boardHeaders() }).then(function (r) { return r.json(); })
+      var mineIds = Object.keys(myThreads()).filter(function (k) { return +k > 0; }).slice(-50);   // 自分のスレだけ照会(全件取得しない)
+      if (boardEnabled && mineIds.length) {
+        fetch(boardApi('/threads') + '?ids=' + mineIds.join(','), { headers: boardHeaders() }).then(function (r) { return r.json(); })
           .then(function (d) { boardThreadsCache = d.threads || []; updateBoardBadge(countNew(boardThreadsCache)); }).catch(function () {});
       }
       if (boardEnabled && viewOf() === 'board' && currentView !== 'board') switchTab('board', true);
