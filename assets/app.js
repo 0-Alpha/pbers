@@ -1214,6 +1214,23 @@
       admaxEnqueue({ banner: { admax_id: id, tag_id: 'e692bc71cb95dfd32e455f25fac1732e', type: 'b', width: 160, height: 600 } });
     } catch (e) {}
   }
+  // スマホ専用・スレ一覧の5番目と6番目の間に入れるバナー(320×50)。
+  // 一覧は並び替え/ページ送りの度に innerHTML で作り直すので、広告ノードは1つだけ作って毎回差し替え先へ移す。
+  var _listAdNode = null;
+  function placeListAd(scope) {
+    var ph = scope.querySelector('.bd-list-ad-ph'); if (!ph) return;
+    try {
+      if (!_listAdNode) {
+        _listAdNode = document.createElement('div');
+        _listAdNode.className = 'bd-list-ad';
+        _listAdNode.innerHTML = '<div id="admax-list-320x50" style="display:inline-block"></div>';
+        ph.replaceWith(_listAdNode);
+        admaxEnqueue({ banner: { admax_id: 'admax-list-320x50', tag_id: '3ee3c9b57480017760b9808e668cf598', type: 'b', width: 320, height: 50 } });
+      } else {
+        ph.replaceWith(_listAdNode);
+      }
+    } catch (e) {}
+  }
   function renderBoard() {
     var host = document.getElementById('board-body'); if (!host) return;
     if (boardMaint) {   // 整備中: APIを叩かず案内のみ
@@ -1468,12 +1485,15 @@
       var slice = ths.slice(boardPage * PAGE_SIZE, boardPage * PAGE_SIZE + PAGE_SIZE);
       var head = isSearch ? '<div class="bd-sresult">「' + esc(q) + '」の結果 ' + ths.length + '件</div>' : '';
       var rows = slice.map(function (t) { return threadRow(t, isSearch); });
+      var listAd = rows.length > 5 && window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
+      if (listAd) rows.splice(5, 0, '<div class="bd-list-ad-ph"></div>');   // スマホ: 5番目と6番目の間に広告
       var pager = pages > 1 ? '<div class="bd-pager">' +
           '<button type="button" class="bd-pg" data-pg="prev"' + (boardPage <= 0 ? ' disabled' : '') + '>← 前</button>' +
           '<span class="bd-pg-info">' + (boardPage + 1) + ' / ' + pages + 'ページ（' + ths.length + 'スレ）</span>' +
           '<button type="button" class="bd-pg" data-pg="next"' + (boardPage >= pages - 1 ? ' disabled' : '') + '>次 →</button>' +
         '</div>' : '';
       box.innerHTML = head + withAds(rows, isSearch) + pager;
+      if (listAd) placeListAd(box);
       box.querySelectorAll('.th').forEach(function (el) {
         el.querySelector('.th-main').addEventListener('click', function () { boardGo(+el.dataset.id); });
       });
