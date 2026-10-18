@@ -200,6 +200,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-10-17",
             "s": 440000
+          },
+          {
+            "d": "2026-10-18",
+            "s": 440000
           }
         ]
       },
@@ -400,13 +404,17 @@ window.PBERS_RACE = [
           {
             "d": "2026-10-17",
             "s": 225000
+          },
+          {
+            "d": "2026-10-18",
+            "s": 225000
           }
         ]
       },
       {
-        "name": "Opera_cb",
+        "name": "OperaJP",
         "color": "#79d45e",
-        "avatar": "https://yt3.googleusercontent.com/U9rqdPqWMX7a6j1Nr0HKX2yBiK40Mxy7LJbTLRWaC_lMEcHPqoKb140oquBes08LNaSzmLa4kg=s900-c-k-c0x00ffffff-no-rj",
+        "avatar": "https://yt3.googleusercontent.com/IZb5E7nvH7_juX1t_m9wZnPHzENshaq6qPoKGCkfy-P1CF9TWQsUH4wCA0-Q2JYpHzxR8316DA=s900-c-k-c0x00ffffff-no-rj",
         "subs": 192000,
         "history": [
           {
@@ -599,6 +607,10 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-10-17",
+            "s": 192000
+          },
+          {
+            "d": "2026-10-18",
             "s": 192000
           }
         ]
