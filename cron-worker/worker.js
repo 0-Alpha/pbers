@@ -464,6 +464,7 @@ async function threadList(url, req, env) {
     return json({ public: g.pub, admin: g.admin, sort: "bump", threads: results || [] });
   }
   const sort = url.searchParams.get("sort");
+  if (url.searchParams.has("page")) return threadPage(url, env, g, board, sort);   // ページ単位(50件)で読む
   const hot = sort === "hot";                              // 勢い順(今伸びてるスレ)はJS側で算出
   const order = hot ? THREAD_ORDER.bump : (THREAD_ORDER[sort] || THREAD_ORDER.bump);   // 未知の値は最終レス順にフォールバック
   try { await ensureTags(env); } catch (e) {}              // タグ表(無ければ作成)。サブクエリの参照先を保証
@@ -485,6 +486,47 @@ async function threadList(url, req, env) {
     outSort = "hot";
   }
   return json({ public: g.pub, admin: g.admin, sort: outSort, threads: rows });
+}
+// スレ一覧をページ単位で返す(?page=0,1,..&sort=&tag=)。全スレを毎回読むとD1の読み取り行数が膨らむため、
+// 内側で並べ替え+LIMIT/OFFSETして1ページ分(+次ページ有無判定の1件)に絞ってから、外側でadmin/tagのサブクエリを付ける。
+const THREAD_PER_PAGE = 50;
+let _thIdxReady = false;
+async function ensureThreadIdx(env) {   // 並べ替え用インデックス(初回のみ。既存なら何もしない)
+  if (_thIdxReady) return;
+  try {
+    await env.DB.batch([
+      env.DB.prepare("CREATE INDEX IF NOT EXISTS idx_board_threads ON board_threads(board, bumped)"),
+      env.DB.prepare("CREATE INDEX IF NOT EXISTS idx_board_threads_created ON board_threads(board, created)"),
+      env.DB.prepare("CREATE INDEX IF NOT EXISTS idx_board_threads_posts ON board_threads(board, posts)"),
+    ]);
+  } catch (e) {}
+  _thIdxReady = true;
+}
+async function threadPage(url, env, g, board, sort) {
+  try { await ensureTags(env); } catch (e) {}
+  await ensureThreadIdx(env);
+  const page = Math.min(Math.max(parseInt(url.searchParams.get("page"), 10) || 0, 0), 100);
+  const tag = url.searchParams.get("tag") || "";
+  const hot = sort === "hot";
+  const now = Date.now();
+  const s = hot ? "hot" : (THREAD_ORDER[sort] ? sort : "bump");
+  const order = hot ? "hot DESC" : THREAD_ORDER[s];
+  const where = ["t.board=?1"], binds = [board];
+  if (!g.admin) where.push("t.hidden=0");
+  if (TAG_SET.has(tag)) { binds.push(tag); where.push("COALESCE((SELECT tg.tag FROM board_tags tg WHERE tg.thread_id=t.id),'pb')=?" + binds.length); }
+  binds.push(now); const nowP = "?" + binds.length;
+  binds.push(THREAD_PER_PAGE + 1); const limP = "?" + binds.length;
+  binds.push(page * THREAD_PER_PAGE); const offP = "?" + binds.length;
+  // 勢い ≒ 1日あたりのレス数(経過時間+2hで新スレの過大評価を抑制)。旧JS算出と同じ式
+  const inner = "SELECT t.id,t.title,t.created,t.bumped,t.posts,t.hidden," +
+    "ROUND(t.posts*24.0/(MAX(0," + nowP + "-t.created)/3600000.0+2),1) AS hot" +
+    " FROM board_threads t WHERE " + where.join(" AND ") + " ORDER BY " + order + " LIMIT " + limP + " OFFSET " + offP;
+  const sql = "SELECT x.*,(SELECT p.admin FROM board_posts p WHERE p.thread_id=x.id AND p.no=1) AS admin," +
+    "(SELECT tg.tag FROM board_tags tg WHERE tg.thread_id=x.id) AS tag FROM (" + inner + ") x ORDER BY " + order.replace(/(^|, )(\w)/g, "$1x.$2");
+  const { results } = await env.DB.prepare(sql).bind(...binds).all();
+  const rows = results || [];
+  const more = rows.length > THREAD_PER_PAGE;
+  return json({ public: g.pub, admin: g.admin, sort: s, paged: true, page, more, threads: rows.slice(0, THREAD_PER_PAGE) });
 }
 async function boardSearch(url, req, env) {
   const g = await guard(req, env, {}); if (g.err) return json({ error: g.err }, g.status);

@@ -1436,6 +1436,8 @@
     });
     var box = document.getElementById('board-threads');
     var PAGE_SIZE = 50, boardPage = 0, curList = [], curIsSearch = false, curQ = '', boardTagFilter = '';
+    // srvPaged: サーバー側ページ送り(1ページ50件だけ読む=D1節約)。旧Workerの全件応答ならクライアント側ページ送りに戻る
+    var srvPaged = false, srvMore = false;
     function adBox(label) {   // 広告枠プレビュー(管理者のみ表示・実広告ではない)
       return '<div class="ad-slot"><span class="ad-slot-tag">広告スペース（プレビュー・管理者のみ表示）</span>' +
         '<span class="ad-slot-sub">' + label + '</span></div>';
@@ -1469,27 +1471,28 @@
         (boardKey ? '<button type="button" class="bmod bc-delth" data-id="' + t.id + '">完全削除</button>' : '') +
       '</div>';
     }
-    function renderList() {   // 現在のスレ一覧を50件/ページで描画(クライアント側ページ送り・種別で絞り込み)
-      var isSearch = curIsSearch, q = curQ;
-      var ths = (!isSearch && boardTagFilter) ? curList.filter(function (t) { return tagKey(t.tag) === boardTagFilter; }) : curList;
+    function renderList() {   // 現在のスレ一覧を50件/ページで描画(サーバー側ページ送り。旧応答時はクライアント側で分割・絞り込み)
+      var isSearch = curIsSearch, q = curQ, srv = !isSearch && srvPaged;
+      var ths = (!isSearch && !srv && boardTagFilter) ? curList.filter(function (t) { return tagKey(t.tag) === boardTagFilter; }) : curList;
       if (!ths.length) {
         box.innerHTML = '<div class="board-empty">' +
           (isSearch ? '「' + esc(q) + '」に一致するスレッドはありません。'
+           : srv && boardPage > 0 ? 'このページにスレッドはありません。'
            : boardTagFilter ? '「' + TAGS[boardTagFilter].label + '」のスレッドはありません。'
            : 'まだスレッドがありません。最初のスレッドを立ててみよう。') + '</div>';
         return;
       }
-      var pages = Math.ceil(ths.length / PAGE_SIZE);
-      if (boardPage >= pages) boardPage = pages - 1;
+      var pages = srv ? boardPage + (srvMore ? 2 : 1) : Math.ceil(ths.length / PAGE_SIZE);
+      if (!srv && boardPage >= pages) boardPage = pages - 1;
       if (boardPage < 0) boardPage = 0;
-      var slice = ths.slice(boardPage * PAGE_SIZE, boardPage * PAGE_SIZE + PAGE_SIZE);
+      var slice = srv ? ths : ths.slice(boardPage * PAGE_SIZE, boardPage * PAGE_SIZE + PAGE_SIZE);
       var head = isSearch ? '<div class="bd-sresult">「' + esc(q) + '」の結果 ' + ths.length + '件</div>' : '';
       var rows = slice.map(function (t) { return threadRow(t, isSearch); });
       var listAd = rows.length > 5 && window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
       if (listAd) rows.splice(5, 0, '<div class="bd-list-ad-ph"></div>');   // スマホ: 5番目と6番目の間に広告
       var pager = pages > 1 ? '<div class="bd-pager">' +
           '<button type="button" class="bd-pg" data-pg="prev"' + (boardPage <= 0 ? ' disabled' : '') + '>← 前</button>' +
-          '<span class="bd-pg-info">' + (boardPage + 1) + ' / ' + pages + 'ページ（' + ths.length + 'スレ）</span>' +
+          '<span class="bd-pg-info">' + (srv ? (boardPage + 1) + 'ページ目' : (boardPage + 1) + ' / ' + pages + 'ページ（' + ths.length + 'スレ）') + '</span>' +
           '<button type="button" class="bd-pg" data-pg="next"' + (boardPage >= pages - 1 ? ' disabled' : '') + '>次 →</button>' +
         '</div>' : '';
       box.innerHTML = head + withAds(rows, isSearch) + pager;
@@ -1502,14 +1505,28 @@
         b.addEventListener('click', function () {
           if (b.disabled) return;
           boardPage += (b.dataset.pg === 'next' ? 1 : -1);
-          renderList();
           box.scrollIntoView({ block: 'start' });
+          if (srv) loadAll(boardPage); else renderList();
         });
       });
     }
-    function paint(ths, isSearch, q) {
-      if (!isSearch) { boardThreadsCache = ths; updateBoardBadge(countNew(ths)); }
-      curList = ths || []; curIsSearch = !!isSearch; curQ = q || ''; boardPage = 0;
+    function mergeMine(ths) {   // 表示中ページのうち自分のスレだけ新着バッジ用キャッシュへ反映
+      var m = myThreads();
+      (ths || []).forEach(function (t) {
+        if (!m[t.id]) return;
+        var f = null; boardThreadsCache.forEach(function (x) { if (x.id === t.id) f = x; });
+        if (f) f.posts = t.posts; else boardThreadsCache.push({ id: t.id, posts: t.posts });
+      });
+    }
+    function paint(ths, isSearch, q, d) {
+      var paged = !!(d && d.paged);
+      if (!isSearch) {
+        if (paged) mergeMine(ths); else boardThreadsCache = ths;
+        updateBoardBadge(countNew(boardThreadsCache));
+      }
+      curList = ths || []; curIsSearch = !!isSearch; curQ = q || '';
+      if (!isSearch) { srvPaged = paged; srvMore = !!(d && d.more); }
+      boardPage = paged ? (d.page || 0) : 0;
       renderList();
     }
     var sortBar = document.getElementById('bd-sort');
@@ -1517,12 +1534,14 @@
     function markSort() {
       sortBar.querySelectorAll('.bd-sort-b').forEach(function (b) { b.classList.toggle('on', b.dataset.sort === curSort); });
     }
-    function loadAll() {
+    function loadAll(page) {   // page: 0始まり。1ページ分(50件)だけ取得
       box.innerHTML = '<div class="board-empty">読み込み中…</div>';
-      var q = curSort && curSort !== 'bump' ? '?sort=' + encodeURIComponent(curSort) : '';
+      var q = '?page=' + (page || 0) +
+        (curSort && curSort !== 'bump' ? '&sort=' + encodeURIComponent(curSort) : '') +
+        (boardTagFilter ? '&tag=' + encodeURIComponent(boardTagFilter) : '');
       fetch(boardApi('/threads') + q, { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
         if (d.error) { box.innerHTML = '<div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; return; }
-        paint(d.threads || [], false);
+        paint(d.threads || [], false, '', d);
       }).catch(function () { box.innerHTML = '<div class="board-empty">読み込みに失敗しました。</div>'; });
     }
     markSort();
@@ -1537,7 +1556,7 @@
       var v = b.dataset.tf || ''; if (v === boardTagFilter) return;
       boardTagFilter = v; boardPage = 0;
       tagFilter.querySelectorAll('.bd-tf').forEach(function (x) { x.classList.toggle('on', x === b); });
-      renderList();
+      if (srvPaged && !curIsSearch) loadAll(0); else renderList();   // サーバー側で種別絞り込み
     });
     // 管理者専用: 広告枠プレビュー(なし/3枠/5枠)
     var adCtl = document.getElementById('bd-adctl');
