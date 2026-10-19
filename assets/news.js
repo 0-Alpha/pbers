@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-19",
+    "label": "10月19日(月)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "田中MID",
+        "color": "#2f80ed",
+        "avatar": "https://yt3.googleusercontent.com/mnFY8X_lmtyW54Uh5ocg1QJQVTxTRKG9XDdrGAhxFZpPPJzhsGue-cMHqLBCsIRF4hBHjsLU=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 32万人 突破",
+        "value": 320000
+      }
+    ]
+  },
+  {
     "date": "2026-10-18",
     "label": "10月18日(日)",
     "items": [
@@ -46,7 +63,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "にこちPB",
-        "color": "#493ecc",
+        "color": "#5ebcd4",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -102,7 +119,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "にこちPB",
-        "color": "#493ecc",
+        "color": "#5ebcd4",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -143,10 +160,5 @@ window.PBERS_NEWS = [
         "value": 100
       }
     ]
-  },
-  {
-    "date": "2026-10-12",
-    "label": "10月12日(月)",
-    "items": []
   }
 ];

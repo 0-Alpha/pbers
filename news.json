@@ -1,9 +1,21 @@
 {
   "site": "PBers",
-  "updated": "2026-10-18",
-  "generated": "2026-10-19T03:08:02+09:00",
-  "count": 10,
+  "updated": "2026-10-19",
+  "generated": "2026-10-20T05:37:56+09:00",
+  "count": 11,
   "items": [
+    {
+      "id": "2026-10-19/subs/田中mid/320000",
+      "date": "2026-10-19",
+      "channel": "田中MID",
+      "slug": "田中mid",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 32万人 突破",
+      "value": 320000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E7%94%B0%E4%B8%ADmid/"
+    },
     {
       "id": "2026-10-18/views/ニイソビボール/9000000",
       "date": "2026-10-18",
