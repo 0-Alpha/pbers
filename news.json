@@ -1,8 +1,8 @@
 {
   "site": "PBers",
-  "updated": "2026-10-20",
-  "generated": "2026-10-21T04:18:40+09:00",
-  "count": 9,
+  "updated": "2026-10-21",
+  "generated": "2026-10-22T04:20:57+09:00",
+  "count": 8,
   "items": [
     {
       "id": "2026-10-20/views/にこちpb/6000000",
@@ -99,18 +99,6 @@
       "value": 200,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E3%81%86%E3%81%9A%E3%81%BE%E3%81%8D/"
-    },
-    {
-      "id": "2026-10-14/subs/みかんぼーる/390000",
-      "date": "2026-10-14",
-      "channel": "Æž!みかんぼーる🍊",
-      "slug": "みかんぼーる",
-      "metric": "subs",
-      "type": "milestone",
-      "label": "登録者 39万人 突破",
-      "value": 390000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%BF%E3%81%8B%E3%82%93%E3%81%BC%E3%83%BC%E3%82%8B/"
     }
   ]
 }
