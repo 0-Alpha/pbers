@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-22",
+    "label": "10月22日(木)",
+    "items": []
+  },
+  {
     "date": "2026-10-21",
     "label": "10月21日(水)",
     "items": [
@@ -7,7 +12,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "subs",
         "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
-        "color": "#793ecc",
+        "color": "#5e95d4",
         "avatar": "https://yt3.googleusercontent.com/lvLkO7Ig6HXvN9Dk5i1JUKiyrI5U-rnlu-CWg2j70hBbBCTkyxhTY0BKHSMXeYioRntEPDRE=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -39,11 +44,6 @@ window.PBERS_NEWS = [
   {
     "date": "2026-10-16",
     "label": "10月16日(金)",
-    "items": []
-  },
-  {
-    "date": "2026-10-15",
-    "label": "10月15日(木)",
     "items": []
   }
 ];

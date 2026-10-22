@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-22",
+    "label": "10月22日(木)",
+    "items": []
+  },
+  {
     "date": "2026-10-21",
     "label": "10月21日(水)",
     "items": []
@@ -12,7 +17,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "にこちPB",
-        "color": "#cc8c3e",
+        "color": "#d45e85",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -96,7 +101,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "にこちPB",
-        "color": "#cc8c3e",
+        "color": "#d45e85",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -121,10 +126,5 @@ window.PBERS_NEWS = [
         "value": 200
       }
     ]
-  },
-  {
-    "date": "2026-10-15",
-    "label": "10月15日(木)",
-    "items": []
   }
 ];
