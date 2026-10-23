@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-23",
+    "label": "10月23日(金)",
+    "items": []
+  },
+  {
     "date": "2026-10-22",
     "label": "10月22日(木)",
     "items": []
@@ -17,7 +22,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "にこちPB",
-        "color": "#d45e85",
+        "color": "#ad3ecc",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -84,7 +89,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "【PB】ネオンボール",
-        "color": "#4e3ecc",
+        "color": "#3ecc6f",
         "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -101,29 +106,12 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "にこちPB",
-        "color": "#d45e85",
+        "color": "#ad3ecc",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "総再生数 500万回 突破",
         "value": 5000000
-      }
-    ]
-  },
-  {
-    "date": "2026-10-16",
-    "label": "10月16日(金)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "うずまき🌀",
-        "color": "#4ec3e6",
-        "avatar": "https://yt3.googleusercontent.com/LkRrW7onGMeTLMUJrz7kkIrH0s24TKAC_bpYBQGYSVDe_V_mde3xmj8zE5mVKHtXTKDArtwGaU4=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 200本 突破",
-        "value": 200
       }
     ]
   }
