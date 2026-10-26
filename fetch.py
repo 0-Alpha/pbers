@@ -56,6 +56,13 @@ def fetch_channel(url):
     # The /about page carries aboutChannelViewModel, which holds this
     # channel's OWN subscriber count AND total view count as plain strings.
     h = fetch(url + "/about")
+    # 空/ブロックされたページ(og:title も無い)が返ることがある(CIで散発)。間を空けて取り直す
+    for wait in (5, 15):
+        if '<meta property="og:title"' in h:
+            break
+        sys.stderr.write("empty page, refetch in %ds: %s\n" % (wait, url))
+        time.sleep(wait)
+        h = fetch(url + "/about")
     # subscriber: direct-string form (about model), owner's own value
     m = re.search(r'"subscriberCountText":"([^"]*(?:\u767b\u9332\u8005|subscribers)[^"]*)"', h)
     subs_label = m.group(1) if m else None
