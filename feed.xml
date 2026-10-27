@@ -5,7 +5,14 @@
 <atom:link href="https://pbers.com/feed.xml" rel="self" type="application/rss+xml"/>
 <description>ポーランドボーラー(YouTube)の登録者・総再生・投稿数のマイルストーン突破ニュース</description>
 <language>ja</language>
-<lastBuildDate>Mon, 26 Oct 2026 12:00:00 +0900</lastBuildDate>
+<lastBuildDate>Tue, 27 Oct 2026 12:00:00 +0900</lastBuildDate>
+<item>
+<title>空白ボール — 登録者 1万人 突破</title>
+<link>https://pbers.com/c/%E7%A9%BA%E7%99%BD%E3%83%9C%E3%83%BC%E3%83%AB/</link>
+<guid isPermaLink="false">2026-10-27/subs/空白ボール/10000</guid>
+<pubDate>Tue, 27 Oct 2026 12:00:00 +0900</pubDate>
+<description>空白ボール — 登録者 1万人 突破</description>
+</item>
 <item>
 <title>レイアルファ — 総再生数 500万回 突破</title>
 <link>https://pbers.com/c/%E3%83%AC%E3%82%A4%E3%82%A2%E3%83%AB%E3%83%95%E3%82%A1/</link>
@@ -75,19 +82,5 @@
 <guid isPermaLink="false">2026-10-24/videos/ばかわたし/100</guid>
 <pubDate>Sat, 24 Oct 2026 12:00:00 +0900</pubDate>
 <description>ばかわたし — 投稿数 100本 突破</description>
-</item>
-<item>
-<title>にこちPB — 総再生数 600万回 突破</title>
-<link>https://pbers.com/c/%E3%81%AB%E3%81%93%E3%81%A1pb/</link>
-<guid isPermaLink="false">2026-10-20/views/にこちpb/6000000</guid>
-<pubDate>Tue, 20 Oct 2026 12:00:00 +0900</pubDate>
-<description>にこちPB — 総再生数 600万回 突破</description>
-</item>
-<item>
-<title>りっつんボール — 総再生数 400万回 突破</title>
-<link>https://pbers.com/c/%E3%82%8A%E3%81%A3%E3%81%A4%E3%82%93%E3%83%9C%E3%83%BC%E3%83%AB/</link>
-<guid isPermaLink="false">2026-10-20/views/りっつんボール/4000000</guid>
-<pubDate>Tue, 20 Oct 2026 12:00:00 +0900</pubDate>
-<description>りっつんボール — 総再生数 400万回 突破</description>
 </item>
 </channel></rss>
