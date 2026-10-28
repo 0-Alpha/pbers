@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-28",
+    "label": "10月28日(水)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "こうちゃ(ポーランドボール)",
+        "color": "#ccbb3e",
+        "avatar": "https://yt3.googleusercontent.com/1cbq4WC93gSQ0ofLhwbV_cCyoCRMOPxB1nseXGGQhNuKH7hEYNyLIckvlO_OEELBCcnFduL2Eto=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 6万人 突破",
+        "value": 60000
+      }
+    ]
+  },
+  {
     "date": "2026-10-27",
     "label": "10月27日(火)",
     "items": [
@@ -85,7 +102,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "videos",
         "name": "【PB】ネオンボール",
-        "color": "#d45e81",
+        "color": "#b23ecc",
         "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -124,7 +141,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "【PB】ネオンボール",
-        "color": "#d45e81",
+        "color": "#b23ecc",
         "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -152,11 +169,6 @@ window.PBERS_NEWS = [
   {
     "date": "2026-10-22",
     "label": "10月22日(木)",
-    "items": []
-  },
-  {
-    "date": "2026-10-21",
-    "label": "10月21日(水)",
     "items": []
   }
 ];

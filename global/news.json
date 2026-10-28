@@ -1,8 +1,8 @@
 {
   "site": "PBers Global",
-  "updated": "2026-10-27",
-  "generated": "2026-10-28T05:10:41+09:00",
-  "count": 2,
+  "updated": "2026-10-28",
+  "generated": "2026-10-29T05:20:53+09:00",
+  "count": 1,
   "items": [
     {
       "id": "2026-10-25/views/dezinichtフヒフム-海外アカウント/70000000",
@@ -13,18 +13,6 @@
       "type": "milestone",
       "label": "総再生数 7000万回 突破",
       "value": 70000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/global/c/dezinicht%E3%83%95%E3%83%92%E3%83%95%E3%83%A0-%E6%B5%B7%E5%A4%96%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/"
-    },
-    {
-      "id": "2026-10-21/subs/dezinichtフヒフム-海外アカウント/140000",
-      "date": "2026-10-21",
-      "channel": "Dezinicht【Æž!フヒフム 海外アカウント】",
-      "slug": "dezinichtフヒフム-海外アカウント",
-      "metric": "subs",
-      "type": "milestone",
-      "label": "登録者 14万人 突破",
-      "value": 140000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/global/c/dezinicht%E3%83%95%E3%83%92%E3%83%95%E3%83%A0-%E6%B5%B7%E5%A4%96%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/"
     }
