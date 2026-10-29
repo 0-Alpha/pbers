@@ -1,5 +1,33 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-29",
+    "label": "10月29日(木)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "にこちPB",
+        "color": "#d4895e",
+        "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 800万回 突破",
+        "value": 8000000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "アフガンボール",
+        "color": "#d45ea9",
+        "avatar": "https://yt3.googleusercontent.com/aOj-FnTWhrUAPjz49cHMeTuREL5cpUpsUWPVs1AuaeeMqVIrUHxeIOlHdCi0h8HukDZHL_ZQ0HA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 100万回 突破",
+        "value": 1000000
+      }
+    ]
+  },
+  {
     "date": "2026-10-28",
     "label": "10月28日(水)",
     "items": [
@@ -164,11 +192,6 @@ window.PBERS_NEWS = [
   {
     "date": "2026-10-23",
     "label": "10月23日(金)",
-    "items": []
-  },
-  {
-    "date": "2026-10-22",
-    "label": "10月22日(木)",
     "items": []
   }
 ];
