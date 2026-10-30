@@ -1,5 +1,44 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-10-30",
+    "label": "10月30日(金)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "【PB】ネオンボール",
+        "color": "#3ec4cc",
+        "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 1万人 突破",
+        "value": 10000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "Æž!みかんぼーる🍊",
+        "color": "#eba864",
+        "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 5億回 突破",
+        "value": 500000000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "カルマルボール",
+        "color": "#cc903e",
+        "avatar": "https://yt3.googleusercontent.com/MOIsgXzLNq32S_uvADNU_oJ0f71yq4X_-4MKBArq_HDGubhh6h61U0sYtG6mmDywuESxFVYnLA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 400万回 突破",
+        "value": 4000000
+      }
+    ]
+  },
+  {
     "date": "2026-10-29",
     "label": "10月29日(木)",
     "items": [
@@ -7,7 +46,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "にこちPB",
-        "color": "#d4895e",
+        "color": "#cc3e87",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -52,7 +91,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "subs",
         "name": "空白ボール",
-        "color": "#5e66d4",
+        "color": "#b23ecc",
         "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -108,7 +147,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "subs",
         "name": "にこちPB",
-        "color": "#d4895e",
+        "color": "#cc3e87",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -119,7 +158,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ニイソビボール",
-        "color": "#793ecc",
+        "color": "#5e95d4",
         "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -130,7 +169,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "videos",
         "name": "【PB】ネオンボール",
-        "color": "#b23ecc",
+        "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -158,7 +197,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "にこちPB",
-        "color": "#d4895e",
+        "color": "#cc3e87",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -169,7 +208,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "【PB】ネオンボール",
-        "color": "#b23ecc",
+        "color": "#3ec4cc",
         "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -188,10 +227,5 @@ window.PBERS_NEWS = [
         "value": 100
       }
     ]
-  },
-  {
-    "date": "2026-10-23",
-    "label": "10月23日(金)",
-    "items": []
   }
 ];

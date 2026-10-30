@@ -1,9 +1,45 @@
 {
   "site": "PBers",
-  "updated": "2026-10-29",
-  "generated": "2026-10-30T05:21:27+09:00",
-  "count": 14,
+  "updated": "2026-10-30",
+  "generated": "2026-10-31T05:00:49+09:00",
+  "count": 17,
   "items": [
+    {
+      "id": "2026-10-30/subs/pbネオンボール/10000",
+      "date": "2026-10-30",
+      "channel": "【PB】ネオンボール",
+      "slug": "pbネオンボール",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 1万人 突破",
+      "value": 10000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/pb%E3%83%8D%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%AB/"
+    },
+    {
+      "id": "2026-10-30/views/みかんぼーる/500000000",
+      "date": "2026-10-30",
+      "channel": "Æž!みかんぼーる🍊",
+      "slug": "みかんぼーる",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 5億回 突破",
+      "value": 500000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%81%BF%E3%81%8B%E3%82%93%E3%81%BC%E3%83%BC%E3%82%8B/"
+    },
+    {
+      "id": "2026-10-30/views/カルマルボール/4000000",
+      "date": "2026-10-30",
+      "channel": "カルマルボール",
+      "slug": "カルマルボール",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 400万回 突破",
+      "value": 4000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%82%AB%E3%83%AB%E3%83%9E%E3%83%AB%E3%83%9C%E3%83%BC%E3%83%AB/"
+    },
     {
       "id": "2026-10-29/views/にこちpb/8000000",
       "date": "2026-10-29",
