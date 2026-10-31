@@ -1,7 +1,64 @@
 # X(Twitter)アカウント一覧。fetch_x.py が毎日取得して x_history.csv に記録する。
 # 書式: ハンドル(@なし)  対応するYouTubeチャンネルID(不明なら省略)
-fuhifum        UCkjdTrE4hiJ4qNOV7NPGSSw
-mikan_ball888  UCRCQ3G1d0DM2krO-Fx5LOuQ
-tnk_mid559     UC6BwO1hK3hHd-Hr43jokcyg
-NikotyuuAN
-sattoa_ball    UC_qD8VahU0Fr3q1SKg6kYtg
+# 2026-10-31: 全チャンネルのYouTube概要欄(リンク欄・本文)にあるXリンクから一括登録。
+#   除外: 引退チャンネル / 鍵垢(AzuluaFinlanbal) / User not found(kimama_ball, 3CuCm6bSLM69272,
+#         sukomiya43, goatsovieto, Porland_train, 4QlFzzRWox45118)
+
+fuhifum            UCkjdTrE4hiJ4qNOV7NPGSSw
+tnk_mid559         UC6BwO1hK3hHd-Hr43jokcyg
+sattoa_ball        UC_qD8VahU0Fr3q1SKg6kYtg
+Sait_O_Neille      UCxKNMaOOdi32HNUFTOCw-8w
+Swikaball          UCy46bv4oPol4XOzKIbiw1LQ
+nittei_ball        UCYNJQu0hhJFT36rCVfFpRXA
+BallYukkuri        UC-fbc__tWFtZSnyBSvTP7vg
+tama2224           UCzHHAy2xN6Vy0wwZPbUZkSA
+Sumisu88888888     UCKCAWr6aCfgm9lLWmM7yEKQ
+084pd              UCeVN-gQR83mALrvJ-fwd7Ig
+jaadfxyz           UCJnnOU3J61-6fC2RKWEsAxA
+Hotateillust       UCAUMzXLzsiUdYFG-1DELB3w  # 概要欄本文から
+muscatball2        UCzRXkYhS5YbXshAHUm8kUyg
+marubooru          UCkSwKF9fslUtFRiaA-Oto6Q
+MIKUball_pber      UCP8Ycdrev3FBUVFH-PMxQNQ
+han_pennu          UCYhJeY5hQxjCB5onai17ExA
+spaceball9314      UCUwsogiV3npfOKMReFmY6wg
+genmaiball_PBer    UCtPArTiYwO9r7BeXVZdZjGQ
+FBokujo            UCeImiuiv09c_mQzrJziJPAA
+BAKAWATSHI         UCnZNY63Txhu4ot3l2lbicOA
+aamazidehima       UCYmJ2rqzqNtXBm-gn438zGw
+WinPolandball      UCh3VbVye4ZnUM0bWM_Y809A  # 概要欄本文から
+draw1225           UCSmEHeb7jyz5cCBzwHRYZ_w
+Italy_Poland       UC4XJouYnuo5B4eKy2yWhkHg
+kakapo_ball0807    UCq7LWvE7EDAvLZ_5jctGQ3w
+Sefil_Ball         UCQ81jsSQFLY49Fh9UfOTONQ
+kawoshinlove_sb    UCjwy3iaSFry_4JOWVv44lXA
+afghan_ball        UCXCVbJCSF4FLP_TfojbkvUA  # 概要欄本文から
+karaageball810     UCEr4gmYO5FUgbIFTzeJywiw  # 概要欄本文から
+Nisv_ball          UCpaHKFWTUu4hyr_MafHXppA
+DX2125061761727    UCGLN4EjvE2-nxXUvkb1LyGQ
+TeitekuPBer        UCdnAJEteT_M16ZspihWqfSQ
+Kaya_gu1           UCfl1W6sL5-es_rWqA7bGbRQ
+sekume498705       UCOWqMzG_N3gzH1yGENiUFiA
+BallSea33287       UCX5ufJWJbECJFqQ61Fyvccw  # 概要欄本文から
+TTboru2025         UCN3r8cMh5I68MOXV5kXJiLA
+omochi_ball        UCREZRnCbbfasfV8sJ9Q8E0w  # 概要欄本文から
+sandoicchida       UCXH-8i_13OHRRT3Lykz88WQ  # 概要欄本文から
+nageimo120         UCAvQ7Zr39LhDq_ePoFT0NKw
+soa_ball           UCRoXku8rWoPR9SFp9eKNUtQ
+powerpoint_ball    UCRYpyKZD_7HkForFFW-7Dfw
+Tamashohsm         UC9jmzFCXGdLiR75vcdxDH6A  # 概要欄本文から
+tyurumeeen         UC8RiqSKxCmtZYEk_fLze0pQ
+Piinatsu_2gou      UC-5VUpfrG3wSzqK9fPDAWAA
+NeonBall_PB        UCtYX3q7PyNWFbykXddPJEdA
+wanosati_PB        UCxlk07RCg2SOYcNsp7oz1Tw
+koti2116           UCr_foG7TtZJ9ONb6G8D0VlA
+foitasa            UCtcoS9W_dfVbV6IbNE4klMA
+EcYciYgFbK94569    UC2_aj_pxZV9zcyplD4KP-8w
+yu59pow            UCqvB7CFrnPJNFyxLabOqREQ
+Polska_PB          UClv5kiCUKVqUzGApRVifHrg
+skyball0217        UCMKBmiOKY6TogzLTS2loFfQ
+satouMID           UC_IzkKwIVaYriFZS9ULlaog
+midorina_zasso     UC9QZ0KZuPT83qBb3iVNpT8A
+ast_aosuto         UC0oyndW7j5GS5NIb8ww7cxw
+aispoaporu         UC1swbrz9S2VKVABS673ACgQ
+mikan_ball888      UCRCQ3G1d0DM2krO-Fx5LOuQ  # 概要欄にリンク無し・名前一致で手動
+NikotyuuAN  # 対応チャンネル未確認
