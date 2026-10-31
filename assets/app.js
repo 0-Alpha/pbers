@@ -975,6 +975,84 @@
     }).catch(function () { sec.hidden = true; });
   }
 
+  /* ---- X フォロワー円グラフ(上位 XTOP + その他)。一覧の行は X のプロフィールへ ---- */
+  function renderXDash() {
+    var sec = document.getElementById('dash-x'), svgX = document.getElementById('xd-svg'), list = document.getElementById('xd-list');
+    if (!sec || !svgX || !list) return;
+    var XS = (window.PBERS_X || []).filter(genreVisible);
+    if (!XS.length) { sec.hidden = true; return; }
+    sec.hidden = false;
+    var XTOP = 12, LIST = 10;   // 円グラフは上位12+その他、一覧は上位10(残りは折りたたみ)
+    var sum = XS.reduce(function (a, x) { return a + x.followers; }, 0);
+    var segs = XS.slice(0, XTOP).map(function (x, i) { return { i: i, v: x.followers, color: x.color, grad: x.grad }; });
+    var rest = XS.slice(XTOP);
+    if (rest.length) segs.push({ i: -1, v: rest.reduce(function (a, x) { return a + x.followers; }, 0), color: OTHER_COLOR, n: rest.length });
+    var nm = document.getElementById('xd-name'), num = document.getElementById('xd-num'),
+        cap = document.getElementById('xd-cap'), pct = document.getElementById('xd-pct');
+    function center(sg) {
+      if (!sg) {
+        nm.textContent = ''; num.textContent = jp(sum); num.style.color = 'var(--text)';
+        cap.textContent = 'Total ・ ' + XS.length + ' accounts'; pct.textContent = ''; return;
+      }
+      nm.textContent = sg.i < 0 ? 'その他' : XS[sg.i].name;
+      num.textContent = sg.i < 0 ? jp(sg.v) : fmt(sg.v); num.style.color = sg.i < 0 ? '#c9c5c2' : sg.color;
+      cap.textContent = sg.i < 0 ? sg.n + ' accounts' : '@' + XS[sg.i].handle;
+      pct.textContent = (sg.v / sum * 100).toFixed(1) + '%';
+    }
+    var cs = [];
+    function hl(k) {   // k = segs の添字(-1 で解除)
+      cs.forEach(function (c, j) { c.style.opacity = k < 0 || j === k ? '1' : '0.25'; c.setAttribute('stroke-width', j === k ? SW + 8 : SW); });
+      list.querySelectorAll('.xd-row').forEach(function (r) {
+        var j = +r.dataset.seg; r.classList.toggle('dim', k >= 0 && j !== k);
+      });
+      center(k < 0 ? null : segs[k]);
+    }
+    svgX.innerHTML = '';
+    var acc = 0;
+    segs.forEach(function (sg, k) {
+      var frac = sg.v / sum, len = Math.max(frac * C - GAP, 0);
+      var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      c.setAttribute('cx', 100); c.setAttribute('cy', 100); c.setAttribute('r', R);
+      var stroke = sg.color;
+      if (sg.grad) {
+        var a0 = acc * 2 * Math.PI, a1 = (acc + frac) * 2 * Math.PI, gid = 'xg' + k;
+        var lg = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+        lg.setAttribute('id', gid); lg.setAttribute('gradientUnits', 'userSpaceOnUse');
+        lg.setAttribute('x1', 100 + R * Math.cos(a0)); lg.setAttribute('y1', 100 + R * Math.sin(a0));
+        lg.setAttribute('x2', 100 + R * Math.cos(a1)); lg.setAttribute('y2', 100 + R * Math.sin(a1));
+        lg.innerHTML = '<stop offset="0" stop-color="' + sg.grad[0] + '"/><stop offset="1" stop-color="' + sg.grad[1] + '"/>';
+        svgX.appendChild(lg); stroke = 'url(#' + gid + ')';
+      }
+      c.setAttribute('fill', 'none'); c.setAttribute('stroke', stroke); c.setAttribute('stroke-width', SW);
+      c.setAttribute('stroke-dasharray', len + ' ' + C); c.setAttribute('stroke-dashoffset', -acc * C);
+      c.addEventListener('mouseenter', function () { hl(k); });
+      c.addEventListener('mouseleave', function () { hl(-1); });
+      svgX.appendChild(c); cs.push(c); acc += frac;
+    });
+    list.innerHTML = XS.map(function (x, i) {
+      var seg = i < XTOP ? i : segs.length - 1;
+      return '<li' + (i >= LIST ? ' class="xd-more" hidden' : '') + '><a class="xd-row" data-seg="' + seg + '" href="https://x.com/' + encodeURIComponent(x.handle) + '" target="_blank" rel="noopener">' +
+        '<span class="xd-rank num">' + (i + 1) + '</span>' +
+        '<span class="xd-sw" style="background:' + fillOf(x) + '"></span>' +
+        '<span class="xd-who"><span class="xd-nm">' + esc(x.name) + '</span><span class="xd-h">@' + esc(x.handle) + '</span></span>' +
+        '<span class="xd-v num">' + fmt(x.followers) + '</span>' +
+        '<span class="xd-p num">' + (x.followers / sum * 100).toFixed(1) + '%</span></a></li>';
+    }).join('') +
+      (XS.length > LIST ? '<li><button type="button" class="xd-toggle" id="xd-toggle">すべて表示(' + XS.length + ')▾</button></li>' : '');
+    var tg = document.getElementById('xd-toggle');
+    if (tg) tg.addEventListener('click', function () {
+      var open = tg.dataset.open !== '1'; tg.dataset.open = open ? '1' : '';
+      list.querySelectorAll('.xd-more').forEach(function (li) { li.hidden = !open; });
+      tg.textContent = open ? '上位' + LIST + '件だけ表示 ▴' : 'すべて表示(' + XS.length + ')▾';
+    });
+    list.querySelectorAll('.xd-row').forEach(function (r) {
+      r.addEventListener('mouseenter', function () { hl(+r.dataset.seg); });
+      r.addEventListener('mouseleave', function () { hl(-1); });
+    });
+    setText('xd-note', XS.length + 'アカウント ・ 毎日更新');
+    center(null);
+  }
+
   /* ---- news (milestones over the last 7 days) ---- */
   function renderNews() {
     var wrap = document.getElementById('news-list');
@@ -2531,7 +2609,7 @@
   }
 
   /* ---- settings: genre visibility ---- */
-  function applyGenre() { build(); renderTiers(); renderGrowth(); renderNews(); replay(); playGrowth(); riseRender(false); renderDashRise(); }
+  function applyGenre() { build(); renderTiers(); renderGrowth(); renderNews(); renderXDash(); replay(); playGrowth(); riseRender(false); renderDashRise(); }
   function updateGenreCounts() {
     var counts = {}; ALL.forEach(function (d) { counts[d.genre] = (counts[d.genre] || 0) + 1; });
     document.querySelectorAll('.g-count').forEach(function (el) { el.textContent = (counts[el.dataset.genre] || 0) + ' ch'; });
@@ -2655,6 +2733,7 @@
   }
   build();
   renderNews();
+  renderXDash();
   // 最新動画タブを定期的に自動更新(開きっぱなしでもライブ反映)
   if (window.PBERS_VIDEOS_API) {
     setInterval(function () {

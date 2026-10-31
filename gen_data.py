@@ -280,6 +280,7 @@ def build_edition():
     order = sorted(shown, key=lambda x: (x.get("subs") or 0), reverse=True)
     assign_slugs(order)   # d["_slug"] を付与
     bt_map = load_bytype()   # 横/ショート別の再生数(bytype.json)。ダッシュボードの再生数内訳に使う
+    x_map = load_x()         # X(Twitter)アカウント(x_accounts.txt + x_data.json)
 
     colors, pi = {}, 0
     for d in order:
@@ -301,12 +302,20 @@ def build_edition():
         "vShort": _tv(d["id"], "short"), "vLong": _tv(d["id"], "long"),
     } for d in order]
 
+    # ダッシュボードの「X フォロワー」円グラフ用。このエディションに載っているチャンネルのXだけ
+    x_list = sorted([{
+        "name": d["name"], "slug": d["_slug"], "color": colors[d["id"]], "genre": genre_of(d["id"]),
+        "avatar": d["avatar"], **({"grad": GRAD[d["id"]]} if d["id"] in GRAD else {}),
+        **x_map[d["id"]],
+    } for d in order if (x_map.get(d["id"]) or {}).get("followers")], key=lambda x: -x["followers"])
+
     with open(ed_out("assets", "data.js"), "w", encoding="utf-8") as f:
         f.write("window.PBERS_DATA = " + json.dumps(out, ensure_ascii=False, indent=2) + ";\n")
         f.write("window.PBERS_GENRES = " + json.dumps(GENRES, ensure_ascii=False) + ";\n")
         f.write('window.PBERS_UPDATED = "%s";\n' % UPDATED)
         f.write("window.PBERS_PREDICT = " + json.dumps(compute_predict(colors), ensure_ascii=False) + ";\n")
-    print("wrote assets/data.js (%d channels)" % len(out))
+        f.write("window.PBERS_X = " + json.dumps(x_list, ensure_ascii=False) + ";\n")
+    print("wrote assets/data.js (%d channels, %d X accounts)" % (len(out), len(x_list)))
 
     build_news(colors, order)
     build_growth(colors)
@@ -402,7 +411,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250976">
+<link rel="stylesheet" href="/assets/style.css?v=250977">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -426,7 +435,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250976"></script>
+<script src="/assets/channel.js?v=250977"></script>
 </body>
 </html>
 '''
@@ -490,7 +499,7 @@ def ch_auto_desc(d, rank, total, vcount, growth7, bt):
     parts.append("数値はYouTubeの公開情報をもとにPBersが毎日自動集計しており、推移グラフや日本・海外ランキングでの順位も確認できます。")
     return " ".join(parts)
 
-def ch_header_html(d, videos, rank, total, esc, bytype_html="", growth7=None, bt=None, color=None):
+def ch_header_html(d, videos, rank, total, esc, bytype_html="", growth7=None, bt=None, color=None, x=None):
     """チャンネル個別ページのヘッダを静的HTMLで生成(SEO用に名前・数値・説明文を本文に載せる)。"""
     name = esc(d["name"])
     man = CHANNEL_DESC.get(d["id"], "").strip()
@@ -511,6 +520,9 @@ def ch_header_html(d, videos, rank, total, esc, bytype_html="", growth7=None, bt
             '<p class="ch-lead">' + name + '（ポーランドボーラー）の登録者数・総再生数・投稿数と、その推移をまとめたページです。PBers調べ・毎日更新。</p>'
             '<div class="ch-actions">'
               '<a class="yt-btn" href="' + esc(d["url"]) + '" target="_blank" rel="noopener">YouTube ↗</a>'
+              + ('<a class="x-btn" href="https://x.com/' + esc(x["handle"]) + '" target="_blank" rel="noopener">𝕏 @' + esc(x["handle"])
+                 + ('<span class="x-fol">' + format(x["followers"], ",") + ' フォロワー</span>' if x.get("followers") else '')
+                 + '</a>' if x else '') +
               '<button class="sh sh-x" id="sh-x">𝕏 シェア</button>'
               '<button class="sh sh-copy" id="sh-copy">リンクをコピー</button>'
             '</div>'
@@ -541,6 +553,30 @@ def ch_header_html(d, videos, rank, total, esc, bytype_html="", growth7=None, bt
         '<div class="ch-nums-wrap"><button type="button" class="ch-nums-btn" id="ch-nums-btn">数値で見る ▾</button>'
           '<div class="ch-nums" id="ch-nums" hidden></div></div>'
     )
+
+def load_x():
+    """x_accounts.txt(ハンドル⇔チャンネルID)と fetch_x.py の x_data.json から {cid: X情報} を作る。
+    数値が未取得でもハンドルだけは返す(チャンネルページのリンク用)。"""
+    acc_path, data_path = os.path.join(BASE, "x_accounts.txt"), os.path.join(BASE, "x_data.json")
+    if not os.path.exists(acc_path):
+        return {}
+    stats = {}
+    if os.path.exists(data_path):
+        try:
+            stats = {d["handle"].lower(): d for d in json.load(open(data_path, encoding="utf-8"))}
+        except Exception:
+            stats = {}
+    out = {}
+    with open(acc_path, encoding="utf-8") as f:
+        for line in f:
+            parts = line.split("#", 1)[0].split()
+            if len(parts) < 2:
+                continue
+            st = stats.get(parts[0].lstrip("@").lower(), {})
+            out[parts[1]] = {"handle": st.get("handle") or parts[0].lstrip("@"),
+                             "followers": st.get("followers"), "posts30": st.get("posts30"),
+                             "medViews": st.get("med_views"), "eng": st.get("eng")}
+    return out
 
 def load_bytype():
     """fetch_bytype.py が出力した bytype.json を {id: data} で読む。無ければ空。"""
@@ -675,6 +711,7 @@ def ch_footer_html(order, i, growth_map, esc):
     return '<div class="ch-more">' + out + '</div>'
 
 def build_channel_pages(order, colors):
+    x_map = load_x()
     import shutil, html as _html
     series, _ = load_history()
     cdir = ed_out("c")
@@ -706,7 +743,8 @@ def build_channel_pages(order, colors):
               "url": d["url"], "avatar": d["avatar"], "color": colors[cid],
               "genre": genre_of(cid), "rank": i + 1, "total": total}
         header = (ch_header_html(d, vcount, i + 1, total, _html.escape, ch_bytype_html(bt_map.get(cid)),
-                                 growth7=growth_map.get(cid), bt=bt_map.get(cid), color=colors.get(cid))
+                                 growth7=growth_map.get(cid), bt=bt_map.get(cid), color=colors.get(cid),
+                                 x=x_map.get(cid))
                   + ch_footer_html(order, i, growth_map, _html.escape))
         page = (CH_TPL
                 .replace("{{TITLE}}", _html.escape(d["name"]))
@@ -873,7 +911,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250976">
+<link rel="stylesheet" href="/assets/style.css?v=250977">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>

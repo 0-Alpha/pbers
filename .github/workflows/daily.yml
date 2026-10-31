@@ -27,16 +27,19 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Fetch stats, append history, rebuild data.js
+      - name: Fetch stats, append history
         run: |
           python fetch.py
           python record.py
-          python gen_data.py
 
-      # X(Twitter)の指標記録。非公式API(FxTwitter)なので失敗してもジョブは止めない
+      # X(Twitter)の指標記録。非公式API(FxTwitter)なので失敗してもジョブは止めない。
+      # gen_data.py がダッシュボード/チャンネルページに使うので、その前に取る
       - name: Fetch X accounts (best effort)
         continue-on-error: true
         run: python fetch_x.py
+
+      - name: Rebuild site data
+        run: python gen_data.py
 
       - name: Commit & push if changed
         run: |

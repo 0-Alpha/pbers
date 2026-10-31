@@ -52,7 +52,7 @@
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250976">
+<link rel="stylesheet" href="/assets/style.css?v=250977">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -190,6 +190,28 @@
         <span class="note">クリックで詳細ページへ</span>
       </div>
       <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- X フォロワー(fetch_x.py のデータ。無ければ非表示) -->
+  <section class="block" id="dash-x" hidden>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>𝕏 フォロワー <span class="en">X Followers</span></h2>
+        <span class="note" id="xd-note"></span>
+      </div>
+      <div class="xd">
+        <div class="xd-stage">
+          <svg id="xd-svg" viewBox="0 0 200 200" aria-hidden="true"></svg>
+          <div class="donut-center">
+            <div class="dc-name" id="xd-name"></div>
+            <div class="dc-num num" id="xd-num">—</div>
+            <div class="dc-cap" id="xd-cap">Followers</div>
+            <div class="dc-pct num" id="xd-pct"></div>
+          </div>
+        </div>
+        <ol class="xd-list" id="xd-list"></ol>
+      </div>
     </div>
   </section>
 
@@ -445,10 +467,10 @@
   </div>
 </footer>
 
-<script src="/assets/data.js?v=250976"></script>
-<script src="/assets/news.js?v=250976"></script>
-<script src="/assets/growth.js?v=250976"></script>
-<script src="/assets/race.js?v=250976"></script>
-<script src="/assets/app.js?v=250976"></script>
+<script src="/assets/data.js?v=250977"></script>
+<script src="/assets/news.js?v=250977"></script>
+<script src="/assets/growth.js?v=250977"></script>
+<script src="/assets/race.js?v=250977"></script>
+<script src="/assets/app.js?v=250977"></script>
 </body>
 </html>
