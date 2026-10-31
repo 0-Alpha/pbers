@@ -1295,21 +1295,6 @@
       admaxEnqueue(item);
     } catch (e) {}
   }
-  // PC専用・全ページ右余白の縦長レール(160×600)。コンテンツ(最大1200px)に被らない幅でのみ表示。
-  var _railMounted = false;
-  function mountRightRail() {
-    if (_railMounted) return;
-    if (!window.matchMedia || !window.matchMedia('(min-width: 1540px)').matches) return;
-    try {
-      _railMounted = true;
-      var id = 'admax-rail-160x600';
-      var wrap = document.createElement('div');
-      wrap.className = 'admax-rail';
-      wrap.innerHTML = '<div id="' + id + '" style="display:inline-block"></div>';
-      document.body.appendChild(wrap);
-      admaxEnqueue({ banner: { admax_id: id, tag_id: 'e692bc71cb95dfd32e455f25fac1732e', type: 'b', width: 160, height: 600 } });
-    } catch (e) {}
-  }
   // スマホ専用・スレ一覧の5番目と6番目の間に入れるバナー(320×50)。
   // 一覧は並び替え/ページ送りの度に innerHTML で作り直すので、広告ノードは1つだけ作って毎回差し替え先へ移す。
   var _listAdNode = null;
@@ -2109,14 +2094,6 @@
     // URLをクリーンなパスに正規化(#growth → /growth)。掲示板の ?t=<id>(スレ直リンク)は保持する
     history.replaceState({ view: initial }, '', pathOf(initial) + (initial === 'board' ? location.search : ''));
     if (initial !== 'dashboard') switchTab(initial, true);
-    // PC全ページ右余白の縦レール広告(広い画面のみ)。広告の通信でタブの読み込み表示が
-    // 終わらなくなるため、ページの load 完了から少し空けて読み込む
-    var railLater = function () {
-      setTimeout(function () {
-        if (window.requestIdleCallback) requestIdleCallback(mountRightRail, { timeout: 3000 }); else mountRightRail();
-      }, 3000);
-    };
-    if (document.readyState === 'complete') railLater(); else window.addEventListener('load', railLater, { once: true });
   }
 
   /* ---- news feed (animated: 3D milestone bars + crossing overtakes) ---- */
