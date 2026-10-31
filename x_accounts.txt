@@ -1,0 +1,7 @@
+# X(Twitter)アカウント一覧。fetch_x.py が毎日取得して x_history.csv に記録する。
+# 書式: ハンドル(@なし)  対応するYouTubeチャンネルID(不明なら省略)
+fuhifum        UCkjdTrE4hiJ4qNOV7NPGSSw
+mikan_ball888  UCRCQ3G1d0DM2krO-Fx5LOuQ
+tnk_mid559     UC6BwO1hK3hHd-Hr43jokcyg
+NikotyuuAN
+sattoa_ball    UC_qD8VahU0Fr3q1SKg6kYtg

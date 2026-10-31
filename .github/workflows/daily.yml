@@ -33,6 +33,11 @@ jobs:
           python record.py
           python gen_data.py
 
+      # X(Twitter)の指標記録。非公式API(FxTwitter)なので失敗してもジョブは止めない
+      - name: Fetch X accounts (best effort)
+        continue-on-error: true
+        run: python fetch_x.py
+
       - name: Commit & push if changed
         run: |
           git config user.name "github-actions[bot]"
