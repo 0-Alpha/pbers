@@ -170,7 +170,7 @@
     /* donut: top 30 individual + "その他" aggregate (hover via setupDonutHover) */
     svg.innerHTML = ''; circles = []; sliceStart = []; sliceFrac = []; donutSegs = []; otherSeg = null;
     var segs = [];
-    DATA.slice(0, TOPD).forEach(function (d, i) { segs.push({ type: 'ch', idx: i, value: val(d), color: d.color }); });
+    DATA.slice(0, TOPD).forEach(function (d, i) { segs.push({ type: 'ch', idx: i, value: val(d), color: d.color, grad: d.grad }); });
     var rest = DATA.slice(TOPD);
     if (rest.length) {
       otherSeg = { type: 'other', value: rest.reduce(function (a, d) { return a + val(d); }, 0), color: OTHER_COLOR, count: rest.length };
@@ -182,7 +182,17 @@
       var len = Math.max(frac * C - GAP, 0);
       var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       c.setAttribute('cx', 100); c.setAttribute('cy', 100); c.setAttribute('r', R);
-      c.setAttribute('fill', 'none'); c.setAttribute('stroke', sg.color); c.setAttribute('stroke-width', SW);
+      var stroke = sg.color;
+      if (sg.grad) {   // グラデ: 弧の始点→終点方向の線形グラデをこの円専用に定義
+        var a0 = acc * 2 * Math.PI, a1 = (acc + frac) * 2 * Math.PI, gid = 'dg' + sg.idx;
+        var lg = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+        lg.setAttribute('id', gid); lg.setAttribute('gradientUnits', 'userSpaceOnUse');
+        lg.setAttribute('x1', 100 + R * Math.cos(a0)); lg.setAttribute('y1', 100 + R * Math.sin(a0));
+        lg.setAttribute('x2', 100 + R * Math.cos(a1)); lg.setAttribute('y2', 100 + R * Math.sin(a1));
+        lg.innerHTML = '<stop offset="0" stop-color="' + sg.grad[0] + '"/><stop offset="1" stop-color="' + sg.grad[1] + '"/>';
+        svg.appendChild(lg); stroke = 'url(#' + gid + ')';
+      }
+      c.setAttribute('fill', 'none'); c.setAttribute('stroke', stroke); c.setAttribute('stroke-width', SW);
       c.setAttribute('stroke-dasharray', '0 ' + C); c.setAttribute('stroke-dashoffset', -acc * C);
       c.style.transition = 'stroke-dasharray .9s cubic-bezier(.22,1,.36,1), opacity .2s ease, stroke-width .2s ease';
       c.style.pointerEvents = 'none';
@@ -198,7 +208,7 @@
     DATA.forEach(function (d, i) {
       var el = document.createElement('span');
       el.className = 'chip';
-      el.innerHTML = '<span class="sw" style="background:' + d.color + '"></span>' +
+      el.innerHTML = '<span class="sw" style="background:' + fillOf(d) + '"></span>' +
         '<span class="cn">' + esc(d.name) + '</span>' +
         '<span class="cv">' + (val(d) ? jp(val(d)) : '—') + '</span>';
       el.addEventListener('mouseenter', function () { focus(i); });
@@ -225,8 +235,8 @@
       col.className = 'col' + (i < 3 ? ' top' : '');
       col.innerHTML =
         '<div class="col-bararea">' +
-          '<div class="col-val" style="color:' + d.color + '">' + (val(d) ? jp(val(d)) : '—') + '</div>' +
-          '<div class="col-bar" style="background:' + d.color + '" data-frac="' + (max ? val(d) / max : 0) + '"></div>' +
+          '<div class="col-val" style="' + textGrad(d) + '">' + (val(d) ? jp(val(d)) : '—') + '</div>' +
+          '<div class="col-bar" style="background:' + fillOf(d, 180) + '" data-frac="' + (max ? val(d) / max : 0) + '"></div>' +
         '</div>' +
         '<div class="col-foot"><div class="col-rank num">' + (i + 1) + '</div>' +
         '<div class="col-name">' + esc(d.name) + '</div></div>';
@@ -440,6 +450,14 @@
     if (!url) return url;
     return url.replace(/=s\d+/, '=s' + px).replace(/=w\d+-h\d+/, '=s' + px);
   }
+  // 2色グラデーションのチャンネル(d.grad)は塗りをグラデに、それ以外は単色
+  function fillOf(d, deg) { return d && d.grad ? 'linear-gradient(' + (deg || 135) + 'deg,' + d.grad[0] + ',' + d.grad[1] + ')' : (d && d.color); }
+  function textGrad(d) {   // 文字をグラデ塗り(非対応環境は color の単色にフォールバック)
+    return 'color:' + d.color + (d.grad ? ';background:' + fillOf(d, 90) + ';-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent' : '');
+  }
+  function avRing(d) {     // アイコン枠。グラデは border-box 背景で表現
+    return d.grad ? 'border-color:transparent;background:' + fillOf(d) + ' border-box' : 'border-color:' + d.color;
+  }
   function cardEl(d, rankNum) {
     var wrap = document.createElement('div');
     wrap.className = 'card';
@@ -447,7 +465,7 @@
     wrap.innerHTML =
       '<a class="card-main" href="' + GBASE + 'c/' + encodeURIComponent(d.slug || chId(d)) + '/">' +
         '<span class="rk num">' + rankNum + '</span>' +
-        '<img class="av" loading="lazy" width="48" height="48" src="' + avSize(d.avatar, 96) + '" alt="" style="border-color:' + d.color + '" onerror="this.style.visibility=\'hidden\'">' +
+        '<img class="av" loading="lazy" width="48" height="48" src="' + avSize(d.avatar, 96) + '" alt="" style="' + avRing(d) + '" onerror="this.style.visibility=\'hidden\'">' +
         '<span class="meta"><span class="cn">' + esc(d.name) + '</span>' +
         '<span class="cstats">' +
           '<span class="cstat"><i>登録者</i>' + (d.subs != null ? jp(d.subs) + '人' : '非公開') + '</span>' +
