@@ -2,7 +2,7 @@
 # 書式: ハンドル(@なし)  対応するYouTubeチャンネルID(不明なら省略)
 # 2026-10-31: 全チャンネルのYouTube概要欄(リンク欄・本文)にあるXリンクから一括登録。
 #   除外: 引退チャンネル / 鍵垢(AzuluaFinlanbal) / User not found(kimama_ball, 3CuCm6bSLM69272,
-#         sukomiya43, goatsovieto, Porland_train, 4QlFzzRWox45118)
+#         sukomiya43, goatsovieto, 4QlFzzRWox45118)
 
 fuhifum            UCkjdTrE4hiJ4qNOV7NPGSSw
 tnk_mid559         UC6BwO1hK3hHd-Hr43jokcyg
@@ -63,3 +63,5 @@ aispoaporu         UC1swbrz9S2VKVABS673ACgQ
 mikan_ball888      UCRCQ3G1d0DM2krO-Fx5LOuQ  # 概要欄にリンク無し・名前一致で手動
 NikotyuuAN         UC2fMWFGgy-ENfkqlK0CUwrg  # にこちPB(本人確認済み・概要欄にリンク無し)
 RayAlpha0          UCVYMXYU6j0M5Gj1xwywKDyg  # レイアルファ(PBers管理者・名前一致で手動)
+Porland_Train      UCm8lBcDz0RVa28FkJu-0nsA  # トレインボール(2026-11-01 追加。10/31の一括時は一時的な404で除外していた)
+netoenq            UCrRZolgBJ0K-yGqFKGbUVkw  # ねとえん(2026-11-01 追加)
