@@ -6,7 +6,7 @@
  */
 const VERSION = 'v3';
 const CACHE = 'pbers-' + VERSION;
-const DATA_RE = /\/assets\/(data|news|growth|race)\.js|\/bytype\.json/;
+const DATA_RE = /\/assets\/(data|news|growth|race)\.js|\/bytype\.json|\/barrace\.json/;
 
 self.addEventListener('install', function () { self.skipWaiting(); });
 

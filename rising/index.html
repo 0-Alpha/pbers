@@ -52,7 +52,7 @@
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250980">
+<link rel="stylesheet" href="/assets/style.css?v=250981">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -385,7 +385,35 @@
 
 <!-- RACE (close races) view -->
 <main id="view-race" hidden>
-  <section class="block" style="padding-top:40px">
+  <!-- バーチャートレース(assets/barrace.json をタブを開いた時に読み込む) -->
+  <section class="block" id="bcr" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>バーチャートレース <span class="en">Bar Chart Race</span></h2>
+        <span class="note" id="bcr-note"></span>
+      </div>
+      <div class="controls" style="justify-content:flex-start">
+        <div class="toggle" id="bcr-toggle">
+          <button class="tg on" data-bm="subs">登録者</button>
+          <button class="tg" data-bm="views">総再生数</button>
+          <button class="tg" data-bm="videos">投稿数</button>
+          <span class="tg-ind" id="bcr-ind"></span>
+        </div>
+      </div>
+      <div class="bcr-stage" id="bcr-stage">
+        <div class="bcr-axis" id="bcr-axis"></div>
+        <div class="bcr-bars" id="bcr-bars"></div>
+        <div class="bcr-date num" id="bcr-date"></div>
+      </div>
+      <div class="bcr-ctl">
+        <button type="button" class="bcr-play" id="bcr-play" aria-label="再生"></button>
+        <input type="range" id="bcr-seek" min="0" max="1" step="any" value="0" aria-label="日付">
+        <button type="button" class="bcr-speed" id="bcr-speed">1x</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:10px">
     <div class="wrap">
       <div class="sec-head">
         <h2>レース <span class="en">Close Races</span></h2>
@@ -467,10 +495,10 @@
   </div>
 </footer>
 
-<script src="/assets/data.js?v=250980"></script>
-<script src="/assets/news.js?v=250980"></script>
-<script src="/assets/growth.js?v=250980"></script>
-<script src="/assets/race.js?v=250980"></script>
-<script src="/assets/app.js?v=250980"></script>
+<script src="/assets/data.js?v=250981"></script>
+<script src="/assets/news.js?v=250981"></script>
+<script src="/assets/growth.js?v=250981"></script>
+<script src="/assets/race.js?v=250981"></script>
+<script src="/assets/app.js?v=250981"></script>
 </body>
 </html>

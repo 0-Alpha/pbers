@@ -320,6 +320,7 @@ def build_edition():
     build_news(colors, order)
     build_growth(colors)
     build_race(colors)
+    build_barrace(colors, order)
     build_channel_pages(order, colors)
     # 記事(/articles/)は D1 + Pages Functions(SSR)へ移行済み。ここでは静的生成しない。
     build_view_pages()
@@ -380,6 +381,63 @@ def build_race(colors):
         f.write("window.PBERS_RACE = " + json.dumps(out, ensure_ascii=False, indent=2) + ";\n")
     print("wrote assets/race.js (%d races incl. TOP3)" % len(out))
 
+BARRACE_TOP = 20   # 1日でもこの順位以内に入ったチャンネルだけ収録(ファイルを軽くするため)
+
+def build_barrace(colors, order):
+    """レースタブの「バーチャートレース」用。1日1点(その日の最終スロット)の
+       登録者/総再生数/投稿数を全日付ぶん assets/barrace.json に出力(レースタブを開いた時だけ読み込む)。
+       記録の途中で欠けた日は直前の値で埋める。記録開始前は null(バーを出さない)。"""
+    series, _names = load_history()
+    shown = [d for d in order if d["id"] in colors]
+    reps = {d["id"]: daily_reps(series.get(d["id"], {}).keys()) for d in shown}
+    days = sorted({day for r in reps.values() for day in r})
+    if not days:
+        return
+    metrics = ("subs", "views", "videos")
+    vals = {}
+    for d in shown:
+        cid, hist, r = d["id"], series.get(d["id"], {}), reps[d["id"]]
+        vals[cid] = {}
+        for m in metrics:
+            last, arr = None, []
+            for day in days:
+                v = hist[r[day]][m] if day in r else None
+                if v is not None:
+                    last = v
+                arr.append(last)
+            vals[cid][m] = arr
+
+    # 記録初日は数チャンネルしか取れていない。半数未満の日を先頭から落とす
+    # (でないと2日目に大型チャンネルが一斉に湧いて見える)
+    present = [sum(1 for c in vals if vals[c]["subs"][i] is not None) for i in range(len(days))]
+    st = next((i for i, n in enumerate(present) if n >= max(present) / 2), 0)
+    days = days[st:]
+    for c in vals:
+        for m in metrics:
+            vals[c][m] = vals[c][m][st:]
+
+    # 収録対象: 各ジャンル内で、どれかの指標・どれかの日に BARRACE_TOP 位以内
+    keep = set()
+    for g in {genre_of(d["id"]) for d in shown}:
+        ids = [d["id"] for d in shown if genre_of(d["id"]) == g]
+        for m in metrics:
+            for i in range(len(days)):
+                ranked = sorted((c for c in ids if vals[c][m][i] is not None), key=lambda c: -vals[c][m][i])
+                keep.update(ranked[:BARRACE_TOP])
+    sel = [d for d in shown if d["id"] in keep]
+
+    out = {
+        "dates": days,
+        "ch": [{"name": d["name"], "color": colors[d["id"]], "genre": genre_of(d["id"]), "slug": d["_slug"],
+                "avatar": d["avatar"], **({"grad": GRAD[d["id"]]} if d["id"] in GRAD else {})} for d in sel],
+        "subs": [vals[d["id"]]["subs"] for d in sel],
+        "views": [vals[d["id"]]["views"] for d in sel],
+        "videos": [vals[d["id"]]["videos"] for d in sel],
+    }
+    with open(ed_out("assets", "barrace.json"), "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
+    print("wrote assets/barrace.json (%d channels x %d days)" % (len(sel), len(days)))
+
 CH_TPL = '''<!doctype html>
 <html lang="ja">
 <head>
@@ -411,7 +469,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250980">
+<link rel="stylesheet" href="/assets/style.css?v=250981">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -435,7 +493,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250980"></script>
+<script src="/assets/channel.js?v=250981"></script>
 </body>
 </html>
 '''
@@ -911,7 +969,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250980">
+<link rel="stylesheet" href="/assets/style.css?v=250981">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>

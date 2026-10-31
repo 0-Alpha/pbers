@@ -2070,7 +2070,7 @@
       else if (v === 'rising') { playRise(); }
       else if (v === 'news') renderNewsFeed();
       else if (v === 'paper') renderPaper();
-      else if (v === 'race') renderRace();
+      else if (v === 'race') { renderBarRace(); renderRace(); }
       else if (v === 'game') renderGame();
       else if (v === 'videos') renderVideos();
       else if (v === 'channels') moveTierInd();
@@ -2571,6 +2571,149 @@
     });
     el.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet"><defs>' + clip + '</defs>' + grid + yl + xl + lines + icons + '</svg>';
   }
+  /* ---- バーチャートレース(レースタブ上部)。barrace.json はタブを開いた時だけ読み込む ----
+     日ごとの値を線形補間してバーを伸ばし、順位の入れ替わりは表示位置を目標順位へ指数的に寄せて動かす。 */
+  var BCR = null, bcrLoading = false;
+  var bcr = { metric: 'subs', pos: 0, playing: false, speed: 1, rows: {}, ticks: {}, raf: 0, last: 0 };
+  var BCR_SPEEDS = [1, 2, 4], BCR_DPS = 2;   // 1x = 1秒で2日進む
+  var BCR_RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var BCR_ICON = {
+    play: '<svg viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></svg>',
+    pause: '<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>',
+    replay: '<svg viewBox="0 0 24 24"><path d="M12 5V1.5L7 6l5 4.5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>'
+  };
+  function bcrN() { return window.innerWidth <= 560 ? 10 : 12; }
+  function bcrH() { return window.innerWidth <= 560 ? 34 : 42; }
+  function bcrLast() { return BCR.dates.length - 1; }
+  function bcrFmt(v) { return bcr.metric === 'views' ? jp(Math.round(v)) : fmt(Math.round(v)); }
+  function bcrNice(x) {   // 目盛り間隔を 1/2/5 × 10^n に丸める
+    var p = Math.pow(10, Math.floor(Math.log10(x))), m = x / p;
+    return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 5 ? 5 : 10) * p;
+  }
+  function bcrBtn() {
+    var b = document.getElementById('bcr-play'); if (!b) return;
+    var end = BCR && bcr.pos >= bcrLast();
+    b.innerHTML = bcr.playing ? BCR_ICON.pause : (end ? BCR_ICON.replay : BCR_ICON.play);
+    b.setAttribute('aria-label', bcr.playing ? '一時停止' : (end ? '最初から再生' : '再生'));
+  }
+  function bcrMoveInd() {
+    var on = document.querySelector('#bcr-toggle .tg.on'), ind = document.getElementById('bcr-ind');
+    if (on && ind) { ind.style.left = on.offsetLeft + 'px'; ind.style.width = on.offsetWidth + 'px'; }
+  }
+  function bcrPlayFrom0() {
+    bcr.pos = BCR_RM ? bcrLast() : 0; bcr.playing = !BCR_RM;
+    document.getElementById('bcr-seek').value = bcr.pos;
+    bcrBtn(); bcrKick();
+  }
+  function bcrKick() { if (!bcr.raf) { bcr.last = 0; bcr.raf = requestAnimationFrame(bcrFrame); } }
+  function bcrFrame(now) {
+    bcr.raf = 0;
+    if (currentView !== 'race') { bcr.playing = false; bcrBtn(); return; }
+    var dt = bcr.last ? Math.min((now - bcr.last) / 1000, 0.1) : 0; bcr.last = now;
+    if (bcr.playing) {
+      bcr.pos = Math.min(bcr.pos + dt * BCR_DPS * bcr.speed, bcrLast());
+      if (bcr.pos >= bcrLast()) { bcr.playing = false; bcrBtn(); }
+      document.getElementById('bcr-seek').value = bcr.pos;
+    }
+    var moving = bcrDraw(dt);
+    if (bcr.playing || moving) bcr.raf = requestAnimationFrame(bcrFrame);
+  }
+  function bcrDraw(dt) {
+    var N = bcrN(), H = bcrH(), L = bcrLast();
+    var i = Math.min(Math.floor(bcr.pos), L), j = Math.min(i + 1, L), f = bcr.pos - i, arr = BCR[bcr.metric];
+    var list = [];
+    BCR.ch.forEach(function (c, k) {
+      if (!genreVisible(c)) return;
+      var a = arr[k][i], b = arr[k][j];
+      if (a == null) { if (b == null || f < 0.5) return; a = b; }   // 記録開始日の途中から登場
+      if (b == null) b = a;
+      list.push({ k: k, v: a + (b - a) * f });
+    });
+    list.sort(function (x, y) { return y.v - x.v; });
+    var max = list.length ? list[0].v : 1, vm = {}, want = {};
+    list.forEach(function (t, r) { vm[t.k] = t.v; if (r < N) want[t.k] = r; });
+    var bars = document.getElementById('bcr-bars'), rows = bcr.rows;
+    bars.style.height = (N * H) + 'px'; bars.style.setProperty('--h', H + 'px');
+    Object.keys(want).forEach(function (k) {
+      if (rows[k]) return;
+      var c = BCR.ch[k], el = document.createElement('a');
+      el.className = 'bcr-row'; el.href = GBASE + 'c/' + encodeURIComponent(c.slug) + '/';
+      el.innerHTML = '<span class="bcr-rk num"></span><span class="bcr-lab"></span>' +
+        '<span class="bcr-track"><span class="bcr-bar"></span>' +
+        (c.avatar ? '<img class="bcr-av" src="' + c.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' : '') +
+        '<span class="bcr-val num"></span></span>';
+      el.querySelector('.bcr-lab').textContent = c.name;
+      el.querySelector('.bcr-bar').style.background = fillOf(c, 90);
+      el.querySelector('.bcr-av') && (el.querySelector('.bcr-av').style.borderColor = c.color);
+      bars.appendChild(el);
+      rows[k] = { el: el, y: dt ? N : want[k], v: vm[k], rk: el.querySelector('.bcr-rk'), val: el.querySelector('.bcr-val') };
+    });
+    var ease = dt && !BCR_RM ? 1 - Math.exp(-dt * 8) : 1, moving = false;
+    Object.keys(rows).forEach(function (k) {
+      var r = rows[k], inTop = k in want, target = inTop ? want[k] : N + 0.6;
+      if (vm[k] != null) r.v = vm[k];
+      r.y += (target - r.y) * ease;
+      if (Math.abs(target - r.y) < 0.004) r.y = target; else moving = true;
+      if (!inTop && r.y >= N + 0.5) { r.el.remove(); delete rows[k]; return; }
+      r.el.style.transform = 'translateY(' + (r.y * H).toFixed(1) + 'px)';
+      r.el.style.opacity = inTop ? '' : Math.max(0, Math.min(1, N + 0.5 - r.y)).toFixed(2);
+      r.el.style.setProperty('--f', Math.max(r.v / max, 0.004).toFixed(4));
+      r.rk.textContent = inTop ? want[k] + 1 : '';
+      r.val.textContent = bcrFmt(r.v);
+    });
+    // 目盛り(最大値に合わせて間隔が変わる)
+    var axis = document.getElementById('bcr-axis'), step = bcrNice(max / 4), keep = {};
+    for (var v = step; v <= max * 1.0001 && v / step <= 8; v += step) {
+      var key = String(Math.round(v)); keep[key] = 1;
+      var tk = bcr.ticks[key];
+      if (!tk) { tk = document.createElement('div'); tk.className = 'bcr-tick'; tk.innerHTML = '<span class="num"></span>'; axis.appendChild(tk); bcr.ticks[key] = tk; }
+      tk.style.left = (v / max * 100).toFixed(3) + '%';
+      tk.firstChild.textContent = bcr.metric === 'videos' ? fmt(Math.round(v)) : jp(Math.round(v));
+    }
+    Object.keys(bcr.ticks).forEach(function (key) { if (!keep[key]) { bcr.ticks[key].remove(); delete bcr.ticks[key]; } });
+    document.getElementById('bcr-date').textContent = BCR.dates[Math.round(bcr.pos)].replace(/-/g, '.');
+    return moving;
+  }
+  function bcrSetup() {
+    var seek = document.getElementById('bcr-seek');
+    seek.max = bcrLast();
+    var d0 = BCR.dates[0].split('-'), d1 = BCR.dates[bcrLast()].split('-');
+    setText('bcr-note', (+d0[1]) + '/' + (+d0[2]) + ' 〜 ' + (+d1[1]) + '/' + (+d1[2]) + ' ・ 上位' + bcrN() + ' ・ 毎日更新');
+    seek.addEventListener('input', function () { bcr.pos = +seek.value; bcr.playing = false; bcrBtn(); bcrKick(); });
+    document.getElementById('bcr-play').addEventListener('click', function () {
+      if (bcr.playing) bcr.playing = false;
+      else { if (bcr.pos >= bcrLast()) bcr.pos = 0; bcr.playing = true; }
+      bcrBtn(); bcrKick();
+    });
+    var sp = document.getElementById('bcr-speed');
+    sp.addEventListener('click', function () {
+      bcr.speed = BCR_SPEEDS[(BCR_SPEEDS.indexOf(bcr.speed) + 1) % BCR_SPEEDS.length];
+      sp.textContent = bcr.speed + 'x';
+    });
+    document.querySelectorAll('#bcr-toggle .tg').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.dataset.bm === bcr.metric) return;
+        document.querySelectorAll('#bcr-toggle .tg').forEach(function (x) { x.classList.toggle('on', x === b); });
+        bcr.metric = b.dataset.bm; bcrMoveInd(); bcrPlayFrom0();
+      });
+    });
+    window.addEventListener('resize', function () { if (BCR) { bcrMoveInd(); bcrKick(); } });
+  }
+  function renderBarRace() {
+    var sec = document.getElementById('bcr'); if (!sec) return;
+    if (BCR) { bcrMoveInd(); bcrPlayFrom0(); return; }
+    if (bcrLoading) return; bcrLoading = true;
+    fetch(GBASE + 'assets/barrace.json?v=' + encodeURIComponent(window.PBERS_UPDATED || ''))
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        bcrLoading = false;
+        if (!d || !d.dates || d.dates.length < 2) { sec.hidden = true; return; }
+        BCR = d; bcrSetup();
+        if (currentView === 'race') { bcrMoveInd(); bcrPlayFrom0(); }
+      })
+      .catch(function () { bcrLoading = false; sec.hidden = true; });
+  }
+
   function renderRace() {
     var host = document.getElementById('race-list'); if (!host) return;
     if (!RACE.length) { host.innerHTML = '<div class="race-empty">いま接戦中の組はありません（記録が増えると表示されます）。</div>'; return; }
@@ -2593,7 +2736,7 @@
   }
 
   /* ---- settings: genre visibility ---- */
-  function applyGenre() { build(); renderTiers(); renderGrowth(); renderNews(); renderXDash(); replay(); playGrowth(); riseRender(false); renderDashRise(); }
+  function applyGenre() { if (BCR) bcrKick(); build(); renderTiers(); renderGrowth(); renderNews(); renderXDash(); replay(); playGrowth(); riseRender(false); renderDashRise(); }
   function updateGenreCounts() {
     var counts = {}; ALL.forEach(function (d) { counts[d.genre] = (counts[d.genre] || 0) + 1; });
     document.querySelectorAll('.g-count').forEach(function (el) { el.textContent = (counts[el.dataset.genre] || 0) + ' ch'; });
