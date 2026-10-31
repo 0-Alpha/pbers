@@ -34,7 +34,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "カルマルボール",
-        "color": "#b23ecc",
+        "color": "#5e66d4",
         "avatar": "https://yt3.googleusercontent.com/MOIsgXzLNq32S_uvADNU_oJ0f71yq4X_-4MKBArq_HDGubhh6h61U0sYtG6mmDywuESxFVYnLA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",

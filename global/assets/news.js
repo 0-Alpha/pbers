@@ -2,7 +2,19 @@ window.PBERS_NEWS = [
   {
     "date": "2026-10-31",
     "label": "10月31日(土)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "くろまめ",
+        "color": "#5ed4c0",
+        "avatar": "https://yt3.googleusercontent.com/yV8LzkaByDse6ZVmF8XEySSyoZ6osOmQM9SmjO8FTgQPiaOwyAaD2VEH1Zx8UqAVobRkOxaVbrg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 2万人 突破",
+        "value": 20000
+      }
+    ]
   },
   {
     "date": "2026-10-30",
