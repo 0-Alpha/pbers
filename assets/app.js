@@ -2109,7 +2109,14 @@
     // URLをクリーンなパスに正規化(#growth → /growth)。掲示板の ?t=<id>(スレ直リンク)は保持する
     history.replaceState({ view: initial }, '', pathOf(initial) + (initial === 'board' ? location.search : ''));
     if (initial !== 'dashboard') switchTab(initial, true);
-    mountRightRail();   // PC全ページ右余白の縦レール広告(広い画面のみ)
+    // PC全ページ右余白の縦レール広告(広い画面のみ)。広告の通信でタブの読み込み表示が
+    // 終わらなくなるため、ページの load 完了から少し空けて読み込む
+    var railLater = function () {
+      setTimeout(function () {
+        if (window.requestIdleCallback) requestIdleCallback(mountRightRail, { timeout: 3000 }); else mountRightRail();
+      }, 3000);
+    };
+    if (document.readyState === 'complete') railLater(); else window.addEventListener('load', railLater, { once: true });
   }
 
   /* ---- news feed (animated: 3D milestone bars + crossing overtakes) ---- */
