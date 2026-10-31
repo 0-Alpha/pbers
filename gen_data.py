@@ -490,7 +490,7 @@ def ch_auto_desc(d, rank, total, vcount, growth7, bt):
     parts.append("数値はYouTubeの公開情報をもとにPBersが毎日自動集計しており、推移グラフや日本・海外ランキングでの順位も確認できます。")
     return " ".join(parts)
 
-def ch_header_html(d, videos, rank, total, esc, bytype_html="", growth7=None, bt=None):
+def ch_header_html(d, videos, rank, total, esc, bytype_html="", growth7=None, bt=None, color=None):
     """チャンネル個別ページのヘッダを静的HTMLで生成(SEO用に名前・数値・説明文を本文に載せる)。"""
     name = esc(d["name"])
     man = CHANNEL_DESC.get(d["id"], "").strip()
@@ -498,9 +498,13 @@ def ch_header_html(d, videos, rank, total, esc, bytype_html="", growth7=None, bt
     if man:
         man_html = "".join('<p class="ch-desc-man">' + esc(par.strip()) + '</p>' for par in man.split("\n\n") if par.strip())
     auto_html = '<p class="ch-desc">' + esc(ch_auto_desc(d, rank, total, videos, growth7, bt)) + '</p>'
+    # アイコン枠をチャンネルのテーマカラーに(GRADがあれば2色グラデ)。未指定はCSS既定(赤)
+    g = GRAD.get(d["id"])
+    ring = (' style="border-color:transparent;background:linear-gradient(135deg,%s,%s) border-box"' % (g[0], g[1]) if g
+            else (' style="border-color:%s"' % color if color else ''))
     return (
         '<div class="ch-head">'
-          '<img class="ch-av" src="' + esc(d["avatar"]) + '" alt="' + name + ' のアイコン" onerror="this.style.visibility=\'hidden\'">'
+          '<img class="ch-av"' + ring + ' src="' + esc(d["avatar"]) + '" alt="' + name + ' のアイコン" onerror="this.style.visibility=\'hidden\'">'
           '<div class="ch-meta">'
             '<div class="ch-genre">' + esc(genre_of(d["id"])) + ' ・ 総合 ' + str(rank) + '位 / ' + str(total) + '</div>'
             '<h1 class="ch-name">' + name + '</h1>'
@@ -702,7 +706,7 @@ def build_channel_pages(order, colors):
               "url": d["url"], "avatar": d["avatar"], "color": colors[cid],
               "genre": genre_of(cid), "rank": i + 1, "total": total}
         header = (ch_header_html(d, vcount, i + 1, total, _html.escape, ch_bytype_html(bt_map.get(cid)),
-                                 growth7=growth_map.get(cid), bt=bt_map.get(cid))
+                                 growth7=growth_map.get(cid), bt=bt_map.get(cid), color=colors.get(cid))
                   + ch_footer_html(order, i, growth_map, _html.escape))
         page = (CH_TPL
                 .replace("{{TITLE}}", _html.escape(d["name"]))
