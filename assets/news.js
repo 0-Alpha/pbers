@@ -62,7 +62,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "アフガンボール",
-        "color": "#c4d45e",
+        "color": "#cc613e",
         "avatar": "https://yt3.googleusercontent.com/aOj-FnTWhrUAPjz49cHMeTuREL5cpUpsUWPVs1AuaeeMqVIrUHxeIOlHdCi0h8HukDZHL_ZQ0HA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",

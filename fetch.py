@@ -84,6 +84,11 @@ def fetch_channel(url):
             "viewsLabel": views_label, "views": parse_views(views_label),
             "videosLabel": videos_label, "videos": parse_videos(videos_label), "avatar": avatar}
 
+# 掲載削除依頼(オプトアウト)のあったチャンネル。channels*.txt に誤って再追加されても取得・掲載しない。
+OPT_OUT = {
+    "UCmVUXrmRsAk94xhvZR9wufA",  # ikasumi帝国 (2026-09-08 本人依頼)
+}
+
 def build(channels_file, data_file):
     path = os.path.join(BASE, channels_file)
     if not os.path.exists(path):
@@ -91,6 +96,7 @@ def build(channels_file, data_file):
         return
     with open(path, encoding="utf-8") as f:
         urls = [l.strip() for l in f if l.strip() and not l.strip().startswith("#") and "/channel/" in l]
+    urls = [u for u in urls if u.split("/channel/")[-1] not in OPT_OUT]
     out = []
     for url in urls:
         d = fetch_channel(url)
