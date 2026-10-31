@@ -2574,7 +2574,7 @@
   /* ---- バーチャートレース(レースタブ上部)。barrace.json はタブを開いた時だけ読み込む ----
      日ごとの値を線形補間してバーを伸ばし、順位の入れ替わりは表示位置を目標順位へ指数的に寄せて動かす。 */
   var BCR = null, bcrLoading = false;
-  var bcr = { metric: 'subs', pos: 0, playing: false, speed: 1, rows: {}, ticks: {}, raf: 0, last: 0 };
+  var bcr = { metric: 'subs', n: 12, pos: 0, playing: false, speed: 1, rows: {}, ticks: {}, raf: 0, last: 0 };
   var BCR_SPEEDS = [1, 2, 4], BCR_DPS = 2;   // 1x = 1秒で2日進む
   var BCR_RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var BCR_ICON = {
@@ -2582,8 +2582,15 @@
     pause: '<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>',
     replay: '<svg viewBox="0 0 24 24"><path d="M12 5V1.5L7 6l5 4.5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>'
   };
-  function bcrN() { return window.innerWidth <= 560 ? 10 : 12; }
-  function bcrH() { return window.innerWidth <= 560 ? 34 : 42; }
+  function bcrN() { return bcr.n; }
+  function bcrH() {   // 表示数が多いほど1行を詰める
+    var sm = window.innerWidth <= 560;
+    return bcr.n >= 30 ? (sm ? 24 : 28) : bcr.n >= 20 ? (sm ? 28 : 34) : (sm ? 34 : 42);
+  }
+  function bcrNote() {
+    var d0 = BCR.dates[0].split('-'), d1 = BCR.dates[bcrLast()].split('-');
+    setText('bcr-note', (+d0[1]) + '/' + (+d0[2]) + ' 〜 ' + (+d1[1]) + '/' + (+d1[2]) + ' ・ 上位' + bcrN() + ' ・ 毎日更新');
+  }
   function bcrLast() { return BCR.dates.length - 1; }
   function bcrFmt(v) { return bcr.metric === 'views' ? jp(Math.round(v)) : fmt(Math.round(v)); }
   function bcrNice(x) {   // 目盛り間隔を 1/2/5 × 10^n に丸める
@@ -2634,6 +2641,7 @@
     list.forEach(function (t, r) { vm[t.k] = t.v; if (r < N) want[t.k] = r; });
     var bars = document.getElementById('bcr-bars'), rows = bcr.rows;
     bars.style.height = (N * H) + 'px'; bars.style.setProperty('--h', H + 'px');
+    bars.classList.toggle('dense', N > 12);
     Object.keys(want).forEach(function (k) {
       if (rows[k]) return;
       var c = BCR.ch[k], el = document.createElement('a');
@@ -2677,8 +2685,13 @@
   function bcrSetup() {
     var seek = document.getElementById('bcr-seek');
     seek.max = bcrLast();
-    var d0 = BCR.dates[0].split('-'), d1 = BCR.dates[bcrLast()].split('-');
-    setText('bcr-note', (+d0[1]) + '/' + (+d0[2]) + ' 〜 ' + (+d1[1]) + '/' + (+d1[2]) + ' ・ 上位' + bcrN() + ' ・ 毎日更新');
+    bcrNote();
+    document.querySelectorAll('#bcr-n .vt').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.querySelectorAll('#bcr-n .vt').forEach(function (x) { x.classList.toggle('on', x === b); });
+        bcr.n = +b.dataset.n; bcrNote(); bcrKick();   // 再生位置はそのまま、行の高さと本数だけ変える
+      });
+    });
     seek.addEventListener('input', function () { bcr.pos = +seek.value; bcr.playing = false; bcrBtn(); bcrKick(); });
     document.getElementById('bcr-play').addEventListener('click', function () {
       if (bcr.playing) bcr.playing = false;
