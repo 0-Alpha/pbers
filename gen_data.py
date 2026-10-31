@@ -126,6 +126,12 @@ RETIRED = {
     "UC0dwNfKKsU48BC_jlVzJdig",  # ノキア (引退済み)
     "UCvOfNL3MjhbjxAU8U9Fi9uQ",  # 田所浩二 (引退済み)
     "UCdrDC3QVzRjxHcS7m3EDPxg",  # 吉田彩音の世界情勢解説チャンネル (引退済み)
+    "UCTDtR89msJc6AV5t3X8H7fw",  # スチロール (引退済み・最終投稿 2022-05)
+    "UCRLPISHB_5EP3O7RK2mIHpA",  # YMポーランドボール (引退済み・最終投稿 2023-03)
+    "UCSEZoTqU35u_tC1SfBSI8Mw",  # はやぶさ (引退済み・最終投稿 2023-12)
+    "UCLflWIARKMxRiQDu7OIGGyg",  # やよいどき (引退済み・最終投稿 2024-08)
+    "UCCfKBBDK5D66hbOl455YBHg",  # 水入り瓶 (引退済み・最終投稿 2024-10)
+    "UCw4mBghvckZ6kRp1KF3PP2g",  # 渋谷区のペンギン (引退済み・最終投稿 2024-12)
 }
 
 # 指定の固定カラー(チャンネルID -> hex)
@@ -389,7 +395,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250974">
+<link rel="stylesheet" href="/assets/style.css?v=250975">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -413,7 +419,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250974"></script>
+<script src="/assets/channel.js?v=250975"></script>
 </body>
 </html>
 '''
@@ -856,7 +862,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250974">
+<link rel="stylesheet" href="/assets/style.css?v=250975">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>

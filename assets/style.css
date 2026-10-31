@@ -1099,3 +1099,11 @@ footer .brand{font-size:16px}
 /* PC全ページ右余白の縦レール広告(160×600)。コンテンツに被らない幅でのみ表示 */
 .admax-rail{position:fixed;right:10px;top:50%;transform:translateY(-50%);z-index:20;width:160px}
 @media (max-width:1539px){ .admax-rail{display:none} }
+
+/* スレのタグ変更(スレ主/管理者) */
+.th-tagedit{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:-4px 0 12px;font-size:12px}
+.th-tagedit-l{color:var(--muted,#8d8986);margin-right:2px}
+.th-tagb{border:1px solid var(--tc);background:transparent;color:inherit;border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer}
+.th-tagb.on{background:var(--tc);color:#fff;cursor:default}
+.th-tagb:disabled{opacity:.6}
+.th-tagedit-msg{color:var(--muted,#8d8986)}

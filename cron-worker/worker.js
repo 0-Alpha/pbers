@@ -70,6 +70,7 @@ export default {
     if (url.pathname === "/api/board/posts"   && req.method === "POST") return postCreate(req, env);
     if (url.pathname === "/api/board/poll/vote" && req.method === "POST") return pollVote(req, env);
     if (url.pathname === "/api/board/delete"    && req.method === "POST") return postDelete(req, env);
+    if (url.pathname === "/api/board/tag"       && req.method === "POST") return threadTag(req, env);
     if (url.pathname === "/api/board/stats"     && req.method === "GET")  return boardStats(url, req, env);
     if (url.pathname === "/api/board/hide"    && req.method === "POST") return boardHide(req, env);
     if (url.pathname === "/api/board/purge"   && req.method === "POST") return boardPurge(req, env);
@@ -772,6 +773,25 @@ async function postCreate(req, env) {
   return json({ ok: true, no, del: await delkeyFor(env, tid, no, now) });        // del=このレスの自己削除キー
 }
 // 自己削除: 本文だけ空にする(ソフト削除)。番号・名前・スレ構造・開示用のIP/UAは保持。
+// スレのタグ変更。スレ主(1レス目の自己削除キーを持つ人)か管理者のみ。キーは投稿時に本人へだけ返している。
+async function threadTag(req, env) {
+  const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
+  let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
+  const tid = parseInt(b.thread, 10);
+  const tag = String(b.tag || "");
+  if (!tid) return json({ error: "bad_id" }, 400);
+  if (!TAG_SET.has(tag)) return json({ error: "bad_tag" }, 400);
+  const th = await env.DB.prepare("SELECT id,hidden FROM board_threads WHERE id=?1").bind(tid).first();
+  if (!th || (th.hidden && !g.admin)) return json({ error: "not_found" }, 404);
+  if (!g.admin) {
+    const op = await env.DB.prepare("SELECT created FROM board_posts WHERE thread_id=?1 AND no=1").bind(tid).first();
+    if (!op || String(b.token || "") !== (await delkeyFor(env, tid, 1, op.created))) return json({ error: "forbidden" }, 403);
+    if (!(await rateLimit(req, env, "tg", 10))) return json({ error: "too_fast" }, 429);
+  }
+  await ensureTags(env);
+  await env.DB.prepare("INSERT OR REPLACE INTO board_tags(thread_id,tag) VALUES(?1,?2)").bind(tid, tag).run();
+  return json({ ok: true, tag });
+}
 async function postDelete(req, env) {
   const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
   let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }

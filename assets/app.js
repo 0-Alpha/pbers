@@ -1754,6 +1754,9 @@
       updateBoardBadge(countNew(boardThreadsCache));          // タブの新着バッジを更新
       host.innerHTML = '<button class="th-back">← スレ一覧</button>' +
         '<h3 class="th-h">' + tagChip(d.tag) + ' ' + esc(d.thread.title) + '</h3>' +
+        ((boardKey || delKeyOf(id, 1)) ? '<div class="th-tagedit" id="th-tagedit"><span class="th-tagedit-l">タグ変更（スレ主のみ）</span>' +   // スレ主=1レス目の削除キー所持者
+          TAG_ORDER.map(function (k) { return '<button type="button" class="th-tagb' + (tagKey(d.tag) === k ? ' on' : '') + '" data-tag="' + k + '" style="--tc:' + TAGS[k].color + '">' + TAGS[k].label + '</button>'; }).join('') +
+          '<span class="th-tagedit-msg" id="th-tagedit-msg"></span></div>' : '') +
         (boardKey ? '<div class="bmod-bar"><button type="button" class="bmod bc-delth" data-id="' + id + '">スレを完全削除</button></div>' : '') +
         pollHtml(d.poll) +
         sheetHtml(d.sheet) +
@@ -1808,6 +1811,19 @@
           document.getElementById('bt-reply').scrollIntoView({ block: 'center' });
           rb.focus();
         });
+      });
+      var tagEdit = document.getElementById('th-tagedit');
+      if (tagEdit) tagEdit.addEventListener('click', function (e) {   // スレのタグ変更(スレ主/管理者)
+        var b = e.target.closest('.th-tagb'); if (!b || b.classList.contains('on') || b.disabled) return;
+        var msg = document.getElementById('th-tagedit-msg'); msg.textContent = '変更中…';
+        tagEdit.querySelectorAll('.th-tagb').forEach(function (x) { x.disabled = true; });
+        fetch(boardApi('/tag'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
+          body: JSON.stringify({ thread: id, tag: b.dataset.tag, token: delKeyOf(id, 1) }) })
+          .then(function (r) { return r.json(); }).then(function (r) {
+            if (r.ok) { renderThread(host, id); return; }
+            msg.textContent = boardErr(r.error);
+            tagEdit.querySelectorAll('.th-tagb').forEach(function (x) { x.disabled = false; });
+          }).catch(function () { msg.textContent = '通信に失敗しました'; tagEdit.querySelectorAll('.th-tagb').forEach(function (x) { x.disabled = false; }); });
       });
       host.querySelectorAll('.post-del-btn').forEach(function (b) {   // 自分のレスの本文を削除(番号は残る)
         b.addEventListener('click', function () {
