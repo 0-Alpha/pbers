@@ -972,7 +972,7 @@ footer .brand{font-size:16px}
 .poll-res.mine .poll-opt-t{font-weight:800;color:var(--red)}
 .poll-res-n{color:var(--muted);font-size:12px;flex:none;white-space:nowrap}
 .poll-bar{height:9px;background:var(--line-2);border-radius:999px;overflow:hidden}
-.poll-bar>span{display:block;height:100%;background:var(--red);border-radius:999px;min-width:2px;transition:width .3s ease}
+.poll-bar>span{display:block;height:100%;background:var(--red);transition:clip-path .3s ease}   /* 幅はclip-pathで表現(widthアニメはレイアウト再計算になる) */
 .poll-note{font-family:var(--jp);font-size:11.5px;color:var(--muted);margin-top:9px}
 .poll-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;flex-wrap:wrap}
 .poll-vote{border:0;background:var(--red);color:#fff;font-family:var(--jp);font-weight:800;font-size:13.5px;padding:8px 20px;border-radius:999px;cursor:pointer}

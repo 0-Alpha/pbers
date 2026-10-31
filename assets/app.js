@@ -1825,7 +1825,7 @@
       return '<div class="poll-res' + (mine ? ' mine' : '') + '">' +
         '<div class="poll-res-top"><span class="poll-opt-t">' + esc(o) + (mine ? ' ✓' : '') + '</span>' +
         '<span class="poll-res-n num">' + c + '票 (' + pct + '%)</span></div>' +
-        '<div class="poll-bar"><span style="width:' + pct + '%"></span></div></div>';
+        '<div class="poll-bar"><span style="clip-path:inset(0 ' + (100 - Math.max(pct, 1)) + '% 0 0 round 999px)"></span></div></div>';
     }).join('');
     var status = poll.closed ? '終了しました' : pollRemain(poll.closes);
     var foot = '<div class="poll-foot">' +
