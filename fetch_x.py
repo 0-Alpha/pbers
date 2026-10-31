@@ -3,6 +3,7 @@
 
 - 対象は x_accounts.txt(1行1アカウント: 「ハンドル  YouTubeチャンネルID」。IDは不明なら省略可)
 - 取得元は FxTwitter の公開API(api.fxtwitter.com)。キー不要だが非公式なので、
+  (CIからだと散発的に404が返るがリトライで取れる)
   失敗しても他の処理を止めないこと(workflow 側でも continue-on-error)。
 - x_history.csv は追記専用。record.py と同じ JST 6時間スロットで記録し、同じスロットがあれば追記しない。
   取得に失敗したアカウントはその回の行を書かない(欠損として扱う)。
@@ -27,7 +28,7 @@ MATURE_DAYS = 3     # 表示回数が落ち着いたとみなす経過日数
 MAX_PAGES = 5       # 1ページ20件。最大100件まで遡る
 
 
-def get(url, tries=3):
+def get(url, tries=4):
     for i in range(tries):
         try:
             with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=30) as r:
