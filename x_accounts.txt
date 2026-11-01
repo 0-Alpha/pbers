@@ -65,3 +65,4 @@ NikotyuuAN         UC2fMWFGgy-ENfkqlK0CUwrg  # にこちPB(本人確認済み・
 RayAlpha0          UCVYMXYU6j0M5Gj1xwywKDyg  # レイアルファ(PBers管理者・名前一致で手動)
 Porland_Train      UCm8lBcDz0RVa28FkJu-0nsA  # トレインボール(2026-11-01 追加。10/31の一括時は一時的な404で除外していた)
 netoenq            UCrRZolgBJ0K-yGqFKGbUVkw  # ねとえん(2026-11-01 追加)
+nihonball          UC0kY7Nwjt8qkErtdxl3iuIw  # 日本ボール(2026-11-01 追加)

@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-01",
+    "label": "11月1日(日)",
+    "items": []
+  },
+  {
     "date": "2026-10-31",
     "label": "10月31日(土)",
     "items": []
@@ -130,56 +135,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "投稿数 300本 突破",
         "value": 300
-      }
-    ]
-  },
-  {
-    "date": "2026-10-25",
-    "label": "10月25日(日)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "Æž!みかんぼーる🍊",
-        "color": "#eba864",
-        "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 40万人 突破",
-        "value": 400000
-      },
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "にこちPB",
-        "color": "#cc3e87",
-        "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 2万人 突破",
-        "value": 20000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ニイソビボール",
-        "color": "#5e95d4",
-        "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 1000万回 突破",
-        "value": 10000000
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "【PB】ネオンボール",
-        "color": "#a3cc3e",
-        "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 100本 突破",
-        "value": 100
       }
     ]
   }
