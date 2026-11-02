@@ -5,7 +5,35 @@
 <atom:link href="https://pbers.com/feed.xml" rel="self" type="application/rss+xml"/>
 <description>ポーランドボーラー(YouTube)の登録者・総再生・投稿数のマイルストーン突破ニュース</description>
 <language>ja</language>
-<lastBuildDate>Sun, 01 Nov 2026 12:00:00 +0900</lastBuildDate>
+<lastBuildDate>Tue, 03 Nov 2026 12:00:00 +0900</lastBuildDate>
+<item>
+<title>なぽりたんぼーる!! — 登録者 2万人 突破</title>
+<link>https://pbers.com/c/%E3%81%AA%E3%81%BD%E3%82%8A%E3%81%9F%E3%82%93%E3%81%BC%E3%83%BC%E3%82%8B/</link>
+<guid isPermaLink="false">2026-11-03/subs/なぽりたんぼーる/20000</guid>
+<pubDate>Tue, 03 Nov 2026 12:00:00 +0900</pubDate>
+<description>なぽりたんぼーる!! — 登録者 2万人 突破</description>
+</item>
+<item>
+<title>カルマルボール — 登録者 1万人 突破</title>
+<link>https://pbers.com/c/%E3%82%AB%E3%83%AB%E3%83%9E%E3%83%AB%E3%83%9C%E3%83%BC%E3%83%AB/</link>
+<guid isPermaLink="false">2026-11-03/subs/カルマルボール/10000</guid>
+<pubDate>Tue, 03 Nov 2026 12:00:00 +0900</pubDate>
+<description>カルマルボール — 登録者 1万人 突破</description>
+</item>
+<item>
+<title>田中MID — 総再生数 2.5億回 突破</title>
+<link>https://pbers.com/c/%E7%94%B0%E4%B8%ADmid/</link>
+<guid isPermaLink="false">2026-11-03/views/田中mid/250000000</guid>
+<pubDate>Tue, 03 Nov 2026 12:00:00 +0900</pubDate>
+<description>田中MID — 総再生数 2.5億回 突破</description>
+</item>
+<item>
+<title>某P国の球 — 投稿数 100本 突破</title>
+<link>https://pbers.com/c/%E6%9F%90p%E5%9B%BD%E3%81%AE%E7%90%83/</link>
+<guid isPermaLink="false">2026-11-03/videos/某p国の球/100</guid>
+<pubDate>Tue, 03 Nov 2026 12:00:00 +0900</pubDate>
+<description>某P国の球 — 投稿数 100本 突破</description>
+</item>
 <item>
 <title>ニイソビボール — 登録者 3万人 突破</title>
 <link>https://pbers.com/c/%E3%83%8B%E3%82%A4%E3%82%BD%E3%83%93%E3%83%9C%E3%83%BC%E3%83%AB/</link>
@@ -72,12 +100,5 @@
 <guid isPermaLink="false">2026-10-28/subs/こうちゃポーランドボール/60000</guid>
 <pubDate>Wed, 28 Oct 2026 12:00:00 +0900</pubDate>
 <description>こうちゃ(ポーランドボール) — 登録者 6万人 突破</description>
-</item>
-<item>
-<title>空白ボール — 登録者 1万人 突破</title>
-<link>https://pbers.com/c/%E7%A9%BA%E7%99%BD%E3%83%9C%E3%83%BC%E3%83%AB/</link>
-<guid isPermaLink="false">2026-10-27/subs/空白ボール/10000</guid>
-<pubDate>Tue, 27 Oct 2026 12:00:00 +0900</pubDate>
-<description>空白ボール — 登録者 1万人 突破</description>
 </item>
 </channel></rss>
