@@ -12,7 +12,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "jp-ball",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "MOON-BALL",
@@ -27,7 +28,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "moon-ball",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.44
   },
   {
     "name": "OperaJP",
@@ -42,7 +44,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "operajp",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "Somen ball",
@@ -57,7 +60,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "somen-ball",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 1.18
   },
   {
     "name": "Dezinicht【Æž!フヒフム 海外アカウント】",
@@ -72,7 +76,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "dezinichtフヒフム-海外アカウント",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 12.69
   },
   {
     "name": "áíš!aispoaporu",
@@ -87,7 +92,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "áíšaispoaporu",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 1.43
   },
   {
     "name": "Spheria",
@@ -102,7 +108,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "spheria",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 2.27
   },
   {
     "name": "SATTOA−BALL",
@@ -117,7 +124,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "sattoaball",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": null
   },
   {
     "name": "F丸",
@@ -132,7 +140,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "f丸",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 5.92
   },
   {
     "name": "りょうデス",
@@ -147,7 +156,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "りょうデス",
     "vShort": 15134628,
-    "vLong": 108253
+    "vLong": 108253,
+    "g21": 0.0
   },
   {
     "name": "くろまめ",
@@ -162,7 +172,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "くろまめ",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 25.0
   },
   {
     "name": "日本猫耳版ボール【目標9000人】",
@@ -177,7 +188,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "日本猫耳版ボール目標9000人",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "Dotto edit",
@@ -192,7 +204,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "dotto-edit",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "Past_Ball",
@@ -207,7 +220,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "past_ball",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 3.0
   },
   {
     "name": "udonball",
@@ -222,7 +236,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "udonball",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.58
   },
   {
     "name": "Uow_cb",
@@ -237,7 +252,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "uow_cb",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": null
   },
   {
     "name": "MakkoyuCB",
@@ -252,7 +268,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "makkoyucb",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 8.53
   },
   {
     "name": "AST.アオスト Polandball",
@@ -267,7 +284,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "astアオスト-polandball",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.54
   },
   {
     "name": "AJ ball",
@@ -282,7 +300,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "aj-ball",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.28
   },
   {
     "name": "Japaneseball",
@@ -297,7 +316,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "japaneseball",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": null
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];

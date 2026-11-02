@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-02",
+    "label": "11月2日(月)",
+    "items": []
+  },
+  {
     "date": "2026-11-01",
     "label": "11月1日(日)",
     "items": [
@@ -141,34 +146,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "登録者 1万人 突破",
         "value": 10000
-      }
-    ]
-  },
-  {
-    "date": "2026-10-26",
-    "label": "10月26日(月)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "レイアルファ",
-        "color": "#db4f57",
-        "avatar": "https://yt3.googleusercontent.com/TVNAN6bSZZHGvc7hYhLs6Gnn95EKhcWj5GwqbWN00HAFA8SmXjUyKXQK6D4Ljl_S9A_8eaHn-Lk=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 500万回 突破",
-        "value": 5000000
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "田中MID",
-        "color": "#2f80ed",
-        "avatar": "https://yt3.googleusercontent.com/mnFY8X_lmtyW54Uh5ocg1QJQVTxTRKG9XDdrGAhxFZpPPJzhsGue-cMHqLBCsIRF4hBHjsLU=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 300本 突破",
-        "value": 300
       }
     ]
   }

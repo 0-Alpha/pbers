@@ -12,7 +12,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "フヒフム",
     "vShort": 249364604,
-    "vLong": 137335523
+    "vLong": 137335523,
+    "g21": 1.43
   },
   {
     "name": "Æž!みかんぼーる🍊",
@@ -27,7 +28,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "みかんぼーる",
     "vShort": 397192252,
-    "vLong": 3684579
+    "vLong": 3684579,
+    "g21": 4.65
   },
   {
     "name": "田中MID",
@@ -42,7 +44,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "田中mid",
     "vShort": 212050560,
-    "vLong": 344596
+    "vLong": 344596,
+    "g21": 0.94
   },
   {
     "name": "なるほど地理",
@@ -57,7 +60,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "なるほど地理",
     "vShort": 325440887,
-    "vLong": 0
+    "vLong": 0,
+    "g21": 0.69
   },
   {
     "name": "あすえいボール",
@@ -76,7 +80,8 @@ window.PBERS_DATA = [
       "#1f45c9"
     ],
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": null
   },
   {
     "name": "こうちゃ(ポーランドボール)",
@@ -91,7 +96,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "こうちゃポーランドボール",
     "vShort": 28249312,
-    "vLong": 1181245
+    "vLong": 1181245,
+    "g21": 1.35
   },
   {
     "name": "さとボール",
@@ -106,7 +112,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "さとボール",
     "vShort": 6896040,
-    "vLong": 20098374
+    "vLong": 20098374,
+    "g21": 0.36
   },
   {
     "name": "狼狐 Roko(ポーランドボール)",
@@ -121,7 +128,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "狼狐-rokoポーランドボール",
     "vShort": 3545739,
-    "vLong": 4826005
+    "vLong": 4826005,
+    "g21": 0.37
   },
   {
     "name": "ゆずボール🎣",
@@ -136,7 +144,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ゆずボール",
     "vShort": 17469651,
-    "vLong": 252073
+    "vLong": 252073,
+    "g21": 3.43
   },
   {
     "name": "エッバの歴史解説ちゃんねる",
@@ -151,7 +160,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "エッバの歴史解説ちゃんねる",
     "vShort": 1134350,
-    "vLong": 9141248
+    "vLong": 9141248,
+    "g21": 0.66
   },
   {
     "name": "Neille / ナユ",
@@ -166,7 +176,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "neille-ナユ",
     "vShort": 70956056,
-    "vLong": 71683
+    "vLong": 71683,
+    "g21": 0.69
   },
   {
     "name": "ボウコムボール",
@@ -181,7 +192,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ボウコムボール",
     "vShort": 5221513,
-    "vLong": 5984669
+    "vLong": 5984669,
+    "g21": 1.8
   },
   {
     "name": "BALL420",
@@ -196,7 +208,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ball420",
     "vShort": 29823350,
-    "vLong": 4193897
+    "vLong": 4193897,
+    "g21": 0.89
   },
   {
     "name": "日帝ボール",
@@ -211,7 +224,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "日帝ボール",
     "vShort": 13559036,
-    "vLong": 185151
+    "vLong": 185151,
+    "g21": 7.64
   },
   {
     "name": "かにたる",
@@ -226,7 +240,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "かにたる",
     "vShort": 9002994,
-    "vLong": 1947321
+    "vLong": 1947321,
+    "g21": 0.0
   },
   {
     "name": "ニイソビボール",
@@ -241,7 +256,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ニイソビボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 34.98
   },
   {
     "name": "うずまき🌀",
@@ -256,7 +272,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "うずまき",
     "vShort": 7589529,
-    "vLong": 340903
+    "vLong": 340903,
+    "g21": 0.67
   },
   {
     "name": "Yukkuri ball",
@@ -271,7 +288,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "yukkuri-ball",
     "vShort": 0,
-    "vLong": 13057935
+    "vLong": 13057935,
+    "g21": 0.34
   },
   {
     "name": "Dubai Choco Ball",
@@ -286,7 +304,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "dubai-choco-ball",
     "vShort": 19087687,
-    "vLong": 1172077
+    "vLong": 1172077,
+    "g21": 0.69
   },
   {
     "name": "作",
@@ -301,7 +320,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "作",
     "vShort": 7433358,
-    "vLong": 2101094
+    "vLong": 2101094,
+    "g21": 0.71
   },
   {
     "name": "日本ボール",
@@ -316,7 +336,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "日本ボール",
     "vShort": 1165083,
-    "vLong": 6579394
+    "vLong": 6579394,
+    "g21": 0.36
   },
   {
     "name": "マイクラ共和国ボール(tama2224)",
@@ -331,7 +352,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "マイクラ共和国ボールtama2224",
     "vShort": 1515056,
-    "vLong": 8757646
+    "vLong": 8757646,
+    "g21": 0.73
   },
   {
     "name": "すいかぼーる",
@@ -346,7 +368,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "すいかぼーる",
     "vShort": 1453805,
-    "vLong": 13567207
+    "vLong": 13567207,
+    "g21": 0.41
   },
   {
     "name": "ｺﾏ",
@@ -361,7 +384,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ｺﾏ",
     "vShort": 9979830,
-    "vLong": 52721
+    "vLong": 52721,
+    "g21": 3.42
   },
   {
     "name": "りょうデス",
@@ -376,7 +400,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "りょうデス",
     "vShort": 15134628,
-    "vLong": 108253
+    "vLong": 108253,
+    "g21": 0.0
   },
   {
     "name": "こゆまる_koyumaru908",
@@ -391,7 +416,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "こゆまる_koyumaru908",
     "vShort": 9437930,
-    "vLong": 20133
+    "vLong": 20133,
+    "g21": 0.0
   },
   {
     "name": "マルルさん",
@@ -406,7 +432,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "マルルさん",
     "vShort": 26228138,
-    "vLong": 472182
+    "vLong": 472182,
+    "g21": 1.31
   },
   {
     "name": "ぱふball",
@@ -421,7 +448,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ぱふball",
     "vShort": 5852213,
-    "vLong": 924589
+    "vLong": 924589,
+    "g21": 0.43
   },
   {
     "name": "にこちPB",
@@ -436,7 +464,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "にこちpb",
     "vShort": 283629,
-    "vLong": 35958
+    "vLong": 35958,
+    "g21": 65.67
   },
   {
     "name": " ゼリョーヌィボール活停中",
@@ -451,7 +480,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ゼリョーヌィボール活停中",
     "vShort": 887656,
-    "vLong": 4966499
+    "vLong": 4966499,
+    "g21": 1.87
   },
   {
     "name": "ねこボール",
@@ -466,7 +496,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ねこボール",
     "vShort": 1684998,
-    "vLong": 1502199
+    "vLong": 1502199,
+    "g21": 0.48
   },
   {
     "name": "なぽりたんぼーる!!",
@@ -481,7 +512,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "なぽりたんぼーる",
     "vShort": 8715813,
-    "vLong": 229629
+    "vLong": 229629,
+    "g21": 3.65
   },
   {
     "name": "ぽぱい",
@@ -496,7 +528,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ぽぱい",
     "vShort": 4559793,
-    "vLong": 68696
+    "vLong": 68696,
+    "g21": 3.11
   },
   {
     "name": "アオアオカントリー",
@@ -511,7 +544,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "アオアオカントリー",
     "vShort": 200667,
-    "vLong": 2014004
+    "vLong": 2014004,
+    "g21": 2.7
   },
   {
     "name": "炭火焼き",
@@ -526,7 +560,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "炭火焼き",
     "vShort": 11902551,
-    "vLong": 2166601
+    "vLong": 2166601,
+    "g21": -0.53
   },
   {
     "name": "まるッとわかる地理の裏話",
@@ -541,7 +576,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "まるッとわかる地理の裏話",
     "vShort": 20681105,
-    "vLong": 0
+    "vLong": 0,
+    "g21": 6.94
   },
   {
     "name": "ミルー帝国-はんぺん[PB]",
@@ -556,7 +592,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ミルー帝国-はんぺんpb",
     "vShort": 6933396,
-    "vLong": 1783188
+    "vLong": 1783188,
+    "g21": 1.66
   },
   {
     "name": "きままボール",
@@ -571,7 +608,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "きままボール",
     "vShort": 10739747,
-    "vLong": 1939068
+    "vLong": 1939068,
+    "g21": 0.56
   },
   {
     "name": "ユウセイボール",
@@ -586,7 +624,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ユウセイボール",
     "vShort": 4186818,
-    "vLong": 2095090
+    "vLong": 2095090,
+    "g21": 1.7
   },
   {
     "name": "ソビエト・カチューシャボール☭\n\n",
@@ -601,7 +640,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ソビエトカチューシャボール",
     "vShort": 5518738,
-    "vLong": 33276
+    "vLong": 33276,
+    "g21": 3.49
   },
   {
     "name": "練乳=ソビエト共和国ぼーる",
@@ -616,7 +656,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "練乳ソビエト共和国ぼーる",
     "vShort": 1774594,
-    "vLong": 5094
+    "vLong": 5094,
+    "g21": 15.03
   },
   {
     "name": "マスカットボール",
@@ -631,7 +672,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "マスカットボール",
     "vShort": 3520938,
-    "vLong": 1062868
+    "vLong": 1062868,
+    "g21": 0.6
   },
   {
     "name": "ほわさん",
@@ -646,7 +688,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ほわさん",
     "vShort": 2283746,
-    "vLong": 1594474
+    "vLong": 1594474,
+    "g21": 3.12
   },
   {
     "name": "MIKUボール",
@@ -661,7 +704,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "mikuボール",
     "vShort": 3461472,
-    "vLong": 3663
+    "vLong": 3663,
+    "g21": 1.23
   },
   {
     "name": "ねとえん",
@@ -676,7 +720,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ねとえん",
     "vShort": 7015943,
-    "vLong": 30154
+    "vLong": 30154,
+    "g21": 5.96
   },
   {
     "name": "Türkiye👑キプロスball",
@@ -691,7 +736,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "türkiyeキプロスball",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "まるぼーるch ",
@@ -706,7 +752,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "まるぼーるch",
     "vShort": 18788235,
-    "vLong": 11890
+    "vLong": 11890,
+    "g21": 9.23
   },
   {
     "name": "TKG ball",
@@ -721,7 +768,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "tkg-ball",
     "vShort": 40569,
-    "vLong": 4119273
+    "vLong": 4119273,
+    "g21": 0.0
   },
   {
     "name": "マロー",
@@ -736,7 +784,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "マロー",
     "vShort": 71983,
-    "vLong": 3156255
+    "vLong": 3156255,
+    "g21": 0.73
   },
   {
     "name": "なごみん",
@@ -751,7 +800,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "なごみん",
     "vShort": 2132845,
-    "vLong": 786728
+    "vLong": 786728,
+    "g21": 1.54
   },
   {
     "name": "わーるどボール【ポーランドボール】",
@@ -766,7 +816,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "わーるどボールポーランドボール",
     "vShort": 59486,
-    "vLong": 2233063
+    "vLong": 2233063,
+    "g21": 3.17
   },
   {
     "name": "ユラミア連邦共和国",
@@ -781,7 +832,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ユラミア連邦共和国",
     "vShort": 8532764,
-    "vLong": 41688
+    "vLong": 41688,
+    "g21": 2.38
   },
   {
     "name": "レメラボール / 🌈🌙【えるめす】",
@@ -796,7 +848,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "レメラボール-えるめす",
     "vShort": 6104307,
-    "vLong": 184390
+    "vLong": 184390,
+    "g21": 0.78
   },
   {
     "name": "ケエレビQ!",
@@ -811,7 +864,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ケエレビq",
     "vShort": 4685199,
-    "vLong": 728407
+    "vLong": 728407,
+    "g21": 0.79
   },
   {
     "name": "ちまちもヒエナ ",
@@ -826,7 +880,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ちまちもヒエナ",
     "vShort": 5162321,
-    "vLong": 271598
+    "vLong": 271598,
+    "g21": 0.0
   },
   {
     "name": "カミヤ kamiya【ポーランドボール】",
@@ -841,7 +896,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "カミヤ-kamiyaポーランドボール",
     "vShort": 2620449,
-    "vLong": 763293
+    "vLong": 763293,
+    "g21": 0.81
   },
   {
     "name": "SEKKI98",
@@ -856,7 +912,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "sekki98",
     "vShort": 7964589,
-    "vLong": 572727
+    "vLong": 572727,
+    "g21": 0.0
   },
   {
     "name": "ひかるボール　Hikaru ball",
@@ -871,7 +928,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ひかるボール-hikaru-ball",
     "vShort": 1262943,
-    "vLong": 283894
+    "vLong": 283894,
+    "g21": 0.0
   },
   {
     "name": "ハッホチャンネル",
@@ -886,7 +944,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ハッホチャンネル",
     "vShort": 1708120,
-    "vLong": 5037
+    "vLong": 5037,
+    "g21": 13.33
   },
   {
     "name": "玄米ボール🍚",
@@ -901,7 +960,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "玄米ボール",
     "vShort": 5446949,
-    "vLong": 133878
+    "vLong": 133878,
+    "g21": 3.7
   },
   {
     "name": "ほたて",
@@ -916,7 +976,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ほたて",
     "vShort": 1604603,
-    "vLong": 2144128
+    "vLong": 2144128,
+    "g21": 0.0
   },
   {
     "name": "lemon_Ball",
@@ -931,7 +992,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "lemon_ball",
     "vShort": 596124,
-    "vLong": 390501
+    "vLong": 390501,
+    "g21": 0.0
   },
   {
     "name": "ほすとぼーる",
@@ -946,7 +1008,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ほすとぼーる",
     "vShort": 2116732,
-    "vLong": 0
+    "vLong": 0,
+    "g21": 0.0
   },
   {
     "name": "ĜÇ_Z3RØくん",
@@ -961,7 +1024,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ĝç_z3røくん",
     "vShort": 6178280,
-    "vLong": 247900
+    "vLong": 247900,
+    "g21": 0.0
   },
   {
     "name": "【PB】ネオンボール",
@@ -976,7 +1040,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "pbネオンボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 33.07
   },
   {
     "name": "スーパーボール",
@@ -991,7 +1056,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "スーパーボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "空白ボール",
@@ -1006,7 +1072,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "空白ボール",
     "vShort": 4561638,
-    "vLong": 29355
+    "vLong": 29355,
+    "g21": 1.32
   },
   {
     "name": "カルマルボール",
@@ -1021,7 +1088,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "カルマルボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 33.92
   },
   {
     "name": "かめ・さーくボール共和国",
@@ -1036,7 +1104,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "かめさーくボール共和国",
     "vShort": 186514,
-    "vLong": 1822156
+    "vLong": 1822156,
+    "g21": 0.41
   },
   {
     "name": "mikan帝国ぼーる",
@@ -1051,7 +1120,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "mikan帝国ぼーる",
     "vShort": 432536,
-    "vLong": 1147125
+    "vLong": 1147125,
+    "g21": 0.94
   },
   {
     "name": "ライヒスボール【Reichsball】",
@@ -1066,7 +1136,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ライヒスボールreichsball",
     "vShort": 225319,
-    "vLong": 4181863
+    "vLong": 4181863,
+    "g21": -0.21
   },
   {
     "name": "ばかわたし",
@@ -1081,7 +1152,8 @@ window.PBERS_DATA = [
     "genre": "PBerer",
     "slug": "ばかわたし",
     "vShort": 3646868,
-    "vLong": 1080396
+    "vLong": 1080396,
+    "g21": 3.4
   },
   {
     "name": "ふかひれ牧場",
@@ -1096,7 +1168,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ふかひれ牧場",
     "vShort": 0,
-    "vLong": 1265075
+    "vLong": 1265075,
+    "g21": -0.22
   },
   {
     "name": "ココプー",
@@ -1111,7 +1184,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ココプー",
     "vShort": 5940363,
-    "vLong": 187792
+    "vLong": 187792,
+    "g21": 0.22
   },
   {
     "name": "頑張れガスト",
@@ -1126,7 +1200,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "頑張れガスト",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": null
   },
   {
     "name": "ポーランドボールの教科書",
@@ -1141,7 +1216,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ポーランドボールの教科書",
     "vShort": 134915,
-    "vLong": 1291341
+    "vLong": 1291341,
+    "g21": 0.62
   },
   {
     "name": "アスラボール　",
@@ -1156,7 +1232,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "アスラボール",
     "vShort": 3027022,
-    "vLong": 6764
+    "vLong": 6764,
+    "g21": 0.0
   },
   {
     "name": "Russiaぼーる",
@@ -1171,7 +1248,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "russiaぼーる",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": -0.27
   },
   {
     "name": "セフィルぼーる‼︎",
@@ -1186,7 +1264,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "セフィルぼーる",
     "vShort": 253281,
-    "vLong": 1976878
+    "vLong": 1976878,
+    "g21": 2.05
   },
   {
     "name": "レイアルファ",
@@ -1201,7 +1280,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "レイアルファ",
     "vShort": 3175636,
-    "vLong": 129032
+    "vLong": 129032,
+    "g21": 6.81
   },
   {
     "name": "ゆうボール",
@@ -1216,7 +1296,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ゆうボール",
     "vShort": 1522506,
-    "vLong": 86734
+    "vLong": 86734,
+    "g21": 0.28
   },
   {
     "name": "から揚げボール 永遠の24歳学生",
@@ -1231,7 +1312,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "から揚げボール-永遠の24歳学生",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.14
   },
   {
     "name": "いたりぃ",
@@ -1246,7 +1328,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "いたりぃ",
     "vShort": 703813,
-    "vLong": 421860
+    "vLong": 421860,
+    "g21": -0.14
   },
   {
     "name": "ノートボール",
@@ -1261,7 +1344,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ノートボール",
     "vShort": 3634853,
-    "vLong": 1934
+    "vLong": 1934,
+    "g21": -0.57
   },
   {
     "name": "萱口",
@@ -1276,7 +1360,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "萱口",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 8.63
   },
   {
     "name": "白海豚",
@@ -1291,7 +1376,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "白海豚",
     "vShort": 1894595,
-    "vLong": 259136
+    "vLong": 259136,
+    "g21": 0.15
   },
   {
     "name": "カカポボール🦜",
@@ -1306,7 +1392,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "カカポボール",
     "vShort": 4158883,
-    "vLong": 9633
+    "vLong": 9633,
+    "g21": 0.15
   },
   {
     "name": "天川 蒼",
@@ -1321,7 +1408,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "天川-蒼",
     "vShort": 4952461,
-    "vLong": 105495
+    "vLong": 105495,
+    "g21": 0.31
   },
   {
     "name": "フラルランドBALL",
@@ -1336,7 +1424,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "フラルランドball",
     "vShort": 2664107,
-    "vLong": 74387
+    "vLong": 74387,
+    "g21": 0.0
   },
   {
     "name": "元ボーラー唯一の中立(mr incredible中毒)",
@@ -1351,7 +1440,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "元ボーラー唯一の中立mr-incredible中毒",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": null
   },
   {
     "name": "アフガンボール",
@@ -1366,7 +1456,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "アフガンボール",
     "vShort": 0,
-    "vLong": 958562
+    "vLong": 958562,
+    "g21": 0.7
   },
   {
     "name": "りっつんボール",
@@ -1381,7 +1472,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "りっつんボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 1.8
   },
   {
     "name": "ヴァイマル共和国ボール [底辺PBer連盟] ",
@@ -1396,7 +1488,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ヴァイマル共和国ボール-底辺pber連盟",
     "vShort": 3951828,
-    "vLong": 5888
+    "vLong": 5888,
+    "g21": 0.0
   },
   {
     "name": "ふぉるま",
@@ -1411,7 +1504,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ふぉるま",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.38
   },
   {
     "name": "ていてく",
@@ -1426,7 +1520,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ていてく",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.95
   },
   {
     "name": "不定期ボール(1)",
@@ -1441,7 +1536,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "不定期ボール1",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.97
   },
   {
     "name": "みすい",
@@ -1456,7 +1552,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "みすい",
     "vShort": 1298270,
-    "vLong": 0
+    "vLong": 0,
+    "g21": 16.33
   },
   {
     "name": "EROP 【えるふぼーる】",
@@ -1471,7 +1568,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "erop-えるふぼーる",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": -0.59
   },
   {
     "name": "オマエナガ",
@@ -1486,7 +1584,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "オマエナガ",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "くるみボール(活動休止中)",
@@ -1501,7 +1600,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "くるみボール活動休止中",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "ソラビア人民共和国連邦",
@@ -1516,7 +1616,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ソラビア人民共和国連邦",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 1.87
   },
   {
     "name": "幻死帝国 ",
@@ -1531,7 +1632,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "幻死帝国",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 4.5
   },
   {
     "name": "スコミヤ228",
@@ -1546,7 +1648,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "スコミヤ228",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.84
   },
   {
     "name": "旧食DX",
@@ -1561,7 +1664,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "旧食dx",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.21
   },
   {
     "name": "アドラー",
@@ -1576,7 +1680,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "アドラー",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 2.16
   },
   {
     "name": "Sekumeball  せくめボール",
@@ -1591,7 +1696,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "sekumeball-せくめボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 3.63
   },
   {
     "name": "ポーランドボーラー / Poland bowler",
@@ -1606,7 +1712,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ポーランドボーラー-poland-bowler",
     "vShort": 1840484,
-    "vLong": 222098
+    "vLong": 222098,
+    "g21": 0.67
   },
   {
     "name": "ソビエト・ロシアぼーる",
@@ -1621,7 +1728,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ソビエトロシアぼーる",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 4.56
   },
   {
     "name": "東トルキスタンボール",
@@ -1636,7 +1744,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "東トルキスタンボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 2.36
   },
   {
     "name": "TTボール",
@@ -1651,7 +1760,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ttボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 1.28
   },
   {
     "name": "かき氷ボール",
@@ -1666,7 +1776,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "かき氷ボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": -0.25
   },
   {
     "name": "Mīþ!緑ボール　[イ]",
@@ -1681,7 +1792,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "mīþ緑ボール-イ",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 8.64
   },
   {
     "name": "バナナ王国",
@@ -1696,7 +1808,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "バナナ王国",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": -0.26
   },
   {
     "name": "ウィン【肉声ポーランドボール】",
@@ -1711,7 +1824,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ウィン肉声ポーランドボール",
     "vShort": 3788,
-    "vLong": 456100
+    "vLong": 456100,
+    "g21": 3.86
   },
   {
     "name": "ヤバすぎボール",
@@ -1726,7 +1840,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ヤバすぎボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "海ボール",
@@ -1741,7 +1856,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "海ボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.27
   },
   {
     "name": "ルヒエル+ Rätsel +",
@@ -1756,7 +1872,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ルヒエル-rätsel",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 1.11
   },
   {
     "name": "ロボキチ",
@@ -1771,7 +1888,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ロボキチ",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 5.83
   },
   {
     "name": "☆ソニキパチアスカイ帝国☆",
@@ -1786,7 +1904,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ソニキパチアスカイ帝国",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "灼熱ボール",
@@ -1801,7 +1920,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "灼熱ボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": -0.57
   },
   {
     "name": "ゆの59乗(ゆ⁵⁹)",
@@ -1816,7 +1936,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ゆの59乗ゆ⁵⁹",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 11.8
   },
   {
     "name": "ポインちゃん",
@@ -1831,7 +1952,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ポインちゃん",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 4.29
   },
   {
     "name": "あへへへへへﾝ",
@@ -1846,7 +1968,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "あへへへへへﾝ",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 7.35
   },
   {
     "name": "クロウ",
@@ -1861,7 +1984,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "クロウ",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 1.86
   },
   {
     "name": "askボール",
@@ -1876,7 +2000,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "askボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": -0.3
   },
   {
     "name": "おもちすたん",
@@ -1891,7 +2016,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "おもちすたん",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 1.57
   },
   {
     "name": "ひまぐれ",
@@ -1906,7 +2032,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ひまぐれ",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": null
   },
   {
     "name": "旧名大日本ボール(民主)たまに復活するかも",
@@ -1921,7 +2048,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "旧名大日本ボール民主たまに復活するかも",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "ポテックボール",
@@ -1936,7 +2064,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ポテックボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 4.04
   },
   {
     "name": "クッキー&シャワーボール",
@@ -1951,7 +2080,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "クッキーシャワーボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.33
   },
   {
     "name": "落書きポーラン",
@@ -1966,7 +2096,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "落書きポーラン",
     "vShort": 488659,
-    "vLong": 1839
+    "vLong": 1839,
+    "g21": 0.0
   },
   {
     "name": "某P国の球",
@@ -1981,7 +2112,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "某p国の球",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 8.57
   },
   {
     "name": "わのさち【和の幸】",
@@ -1996,7 +2128,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "わのさち和の幸",
     "vShort": 1495153,
-    "vLong": 3324
+    "vLong": 3324,
+    "g21": 0.66
   },
   {
     "name": "リルバシ",
@@ -2011,7 +2144,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "リルバシ",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "ポルスカ速報",
@@ -2026,7 +2160,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ポルスカ速報",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 6.86
   },
   {
     "name": "ядc!フォイタスア王国共和連邦",
@@ -2041,7 +2176,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ядcフォイタスア王国共和連邦",
     "vShort": 585393,
-    "vLong": 858
+    "vLong": 858,
+    "g21": -0.34
   },
   {
     "name": "【PB】トレインボール",
@@ -2056,7 +2192,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "pbトレインボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 1.75
   },
   {
     "name": "世界最強(笑)ボール",
@@ -2071,7 +2208,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "世界最強笑ボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "信州ボール",
@@ -2086,7 +2224,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "信州ボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 16.96
   },
   {
     "name": "ソビエトボールUSSR",
@@ -2101,7 +2240,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ソビエトボールussr",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 2.32
   },
   {
     "name": "パワーポイントボール",
@@ -2116,7 +2256,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "パワーポイントボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 1.55
   },
   {
     "name": "DRE_Tata《ドリームボール》",
@@ -2131,7 +2272,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "dre_tataドリームボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": -0.38
   },
   {
     "name": "さんどいつちball!!",
@@ -2146,7 +2288,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "さんどいつちball",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "Alpha_Japan",
@@ -2161,7 +2304,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "alpha_japan",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "かくめいボール【pber錬成同盟盟主】",
@@ -2176,7 +2320,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "かくめいボールpber錬成同盟盟主",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": " Æž!佐藤_MID",
@@ -2191,7 +2336,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "佐藤_mid",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": null
   },
   {
     "name": "そあボール",
@@ -2206,7 +2352,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "そあボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 1.67
   },
   {
     "name": "ベニテングタケ",
@@ -2221,7 +2368,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ベニテングタケ",
     "vShort": 763959,
-    "vLong": 3250
+    "vLong": 3250,
+    "g21": 0.0
   },
   {
     "name": "Nichidokui-Alliance",
@@ -2236,7 +2384,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "nichidokui-alliance",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 2.55
   },
   {
     "name": "ヤギ・ソビエト",
@@ -2251,7 +2400,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ヤギソビエト",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "ロブラネボール",
@@ -2266,7 +2416,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ロブラネボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 3.98
   },
   {
     "name": "とっとこボール",
@@ -2281,7 +2432,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "とっとこボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": null
   },
   {
     "name": "みみけけ",
@@ -2296,7 +2448,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "みみけけ",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.44
   },
   {
     "name": "こち",
@@ -2311,7 +2464,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "こち",
     "vShort": 549113,
-    "vLong": 26258
+    "vLong": 26258,
+    "g21": 6.57
   },
   {
     "name": "ぶろあふ",
@@ -2326,7 +2480,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ぶろあふ",
     "vShort": 612296,
-    "vLong": 2321
+    "vLong": 2321,
+    "g21": 7.08
   },
   {
     "name": "SEA _くぅボール(えるめす)",
@@ -2341,7 +2496,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "sea-くぅボールえるめす",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 3.65
   },
   {
     "name": "HuÖ~_cl",
@@ -2356,7 +2512,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "huö_cl",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 3.26
   },
   {
     "name": "SkyBall_PB",
@@ -2371,7 +2528,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "skyball_pb",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 8.91
   },
   {
     "name": "Nà大和ボール",
@@ -2386,7 +2544,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "nà大和ボール",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.46
   },
   {
     "name": "ぬしぴボール",
@@ -2401,7 +2560,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ぬしぴボール",
     "vShort": 1350266,
-    "vLong": 6596
+    "vLong": 6596,
+    "g21": 0.0
   },
   {
     "name": "今アズルアボールAZB",
@@ -2416,7 +2576,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "今アズルアボールazb",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 3.83
   },
   {
     "name": "お団子ch",
@@ -2431,7 +2592,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "お団子ch",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "宇宙千葉のPBルーム",
@@ -2446,7 +2608,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "宇宙千葉のpbルーム",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.48
   },
   {
     "name": "ミントの農場",
@@ -2461,7 +2624,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ミントの農場",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "あとらすぼーる★",
@@ -2476,7 +2640,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "あとらすぼーる",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "ソ中ボール日友好平和同盟",
@@ -2491,7 +2656,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ソ中ボール日友好平和同盟",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.0
   },
   {
     "name": "ドイツベルギーball🇧🇪",
@@ -2506,7 +2672,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ドイツベルギーball",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.5
   },
   {
     "name": "ぴくろす",
@@ -2521,7 +2688,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ぴくろす",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": 0.5
   },
   {
     "name": "UCD9mEEJypdqQZeSeTotItbg",
@@ -2536,7 +2704,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ucd9meejypdqqzesetotitbg",
     "vShort": 6204904,
-    "vLong": 841893
+    "vLong": 841893,
+    "g21": null
   },
   {
     "name": "UCSdgLDAnBGMBNkJvTztGUbQ",
@@ -2551,7 +2720,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ucsdgldanbgmbnkjvtztgubq",
     "vShort": 7785661,
-    "vLong": 7447
+    "vLong": 7447,
+    "g21": 0.0
   },
   {
     "name": "UCAHBgzoF51DYatj2GvtsJ0g",
@@ -2566,7 +2736,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ucahbgzof51dyatj2gvtsj0g",
     "vShort": 3261211,
-    "vLong": 39328
+    "vLong": 39328,
+    "g21": -0.14
   },
   {
     "name": "UCYPjOfq7MsU0hJvC5cfPs2Q",
@@ -2581,7 +2752,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ucypjofq7msu0hjvc5cfps2q",
     "vShort": 154017,
-    "vLong": 1893
+    "vLong": 1893,
+    "g21": null
   },
   {
     "name": "UCMoWPebtB-hfLqIjetNta2Q",
@@ -2596,7 +2768,8 @@ window.PBERS_DATA = [
     "genre": "ポーランドボーラー",
     "slug": "ucmowpebtb-hflqijetnta2q",
     "vShort": null,
-    "vLong": null
+    "vLong": null,
+    "g21": null
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];

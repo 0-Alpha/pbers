@@ -265,6 +265,20 @@ def main():
         build_edition()
     ED = EDITIONS[0]
 
+GROWTH_DAYS = 21   # カードバトルのパリイ率の元になる登録者伸び率の期間
+
+def growth_rate(hist, days=GROWTH_DAYS):
+    """直近の登録者が days 日前から何%伸びたか。記録が days 日分無いチャンネルは None。"""
+    rep = daily_reps(hist.keys())
+    pts = [(day, hist[rep[day]]["subs"]) for day in sorted(rep) if hist[rep[day]]["subs"] is not None]
+    if not pts:
+        return None
+    limit = (datetime.date.fromisoformat(pts[-1][0]) - datetime.timedelta(days=days)).isoformat()
+    past = [v for day, v in pts if day <= limit]
+    if not past or not past[-1]:
+        return None
+    return round((pts[-1][1] - past[-1]) / past[-1] * 100, 2)
+
 def build_edition():
     global UPDATED
     os.makedirs(ed_out("assets"), exist_ok=True)
@@ -300,6 +314,7 @@ def build_edition():
         "avatar": d["avatar"], "color": colors[d["id"]], "genre": genre_of(d["id"]),
         "slug": d["_slug"], **({"grad": GRAD[d["id"]]} if d["id"] in GRAD else {}),
         "vShort": _tv(d["id"], "short"), "vLong": _tv(d["id"], "long"),
+        "g21": growth_rate(_series.get(d["id"], {})),
     } for d in order]
 
     # ダッシュボードの「X フォロワー」円グラフ用。このエディションに載っているチャンネルのXだけ
@@ -469,7 +484,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250982">
+<link rel="stylesheet" href="/assets/style.css?v=250993">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -493,7 +508,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250982"></script>
+<script src="/assets/channel.js?v=250993"></script>
 </body>
 </html>
 '''
@@ -969,7 +984,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250982">
+<link rel="stylesheet" href="/assets/style.css?v=250993">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>

@@ -2105,12 +2105,12 @@
   function movHTML(n) {
     var opps = n.opps || [], N = opps.length, rowH = 44, gap = 6;
     var rows = '<div class="mov-row hero" style="--t0:' + (N * rowH) + 'px;--t1:0px;height:' + (rowH - gap) + 'px">' +
-      '<img src="' + esc(n.avatar) + '" onerror="this.style.visibility=\'hidden\'">' +
+      '<img src="' + esc(avSize(n.avatar, 96)) + '" onerror="this.style.visibility=\'hidden\'">' +
       '<span class="rn" style="color:' + n.color + '">' + esc(n.name) + '</span>' +
       '<span class="mov-tag" style="color:' + n.color + '">▲ ' + N + '人抜き</span></div>';
     opps.forEach(function (o, i) {
       rows += '<div class="mov-row" style="--t0:' + (i * rowH) + 'px;--t1:' + ((i + 1) * rowH) + 'px;height:' + (rowH - gap) + 'px">' +
-        '<img src="' + esc(o.avatar) + '" onerror="this.style.visibility=\'hidden\'">' +
+        '<img src="' + esc(avSize(o.avatar, 96)) + '" onerror="this.style.visibility=\'hidden\'">' +
         '<span class="rn">' + esc(o.name) + '</span></div>';
     });
     return '<div class="mov" style="--c:' + n.color + '">' +
@@ -2213,7 +2213,7 @@
           var cls = 'gopt' + (on ? ' sel' : '') + (mode === 'result' && lead && lead.winner && lead.winner.id === c.id ? ' win' : '');
           var badge = (mode !== 'pick' && on) ? '<span class="gopt-you">あなた</span>' : '';
           return '<button class="' + cls + '" data-q="' + i + '" data-opt="' + esc(c.id) + '"' + (mode !== 'pick' ? ' disabled' : '') + ' style="--c:' + c.color + '">' +
-            badge + '<img src="' + c.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'"><span class="nm">' + esc(c.name) + '</span></button>';
+            badge + '<img src="' + avSize(c.avatar, 96) + '" alt="" onerror="this.style.visibility=\'hidden\'"><span class="nm">' + esc(c.name) + '</span></button>';
         }).join('') + '</div>' +
         (mode === 'lock' && lead && lead.winner ? '<div class="g-prov">暫定トップ: <b style="color:' + lead.winner.color + '">' + esc(lead.winner.name) + '</b>(+' + fmt(Math.max(0, lead.delta)) + (cq.metric === 'subs' ? '人' : '回') + ')</div>' : '') +
         (mode === 'result' && lead && lead.winner ? '<div class="g-prov">正解: <b style="color:' + lead.winner.color + '">' + esc(lead.winner.name) + '</b></div>' : '') +
@@ -2236,20 +2236,23 @@
     var rate = Math.round(st.correct / (st.played * 3) * 100);
     return '<div class="g-stats"><span>参加 ' + st.played + '回</span><span>的中率 ' + rate + '%</span><span>連続全問正解 ' + (st.streak || 0) + '</span></div>';
   }
-  var gameMode = 'predict';   // 'predict'(7日予想) or 'quiz'(その場でわかるクイズ)
+  var gameMode = 'predict';   // 'predict'(7日予想) / 'quiz'(その場でわかるクイズ) / 'cards'(カードバトル)
   function renderGame() {
     var host = document.getElementById('game-root'); if (!host) return;
     host.innerHTML =
       '<div class="toggle" id="game-mode" style="margin-bottom:20px">' +
         '<button class="tg' + (gameMode === 'predict' ? ' on' : '') + '" data-gmode="predict">予想</button>' +
         '<button class="tg' + (gameMode === 'quiz' ? ' on' : '') + '" data-gmode="quiz">クイズ</button>' +
+        '<button class="tg' + (gameMode === 'cards' ? ' on' : '') + '" data-gmode="cards">カードバトル</button>' +
         '<span class="tg-ind" id="game-mode-ind"></span>' +
       '</div><div id="game-body"></div>';
     var tabs = [].slice.call(host.querySelectorAll('#game-mode .tg'));
     function moveInd() { var on = host.querySelector('#game-mode .tg.on'), ind = document.getElementById('game-mode-ind'); if (on && ind) { ind.style.left = on.offsetLeft + 'px'; ind.style.width = on.offsetWidth + 'px'; } }
     tabs.forEach(function (b) { b.addEventListener('click', function () { if (b.dataset.gmode === gameMode) return; gameMode = b.dataset.gmode; renderGame(); }); });
     moveInd();
-    if (gameMode === 'quiz') renderQuiz(); else renderPredict();
+    if (gameMode === 'quiz') renderQuiz();
+    else if (gameMode === 'cards') window.PBERS_CB.mount(document.getElementById('game-body'), ALL.filter(genreVisible));
+    else renderPredict();
   }
 
   /* ---- 予想(7日後に自動採点) ---- */
@@ -2355,7 +2358,7 @@
         var cls = (q.opts[0].avatar ? 'gopt' : 'qval');
         if (quizAnswered) { if (o.correct) cls += ' win'; else if (i === quizPick) cls += ' bad'; }
         var inner = o.avatar
-          ? '<img src="' + o.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'" style="border-color:' + o.color + '"><span class="nm">' + esc(o.label) + '</span>'
+          ? '<img src="' + avSize(o.avatar, 96) + '" alt="" onerror="this.style.visibility=\'hidden\'" style="border-color:' + o.color + '"><span class="nm">' + esc(o.label) + '</span>'
           : esc(o.label);
         return '<button class="' + cls + '" data-i="' + i + '"' + (quizAnswered ? ' disabled' : '') + ' style="--c:' + (o.color || '#888') + '">' + inner + '</button>';
       }).join('') + '</div>' +
@@ -2383,7 +2386,7 @@
     }
     return '<div class="vov-stack' + (isWinner ? ' win' : '') + '">' +
       '<div class="vov-boxes">' + boxes + '</div>' +
-      '<img class="vov-av" src="' + (ch.avatar || '') + '" alt="" onerror="this.style.visibility=\'hidden\'" style="border-color:' + col + '">' +
+      '<img class="vov-av" src="' + avSize(ch.avatar || '', 96) + '" alt="" onerror="this.style.visibility=\'hidden\'" style="border-color:' + col + '">' +
       '<div class="vov-nm" style="color:' + col + '">' + esc(ch.name || '') + '</div>' +
     '</div>';
   }
@@ -2451,7 +2454,7 @@
             : '<div class="mbar-stage" style="--c:' + n.color + ';--cl:' + shade(n.color, .42) + ';--h:210px">' +
                 '<div class="ms-line" style="bottom:210px"><span class="ms-line-lb">' + esc(lb) + '</span></div>' +
                 '<div class="mbar"></div>' +
-                '<img class="mbar-icon" src="' + n.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
+                '<img class="mbar-icon" src="' + avSize(n.avatar, 96) + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
               '</div>';
           st.innerHTML =
             '<div class="ms">' +
@@ -2566,7 +2569,7 @@
       lines += '<path class="race-line" d="' + dd + '" stroke="' + x.color + '"/>';
       var last = x.history[x.history.length - 1], lx = X(di[last.d]), ly = Y(last.s);
       clip += '<clipPath id="lc' + gi + '_' + mi + '"><circle cx="' + lx + '" cy="' + ly + '" r="13"/></clipPath>';
-      icons += '<image href="' + x.avatar + '" x="' + (lx - 13) + '" y="' + (ly - 13) + '" width="26" height="26" clip-path="url(#lc' + gi + '_' + mi + ')" preserveAspectRatio="xMidYMid slice"/>' +
+      icons += '<image href="' + avSize(x.avatar, 96) + '" x="' + (lx - 13) + '" y="' + (ly - 13) + '" width="26" height="26" clip-path="url(#lc' + gi + '_' + mi + ')" preserveAspectRatio="xMidYMid slice"/>' +
                '<circle cx="' + lx + '" cy="' + ly + '" r="13" fill="none" stroke="' + x.color + '" stroke-width="2.5"/>';
     });
     el.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet"><defs>' + clip + '</defs>' + grid + yl + xl + lines + icons + '</svg>';
@@ -2648,7 +2651,7 @@
       el.className = 'bcr-row'; el.href = GBASE + 'c/' + encodeURIComponent(c.slug) + '/';
       el.innerHTML = '<span class="bcr-rk num"></span><span class="bcr-lab"></span>' +
         '<span class="bcr-track"><span class="bcr-bar"></span>' +
-        (c.avatar ? '<img class="bcr-av" src="' + c.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' : '') +
+        (c.avatar ? '<img class="bcr-av" src="' + avSize(c.avatar, 96) + '" alt="" onerror="this.style.visibility=\'hidden\'">' : '') +
         '<span class="bcr-val num"></span></span>';
       el.querySelector('.bcr-lab').textContent = c.name;
       el.querySelector('.bcr-bar').style.background = fillOf(c, 90);
@@ -2738,7 +2741,7 @@
       var title = race.special ? '<div class="race-title">👑 ' + esc(race.title || '首位争い TOP3') + '</div>' : '';
       var head = '<div class="race-head">' + m.map(function (x, mi) {
         var rk = race.special ? '<span class="race-rank">' + (mi + 1) + '</span>' : '';
-        return '<div class="race-ch" style="--c:' + x.color + '">' + rk + '<img src="' + x.avatar + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
+        return '<div class="race-ch" style="--c:' + x.color + '">' + rk + '<img src="' + avSize(x.avatar, 96) + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
           '<div><div class="ln" style="color:' + x.color + '">' + esc(x.name) + '</div><div class="ls">' + jp(x.subs) + '人</div></div></div>';
       }).join('') + '<span class="race-gap">差 ' + fmt(gap) + '人</span></div>';
       var card = document.createElement('div'); card.className = 'race-card' + (race.special ? ' race-special' : '');
