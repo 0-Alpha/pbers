@@ -7,7 +7,8 @@
    余った予算で作戦(無断転載・抗無断転載・ネタ擦り・ブラックジョーク)を買える。それでも残った分はパラオパワーになり、バトル中のHPと攻撃を上げる(上限あり)。
    毎ラウンド、その戦いの手段を持つカードが1回ずつ攻撃する。自陣カードの番は攻撃先を選ぶ。
    相手は指定もできる(足りない枠は自動で埋める)。連戦は負けるまで続き、HPは持ち越しで、勝つたびに敵の予算が増える。
-   同一人物のカード(d.twin)はデッキに片方だけ入り、倒れると同じ列にもう片方が現れる。 */
+   同一人物のカード(d.twin)はデッキに片方だけ入り、倒れると同じ列にもう片方が現れる。
+   敵の狙い方(AI)は対戦前に選べて、連戦では1戦ごとにランダムで決まる。 */
 (function () {
   var BUDGET = 280;      // デッキの合計コスト上限
   var TOP_COST = 234;    // いちばん強いカードのコスト(これを基準に全カードのコストを決める)
@@ -39,11 +40,17 @@
   var RUN_BASE = 100, RUN_STEP = 20;     // 連戦の敵の予算 = RUN_BASE + RUN_STEP × 連勝数
   var RUN_HEAL = 0.4, RUN_REVIVE = 0.3;  // 勝った後、生き残りは最大HPの40%回復、倒れたカードは30%で復活
   var TWIN_RATE = 0.5;                   // 同一人物のカードのコストに、もう片方のコストのこの割合を足す
-  var DECK_KEY = 'pbers_cb_deck', ITEM_KEY = 'pbers_cb_items', BEST_KEY = 'pbers_cb_best';
+  var AIS = {                            // 敵の狙い方。弱い順
+    rand: { name: '気まぐれ', desc: 'ランダムに狙う。いちばん弱い' },
+    ko: { name: '撃破優先', desc: '倒せる相手がいれば必ず先に倒す' },
+    eff: { name: '効率重視', desc: '削れるHPの割合 × 相手の攻撃力で狙う。いちばん強い' }
+  };
+  var DEFAULT_AI = 'ko';
+  var DECK_KEY = 'pbers_cb_deck', ITEM_KEY = 'pbers_cb_items', BEST_KEY = 'pbers_cb_best', AI_KEY = 'pbers_cb_ai';
   var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var cards = [], root = null, game = null, token = 0;
   var deck = [], items = [], buildStep = 'cards', sortKey = 'cost', query = '', typeFilter = '';
-  var foePick = [], foeFixed = null, foeSort = 'cost', foeQuery = '', run = null;
+  var foePick = [], foeFixed = null, foeSort = 'cost', foeQuery = '', run = null, aiKey = DEFAULT_AI;
 
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function sig3(x) { return parseFloat(x.toFixed(x < 10 ? 2 : (x < 100 ? 1 : 0))).toString(); }
@@ -101,7 +108,7 @@
   function buildCards(channels) {
     var X = {}, XP = {}, shown = {};
     channels.forEach(function (d) { shown[d.slug] = true; });
-    /* もう片方がジャンル設定で隠れていても、控えとしては出せるように作っておく */
+    /* もう片方がジャンル設定で隠れていても、カードとして選べるようにする */
     var hidden = (window.PBERS_DATA || []).filter(function (d) { return !shown[d.slug] && channels.some(function (x) { return x.twin === d.slug; }); });
     (window.PBERS_X || []).forEach(function (x) { X[x.slug] = x.followers; XP[x.slug] = x.posts30 || 0; });
     var list = channels.concat(hidden).filter(function (d) { return d.subs && d.views && d.videos; }).map(function (d) {
@@ -116,7 +123,7 @@
     list.forEach(function (c) { c.cost = Math.max(1, Math.round(c.power / max * TOP_COST) + Math.round(c.aura * AURA_COST)); bySlug[c.d.slug] = c; });
     list.forEach(function (c) { c.twin = bySlug[c.d.twin] || null; c.own = c.cost; });
     list.forEach(function (c) { if (c.twin) c.cost = c.own + Math.round(c.twin.own * TWIN_RATE); });
-    return list.filter(function (c) { return shown[c.d.slug]; });
+    return list;
   }
   function minCost() { return cards.reduce(function (a, c) { return Math.min(a, c.cost); }, Infinity); }
   function clash(list, c) { return list.indexOf(c) >= 0 || (!!c.twin && list.indexOf(c.twin) >= 0); }   // 同じカードと同一人物は重ねない
@@ -188,6 +195,10 @@
   function bestKey() { return BEST_KEY + (window.PBERS_BASE === '/global/' ? '_global' : ''); }
   function bestRun() { try { return +localStorage.getItem(bestKey()) || 0; } catch (e) { return 0; } }
   function saveBest(n) { try { localStorage.setItem(bestKey(), String(n)); } catch (e) {} }
+  function loadAI() {
+    try { var k = localStorage.getItem(AI_KEY); return AIS.hasOwnProperty(k) ? k : DEFAULT_AI; } catch (e) { return DEFAULT_AI; }
+  }
+  function saveAI() { try { localStorage.setItem(AI_KEY, aiKey); } catch (e) {} }
   function loadItems(list) {
     var saved = [];
     try { saved = JSON.parse(localStorage.getItem(ITEM_KEY) || '[]'); } catch (e) {}
@@ -434,7 +445,8 @@
       return u;
     });
     var foes = foeDeck.map(function (c, i) { return unit(c, 'enemy', i, foeBoost); });
-    game = { ally: mine, enemy: foes, fallen: [], items: { ally: items.slice(), enemy: foeItems }, queue: [], round: 0, actor: null, arranging: true, picked: null };
+    var keys = Object.keys(AIS);
+    game = { ally: mine, enemy: foes, fallen: [], ai: run ? keys[Math.floor(Math.random() * keys.length)] : aiKey, items: { ally: items.slice(), enemy: foeItems }, queue: [], round: 0, actor: null, arranging: true, picked: null };
     $('.cb-build').hidden = true; $('.cb-board').hidden = false;
     renderRow(foes, '.cb-row-enemy'); renderRow(mine, '.cb-row-ally');
     setSwappable(true);
@@ -449,9 +461,22 @@
     $('.cb-actions').hidden = false;
     delete $('.cb-board').dataset.phase;
     $('.cb-run').textContent = run ? '連戦 ' + (run.wins + 1) + '戦目' + (bestRun() ? '(自己ベスト ' + bestRun() + '連勝)' : '') : '';
+    $('.cb-ai').hidden = !!run;   // 連戦のAIはランダムなので選ばせない
+    paintAI();
     $('.cb-pick').hidden = !!run; $('.cb-reroll').hidden = !!run;
     $('.cb-edit').textContent = run ? '連戦をやめる' : 'デッキ編集';
     msg('自陣のカードを2枚タップで入れ替え。<b>白兵戦は向かいの敵に×1.5</b>');
+  }
+  function paintAI() {
+    var a = AIS[game.ai];
+    $('.cb-enemy-ai').textContent = 'AI: ' + a.name;
+    $('.cb-enemy-ai').title = a.desc;
+    $('.cb-ai-d').textContent = a.desc;
+    [].slice.call(root.querySelectorAll('.cb-ai .vt')).forEach(function (b) {
+      var on = b.dataset.ai === game.ai;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
   }
   function renderRow(list, sel) {
     $(sel).innerHTML = list.map(cardHTML).join('');
@@ -484,6 +509,7 @@
     game.arranging = false; game.picked = null;
     setSwappable(false);
     $('.cb-actions').hidden = true;
+    $('.cb-ai').hidden = true;
     nextRound();
   }
   function nextRound() {
@@ -654,9 +680,10 @@
       later(function () { attack(c, aiTarget(c)); }, 750);
     }
   }
-  function aiTarget(c) {   // 倒せる相手がいれば倒す。その中で「削れるHPの割合 × 相手の攻撃」が大きい相手を狙う(列の倍率も効く)
+  function aiTarget(c) {   // 「削れるHPの割合 × 相手の攻撃」が大きい相手を狙う(列の倍率も効く)。撃破優先は倒せる相手の中だけで比べる
     var foes = alive(game.ally);
-    var ko = foes.filter(function (f) { return f.hp <= dmgOf(c, f) * 0.85; });
+    if (game.ai === 'rand') return foes[Math.floor(Math.random() * foes.length)];
+    var ko = game.ai === 'ko' ? foes.filter(function (f) { return f.hp <= dmgOf(c, f) * 0.85; }) : [];
     var score = function (f) { return Math.min(dmgOf(c, f) / f.hp, 1) * threat(f); };
     return (ko.length ? ko : foes).slice().sort(function (a, b) { return score(b) - score(a); })[0];
   }
@@ -784,6 +811,7 @@
         '<dt>ダメージ</dt><dd>攻撃 ÷ 割る数(遠戦' + RANGED_DIV + '、白兵戦' + MELEE_DIV + ') × (1 − 軽減率) × 列の倍率 × 相性 × (1 + 味方の拡散)。軽減率 = 防御 ÷ (防御 + ' + num(DEF_K) + ')。</dd>' +
         '<dt>パリイ・拡散</dt><dd>パリイ率 = 50% × 伸び率 ÷ (伸び率 + 10)。成功するとダメージを無効にし、1/4を反撃。拡散 = 10% × 30日投稿数 ÷ (30日投稿数 + 20)で、生きている間だけ味方全体の攻撃が上がる。</dd>' +
         twinHelp() +
+        '<dt>敵のAI</dt><dd>対戦前に選べる。' + Object.keys(AIS).map(function (k) { return AIS[k].name + ' = ' + AIS[k].desc; }).join(' / ') + '。連戦では1戦ごとにランダムで決まる。</dd>' +
         '<dt>相手を選ぶ</dt><dd>対戦前の画面で、戦いたいチャンネルを1〜5枚指定できる。足りない枠は自動で埋まり、指定した相手は変えるまで続く。</dd>' +
         '<dt>連戦</dt><dd>負けるまで続く。敵の予算は' + RUN_BASE + 'から勝つたびに+' + RUN_STEP + '。HPは持ち越しで、勝つと生き残りは最大HPの' + RUN_HEAL * 100 + '%回復、倒れたカードは' + RUN_REVIVE * 100 + '%で復活する。</dd>' +
         '<dt>データが無いとき</dt><dd>Xが未登録なら防御0・拡散0、伸びていなければパリイ0%。横と縦の内訳が無ければ、全体の平均を遠戦に、その1/4を白兵に使う。</dd>' +
@@ -818,9 +846,12 @@
         '<div class="cb-list cb-foe-list"></div>' +
       '</div>' +
       '<div class="cb-board" hidden>' +
-        '<div class="cb-label"><span>敵陣</span><span class="cb-chip cb-boost cb-enemy-boost num"></span><span class="cb-chip cb-enemy-buff"></span><span class="cb-items cb-enemy-items"></span>' +
+        '<div class="cb-label"><span>敵陣</span><span class="cb-chip cb-boost cb-enemy-boost num"></span><span class="cb-chip cb-enemy-ai"></span><span class="cb-chip cb-enemy-buff"></span><span class="cb-items cb-enemy-items"></span>' +
           '<button type="button" class="cb-more-btn" aria-pressed="false">防御・パリイも見る</button></div><div class="cb-row cb-row-enemy"></div>' +
         '<div class="cb-mid"><div class="cb-run"></div><div class="cb-order"></div><div class="cb-msg" aria-live="polite"></div>' +
+          '<div class="cb-ai"><span class="cb-ai-l">敵のAI</span><div class="vtype">' + Object.keys(AIS).map(function (k) {
+            return '<button type="button" class="vt" data-ai="' + k + '" aria-pressed="false">' + AIS[k].name + '</button>';
+          }).join('') + '</div><span class="cb-ai-d"></span></div>' +
           '<div class="cb-actions"><button type="button" class="g-btn g-confirm cb-start">バトル開始</button><button type="button" class="g-btn g-x cb-pick">相手を選ぶ</button><button type="button" class="g-btn g-x cb-reroll">ランダムに変える</button><button type="button" class="g-btn g-x cb-edit">デッキ編集</button></div>' +
           '<div class="cb-result" hidden><div class="cb-res-t"></div><div class="cb-res-s"></div><div class="cb-bact"><button type="button" class="g-btn g-confirm cb-again">もう一度</button><button type="button" class="g-btn g-x cb-edit2">デッキ編集</button></div></div>' +
         '</div>' +
@@ -833,6 +864,11 @@
       e.target.setAttribute('aria-pressed', String(on));
       e.target.textContent = on ? '防御・パリイを隠す' : '防御・パリイも見る';
     });
+    $('.cb-ai').addEventListener('click', function (e) {
+      var b = e.target.closest('.vt'); if (!b) return;
+      aiKey = game.ai = b.dataset.ai;
+      saveAI(); paintAI();
+    });
     $('.cb-start').addEventListener('click', start);
     $('.cb-pick').addEventListener('click', showFoe);
     $('.cb-reroll').addEventListener('click', function () { foeFixed = null; newBattle(); });
@@ -844,6 +880,7 @@
     $('.cb-edit2').addEventListener('click', showBuild);
     deck = loadDeck();
     items = loadItems(deck);
+    aiKey = loadAI();
     host.innerHTML = ''; host.appendChild(root);
     showBuild();
   }

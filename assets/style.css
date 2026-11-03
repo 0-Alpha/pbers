@@ -758,6 +758,9 @@ button.cb-slot{cursor:pointer}
 .cb-ord.e{box-shadow:0 0 0 2px var(--red)}
 .cb-msg{min-height:3em;font-size:14px;line-height:1.5}
 .cb-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.cb-ai{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px}
+.cb-ai-l{font-weight:700;font-size:12.5px;color:var(--muted)}
+.cb-ai-d{flex-basis:100%;font-size:12px;color:var(--muted)}
 .cb-actions[hidden],.cb-result[hidden]{display:none}
 .cb-res-t{font-family:var(--jp);font-weight:900;font-size:30px;color:var(--muted)}
 .cb-res-t.win{color:#e6c56b}
