@@ -22,17 +22,6 @@ window.PBERS_DATA = [
         "vLong": null,
         "nShort": null,
         "nLong": null
-      },
-      {
-        "name": "コミュストリア",
-        "subs": 23300,
-        "views": 2844279,
-        "videos": 23,
-        "avatar": "https://yt3.googleusercontent.com/Gx8LciR70vfx2-ZJrb-rCCyZ0w3ywWmuKc6R_vljQMYLprrRx-2LRjq_uJfwiLeGekcu9P1i01M=s900-c-k-c0x00ffffff-no-rj",
-        "vShort": 364576,
-        "vLong": 2480889,
-        "nShort": 3,
-        "nLong": 20
       }
     ],
     "vShort": 249364604,

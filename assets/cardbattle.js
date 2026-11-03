@@ -40,6 +40,7 @@
   var BLACK_CRIT = 0.4, BLACK_CRIT_MULT = 2, BLACK_BURN = 0.05, BURN_HP = 0.1;
   var RUN_BASE = 100, RUN_STEP = 20;     // 連戦の敵の予算 = RUN_BASE + RUN_STEP × 連勝数
   var RUN_HEAL = 0.4, RUN_REVIVE = 0.3;  // 勝った後、生き残りは最大HPの40%回復、倒れたカードは30%で復活
+  var SPARE_GROW = 0.2;                  // 予備チャンネルのHPは、毎ラウンド本人の最大HPとの差をこの割合だけ埋める
   var TWIN_RATE = 0.5;                   // 同一人物のカードのコストに、もう片方のコストのこの割合を足す
   var AIS = {                            // 敵の狙い方。弱い順
     rand: { name: '気まぐれ', desc: 'ランダムに狙う。いちばん弱い' },
@@ -241,7 +242,7 @@
 
   function twinHelp() {   // 同一人物やサブチャンネルのカードがある版(日本版)だけ説明を出す
     var c = cards.filter(function (x) { return x.twin; })[0], s = cards.filter(function (x) { return x.spare; })[0];
-    return (!s ? '' : '<dt>サブチャンネル</dt><dd>' + esc(s.d.name) + 'が倒れると、同じ列に' + chainOf(s).map(function (x) { return esc(x.d.name); }).join(' → ') + 'の順に召喚する。召喚されたカードは順番に関係なくすぐ攻撃する。HPは登録者の実数で、攻撃も動画の実数。ただし公開動画が0本のチャンネルは、動画を非公開で投稿済みなので攻撃が本人と同じ。コストは増えない。</dd>') + (!c ? '' : '<dt>同一人物</dt><dd>' + esc(c.d.name) + 'と' + esc(c.twin.d.name) + 'は同じ人なので、デッキには片方だけ入る。倒れると同じ列にもう片方を召喚し、次のラウンドから動く。コストは自分 + もう片方の半分。</dd>');
+    return (!s ? '' : '<dt>サブチャンネル</dt><dd>' + esc(s.d.name) + 'が倒れると、同じ列に' + chainOf(s).map(function (x) { return esc(x.d.name); }).join(' → ') + (chainOf(s).length > 1 ? 'の順に' : 'を') + '召喚する。召喚されたカードは順番に関係なくすぐ攻撃する。HPは登録者の実数で、攻撃も動画の実数。ただし公開動画が0本のチャンネルは、動画を非公開で投稿済みなので攻撃が本人と同じで、HPも毎ラウンド本人との差を' + SPARE_GROW * 100 + '%ずつ埋める。コストは増えない。</dd>') + (!c ? '' : '<dt>同一人物</dt><dd>' + esc(c.d.name) + 'と' + esc(c.twin.d.name) + 'は同じ人なので、デッキには片方だけ入る。倒れると同じ列にもう片方を召喚し、次のラウンドから動く。コストは自分 + もう片方の半分。</dd>');
   }
   function growthText(g) { return g == null ? '—' : (g > 0 ? '+' : '') + g + '%'; }
   function parText(c) { return Math.round(c.par * 100) + '%'; }
@@ -543,6 +544,7 @@
     $('.cb-board').dataset.phase = game.phase;
     game.ally.concat(game.enemy).forEach(function (c) { c.el.classList.toggle('cb-idle', c.hp > 0 && atkNow(c) <= 0); });
     paintOrder(); setActive(null); setTargets(false);
+    growSpares();
     runReposts(shuffle(['ally', 'enemy']).filter(function (s) { return hasItem(s, 'rep'); }));
   }
   /* 無断転載: 敵でいちばん強いカードの攻撃を転載して、敵のHP最小のカードに当てる。相手が抗無断転載を持っていれば転載した側に返る */
@@ -571,6 +573,15 @@
     repostShow(side, foeSide, src, aim, t, back, land);
   }
   /* 召喚: 倒れたカードの列に次のカードが出る。同一人物は次のラウンドから動き、サブチャンネルは順番に関係なくすぐ攻撃する */
+  function growSpares() {   // 本人の登録者が予備チャンネルへ移ってくる
+    game.ally.concat(game.enemy).forEach(function (c) {
+      var g = c.growTo && c.hp > 0 ? Math.round((c.growTo - c.max) * SPARE_GROW) : 0;
+      if (g < 1) return;
+      c.max += g; c.hp += g;
+      paint(c);
+      pop(c, '+' + num(g), 'heal');
+    });
+  }
   function fallenTwin() {
     return game.ally.concat(game.enemy).filter(function (c) { return c.hp <= 0 && nextOf(c); })[0];
   }
@@ -579,8 +590,9 @@
     w.summoned = true;
     if (u.side === 'ally') {
       game.fallen.push(u);
-      if (run && run.hp && run.hp[w.d.slug] != null) w.hp = run.hp[w.d.slug];   // 連戦で前に出ていたならHPを持ち越す
+      if (run && run.hp && run.hp[w.d.slug] != null) w.hp = Math.min(w.max, run.hp[w.d.slug]);   // 連戦で前に出ていたならHPを持ち越す
     }
+    if (w.t.borrowed) w.growTo = u.max;
     row[row.indexOf(u)] = w;
     msg('<b style="color:' + u.d.color + '">' + esc(u.d.name) + '</b> が倒れた! <b style="color:' + w.d.color + '">' + esc(w.d.name) + '</b> を召喚!' + (w.t.borrowed ? ' 非公開の動画を一斉公開!' : ''));
     var show = !RM && !!u.el.animate, SPIN_OUT = 380, SPIN_IN = 640;

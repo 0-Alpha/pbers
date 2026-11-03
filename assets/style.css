@@ -713,6 +713,7 @@ button.cb-slot{cursor:pointer}
 .cb-pop{position:absolute;left:50%;top:32%;z-index:4;pointer-events:none;white-space:nowrap;transform:translateX(-50%);font-weight:900;font-size:24px;color:#ff6b5e;text-shadow:0 1px 3px rgba(0,0,0,.8)}
 .cb-pop.crit{font-size:32px;color:#ffc53d}
 .cb-pop.parry{font-size:22px;color:#6cc6ff}
+.cb-pop.heal{font-size:22px;color:#5fd38a}
 .cb-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:96px;padding:12px 0;text-align:center}
 .cb-order{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px;min-height:26px}
 .cb-round{font-weight:800;font-size:12px;color:var(--muted);margin-right:4px}
@@ -795,6 +796,7 @@ button.cb-slot{cursor:pointer}
   .cb-pop{font-size:18px}
   .cb-pop.crit{font-size:24px}
   .cb-pop.parry{font-size:14px}
+  .cb-pop.heal{font-size:14px}
   .cb-mult{margin-top:-14px;padding:0 4px;font-size:9.5px}
   .cb-type{top:3px;right:3px;min-width:0;padding:0 3px;font-size:8.5px}
   .cb-twin{top:3px;left:3px;width:16px;height:16px;border-width:1px}

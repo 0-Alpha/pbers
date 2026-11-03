@@ -3,4 +3,4 @@
 # 書式: 本人のチャンネルID  サブのチャンネルID。同じ本人の行は上から順に召喚される
 
 UCkjdTrE4hiJ4qNOV7NPGSSw  UCQi4Yo1MdGxgu7JTBcaVDnA  # Æž!フヒフム → フヒフム 予備チャンネル
-UCkjdTrE4hiJ4qNOV7NPGSSw  UCdqGlrNYwi9SaKu3nxxVHtg  # Æž!フヒフム → コミュストリア
+# UCkjdTrE4hiJ4qNOV7NPGSSw  UCdqGlrNYwi9SaKu3nxxVHtg  # Æž!フヒフム → コミュストリア(2026-11-03 オフ)
