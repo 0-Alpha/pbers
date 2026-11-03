@@ -2055,8 +2055,8 @@
     if (v === 'board' && !boardEnabled) v = 'dashboard';   // 非公開かつ管理キー無しは掲示板に入れない
     currentView = v;
     document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x.dataset.view === v); });
-    var moreBtn = document.getElementById('tab-more-btn');   // ニュース/ゲームは「その他」内なので親を強調
-    if (moreBtn) moreBtn.classList.toggle('on', v === 'news' || v === 'game' || v === 'paper');
+    var moreBtn = document.getElementById('tab-more-btn');   // 新聞/ニュースは「その他」内なので親を強調
+    if (moreBtn) moreBtn.classList.toggle('on', v === 'news' || v === 'paper');
     Object.keys(VIEWS).forEach(function (k) { if (VIEWS[k]) VIEWS[k].hidden = (k !== v); });
     if (!noPush && location.pathname !== pathOf(v)) history.pushState({ view: v }, '', pathOf(v));   // 実URLに反映(戻る/共有/計測)
     if (window.pbersTrackView) window.pbersTrackView(pathOf(v));   // タブごとの表示回数を計上
@@ -2236,14 +2236,14 @@
     var rate = Math.round(st.correct / (st.played * 3) * 100);
     return '<div class="g-stats"><span>参加 ' + st.played + '回</span><span>的中率 ' + rate + '%</span><span>連続全問正解 ' + (st.streak || 0) + '</span></div>';
   }
-  var gameMode = 'predict';   // 'predict'(7日予想) / 'quiz'(その場でわかるクイズ) / 'cards'(カードバトル)
+  var gameMode = 'cards';   // 'cards'(カードバトル) / 'predict'(7日予想) / 'quiz'(その場でわかるクイズ)
   function renderGame() {
     var host = document.getElementById('game-root'); if (!host) return;
     host.innerHTML =
       '<div class="toggle" id="game-mode" style="margin-bottom:20px">' +
+        '<button class="tg' + (gameMode === 'cards' ? ' on' : '') + '" data-gmode="cards">カードバトル</button>' +
         '<button class="tg' + (gameMode === 'predict' ? ' on' : '') + '" data-gmode="predict">予想</button>' +
         '<button class="tg' + (gameMode === 'quiz' ? ' on' : '') + '" data-gmode="quiz">クイズ</button>' +
-        '<button class="tg' + (gameMode === 'cards' ? ' on' : '') + '" data-gmode="cards">カードバトル</button>' +
         '<span class="tg-ind" id="game-mode-ind"></span>' +
       '</div><div id="game-body"></div>';
     var tabs = [].slice.call(host.querySelectorAll('#game-mode .tg'));
@@ -2520,7 +2520,7 @@
       }).join('') + '</div>';
     }).catch(function () { host.innerHTML = '<div class="nf-none">読み込みに失敗しました。</div>'; });
   }
-  /* ---- 「その他」タブメニュー(新聞 / ニュース / ゲーム) ---- */
+  /* ---- 「その他」タブメニュー(新聞 / ニュース) ---- */
   (function () {
     var btn = document.getElementById('tab-more-btn'), menu = document.getElementById('tab-more-menu');
     if (!btn || !menu) return;

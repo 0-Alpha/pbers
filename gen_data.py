@@ -304,9 +304,9 @@ def build_edition():
         colors[d["id"]] = hsl((pi * 53) % 360, 0.58, 0.60 if pi % 2 == 0 else 0.52)
         pi += 1
 
-    def _tv(cid, kind):   # bytype から横/ショートの再生数(無ければ None)
+    def _tv(cid, kind, key="views"):   # bytype から横/ショートの再生数・本数(無ければ None)
         e = bt_map.get(cid)
-        return (e.get(kind) or {}).get("views") if e else None
+        return (e.get(kind) or {}).get(key) if e else None
     out = [{
         "name": d["name"], "subs": d.get("subs"), "views": d.get("views"),
         "subsLabel": d.get("subsLabel"), "viewsLabel": d.get("viewsLabel"),
@@ -314,6 +314,7 @@ def build_edition():
         "avatar": d["avatar"], "color": colors[d["id"]], "genre": genre_of(d["id"]),
         "slug": d["_slug"], **({"grad": GRAD[d["id"]]} if d["id"] in GRAD else {}),
         "vShort": _tv(d["id"], "short"), "vLong": _tv(d["id"], "long"),
+        "nShort": _tv(d["id"], "short", "n"), "nLong": _tv(d["id"], "long", "n"),
         "g21": growth_rate(_series.get(d["id"], {})),
     } for d in order]
 
@@ -484,7 +485,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250993">
+<link rel="stylesheet" href="/assets/style.css?v=250997">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -508,7 +509,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=250993"></script>
+<script src="/assets/channel.js?v=250997"></script>
 </body>
 </html>
 '''
@@ -984,7 +985,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=250993">
+<link rel="stylesheet" href="/assets/style.css?v=250997">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>

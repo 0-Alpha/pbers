@@ -13,6 +13,8 @@ window.PBERS_DATA = [
     "slug": "フヒフム",
     "vShort": 249364604,
     "vLong": 137335523,
+    "nShort": 244,
+    "nLong": 642,
     "g21": 1.43
   },
   {
@@ -29,6 +31,8 @@ window.PBERS_DATA = [
     "slug": "みかんぼーる",
     "vShort": 397192252,
     "vLong": 3684579,
+    "nShort": 347,
+    "nLong": 83,
     "g21": 4.11
   },
   {
@@ -45,6 +49,8 @@ window.PBERS_DATA = [
     "slug": "田中mid",
     "vShort": 212050560,
     "vLong": 344596,
+    "nShort": 231,
+    "nLong": 36,
     "g21": 0.94
   },
   {
@@ -61,6 +67,8 @@ window.PBERS_DATA = [
     "slug": "なるほど地理",
     "vShort": 325440887,
     "vLong": 0,
+    "nShort": 1091,
+    "nLong": 0,
     "g21": 0.69
   },
   {
@@ -79,8 +87,10 @@ window.PBERS_DATA = [
       "#00a24c",
       "#1f45c9"
     ],
-    "vShort": null,
-    "vLong": null,
+    "vShort": 0,
+    "vLong": 2394,
+    "nShort": 0,
+    "nLong": 1,
     "g21": null
   },
   {
@@ -97,6 +107,8 @@ window.PBERS_DATA = [
     "slug": "こうちゃポーランドボール",
     "vShort": 28249312,
     "vLong": 1181245,
+    "nShort": 86,
+    "nLong": 36,
     "g21": 1.52
   },
   {
@@ -113,6 +125,8 @@ window.PBERS_DATA = [
     "slug": "さとボール",
     "vShort": 6896040,
     "vLong": 20098374,
+    "nShort": 165,
+    "nLong": 680,
     "g21": 0.36
   },
   {
@@ -129,6 +143,8 @@ window.PBERS_DATA = [
     "slug": "狼狐-rokoポーランドボール",
     "vShort": 3545739,
     "vLong": 4826005,
+    "nShort": 193,
+    "nLong": 407,
     "g21": 0.37
   },
   {
@@ -145,6 +161,8 @@ window.PBERS_DATA = [
     "slug": "ゆずボール",
     "vShort": 17469651,
     "vLong": 252073,
+    "nShort": 156,
+    "nLong": 42,
     "g21": 2.99
   },
   {
@@ -161,6 +179,8 @@ window.PBERS_DATA = [
     "slug": "エッバの歴史解説ちゃんねる",
     "vShort": 1134350,
     "vLong": 9141248,
+    "nShort": 11,
+    "nLong": 66,
     "g21": 0.66
   },
   {
@@ -177,6 +197,8 @@ window.PBERS_DATA = [
     "slug": "neille-ナユ",
     "vShort": 70956056,
     "vLong": 71683,
+    "nShort": 178,
+    "nLong": 11,
     "g21": 0.46
   },
   {
@@ -193,6 +215,8 @@ window.PBERS_DATA = [
     "slug": "ボウコムボール",
     "vShort": 5221513,
     "vLong": 5984669,
+    "nShort": 39,
+    "nLong": 78,
     "g21": 1.49
   },
   {
@@ -209,6 +233,8 @@ window.PBERS_DATA = [
     "slug": "ball420",
     "vShort": 29823350,
     "vLong": 4193897,
+    "nShort": 365,
+    "nLong": 205,
     "g21": 0.89
   },
   {
@@ -225,6 +251,8 @@ window.PBERS_DATA = [
     "slug": "日帝ボール",
     "vShort": 13559036,
     "vLong": 185151,
+    "nShort": 19,
+    "nLong": 7,
     "g21": 6.58
   },
   {
@@ -241,6 +269,8 @@ window.PBERS_DATA = [
     "slug": "かにたる",
     "vShort": 9002994,
     "vLong": 1947321,
+    "nShort": 31,
+    "nLong": 53,
     "g21": 0.0
   },
   {
@@ -255,8 +285,10 @@ window.PBERS_DATA = [
     "color": "#5e95d4",
     "genre": "ポーランドボーラー",
     "slug": "ニイソビボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 10913025,
+    "vLong": 317507,
+    "nShort": 39,
+    "nLong": 24,
     "g21": 33.19
   },
   {
@@ -273,6 +305,8 @@ window.PBERS_DATA = [
     "slug": "うずまき",
     "vShort": 7589529,
     "vLong": 340903,
+    "nShort": 128,
+    "nLong": 49,
     "g21": 0.67
   },
   {
@@ -289,6 +323,8 @@ window.PBERS_DATA = [
     "slug": "yukkuri-ball",
     "vShort": 0,
     "vLong": 13057935,
+    "nShort": 0,
+    "nLong": 123,
     "g21": 0.34
   },
   {
@@ -305,6 +341,8 @@ window.PBERS_DATA = [
     "slug": "dubai-choco-ball",
     "vShort": 19087687,
     "vLong": 1172077,
+    "nShort": 92,
+    "nLong": 28,
     "g21": 0.35
   },
   {
@@ -321,6 +359,8 @@ window.PBERS_DATA = [
     "slug": "作",
     "vShort": 7433358,
     "vLong": 2101094,
+    "nShort": 89,
+    "nLong": 48,
     "g21": 1.07
   },
   {
@@ -337,6 +377,8 @@ window.PBERS_DATA = [
     "slug": "日本ボール",
     "vShort": 1165083,
     "vLong": 6579394,
+    "nShort": 11,
+    "nLong": 74,
     "g21": 0.36
   },
   {
@@ -353,6 +395,8 @@ window.PBERS_DATA = [
     "slug": "マイクラ共和国ボールtama2224",
     "vShort": 1515056,
     "vLong": 8757646,
+    "nShort": 26,
+    "nLong": 118,
     "g21": 0.73
   },
   {
@@ -369,6 +413,8 @@ window.PBERS_DATA = [
     "slug": "すいかぼーる",
     "vShort": 1453805,
     "vLong": 13567207,
+    "nShort": 17,
+    "nLong": 163,
     "g21": 0.41
   },
   {
@@ -385,6 +431,8 @@ window.PBERS_DATA = [
     "slug": "ｺﾏ",
     "vShort": 9979830,
     "vLong": 52721,
+    "nShort": 21,
+    "nLong": 2,
     "g21": 2.97
   },
   {
@@ -401,6 +449,8 @@ window.PBERS_DATA = [
     "slug": "りょうデス",
     "vShort": 15134628,
     "vLong": 108253,
+    "nShort": 701,
+    "nLong": 191,
     "g21": 0.0
   },
   {
@@ -417,6 +467,8 @@ window.PBERS_DATA = [
     "slug": "こゆまる_koyumaru908",
     "vShort": 9437930,
     "vLong": 20133,
+    "nShort": 173,
+    "nLong": 14,
     "g21": 0.0
   },
   {
@@ -433,6 +485,8 @@ window.PBERS_DATA = [
     "slug": "マルルさん",
     "vShort": 26228138,
     "vLong": 472182,
+    "nShort": 56,
+    "nLong": 22,
     "g21": 1.31
   },
   {
@@ -449,6 +503,8 @@ window.PBERS_DATA = [
     "slug": "ぱふball",
     "vShort": 5852213,
     "vLong": 924589,
+    "nShort": 81,
+    "nLong": 23,
     "g21": 0.43
   },
   {
@@ -465,6 +521,8 @@ window.PBERS_DATA = [
     "slug": "にこちpb",
     "vShort": 283629,
     "vLong": 35958,
+    "nShort": 9,
+    "nLong": 12,
     "g21": 55.24
   },
   {
@@ -481,6 +539,8 @@ window.PBERS_DATA = [
     "slug": "ゼリョーヌィボール活停中",
     "vShort": 887656,
     "vLong": 4966499,
+    "nShort": 14,
+    "nLong": 74,
     "g21": 1.87
   },
   {
@@ -497,6 +557,8 @@ window.PBERS_DATA = [
     "slug": "ねこボール",
     "vShort": 1684998,
     "vLong": 1502199,
+    "nShort": 20,
+    "nLong": 44,
     "g21": 0.48
   },
   {
@@ -513,6 +575,8 @@ window.PBERS_DATA = [
     "slug": "なぽりたんぼーる",
     "vShort": 8715813,
     "vLong": 229629,
+    "nShort": 223,
+    "nLong": 66,
     "g21": 3.63
   },
   {
@@ -529,6 +593,8 @@ window.PBERS_DATA = [
     "slug": "ぽぱい",
     "vShort": 4559793,
     "vLong": 68696,
+    "nShort": 29,
+    "nLong": 4,
     "g21": 3.11
   },
   {
@@ -545,6 +611,8 @@ window.PBERS_DATA = [
     "slug": "アオアオカントリー",
     "vShort": 200667,
     "vLong": 2014004,
+    "nShort": 6,
+    "nLong": 11,
     "g21": 2.15
   },
   {
@@ -561,6 +629,8 @@ window.PBERS_DATA = [
     "slug": "炭火焼き",
     "vShort": 11902551,
     "vLong": 2166601,
+    "nShort": 6,
+    "nLong": 53,
     "g21": -0.53
   },
   {
@@ -577,6 +647,8 @@ window.PBERS_DATA = [
     "slug": "まるッとわかる地理の裏話",
     "vShort": 20681105,
     "vLong": 0,
+    "nShort": 36,
+    "nLong": 0,
     "g21": 6.32
   },
   {
@@ -593,6 +665,8 @@ window.PBERS_DATA = [
     "slug": "ミルー帝国-はんぺんpb",
     "vShort": 6933396,
     "vLong": 1783188,
+    "nShort": 146,
+    "nLong": 105,
     "g21": 1.1
   },
   {
@@ -609,6 +683,8 @@ window.PBERS_DATA = [
     "slug": "きままボール",
     "vShort": 10739747,
     "vLong": 1939068,
+    "nShort": 72,
+    "nLong": 82,
     "g21": 0.56
   },
   {
@@ -625,6 +701,8 @@ window.PBERS_DATA = [
     "slug": "ソビエトカチューシャボール",
     "vShort": 5518738,
     "vLong": 33276,
+    "nShort": 288,
+    "nLong": 53,
     "g21": 4.07
   },
   {
@@ -641,6 +719,8 @@ window.PBERS_DATA = [
     "slug": "ユウセイボール",
     "vShort": 4186818,
     "vLong": 2095090,
+    "nShort": 43,
+    "nLong": 33,
     "g21": 1.7
   },
   {
@@ -657,6 +737,8 @@ window.PBERS_DATA = [
     "slug": "練乳ソビエト共和国ぼーる",
     "vShort": 1774594,
     "vLong": 5094,
+    "nShort": 85,
+    "nLong": 7,
     "g21": 14.19
   },
   {
@@ -673,6 +755,8 @@ window.PBERS_DATA = [
     "slug": "マスカットボール",
     "vShort": 3520938,
     "vLong": 1062868,
+    "nShort": 18,
+    "nLong": 27,
     "g21": 0.6
   },
   {
@@ -689,6 +773,8 @@ window.PBERS_DATA = [
     "slug": "ほわさん",
     "vShort": 2283746,
     "vLong": 1594474,
+    "nShort": 33,
+    "nLong": 56,
     "g21": 2.48
   },
   {
@@ -705,6 +791,8 @@ window.PBERS_DATA = [
     "slug": "mikuボール",
     "vShort": 3461472,
     "vLong": 3663,
+    "nShort": 196,
+    "nLong": 19,
     "g21": 1.23
   },
   {
@@ -721,6 +809,8 @@ window.PBERS_DATA = [
     "slug": "ねとえん",
     "vShort": 7015943,
     "vLong": 30154,
+    "nShort": 80,
+    "nLong": 19,
     "g21": 5.96
   },
   {
@@ -735,8 +825,10 @@ window.PBERS_DATA = [
     "color": "#5ed499",
     "genre": "ポーランドボーラー",
     "slug": "türkiyeキプロスball",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 8279041,
+    "vLong": 939568,
+    "nShort": 129,
+    "nLong": 17,
     "g21": 0.0
   },
   {
@@ -753,6 +845,8 @@ window.PBERS_DATA = [
     "slug": "まるぼーるch",
     "vShort": 18788235,
     "vLong": 11890,
+    "nShort": 118,
+    "nLong": 3,
     "g21": 9.23
   },
   {
@@ -769,6 +863,8 @@ window.PBERS_DATA = [
     "slug": "tkg-ball",
     "vShort": 40569,
     "vLong": 4119273,
+    "nShort": 1,
+    "nLong": 47,
     "g21": 0.0
   },
   {
@@ -785,6 +881,8 @@ window.PBERS_DATA = [
     "slug": "マロー",
     "vShort": 71983,
     "vLong": 3156255,
+    "nShort": 4,
+    "nLong": 44,
     "g21": 0.73
   },
   {
@@ -801,6 +899,8 @@ window.PBERS_DATA = [
     "slug": "なごみん",
     "vShort": 2132845,
     "vLong": 786728,
+    "nShort": 63,
+    "nLong": 21,
     "g21": 1.54
   },
   {
@@ -817,6 +917,8 @@ window.PBERS_DATA = [
     "slug": "わーるどボールポーランドボール",
     "vShort": 59486,
     "vLong": 2233063,
+    "nShort": 3,
+    "nLong": 99,
     "g21": 3.15
   },
   {
@@ -833,6 +935,8 @@ window.PBERS_DATA = [
     "slug": "ユラミア連邦共和国",
     "vShort": 8532764,
     "vLong": 41688,
+    "nShort": 71,
+    "nLong": 22,
     "g21": 2.36
   },
   {
@@ -849,6 +953,8 @@ window.PBERS_DATA = [
     "slug": "レメラボール-えるめす",
     "vShort": 6104307,
     "vLong": 184390,
+    "nShort": 97,
+    "nLong": 80,
     "g21": 0.78
   },
   {
@@ -865,6 +971,8 @@ window.PBERS_DATA = [
     "slug": "ちまちもヒエナ",
     "vShort": 5162321,
     "vLong": 271598,
+    "nShort": 68,
+    "nLong": 8,
     "g21": 0.78
   },
   {
@@ -881,6 +989,8 @@ window.PBERS_DATA = [
     "slug": "ケエレビq",
     "vShort": 4685199,
     "vLong": 728407,
+    "nShort": 54,
+    "nLong": 46,
     "g21": 0.79
   },
   {
@@ -897,6 +1007,8 @@ window.PBERS_DATA = [
     "slug": "カミヤ-kamiyaポーランドボール",
     "vShort": 2620449,
     "vLong": 763293,
+    "nShort": 60,
+    "nLong": 19,
     "g21": 0.81
   },
   {
@@ -913,6 +1025,8 @@ window.PBERS_DATA = [
     "slug": "sekki98",
     "vShort": 7964589,
     "vLong": 572727,
+    "nShort": 637,
+    "nLong": 158,
     "g21": 0.0
   },
   {
@@ -929,6 +1043,8 @@ window.PBERS_DATA = [
     "slug": "ハッホチャンネル",
     "vShort": 1708120,
     "vLong": 5037,
+    "nShort": 64,
+    "nLong": 59,
     "g21": 11.11
   },
   {
@@ -945,6 +1061,8 @@ window.PBERS_DATA = [
     "slug": "ひかるボール-hikaru-ball",
     "vShort": 1262943,
     "vLong": 283894,
+    "nShort": 65,
+    "nLong": 89,
     "g21": 0.0
   },
   {
@@ -961,6 +1079,8 @@ window.PBERS_DATA = [
     "slug": "玄米ボール",
     "vShort": 5446949,
     "vLong": 133878,
+    "nShort": 83,
+    "nLong": 40,
     "g21": 4.59
   },
   {
@@ -977,6 +1097,8 @@ window.PBERS_DATA = [
     "slug": "ほたて",
     "vShort": 1604603,
     "vLong": 2144128,
+    "nShort": 80,
+    "nLong": 151,
     "g21": 0.0
   },
   {
@@ -993,6 +1115,8 @@ window.PBERS_DATA = [
     "slug": "lemon_ball",
     "vShort": 596124,
     "vLong": 390501,
+    "nShort": 59,
+    "nLong": 58,
     "g21": 0.0
   },
   {
@@ -1009,6 +1133,8 @@ window.PBERS_DATA = [
     "slug": "ほすとぼーる",
     "vShort": 2116732,
     "vLong": 0,
+    "nShort": 25,
+    "nLong": 0,
     "g21": 0.0
   },
   {
@@ -1025,6 +1151,8 @@ window.PBERS_DATA = [
     "slug": "ĝç_z3røくん",
     "vShort": 6178280,
     "vLong": 247900,
+    "nShort": 73,
+    "nLong": 97,
     "g21": 0.0
   },
   {
@@ -1039,8 +1167,10 @@ window.PBERS_DATA = [
     "color": "#a3cc3e",
     "genre": "ポーランドボーラー",
     "slug": "pbネオンボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 6922144,
+    "vLong": 19348,
+    "nShort": 92,
+    "nLong": 14,
     "g21": 31.74
   },
   {
@@ -1055,8 +1185,10 @@ window.PBERS_DATA = [
     "color": "#5ed472",
     "genre": "ポーランドボーラー",
     "slug": "スーパーボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 5121674,
+    "vLong": 11080,
+    "nShort": 280,
+    "nLong": 11,
     "g21": 0.0
   },
   {
@@ -1073,6 +1205,8 @@ window.PBERS_DATA = [
     "slug": "空白ボール",
     "vShort": 4561638,
     "vLong": 29355,
+    "nShort": 56,
+    "nLong": 10,
     "g21": 1.32
   },
   {
@@ -1087,8 +1221,10 @@ window.PBERS_DATA = [
     "color": "#5e66d4",
     "genre": "ポーランドボーラー",
     "slug": "カルマルボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 4066362,
+    "vLong": 96719,
+    "nShort": 78,
+    "nLong": 16,
     "g21": 33.51
   },
   {
@@ -1105,6 +1241,8 @@ window.PBERS_DATA = [
     "slug": "かめさーくボール共和国",
     "vShort": 186514,
     "vLong": 1822156,
+    "nShort": 64,
+    "nLong": 18,
     "g21": 0.41
   },
   {
@@ -1121,6 +1259,8 @@ window.PBERS_DATA = [
     "slug": "mikan帝国ぼーる",
     "vShort": 432536,
     "vLong": 1147125,
+    "nShort": 14,
+    "nLong": 19,
     "g21": 0.84
   },
   {
@@ -1137,6 +1277,8 @@ window.PBERS_DATA = [
     "slug": "ライヒスボールreichsball",
     "vShort": 225319,
     "vLong": 4181863,
+    "nShort": 4,
+    "nLong": 45,
     "g21": -0.1
   },
   {
@@ -1153,6 +1295,8 @@ window.PBERS_DATA = [
     "slug": "ばかわたし",
     "vShort": 3646868,
     "vLong": 1080396,
+    "nShort": 42,
+    "nLong": 50,
     "g21": 3.72
   },
   {
@@ -1169,6 +1313,8 @@ window.PBERS_DATA = [
     "slug": "ふかひれ牧場",
     "vShort": 0,
     "vLong": 1265075,
+    "nShort": 0,
+    "nLong": 24,
     "g21": -0.22
   },
   {
@@ -1185,6 +1331,8 @@ window.PBERS_DATA = [
     "slug": "ココプー",
     "vShort": 5940363,
     "vLong": 187792,
+    "nShort": 244,
+    "nLong": 129,
     "g21": 0.22
   },
   {
@@ -1199,8 +1347,10 @@ window.PBERS_DATA = [
     "color": "#4e3ecc",
     "genre": "ポーランドボーラー",
     "slug": "頑張れガスト",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 9207239,
+    "vLong": 86786,
+    "nShort": 312,
+    "nLong": 91,
     "g21": null
   },
   {
@@ -1217,6 +1367,8 @@ window.PBERS_DATA = [
     "slug": "ポーランドボールの教科書",
     "vShort": 134915,
     "vLong": 1291341,
+    "nShort": 8,
+    "nLong": 42,
     "g21": 0.5
   },
   {
@@ -1233,6 +1385,8 @@ window.PBERS_DATA = [
     "slug": "アスラボール",
     "vShort": 3027022,
     "vLong": 6764,
+    "nShort": 18,
+    "nLong": 2,
     "g21": 0.13
   },
   {
@@ -1247,8 +1401,10 @@ window.PBERS_DATA = [
     "color": "#d4b95e",
     "genre": "ポーランドボーラー",
     "slug": "russiaぼーる",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 11869855,
+    "vLong": 33013,
+    "nShort": 119,
+    "nLong": 19,
     "g21": -0.27
   },
   {
@@ -1265,6 +1421,8 @@ window.PBERS_DATA = [
     "slug": "セフィルぼーる",
     "vShort": 253281,
     "vLong": 1976878,
+    "nShort": 51,
+    "nLong": 199,
     "g21": 2.05
   },
   {
@@ -1281,6 +1439,8 @@ window.PBERS_DATA = [
     "slug": "レイアルファ",
     "vShort": 3175636,
     "vLong": 129032,
+    "nShort": 53,
+    "nLong": 34,
     "g21": 6.34
   },
   {
@@ -1297,6 +1457,8 @@ window.PBERS_DATA = [
     "slug": "ゆうボール",
     "vShort": 1522506,
     "vLong": 86734,
+    "nShort": 17,
+    "nLong": 10,
     "g21": 0.28
   },
   {
@@ -1311,8 +1473,10 @@ window.PBERS_DATA = [
     "color": "#3e90cc",
     "genre": "ポーランドボーラー",
     "slug": "から揚げボール-永遠の24歳学生",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 3577414,
+    "vLong": 331816,
+    "nShort": 147,
+    "nLong": 21,
     "g21": 0.14
   },
   {
@@ -1329,6 +1493,8 @@ window.PBERS_DATA = [
     "slug": "いたりぃ",
     "vShort": 703813,
     "vLong": 421860,
+    "nShort": 3,
+    "nLong": 20,
     "g21": -0.14
   },
   {
@@ -1345,6 +1511,8 @@ window.PBERS_DATA = [
     "slug": "ノートボール",
     "vShort": 3634853,
     "vLong": 1934,
+    "nShort": 88,
+    "nLong": 2,
     "g21": -0.43
   },
   {
@@ -1359,8 +1527,10 @@ window.PBERS_DATA = [
     "color": "#d4665e",
     "genre": "ポーランドボーラー",
     "slug": "萱口",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 2615631,
+    "vLong": 1442,
+    "nShort": 71,
+    "nLong": 3,
     "g21": 8.44
   },
   {
@@ -1377,6 +1547,8 @@ window.PBERS_DATA = [
     "slug": "白海豚",
     "vShort": 1894595,
     "vLong": 259136,
+    "nShort": 33,
+    "nLong": 84,
     "g21": 0.15
   },
   {
@@ -1393,6 +1565,8 @@ window.PBERS_DATA = [
     "slug": "カカポボール",
     "vShort": 4158883,
     "vLong": 9633,
+    "nShort": 84,
+    "nLong": 2,
     "g21": 0.15
   },
   {
@@ -1409,6 +1583,8 @@ window.PBERS_DATA = [
     "slug": "天川-蒼",
     "vShort": 4952461,
     "vLong": 105495,
+    "nShort": 158,
+    "nLong": 72,
     "g21": 0.31
   },
   {
@@ -1425,6 +1601,8 @@ window.PBERS_DATA = [
     "slug": "フラルランドball",
     "vShort": 2664107,
     "vLong": 74387,
+    "nShort": 142,
+    "nLong": 9,
     "g21": 0.0
   },
   {
@@ -1439,8 +1617,10 @@ window.PBERS_DATA = [
     "color": "#823ecc",
     "genre": "ポーランドボーラー",
     "slug": "元ボーラー唯一の中立mr-incredible中毒",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 154309,
+    "vLong": 3020779,
+    "nShort": 11,
+    "nLong": 135,
     "g21": null
   },
   {
@@ -1457,6 +1637,8 @@ window.PBERS_DATA = [
     "slug": "アフガンボール",
     "vShort": 0,
     "vLong": 958562,
+    "nShort": 0,
+    "nLong": 6,
     "g21": 0.88
   },
   {
@@ -1471,8 +1653,10 @@ window.PBERS_DATA = [
     "color": "#cc613e",
     "genre": "ポーランドボーラー",
     "slug": "りっつんボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 3797508,
+    "vLong": 247712,
+    "nShort": 17,
+    "nLong": 12,
     "g21": 1.44
   },
   {
@@ -1489,6 +1673,8 @@ window.PBERS_DATA = [
     "slug": "ヴァイマル共和国ボール-底辺pber連盟",
     "vShort": 3951828,
     "vLong": 5888,
+    "nShort": 271,
+    "nLong": 14,
     "g21": 0.0
   },
   {
@@ -1503,8 +1689,10 @@ window.PBERS_DATA = [
     "color": "#3ecc40",
     "genre": "ポーランドボーラー",
     "slug": "ふぉるま",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 844200,
+    "vLong": 0,
+    "nShort": 11,
+    "nLong": 0,
     "g21": 0.38
   },
   {
@@ -1519,8 +1707,10 @@ window.PBERS_DATA = [
     "color": "#5ed4c8",
     "genre": "ポーランドボーラー",
     "slug": "ていてく",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1646972,
+    "vLong": 241276,
+    "nShort": 39,
+    "nLong": 29,
     "g21": 0.76
   },
   {
@@ -1535,8 +1725,10 @@ window.PBERS_DATA = [
     "color": "#3e5ccc",
     "genre": "ポーランドボーラー",
     "slug": "不定期ボール1",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 74280,
+    "vLong": 1037972,
+    "nShort": 3,
+    "nLong": 8,
     "g21": 0.78
   },
   {
@@ -1553,6 +1745,8 @@ window.PBERS_DATA = [
     "slug": "みすい",
     "vShort": 1298270,
     "vLong": 0,
+    "nShort": 25,
+    "nLong": 0,
     "g21": 16.11
   },
   {
@@ -1567,8 +1761,10 @@ window.PBERS_DATA = [
     "color": "#cc3e7e",
     "genre": "ポーランドボーラー",
     "slug": "erop-えるふぼーる",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 867703,
+    "vLong": 312992,
+    "nShort": 11,
+    "nLong": 100,
     "g21": -0.4
   },
   {
@@ -1583,8 +1779,10 @@ window.PBERS_DATA = [
     "color": "#d4915e",
     "genre": "ポーランドボーラー",
     "slug": "オマエナガ",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 2182948,
+    "vLong": 34179,
+    "nShort": 52,
+    "nLong": 7,
     "g21": 0.0
   },
   {
@@ -1599,8 +1797,10 @@ window.PBERS_DATA = [
     "color": "#9fcc3e",
     "genre": "ポーランドボーラー",
     "slug": "くるみボール活動休止中",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1610851,
+    "vLong": 224906,
+    "nShort": 246,
+    "nLong": 68,
     "g21": -0.2
   },
   {
@@ -1615,8 +1815,10 @@ window.PBERS_DATA = [
     "color": "#5ed476",
     "genre": "ポーランドボーラー",
     "slug": "ソラビア人民共和国連邦",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 610027,
+    "vLong": 1294,
+    "nShort": 73,
+    "nLong": 7,
     "g21": 1.87
   },
   {
@@ -1631,8 +1833,10 @@ window.PBERS_DATA = [
     "color": "#3ec0cc",
     "genre": "ポーランドボーラー",
     "slug": "幻死帝国",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 382141,
+    "vLong": 370096,
+    "nShort": 26,
+    "nLong": 17,
     "g21": 3.61
   },
   {
@@ -1647,8 +1851,10 @@ window.PBERS_DATA = [
     "color": "#5e62d4",
     "genre": "ポーランドボーラー",
     "slug": "スコミヤ228",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1294330,
+    "vLong": 211230,
+    "nShort": 65,
+    "nLong": 80,
     "g21": 1.04
   },
   {
@@ -1663,8 +1869,10 @@ window.PBERS_DATA = [
     "color": "#b63ecc",
     "genre": "ポーランドボーラー",
     "slug": "アドラー",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 58699,
+    "vLong": 618274,
+    "nShort": 5,
+    "nLong": 5,
     "g21": 2.15
   },
   {
@@ -1679,8 +1887,10 @@ window.PBERS_DATA = [
     "color": "#d45e7d",
     "genre": "ポーランドボーラー",
     "slug": "旧食dx",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1481994,
+    "vLong": 321489,
+    "nShort": 98,
+    "nLong": 162,
     "g21": 0.0
   },
   {
@@ -1695,8 +1905,10 @@ window.PBERS_DATA = [
     "color": "#cc953e",
     "genre": "ポーランドボーラー",
     "slug": "sekumeball-せくめボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1688676,
+    "vLong": 1212,
+    "nShort": 95,
+    "nLong": 6,
     "g21": 2.7
   },
   {
@@ -1713,6 +1925,8 @@ window.PBERS_DATA = [
     "slug": "ポーランドボーラー-poland-bowler",
     "vShort": 1840484,
     "vLong": 222098,
+    "nShort": 71,
+    "nLong": 59,
     "g21": 0.67
   },
   {
@@ -1727,8 +1941,10 @@ window.PBERS_DATA = [
     "color": "#3ecc74",
     "genre": "ポーランドボーラー",
     "slug": "ソビエトロシアぼーる",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 2715169,
+    "vLong": 19975,
+    "nShort": 135,
+    "nLong": 2,
     "g21": 4.05
   },
   {
@@ -1743,8 +1959,10 @@ window.PBERS_DATA = [
     "color": "#5eb5d4",
     "genre": "ポーランドボーラー",
     "slug": "東トルキスタンボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1055217,
+    "vLong": 249357,
+    "nShort": 45,
+    "nLong": 10,
     "g21": 2.11
   },
   {
@@ -1759,8 +1977,10 @@ window.PBERS_DATA = [
     "color": "#533ecc",
     "genre": "ポーランドボーラー",
     "slug": "ttボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 247080,
+    "vLong": 682710,
+    "nShort": 16,
+    "nLong": 101,
     "g21": 1.28
   },
   {
@@ -1775,8 +1995,10 @@ window.PBERS_DATA = [
     "color": "#d45ed0",
     "genre": "ポーランドボーラー",
     "slug": "かき氷ボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 89966,
+    "vLong": 7510,
+    "nShort": 14,
+    "nLong": 25,
     "g21": -0.25
   },
   {
@@ -1791,8 +2013,10 @@ window.PBERS_DATA = [
     "color": "#cc3e49",
     "genre": "ポーランドボーラー",
     "slug": "mīþ緑ボール-イ",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 348583,
+    "vLong": 11484,
+    "nShort": 167,
+    "nLong": 106,
     "g21": 9.22
   },
   {
@@ -1807,8 +2031,10 @@ window.PBERS_DATA = [
     "color": "#d4bc5e",
     "genre": "ポーランドボーラー",
     "slug": "バナナ王国",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 466338,
+    "vLong": 965,
+    "nShort": 40,
+    "nLong": 3,
     "g21": -0.26
   },
   {
@@ -1825,6 +2051,8 @@ window.PBERS_DATA = [
     "slug": "ウィン肉声ポーランドボール",
     "vShort": 3788,
     "vLong": 456100,
+    "nShort": 1,
+    "nLong": 106,
     "g21": 3.85
   },
   {
@@ -1839,8 +2067,10 @@ window.PBERS_DATA = [
     "color": "#5ed4a1",
     "genre": "ポーランドボーラー",
     "slug": "ヤバすぎボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 2095987,
+    "vLong": 5488,
+    "nShort": 175,
+    "nLong": 52,
     "g21": 0.0
   },
   {
@@ -1855,8 +2085,10 @@ window.PBERS_DATA = [
     "color": "#3e8ccc",
     "genre": "ポーランドボーラー",
     "slug": "海ボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 4195006,
+    "vLong": 0,
+    "nShort": 29,
+    "nLong": 0,
     "g21": 0.27
   },
   {
@@ -1871,8 +2103,10 @@ window.PBERS_DATA = [
     "color": "#855ed4",
     "genre": "ポーランドボーラー",
     "slug": "ルヒエル-rätsel",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 282990,
+    "vLong": 290825,
+    "nShort": 16,
+    "nLong": 23,
     "g21": 1.39
   },
   {
@@ -1887,8 +2121,10 @@ window.PBERS_DATA = [
     "color": "#cc3ead",
     "genre": "ポーランドボーラー",
     "slug": "ロボキチ",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 447363,
+    "vLong": 397698,
+    "nShort": 26,
+    "nLong": 27,
     "g21": 5.22
   },
   {
@@ -1903,8 +2139,10 @@ window.PBERS_DATA = [
     "color": "#d46a5e",
     "genre": "ポーランドボーラー",
     "slug": "ソニキパチアスカイ帝国",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1924855,
+    "vLong": 16428,
+    "nShort": 143,
+    "nLong": 14,
     "g21": 0.0
   },
   {
@@ -1919,8 +2157,10 @@ window.PBERS_DATA = [
     "color": "#ccc93e",
     "genre": "ポーランドボーラー",
     "slug": "灼熱ボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 4551758,
+    "vLong": 1994,
+    "nShort": 69,
+    "nLong": 3,
     "g21": -0.57
   },
   {
@@ -1935,8 +2175,10 @@ window.PBERS_DATA = [
     "color": "#6ed45e",
     "genre": "ポーランドボーラー",
     "slug": "ゆの59乗ゆ⁵⁹",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 293799,
+    "vLong": 9096,
+    "nShort": 4,
+    "nLong": 1,
     "g21": 10.71
   },
   {
@@ -1951,8 +2193,10 @@ window.PBERS_DATA = [
     "color": "#3ecca8",
     "genre": "ポーランドボーラー",
     "slug": "ポインちゃん",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 3196381,
+    "vLong": 49246,
+    "nShort": 58,
+    "nLong": 22,
     "g21": 4.28
   },
   {
@@ -1967,8 +2211,10 @@ window.PBERS_DATA = [
     "color": "#5e89d4",
     "genre": "ポーランドボーラー",
     "slug": "あへへへへへﾝ",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 3314597,
+    "vLong": 20223,
+    "nShort": 29,
+    "nLong": 5,
     "g21": 7.64
   },
   {
@@ -1983,8 +2229,10 @@ window.PBERS_DATA = [
     "color": "#873ecc",
     "genre": "ポーランドボーラー",
     "slug": "クロウ",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 295295,
+    "vLong": 188199,
+    "nShort": 4,
+    "nLong": 2,
     "g21": 2.17
   },
   {
@@ -1999,8 +2247,10 @@ window.PBERS_DATA = [
     "color": "#d45ea5",
     "genre": "ポーランドボーラー",
     "slug": "ひまぐれ",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1045984,
+    "vLong": 322495,
+    "nShort": 42,
+    "nLong": 38,
     "g21": null
   },
   {
@@ -2015,8 +2265,10 @@ window.PBERS_DATA = [
     "color": "#cc663e",
     "genre": "ポーランドボーラー",
     "slug": "askボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1451944,
+    "vLong": 61449,
+    "nShort": 74,
+    "nLong": 14,
     "g21": -0.3
   },
   {
@@ -2031,8 +2283,10 @@ window.PBERS_DATA = [
     "color": "#c0d45e",
     "genre": "ポーランドボーラー",
     "slug": "おもちすたん",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 622102,
+    "vLong": 228984,
+    "nShort": 41,
+    "nLong": 22,
     "g21": 1.25
   },
   {
@@ -2047,8 +2301,10 @@ window.PBERS_DATA = [
     "color": "#3ecc45",
     "genre": "ポーランドボーラー",
     "slug": "旧名大日本ボール民主たまに復活するかも",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 200594,
+    "vLong": 3403,
+    "nShort": 18,
+    "nLong": 2,
     "g21": 0.0
   },
   {
@@ -2063,8 +2319,10 @@ window.PBERS_DATA = [
     "color": "#5ed4cc",
     "genre": "ポーランドボーラー",
     "slug": "ポテックボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1627056,
+    "vLong": 2494,
+    "nShort": 172,
+    "nLong": 7,
     "g21": 3.68
   },
   {
@@ -2079,8 +2337,10 @@ window.PBERS_DATA = [
     "color": "#3e58cc",
     "genre": "ポーランドボーラー",
     "slug": "某p国の球",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 2680764,
+    "vLong": 15635,
+    "nShort": 74,
+    "nLong": 28,
     "g21": 7.34
   },
   {
@@ -2095,8 +2355,10 @@ window.PBERS_DATA = [
     "color": "#b15ed4",
     "genre": "ポーランドボーラー",
     "slug": "クッキーシャワーボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 806493,
+    "vLong": 19267,
+    "nShort": 98,
+    "nLong": 14,
     "g21": 0.33
   },
   {
@@ -2113,6 +2375,8 @@ window.PBERS_DATA = [
     "slug": "落書きポーラン",
     "vShort": 488659,
     "vLong": 1839,
+    "nShort": 61,
+    "nLong": 7,
     "g21": 0.0
   },
   {
@@ -2129,6 +2393,8 @@ window.PBERS_DATA = [
     "slug": "わのさち和の幸",
     "vShort": 1495153,
     "vLong": 3324,
+    "nShort": 23,
+    "nLong": 3,
     "g21": 0.33
   },
   {
@@ -2143,8 +2409,10 @@ window.PBERS_DATA = [
     "color": "#9acc3e",
     "genre": "ポーランドボーラー",
     "slug": "リルバシ",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 3091773,
+    "vLong": 153003,
+    "nShort": 33,
+    "nLong": 36,
     "g21": 0.0
   },
   {
@@ -2159,8 +2427,10 @@ window.PBERS_DATA = [
     "color": "#5ed479",
     "genre": "ポーランドボーラー",
     "slug": "ポルスカ速報",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1299713,
+    "vLong": 6589,
+    "nShort": 69,
+    "nLong": 10,
     "g21": 7.22
   },
   {
@@ -2177,6 +2447,8 @@ window.PBERS_DATA = [
     "slug": "ядcフォイタスア王国共和連邦",
     "vShort": 585393,
     "vLong": 858,
+    "nShort": 73,
+    "nLong": 7,
     "g21": -0.34
   },
   {
@@ -2191,8 +2463,10 @@ window.PBERS_DATA = [
     "color": "#5e5ed4",
     "genre": "ポーランドボーラー",
     "slug": "pbトレインボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 220555,
+    "vLong": 318947,
+    "nShort": 97,
+    "nLong": 66,
     "g21": 1.4
   },
   {
@@ -2207,8 +2481,10 @@ window.PBERS_DATA = [
     "color": "#bb3ecc",
     "genre": "ポーランドボーラー",
     "slug": "世界最強笑ボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 2054102,
+    "vLong": 4526,
+    "nShort": 227,
+    "nLong": 16,
     "g21": 0.36
   },
   {
@@ -2223,8 +2499,10 @@ window.PBERS_DATA = [
     "color": "#d45e79",
     "genre": "ポーランドボーラー",
     "slug": "信州ボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1441466,
+    "vLong": 27120,
+    "nShort": 75,
+    "nLong": 18,
     "g21": 16.88
   },
   {
@@ -2239,8 +2517,10 @@ window.PBERS_DATA = [
     "color": "#cc9a3e",
     "genre": "ポーランドボーラー",
     "slug": "ソビエトボールussr",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 0,
+    "vLong": 213062,
+    "nShort": 0,
+    "nLong": 2,
     "g21": 2.31
   },
   {
@@ -2255,8 +2535,10 @@ window.PBERS_DATA = [
     "color": "#95d45e",
     "genre": "ポーランドボーラー",
     "slug": "パワーポイントボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1131171,
+    "vLong": 152856,
+    "nShort": 95,
+    "nLong": 7,
     "g21": 1.16
   },
   {
@@ -2271,8 +2553,10 @@ window.PBERS_DATA = [
     "color": "#3ecc79",
     "genre": "ポーランドボーラー",
     "slug": "dre_tataドリームボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 280959,
+    "vLong": 32733,
+    "nShort": 59,
+    "nLong": 11,
     "g21": -0.38
   },
   {
@@ -2287,8 +2571,10 @@ window.PBERS_DATA = [
     "color": "#5eb1d4",
     "genre": "ポーランドボーラー",
     "slug": "さんどいつちball",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1281280,
+    "vLong": 89592,
+    "nShort": 299,
+    "nLong": 114,
     "g21": 0.0
   },
   {
@@ -2303,8 +2589,10 @@ window.PBERS_DATA = [
     "color": "#583ecc",
     "genre": "ポーランドボーラー",
     "slug": "alpha_japan",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 220351,
+    "vLong": 56680,
+    "nShort": 61,
+    "nLong": 30,
     "g21": 0.0
   },
   {
@@ -2319,8 +2607,10 @@ window.PBERS_DATA = [
     "color": "#d45ecc",
     "genre": "ポーランドボーラー",
     "slug": "かくめいボールpber錬成同盟盟主",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 38214,
+    "vLong": 6865,
+    "nShort": 7,
+    "nLong": 17,
     "g21": 0.0
   },
   {
@@ -2335,8 +2625,10 @@ window.PBERS_DATA = [
     "color": "#cc3e45",
     "genre": "ポーランドボーラー",
     "slug": "佐藤_mid",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 380396,
+    "vLong": 532,
+    "nShort": 32,
+    "nLong": 2,
     "g21": null
   },
   {
@@ -2351,8 +2643,10 @@ window.PBERS_DATA = [
     "color": "#d4c05e",
     "genre": "ポーランドボーラー",
     "slug": "そあボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1531718,
+    "vLong": 82021,
+    "nShort": 71,
+    "nLong": 10,
     "g21": 1.67
   },
   {
@@ -2369,6 +2663,8 @@ window.PBERS_DATA = [
     "slug": "ベニテングタケ",
     "vShort": 763959,
     "vLong": 3250,
+    "nShort": 81,
+    "nLong": 12,
     "g21": -0.41
   },
   {
@@ -2383,8 +2679,10 @@ window.PBERS_DATA = [
     "color": "#5ed4a5",
     "genre": "ポーランドボーラー",
     "slug": "nichidokui-alliance",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1295956,
+    "vLong": 2793,
+    "nShort": 463,
+    "nLong": 31,
     "g21": 2.98
   },
   {
@@ -2399,8 +2697,10 @@ window.PBERS_DATA = [
     "color": "#3e87cc",
     "genre": "ポーランドボーラー",
     "slug": "とっとこボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1231374,
+    "vLong": 3660,
+    "nShort": 103,
+    "nLong": 8,
     "g21": null
   },
   {
@@ -2415,8 +2715,10 @@ window.PBERS_DATA = [
     "color": "#895ed4",
     "genre": "ポーランドボーラー",
     "slug": "ヤギソビエト",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 579257,
+    "vLong": 78144,
+    "nShort": 77,
+    "nLong": 28,
     "g21": 0.0
   },
   {
@@ -2431,8 +2733,10 @@ window.PBERS_DATA = [
     "color": "#cc3ea8",
     "genre": "ポーランドボーラー",
     "slug": "ロブラネボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1471167,
+    "vLong": 225,
+    "nShort": 108,
+    "nLong": 1,
     "g21": 3.98
   },
   {
@@ -2449,6 +2753,8 @@ window.PBERS_DATA = [
     "slug": "こち",
     "vShort": 549113,
     "vLong": 26258,
+    "nShort": 22,
+    "nLong": 5,
     "g21": 7.04
   },
   {
@@ -2465,6 +2771,8 @@ window.PBERS_DATA = [
     "slug": "ぶろあふ",
     "vShort": 612296,
     "vLong": 2321,
+    "nShort": 40,
+    "nLong": 4,
     "g21": 6.54
   },
   {
@@ -2479,8 +2787,10 @@ window.PBERS_DATA = [
     "color": "#6ad45e",
     "genre": "ポーランドボーラー",
     "slug": "sea-くぅボールえるめす",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 849127,
+    "vLong": 1128,
+    "nShort": 57,
+    "nLong": 2,
     "g21": 4.11
   },
   {
@@ -2495,8 +2805,10 @@ window.PBERS_DATA = [
     "color": "#3eccad",
     "genre": "ポーランドボーラー",
     "slug": "みみけけ",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1152234,
+    "vLong": 3143,
+    "nShort": 299,
+    "nLong": 13,
     "g21": 0.44
   },
   {
@@ -2511,8 +2823,10 @@ window.PBERS_DATA = [
     "color": "#5e85d4",
     "genre": "ポーランドボーラー",
     "slug": "huö_cl",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 21399,
+    "vLong": 209274,
+    "nShort": 2,
+    "nLong": 12,
     "g21": 2.78
   },
   {
@@ -2527,8 +2841,10 @@ window.PBERS_DATA = [
     "color": "#8c3ecc",
     "genre": "ポーランドボーラー",
     "slug": "skyball_pb",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1264955,
+    "vLong": 0,
+    "nShort": 106,
+    "nLong": 0,
     "g21": 8.87
   },
   {
@@ -2543,8 +2859,10 @@ window.PBERS_DATA = [
     "color": "#d45ea1",
     "genre": "ポーランドボーラー",
     "slug": "nà大和ボール",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 471031,
+    "vLong": 23075,
+    "nShort": 111,
+    "nLong": 31,
     "g21": 0.46
   },
   {
@@ -2561,6 +2879,8 @@ window.PBERS_DATA = [
     "slug": "ぬしぴボール",
     "vShort": 1350266,
     "vLong": 6596,
+    "nShort": 157,
+    "nLong": 3,
     "g21": 0.0
   },
   {
@@ -2575,8 +2895,10 @@ window.PBERS_DATA = [
     "color": "#bcd45e",
     "genre": "ポーランドボーラー",
     "slug": "今アズルアボールazb",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 584319,
+    "vLong": 3264,
+    "nShort": 83,
+    "nLong": 8,
     "g21": 2.84
   },
   {
@@ -2591,8 +2913,10 @@ window.PBERS_DATA = [
     "color": "#3ecc49",
     "genre": "ポーランドボーラー",
     "slug": "お団子ch",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 576640,
+    "vLong": 2577,
+    "nShort": 124,
+    "nLong": 36,
     "g21": 0.0
   },
   {
@@ -2607,8 +2931,10 @@ window.PBERS_DATA = [
     "color": "#5ed4d0",
     "genre": "ポーランドボーラー",
     "slug": "宇宙千葉のpbルーム",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 127887,
+    "vLong": 265309,
+    "nShort": 12,
+    "nLong": 32,
     "g21": 0.48
   },
   {
@@ -2623,8 +2949,10 @@ window.PBERS_DATA = [
     "color": "#3e53cc",
     "genre": "ポーランドボーラー",
     "slug": "ミントの農場",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 592731,
+    "vLong": 96131,
+    "nShort": 37,
+    "nLong": 33,
     "g21": 0.0
   },
   {
@@ -2639,8 +2967,10 @@ window.PBERS_DATA = [
     "color": "#b55ed4",
     "genre": "ポーランドボーラー",
     "slug": "あとらすぼーる",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 400149,
+    "vLong": 365,
+    "nShort": 82,
+    "nLong": 3,
     "g21": 0.0
   },
   {
@@ -2655,8 +2985,10 @@ window.PBERS_DATA = [
     "color": "#cc3e74",
     "genre": "ポーランドボーラー",
     "slug": "ソ中ボール日友好平和同盟",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1473717,
+    "vLong": 4160,
+    "nShort": 293,
+    "nLong": 48,
     "g21": 0.0
   },
   {
@@ -2671,8 +3003,10 @@ window.PBERS_DATA = [
     "color": "#d4995e",
     "genre": "ポーランドボーラー",
     "slug": "ドイツベルギーball",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 1320238,
+    "vLong": 1107,
+    "nShort": 87,
+    "nLong": 3,
     "g21": 0.0
   },
   {
@@ -2687,8 +3021,10 @@ window.PBERS_DATA = [
     "color": "#95cc3e",
     "genre": "ポーランドボーラー",
     "slug": "ぴくろす",
-    "vShort": null,
-    "vLong": null,
+    "vShort": 871581,
+    "vLong": 33589,
+    "nShort": 105,
+    "nLong": 9,
     "g21": 0.5
   },
   {
@@ -2705,6 +3041,8 @@ window.PBERS_DATA = [
     "slug": "ucd9meejypdqqzesetotitbg",
     "vShort": 6204904,
     "vLong": 841893,
+    "nShort": 32,
+    "nLong": 5,
     "g21": null
   },
   {
@@ -2721,6 +3059,8 @@ window.PBERS_DATA = [
     "slug": "ucsdgldanbgmbnkjvtztgubq",
     "vShort": 7785661,
     "vLong": 7447,
+    "nShort": 59,
+    "nLong": 8,
     "g21": 0.0
   },
   {
@@ -2737,6 +3077,8 @@ window.PBERS_DATA = [
     "slug": "ucahbgzof51dyatj2gvtsj0g",
     "vShort": 3261211,
     "vLong": 39328,
+    "nShort": 118,
+    "nLong": 22,
     "g21": -0.14
   },
   {
@@ -2753,6 +3095,8 @@ window.PBERS_DATA = [
     "slug": "ucypjofq7msu0hjvc5cfps2q",
     "vShort": 154017,
     "vLong": 1893,
+    "nShort": 36,
+    "nLong": 3,
     "g21": null
   },
   {
@@ -2769,6 +3113,8 @@ window.PBERS_DATA = [
     "slug": "ucmowpebtb-hflqijetnta2q",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": null
   }
 ];

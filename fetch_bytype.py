@@ -116,13 +116,18 @@ def is_short(vid):
         "https://www.youtube.com/shorts/" + vid, method="HEAD",
         headers={"User-Agent": "Mozilla/5.0", "Cookie": "SOCS=CAI; CONSENT=YES+",
                  "Accept-Language": "en-US,en;q=0.9"})
-    try:
-        _OPENER.open(req, timeout=15)
-        return True                       # 200 = ショート
-    except urllib.error.HTTPError as e:
-        return e.code == 200
-    except Exception:
-        return False                      # 取得失敗はロース扱い(安全側)
+    for attempt in range(5):
+        try:
+            _OPENER.open(req, timeout=15)
+            return True                   # 200 = ショート
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < 4:   # 回数制限はロング扱いにせず、待って読み直す
+                time.sleep(5 * (attempt + 1))
+                continue
+            return e.code == 200
+        except Exception:
+            return False                  # 取得失敗はロース扱い(安全側)
+    return False
 
 def analyze(cid):
     pl, title = uploads_playlist(cid)
@@ -146,7 +151,7 @@ def analyze(cid):
                 print("\r  ショート判定中... {}/{}".format(done[0], total_c), end="", flush=True)
             return vid, r
 
-        with ThreadPoolExecutor(max_workers=12) as ex:
+        with ThreadPoolExecutor(max_workers=6) as ex:
             for vid, r in ex.map(work, to_check):
                 if r:
                     short_set.add(vid)

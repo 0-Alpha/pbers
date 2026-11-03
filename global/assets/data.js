@@ -13,6 +13,8 @@ window.PBERS_DATA = [
     "slug": "jp-ball",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 0.0
   },
   {
@@ -29,6 +31,8 @@ window.PBERS_DATA = [
     "slug": "moon-ball",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 0.44
   },
   {
@@ -45,6 +49,8 @@ window.PBERS_DATA = [
     "slug": "operajp",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 0.0
   },
   {
@@ -61,6 +67,8 @@ window.PBERS_DATA = [
     "slug": "somen-ball",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 0.58
   },
   {
@@ -77,6 +85,8 @@ window.PBERS_DATA = [
     "slug": "dezinichtフヒフム-海外アカウント",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 12.59
   },
   {
@@ -93,6 +103,8 @@ window.PBERS_DATA = [
     "slug": "áíšaispoaporu",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 1.43
   },
   {
@@ -109,6 +121,8 @@ window.PBERS_DATA = [
     "slug": "spheria",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 2.27
   },
   {
@@ -125,6 +139,8 @@ window.PBERS_DATA = [
     "slug": "sattoaball",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": null
   },
   {
@@ -141,6 +157,8 @@ window.PBERS_DATA = [
     "slug": "f丸",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 5.32
   },
   {
@@ -157,6 +175,8 @@ window.PBERS_DATA = [
     "slug": "りょうデス",
     "vShort": 15134628,
     "vLong": 108253,
+    "nShort": 701,
+    "nLong": 191,
     "g21": 0.0
   },
   {
@@ -173,6 +193,8 @@ window.PBERS_DATA = [
     "slug": "くろまめ",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 27.68
   },
   {
@@ -189,6 +211,8 @@ window.PBERS_DATA = [
     "slug": "日本猫耳版ボール目標9000人",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 0.0
   },
   {
@@ -205,6 +229,8 @@ window.PBERS_DATA = [
     "slug": "dotto-edit",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 0.0
   },
   {
@@ -221,6 +247,8 @@ window.PBERS_DATA = [
     "slug": "past_ball",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 2.88
   },
   {
@@ -237,6 +265,8 @@ window.PBERS_DATA = [
     "slug": "udonball",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 0.58
   },
   {
@@ -253,6 +283,8 @@ window.PBERS_DATA = [
     "slug": "uow_cb",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": null
   },
   {
@@ -269,6 +301,8 @@ window.PBERS_DATA = [
     "slug": "makkoyucb",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 7.89
   },
   {
@@ -285,6 +319,8 @@ window.PBERS_DATA = [
     "slug": "astアオスト-polandball",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 0.54
   },
   {
@@ -301,6 +337,8 @@ window.PBERS_DATA = [
     "slug": "aj-ball",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": 0.28
   },
   {
@@ -317,6 +355,8 @@ window.PBERS_DATA = [
     "slug": "japaneseball",
     "vShort": null,
     "vLong": null,
+    "nShort": null,
+    "nLong": null,
     "g21": null
   }
 ];
