@@ -60,6 +60,17 @@ window.PBERS_DATA = [
     "color": "#2f80ed",
     "genre": "ポーランドボーラー",
     "slug": "田中mid",
+    "meme": {
+      "video": "sYNW7Wm0xo4",
+      "turn": [
+        0,
+        1
+      ],
+      "more": [
+        1,
+        2.5
+      ]
+    },
     "vShort": 212050560,
     "vLong": 344596,
     "nShort": 231,

@@ -7,7 +7,7 @@
    余った予算で作戦(無断転載・抗無断転載・ネタ擦り・ブラックジョーク)を買える。それでも残った分はパラオパワーになり、バトル中のHPと攻撃を上げる(上限あり)。
    毎ラウンド、その戦いの手段を持つカードが1回ずつ攻撃する。自陣カードの番は攻撃先を選ぶ。
    相手は指定もできる(足りない枠は自動で埋める)。連戦は負けるまで続き、HPは持ち越しで、勝つたびに敵の予算が増える。
-   同一人物のカード(d.twin)はデッキに片方だけ入り、倒れると同じ列にもう片方が現れる。サブチャンネル(d.backup)は倒れると順に現れて、すぐ攻撃する。
+   同一人物のカード(d.twin)はデッキに片方だけ入り、倒れると同じ列にもう片方が現れる。サブチャンネル(d.backup)は倒れると順に現れて、すぐ攻撃する。田中MID(d.meme)は撃破すると1ターンに1回だけもう一度攻撃でき、本人の動画を埋め込みプレーヤーで少しだけ流す。
    敵の狙い方(AI)は対戦前に選べて、連戦では1戦ごとにランダムで決まる。 */
 (function () {
   var BUDGET = 280;      // デッキの合計コスト上限
@@ -48,6 +48,10 @@
     eff: { name: '効率重視', desc: '削れるHPの割合 × 相手の攻撃力で狙う。いちばん強い' }
   };
   var DEFAULT_AI = 'ko';
+  var MY_TURN = "IT'S MY TURN!", ONE_MORE = 'ONE MORE GAME!', MEME_WAIT = 950;
+  var VIDEO_KEY = 'pbers_cb_video', VIDEO_HOST = 'https://www.youtube-nocookie.com', video = null;
+  var SFX_ENABLED = false;   // 効果音は今はオフ。true にすると対戦画面に切り替えも出る
+  var SFX_KEY = 'pbers_cb_sfx', audioCtx = null, audioOut = null;
   var DECK_KEY = 'pbers_cb_deck', ITEM_KEY = 'pbers_cb_items', BEST_KEY = 'pbers_cb_best', AI_KEY = 'pbers_cb_ai';
   var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var cards = [], root = null, game = null, token = 0;
@@ -242,7 +246,8 @@
 
   function twinHelp() {   // 同一人物やサブチャンネルのカードがある版(日本版)だけ説明を出す
     var c = cards.filter(function (x) { return x.twin; })[0], s = cards.filter(function (x) { return x.spare; })[0];
-    return (!s ? '' : '<dt>サブチャンネル</dt><dd>' + esc(s.d.name) + 'が倒れると、同じ列に' + chainOf(s).map(function (x) { return esc(x.d.name); }).join(' → ') + (chainOf(s).length > 1 ? 'の順に' : 'を') + '召喚する。召喚されたカードは順番に関係なくすぐ攻撃する。HPは登録者の実数で、攻撃も動画の実数。ただし公開動画が0本のチャンネルは、動画を非公開で投稿済みなので攻撃が本人と同じで、HPも毎ラウンド本人との差を' + SPARE_GROW * 100 + '%ずつ埋める。コストは増えない。</dd>') + (!c ? '' : '<dt>同一人物</dt><dd>' + esc(c.d.name) + 'と' + esc(c.twin.d.name) + 'は同じ人なので、デッキには片方だけ入る。倒れると同じ列にもう片方を召喚し、次のラウンドから動く。コストは自分 + もう片方の半分。</dd>');
+    var m = cards.filter(function (x) { return x.d.meme; })[0];
+    return (!m ? '' : '<dt>' + esc(MY_TURN) + '</dt><dd>' + esc(m.d.name) + 'のターンが来ると流れる。その攻撃で敵を撃破すると ' + ONE_MORE + ' で、もう1回攻撃できる(1ターンに1回まで)。本人の動画をYouTubeの埋め込みプレーヤーで少しだけ流す(対戦画面でオフにできる)。</dd>') + (!s ? '' : '<dt>サブチャンネル</dt><dd>' + esc(s.d.name) + 'が倒れると、同じ列に' + chainOf(s).map(function (x) { return esc(x.d.name); }).join(' → ') + (chainOf(s).length > 1 ? 'の順に' : 'を') + '召喚する。召喚されたカードは順番に関係なくすぐ攻撃する。HPは登録者の実数で、攻撃も動画の実数。ただし公開動画が0本のチャンネルは、動画を非公開で投稿済みなので攻撃が本人と同じで、HPも毎ラウンド本人との差を' + SPARE_GROW * 100 + '%ずつ埋める。コストは増えない。</dd>') + (!c ? '' : '<dt>同一人物</dt><dd>' + esc(c.d.name) + 'と' + esc(c.twin.d.name) + 'は同じ人なので、デッキには片方だけ入る。倒れると同じ列にもう片方を召喚し、次のラウンドから動く。コストは自分 + もう片方の半分。</dd>');
   }
   function growthText(g) { return g == null ? '—' : (g > 0 ? '+' : '') + g + '%'; }
   function parText(c) { return Math.round(c.par * 100) + '%'; }
@@ -299,6 +304,7 @@
     if (sort === 'g') x.push('伸び ' + growthText(c.g));
     if (c.par) x.push('パリイ ' + parText(c));
     if (c.aura) x.push('拡散 +' + auraText(c) + (sort === 'aura' ? ' (30日' + c.p30 + '投稿)' : ''));
+    if (c.d.meme) x.push('撃破するともう1回攻撃');
     if (chainOf(c).length) x.push('倒れると ' + chainOf(c).map(function (s) { return esc(s.d.name); }).join(' → ') + ' を召喚');
     return x.length ? '<span class="cb-li-x num">' + x.map(function (t) { return '<span>' + t + '</span>'; }).join('') + '</span>' : '';
   }
@@ -458,6 +464,110 @@
   function msg(html) { $('.cb-msg').innerHTML = html; }
   function later(fn, ms) { var t = token; setTimeout(function () { if (t === token) fn(); }, RM ? Math.min(ms, 150) : ms); }
 
+  /* ---- 効果音。音声ファイルを使わず Web Audio で作るので、素材の権利を気にしなくてよい ---- */
+  function sfxOn() {
+    if (!SFX_ENABLED) return false;
+    try { return localStorage.getItem(SFX_KEY) !== 'off'; } catch (e) { return true; }
+  }
+  function audio() {
+    if (!audioCtx) {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      audioCtx = new AC();
+      audioOut = audioCtx.createGain();
+      audioOut.gain.value = 0.6;
+      var limit = audioCtx.createDynamicsCompressor();
+      audioOut.connect(limit); limit.connect(audioCtx.destination);
+    }
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+  function sTone(c, out, t, o) {
+    var osc = c.createOscillator(), g = c.createGain();
+    osc.type = o.type || 'sine';
+    osc.frequency.setValueAtTime(o.f, t);
+    if (o.to) osc.frequency.exponentialRampToValueAtTime(o.to, t + o.d);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(o.v, t + (o.a || 0.005));
+    g.gain.exponentialRampToValueAtTime(0.0001, t + o.d);
+    osc.connect(g); g.connect(out);
+    osc.start(t); osc.stop(t + o.d + 0.02);
+  }
+  function sNoise(c, out, t, o) {
+    var n = Math.ceil(c.sampleRate * o.d), buf = c.createBuffer(1, n, c.sampleRate), data = buf.getChannelData(0);
+    for (var i = 0; i < n; i++) data[i] = Math.random() * 2 - 1;
+    var src = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    src.buffer = buf;
+    f.type = o.type || 'lowpass';
+    f.frequency.setValueAtTime(o.f, t);
+    if (o.to) f.frequency.exponentialRampToValueAtTime(o.to, t + o.d);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(o.v, t + (o.a || 0.004));
+    g.gain.exponentialRampToValueAtTime(0.0001, t + o.d);
+    src.connect(f); f.connect(g); g.connect(out);
+    src.start(t);
+  }
+  var SFX = {
+    shot: function (c, o, t) {   // 遠戦の発射
+      sTone(c, o, t, { type: 'triangle', f: 1100, to: 260, d: 0.13, v: 0.5 });
+      sNoise(c, o, t, { type: 'highpass', f: 2500, d: 0.06, v: 0.07 });
+    },
+    hit: function (c, o, t) {
+      sNoise(c, o, t, { f: 2200, to: 500, d: 0.11, v: 0.42 });
+      sTone(c, o, t, { f: 170, to: 60, d: 0.15, v: 0.5 });
+    },
+    crit: function (c, o, t) {   // 会心は高い音を重ねる
+      SFX.hit(c, o, t);
+      sTone(c, o, t, { type: 'square', f: 1500, to: 700, d: 0.16, v: 0.13 });
+      sTone(c, o, t + 0.05, { type: 'square', f: 2100, to: 1100, d: 0.16, v: 0.09 });
+    },
+    ko: function (c, o, t) {   // 撃破は低く長く
+      sNoise(c, o, t, { f: 1800, to: 180, d: 0.34, v: 0.5 });
+      sTone(c, o, t, { f: 130, to: 34, d: 0.42, v: 0.62 });
+    },
+    parry: function (c, o, t) {   // 金属音。倍音を整数倍からずらす
+      [1460, 2170, 3190, 4310].forEach(function (f, i) { sTone(c, o, t, { type: 'triangle', f: f, d: 0.34 - i * 0.06, v: 0.24 - i * 0.04 }); });
+      sNoise(c, o, t, { type: 'highpass', f: 3500, d: 0.05, v: 0.22 });
+    },
+    burn: function (c, o, t) {   // 炎上
+      sNoise(c, o, t, { type: 'bandpass', f: 350, to: 1900, d: 0.42, v: 1.6, a: 0.08 });
+      sTone(c, o, t, { type: 'sawtooth', f: 300, to: 90, d: 0.32, v: 0.2 });
+    },
+    stamp: function (c, o, t) {   // 無断転載の判
+      sNoise(c, o, t, { f: 1400, to: 300, d: 0.09, v: 0.5 });
+      sTone(c, o, t, { f: 210, to: 75, d: 0.12, v: 0.55 });
+    },
+    report: function (c, o, t) {   // 通報
+      sTone(c, o, t, { type: 'square', f: 880, d: 0.1, v: 0.3 });
+      sTone(c, o, t + 0.12, { type: 'square', f: 660, d: 0.14, v: 0.3 });
+    },
+    summon: function (c, o, t) {   // カードが回る間にせり上がり、入れ替わる瞬間に鳴る
+      sNoise(c, o, t, { type: 'bandpass', f: 300, to: 3200, d: 0.38, v: 0.34, a: 0.2 });
+      sTone(c, o, t, { type: 'sawtooth', f: 110, to: 660, d: 0.38, v: 0.12, a: 0.2 });
+      [523.25, 783.99, 1046.5, 1567.98].forEach(function (f, i) { sTone(c, o, t + 0.38 + i * 0.03, { type: 'triangle', f: f, d: 0.6, v: 0.2 - i * 0.03 }); });
+      sTone(c, o, t + 0.38, { f: 120, to: 50, d: 0.22, v: 0.5 });
+    },
+    heal: function (c, o, t) {   // 予備チャンネルのHPが増える
+      sTone(c, o, t, { f: 520, to: 880, d: 0.2, v: 0.32, a: 0.03 });
+      sTone(c, o, t + 0.07, { f: 780, to: 1320, d: 0.2, v: 0.2, a: 0.03 });
+    },
+    win: function (c, o, t) {
+      [523.25, 659.25, 783.99, 1046.5].forEach(function (f, i) { sTone(c, o, t + i * 0.1, { type: 'triangle', f: f, d: i === 3 ? 0.55 : 0.2, v: 0.5 }); });
+    },
+    lose: function (c, o, t) {
+      [392, 329.63, 261.63].forEach(function (f, i) { sTone(c, o, t + i * 0.16, { type: 'triangle', f: f, d: i === 2 ? 0.6 : 0.24, v: 0.5 }); });
+    }
+  };
+  function sfx(name) {
+    if (!sfxOn()) return;
+    try { var c = audio(); if (c) SFX[name](c, audioOut, c.currentTime + 0.005); } catch (e) {}
+  }
+  function paintSfx() {
+    $('.cb-sfx-btn').hidden = !SFX_ENABLED;
+    $('.cb-sfx-btn').textContent = '効果音: ' + (sfxOn() ? 'オン' : 'オフ');
+    $('.cb-sfx-btn').setAttribute('aria-pressed', String(sfxOn()));
+  }
+
   function newBattle() {
     token++;
     var foeBudget = run ? RUN_BASE + RUN_STEP * run.wins : BUDGET;
@@ -487,6 +597,7 @@
     $('.cb-run').textContent = run ? '連戦 ' + (run.wins + 1) + '戦目' + (bestRun() ? '(自己ベスト ' + bestRun() + '連勝)' : '') : '';
     $('.cb-ai').hidden = !!run;   // 連戦のAIはランダムなので選ばせない
     paintAI();
+    setupVideo();
     $('.cb-pick').hidden = !!run; $('.cb-reroll').hidden = !!run;
     $('.cb-edit').textContent = run ? '連戦をやめる' : 'デッキ編集';
     msg('自陣のカードを2枚タップで入れ替え。<b>白兵戦は向かいの敵に×1.5</b>');
@@ -564,6 +675,7 @@
     msg(who + 'が ' + name + ' の動画を<b>無断転載!</b>');
     var land = function () {
       t.hp -= dmg; paint(t); paintBuffs();
+      sfx(t.hp <= 0 ? 'ko' : 'hit');
       pop(t, '-' + num(dmg), '');
       shake(t);
       msg(who + 'が ' + name + ' の動画を<b>無断転載!</b> ' + (back ? '<b>通報されて</b> ' : '') + (t === src ? '本人に' : tn + ' に') + ' <b class="num">' + num(dmg) + '</b> ダメージ' + (t.hp <= 0 ? ' 撃破!' : ''));
@@ -580,6 +692,7 @@
       c.max += g; c.hp += g;
       paint(c);
       pop(c, '+' + num(g), 'heal');
+      sfx('heal');
     });
   }
   function fallenTwin() {
@@ -597,6 +710,7 @@
     msg('<b style="color:' + u.d.color + '">' + esc(u.d.name) + '</b> が倒れた! <b style="color:' + w.d.color + '">' + esc(w.d.name) + '</b> を召喚!' + (w.t.borrowed ? ' 非公開の動画を一斉公開!' : ''));
     var show = !RM && !!u.el.animate, SPIN_OUT = 380, SPIN_IN = 640;
     summonBanner(w, show);
+    sfx('summon');
     if (show) {   // 同じ人の表と裏: 倒れたカードが加速しながら回り、真横を向いた瞬間に別の顔へ替わる
       summonRing(u, w);
       u.el.style.zIndex = 3;
@@ -687,6 +801,7 @@
     ghost.innerHTML = '<img src="' + av(src.d, 96) + '" alt=""><b>転載</b>';
     board.appendChild(stamp); board.appendChild(ghost);
     stampIn(stamp, '無断転載!', '');
+    sfx('stamp');
     src.el.classList.add('cb-reposted');
     if (chip) chip.classList.add('fire');
     var half = ghost.offsetWidth / 2, at = function (p, s) { return 'translate(' + (p.x - half) + 'px,' + (p.y - half) + 'px) scale(' + s + ')'; };
@@ -704,6 +819,7 @@
     ghost.animate(frames, { duration: total, easing: 'ease-in-out', fill: 'forwards' });
     if (back) later(function () {
       stampIn(stamp, '通報!', 'report');
+      sfx('report');
       if (antiChip) antiChip.classList.add('fire');
       shake(aim);
     }, COPY + FLY);
@@ -743,6 +859,13 @@
     while (game.queue.length && game.queue[0].hp <= 0) game.queue.shift();
     if (!game.queue.length) return nextRound();
     var c = game.queue[0];
+    if (c.d.meme && c.memeRound !== game.round) {   // ターンの最初に1回だけ流す
+      c.memeRound = game.round;
+      paintOrder(); setActive(c); setTargets(false);
+      msg('<b style="color:' + c.d.color + '">' + esc(c.d.name) + '</b> ' + esc(MY_TURN));
+      memeBanner(MY_TURN, '');
+      return playClip(c.d.meme.turn, nextActor);
+    }
     game.actor = c; paintOrder(); setActive(c);
     if (c.side === 'ally') {
       setTargets(true, c);
@@ -774,23 +897,29 @@
     a.n++;
     var names = '<b style="color:' + a.d.color + '">' + esc(a.d.name) + '</b> → <b style="color:' + t.d.color + '">' + esc(t.d.name) + '</b>';
     var hit = function () {
+      var again = false;
       if (burned) {
         var burn = Math.max(1, Math.round(a.max * BURN_HP));
         a.hp -= burn; paint(a);
+        sfx('burn');
         pop(a, '炎上 -' + num(burn), '');
         msg('<b style="color:' + a.d.color + '">' + esc(a.d.name) + '</b> のブラックジョークが滑って<b>炎上!</b> 自分に <b class="num">' + num(burn) + '</b> ダメージ' + (a.hp <= 0 ? ' 撃破!' : ''));
       } else if (parried) {
         var back = Math.max(1, Math.round(dmg * COUNTER));
         a.hp -= back; paint(a);
+        sfx('parry');
         pop(t, 'パリイ!', 'parry');
         pop(a, '-' + num(back), '');
         msg(names + ' の攻撃を<b>パリイ!</b> ' + '<b class="num">' + num(back) + '</b> 反撃' + (a.hp <= 0 ? ' 撃破!' : ''));
       } else {
         t.hp -= dmg; paint(t);
+        sfx(t.hp <= 0 ? 'ko' : crit ? 'crit' : 'hit');
         pop(t, '-' + num(dmg), crit ? 'crit' : '');
         msg(names + ' に <b class="num">' + num(dmg) + '</b> ダメージ' + (tm > 1 ? '(有利!)' : tm < 1 ? '(不利)' : '') + (mult !== 1 ? '(列×' + mult + ')' : '') + (nm > 1 ? '(ネタ擦り×' + nm + ')' : nm < 1 ? '(擦りすぎ×' + nm + ')' : '') + (crit ? '(会心!)' : '') + (t.hp <= 0 ? ' 撃破!' : ''));
+        again = oneMore(a, t);
       }
       paintBuffs();
+      if (again) return playClip(a.d.meme.more, nextActor);
       later(nextActor, parried || burned ? 900 : 600);
     };
     if (RM || !a.el.animate) return hit();
@@ -813,8 +942,105 @@
     s.className = 'cb-shot';
     s.style.background = a.d.color;
     $('.cb-board').appendChild(s);
+    sfx('shot');
     s.animate([{ transform: 'translate(' + x1 + 'px,' + y1 + 'px)' }, { transform: 'translate(' + x2 + 'px,' + y2 + 'px)' }], { duration: 300, easing: 'ease-in' }).onfinish = function () { s.remove(); };
     later(function () { shake(t); hit(); }, 300);
+  }
+  function oneMore(a, t) {   // 自分の攻撃で撃破したら、1ターンに1回だけもう一度動ける
+    if (!a.d.meme || t.hp > 0 || a.moreRound === game.round) return false;
+    if (!alive(game[t.side]).length && !nextOf(t)) return false;   // 相手が全滅なら試合が終わる
+    a.moreRound = game.round;
+    game.queue.unshift(a);
+    $('.cb-msg').insertAdjacentHTML('beforeend', ' <b>' + ONE_MORE + '</b>');
+    memeBanner(ONE_MORE, 'more');
+    return true;
+  }
+  /* 動画は YouTube の埋め込みプレーヤーで流す。規約に合わせて、再生中はプレーヤーを隠さない。
+     再生できないときは文字の帯だけで進める。音ありを止められたら音なしで試し、それでもだめならこの動画は諦める */
+  function videoEnabled() {
+    if (RM) return false;
+    try { return localStorage.getItem(VIDEO_KEY) !== 'off'; } catch (e) { return true; }
+  }
+  function videoCmd(func, args) {
+    if (video && video.frame.contentWindow) video.frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: args || [] }), VIDEO_HOST);
+  }
+  function memeUnit() { return game.ally.concat(game.enemy).filter(function (c) { return c.d.meme; })[0]; }
+  function setupVideo() {
+    var m = memeUnit();
+    $('.cb-video-btn').hidden = !m || RM;
+    $('.cb-video-btn').textContent = esc(m ? m.d.name : '') + 'の動画: ' + (videoEnabled() ? 'オン' : 'オフ');
+    $('.cb-video-btn').setAttribute('aria-pressed', String(videoEnabled()));
+    if (!m || !videoEnabled() || (video && video.id === m.d.meme.video)) return;
+    if (video) video.box.remove();
+    var box = document.createElement('div'), frame = document.createElement('iframe');
+    box.className = 'cb-video';
+    frame.title = m.d.name + ' の動画';
+    frame.allow = 'autoplay; encrypted-media';
+    frame.src = VIDEO_HOST + '/embed/' + m.d.meme.video + '?enablejsapi=1&playsinline=1&controls=0&rel=0&origin=' + encodeURIComponent(location.origin);
+    video = { id: m.d.meme.video, box: box, frame: frame, ready: false, state: -1, fails: 0, broken: false, muted: false, clip: null };
+    frame.addEventListener('load', function () {   // 再生の状態を送ってもらう
+      if (frame.contentWindow) frame.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 1 }), VIDEO_HOST);
+    });
+    box.appendChild(frame);
+    $('.cb-board').appendChild(box);
+  }
+  function videoMessage(e) {
+    if (!video || e.source !== video.frame.contentWindow) return;
+    var d;
+    try { d = JSON.parse(e.data); } catch (x) { return; }
+    video.ready = true;
+    if (d.event === 'onError') { video.broken = true; if (video.clip) video.clip.finish(); }
+    if (d.event === 'infoDelivery' && d.info && d.info.playerState != null) video.state = d.info.playerState;
+    var c = video.clip;
+    if (c && !c.started && video.state === 1) {   // 実際に動き出してから区間の長さを測る
+      c.started = true;
+      clearTimeout(c.guard);
+      setTimeout(c.finish, c.ms);
+    }
+  }
+  function playClip(range, done) {
+    if (!video || !video.ready || video.broken || !videoEnabled()) return later(done, MEME_WAIT);
+    var t = token, v = video, c = { ms: (range[1] - range[0]) * 1000, started: false, guard: 0, finish: null };
+    c.finish = function () {
+      if (v.clip !== c) return;
+      v.clip = null;
+      clearTimeout(c.guard);
+      videoCmd('pauseVideo');
+      v.box.classList.remove('on');
+      if (t === token) done();
+    };
+    v.clip = c;
+    v.state = -1;
+    v.box.style.setProperty('--cb-video-top', (root.querySelector('.cb-order').offsetTop + 34) + 'px');
+    v.box.classList.add('on');
+    videoCmd(v.muted ? 'mute' : 'unMute');
+    videoCmd('seekTo', [range[0], true]);
+    videoCmd('playVideo');
+    c.guard = setTimeout(function () {   // 動き出さなかった
+      v.fails++;
+      if (v.fails === 1) v.muted = true; else v.broken = true;
+      c.finish();
+    }, 1800);
+  }
+  function memeBanner(text, cls) {   // 文字が帯の右から流れてきて、真ん中でゆっくりになり、左へ抜ける
+    var bar = document.createElement('div'), T = 950;
+    bar.className = 'cb-meme' + (cls ? ' ' + cls : '');
+    bar.setAttribute('aria-hidden', 'true');   // 同じ内容をメッセージ欄が読み上げる
+    bar.style.top = root.querySelector('.cb-order').offsetTop + 'px';
+    bar.innerHTML = '<span>' + esc(text) + '</span>';
+    $('.cb-board').appendChild(bar);
+    var s = bar.firstChild;
+    if (s.animate) {
+      var d = (bar.offsetWidth + s.offsetWidth) / 2;
+      if (RM) bar.animate([{ opacity: 0 }, { opacity: 1, offset: 0.2 }, { opacity: 1, offset: 0.8 }, { opacity: 0 }], { duration: T, fill: 'forwards' });
+      else s.animate([
+        { transform: 'translateX(' + d + 'px)', easing: 'cubic-bezier(.16,1,.3,1)' },
+        { transform: 'translateX(14px)', offset: 0.32 },
+        { transform: 'translateX(-14px)', offset: 0.72, easing: 'cubic-bezier(.7,0,1,.5)' },
+        { transform: 'translateX(' + -d + 'px)' }
+      ], { duration: T, fill: 'forwards' });
+    }
+    setTimeout(function () { bar.remove(); }, T);   // 対戦を抜けた後でも必ず片付ける
   }
   function pop(t, text, cls) {
     var p = document.createElement('span');
@@ -830,6 +1056,7 @@
     game.ally.concat(game.enemy).forEach(function (c) { c.el.classList.remove('cb-idle'); });
     $('.cb-order').innerHTML = '';
     var win = alive(game.ally).length > 0;
+    sfx(win ? 'win' : 'lose');
     $('.cb-result').hidden = false;
     $('.cb-res-t').textContent = win ? '勝利!' : run ? '連戦終了' : '敗北…';
     $('.cb-res-t').classList.toggle('win', win);
@@ -921,7 +1148,7 @@
       '</div>' +
       '<div class="cb-board" hidden>' +
         '<div class="cb-label"><span>敵陣</span><span class="cb-chip cb-boost cb-enemy-boost num"></span><span class="cb-chip cb-enemy-ai"></span><span class="cb-chip cb-enemy-buff"></span><span class="cb-items cb-enemy-items"></span>' +
-          '<button type="button" class="cb-more-btn" aria-pressed="false">防御・パリイも見る</button></div><div class="cb-row cb-row-enemy"></div>' +
+          '<button type="button" class="cb-more-btn" aria-pressed="false">防御・パリイも見る</button><button type="button" class="cb-more-btn cb-video-btn" aria-pressed="false" hidden></button><button type="button" class="cb-more-btn cb-sfx-btn" aria-pressed="true"></button></div><div class="cb-row cb-row-enemy"></div>' +
         '<div class="cb-mid"><div class="cb-run"></div><div class="cb-order"></div><div class="cb-msg" aria-live="polite"></div>' +
           '<div class="cb-ai"><span class="cb-ai-l">敵のAI</span><div class="vtype">' + Object.keys(AIS).map(function (k) {
             return '<button type="button" class="vt" data-ai="' + k + '" aria-pressed="false">' + AIS[k].name + '</button>';
@@ -933,6 +1160,18 @@
       '</div>';
     setupBuild();
     setupFoe();
+    window.addEventListener('message', videoMessage);
+    root.addEventListener('click', function () { if (sfxOn()) audio(); });   // 音を出すにはクリックが要るブラウザがある
+    $('.cb-sfx-btn').addEventListener('click', function () {
+      try { localStorage.setItem(SFX_KEY, sfxOn() ? 'off' : 'on'); } catch (e) {}
+      paintSfx();
+    });
+    paintSfx();
+    $('.cb-video-btn').addEventListener('click', function () {
+      try { localStorage.setItem(VIDEO_KEY, videoEnabled() ? 'off' : 'on'); } catch (e) {}
+      if (video && video.clip) video.clip.finish();
+      if (game) setupVideo();
+    });
     $('.cb-more-btn').addEventListener('click', function (e) {
       var on = $('.cb-board').classList.toggle('more');
       e.target.setAttribute('aria-pressed', String(on));

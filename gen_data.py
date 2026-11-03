@@ -71,6 +71,10 @@ GENRES = [
 # 同一人物の別チャンネル。カードバトルで片方が倒れるともう片方が現れる
 SAME_PERSON = [("UCXMh0KjIEU40gXaaR0vtdVQ", "UCnZNY63Txhu4ot3l2lbicOA")]   # あすえいボール / ばかわたし
 
+# カードバトルのネタ。田中MID は自分のターンに IT'S MY TURN! と流れ、撃破するともう1回攻撃できる。
+# video は本人の動画で、YouTube の埋め込みプレーヤーの turn / more の区間(秒)を流す
+CARD_MEME = {"UC6BwO1hK3hHd-Hr43jokcyg": {"video": "sYNW7Wm0xo4", "turn": [0, 1], "more": [1, 2.5]}}
+
 def genre_of(cid):
     return GENRE.get(cid, DEFAULT_GENRE)
 WD = ["月", "火", "水", "木", "金", "土", "日"]  # date.weekday(): Mon=0
@@ -325,6 +329,7 @@ def build_edition():
         "slug": d["_slug"], **({"grad": GRAD[d["id"]]} if d["id"] in GRAD else {}),
         **({"twin": twins[d["id"]]} if d["id"] in twins else {}),
         **({"backup": summons[d["id"]]} if d["id"] in summons else {}),
+        **({"meme": CARD_MEME[d["id"]]} if d["id"] in CARD_MEME else {}),
         "vShort": _tv(d["id"], "short"), "vLong": _tv(d["id"], "long"),
         "nShort": _tv(d["id"], "short", "n"), "nLong": _tv(d["id"], "long", "n"),
         "g21": growth_rate(_series.get(d["id"], {})),
@@ -497,7 +502,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251013">
+<link rel="stylesheet" href="/assets/style.css?v=251017">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -521,7 +526,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=251013"></script>
+<script src="/assets/channel.js?v=251017"></script>
 </body>
 </html>
 '''
@@ -1019,7 +1024,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251013">
+<link rel="stylesheet" href="/assets/style.css?v=251017">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
