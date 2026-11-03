@@ -979,7 +979,12 @@
   function renderXDash() {
     var sec = document.getElementById('dash-x'), svgX = document.getElementById('xd-svg'), list = document.getElementById('xd-list');
     if (!sec || !svgX || !list) return;
-    var XS = (window.PBERS_X || []).filter(genreVisible);
+    var seenX = {};   // 同一人物の複数チャンネルが同じXを持つので、二重に数えない
+    var XS = (window.PBERS_X || []).filter(genreVisible).filter(function (x) {
+      var k = x.handle.toLowerCase(), first = !seenX[k];
+      seenX[k] = true;
+      return first;
+    });
     if (!XS.length) { sec.hidden = true; return; }
     sec.hidden = false;
     var XTOP = 12, LIST = 10;   // 円グラフは上位12+その他、一覧は上位10(残りは折りたたみ)

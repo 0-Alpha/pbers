@@ -68,6 +68,9 @@ GENRES = [
     {"label": DEFAULT_GENRE,                 "on": True},
     {"label": "PBerer",                      "on": False},
 ]
+# 同一人物の別チャンネル。カードバトルで片方が倒れるともう片方が現れる
+SAME_PERSON = [("UCXMh0KjIEU40gXaaR0vtdVQ", "UCnZNY63Txhu4ot3l2lbicOA")]   # あすえいボール / ばかわたし
+
 def genre_of(cid):
     return GENRE.get(cid, DEFAULT_GENRE)
 WD = ["月", "火", "水", "木", "金", "土", "日"]  # date.weekday(): Mon=0
@@ -304,6 +307,12 @@ def build_edition():
         colors[d["id"]] = hsl((pi * 53) % 360, 0.58, 0.60 if pi % 2 == 0 else 0.52)
         pi += 1
 
+    _slugs = {d["id"]: d["_slug"] for d in order}
+    twins = {}
+    for a, b in SAME_PERSON:
+        if a in _slugs and b in _slugs:
+            twins[a], twins[b] = _slugs[b], _slugs[a]
+
     def _tv(cid, kind, key="views"):   # bytype から横/ショートの再生数・本数(無ければ None)
         e = bt_map.get(cid)
         return (e.get(kind) or {}).get(key) if e else None
@@ -313,6 +322,7 @@ def build_edition():
         "videos": vids(d.get("videosLabel")), "url": d["url"],
         "avatar": d["avatar"], "color": colors[d["id"]], "genre": genre_of(d["id"]),
         "slug": d["_slug"], **({"grad": GRAD[d["id"]]} if d["id"] in GRAD else {}),
+        **({"twin": twins[d["id"]]} if d["id"] in twins else {}),
         "vShort": _tv(d["id"], "short"), "vLong": _tv(d["id"], "long"),
         "nShort": _tv(d["id"], "short", "n"), "nLong": _tv(d["id"], "long", "n"),
         "g21": growth_rate(_series.get(d["id"], {})),
@@ -485,7 +495,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251004">
+<link rel="stylesheet" href="/assets/style.css?v=251005">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -509,7 +519,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=251004"></script>
+<script src="/assets/channel.js?v=251005"></script>
 </body>
 </html>
 '''
@@ -985,7 +995,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251004">
+<link rel="stylesheet" href="/assets/style.css?v=251005">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>

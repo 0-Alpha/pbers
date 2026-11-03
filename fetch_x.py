@@ -2,6 +2,7 @@
 """X(Twitter)アカウントの指標を取得して x_data.json に保存し、x_history.csv に追記する。
 
 - 対象は x_accounts.txt(1行1アカウント: 「ハンドル  YouTubeチャンネルID」。IDは不明なら省略可)
+  同一人物の複数チャンネルで同じハンドルが並んでいても、取得と履歴は最初の1行の分だけ。
 - 取得元は FxTwitter の公開API(api.fxtwitter.com)。キー不要だが非公式なので、
   失敗しても他の処理を止めないこと(workflow 側でも continue-on-error)。
   CIからだと散発的に404が返るが、リトライすれば取れる。
@@ -43,14 +44,18 @@ def get(url, tries=4):
 
 
 def load_accounts():
-    out = []
+    out, seen = [], set()
     with open(os.path.join(BASE, ACCOUNTS_FILE), encoding="utf-8") as f:
         for line in f:
             line = line.split("#", 1)[0].strip()
             if not line:
                 continue
             parts = line.split()
-            out.append((parts[0].lstrip("@"), parts[1] if len(parts) > 1 else ""))
+            handle = parts[0].lstrip("@")
+            if handle.lower() in seen:
+                continue
+            seen.add(handle.lower())
+            out.append((handle, parts[1] if len(parts) > 1 else ""))
     return out
 
 

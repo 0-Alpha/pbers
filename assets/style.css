@@ -745,6 +745,9 @@ button.cb-slot{cursor:pointer}
 .cb-help .cb-li-t{margin:0 3px 0 0}
 .cb-stamp{position:absolute;left:50%;z-index:6;padding:3px 16px;font-family:var(--jp);font-weight:900;font-size:32px;line-height:1.2;white-space:nowrap;color:var(--red);background:var(--panel);border:4px solid var(--red);border-radius:8px;transform:translate(-50%,-50%) rotate(-5deg);box-shadow:0 6px 18px rgba(0,0,0,.35);pointer-events:none}
 .cb-stamp.report{color:#1f7fb8;border-color:#1f7fb8}
+.cb-stamp.twin{color:var(--cb-gold);border-color:var(--cb-gold)}
+.cb-twin{position:absolute;z-index:1;top:8px;left:8px;width:24px;height:24px;border-radius:50%;overflow:hidden;background:var(--panel);border:2px solid var(--cb-gold)}
+.cb-twin img{display:block;width:100%;height:100%;object-fit:cover}
 .cb-ghost{position:absolute;top:0;left:0;z-index:5;width:64px;height:64px;border-radius:50%;border:3px dashed var(--red);box-shadow:0 6px 16px rgba(0,0,0,.4);pointer-events:none}
 .cb-ghost img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover}
 .cb-ghost b{position:absolute;left:50%;bottom:-8px;padding:0 6px;font-size:11px;line-height:16px;white-space:nowrap;color:#fff;background:var(--red);border-radius:4px;transform:translateX(-50%)}
@@ -784,6 +787,7 @@ button.cb-slot{cursor:pointer}
   .cb-pop.parry{font-size:14px}
   .cb-mult{margin-top:-14px;padding:0 4px;font-size:9.5px}
   .cb-type{top:3px;right:3px;min-width:0;padding:0 3px;font-size:8.5px}
+  .cb-twin{top:3px;left:3px;width:16px;height:16px;border-width:1px}
   .cb-tfilter .vt{padding:6px 9px}
   .cb-msg{font-size:13px}
 }
