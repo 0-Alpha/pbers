@@ -35,9 +35,9 @@
     anti: { name: '抗無断転載', price: 10, desc: '敵の無断転載を通報して、転載した側に跳ね返す' },
     neta: { name: 'ネタ擦り', price: 15, desc: '攻撃するたび威力+30%。5回目からは飽きられて×0.7' },
     black: { name: 'ブラックジョーク', price: 10, desc: '会心率40%・会心×2。ただし5%で滑って炎上し、最大HPの10%を失う' },
-    collab: { name: 'コラボレーション', price: 15, desc: '選んだ2枚の片方が攻撃すると、相方も同じ敵を攻撃する。ただし受けるダメージも2枚で半分ずつ' }
+    collab: { name: 'コラボレーション', price: 25, desc: '選んだ2枚のHPと攻撃が1.2倍になり、片方が攻撃すると相方も同じ敵を攻撃する。ただし受けるダメージは2枚で半分ずつ' }
   };
-  var COLLAB_FOLLOW = 1, COLLAB_KEY = 'pbers_cb_collab', collabPick = [];   // 相方の追撃の威力
+  var COLLAB_RATE = 1.2, COLLAB_FOLLOW = 1, COLLAB_KEY = 'pbers_cb_collab', collabPick = [];   // 2枚の倍率と、相方の追撃の威力
   var REP_RATE = 0.3, NETA_STEP = 0.3, NETA_LIMIT = 4, NETA_STALE = 0.7;
   var BLACK_CRIT = 0.4, BLACK_CRIT_MULT = 2, BLACK_BURN = 0.05, BURN_HP = 0.1;
   var RUN_BASE = 100, RUN_STEP = 20;     // 連戦の敵の予算 = RUN_BASE + RUN_STEP × 連勝数
@@ -455,7 +455,7 @@
 
   /* ---- バトル ---- */
   function alive(list) { return list.filter(function (c) { return c.hp > 0; }); }
-  function unit(c, side, pos, boost, collab) { var hp = Math.round(c.hp * boost); return { t: c, d: c.d, boost: boost, collab: !!collab, hp: hp, max: hp, atkM: Math.round(c.atkM * boost), atkR: Math.round(c.atkR * boost), spdM: c.spdM, spdR: c.spdR, def: c.def, red: c.red, g: c.g, par: c.par, type: c.type, p30: c.p30, aura: c.aura, cost: c.cost, side: side, pos: pos, n: 0, el: null }; }
+  function unit(c, side, pos, boost, collab) { var m = boost * (collab ? COLLAB_RATE : 1), hp = Math.round(c.hp * m); return { t: c, d: c.d, boost: boost, collab: !!collab, hp: hp, max: hp, atkM: Math.round(c.atkM * m), atkR: Math.round(c.atkR * m), spdM: c.spdM, spdR: c.spdR, def: c.def, red: c.red, g: c.g, par: c.par, type: c.type, p30: c.p30, aura: c.aura, cost: c.cost, side: side, pos: pos, n: 0, el: null }; }
   function teamBuff(side) { return alive(game[side]).reduce(function (a, c) { return a + c.aura; }, 0); }   // 倒されたカードの分は消える
   function atkNow(c) { return game.phase === 'm' ? c.atkM : c.atkR; }
   function posMult(a, t) { return game.phase === 'm' ? POS_MULT[Math.abs(a.pos - t.pos)] : 1; }   // 遠戦は列に関係なく届く
@@ -483,9 +483,9 @@
     });
   }
   function cardHTML(c) {
-    var boosted = c.boost > 1;
+    var boosted = c.boost > 1 || c.collab;
     return '<button type="button" class="cb-card cb-' + rarOf(c.d) + (boosted ? ' cb-boosted' : '') + '" style="--c:' + c.d.color + '" disabled' +
-      (boosted ? ' title="パラオパワー' + boostText(c.boost) + '(実数 HP ' + num(c.t.hp) + ' / 白 ' + num(c.t.atkM) + ' / 遠 ' + num(c.t.atkR) + ')"' : '') + '>' +
+      (boosted ? ' title="' + (c.boost > 1 ? 'パラオパワー' + boostText(c.boost) : '') + (c.collab ? ' コラボ×' + COLLAB_RATE : '') + '(実数 HP ' + num(c.t.hp) + ' / 白 ' + num(c.t.atkM) + ' / 遠 ' + num(c.t.atkR) + ')"' : '') + '>' +
       typeChip(c, 'cb-type') +
       (c.collab ? '<span class="cb-tag">コラボ</span>' : '') +
       (nextOf(c) ? '<span class="cb-twin" title="倒れると ' + esc(nextOf(c).d.name) + ' を召喚"><img src="' + av(nextOf(c).d, 96) + '" alt=""></span>' : '') +
