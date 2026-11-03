@@ -218,7 +218,7 @@
 
   function twinHelp() {   // 同一人物のカードがある版(日本版)だけ説明を出す
     var c = cards.filter(function (x) { return x.twin; })[0];
-    return !c ? '' : '<dt>同一人物</dt><dd>' + esc(c.d.name) + 'と' + esc(c.twin.d.name) + 'は同じ人なので、デッキには片方だけ入る。倒れると同じ列にもう片方が現れ、次のラウンドから動く。コストは自分 + もう片方の半分。</dd>';
+    return !c ? '' : '<dt>同一人物</dt><dd>' + esc(c.d.name) + 'と' + esc(c.twin.d.name) + 'は同じ人なので、デッキには片方だけ入る。倒れると同じ列にもう片方を召喚し、次のラウンドから動く。コストは自分 + もう片方の半分。</dd>';
   }
   function growthText(g) { return g == null ? '—' : (g > 0 ? '+' : '') + g + '%'; }
   function parText(c) { return Math.round(c.par * 100) + '%'; }
@@ -275,7 +275,7 @@
     if (sort === 'g') x.push('伸び ' + growthText(c.g));
     if (c.par) x.push('パリイ ' + parText(c));
     if (c.aura) x.push('拡散 +' + auraText(c) + (sort === 'aura' ? ' (30日' + c.p30 + '投稿)' : ''));
-    if (c.twin) x.push('倒れると ' + esc(c.twin.d.name) + ' が現れる');
+    if (c.twin) x.push('倒れると ' + esc(c.twin.d.name) + ' を召喚');
     return x.length ? '<span class="cb-li-x num">' + x.map(function (t) { return '<span>' + t + '</span>'; }).join('') + '</span>' : '';
   }
   function rowHTML(c, i, sort) {
@@ -413,7 +413,7 @@
     return '<button type="button" class="cb-card cb-' + rarOf(c.d) + (boosted ? ' cb-boosted' : '') + '" style="--c:' + c.d.color + '" disabled' +
       (boosted ? ' title="パラオパワー' + boostText(c.boost) + '(実数 HP ' + num(c.t.hp) + ' / 白 ' + num(c.t.atkM) + ' / 遠 ' + num(c.t.atkR) + ')"' : '') + '>' +
       typeChip(c, 'cb-type') +
-      (c.t.twin && !c.summoned ? '<span class="cb-twin" title="倒れると ' + esc(c.t.twin.d.name) + ' が現れる"><img src="' + av(c.t.twin.d, 96) + '" alt=""></span>' : '') +
+      (c.t.twin && !c.summoned ? '<span class="cb-twin" title="倒れると ' + esc(c.t.twin.d.name) + ' を召喚"><img src="' + av(c.t.twin.d, 96) + '" alt=""></span>' : '') +
       '<span class="cb-art" style="background:' + fill(c.d) + '"><img src="' + av(c.d, 96) + '" alt=""></span>' +
       '<span class="cb-mult num"></span>' +
       '<span class="cb-name">' + esc(c.d.name) + '</span>' +
@@ -429,7 +429,7 @@
     c.el.classList.toggle('low', pct <= 30);
     c.el.querySelector('.cb-hp-v').textContent = num(c.hp);
     c.el.classList.toggle('cb-dead', c.hp <= 0);
-    c.el.setAttribute('aria-label', c.d.name + ' HP' + Math.max(c.hp, 0) + '/' + c.max + ' 白兵' + c.atkM + ' 遠戦' + c.atkR + ' 防御' + c.def + ' パリイ' + parText(c) + ' 拡散' + auraText(c) + ' タイプ' + TYPES[c.type].label + (c.boost > 1 ? ' パラオパワー' + boostText(c.boost) : '') + (c.t.twin && !c.summoned ? ' 倒れると' + c.t.twin.d.name + 'が現れる' : ''));
+    c.el.setAttribute('aria-label', c.d.name + ' HP' + Math.max(c.hp, 0) + '/' + c.max + ' 白兵' + c.atkM + ' 遠戦' + c.atkR + ' 防御' + c.def + ' パリイ' + parText(c) + ' 拡散' + auraText(c) + ' タイプ' + TYPES[c.type].label + (c.boost > 1 ? ' パラオパワー' + boostText(c.boost) : '') + (c.t.twin && !c.summoned ? ' 倒れると' + c.t.twin.d.name + 'を召喚' : ''));
   }
   function msg(html) { $('.cb-msg').innerHTML = html; }
   function later(fn, ms) { var t = token; setTimeout(function () { if (t === token) fn(); }, RM ? Math.min(ms, 150) : ms); }
@@ -547,7 +547,7 @@
     if (RM || !t.el.animate) return land();
     repostShow(side, foeSide, src, aim, t, back, land);
   }
-  /* 同一人物の召喚: 倒れたカードの列にもう片方が現れる。攻撃の順番には入らず、次のラウンドから動く */
+  /* 同一人物の召喚: 倒れたカードの列にもう片方が出る。攻撃の順番には入らず、次のラウンドから動く */
   function fallenTwin() {
     return game.ally.concat(game.enemy).filter(function (c) { return c.hp <= 0 && c.t.twin && !c.summoned; })[0];
   }
@@ -559,14 +559,16 @@
       if (run && run.hp && run.hp[w.d.slug] != null) w.hp = run.hp[w.d.slug];   // 連戦で前に出ていたならHPを持ち越す
     }
     row[row.indexOf(u)] = w;
-    msg('<b style="color:' + u.d.color + '">' + esc(u.d.name) + '</b> が倒れた! 同一人物の <b style="color:' + w.d.color + '">' + esc(w.d.name) + '</b> が現れた!');
-    var show = !RM && !!u.el.animate, stamp = null;
-    if (show) {
-      stamp = document.createElement('span');
-      stamp.style.top = root.querySelector('.cb-order').offsetTop + 'px';
-      $('.cb-board').appendChild(stamp);
-      stampIn(stamp, '同一人物!', 'twin');
-      setTimeout(function () { stamp.remove(); }, 1400);
+    msg('<b style="color:' + u.d.color + '">' + esc(u.d.name) + '</b> が倒れた! <b style="color:' + w.d.color + '">' + esc(w.d.name) + '</b> を召喚!');
+    var show = !RM && !!u.el.animate, SPIN_OUT = 380, SPIN_IN = 640;
+    summonBanner(w, show);
+    if (show) {   // 同じ人の表と裏: 倒れたカードが加速しながら回り、真横を向いた瞬間に別の顔へ替わる
+      summonRing(u, w);
+      u.el.style.zIndex = 3;
+      u.el.animate([
+        { transform: 'perspective(700px) rotateY(0deg) scale(1)', opacity: 0.35, filter: 'grayscale(1)' },
+        { transform: 'perspective(700px) rotateY(630deg) scale(1.16)', opacity: 1, filter: 'grayscale(0) brightness(1.7)' }
+      ], { duration: SPIN_OUT, easing: 'cubic-bezier(.55,0,.9,.4)', fill: 'forwards' });
     }
     later(function () {
       var box = document.createElement('div');
@@ -576,13 +578,48 @@
       bindCard(w, el);
       el.classList.toggle('cb-idle', atkNow(w) <= 0);
       paintBuffs(); paintOrder();
-      if (show) el.animate([
-        { transform: 'perspective(500px) rotateY(90deg) scale(1.1)', opacity: 0 },
-        { transform: 'perspective(500px) rotateY(0) scale(1.1)', opacity: 1, offset: 0.7 },
-        { transform: 'perspective(500px) rotateY(0) scale(1)', opacity: 1 }
-      ], { duration: 420, easing: 'cubic-bezier(.16,1,.3,1)' });
-      later(done, 800);
-    }, 420);
+      if (show) {
+        el.style.zIndex = 3;
+        el.animate([
+          { transform: 'perspective(700px) rotateY(90deg) scale(1.16)', filter: 'brightness(1.7)' },
+          { transform: 'perspective(700px) rotateY(1080deg) scale(1)', filter: 'brightness(1)' }
+        ], { duration: SPIN_IN, easing: 'cubic-bezier(.16,1,.3,1)' }).onfinish = function () { el.style.zIndex = ''; };
+      } else if (el.animate) {
+        el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 150 });
+      }
+      later(done, show ? SPIN_IN + 240 : 400);
+    }, show ? SPIN_OUT : 0);
+  }
+  function summonBanner(w, moving) {   // 帯が左から走り、右へ抜ける。動きを減らす設定では出して消すだけ
+    var bar = document.createElement('div'), T = moving ? 1260 : 700;
+    bar.className = 'cb-summon';
+    bar.setAttribute('aria-hidden', 'true');   // 同じ内容をメッセージ欄が読み上げる
+    bar.style.setProperty('--c', w.d.color);
+    bar.style.top = root.querySelector('.cb-order').offsetTop + 'px';
+    bar.innerHTML = '<span class="cb-summon-n">' + esc(w.d.name) + '</span><b>召喚!</b>';
+    $('.cb-board').appendChild(bar);
+    if (bar.animate) bar.animate(moving ? [
+      { clipPath: 'inset(0 100% 0 0)', offset: 0 },
+      { clipPath: 'inset(0 100% 0 0)', offset: 280 / T, easing: 'cubic-bezier(.16,1,.3,1)' },
+      { clipPath: 'inset(0 0 0 0)', offset: 520 / T },
+      { clipPath: 'inset(0 0 0 0)', offset: 1120 / T, easing: 'ease-in' },
+      { clipPath: 'inset(0 0 0 100%)', offset: 1 }
+    ] : [{ opacity: 0 }, { opacity: 1, offset: 0.2 }, { opacity: 1, offset: 0.8 }, { opacity: 0 }], { duration: T, fill: 'forwards' });
+    setTimeout(function () { bar.remove(); }, T);   // 対戦を抜けた後でも必ず片付ける
+  }
+  function summonRing(u, w) {   // カードと逆回りの光の輪。はみ出してページが横に伸びないよう .cb-fx の中に置く
+    var fx = document.createElement('div'), ring = document.createElement('span'), p = centerOf(u.el), size = u.el.offsetWidth * 1.7;
+    fx.className = 'cb-fx'; ring.className = 'cb-ring';
+    ring.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + (p.x - size / 2) + 'px;top:' + (p.y - size / 2) + 'px;--c:' + w.d.color;
+    fx.appendChild(ring);
+    $('.cb-board').appendChild(fx);
+    ring.animate([
+      { transform: 'rotate(0deg) scale(.45)', opacity: 0 },
+      { transform: 'rotate(-160deg) scale(1)', opacity: 1, offset: 0.35 },
+      { transform: 'rotate(-300deg) scale(1.08)', opacity: 1, offset: 0.75 },
+      { transform: 'rotate(-380deg) scale(1.3)', opacity: 0 }
+    ], { duration: 1150, easing: 'ease-out' });
+    setTimeout(function () { fx.remove(); }, 1150);
   }
   function centerOf(el) {
     var b = $('.cb-board').getBoundingClientRect(), r = el.getBoundingClientRect();
