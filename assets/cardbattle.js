@@ -247,7 +247,7 @@
   function twinHelp() {   // 同一人物やサブチャンネルのカードがある版(日本版)だけ説明を出す
     var c = cards.filter(function (x) { return x.twin; })[0], s = cards.filter(function (x) { return x.spare; })[0];
     var m = cards.filter(function (x) { return x.d.meme; })[0];
-    return (!m ? '' : '<dt>' + esc(MY_TURN) + '</dt><dd>' + esc(m.d.name) + 'のターンが来ると流れる。その攻撃で敵を撃破すると ' + ONE_MORE + ' で、もう1回攻撃できる(1ターンに1回まで)。本人の動画をYouTubeの埋め込みプレーヤーで少しだけ流す(対戦画面でオフにできる)。</dd>') + (!s ? '' : '<dt>サブチャンネル</dt><dd>' + esc(s.d.name) + 'が倒れると、同じ列に' + chainOf(s).map(function (x) { return esc(x.d.name); }).join(' → ') + (chainOf(s).length > 1 ? 'の順に' : 'を') + '召喚する。召喚されたカードは順番に関係なくすぐ攻撃する。HPは登録者の実数で、攻撃も動画の実数。ただし公開動画が0本のチャンネルは、動画を非公開で投稿済みなので攻撃が本人と同じで、HPも毎ラウンド本人との差を' + SPARE_GROW * 100 + '%ずつ埋める。コストは増えない。</dd>') + (!c ? '' : '<dt>同一人物</dt><dd>' + esc(c.d.name) + 'と' + esc(c.twin.d.name) + 'は同じ人なので、デッキには片方だけ入る。倒れると同じ列にもう片方を召喚し、次のラウンドから動く。コストは自分 + もう片方の半分。</dd>');
+    return (!m ? '' : '<dt>' + esc(MY_TURN) + '</dt><dd>' + esc(m.d.name) + 'のターンが来ると流れる。その攻撃で敵を撃破すると ' + ONE_MORE + ' で、もう1回攻撃できる(1ターンに1回まで)。本人の動画をYouTubeの埋め込みプレーヤーで少しだけ流す(対戦画面でオフにできる)。敵の' + esc(m.d.name) + 'は気まぐれ以外のAIで、倒せる中で攻撃順位がいちばん高い相手を狙い、もう1回攻撃では攻撃順位1位を狙う。</dd>') + (!s ? '' : '<dt>サブチャンネル</dt><dd>' + esc(s.d.name) + 'が倒れると、同じ列に' + chainOf(s).map(function (x) { return esc(x.d.name); }).join(' → ') + (chainOf(s).length > 1 ? 'の順に' : 'を') + '召喚する。召喚されたカードは順番に関係なくすぐ攻撃する。HPは登録者の実数で、攻撃も動画の実数。ただし公開動画が0本のチャンネルは、動画を非公開で投稿済みなので攻撃が本人と同じで、HPも毎ラウンド本人との差を' + SPARE_GROW * 100 + '%ずつ埋める。コストは増えない。</dd>') + (!c ? '' : '<dt>同一人物</dt><dd>' + esc(c.d.name) + 'と' + esc(c.twin.d.name) + 'は同じ人なので、デッキには片方だけ入る。倒れると同じ列にもう片方を召喚し、次のラウンドから動く。コストは自分 + もう片方の半分。</dd>');
   }
   function growthText(g) { return g == null ? '—' : (g > 0 ? '+' : '') + g + '%'; }
   function parText(c) { return Math.round(c.par * 100) + '%'; }
@@ -876,9 +876,17 @@
       later(function () { attack(c, aiTarget(c)); }, 750);
     }
   }
+  /* 敵の田中は気まぐれ以外のAIで、倒せる中で攻撃順位がいちばん高い相手を狙い、もう1回攻撃では攻撃順位1位を狙う。倒せる相手がいなければ通常のAIに任せる */
+  function memeTarget(c, foes) {
+    var rank = function (f) { return atkNow(f) <= 0 ? -1 : game.phase === 'm' ? f.spdM : f.spdR; };   // このラウンドに動けないカードは最後
+    var order = foes.slice().sort(function (a, b) { return rank(b) - rank(a); });
+    if (c.moreRound === game.round) return order[0];
+    return order.filter(function (f) { return f.hp <= dmgOf(c, f) * 0.85; })[0] || null;
+  }
   function aiTarget(c) {   // 「削れるHPの割合 × 相手の攻撃」が大きい相手を狙う(列の倍率も効く)。撃破優先は倒せる相手の中だけで比べる
     var foes = alive(game.ally);
     if (game.ai === 'rand') return foes[Math.floor(Math.random() * foes.length)];
+    if (c.d.meme) { var mt = memeTarget(c, foes); if (mt) return mt; }
     var ko = game.ai === 'ko' ? foes.filter(function (f) { return f.hp <= dmgOf(c, f) * 0.85; }) : [];
     var score = function (f) { return Math.min(dmgOf(c, f) / f.hp, 1) * threat(f); };
     return (ko.length ? ko : foes).slice().sort(function (a, b) { return score(b) - score(a); })[0];
