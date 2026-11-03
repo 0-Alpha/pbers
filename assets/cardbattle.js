@@ -41,7 +41,9 @@
   var REP_RATE = 0.3, NETA_STEP = 0.3, NETA_LIMIT = 4, NETA_STALE = 0.7;
   var BLACK_CRIT = 0.4, BLACK_CRIT_MULT = 2, BLACK_BURN = 0.05, BURN_HP = 0.1;
   var RUN_BASE = 100, RUN_STEP = 20;     // 連戦の敵の予算 = RUN_BASE + RUN_STEP × 連勝数
-  var RUN_HEAL = 0.4, RUN_REVIVE = 0.3;  // 勝った後、生き残りは最大HPの40%回復、倒れたカードは30%で復活
+  var RUN_HEAL = 0.2, RUN_REVIVE = 0.15; // 勝った後、生き残りは最大HPの20%回復、倒れたカードは15%で復活
+  var RUN_COIN = 20, RUN_INTEREST = 0.1, RUN_INTEREST_MAX = 5;   // 勝つともらえるコイン。残したコインには利子が付く
+  var RS_HEAL = 0.3, RS_HEAL_COST = 5, RS_SWAP_COST = 10, RS_ITEM_COST = 5;   // ショップの回復量と値段
   var SPARE_GROW = 0.2;                  // 予備チャンネルのHPは、毎ラウンド本人の最大HPとの差をこの割合だけ埋める
   var TWIN_RATE = 0.5;                   // 同一人物のカードのコストに、もう片方のコストのこの割合を足す
   var AIS = {                            // 敵の狙い方。弱い順
@@ -228,6 +230,7 @@
   }
   function saveCollab() { try { localStorage.setItem(COLLAB_KEY, JSON.stringify(collabPick)); } catch (e) {} }
   function saveDeck() {
+    if (run) return;   // 連戦の変更はその連戦だけ
     try {
       localStorage.setItem(DECK_KEY, JSON.stringify(deck.map(function (c) { return c.d.slug; })));
       localStorage.setItem(ITEM_KEY, JSON.stringify(items));
@@ -315,7 +318,17 @@
   function renderCollab() {
     var el = $('.cb-collab-pick'), show = buildStep === 'items' && items.indexOf('collab') >= 0;
     el.hidden = !show;
-    if (!show) return;
+    if (show) collabChips(el);
+  }
+  function collabClick(e) {
+    var b = e.target.closest('.cb-collab-c'); if (!b) return;
+    var pair = collabPair(deck, collabPick), s = b.dataset.slug, at = pair.indexOf(s);
+    if (at >= 0) return;   // 2枚のままにする。入れ替えは別のカードを押す
+    collabPick = [pair[1], s];   // 古く選んだ方と入れ替える
+    saveCollab();
+    collabChips(b.parentNode);
+  }
+  function collabChips(el) {
     var pair = collabPair(deck, collabPick);
     el.innerHTML = '<span class="cb-collab-l">コラボする2枚を選ぶ</span>' + deck.map(function (c) {
       var on = pair.indexOf(c.d.slug) >= 0;
@@ -407,7 +420,8 @@
   function showBuild() {
     token++;
     game = null;
-    $('.cb-build').hidden = false; $('.cb-board').hidden = true; $('.cb-foe').hidden = true;
+    restoreRun();
+    $('.cb-build').hidden = false; $('.cb-board').hidden = true; $('.cb-foe').hidden = true; $('.cb-rshop').hidden = true;
     buildStep = 'cards';
     run = null;
     renderList();
@@ -432,17 +446,11 @@
       if (at >= 0) items.splice(at, 1); else items.push(k);
       saveDeck(); renderSlots();
     });
-    $('.cb-collab-pick').addEventListener('click', function (e) {
-      var b = e.target.closest('.cb-collab-c'); if (!b) return;
-      var pair = collabPair(deck, collabPick), s = b.dataset.slug, at = pair.indexOf(s);
-      if (at >= 0) return;   // 2枚のままにする。入れ替えは別のカードを押す
-      collabPick = [pair[1], s];   // 古く選んだ方と入れ替える
-      saveCollab(); renderCollab();
-    });
+    $('.cb-collab-pick').addEventListener('click', collabClick);
     $('.cb-next').addEventListener('click', function () { if (deck.length === DECK) { buildStep = 'items'; renderSlots(); $('.cb-build').scrollIntoView({ block: 'start' }); } });
     $('.cb-back').addEventListener('click', function () { buildStep = 'cards'; renderSlots(); });
     $('.cb-go').addEventListener('click', function () { if (deck.length === DECK) { run = null; newBattle(); $('.cb-board').scrollIntoView({ block: 'start' }); } });
-    $('.cb-run-go').addEventListener('click', function () { if (deck.length === DECK) { run = { wins: 0, hp: null, over: false }; newBattle(); $('.cb-board').scrollIntoView({ block: 'start' }); } });
+    $('.cb-run-go').addEventListener('click', function () { if (deck.length === DECK) { run = newRun(); newBattle(); $('.cb-board').scrollIntoView({ block: 'start' }); } });
     $('.cb-q').addEventListener('input', function (e) { query = e.target.value.trim(); renderList(); });
     $('.cb-tfilter').addEventListener('click', function (e) {
       var b = e.target.closest('.vt'); if (!b) return;
@@ -613,15 +621,103 @@
     $('.cb-sfx-btn').setAttribute('aria-pressed', String(sfxOn()));
   }
 
+  /* ---- 連戦のショップ。勝つとコインがもらえ、次の戦いの前に使える。1コインで予算が1増える。カードと作戦の変更は連戦の間だけで、デッキの保存は変えない ---- */
+  function newRun() { return { wins: 0, hp: null, over: false, coins: 0, budget: BUDGET, swap: null, q: '', base: { deck: deck.slice(), items: items.slice() } }; }
+  function restoreRun() { if (run && run.base) { deck = run.base.deck; items = run.base.items; } }
+  function hpRatio(c) { var r = run.hp && run.hp[c.d.slug]; return r == null ? 1 : r; }
+  function runUsed() { return costSum(deck) + itemSum(items); }
+  function showRunShop() {
+    token++;
+    game = null;
+    run.swap = null;
+    $('.cb-board').hidden = true; $('.cb-rshop').hidden = false;
+    renderRunShop();
+    $('.cb-rshop').scrollIntoView({ block: 'start' });
+  }
+  function rsBtn(act, label, off, data) {
+    return '<button type="button" class="g-btn g-x cb-rs-btn" data-act="' + act + '"' + (data != null ? ' data-v="' + esc(data) + '"' : '') + (off ? ' disabled' : '') + '>' + label + '</button>';
+  }
+  function renderRunShop() {
+    var used = runUsed(), room = run.budget - used, coins = run.coins, boost = paraoOf(deck, items, run.budget), capped = boost >= PARAO_CAP;
+    $('.cb-rs-coin').textContent = coins;
+    $('.cb-rs-wins').textContent = run.wins + '連勝中';
+    $('.cb-rs-parao').innerHTML =
+      '<div class="cb-rs-line"><span class="cb-rs-n">パラオパワー <b class="num">' + boostText(boost) + '</b></span><span class="cb-rs-d">' + (capped ? '上限の×' + PARAO_CAP + 'です。これ以上注いでも上がりません。' : '1コインで予算+1。') + '今の予算は使用 ' + used + ' / ' + run.budget + '</span></div>' +
+      '<div class="cb-rs-acts">' + rsBtn('parao', '+5', capped || coins < 5, 5) + rsBtn('parao', '+20', capped || coins < 20, 20) + rsBtn('parao', '全部', capped || coins < 1, coins) + '</div>';
+    $('.cb-rs-cards').innerHTML = deck.map(function (c, i) {
+      var r = hpRatio(c);
+      return '<div class="cb-rs-row"><img src="' + av(c.d, 96) + '" alt="" style="border-color:' + c.d.color + '">' +
+        '<div class="cb-rs-line"><span class="cb-rs-n">' + esc(c.d.name) + ' <span class="cb-rs-c num">C' + c.cost + '</span></span>' +
+        '<span class="cb-hpbar"><i style="transform:scaleX(' + r + ')"></i></span><span class="cb-rs-d num">HP ' + Math.round(r * 100) + '%</span></div>' +
+        '<div class="cb-rs-acts">' + rsBtn('heal', '回復+' + RS_HEAL * 100 + '% <small>' + RS_HEAL_COST + '</small>', r >= 1 || coins < RS_HEAL_COST, i) + rsBtn('swap', '入れ替え <small>' + RS_SWAP_COST + '</small>', coins < RS_SWAP_COST, i) + '</div></div>';
+    }).join('');
+    $('.cb-rs-items').innerHTML = Object.keys(ITEMS).map(function (k) {
+      var on = items.indexOf(k) >= 0;
+      return '<div class="cb-rs-row"><div class="cb-rs-line"><span class="cb-rs-n">' + ITEMS[k].name + ' <span class="cb-rs-c num">予算' + ITEMS[k].price + '</span></span><span class="cb-rs-d">' + ITEMS[k].desc + '</span></div>' +
+        '<div class="cb-rs-acts">' + (on ? rsBtn('itemoff', '外す', false, k) : rsBtn('itemon', '付ける <small>' + RS_ITEM_COST + '</small>', coins < RS_ITEM_COST || room < ITEMS[k].price, k)) + '</div></div>';
+    }).join('');
+    $('.cb-rs-pick').hidden = items.indexOf('collab') < 0;
+    if (items.indexOf('collab') >= 0) collabChips($('.cb-rs-pick'));
+    var sw = $('.cb-rs-swap');
+    sw.hidden = run.swap == null;
+    if (run.swap != null) renderRunSwap();
+  }
+  function renderRunSwap() {
+    var old = deck[run.swap], room = run.budget - runUsed() + old.cost, q = run.q.toLowerCase();
+    $('.cb-rs-swap-t').textContent = old.d.name + ' と入れ替えるカード(予算の残り ' + room + ')';
+    var rows = cards.map(function (c, i) { return { c: c, i: i }; }).filter(function (r) {
+      return deck.indexOf(r.c) < 0 && (!r.c.twin || deck.indexOf(r.c.twin) < 0 || r.c.twin === old) && (!q || r.c.d.name.toLowerCase().indexOf(q) >= 0);
+    }).sort(function (a, b) { return b.c.cost - a.c.cost; });
+    $('.cb-rs-list').innerHTML = rows.length ? rows.map(function (r) { return rowHTML(r.c, r.i, 'cost'); }).join('') : '<div class="fc-empty">見つかりません</div>';
+    [].slice.call($('.cb-rs-list').querySelectorAll('.cb-li')).forEach(function (el) { el.disabled = cards[+el.dataset.i].cost > room; });
+  }
+  function setupRunShop() {
+    $('.cb-rshop').addEventListener('click', function (e) {
+      var b = e.target.closest('.cb-rs-btn');
+      if (!b || b.disabled || !run) return;
+      var act = b.dataset.act, v = b.dataset.v;
+      if (act === 'parao') { var n = Math.min(+v, run.coins); run.coins -= n; run.budget += n; }
+      if (act === 'heal') {
+        var c = deck[+v];
+        run.hp = run.hp || {};
+        run.hp[c.d.slug] = Math.min(1, hpRatio(c) + RS_HEAL);
+        run.coins -= RS_HEAL_COST;
+      }
+      if (act === 'swap') { run.swap = +v; run.q = ''; $('.cb-rs-q').value = ''; }
+      if (act === 'itemon') { items.push(v); run.coins -= RS_ITEM_COST; }
+      if (act === 'itemoff') items.splice(items.indexOf(v), 1);
+      if (act === 'swapcancel') run.swap = null;
+      renderRunShop();
+      if (act === 'swap') $('.cb-rs-swap').scrollIntoView({ block: 'start' });
+    });
+    $('.cb-rs-list').addEventListener('click', function (e) {
+      var el = e.target.closest('.cb-li');
+      if (!el || el.disabled || run.swap == null) return;
+      deck[run.swap] = cards[+el.dataset.i];
+      run.coins -= RS_SWAP_COST;
+      run.swap = null;
+      renderRunShop();
+      $('.cb-rshop').scrollIntoView({ block: 'start' });
+    });
+    $('.cb-rs-q').addEventListener('input', function (e) { run.q = e.target.value.trim(); renderRunSwap(); });
+    $('.cb-rs-pick').addEventListener('click', collabClick);
+    $('.cb-rs-go').addEventListener('click', function () {
+      $('.cb-rshop').hidden = true;
+      newBattle();
+      $('.cb-board').scrollIntoView({ block: 'start' });
+    });
+    $('.cb-rs-quit').addEventListener('click', showBuild);
+  }
+
   function newBattle() {
     token++;
     var foeBudget = run ? RUN_BASE + RUN_STEP * run.wins : BUDGET;
     var foeDeck = shuffle((run ? enemyDeck(foeBudget) : foeFixed || enemyDeck()).slice());
-    var foeItems = randomItems(foeDeck, foeBudget), myBoost = paraoOf(deck, items), foeBoost = paraoOf(foeDeck, foeItems, foeBudget);
+    var foeItems = randomItems(foeDeck, foeBudget), myBoost = paraoOf(deck, items, run ? run.budget : BUDGET), foeBoost = paraoOf(foeDeck, foeItems, foeBudget);
     var myPair = items.indexOf('collab') >= 0 ? collabPair(deck, collabPick) : [], foePair = foeItems.indexOf('collab') >= 0 ? collabPair(foeDeck) : [];
     var mine = deck.map(function (c, i) {
       var u = unit(c, 'ally', i, myBoost, myPair.indexOf(c.d.slug) >= 0);
-      if (run && run.hp) u.hp = run.hp[c.d.slug];   // 連戦はHPを持ち越す
+      if (run && run.hp && run.hp[c.d.slug] != null) u.hp = Math.max(1, Math.round(u.max * run.hp[c.d.slug]));   // 連戦はHPの割合を持ち越す
       return u;
     });
     var foes = foeDeck.map(function (c, i) { return unit(c, 'enemy', i, foeBoost, foePair.indexOf(c.d.slug) >= 0); });
@@ -749,7 +845,7 @@
     w.summoned = true;
     if (u.side === 'ally') {
       game.fallen.push(u);
-      if (run && run.hp && run.hp[w.d.slug] != null) w.hp = Math.min(w.max, run.hp[w.d.slug]);   // 連戦で前に出ていたならHPを持ち越す
+      if (run && run.hp && run.hp[w.d.slug] != null) w.hp = Math.max(1, Math.round(w.max * run.hp[w.d.slug]));   // 連戦で前に出ていたならHPを持ち越す
     }
     if (w.t.borrowed) w.growTo = u.max;
     row[row.indexOf(u)] = w;
@@ -1132,7 +1228,7 @@
     $('.cb-res-t').textContent = win ? '勝利!' : run ? '連戦終了' : '敗北…';
     $('.cb-res-t').classList.toggle('win', win);
     $('.cb-res-s').textContent = run ? runResult(win) : game.round + 'ラウンド ・ ' + (win ? '自陣' : '敵陣') + 'の残り ' + alive(win ? game.ally : game.enemy).length + '枚';
-    $('.cb-again').textContent = !run ? 'もう一度' : win ? '次の戦いへ' : 'もう一度挑戦';
+    $('.cb-again').textContent = !run ? 'もう一度' : win ? '強化して次へ' : 'もう一度挑戦';
     $('.cb-edit2').textContent = run && win ? '連戦をやめる' : 'デッキ編集';
     msg('');
   }
@@ -1147,9 +1243,11 @@
     if (fresh) { saveBest(run.wins); run.record = true; }
     run.hp = {};
     game.ally.concat(game.fallen).forEach(function (u) {
-      run.hp[u.d.slug] = u.hp > 0 ? Math.min(u.max, Math.round(u.hp + u.max * RUN_HEAL)) : Math.round(u.max * RUN_REVIVE);
+      run.hp[u.d.slug] = u.hp > 0 ? Math.min(1, u.hp / u.max + RUN_HEAL) : RUN_REVIVE;
     });
-    return run.wins + '連勝' + (fresh ? '・自己ベスト更新!' : '') + ' 生き残りはHP' + RUN_HEAL * 100 + '%回復、倒れたカードはHP' + RUN_REVIVE * 100 + '%で復活';
+    var interest = Math.min(RUN_INTEREST_MAX, Math.floor(run.coins * RUN_INTEREST));
+    run.coins += RUN_COIN + interest;
+    return run.wins + '連勝' + (fresh ? '・自己ベスト更新!' : '') + ' +' + RUN_COIN + 'コイン' + (interest ? '(利子+' + interest + ')' : '') + '。生き残りはHP' + RUN_HEAL * 100 + '%回復、倒れたカードはHP' + RUN_REVIVE * 100 + '%で復活';
   }
   function mount(host, channels) {
     var fresh = buildCards(channels);
@@ -1160,9 +1258,11 @@
         var remap = function (list) { return list.map(function (c) { return cards.filter(function (x) { return x.d.slug === c.d.slug; })[0]; }).filter(Boolean); };
         deck = remap(deck);
         foePick = remap(foePick);
+        if (run && run.base) run.base.deck = remap(run.base.deck);
         if (foeFixed) { foeFixed = remap(foeFixed); if (foeFixed.length !== DECK) foeFixed = null; }
         renderList();
         if (!$('.cb-foe').hidden) renderFoeList();
+        if (run && !$('.cb-rshop').hidden) renderRunShop();
       }
       return;
     }
@@ -1185,7 +1285,7 @@
         twinHelp() +
         '<dt>敵のAI</dt><dd>対戦前に選べる。' + Object.keys(AIS).map(function (k) { return AIS[k].name + ' = ' + AIS[k].desc; }).join(' / ') + '。連戦では1戦ごとにランダムで決まる。</dd>' +
         '<dt>相手を選ぶ</dt><dd>対戦前の画面で、戦いたいチャンネルを1〜5枚指定できる。足りない枠は自動で埋まり、指定した相手は変えるまで続く。</dd>' +
-        '<dt>連戦</dt><dd>負けるまで続く。敵の予算は' + RUN_BASE + 'から勝つたびに+' + RUN_STEP + '。HPは持ち越しで、勝つと生き残りは最大HPの' + RUN_HEAL * 100 + '%回復、倒れたカードは' + RUN_REVIVE * 100 + '%で復活する。</dd>' +
+        '<dt>連戦</dt><dd>負けるまで続く。敵の予算は' + RUN_BASE + 'から勝つたびに+' + RUN_STEP + '。HPは持ち越しで、勝つと生き残りは最大HPの' + RUN_HEAL * 100 + '%回復、倒れたカードは' + RUN_REVIVE * 100 + '%で復活する。勝つと' + RUN_COIN + 'コインもらえて、次の戦いの前に使える。パラオパワーに注ぐ(1コインで予算+1)、回復、カードの入れ替え、作戦の付け外しができ、残したコインには' + RUN_INTEREST * 100 + '%の利子(最大' + RUN_INTEREST_MAX + ')が付く。変更はその連戦の間だけ。</dd>' +
         '<dt>データが無いとき</dt><dd>Xが未登録なら防御0・拡散0、伸びていなければパリイ0%。横と縦の内訳が無ければ、全体の平均を遠戦に、その1/4を白兵に使う。</dd>' +
       '</dl></details></div>' +
       '<div class="cb-build">' +
@@ -1218,6 +1318,16 @@
           '<select class="cb-sort cb-foe-sort" aria-label="相手の並び替え"><option value="cost">コスト順</option><option value="hp">HP順</option><option value="atkM">白兵順</option><option value="atkR">遠戦順</option><option value="spd">本数順</option><option value="def">防御順</option><option value="g">伸び率順</option><option value="aura">拡散順</option></select></div>' +
         '<div class="cb-list cb-foe-list"></div>' +
       '</div>' +
+      '<div class="cb-rshop" hidden>' +
+        '<div class="cb-rs-top"><h4 class="cb-step-t">連戦ショップ</h4><span class="cb-rs-wins"></span><span class="cb-rs-money">コイン<span class="cb-rs-coin num"></span></span></div>' +
+        '<div class="cb-rs-parao"></div>' +
+        '<div class="cb-rs-h">カード</div><div class="cb-rs-cards"></div>' +
+        '<div class="cb-rs-swap" hidden><p class="cb-rs-swap-t"></p><input type="search" class="cb-q cb-rs-q" placeholder="チャンネル名で検索" aria-label="入れ替えるチャンネルを検索"><div class="cb-list cb-rs-list"></div><div class="cb-bact"><button type="button" class="g-btn g-x cb-rs-btn" data-act="swapcancel">入れ替えをやめる</button></div></div>' +
+        '<div class="cb-rs-h">作戦</div><div class="cb-rs-items"></div>' +
+        '<div class="cb-collab-pick cb-rs-pick" hidden></div>' +
+        '<p class="cb-note">残したコインは次に勝ったとき' + RUN_INTEREST * 100 + '%の利子が付きます(最大' + RUN_INTEREST_MAX + ')。カードと作戦の変更はこの連戦の間だけです。</p>' +
+        '<div class="cb-bact"><button type="button" class="g-btn g-confirm cb-rs-go">次の戦いへ</button><button type="button" class="g-btn g-x cb-rs-quit">連戦をやめる</button></div>' +
+      '</div>' +
       '<div class="cb-board" hidden>' +
         '<div class="cb-label"><span>敵陣</span><span class="cb-chip cb-boost cb-enemy-boost num"></span><span class="cb-chip cb-enemy-ai"></span><span class="cb-chip cb-enemy-buff"></span><span class="cb-items cb-enemy-items"></span>' +
           '<button type="button" class="cb-more-btn" aria-pressed="false">防御・パリイも見る</button><button type="button" class="cb-more-btn cb-video-btn" aria-pressed="false" hidden></button><button type="button" class="cb-more-btn cb-sfx-btn" aria-pressed="true"></button></div><div class="cb-row cb-row-enemy"></div>' +
@@ -1232,6 +1342,7 @@
       '</div>';
     setupBuild();
     setupFoe();
+    setupRunShop();
     window.addEventListener('message', videoMessage);
     root.addEventListener('click', function () { if (sfxOn()) audio(); });   // 音を出すにはクリックが要るブラウザがある
     $('.cb-sfx-btn').addEventListener('click', function () {
@@ -1258,7 +1369,8 @@
     $('.cb-pick').addEventListener('click', showFoe);
     $('.cb-reroll').addEventListener('click', function () { foeFixed = null; newBattle(); });
     $('.cb-again').addEventListener('click', function () {
-      if (run && run.over) run = { wins: 0, hp: null, over: false };
+      if (run && !run.over) return showRunShop();
+      if (run) { restoreRun(); run = newRun(); }
       newBattle();
     });
     $('.cb-edit').addEventListener('click', showBuild);
