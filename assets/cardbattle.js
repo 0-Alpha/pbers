@@ -34,8 +34,10 @@
     rep: { name: '無断転載', price: 25, desc: '毎ラウンド開始時、敵でいちばん強いカードの攻撃を転載して30%のダメージ' },
     anti: { name: '抗無断転載', price: 10, desc: '敵の無断転載を通報して、転載した側に跳ね返す' },
     neta: { name: 'ネタ擦り', price: 15, desc: '攻撃するたび威力+30%。5回目からは飽きられて×0.7' },
-    black: { name: 'ブラックジョーク', price: 10, desc: '会心率40%・会心×2。ただし5%で滑って炎上し、最大HPの10%を失う' }
+    black: { name: 'ブラックジョーク', price: 10, desc: '会心率40%・会心×2。ただし5%で滑って炎上し、最大HPの10%を失う' },
+    collab: { name: 'コラボレーション', price: 15, desc: '選んだ2枚の片方が攻撃すると、相方も同じ敵を攻撃する。ただし受けるダメージも2枚で半分ずつ' }
   };
+  var COLLAB_FOLLOW = 1, COLLAB_KEY = 'pbers_cb_collab', collabPick = [];   // 相方の追撃の威力
   var REP_RATE = 0.3, NETA_STEP = 0.3, NETA_LIMIT = 4, NETA_STALE = 0.7;
   var BLACK_CRIT = 0.4, BLACK_CRIT_MULT = 2, BLACK_BURN = 0.05, BURN_HP = 0.1;
   var RUN_BASE = 100, RUN_STEP = 20;     // 連戦の敵の予算 = RUN_BASE + RUN_STEP × 連勝数
@@ -213,6 +215,18 @@
     });
     return out;
   }
+  /* コラボする2枚。選んだカードを優先し、足りない分はコストの高いカードで埋める(敵は自動) */
+  function collabPair(list, pick) {
+    var out = (pick || []).filter(function (s) { return list.some(function (c) { return c.d.slug === s; }); }).slice(0, 2);
+    list.slice().sort(function (a, b) { return b.cost - a.cost; }).forEach(function (c) {
+      if (out.length < 2 && out.indexOf(c.d.slug) < 0) out.push(c.d.slug);
+    });
+    return out;
+  }
+  function loadCollab() {
+    try { var a = JSON.parse(localStorage.getItem(COLLAB_KEY) || '[]'); return Array.isArray(a) ? a : []; } catch (e) { return []; }
+  }
+  function saveCollab() { try { localStorage.setItem(COLLAB_KEY, JSON.stringify(collabPick)); } catch (e) {} }
   function saveDeck() {
     try {
       localStorage.setItem(DECK_KEY, JSON.stringify(deck.map(function (c) { return c.d.slug; })));
@@ -287,6 +301,7 @@
       el.setAttribute('aria-pressed', String(on));
       el.disabled = !on && left < ITEMS[k].price;
     });
+    renderCollab();
     $('.cb-next').disabled = deck.length !== DECK;
     $('.cb-next').textContent = deck.length === DECK ? '次へ: 作戦を選ぶ' : 'あと' + (DECK - deck.length) + '枚';
     $('.cb-run-note').textContent = '連戦は負けるまで続きます。HPは持ち越しで、勝つたびに敵が強くなります。' + (bestRun() ? '自己ベスト ' + bestRun() + '連勝' : '');
@@ -296,6 +311,16 @@
       el.disabled = !on && !canAdd(r);
       el.setAttribute('aria-pressed', String(on));
     });
+  }
+  function renderCollab() {
+    var el = $('.cb-collab-pick'), show = buildStep === 'items' && items.indexOf('collab') >= 0;
+    el.hidden = !show;
+    if (!show) return;
+    var pair = collabPair(deck, collabPick);
+    el.innerHTML = '<span class="cb-collab-l">コラボする2枚を選ぶ</span>' + deck.map(function (c) {
+      var on = pair.indexOf(c.d.slug) >= 0;
+      return '<button type="button" class="cb-chip cb-collab-c' + (on ? ' on' : '') + '" data-slug="' + esc(c.d.slug) + '" aria-pressed="' + on + '">' + esc(c.d.name) + '</button>';
+    }).join('');
   }
   function listExtras(c, sort) {   // 2行目は持っている能力だけ。並び替えに使っている値は必ず見せる
     var x = [];
@@ -407,6 +432,13 @@
       if (at >= 0) items.splice(at, 1); else items.push(k);
       saveDeck(); renderSlots();
     });
+    $('.cb-collab-pick').addEventListener('click', function (e) {
+      var b = e.target.closest('.cb-collab-c'); if (!b) return;
+      var pair = collabPair(deck, collabPick), s = b.dataset.slug, at = pair.indexOf(s);
+      if (at >= 0) return;   // 2枚のままにする。入れ替えは別のカードを押す
+      collabPick = [pair[1], s];   // 古く選んだ方と入れ替える
+      saveCollab(); renderCollab();
+    });
     $('.cb-next').addEventListener('click', function () { if (deck.length === DECK) { buildStep = 'items'; renderSlots(); $('.cb-build').scrollIntoView({ block: 'start' }); } });
     $('.cb-back').addEventListener('click', function () { buildStep = 'cards'; renderSlots(); });
     $('.cb-go').addEventListener('click', function () { if (deck.length === DECK) { run = null; newBattle(); $('.cb-board').scrollIntoView({ block: 'start' }); } });
@@ -423,7 +455,7 @@
 
   /* ---- バトル ---- */
   function alive(list) { return list.filter(function (c) { return c.hp > 0; }); }
-  function unit(c, side, pos, boost) { var hp = Math.round(c.hp * boost); return { t: c, d: c.d, boost: boost, hp: hp, max: hp, atkM: Math.round(c.atkM * boost), atkR: Math.round(c.atkR * boost), spdM: c.spdM, spdR: c.spdR, def: c.def, red: c.red, g: c.g, par: c.par, type: c.type, p30: c.p30, aura: c.aura, cost: c.cost, side: side, pos: pos, n: 0, el: null }; }
+  function unit(c, side, pos, boost, collab) { var hp = Math.round(c.hp * boost); return { t: c, d: c.d, boost: boost, collab: !!collab, hp: hp, max: hp, atkM: Math.round(c.atkM * boost), atkR: Math.round(c.atkR * boost), spdM: c.spdM, spdR: c.spdR, def: c.def, red: c.red, g: c.g, par: c.par, type: c.type, p30: c.p30, aura: c.aura, cost: c.cost, side: side, pos: pos, n: 0, el: null }; }
   function teamBuff(side) { return alive(game[side]).reduce(function (a, c) { return a + c.aura; }, 0); }   // 倒されたカードの分は消える
   function atkNow(c) { return game.phase === 'm' ? c.atkM : c.atkR; }
   function posMult(a, t) { return game.phase === 'm' ? POS_MULT[Math.abs(a.pos - t.pos)] : 1; }   // 遠戦は列に関係なく届く
@@ -431,6 +463,18 @@
   function hasItem(side, k) { return game.items[side].indexOf(k) >= 0; }
   function phaseDmg(c) { return atkNow(c) / (game.phase === 'm' ? MELEE_DIV : RANGED_DIV); }
   function netaMult(a) { return !hasItem(a.side, 'neta') ? 1 : a.n >= NETA_LIMIT ? NETA_STALE : parseFloat((1 + NETA_STEP * a.n).toFixed(2)); }
+  function partnerOf(u) {   // コラボの相方。倒れたり召喚で入れ替わったりしたら解消
+    return !u.collab ? null : game[u.side].filter(function (x) { return x !== u && x.collab && x.hp > 0; })[0] || null;
+  }
+  function hurt(u, d) {   // HPを減らす。相方がいれば半分ずつ受ける。戻り値は本人の分
+    var p = partnerOf(u), mine = p ? Math.ceil(d / 2) : d;
+    u.hp -= mine; paint(u);
+    game.shared = p;
+    if (p && d > mine) { p.hp -= d - mine; paint(p); pop(p, '-' + num(d - mine), ''); }
+    return mine;
+  }
+  function sharedNote() { return game.shared ? '(<b style="color:' + game.shared.d.color + '">' + esc(game.shared.d.name) + '</b> も巻き添え)' : ''; }
+  function dmgAt(a, t) { return dmgOf(a, t) * (partnerOf(t) ? 0.5 : 1); }   // 本人が実際に受ける分。撃破の見込みに使う
   function dmgOf(a, t) { return phaseDmg(a) * (1 - t.red) * hitMult(a, t) * (1 + teamBuff(a.side)) * netaMult(a); }
   function paintBuffs() {
     ['ally', 'enemy'].forEach(function (side) {
@@ -443,6 +487,7 @@
     return '<button type="button" class="cb-card cb-' + rarOf(c.d) + (boosted ? ' cb-boosted' : '') + '" style="--c:' + c.d.color + '" disabled' +
       (boosted ? ' title="パラオパワー' + boostText(c.boost) + '(実数 HP ' + num(c.t.hp) + ' / 白 ' + num(c.t.atkM) + ' / 遠 ' + num(c.t.atkR) + ')"' : '') + '>' +
       typeChip(c, 'cb-type') +
+      (c.collab ? '<span class="cb-tag">コラボ</span>' : '') +
       (nextOf(c) ? '<span class="cb-twin" title="倒れると ' + esc(nextOf(c).d.name) + ' を召喚"><img src="' + av(nextOf(c).d, 96) + '" alt=""></span>' : '') +
       '<span class="cb-art" style="background:' + fill(c.d) + '"><img src="' + av(c.d, 96) + '" alt=""></span>' +
       '<span class="cb-mult num"></span>' +
@@ -459,7 +504,7 @@
     c.el.classList.toggle('low', pct <= 30);
     c.el.querySelector('.cb-hp-v').textContent = num(c.hp);
     c.el.classList.toggle('cb-dead', c.hp <= 0);
-    c.el.setAttribute('aria-label', c.d.name + ' HP' + Math.max(c.hp, 0) + '/' + c.max + ' 白兵' + c.atkM + ' 遠戦' + c.atkR + ' 防御' + c.def + ' パリイ' + parText(c) + ' 拡散' + auraText(c) + ' タイプ' + TYPES[c.type].label + (c.boost > 1 ? ' パラオパワー' + boostText(c.boost) : '') + (nextOf(c) ? ' 倒れると' + nextOf(c).d.name + 'を召喚' : ''));
+    c.el.setAttribute('aria-label', c.d.name + ' HP' + Math.max(c.hp, 0) + '/' + c.max + ' 白兵' + c.atkM + ' 遠戦' + c.atkR + ' 防御' + c.def + ' パリイ' + parText(c) + ' 拡散' + auraText(c) + ' タイプ' + TYPES[c.type].label + (c.boost > 1 ? ' パラオパワー' + boostText(c.boost) : '') + (c.collab ? ' コラボ' : '') + (nextOf(c) ? ' 倒れると' + nextOf(c).d.name + 'を召喚' : ''));
   }
   function msg(html) { $('.cb-msg').innerHTML = html; }
   function later(fn, ms) { var t = token; setTimeout(function () { if (t === token) fn(); }, RM ? Math.min(ms, 150) : ms); }
@@ -573,12 +618,13 @@
     var foeBudget = run ? RUN_BASE + RUN_STEP * run.wins : BUDGET;
     var foeDeck = shuffle((run ? enemyDeck(foeBudget) : foeFixed || enemyDeck()).slice());
     var foeItems = randomItems(foeDeck, foeBudget), myBoost = paraoOf(deck, items), foeBoost = paraoOf(foeDeck, foeItems, foeBudget);
+    var myPair = items.indexOf('collab') >= 0 ? collabPair(deck, collabPick) : [], foePair = foeItems.indexOf('collab') >= 0 ? collabPair(foeDeck) : [];
     var mine = deck.map(function (c, i) {
-      var u = unit(c, 'ally', i, myBoost);
+      var u = unit(c, 'ally', i, myBoost, myPair.indexOf(c.d.slug) >= 0);
       if (run && run.hp) u.hp = run.hp[c.d.slug];   // 連戦はHPを持ち越す
       return u;
     });
-    var foes = foeDeck.map(function (c, i) { return unit(c, 'enemy', i, foeBoost); });
+    var foes = foeDeck.map(function (c, i) { return unit(c, 'enemy', i, foeBoost, foePair.indexOf(c.d.slug) >= 0); });
     var keys = Object.keys(AIS);
     game = { ally: mine, enemy: foes, fallen: [], ai: run ? keys[Math.floor(Math.random() * keys.length)] : aiKey, items: { ally: items.slice(), enemy: foeItems }, queue: [], round: 0, actor: null, arranging: true, picked: null };
     $('.cb-build').hidden = true; $('.cb-board').hidden = false;
@@ -674,11 +720,11 @@
     var who = side === 'ally' ? '自陣' : '敵陣', name = '<b style="color:' + src.d.color + '">' + esc(src.d.name) + '</b>', tn = '<b style="color:' + t.d.color + '">' + esc(t.d.name) + '</b>';
     msg(who + 'が ' + name + ' の動画を<b>無断転載!</b>');
     var land = function () {
-      t.hp -= dmg; paint(t); paintBuffs();
+      var taken = hurt(t, dmg); paintBuffs();
       sfx(t.hp <= 0 ? 'ko' : 'hit');
-      pop(t, '-' + num(dmg), '');
+      pop(t, '-' + num(taken), '');
       shake(t);
-      msg(who + 'が ' + name + ' の動画を<b>無断転載!</b> ' + (back ? '<b>通報されて</b> ' : '') + (t === src ? '本人に' : tn + ' に') + ' <b class="num">' + num(dmg) + '</b> ダメージ' + (t.hp <= 0 ? ' 撃破!' : ''));
+      msg(who + 'が ' + name + ' の動画を<b>無断転載!</b> ' + (back ? '<b>通報されて</b> ' : '') + (t === src ? '本人に' : tn + ' に') + ' <b class="num">' + num(dmg) + '</b> ダメージ' + (t.hp <= 0 ? ' 撃破!' : '') + sharedNote());
       later(function () { runReposts(list); }, 1100);
     };
     if (RM || !t.el.animate) return land();
@@ -845,7 +891,7 @@
       var t = on && c.hp > 0;
       c.el.disabled = !t; c.el.classList.toggle('cb-target', t);
       var m = c.el.querySelector('.cb-mult');
-      var d = t && actor ? dmgOf(actor, c) : 0;   // 列・相性・防御・拡散をまとめた「この敵に与えるダメージ」の目安
+      var d = t && actor ? dmgAt(actor, c) : 0;   // 列・相性・防御・拡散をまとめた「この敵に与えるダメージ」の目安
       m.textContent = !d ? '' : d * 0.85 >= c.hp ? '撃破' : d * 1.15 >= c.hp ? '撃破?' : num(Math.round(d));
       m.title = d ? '列×' + posMult(actor, c) + ' 相性×' + typeMult(actor, c) : '';
       m.classList.toggle('adv', !!(t && actor) && typeMult(actor, c) > 1);
@@ -881,14 +927,14 @@
     var rank = function (f) { return atkNow(f) <= 0 ? -1 : game.phase === 'm' ? f.spdM : f.spdR; };   // このラウンドに動けないカードは最後
     var order = foes.slice().sort(function (a, b) { return rank(b) - rank(a); });
     if (c.moreRound === game.round) return order[0];
-    return order.filter(function (f) { return f.hp <= dmgOf(c, f) * 0.85; })[0] || null;
+    return order.filter(function (f) { return f.hp <= dmgAt(c, f) * 0.85; })[0] || null;
   }
   function aiTarget(c) {   // 「削れるHPの割合 × 相手の攻撃」が大きい相手を狙う(列の倍率も効く)。撃破優先は倒せる相手の中だけで比べる
     var foes = alive(game.ally);
     if (game.ai === 'rand') return foes[Math.floor(Math.random() * foes.length)];
     if (c.d.meme) { var mt = memeTarget(c, foes); if (mt) return mt; }
-    var ko = game.ai === 'ko' ? foes.filter(function (f) { return f.hp <= dmgOf(c, f) * 0.85; }) : [];
-    var score = function (f) { return Math.min(dmgOf(c, f) / f.hp, 1) * threat(f); };
+    var ko = game.ai === 'ko' ? foes.filter(function (f) { return f.hp <= dmgAt(c, f) * 0.85; }) : [];
+    var score = function (f) { return Math.min(dmgAt(c, f) / f.hp, 1) * threat(f); };
     return (ko.length ? ko : foes).slice().sort(function (a, b) { return score(b) - score(a); })[0];
   }
   function choose(c) {
@@ -908,28 +954,45 @@
       var again = false;
       if (burned) {
         var burn = Math.max(1, Math.round(a.max * BURN_HP));
-        a.hp -= burn; paint(a);
+        var burnt = hurt(a, burn);
         sfx('burn');
-        pop(a, '炎上 -' + num(burn), '');
-        msg('<b style="color:' + a.d.color + '">' + esc(a.d.name) + '</b> のブラックジョークが滑って<b>炎上!</b> 自分に <b class="num">' + num(burn) + '</b> ダメージ' + (a.hp <= 0 ? ' 撃破!' : ''));
+        pop(a, '炎上 -' + num(burnt), '');
+        msg('<b style="color:' + a.d.color + '">' + esc(a.d.name) + '</b> のブラックジョークが滑って<b>炎上!</b> 自分に <b class="num">' + num(burn) + '</b> ダメージ' + (a.hp <= 0 ? ' 撃破!' : '') + sharedNote());
       } else if (parried) {
         var back = Math.max(1, Math.round(dmg * COUNTER));
-        a.hp -= back; paint(a);
+        var countered = hurt(a, back);
         sfx('parry');
         pop(t, 'パリイ!', 'parry');
-        pop(a, '-' + num(back), '');
-        msg(names + ' の攻撃を<b>パリイ!</b> ' + '<b class="num">' + num(back) + '</b> 反撃' + (a.hp <= 0 ? ' 撃破!' : ''));
+        pop(a, '-' + num(countered), '');
+        msg(names + ' の攻撃を<b>パリイ!</b> ' + '<b class="num">' + num(back) + '</b> 反撃' + (a.hp <= 0 ? ' 撃破!' : '') + sharedNote());
       } else {
-        t.hp -= dmg; paint(t);
+        var dealt = hurt(t, dmg);
         sfx(t.hp <= 0 ? 'ko' : crit ? 'crit' : 'hit');
-        pop(t, '-' + num(dmg), crit ? 'crit' : '');
-        msg(names + ' に <b class="num">' + num(dmg) + '</b> ダメージ' + (tm > 1 ? '(有利!)' : tm < 1 ? '(不利)' : '') + (mult !== 1 ? '(列×' + mult + ')' : '') + (nm > 1 ? '(ネタ擦り×' + nm + ')' : nm < 1 ? '(擦りすぎ×' + nm + ')' : '') + (crit ? '(会心!)' : '') + (t.hp <= 0 ? ' 撃破!' : ''));
+        pop(t, '-' + num(dealt), crit ? 'crit' : '');
+        msg(names + ' に <b class="num">' + num(dmg) + '</b> ダメージ' + (tm > 1 ? '(有利!)' : tm < 1 ? '(不利)' : '') + (mult !== 1 ? '(列×' + mult + ')' : '') + (nm > 1 ? '(ネタ擦り×' + nm + ')' : nm < 1 ? '(擦りすぎ×' + nm + ')' : '') + (crit ? '(会心!)' : '') + (t.hp <= 0 ? ' 撃破!' : '') + sharedNote());
         again = oneMore(a, t);
       }
       paintBuffs();
       if (again) return playClip(a.d.meme.more, nextActor);
+      var mate = !burned && !parried && t.hp > 0 ? partnerOf(a) : null;
+      if (mate && atkNow(mate) > 0) return later(function () { collabFollow(mate, t); }, 450);
       later(nextActor, parried || burned ? 900 : 600);
     };
+    strike(a, t, hit);
+  }
+  function collabFollow(m, t) {   // 相方の追撃。パリイはされない
+    setActive(m);
+    var dmg = Math.max(1, Math.round(dmgOf(m, t) * COLLAB_FOLLOW * (0.85 + Math.random() * 0.3)));
+    strike(m, t, function () {
+      var taken = hurt(t, dmg);
+      sfx(t.hp <= 0 ? 'ko' : 'hit');
+      pop(t, '-' + num(taken), '');
+      msg('<b style="color:' + m.d.color + '">' + esc(m.d.name) + '</b> も共演! <b style="color:' + t.d.color + '">' + esc(t.d.name) + '</b> に <b class="num">' + num(dmg) + '</b> ダメージ' + (t.hp <= 0 ? ' 撃破!' : '') + sharedNote());
+      paintBuffs();
+      later(nextActor, 700);
+    });
+  }
+  function strike(a, t, hit) {   // カードが動いて、当たった瞬間に hit を呼ぶ
     if (RM || !a.el.animate) return hit();
     var r1 = a.el.getBoundingClientRect(), r2 = t.el.getBoundingClientRect();
     if (game.phase === 'r') return shoot(a, t, r1, r2, hit);
@@ -1141,6 +1204,7 @@
             return '<button type="button" class="cb-item" data-item="' + k + '" aria-pressed="false"><span class="cb-item-n">' + ITEMS[k].name + '</span><span class="cb-item-p num">' + ITEMS[k].price + '</span><span class="cb-item-d">' + ITEMS[k].desc + '</span></button>';
           }).join('') +
           '<div class="cb-item cb-parao"><span class="cb-item-n">パラオパワー</span><span class="cb-item-p num cb-parao-v"></span><span class="cb-item-d cb-parao-d"></span></div></div>' +
+          '<div class="cb-collab-pick" hidden></div>' +
           '<div class="cb-bact"><button type="button" class="g-btn g-confirm cb-go">このデッキで戦う</button><button type="button" class="g-btn g-x cb-run-go">連戦に挑む</button><button type="button" class="g-btn g-x cb-back">カードを選び直す</button></div>' +
           '<p class="cb-note cb-run-note"></p>' +
         '</div>' +
@@ -1202,6 +1266,7 @@
     deck = loadDeck();
     items = loadItems(deck);
     aiKey = loadAI();
+    collabPick = loadCollab();
     host.innerHTML = ''; host.appendChild(root);
     showBuild();
   }
