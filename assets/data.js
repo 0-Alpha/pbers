@@ -11,6 +11,11 @@ window.PBERS_DATA = [
     "color": "#9b51e0",
     "genre": "ポーランドボーラー",
     "slug": "フヒフム",
+    "backup": {
+      "name": "フヒフム　予備チャンネル",
+      "subs": 15500,
+      "avatar": "https://yt3.googleusercontent.com/9zcjEtofSe0RmMzVatOOvs-2GJmXGOOH7Esag3EOvP1uipcKcyN3r0gXd2_8GWWblC_o28XfPQ=s900-c-k-c0x00ffffff-no-rj"
+    },
     "vShort": 249364604,
     "vLong": 137335523,
     "nShort": 244,

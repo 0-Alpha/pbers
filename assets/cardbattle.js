@@ -7,11 +7,12 @@
    余った予算で作戦(無断転載・抗無断転載・ネタ擦り・ブラックジョーク)を買える。それでも残った分はパラオパワーになり、バトル中のHPと攻撃を上げる(上限あり)。
    毎ラウンド、その戦いの手段を持つカードが1回ずつ攻撃する。自陣カードの番は攻撃先を選ぶ。
    相手は指定もできる(足りない枠は自動で埋める)。連戦は負けるまで続き、HPは持ち越しで、勝つたびに敵の予算が増える。
-   同一人物のカード(d.twin)はデッキに片方だけ入り、倒れると同じ列にもう片方が現れる。
+   同一人物のカード(d.twin)はデッキに片方だけ入り、倒れると同じ列にもう片方が現れる。予備チャンネル(d.backup)も倒れると現れる。
    敵の狙い方(AI)は対戦前に選べて、連戦では1戦ごとにランダムで決まる。 */
 (function () {
   var BUDGET = 280;      // デッキの合計コスト上限
   var TOP_COST = 234;    // いちばん強いカードのコスト(これを基準に全カードのコストを決める)
+  var COST_KNEE = 150, COST_OVER = 0.5;   // コストがこれを超える分は半額。1枚で予算の大半を使うと残り4枚が弱くなりすぎて、1位のカードがデッキでは最弱になる
   var DECK = 5;
   var RANGED_DIV = 5, MELEE_DIV = 1.25;   // ダメージ = 攻撃 ÷ これ × (1 - 軽減率)。横は縦より再生が伸びにくいので、横の1再生を縦の4再生分に数える
   var PHASES = { r: { label: '遠戦', src: '縦動画' }, m: { label: '白兵戦', src: '横動画' } };
@@ -120,11 +121,22 @@
     });
     var max = list.reduce(function (a, c) { return Math.max(a, c.power); }, 1);
     var bySlug = {};
-    list.forEach(function (c) { c.cost = Math.max(1, Math.round(c.power / max * TOP_COST) + Math.round(c.aura * AURA_COST)); bySlug[c.d.slug] = c; });
+    list.forEach(function (c) {
+      c.cost = Math.max(1, Math.round(c.power / max * TOP_COST) + Math.round(c.aura * AURA_COST));
+      if (c.cost > COST_KNEE) c.cost = COST_KNEE + Math.round((c.cost - COST_KNEE) * COST_OVER);
+      bySlug[c.d.slug] = c;
+    });
     list.forEach(function (c) { c.twin = bySlug[c.d.twin] || null; c.own = c.cost; });
-    list.forEach(function (c) { if (c.twin) c.cost = c.own + Math.round(c.twin.own * TWIN_RATE); });
+    list.forEach(function (c) { if (c.twin) c.cost = c.own + Math.round(c.twin.own * TWIN_RATE); c.spare = c.d.backup ? spareOf(c) : null; });
     return list;
   }
+  /* 予備チャンネルは公開動画が0本なので、HPだけ実数で、攻撃は本人と同じにする(本人の動画を非公開で投稿済み)。カードとしては選べず、コストも増えない */
+  function spareOf(c) {
+    var b = c.d.backup;
+    return { d: { name: b.name, avatar: b.avatar, subs: b.subs, slug: c.d.slug + '#backup', color: c.d.color, grad: c.d.grad }, hp: b.subs, atkM: c.atkM, atkR: c.atkR, spdM: c.spdM, spdR: c.spdR, spd: c.spd,
+      def: c.def, red: c.red, g: null, par: 0, type: c.type, p30: c.p30, aura: c.aura, cost: c.cost, twin: null, spare: null };
+  }
+  function summonOf(c) { return c.twin || c.spare; }
   function minCost() { return cards.reduce(function (a, c) { return Math.min(a, c.cost); }, Infinity); }
   function clash(list, c) { return list.indexOf(c) >= 0 || (!!c.twin && list.indexOf(c.twin) >= 0); }   // 同じカードと同一人物は重ねない
   function canAdd(c) {
@@ -216,9 +228,9 @@
     return costSum(out) <= BUDGET && out.length <= DECK ? out : [];
   }
 
-  function twinHelp() {   // 同一人物のカードがある版(日本版)だけ説明を出す
-    var c = cards.filter(function (x) { return x.twin; })[0];
-    return !c ? '' : '<dt>同一人物</dt><dd>' + esc(c.d.name) + 'と' + esc(c.twin.d.name) + 'は同じ人なので、デッキには片方だけ入る。倒れると同じ列にもう片方を召喚し、次のラウンドから動く。コストは自分 + もう片方の半分。</dd>';
+  function twinHelp() {   // 同一人物や予備チャンネルのカードがある版(日本版)だけ説明を出す
+    var c = cards.filter(function (x) { return x.twin; })[0], s = cards.filter(function (x) { return x.spare; })[0];
+    return (!s ? '' : '<dt>予備チャンネル</dt><dd>' + esc(s.d.name) + 'が倒れると、同じ列に' + esc(s.spare.d.name) + 'を召喚する。公開動画は0本だが、動画を非公開で投稿済みなので、HPは登録者の実数、攻撃は本人と同じ。コストは増えない。</dd>') + (!c ? '' : '<dt>同一人物</dt><dd>' + esc(c.d.name) + 'と' + esc(c.twin.d.name) + 'は同じ人なので、デッキには片方だけ入る。倒れると同じ列にもう片方を召喚し、次のラウンドから動く。コストは自分 + もう片方の半分。</dd>');
   }
   function growthText(g) { return g == null ? '—' : (g > 0 ? '+' : '') + g + '%'; }
   function parText(c) { return Math.round(c.par * 100) + '%'; }
@@ -275,7 +287,7 @@
     if (sort === 'g') x.push('伸び ' + growthText(c.g));
     if (c.par) x.push('パリイ ' + parText(c));
     if (c.aura) x.push('拡散 +' + auraText(c) + (sort === 'aura' ? ' (30日' + c.p30 + '投稿)' : ''));
-    if (c.twin) x.push('倒れると ' + esc(c.twin.d.name) + ' を召喚');
+    if (summonOf(c)) x.push('倒れると ' + esc(summonOf(c).d.name) + ' を召喚');
     return x.length ? '<span class="cb-li-x num">' + x.map(function (t) { return '<span>' + t + '</span>'; }).join('') + '</span>' : '';
   }
   function rowHTML(c, i, sort) {
@@ -413,7 +425,7 @@
     return '<button type="button" class="cb-card cb-' + rarOf(c.d) + (boosted ? ' cb-boosted' : '') + '" style="--c:' + c.d.color + '" disabled' +
       (boosted ? ' title="パラオパワー' + boostText(c.boost) + '(実数 HP ' + num(c.t.hp) + ' / 白 ' + num(c.t.atkM) + ' / 遠 ' + num(c.t.atkR) + ')"' : '') + '>' +
       typeChip(c, 'cb-type') +
-      (c.t.twin && !c.summoned ? '<span class="cb-twin" title="倒れると ' + esc(c.t.twin.d.name) + ' を召喚"><img src="' + av(c.t.twin.d, 96) + '" alt=""></span>' : '') +
+      (summonOf(c.t) && !c.summoned ? '<span class="cb-twin" title="倒れると ' + esc(summonOf(c.t).d.name) + ' を召喚"><img src="' + av(summonOf(c.t).d, 96) + '" alt=""></span>' : '') +
       '<span class="cb-art" style="background:' + fill(c.d) + '"><img src="' + av(c.d, 96) + '" alt=""></span>' +
       '<span class="cb-mult num"></span>' +
       '<span class="cb-name">' + esc(c.d.name) + '</span>' +
@@ -429,7 +441,7 @@
     c.el.classList.toggle('low', pct <= 30);
     c.el.querySelector('.cb-hp-v').textContent = num(c.hp);
     c.el.classList.toggle('cb-dead', c.hp <= 0);
-    c.el.setAttribute('aria-label', c.d.name + ' HP' + Math.max(c.hp, 0) + '/' + c.max + ' 白兵' + c.atkM + ' 遠戦' + c.atkR + ' 防御' + c.def + ' パリイ' + parText(c) + ' 拡散' + auraText(c) + ' タイプ' + TYPES[c.type].label + (c.boost > 1 ? ' パラオパワー' + boostText(c.boost) : '') + (c.t.twin && !c.summoned ? ' 倒れると' + c.t.twin.d.name + 'を召喚' : ''));
+    c.el.setAttribute('aria-label', c.d.name + ' HP' + Math.max(c.hp, 0) + '/' + c.max + ' 白兵' + c.atkM + ' 遠戦' + c.atkR + ' 防御' + c.def + ' パリイ' + parText(c) + ' 拡散' + auraText(c) + ' タイプ' + TYPES[c.type].label + (c.boost > 1 ? ' パラオパワー' + boostText(c.boost) : '') + (summonOf(c.t) && !c.summoned ? ' 倒れると' + summonOf(c.t).d.name + 'を召喚' : ''));
   }
   function msg(html) { $('.cb-msg').innerHTML = html; }
   function later(fn, ms) { var t = token; setTimeout(function () { if (t === token) fn(); }, RM ? Math.min(ms, 150) : ms); }
@@ -549,17 +561,17 @@
   }
   /* 同一人物の召喚: 倒れたカードの列にもう片方が出る。攻撃の順番には入らず、次のラウンドから動く */
   function fallenTwin() {
-    return game.ally.concat(game.enemy).filter(function (c) { return c.hp <= 0 && c.t.twin && !c.summoned; })[0];
+    return game.ally.concat(game.enemy).filter(function (c) { return c.hp <= 0 && summonOf(c.t) && !c.summoned; })[0];
   }
   function summon(u, done) {
-    var w = unit(u.t.twin, u.side, u.pos, u.boost), row = game[u.side];
+    var w = unit(summonOf(u.t), u.side, u.pos, u.boost), row = game[u.side];
     w.summoned = true;
     if (u.side === 'ally') {
       game.fallen.push(u);
       if (run && run.hp && run.hp[w.d.slug] != null) w.hp = run.hp[w.d.slug];   // 連戦で前に出ていたならHPを持ち越す
     }
     row[row.indexOf(u)] = w;
-    msg('<b style="color:' + u.d.color + '">' + esc(u.d.name) + '</b> が倒れた! <b style="color:' + w.d.color + '">' + esc(w.d.name) + '</b> を召喚!');
+    msg('<b style="color:' + u.d.color + '">' + esc(u.d.name) + '</b> が倒れた! <b style="color:' + w.d.color + '">' + esc(w.d.name) + '</b> を召喚!' + (u.t.spare ? ' 非公開の動画を一斉公開!' : ''));
     var show = !RM && !!u.el.animate, SPIN_OUT = 380, SPIN_IN = 640;
     summonBanner(w, show);
     if (show) {   // 同じ人の表と裏: 倒れたカードが加速しながら回り、真横を向いた瞬間に別の顔へ替わる
@@ -841,6 +853,7 @@
       '<div class="game-head"><h3 class="g-h3">⚔️ カードバトル <span class="fc-en">PBers Card Battle</span></h3>' +
       '<div class="fc-lead">5枚のデッキを組んで、相手を全滅させたら勝ち。</div>' +
       '<details class="cb-help"><summary>ルールを見る</summary><dl>' +
+        '<dt>コスト</dt><dd>強さに合わせて決まる。' + COST_KNEE + 'を超える分は半額。</dd>' +
         '<dt>能力</dt><dd>HP=登録者 / 白兵=横動画1本あたり再生 / 遠戦=縦動画1本あたり再生 / 防御=Xフォロワー / パリイ=過去21日の登録者伸び率 / 拡散=Xの30日投稿数</dd>' +
         '<dt>戦い方</dt><dd>奇数ラウンドは遠戦、偶数ラウンドは白兵戦。その動画が無いカードは攻撃できず、本数が多いカードから動く。遠戦は列に関係なく届き、白兵戦は向かい×1.5、1列隣×1、2列×0.75、3列以上×0.5。</dd>' +
         '<dt>タイプ</dt><dd><span class="cb-li-t cb-t-s">短</span>ショート → <span class="cb-li-t cb-t-m">両</span>両刀 → <span class="cb-li-t cb-t-l">長</span>長尺 → <span class="cb-li-t cb-t-s">短</span>ショート の順に有利(×' + TYPE_ADV + '、逆は×' + TYPE_DIS + ')。再生数のショート割合が95%以上でショート、50%未満で長尺、その間が両刀。</dd>' +

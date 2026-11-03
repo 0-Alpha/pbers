@@ -70,6 +70,13 @@ GENRES = [
 ]
 # 同一人物の別チャンネル。カードバトルで片方が倒れるともう片方が現れる
 SAME_PERSON = [("UCXMh0KjIEU40gXaaR0vtdVQ", "UCnZNY63Txhu4ot3l2lbicOA")]   # あすえいボール / ばかわたし
+# 本人の予備チャンネル。channels.txt には入れず(公開動画0本)、カードバトルの召喚にだけ使う。数値は 2026-11-03 時点
+BACKUP = {
+    "UCkjdTrE4hiJ4qNOV7NPGSSw": {   # Æž!フヒフム
+        "name": "フヒフム　予備チャンネル", "subs": 15500,
+        "avatar": "https://yt3.googleusercontent.com/9zcjEtofSe0RmMzVatOOvs-2GJmXGOOH7Esag3EOvP1uipcKcyN3r0gXd2_8GWWblC_o28XfPQ=s900-c-k-c0x00ffffff-no-rj",
+    },
+}
 
 def genre_of(cid):
     return GENRE.get(cid, DEFAULT_GENRE)
@@ -323,6 +330,7 @@ def build_edition():
         "avatar": d["avatar"], "color": colors[d["id"]], "genre": genre_of(d["id"]),
         "slug": d["_slug"], **({"grad": GRAD[d["id"]]} if d["id"] in GRAD else {}),
         **({"twin": twins[d["id"]]} if d["id"] in twins else {}),
+        **({"backup": BACKUP[d["id"]]} if d["id"] in BACKUP else {}),
         "vShort": _tv(d["id"], "short"), "vLong": _tv(d["id"], "long"),
         "nShort": _tv(d["id"], "short", "n"), "nLong": _tv(d["id"], "long", "n"),
         "g21": growth_rate(_series.get(d["id"], {})),
@@ -495,7 +503,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251008">
+<link rel="stylesheet" href="/assets/style.css?v=251010">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -519,7 +527,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=251008"></script>
+<script src="/assets/channel.js?v=251010"></script>
 </body>
 </html>
 '''
@@ -995,7 +1003,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251008">
+<link rel="stylesheet" href="/assets/style.css?v=251010">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>

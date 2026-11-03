@@ -789,7 +789,7 @@ button.cb-slot{cursor:pointer}
   .cb-help dl{grid-template-columns:minmax(0,1fr);gap:2px 0}
   .cb-help dd{margin-bottom:8px}
   .cb-stamp{padding:2px 10px;font-size:22px;border-width:3px}
-  .cb-summon{padding:7px 10px;font-size:22px;border-block-width:2px}
+  .cb-summon{padding:7px 10px;font-size:19px;border-block-width:2px}
   .cb-ghost{width:42px;height:42px}
   .cb-more-btn{font-size:10.5px}
   .cb-pop{font-size:18px}
