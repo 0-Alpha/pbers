@@ -107,9 +107,35 @@ def build(channels_file, data_file):
         json.dump(out, f, ensure_ascii=False, indent=2)
     sys.stderr.write("wrote %s (%d channels)\n" % (data_file, len(out)))
 
+def build_summons():
+    """カードバトルの召喚用サブチャンネルを取得する。ページも履歴も作らない。取れなかった分は前回の値を残す。"""
+    path, data_path = os.path.join(BASE, "summon_channels.txt"), os.path.join(BASE, "summon_data.json")
+    if not os.path.exists(path):
+        return
+    prev = {}
+    if os.path.exists(data_path):
+        prev = {d["id"]: d for d in json.load(open(data_path, encoding="utf-8"))}
+    ids = []
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            parts = line.split("#", 1)[0].split()
+            if len(parts) >= 2 and parts[1] not in ids and parts[1] not in OPT_OUT:
+                ids.append(parts[1])
+    out = []
+    for cid in ids:
+        d = fetch_channel("https://www.youtube.com/channel/" + cid)
+        if not d.get("subs") and cid in prev:
+            d = prev[cid]
+        out.append(d)
+        time.sleep(0.5)
+    with open(data_path, "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, indent=2)
+    sys.stderr.write("wrote summon_data.json (%d channels)\n" % len(out))
+
 def main():
     for channels_file, data_file in EDITIONS:
         build(channels_file, data_file)
+    build_summons()
 
 if __name__ == "__main__":
     main()

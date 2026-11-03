@@ -70,13 +70,6 @@ GENRES = [
 ]
 # 同一人物の別チャンネル。カードバトルで片方が倒れるともう片方が現れる
 SAME_PERSON = [("UCXMh0KjIEU40gXaaR0vtdVQ", "UCnZNY63Txhu4ot3l2lbicOA")]   # あすえいボール / ばかわたし
-# 本人の予備チャンネル。channels.txt には入れず(公開動画0本)、カードバトルの召喚にだけ使う。数値は 2026-11-03 時点
-BACKUP = {
-    "UCkjdTrE4hiJ4qNOV7NPGSSw": {   # Æž!フヒフム
-        "name": "フヒフム　予備チャンネル", "subs": 15500,
-        "avatar": "https://yt3.googleusercontent.com/9zcjEtofSe0RmMzVatOOvs-2GJmXGOOH7Esag3EOvP1uipcKcyN3r0gXd2_8GWWblC_o28XfPQ=s900-c-k-c0x00ffffff-no-rj",
-    },
-}
 
 def genre_of(cid):
     return GENRE.get(cid, DEFAULT_GENRE)
@@ -305,6 +298,7 @@ def build_edition():
     assign_slugs(order)   # d["_slug"] を付与
     bt_map = load_bytype()   # 横/ショート別の再生数(bytype.json)。ダッシュボードの再生数内訳に使う
     x_map = load_x()         # X(Twitter)アカウント(x_accounts.txt + x_data.json)
+    summons = load_summons(bt_map)   # カードバトルの召喚用サブチャンネル
 
     colors, pi = {}, 0
     for d in order:
@@ -330,7 +324,7 @@ def build_edition():
         "avatar": d["avatar"], "color": colors[d["id"]], "genre": genre_of(d["id"]),
         "slug": d["_slug"], **({"grad": GRAD[d["id"]]} if d["id"] in GRAD else {}),
         **({"twin": twins[d["id"]]} if d["id"] in twins else {}),
-        **({"backup": BACKUP[d["id"]]} if d["id"] in BACKUP else {}),
+        **({"backup": summons[d["id"]]} if d["id"] in summons else {}),
         "vShort": _tv(d["id"], "short"), "vLong": _tv(d["id"], "long"),
         "nShort": _tv(d["id"], "short", "n"), "nLong": _tv(d["id"], "long", "n"),
         "g21": growth_rate(_series.get(d["id"], {})),
@@ -503,7 +497,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251010">
+<link rel="stylesheet" href="/assets/style.css?v=251011">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -527,7 +521,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=251010"></script>
+<script src="/assets/channel.js?v=251011"></script>
 </body>
 </html>
 '''
@@ -668,6 +662,28 @@ def load_x():
             out[parts[1]] = {"handle": st.get("handle") or parts[0].lstrip("@"),
                              "followers": st.get("followers"), "posts30": st.get("posts30"),
                              "medViews": st.get("med_views"), "eng": st.get("eng")}
+    return out
+
+def load_summons(bt_map):
+    """summon_channels.txt と fetch.py の summon_data.json から {本人のID: [サブチャンネル...]} を作る。
+    カードバトルの召喚だけに使い、チャンネルページやランキングには載せない。"""
+    acc_path, data_path = os.path.join(BASE, "summon_channels.txt"), os.path.join(BASE, "summon_data.json")
+    if not os.path.exists(acc_path) or not os.path.exists(data_path):
+        return {}
+    stats = {d["id"]: d for d in json.load(open(data_path, encoding="utf-8"))}
+    out = {}
+    with open(acc_path, encoding="utf-8") as f:
+        for line in f:
+            parts = line.split("#", 1)[0].split()
+            d = stats.get(parts[1]) if len(parts) >= 2 else None
+            if not d or not d.get("subs"):
+                continue
+            bt = bt_map.get(parts[1]) or {}
+            out.setdefault(parts[0], []).append({
+                "name": d["name"], "subs": d["subs"], "views": d.get("views"), "videos": d.get("videos"), "avatar": d["avatar"],
+                "vShort": (bt.get("short") or {}).get("views"), "vLong": (bt.get("long") or {}).get("views"),
+                "nShort": (bt.get("short") or {}).get("n"), "nLong": (bt.get("long") or {}).get("n"),
+            })
     return out
 
 def load_bytype():
@@ -1003,7 +1019,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251010">
+<link rel="stylesheet" href="/assets/style.css?v=251011">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>

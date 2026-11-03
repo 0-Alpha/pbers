@@ -178,6 +178,13 @@ def channels_from_txt():
             line = line.strip()
             if "/channel/" in line:
                 out.append(line.split("/channel/")[-1])
+    summon = os.path.join(BASE, "summon_channels.txt")   # 召喚用のサブチャンネルも内訳を取る
+    if os.path.exists(summon):
+        with open(summon, encoding="utf-8") as f:
+            for line in f:
+                parts = line.split("#", 1)[0].split()
+                if len(parts) >= 2 and parts[1] not in out:
+                    out.append(parts[1])
     return out
 
 def main():

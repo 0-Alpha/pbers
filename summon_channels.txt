@@ -1,0 +1,6 @@
+# カードバトルの召喚だけに使うサブチャンネル。fetch.py が毎日 summon_data.json に取得する。
+# channels.txt とは別なので、チャンネルページ・ランキング・履歴には載らない。
+# 書式: 本人のチャンネルID  サブのチャンネルID。同じ本人の行は上から順に召喚される
+
+UCkjdTrE4hiJ4qNOV7NPGSSw  UCQi4Yo1MdGxgu7JTBcaVDnA  # Æž!フヒフム → フヒフム 予備チャンネル
+UCkjdTrE4hiJ4qNOV7NPGSSw  UCdqGlrNYwi9SaKu3nxxVHtg  # Æž!フヒフム → コミュストリア

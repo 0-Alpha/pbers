@@ -7,7 +7,7 @@
    余った予算で作戦(無断転載・抗無断転載・ネタ擦り・ブラックジョーク)を買える。それでも残った分はパラオパワーになり、バトル中のHPと攻撃を上げる(上限あり)。
    毎ラウンド、その戦いの手段を持つカードが1回ずつ攻撃する。自陣カードの番は攻撃先を選ぶ。
    相手は指定もできる(足りない枠は自動で埋める)。連戦は負けるまで続き、HPは持ち越しで、勝つたびに敵の予算が増える。
-   同一人物のカード(d.twin)はデッキに片方だけ入り、倒れると同じ列にもう片方が現れる。予備チャンネル(d.backup)も倒れると現れる。
+   同一人物のカード(d.twin)はデッキに片方だけ入り、倒れると同じ列にもう片方が現れる。サブチャンネル(d.backup)は倒れると順に現れて、すぐ攻撃する。
    敵の狙い方(AI)は対戦前に選べて、連戦では1戦ごとにランダムで決まる。 */
 (function () {
   var BUDGET = 280;      // デッキの合計コスト上限
@@ -127,16 +127,27 @@
       bySlug[c.d.slug] = c;
     });
     list.forEach(function (c) { c.twin = bySlug[c.d.twin] || null; c.own = c.cost; });
-    list.forEach(function (c) { if (c.twin) c.cost = c.own + Math.round(c.twin.own * TWIN_RATE); c.spare = c.d.backup ? spareOf(c) : null; });
+    list.forEach(function (c) { if (c.twin) c.cost = c.own + Math.round(c.twin.own * TWIN_RATE); c.spare = spareChain(c); });
     return list;
   }
-  /* 予備チャンネルは公開動画が0本なので、HPだけ実数で、攻撃は本人と同じにする(本人の動画を非公開で投稿済み)。カードとしては選べず、コストも増えない */
-  function spareOf(c) {
-    var b = c.d.backup;
-    return { d: { name: b.name, avatar: b.avatar, subs: b.subs, slug: c.d.slug + '#backup', color: c.d.color, grad: c.d.grad }, hp: b.subs, atkM: c.atkM, atkR: c.atkR, spdM: c.spdM, spdR: c.spdR, spd: c.spd,
-      def: c.def, red: c.red, g: null, par: 0, type: c.type, p30: c.p30, aura: c.aura, cost: c.cost, twin: null, spare: null };
+  /* サブチャンネルはカードとしては選べず、コストも増えない。Xは本人と同じ。
+     公開動画が0本のチャンネルは、攻撃を本人と同じにする(予備チャンネルは本人の動画を非公開で投稿済み) */
+  function spareOf(c, b, i) {
+    var real = b.views && b.videos ? splitAtk(b) : null, sp = real || c;
+    return { d: { name: b.name, avatar: b.avatar, subs: b.subs, slug: c.d.slug + '#sub' + i, color: c.d.color, grad: c.d.grad }, hp: b.subs, atkM: sp.atkM, atkR: sp.atkR, spdM: sp.spdM, spdR: sp.spdR, spd: real ? b.videos : c.spd,
+      def: c.def, red: c.red, g: null, par: 0, type: real ? typeOf(b) : c.type, p30: c.p30, aura: c.aura, cost: c.cost, twin: null, spare: null, borrowed: !real };
   }
-  function summonOf(c) { return c.twin || c.spare; }
+  function spareChain(c) {   // 先頭が最初に出るカード。倒れると .spare が続く
+    var next = null, list = c.d.backup || [];
+    for (var i = list.length - 1; i >= 0; i--) { var s = spareOf(c, list[i], i); s.spare = next; next = s; }
+    return next;
+  }
+  function chainOf(c) {   // このカードが倒れると出てくるカードを順に
+    var out = [];
+    for (var s = c.twin || c.spare; s; s = s.spare) out.push(s);
+    return out;
+  }
+  function nextOf(u) { return u.t.spare || (!u.summoned && u.t.twin) || null; }   // 同一人物は1回だけ入れ替わる
   function minCost() { return cards.reduce(function (a, c) { return Math.min(a, c.cost); }, Infinity); }
   function clash(list, c) { return list.indexOf(c) >= 0 || (!!c.twin && list.indexOf(c.twin) >= 0); }   // 同じカードと同一人物は重ねない
   function canAdd(c) {
@@ -228,9 +239,9 @@
     return costSum(out) <= BUDGET && out.length <= DECK ? out : [];
   }
 
-  function twinHelp() {   // 同一人物や予備チャンネルのカードがある版(日本版)だけ説明を出す
+  function twinHelp() {   // 同一人物やサブチャンネルのカードがある版(日本版)だけ説明を出す
     var c = cards.filter(function (x) { return x.twin; })[0], s = cards.filter(function (x) { return x.spare; })[0];
-    return (!s ? '' : '<dt>予備チャンネル</dt><dd>' + esc(s.d.name) + 'が倒れると、同じ列に' + esc(s.spare.d.name) + 'を召喚する。公開動画は0本だが、動画を非公開で投稿済みなので、HPは登録者の実数、攻撃は本人と同じ。コストは増えない。</dd>') + (!c ? '' : '<dt>同一人物</dt><dd>' + esc(c.d.name) + 'と' + esc(c.twin.d.name) + 'は同じ人なので、デッキには片方だけ入る。倒れると同じ列にもう片方を召喚し、次のラウンドから動く。コストは自分 + もう片方の半分。</dd>');
+    return (!s ? '' : '<dt>サブチャンネル</dt><dd>' + esc(s.d.name) + 'が倒れると、同じ列に' + chainOf(s).map(function (x) { return esc(x.d.name); }).join(' → ') + 'の順に召喚する。召喚されたカードは順番に関係なくすぐ攻撃する。HPは登録者の実数で、攻撃も動画の実数。ただし公開動画が0本のチャンネルは、動画を非公開で投稿済みなので攻撃が本人と同じ。コストは増えない。</dd>') + (!c ? '' : '<dt>同一人物</dt><dd>' + esc(c.d.name) + 'と' + esc(c.twin.d.name) + 'は同じ人なので、デッキには片方だけ入る。倒れると同じ列にもう片方を召喚し、次のラウンドから動く。コストは自分 + もう片方の半分。</dd>');
   }
   function growthText(g) { return g == null ? '—' : (g > 0 ? '+' : '') + g + '%'; }
   function parText(c) { return Math.round(c.par * 100) + '%'; }
@@ -287,7 +298,7 @@
     if (sort === 'g') x.push('伸び ' + growthText(c.g));
     if (c.par) x.push('パリイ ' + parText(c));
     if (c.aura) x.push('拡散 +' + auraText(c) + (sort === 'aura' ? ' (30日' + c.p30 + '投稿)' : ''));
-    if (summonOf(c)) x.push('倒れると ' + esc(summonOf(c).d.name) + ' を召喚');
+    if (chainOf(c).length) x.push('倒れると ' + chainOf(c).map(function (s) { return esc(s.d.name); }).join(' → ') + ' を召喚');
     return x.length ? '<span class="cb-li-x num">' + x.map(function (t) { return '<span>' + t + '</span>'; }).join('') + '</span>' : '';
   }
   function rowHTML(c, i, sort) {
@@ -425,7 +436,7 @@
     return '<button type="button" class="cb-card cb-' + rarOf(c.d) + (boosted ? ' cb-boosted' : '') + '" style="--c:' + c.d.color + '" disabled' +
       (boosted ? ' title="パラオパワー' + boostText(c.boost) + '(実数 HP ' + num(c.t.hp) + ' / 白 ' + num(c.t.atkM) + ' / 遠 ' + num(c.t.atkR) + ')"' : '') + '>' +
       typeChip(c, 'cb-type') +
-      (summonOf(c.t) && !c.summoned ? '<span class="cb-twin" title="倒れると ' + esc(summonOf(c.t).d.name) + ' を召喚"><img src="' + av(summonOf(c.t).d, 96) + '" alt=""></span>' : '') +
+      (nextOf(c) ? '<span class="cb-twin" title="倒れると ' + esc(nextOf(c).d.name) + ' を召喚"><img src="' + av(nextOf(c).d, 96) + '" alt=""></span>' : '') +
       '<span class="cb-art" style="background:' + fill(c.d) + '"><img src="' + av(c.d, 96) + '" alt=""></span>' +
       '<span class="cb-mult num"></span>' +
       '<span class="cb-name">' + esc(c.d.name) + '</span>' +
@@ -441,7 +452,7 @@
     c.el.classList.toggle('low', pct <= 30);
     c.el.querySelector('.cb-hp-v').textContent = num(c.hp);
     c.el.classList.toggle('cb-dead', c.hp <= 0);
-    c.el.setAttribute('aria-label', c.d.name + ' HP' + Math.max(c.hp, 0) + '/' + c.max + ' 白兵' + c.atkM + ' 遠戦' + c.atkR + ' 防御' + c.def + ' パリイ' + parText(c) + ' 拡散' + auraText(c) + ' タイプ' + TYPES[c.type].label + (c.boost > 1 ? ' パラオパワー' + boostText(c.boost) : '') + (summonOf(c.t) && !c.summoned ? ' 倒れると' + summonOf(c.t).d.name + 'を召喚' : ''));
+    c.el.setAttribute('aria-label', c.d.name + ' HP' + Math.max(c.hp, 0) + '/' + c.max + ' 白兵' + c.atkM + ' 遠戦' + c.atkR + ' 防御' + c.def + ' パリイ' + parText(c) + ' 拡散' + auraText(c) + ' タイプ' + TYPES[c.type].label + (c.boost > 1 ? ' パラオパワー' + boostText(c.boost) : '') + (nextOf(c) ? ' 倒れると' + nextOf(c).d.name + 'を召喚' : ''));
   }
   function msg(html) { $('.cb-msg').innerHTML = html; }
   function later(fn, ms) { var t = token; setTimeout(function () { if (t === token) fn(); }, RM ? Math.min(ms, 150) : ms); }
@@ -559,19 +570,19 @@
     if (RM || !t.el.animate) return land();
     repostShow(side, foeSide, src, aim, t, back, land);
   }
-  /* 同一人物の召喚: 倒れたカードの列にもう片方が出る。攻撃の順番には入らず、次のラウンドから動く */
+  /* 召喚: 倒れたカードの列に次のカードが出る。同一人物は次のラウンドから動き、サブチャンネルは順番に関係なくすぐ攻撃する */
   function fallenTwin() {
-    return game.ally.concat(game.enemy).filter(function (c) { return c.hp <= 0 && summonOf(c.t) && !c.summoned; })[0];
+    return game.ally.concat(game.enemy).filter(function (c) { return c.hp <= 0 && nextOf(c); })[0];
   }
   function summon(u, done) {
-    var w = unit(summonOf(u.t), u.side, u.pos, u.boost), row = game[u.side];
+    var w = unit(nextOf(u), u.side, u.pos, u.boost), row = game[u.side];
     w.summoned = true;
     if (u.side === 'ally') {
       game.fallen.push(u);
       if (run && run.hp && run.hp[w.d.slug] != null) w.hp = run.hp[w.d.slug];   // 連戦で前に出ていたならHPを持ち越す
     }
     row[row.indexOf(u)] = w;
-    msg('<b style="color:' + u.d.color + '">' + esc(u.d.name) + '</b> が倒れた! <b style="color:' + w.d.color + '">' + esc(w.d.name) + '</b> を召喚!' + (u.t.spare ? ' 非公開の動画を一斉公開!' : ''));
+    msg('<b style="color:' + u.d.color + '">' + esc(u.d.name) + '</b> が倒れた! <b style="color:' + w.d.color + '">' + esc(w.d.name) + '</b> を召喚!' + (w.t.borrowed ? ' 非公開の動画を一斉公開!' : ''));
     var show = !RM && !!u.el.animate, SPIN_OUT = 380, SPIN_IN = 640;
     summonBanner(w, show);
     if (show) {   // 同じ人の表と裏: 倒れたカードが加速しながら回り、真横を向いた瞬間に別の顔へ替わる
@@ -589,6 +600,7 @@
       u.el.parentNode.replaceChild(el, u.el);
       bindCard(w, el);
       el.classList.toggle('cb-idle', atkNow(w) <= 0);
+      if (u.t.spare && atkNow(w) > 0) game.queue.unshift(w);
       paintBuffs(); paintOrder();
       if (show) {
         el.style.zIndex = 3;
