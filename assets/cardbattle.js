@@ -43,7 +43,7 @@
   var RUN_BASE = 100, RUN_STEP = 20;     // 連戦の敵の予算 = RUN_BASE + RUN_STEP × 連勝数
   var RUN_HEAL = 0.2, RUN_REVIVE = 0.15; // 勝った後、生き残りは最大HPの20%回復、倒れたカードは15%で復活
   var RUN_COIN = 20, RUN_INTEREST = 0.1, RUN_INTEREST_MAX = 5;   // 勝つともらえるコイン。残したコインには利子が付く
-  var RS_HEAL = 0.3, RS_HEAL_COST = 5, RS_SWAP_COST = 10, RS_ITEM_COST = 5;   // ショップの回復量と値段
+  var RS_HEAL = 0.3, RS_HEAL_COST = 5, RS_SWAP_COST = 10, RS_ITEM_COST = 5;   // ショップの回復量と値段。入れ替えは入れるカードのコスト+RS_SWAP_COST
   var SPARE_GROW = 0.2;                  // 予備チャンネルのHPは、毎ラウンド本人の最大HPとの差をこの割合だけ埋める
   var TWIN_RATE = 0.5;                   // 同一人物のカードのコストに、もう片方のコストのこの割合を足す
   var AIS = {                            // 敵の狙い方。弱い順
@@ -650,7 +650,7 @@
       return '<div class="cb-rs-row"><img src="' + av(c.d, 96) + '" alt="" style="border-color:' + c.d.color + '">' +
         '<div class="cb-rs-line"><span class="cb-rs-n">' + esc(c.d.name) + ' <span class="cb-rs-c num">C' + c.cost + '</span></span>' +
         '<span class="cb-hpbar"><i style="transform:scaleX(' + r + ')"></i></span><span class="cb-rs-d num">HP ' + Math.round(r * 100) + '%</span></div>' +
-        '<div class="cb-rs-acts">' + rsBtn('heal', '回復+' + RS_HEAL * 100 + '% <small>' + RS_HEAL_COST + '</small>', r >= 1 || coins < RS_HEAL_COST, i) + rsBtn('swap', '入れ替え <small>' + RS_SWAP_COST + '</small>', coins < RS_SWAP_COST, i) + '</div></div>';
+        '<div class="cb-rs-acts">' + rsBtn('heal', '回復+' + RS_HEAL * 100 + '% <small>' + RS_HEAL_COST + '</small>', r >= 1 || coins < RS_HEAL_COST, i) + rsBtn('swap', '入れ替え <small>コスト+' + RS_SWAP_COST + '</small>', coins < minCost() + RS_SWAP_COST, i) + '</div></div>';
     }).join('');
     $('.cb-rs-items').innerHTML = Object.keys(ITEMS).map(function (k) {
       var on = items.indexOf(k) >= 0;
@@ -664,13 +664,13 @@
     if (run.swap != null) renderRunSwap();
   }
   function renderRunSwap() {
-    var old = deck[run.swap], room = run.budget - runUsed() + old.cost, q = run.q.toLowerCase();
-    $('.cb-rs-swap-t').textContent = old.d.name + ' と入れ替えるカード(予算の残り ' + room + ')';
+    var old = deck[run.swap], q = run.q.toLowerCase();
+    $('.cb-rs-swap-t').textContent = old.d.name + ' と入れ替えるカード(コイン ' + run.coins + '。カードのコスト+' + RS_SWAP_COST + 'かかります)';
     var rows = cards.map(function (c, i) { return { c: c, i: i }; }).filter(function (r) {
       return deck.indexOf(r.c) < 0 && (!r.c.twin || deck.indexOf(r.c.twin) < 0 || r.c.twin === old) && (!q || r.c.d.name.toLowerCase().indexOf(q) >= 0);
     }).sort(function (a, b) { return b.c.cost - a.c.cost; });
     $('.cb-rs-list').innerHTML = rows.length ? rows.map(function (r) { return rowHTML(r.c, r.i, 'cost'); }).join('') : '<div class="fc-empty">見つかりません</div>';
-    [].slice.call($('.cb-rs-list').querySelectorAll('.cb-li')).forEach(function (el) { el.disabled = cards[+el.dataset.i].cost > room; });
+    [].slice.call($('.cb-rs-list').querySelectorAll('.cb-li')).forEach(function (el) { el.disabled = cards[+el.dataset.i].cost + RS_SWAP_COST > run.coins; });
   }
   function setupRunShop() {
     $('.cb-rshop').addEventListener('click', function (e) {
@@ -694,13 +694,15 @@
     $('.cb-rs-list').addEventListener('click', function (e) {
       var el = e.target.closest('.cb-li');
       if (!el || el.disabled || run.swap == null) return;
-      deck[run.swap] = cards[+el.dataset.i];
-      run.coins -= RS_SWAP_COST;
+      var nc = cards[+el.dataset.i];
+      deck[run.swap] = nc;
+      run.coins -= nc.cost + RS_SWAP_COST;
+      run.budget += nc.cost;   // カードのコスト分はコインで払うので予算に足す。外したカードの分は予算に空く
       run.swap = null;
       renderRunShop();
       $('.cb-rshop').scrollIntoView({ block: 'start' });
     });
-    $('.cb-rs-q').addEventListener('input', function (e) { run.q = e.target.value.trim(); renderRunSwap(); });
+    $('.cb-rs-q').addEventListener('input', function (e) { if (run && run.swap != null) { run.q = e.target.value.trim(); renderRunSwap(); } });
     $('.cb-rs-pick').addEventListener('click', collabClick);
     $('.cb-rs-go').addEventListener('click', function () {
       $('.cb-rshop').hidden = true;
@@ -1290,7 +1292,7 @@
         twinHelp() +
         '<dt>敵のAI</dt><dd>対戦前に選べる。' + Object.keys(AIS).map(function (k) { return AIS[k].name + ' = ' + AIS[k].desc; }).join(' / ') + '。連戦では' + Object.keys(AIS).map(function (k) { return AIS[k].name; }).join(' → ') + 'の順に1戦ごとに変わる。</dd>' +
         '<dt>相手を選ぶ</dt><dd>対戦前の画面で、戦いたいチャンネルを1〜5枚指定できる。足りない枠は自動で埋まり、指定した相手は変えるまで続く。</dd>' +
-        '<dt>連戦</dt><dd>負けるまで続く。敵の予算は' + RUN_BASE + 'から勝つたびに+' + RUN_STEP + '。HPは持ち越しで、勝つと生き残りは最大HPの' + RUN_HEAL * 100 + '%回復、倒れたカードは' + RUN_REVIVE * 100 + '%で復活する。勝つと' + RUN_COIN + 'コインもらえて、次の戦いの前に使える。パラオパワーに注ぐ(1コインで予算+1)、回復、カードの入れ替え、作戦の付け外しができ、残したコインには' + RUN_INTEREST * 100 + '%の利子(最大' + RUN_INTEREST_MAX + ')が付く。変更はその連戦の間だけ。</dd>' +
+        '<dt>連戦</dt><dd>負けるまで続く。敵の予算は' + RUN_BASE + 'から勝つたびに+' + RUN_STEP + '。HPは持ち越しで、勝つと生き残りは最大HPの' + RUN_HEAL * 100 + '%回復、倒れたカードは' + RUN_REVIVE * 100 + '%で復活する。勝つと' + RUN_COIN + 'コインもらえて、次の戦いの前に使える。パラオパワーに注ぐ(1コインで予算+1)、回復、カードの入れ替え(入れるカードのコスト+' + RS_SWAP_COST + ')、作戦の付け外しができ、残したコインには' + RUN_INTEREST * 100 + '%の利子(最大' + RUN_INTEREST_MAX + ')が付く。変更はその連戦の間だけ。</dd>' +
         '<dt>データが無いとき</dt><dd>Xが未登録なら防御0・拡散0、伸びていなければパリイ0%。横と縦の内訳が無ければ、全体の平均を遠戦に、その1/4を白兵に使う。</dd>' +
       '</dl></details></div>' +
       '<div class="cb-build">' +
