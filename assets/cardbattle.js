@@ -8,7 +8,7 @@
    毎ラウンド、その戦いの手段を持つカードが1回ずつ攻撃する。自陣カードの番は攻撃先を選ぶ。
    相手は指定もできる(足りない枠は自動で埋める)。連戦は負けるまで続き、HPは持ち越しで、勝つたびに敵の予算が増える。
    同一人物のカード(d.twin)はデッキに片方だけ入り、倒れると同じ列にもう片方が現れる。サブチャンネル(d.backup)は倒れると順に現れて、すぐ攻撃する。田中MID(d.meme)は撃破すると1ターンに1回だけもう一度攻撃でき、本人の動画を埋め込みプレーヤーで少しだけ流す。
-   敵の狙い方(AI)は対戦前に選べて、連戦では1戦ごとにランダムで決まる。 */
+   敵の狙い方(AI)は対戦前に選べて、連戦では弱い順に1戦ごとに変わる。 */
 (function () {
   var BUDGET = 280;      // デッキの合計コスト上限
   var TOP_COST = 234;    // いちばん強いカードのコスト(これを基準に全カードのコストを決める)
@@ -624,6 +624,7 @@
   /* ---- 連戦のショップ。勝つとコインがもらえ、次の戦いの前に使える。1コインで予算が1増える。カードと作戦の変更は連戦の間だけで、デッキの保存は変えない ---- */
   function newRun() { return { wins: 0, hp: null, over: false, coins: 0, budget: BUDGET, swap: null, q: '', base: { deck: deck.slice(), items: items.slice() } }; }
   function restoreRun() { if (run && run.base) { deck = run.base.deck; items = run.base.items; } }
+  function runAI(wins) { var keys = Object.keys(AIS); return keys[wins % keys.length]; }   // 連戦のAIは弱い順に回る
   function hpRatio(c) { var r = run.hp && run.hp[c.d.slug]; return r == null ? 1 : r; }
   function runUsed() { return costSum(deck) + itemSum(items); }
   function showRunShop() {
@@ -640,7 +641,7 @@
   function renderRunShop() {
     var used = runUsed(), room = run.budget - used, coins = run.coins, boost = paraoOf(deck, items, run.budget), capped = boost >= PARAO_CAP;
     $('.cb-rs-coin').textContent = coins;
-    $('.cb-rs-wins').textContent = run.wins + '連勝中';
+    $('.cb-rs-wins').textContent = run.wins + '連勝中・次の敵AI: ' + AIS[runAI(run.wins)].name;
     $('.cb-rs-parao').innerHTML =
       '<div class="cb-rs-line"><span class="cb-rs-n">パラオパワー <b class="num">' + boostText(boost) + '</b></span><span class="cb-rs-d">' + (capped ? '上限の×' + PARAO_CAP + 'です。これ以上注いでも上がりません。' : '1コインで予算+1。') + '今の予算は使用 ' + used + ' / ' + run.budget + '</span></div>' +
       '<div class="cb-rs-acts">' + rsBtn('parao', '+5', capped || coins < 5, 5) + rsBtn('parao', '+20', capped || coins < 20, 20) + rsBtn('parao', '全部', capped || coins < 1, coins) + '</div>';
@@ -721,8 +722,7 @@
       return u;
     });
     var foes = foeDeck.map(function (c, i) { return unit(c, 'enemy', i, foeBoost, foePair.indexOf(c.d.slug) >= 0); });
-    var keys = Object.keys(AIS);
-    game = { ally: mine, enemy: foes, fallen: [], ai: run ? keys[Math.floor(Math.random() * keys.length)] : aiKey, items: { ally: items.slice(), enemy: foeItems }, queue: [], round: 0, actor: null, arranging: true, picked: null };
+    game = { ally: mine, enemy: foes, fallen: [], ai: run ? runAI(run.wins) : aiKey, items: { ally: items.slice(), enemy: foeItems }, queue: [], round: 0, actor: null, arranging: true, picked: null };
     $('.cb-build').hidden = true; $('.cb-board').hidden = false;
     renderRow(foes, '.cb-row-enemy'); renderRow(mine, '.cb-row-ally');
     setSwappable(true);
@@ -737,7 +737,7 @@
     $('.cb-actions').hidden = false;
     delete $('.cb-board').dataset.phase;
     $('.cb-run').textContent = run ? '連戦 ' + (run.wins + 1) + '戦目' + (bestRun() ? '(自己ベスト ' + bestRun() + '連勝)' : '') : '';
-    $('.cb-ai').hidden = !!run;   // 連戦のAIはランダムなので選ばせない
+    $('.cb-ai').hidden = !!run;   // 連戦のAIは順番が決まっているので選ばせない
     paintAI();
     setupVideo();
     $('.cb-pick').hidden = !!run; $('.cb-reroll').hidden = !!run;
@@ -1288,7 +1288,7 @@
         '<dt>ダメージ</dt><dd>攻撃 ÷ 割る数(遠戦' + RANGED_DIV + '、白兵戦' + MELEE_DIV + ') × (1 − 軽減率) × 列の倍率 × 相性 × (1 + 味方の拡散)。軽減率 = 防御 ÷ (防御 + ' + num(DEF_K) + ')。</dd>' +
         '<dt>パリイ・拡散</dt><dd>パリイ率 = 50% × 伸び率 ÷ (伸び率 + 10)。成功するとダメージを無効にし、1/4を反撃。拡散 = 10% × 30日投稿数 ÷ (30日投稿数 + 20)で、生きている間だけ味方全体の攻撃が上がる。</dd>' +
         twinHelp() +
-        '<dt>敵のAI</dt><dd>対戦前に選べる。' + Object.keys(AIS).map(function (k) { return AIS[k].name + ' = ' + AIS[k].desc; }).join(' / ') + '。連戦では1戦ごとにランダムで決まる。</dd>' +
+        '<dt>敵のAI</dt><dd>対戦前に選べる。' + Object.keys(AIS).map(function (k) { return AIS[k].name + ' = ' + AIS[k].desc; }).join(' / ') + '。連戦では' + Object.keys(AIS).map(function (k) { return AIS[k].name; }).join(' → ') + 'の順に1戦ごとに変わる。</dd>' +
         '<dt>相手を選ぶ</dt><dd>対戦前の画面で、戦いたいチャンネルを1〜5枚指定できる。足りない枠は自動で埋まり、指定した相手は変えるまで続く。</dd>' +
         '<dt>連戦</dt><dd>負けるまで続く。敵の予算は' + RUN_BASE + 'から勝つたびに+' + RUN_STEP + '。HPは持ち越しで、勝つと生き残りは最大HPの' + RUN_HEAL * 100 + '%回復、倒れたカードは' + RUN_REVIVE * 100 + '%で復活する。勝つと' + RUN_COIN + 'コインもらえて、次の戦いの前に使える。パラオパワーに注ぐ(1コインで予算+1)、回復、カードの入れ替え、作戦の付け外しができ、残したコインには' + RUN_INTEREST * 100 + '%の利子(最大' + RUN_INTEREST_MAX + ')が付く。変更はその連戦の間だけ。</dd>' +
         '<dt>データが無いとき</dt><dd>Xが未登録なら防御0・拡散0、伸びていなければパリイ0%。横と縦の内訳が無ければ、全体の平均を遠戦に、その1/4を白兵に使う。</dd>' +
