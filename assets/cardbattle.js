@@ -174,8 +174,10 @@
       localStorage.setItem(ITEM_KEY, JSON.stringify(items));
     } catch (e) {}
   }
-  function bestRun() { try { return +localStorage.getItem(BEST_KEY) || 0; } catch (e) { return 0; } }
-  function saveBest(n) { try { localStorage.setItem(BEST_KEY, String(n)); } catch (e) {} }
+  /* 自己ベストは日本版と海外版で別々に持つ。PBERS_BASE はこのファイルの後で設定されるので、使うときに読む */
+  function bestKey() { return BEST_KEY + (window.PBERS_BASE === '/global/' ? '_global' : ''); }
+  function bestRun() { try { return +localStorage.getItem(bestKey()) || 0; } catch (e) { return 0; } }
+  function saveBest(n) { try { localStorage.setItem(bestKey(), String(n)); } catch (e) {} }
   function loadItems(list) {
     var saved = [];
     try { saved = JSON.parse(localStorage.getItem(ITEM_KEY) || '[]'); } catch (e) {}
