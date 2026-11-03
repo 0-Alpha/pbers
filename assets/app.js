@@ -1377,6 +1377,7 @@
       '</form>' +
       '<div class="bd-search-wrap"><input class="bf-in bd-search" id="bd-search" maxlength="100" placeholder="🔍 スレ・書き込みを検索">' +
         '<button type="button" class="bd-sclear" id="bd-sclear" aria-label="クリア" hidden>×</button></div>' +
+      (GBASE === '/' ? '<a class="bd-senkyo" id="bd-senkyo" href="/senkyo/"><b>PBers参院選</b><span>東日本・中日本・西日本の候補者と、比例の党に投票しよう</span><em>投票する</em></a>' : '') +
       '<div class="bd-sort" id="bd-sort" role="tablist">' +
         '<button type="button" class="bd-sort-b" data-sort="bump">最終レス順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="new">新着順</button>' +
@@ -1687,6 +1688,8 @@
         paint(d.threads || [], true, q);
       }).catch(function () { box.innerHTML = '<div class="board-empty">検索に失敗しました。</div>'; });
     }
+    var skLink = document.getElementById('bd-senkyo');
+    if (skLink) skLink.addEventListener('click', function (e) { e.preventDefault(); switchTab('senkyo'); });
     var si = document.getElementById('bd-search'), sc = document.getElementById('bd-sclear'), sTimer = null;
     si.addEventListener('input', function () {
       var q = si.value.trim(); sc.hidden = !q; sortBar.hidden = !!q;   // 検索中は並び替えを隠す
@@ -2042,7 +2045,8 @@
     game:      document.getElementById('view-game'),
     videos:    document.getElementById('view-videos'),
     channels:  document.getElementById('view-channels'),
-    board:     document.getElementById('view-board')
+    board:     document.getElementById('view-board'),
+    senkyo:    document.getElementById('view-senkyo')
   };
   var currentView = 'dashboard';
   function pathOf(v) { return v === 'dashboard' ? GBASE : GBASE + v + '/'; }   // dashboard=/ , 他は /growth/ (実体ディレクトリに一致)
@@ -2058,6 +2062,7 @@
     if (v === 'live') v = 'race';   // 旧リンクの後方互換
     if (!VIEWS[v]) v = 'dashboard';
     if (v === 'board' && !boardEnabled) v = 'dashboard';   // 非公開かつ管理キー無しは掲示板に入れない
+    if (v === 'senkyo' && GBASE !== '/') v = 'dashboard';   // 参院選は日本版だけ
     currentView = v;
     document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x.dataset.view === v); });
     var moreBtn = document.getElementById('tab-more-btn');   // 新聞/ニュースは「その他」内なので親を強調
@@ -2080,6 +2085,7 @@
       else if (v === 'videos') renderVideos();
       else if (v === 'channels') moveTierInd();
       else if (v === 'board') renderBoard();
+      else if (v === 'senkyo' && window.PBERS_SENKYO) window.PBERS_SENKYO.mount(document.getElementById('senkyo-body'), BOARD_API, GBASE);
     }); });
   }
   function setupTabs() {
@@ -2095,6 +2101,8 @@
       var v = viewOf();
       if (v !== currentView) switchTab(v, true);
     });
+    var skBack = document.getElementById('sk-back');
+    if (skBack) skBack.addEventListener('click', function (e) { e.preventDefault(); switchTab('board'); });
     var initial = viewOf();   // 直アクセス/旧ハッシュ共有リンクからの復元
     // URLをクリーンなパスに正規化(#growth → /growth)。掲示板の ?t=<id>(スレ直リンク)は保持する
     history.replaceState({ view: initial }, '', pathOf(initial) + (initial === 'board' ? location.search : ''));

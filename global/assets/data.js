@@ -11,10 +11,10 @@ window.PBERS_DATA = [
     "color": "#d45e5e",
     "genre": "ポーランドボーラー",
     "slug": "jp-ball",
-    "vShort": null,
-    "vLong": null,
-    "nShort": null,
-    "nLong": null,
+    "vShort": 155966401,
+    "vLong": 11444254,
+    "nShort": 95,
+    "nLong": 33,
     "g21": 0.0
   },
   {
@@ -29,10 +29,10 @@ window.PBERS_DATA = [
     "color": "#ccbb3e",
     "genre": "ポーランドボーラー",
     "slug": "moon-ball",
-    "vShort": null,
-    "vLong": null,
-    "nShort": null,
-    "nLong": null,
+    "vShort": 40995838,
+    "vLong": 0,
+    "nShort": 31,
+    "nLong": 0,
     "g21": 0.44
   },
   {
@@ -101,10 +101,10 @@ window.PBERS_DATA = [
     "color": "#793ecc",
     "genre": "ポーランドボーラー",
     "slug": "áíšaispoaporu",
-    "vShort": null,
-    "vLong": null,
-    "nShort": null,
-    "nLong": null,
+    "vShort": 97699781,
+    "vLong": 247156,
+    "nShort": 1015,
+    "nLong": 60,
     "g21": 1.43
   },
   {
@@ -191,10 +191,10 @@ window.PBERS_DATA = [
     "color": "#5ed4c0",
     "genre": "ポーランドボーラー",
     "slug": "くろまめ",
-    "vShort": null,
-    "vLong": null,
-    "nShort": null,
-    "nLong": null,
+    "vShort": 19507055,
+    "vLong": 3481,
+    "nShort": 90,
+    "nLong": 3,
     "g21": 27.68
   },
   {

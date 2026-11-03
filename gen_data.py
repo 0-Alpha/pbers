@@ -354,6 +354,8 @@ def build_edition():
     build_growth(colors)
     build_race(colors)
     build_barrace(colors, order)
+    if not ED["sub"]:
+        build_senkyo()
     build_channel_pages(order, colors)
     # 記事(/articles/)は D1 + Pages Functions(SSR)へ移行済み。ここでは静的生成しない。
     build_view_pages()
@@ -523,7 +525,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251032">
+<link rel="stylesheet" href="/assets/style.css?v=251038">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -547,7 +549,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=251032"></script>
+<script src="/assets/channel.js?v=251038"></script>
 </body>
 </html>
 '''
@@ -895,7 +897,72 @@ def build_channel_pages(order, colors):
             f.write(page)
     print("wrote %d channel pages" % total)
 
-VIEW_ROUTES = ("growth", "rising", "news", "paper", "race", "game", "videos", "channels", "board")
+VIEW_ROUTES = ("growth", "rising", "news", "paper", "race", "game", "videos", "channels", "board", "senkyo")
+
+# PBers参院選。候補者は全員、本人が出身を公表している(運営確認済み)。チャンネルID, 都道府県, 選挙区, 表示名(省略可)。
+# 締切と候補者は cron-worker/worker.js の SENKYO と揃えること
+SENKYO_CLOSES = "2026-11-18T00:00:00+09:00"
+SENKYO_PROPORTIONAL = 4
+SENKYO_BLOCKS = [
+    {"id": "e", "name": "東日本", "area": "北海道・東北・関東", "seats": 2, "x": 505, "y": 292},
+    {"id": "c", "name": "中日本", "area": "中部", "seats": 1, "x": 388, "y": 424},
+    {"id": "w", "name": "西日本", "area": "近畿・中国・四国・九州・沖縄", "seats": 3, "x": 262, "y": 470},
+]
+SENKYO_PARTIES = {
+    "s": {"name": "ショート党", "color": "#c2452d", "rule": "ショートの再生が95%以上"},
+    "m": {"name": "両刀党", "color": "#6d5bc4", "rule": "ショートの再生が50〜95%"},
+    "l": {"name": "長尺党", "color": "#1f7fb8", "rule": "ショートの再生が50%未満"},
+}
+SENKYO_CANDIDATES = [
+    ("UC2fMWFGgy-ENfkqlK0CUwrg", "北海道", "e"),   # にこちPB
+    ("UCXCVbJCSF4FLP_TfojbkvUA", "宮城", "e"),   # アフガンボール
+    ("UCfJp9c3kSkIjYFevd2G1RKg", "東京", "e"),   # くろまめ
+    ("UCVYMXYU6j0M5Gj1xwywKDyg", "東京", "e"),   # レイアルファ
+    ("UCRCQ3G1d0DM2krO-Fx5LOuQ", "静岡", "c"),   # Æž!みかんぼーる🍊
+    ("UCGo_IzKD2-TooYrTGFt2fDA", "静岡", "c"),   # ゆずボール🎣
+    ("UCa-Pej_sn8Uw_mwXLKZiuIg", "愛知", "c"),   # MOON-BALL
+    ("UCkjdTrE4hiJ4qNOV7NPGSSw", "滋賀", "w"),   # Æž!フヒフム
+    ("UC_qD8VahU0Fr3q1SKg6kYtg", "滋賀", "w"),   # さとボール
+    ("UCnZNY63Txhu4ot3l2lbicOA", "京都", "w", "ばかわたし・あすえい"),   # ばかわたし
+    ("UC1swbrz9S2VKVABS673ACgQ", "奈良", "w"),   # áíš!aispoaporu
+    ("UC3N1ZsVd8KkOmSryri0AesA", "奈良", "w"),   # lemon_Ball
+    ("UCxKNMaOOdi32HNUFTOCw-8w", "兵庫", "w"),   # Neille / ナユ
+    ("UCZ-zUkkdNTYAYDgkDyeb_hA", "兵庫", "w"),   # JP-BALL
+    ("UC6BwO1hK3hHd-Hr43jokcyg", "高知", "w"),   # 田中MID
+    ("UCYmJ2rqzqNtXBm-gn438zGw", "大分", "w"),   # みすい
+]
+
+def build_senkyo():
+    """投票ページ用の assets/senkyo.json を作る。日本版と海外版のどちらのチャンネルも候補者になれる。"""
+    rows = {}
+    for f in ("data.json", "data_global.json"):
+        p = os.path.join(BASE, f)
+        if os.path.exists(p):
+            for d in json.load(open(p, encoding="utf-8")):
+                rows[d["id"]] = d
+    bt = load_bytype()
+    def party(cid):
+        e = bt.get(cid)
+        if not e:
+            return "m"
+        a, b = (e.get("short") or {}).get("views") or 0, (e.get("long") or {}).get("views") or 0
+        if a + b <= 0:
+            return "m"
+        r = a / (a + b)
+        return "s" if r >= 0.95 else "l" if r < 0.5 else "m"
+    cands = []
+    for row in SENKYO_CANDIDATES:
+        cid, pref, blk = row[0], row[1], row[2]
+        d = rows.get(cid)
+        if not d:
+            continue
+        cands.append({"id": cid, "name": row[3] if len(row) > 3 else d["name"], "pref": pref, "block": blk, "party": party(cid),
+                      "avatar": re.sub(r"=s\d+", "=s96", d.get("avatar") or ""), "url": d["url"]})
+    closes = int(datetime.datetime.fromisoformat(SENKYO_CLOSES).timestamp() * 1000)
+    out = {"closes": closes, "proportional": SENKYO_PROPORTIONAL, "blocks": SENKYO_BLOCKS, "parties": SENKYO_PARTIES, "candidates": cands}
+    with open(os.path.join(BASE, "assets", "senkyo.json"), "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
+    print("wrote assets/senkyo.json (%d candidates)" % len(cands))
 
 def build_view_pages():
     """SPAタブの実URL(/growth/ 等)への直アクセス・リロード用に index.html の複製を置く。
@@ -909,6 +976,8 @@ def build_view_pages():
     html_src = html_src.replace('name="robots" content="index,follow"',
                                 'name="robots" content="noindex,follow"')
     for v in VIEW_ROUTES:
+        if v == "senkyo" and ED["sub"]:   # 参院選は日本版だけ
+            continue
         d = ed_out(v)
         os.makedirs(d, exist_ok=True)
         with open(os.path.join(d, "index.html"), "w", encoding="utf-8") as f:
@@ -1045,7 +1114,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251032">
+<link rel="stylesheet" href="/assets/style.css?v=251038">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>

@@ -60,6 +60,8 @@ export default {
 
     // ---- 掲示板(board): スレッド + レス形式 ----
     // 公開状態は env.BOARD_PUBLIC("1"で公開)。非公開の間は管理キー(X-Board-Key=env.BOARD_KEY)所持者のみ閲覧/投稿可。
+    if (url.pathname === "/api/senkyo/status" && req.method === "GET") return senkyoStatus(req, env);
+    if (url.pathname === "/api/senkyo/vote" && req.method === "POST") return senkyoVote(req, env);
     if (url.pathname === "/api/board/config") {
       return json({ public: env.BOARD_PUBLIC === "1" });
     }
@@ -689,6 +691,50 @@ async function pollFor(req, env, tid, admin) {
     closes: poll.closes, closed: closed, votes: poll.votes || 0,
     voted: voted, myChoices: myChoices, counts: reveal ? counts : null,
   };
+}
+// ---- PBers参院選 ----
+// 途中経過は返さない。締切の後(または管理者)だけ得票を返す。二重投票は voter の主キーで防ぐ。テーブルは初回の投票で作る
+const SENKYO = {
+  closes: Date.parse("2026-11-18T00:00:00+09:00"),
+  cands: { "UC6BwO1hK3hHd-Hr43jokcyg": "w", "UC2fMWFGgy-ENfkqlK0CUwrg": "e", "UCXCVbJCSF4FLP_TfojbkvUA": "e", "UCfJp9c3kSkIjYFevd2G1RKg": "e", "UCVYMXYU6j0M5Gj1xwywKDyg": "e", "UCRCQ3G1d0DM2krO-Fx5LOuQ": "c", "UCGo_IzKD2-TooYrTGFt2fDA": "c", "UCa-Pej_sn8Uw_mwXLKZiuIg": "c", "UCkjdTrE4hiJ4qNOV7NPGSSw": "w", "UC_qD8VahU0Fr3q1SKg6kYtg": "w", "UCnZNY63Txhu4ot3l2lbicOA": "w", "UC1swbrz9S2VKVABS673ACgQ": "w", "UC3N1ZsVd8KkOmSryri0AesA": "w", "UCxKNMaOOdi32HNUFTOCw-8w": "w", "UCZ-zUkkdNTYAYDgkDyeb_hA": "w", "UCYmJ2rqzqNtXBm-gn438zGw": "w" },
+};
+function senkyoCloses(env) { return Number(env.SENKYO_CLOSES) || SENKYO.closes; }
+async function senkyoVoter(req, env) {
+  return await sha((req.headers.get("CF-Connecting-IP") || "0") + "|senkyo|" + (env.SALT || "pbers"));
+}
+async function senkyoStatus(req, env) {
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  const closes = senkyoCloses(env), open = Date.now() < closes, out = { closes, open, voted: false, results: null };
+  const voter = await senkyoVoter(req, env);
+  try {
+    out.voted = !!(await env.DB.prepare("SELECT 1 FROM senkyo_votes WHERE voter=?1").bind(voter).first());
+    if (!open || isAdmin(req, env)) {
+      const c = await env.DB.prepare("SELECT cand, COUNT(*) AS n FROM senkyo_votes GROUP BY cand").all();
+      const p = await env.DB.prepare("SELECT party, COUNT(*) AS n FROM senkyo_votes WHERE party<>'' GROUP BY party").all();
+      const pc = await env.DB.prepare("SELECT pcand AS cand, COUNT(*) AS n FROM senkyo_votes WHERE pcand<>'' GROUP BY pcand").all();
+      const t = await env.DB.prepare("SELECT COUNT(*) AS n FROM senkyo_votes").first();
+      out.results = { cands: c.results || [], parties: p.results || [], pcands: pc.results || [], total: (t && t.n) || 0 };
+    }
+  } catch (e) {   // まだ誰も投票していない(テーブルがない)
+    if (!open) out.results = { cands: [], parties: [], pcands: [], total: 0 };
+  }
+  return json(out);
+}
+async function senkyoVote(req, env) {
+  const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
+  if (Date.now() >= senkyoCloses(env)) return json({ error: "closed" }, 400);
+  let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
+  // 比例は非拘束名簿: 候補者名(pcand)か党名(party)のどちらか1つ。候補者の党はサイト側の集計で決まる
+  const cand = String(b.cand || ""), block = String(b.block || ""), party = String(b.party || ""), pcand = String(b.pcand || "");
+  if (SENKYO.cands[cand] !== block) return json({ error: "bad_cand" }, 400);
+  if (!!party === !!pcand) return json({ error: "bad_prop" }, 400);
+  if (party && !["s", "m", "l"].includes(party)) return json({ error: "bad_party" }, 400);
+  if (pcand && !SENKYO.cands[pcand]) return json({ error: "bad_pcand" }, 400);
+  await env.DB.prepare("CREATE TABLE IF NOT EXISTS senkyo_votes(voter TEXT PRIMARY KEY, block TEXT NOT NULL, cand TEXT NOT NULL, party TEXT NOT NULL, pcand TEXT NOT NULL, created INTEGER NOT NULL)").run();
+  try {
+    await env.DB.prepare("INSERT INTO senkyo_votes(voter,block,cand,party,pcand,created) VALUES(?1,?2,?3,?4,?5,?6)").bind(await senkyoVoter(req, env), block, cand, party, pcand, Date.now()).run();
+  } catch (e) { return json({ error: "voted" }, 409); }
+  return json({ ok: true });
 }
 async function pollVote(req, env) {
   const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
