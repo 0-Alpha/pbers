@@ -53,7 +53,7 @@
   };
   var DEFAULT_AI = 'ko';
   var MY_TURN = "IT'S MY TURN!", ONE_MORE = 'ONE MORE GAME!', MEME_WAIT = 950;
-  var VIDEO_KEY = 'pbers_cb_video', VIDEO_HOST = 'https://www.youtube-nocookie.com', video = null;
+  var VIDEO_KEY = 'pbers_cb_video', VIDEO_HOST = 'https://www.youtube-nocookie.com', VIDEO_VOLUME = 30, video = null;   // 音量は0〜100
   var SFX_ENABLED = false;   // 効果音は今はオフ。true にすると対戦画面に切り替えも出る
   var SFX_KEY = 'pbers_cb_sfx', audioCtx = null, audioOut = null;
   var DECK_KEY = 'pbers_cb_deck', ITEM_KEY = 'pbers_cb_items', BEST_KEY = 'pbers_cb_best', AI_KEY = 'pbers_cb_ai';
@@ -787,6 +787,7 @@
     setSwappable(false);
     $('.cb-actions').hidden = true;
     $('.cb-ai').hidden = true;
+    $('.cb-video-note').hidden = true;
     nextRound();
   }
   function nextRound() {
@@ -1137,6 +1138,8 @@
     $('.cb-video-btn').hidden = !m || RM;
     $('.cb-video-btn').textContent = esc(m ? m.d.name : '') + 'の動画: ' + (videoEnabled() ? 'オン' : 'オフ');
     $('.cb-video-btn').setAttribute('aria-pressed', String(videoEnabled()));
+    $('.cb-video-note').hidden = !m || !videoEnabled() || !game.arranging;
+    $('.cb-video-note').textContent = m ? '音が出ます。' + m.d.name + 'の番に動画が音ありで流れます。上の「' + m.d.name + 'の動画」でオフにできます。' : '';
     if (!m || !videoEnabled() || (video && video.id === m.d.meme.video)) return;
     if (video) video.box.remove();
     var box = document.createElement('div'), frame = document.createElement('iframe');
@@ -1181,6 +1184,7 @@
     v.box.style.setProperty('--cb-video-top', (root.querySelector('.cb-order').offsetTop + 34) + 'px');
     v.box.classList.add('on');
     videoCmd(v.muted ? 'mute' : 'unMute');
+    videoCmd('setVolume', [VIDEO_VOLUME]);
     videoCmd('seekTo', [range[0], true]);
     videoCmd('playVideo');
     c.guard = setTimeout(function () {   // 動き出さなかった
@@ -1274,6 +1278,7 @@
     root.innerHTML =
       '<div class="game-head"><h3 class="g-h3">⚔️ カードバトル <span class="fc-en">PBers Card Battle</span></h3>' +
       '<div class="fc-lead">5枚のデッキを組んで、相手を全滅させたら勝ち。</div>' +
+      (cards.some(function (c) { return c.d.meme; }) ? '<p class="cb-sound-note">音が出ます。田中MIDが対戦にいると、YouTubeの動画が音ありで流れます。対戦画面でオフにできます。</p>' : '') +
       '<details class="cb-help"><summary>ルールを見る</summary><dl>' +
         '<dt>コスト</dt><dd>強さに合わせて決まる。' + COST_KNEE + 'を超える分は半額。</dd>' +
         '<dt>能力</dt><dd>HP=登録者 / 白兵=横動画1本あたり再生 / 遠戦=縦動画1本あたり再生 / 防御=Xフォロワー / パリイ=過去21日の登録者伸び率 / 拡散=Xの30日投稿数</dd>' +
@@ -1332,6 +1337,7 @@
         '<div class="cb-label"><span>敵陣</span><span class="cb-chip cb-boost cb-enemy-boost num"></span><span class="cb-chip cb-enemy-ai"></span><span class="cb-chip cb-enemy-buff"></span><span class="cb-items cb-enemy-items"></span>' +
           '<button type="button" class="cb-more-btn" aria-pressed="false">防御・パリイも見る</button><button type="button" class="cb-more-btn cb-video-btn" aria-pressed="false" hidden></button><button type="button" class="cb-more-btn cb-sfx-btn" aria-pressed="true"></button></div><div class="cb-row cb-row-enemy"></div>' +
         '<div class="cb-mid"><div class="cb-run"></div><div class="cb-order"></div><div class="cb-msg" aria-live="polite"></div>' +
+          '<p class="cb-sound-note cb-video-note" hidden></p>' +
           '<div class="cb-ai"><span class="cb-ai-l">敵のAI</span><div class="vtype">' + Object.keys(AIS).map(function (k) {
             return '<button type="button" class="vt" data-ai="' + k + '" aria-pressed="false">' + AIS[k].name + '</button>';
           }).join('') + '</div><span class="cb-ai-d"></span></div>' +

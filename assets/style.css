@@ -758,6 +758,8 @@ button.cb-slot{cursor:pointer}
 .cb-meme span{display:inline-block}
 .cb-video{position:absolute;z-index:7;top:50%;right:16px;width:200px;height:356px;overflow:hidden;background:#000;border-radius:12px;box-shadow:0 10px 28px rgba(0,0,0,.5);transform:translateY(-50%);visibility:hidden}
 .cb-video.on{visibility:visible}
+.cb-sound-note{margin:6px 0 0;font-size:12px;line-height:1.6;color:var(--muted)}
+.cb-mid .cb-sound-note{margin:0}
 .cb-video iframe{display:block;width:100%;height:100%;border:0}
 .cb-more-btn.cb-video-btn,.cb-more-btn.cb-sfx-btn{margin-left:8px}
 .cb-collab-pick{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 0 16px}
