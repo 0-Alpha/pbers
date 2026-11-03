@@ -56,7 +56,7 @@
   var VIDEO_KEY = 'pbers_cb_video', VIDEO_HOST = 'https://www.youtube-nocookie.com', VIDEO_VOLUME = 30, video = null;   // 音量は0〜100
   var SFX_ENABLED = false;   // 効果音は今はオフ。true にすると対戦画面に切り替えも出る
   var SFX_KEY = 'pbers_cb_sfx', audioCtx = null, audioOut = null;
-  var DECK_KEY = 'pbers_cb_deck', ITEM_KEY = 'pbers_cb_items', BEST_KEY = 'pbers_cb_best', AI_KEY = 'pbers_cb_ai';
+  var DECK_KEY = 'pbers_cb_deck', ITEM_KEY = 'pbers_cb_items', BEST_KEY = 'pbers_cb_best2', AI_KEY = 'pbers_cb_ai';
   var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var cards = [], root = null, game = null, token = 0;
   var deck = [], items = [], buildStep = 'cards', sortKey = 'cost', query = '', typeFilter = '';
@@ -236,7 +236,8 @@
       localStorage.setItem(ITEM_KEY, JSON.stringify(items));
     } catch (e) {}
   }
-  /* 自己ベストは日本版と海外版で別々に持つ。PBERS_BASE はこのファイルの後で設定されるので、使うときに読む */
+  /* 自己ベストは日本版と海外版で別々に持つ。PBERS_BASE はこのファイルの後で設定されるので、使うときに読む。
+     連戦ショップでルールが変わったので、保存先を pbers_cb_best から変えて記録を0に戻した */
   function bestKey() { return BEST_KEY + (window.PBERS_BASE === '/global/' ? '_global' : ''); }
   function bestRun() { try { return +localStorage.getItem(bestKey()) || 0; } catch (e) { return 0; } }
   function saveBest(n) { try { localStorage.setItem(bestKey(), String(n)); } catch (e) {} }
