@@ -5,7 +5,21 @@
 <atom:link href="https://pbers.com/feed.xml" rel="self" type="application/rss+xml"/>
 <description>ポーランドボーラー(YouTube)の登録者・総再生・投稿数のマイルストーン突破ニュース</description>
 <language>ja</language>
-<lastBuildDate>Tue, 03 Nov 2026 12:00:00 +0900</lastBuildDate>
+<lastBuildDate>Wed, 04 Nov 2026 12:00:00 +0900</lastBuildDate>
+<item>
+<title>【PB】ネオンボール — 総再生数 700万回 突破</title>
+<link>https://pbers.com/c/pb%E3%83%8D%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%AB/</link>
+<guid isPermaLink="false">2026-11-04/views/pbネオンボール/7000000</guid>
+<pubDate>Wed, 04 Nov 2026 12:00:00 +0900</pubDate>
+<description>【PB】ネオンボール — 総再生数 700万回 突破</description>
+</item>
+<item>
+<title>みすい — 総再生数 200万回 突破</title>
+<link>https://pbers.com/c/%E3%81%BF%E3%81%99%E3%81%84/</link>
+<guid isPermaLink="false">2026-11-04/views/みすい/2000000</guid>
+<pubDate>Wed, 04 Nov 2026 12:00:00 +0900</pubDate>
+<description>みすい — 総再生数 200万回 突破</description>
+</item>
 <item>
 <title>なぽりたんぼーる!! — 登録者 2万人 突破</title>
 <link>https://pbers.com/c/%E3%81%AA%E3%81%BD%E3%82%8A%E3%81%9F%E3%82%93%E3%81%BC%E3%83%BC%E3%82%8B/</link>
@@ -93,12 +107,5 @@
 <guid isPermaLink="false">2026-10-29/views/アフガンボール/1000000</guid>
 <pubDate>Thu, 29 Oct 2026 12:00:00 +0900</pubDate>
 <description>アフガンボール — 総再生数 100万回 突破</description>
-</item>
-<item>
-<title>こうちゃ(ポーランドボール) — 登録者 6万人 突破</title>
-<link>https://pbers.com/c/%E3%81%93%E3%81%86%E3%81%A1%E3%82%83%E3%83%9D%E3%83%BC%E3%83%A9%E3%83%B3%E3%83%89%E3%83%9C%E3%83%BC%E3%83%AB/</link>
-<guid isPermaLink="false">2026-10-28/subs/こうちゃポーランドボール/60000</guid>
-<pubDate>Wed, 28 Oct 2026 12:00:00 +0900</pubDate>
-<description>こうちゃ(ポーランドボール) — 登録者 6万人 突破</description>
 </item>
 </channel></rss>
