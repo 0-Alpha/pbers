@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """data.json -> assets/data.js（登録者数・総再生数・投稿数・固有色つき）
    history.csv -> assets/news.js（直近7日のマイルストーン突破ニュース）"""
-import json, colorsys, re, os, csv, datetime, urllib.parse
+import json, colorsys, re, os, csv, datetime, urllib.parse, statistics
 
 BASE = os.path.dirname(os.path.abspath(__file__))   # works on Windows and on CI (Linux)
 JST = datetime.timezone(datetime.timedelta(hours=9))
@@ -415,6 +415,19 @@ def build_race(colors):
     print("wrote assets/race.js (%d races incl. TOP3)" % len(out))
 
 BARRACE_TOP = 30   # 1日でもこの順位以内に入ったチャンネルだけ収録(ファイルを軽くするため)
+# バーチャートレースの予測。過去の記録で30〜60日先を答え合わせして、誤差が小さかった組み合わせを使う。
+# 指標ごとに (傾きを測る日数(0は全期間), 1日ごとの減衰)。今後の伸び = 傾き × Σ 減衰^t
+FC_DAYS = 91
+FC_MODEL = {"subs": (14, 0.98), "views": (0, 0.995), "videos": (14, 0.99)}
+
+def fc_slope(arr, window):
+    """1日あたりの伸び。3日以上離れた全ての2点の傾きの中央値なので、一時的な増減に振られにくい。"""
+    xs = [(i, v) for i, v in enumerate(arr) if v is not None]
+    if window:
+        xs = xs[-window:]
+    sl = [(xs[j][1] - xs[i][1]) / (xs[j][0] - xs[i][0]) for i in range(len(xs)) for j in range(i + 1, len(xs)) if xs[j][0] - xs[i][0] >= 3]
+    return statistics.median(sl) if sl else 0
+
 
 def build_barrace(colors, order):
     """レースタブの「バーチャートレース」用。1日1点(その日の最終スロット)の
@@ -467,6 +480,14 @@ def build_barrace(colors, order):
         "views": [vals[d["id"]]["views"] for d in sel],
         "videos": [vals[d["id"]]["videos"] for d in sel],
     }
+    # 登録者は減ることもあるが、再生数と投稿数は減らない前提にする
+    def rate(arr, m):
+        r = fc_slope(arr, FC_MODEL[m][0])
+        if m == "subs":   # 登録者は丸められているので、14日間動かなくても全期間では伸びていることがある
+            return r or fc_slope(arr, 0)
+        return max(r, 0)
+    out["fc"] = {"days": FC_DAYS, "phi": {m: FC_MODEL[m][1] for m in metrics},
+                 "slope": {m: [round(rate(vals[d["id"]][m], m), 3) for d in sel] for m in metrics}}
     with open(ed_out("assets", "barrace.json"), "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
     print("wrote assets/barrace.json (%d channels x %d days)" % (len(sel), len(days)))
@@ -502,7 +523,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251021">
+<link rel="stylesheet" href="/assets/style.css?v=251024">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -526,7 +547,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=251021"></script>
+<script src="/assets/channel.js?v=251024"></script>
 </body>
 </html>
 '''
@@ -1024,7 +1045,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251021">
+<link rel="stylesheet" href="/assets/style.css?v=251024">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>

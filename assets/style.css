@@ -586,8 +586,9 @@ section.block{padding:46px 0}
 .bcr-bars.dense .bcr-bar{height:calc(var(--h) - 6px)}
 .bcr-bars.dense .bcr-av{width:calc(var(--h) - 4px);height:calc(var(--h) - 4px);margin-left:calc((var(--h) - 4px) / -2)}
 .bcr-track{display:flex;align-items:center;height:100%;min-width:0}
-.bcr-bar{flex:none;height:calc(var(--h) - 10px);width:calc((100% - var(--vw)) * var(--f));border-radius:0 6px 6px 0}
-.bcr-av{flex:none;width:calc(var(--h) - 8px);height:calc(var(--h) - 8px);margin-left:calc((var(--h) - 8px) / -2);
+.bcr-bar{position:relative;overflow:hidden;flex:none;height:calc(var(--h) - 10px);width:calc((100% - var(--vw)) * var(--f));border-radius:0 6px 6px 0}
+.bcr-gain{position:absolute;top:0;right:0;bottom:0;width:calc(var(--g, 0) * 100%);background:rgba(0,0,0,.34);box-shadow:inset 1px 0 0 rgba(255,255,255,.55)}
+.bcr-av{position:relative;z-index:1;flex:none;width:calc(var(--h) - 8px);height:calc(var(--h) - 8px);margin-left:calc((var(--h) - 8px) / -2);
   border-radius:50%;object-fit:cover;border:2px solid;background:var(--surface)}
 .bcr-val{flex:none;margin-left:8px;font-weight:800;font-size:13px;white-space:nowrap}
 .bcr-date{position:absolute;right:4px;bottom:6px;font-weight:900;font-size:clamp(30px,6vw,60px);letter-spacing:-.02em;
@@ -596,7 +597,11 @@ section.block{padding:46px 0}
 .bcr-play{flex:none;width:42px;height:42px;border-radius:50%;border:0;background:var(--red);color:#fff;cursor:pointer;
   display:inline-flex;align-items:center;justify-content:center}
 .bcr-play svg{width:20px;height:20px;fill:currentColor}
-#bcr-seek{flex:1;min-width:0;accent-color:var(--red)}
+.bcr-seek-box{position:relative;flex:1;min-width:0;padding-bottom:16px}
+#bcr-seek{display:block;width:100%;margin:0;accent-color:var(--red)}
+.bcr-now{position:absolute;bottom:0;font-weight:700;font-size:11px;line-height:1.2;color:var(--muted);transform:translateX(-50%);pointer-events:none}
+.bcr-now::before{content:"";position:absolute;left:50%;top:-5px;height:4px;border-left:1px solid var(--muted)}
+.bcr-fc-note{margin:10px 0 0;font-size:12px;line-height:1.6;color:var(--muted)}
 .bcr-speed{flex:none;min-width:48px;padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel);
   color:var(--text);font-family:var(--num);font-weight:800;font-size:12.5px;cursor:pointer}
 @media(max-width:560px){

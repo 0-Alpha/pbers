@@ -2580,10 +2580,11 @@
     el.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet"><defs>' + clip + '</defs>' + grid + yl + xl + lines + icons + '</svg>';
   }
   /* ---- バーチャートレース(レースタブ上部)。barrace.json はタブを開いた時だけ読み込む ----
-     日ごとの値を線形補間してバーを伸ばし、順位の入れ替わりは表示位置を目標順位へ指数的に寄せて動かす。 */
+     日ごとの値を線形補間してバーを伸ばし、順位の入れ替わりは表示位置を目標順位へ指数的に寄せて動かす。
+     実績の後ろに予測の日付と値を足す。最初は現在で止まり、過去から再生しても現在で一度止まる。 */
   var BCR = null, bcrLoading = false;
   var bcr = { metric: 'subs', n: 12, pos: 0, playing: false, speed: 1, rows: {}, ticks: {}, raf: 0, last: 0 };
-  var BCR_SPEEDS = [1, 2, 4], BCR_DPS = 2;   // 1x = 1秒で2日進む
+  var BCR_SPEEDS = [1, 2, 4], BCR_DPS = 2, BCR_FC_DPS = 4;   // 1x = 実績は1秒で2日、予測は1秒で4日進む
   var BCR_RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var BCR_ICON = {
     play: '<svg viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></svg>',
@@ -2596,8 +2597,8 @@
     return bcr.n >= 30 ? (sm ? 24 : 28) : bcr.n >= 20 ? (sm ? 28 : 34) : (sm ? 34 : 42);
   }
   function bcrNote() {
-    var d0 = BCR.dates[0].split('-'), d1 = BCR.dates[bcrLast()].split('-');
-    setText('bcr-note', (+d0[1]) + '/' + (+d0[2]) + ' 〜 ' + (+d1[1]) + '/' + (+d1[2]) + ' ・ 上位' + bcrN() + ' ・ 毎日更新');
+    var d0 = BCR.dates[0].split('-'), d1 = BCR.dates[bcr.now].split('-'), d2 = BCR.dates[bcrLast()].split('-');
+    setText('bcr-note', (+d0[1]) + '/' + (+d0[2]) + ' 〜 ' + (+d1[1]) + '/' + (+d1[2]) + (bcrLast() > bcr.now ? '(' + (+d2[1]) + '/' + (+d2[2]) + ' まで予測)' : '') + ' ・ 上位' + bcrN() + ' ・ 毎日更新');
   }
   function bcrLast() { return BCR.dates.length - 1; }
   function bcrFmt(v) { return bcr.metric === 'views' ? jp(Math.round(v)) : fmt(Math.round(v)); }
@@ -2609,16 +2610,32 @@
     var b = document.getElementById('bcr-play'); if (!b) return;
     var end = BCR && bcr.pos >= bcrLast();
     b.innerHTML = bcr.playing ? BCR_ICON.pause : (end ? BCR_ICON.replay : BCR_ICON.play);
-    b.setAttribute('aria-label', bcr.playing ? '一時停止' : (end ? '最初から再生' : '再生'));
+    b.setAttribute('aria-label', bcr.playing ? '一時停止' : end ? '最初から再生' : bcr.pos >= bcr.now ? '予測を再生' : '再生');
   }
   function bcrMoveInd() {
     var on = document.querySelector('#bcr-toggle .tg.on'), ind = document.getElementById('bcr-ind');
     if (on && ind) { ind.style.left = on.offsetLeft + 'px'; ind.style.width = on.offsetWidth + 'px'; }
   }
-  function bcrPlayFrom0() {
-    bcr.pos = BCR_RM ? bcrLast() : 0; bcr.playing = !BCR_RM;
+  function bcrToNow() {   // 初期状態は現在で停止
+    bcr.pos = bcr.now; bcr.playing = false;
     document.getElementById('bcr-seek').value = bcr.pos;
     bcrBtn(); bcrKick();
+  }
+  function bcrForecast() {   // 実績の後ろに予測を足す。今後の伸び = 傾き × Σ 減衰^t
+    bcr.now = BCR.dates.length - 1;
+    var fc = BCR.fc; if (!fc || !fc.days) return;
+    var t0 = Date.parse(BCR.dates[bcr.now] + 'T00:00:00Z');
+    for (var t = 1; t <= fc.days; t++) BCR.dates.push(new Date(t0 + t * 864e5).toISOString().slice(0, 10));
+    ['subs', 'views', 'videos'].forEach(function (m) {
+      var phi = fc.phi[m], slope = fc.slope[m];
+      BCR[m].forEach(function (arr, k) {
+        var base = arr[bcr.now], sum = 0, p = 1;
+        for (var t = 1; t <= fc.days; t++) {
+          p *= phi; sum += p;
+          arr.push(base == null ? null : Math.max(base + slope[k] * sum, 0));
+        }
+      });
+    });
   }
   function bcrKick() { if (!bcr.raf) { bcr.last = 0; bcr.raf = requestAnimationFrame(bcrFrame); } }
   function bcrFrame(now) {
@@ -2626,8 +2643,10 @@
     if (currentView !== 'race') { bcr.playing = false; bcrBtn(); return; }
     var dt = bcr.last ? Math.min((now - bcr.last) / 1000, 0.1) : 0; bcr.last = now;
     if (bcr.playing) {
-      bcr.pos = Math.min(bcr.pos + dt * BCR_DPS * bcr.speed, bcrLast());
-      if (bcr.pos >= bcrLast()) { bcr.playing = false; bcrBtn(); }
+      var next = Math.min(bcr.pos + dt * (bcr.pos < bcr.now ? BCR_DPS : BCR_FC_DPS) * bcr.speed, bcrLast());
+      var atNow = bcr.pos < bcr.now && next >= bcr.now;   // 過去からの再生は現在で一度止まる
+      bcr.pos = atNow ? bcr.now : next;
+      if (atNow || bcr.pos >= bcrLast()) { bcr.playing = false; bcrBtn(); }
       document.getElementById('bcr-seek').value = bcr.pos;
     }
     var moving = bcrDraw(dt);
@@ -2655,7 +2674,7 @@
       var c = BCR.ch[k], el = document.createElement('a');
       el.className = 'bcr-row'; el.href = GBASE + 'c/' + encodeURIComponent(c.slug) + '/';
       el.innerHTML = '<span class="bcr-rk num"></span><span class="bcr-lab"></span>' +
-        '<span class="bcr-track"><span class="bcr-bar"></span>' +
+        '<span class="bcr-track"><span class="bcr-bar"><i class="bcr-gain"></i></span>' +
         (c.avatar ? '<img class="bcr-av" src="' + avSize(c.avatar, 96) + '" alt="" onerror="this.style.visibility=\'hidden\'">' : '') +
         '<span class="bcr-val num"></span></span>';
       el.querySelector('.bcr-lab').textContent = c.name;
@@ -2674,6 +2693,8 @@
       r.el.style.transform = 'translateY(' + (r.y * H).toFixed(1) + 'px)';
       r.el.style.opacity = inTop ? '' : Math.max(0, Math.min(1, N + 0.5 - r.y)).toFixed(2);
       r.el.style.setProperty('--f', Math.max(r.v / max, 0.004).toFixed(4));
+      var base = bcr.pos > bcr.now ? arr[k][bcr.now] : null;   // 現在から伸びた分を濃くする
+      r.el.style.setProperty('--g', base != null && r.v > base ? ((r.v - base) / r.v).toFixed(4) : '0');
       r.rk.textContent = inTop ? want[k] + 1 : '';
       r.val.textContent = bcrFmt(r.v);
     });
@@ -2687,12 +2708,15 @@
       tk.firstChild.textContent = bcr.metric === 'videos' ? fmt(Math.round(v)) : jp(Math.round(v));
     }
     Object.keys(bcr.ticks).forEach(function (key) { if (!keep[key]) { bcr.ticks[key].remove(); delete bcr.ticks[key]; } });
-    document.getElementById('bcr-date').textContent = BCR.dates[Math.round(bcr.pos)].replace(/-/g, '.');
+    document.getElementById('bcr-date').textContent = (bcr.pos > bcr.now ? '予測 ' : '') + BCR.dates[Math.round(bcr.pos)].replace(/-/g, '.');
     return moving;
   }
   function bcrSetup() {
-    var seek = document.getElementById('bcr-seek');
+    var seek = document.getElementById('bcr-seek'), mark = document.getElementById('bcr-now'), hasFc = bcrLast() > bcr.now;
     seek.max = bcrLast();
+    mark.hidden = !hasFc;
+    mark.style.left = 'calc(' + (bcr.now / bcrLast() * 100) + '% + ' + (8 - bcr.now / bcrLast() * 16) + 'px)';   // つまみの幅の分だけずらす
+    document.getElementById('bcr-fc-note').hidden = !hasFc;
     bcrNote();
     document.querySelectorAll('#bcr-n .vt').forEach(function (b) {
       b.addEventListener('click', function () {
@@ -2715,22 +2739,22 @@
       b.addEventListener('click', function () {
         if (b.dataset.bm === bcr.metric) return;
         document.querySelectorAll('#bcr-toggle .tg').forEach(function (x) { x.classList.toggle('on', x === b); });
-        bcr.metric = b.dataset.bm; bcrMoveInd(); bcrPlayFrom0();
+        bcr.metric = b.dataset.bm; bcrMoveInd(); bcrToNow();
       });
     });
     window.addEventListener('resize', function () { if (BCR) { bcrMoveInd(); bcrKick(); } });
   }
   function renderBarRace() {
     var sec = document.getElementById('bcr'); if (!sec) return;
-    if (BCR) { bcrMoveInd(); bcrPlayFrom0(); return; }
+    if (BCR) { bcrMoveInd(); bcrToNow(); return; }
     if (bcrLoading) return; bcrLoading = true;
     fetch(GBASE + 'assets/barrace.json?v=' + encodeURIComponent(window.PBERS_UPDATED || ''))
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         bcrLoading = false;
         if (!d || !d.dates || d.dates.length < 2) { sec.hidden = true; return; }
-        BCR = d; bcrSetup();
-        if (currentView === 'race') { bcrMoveInd(); bcrPlayFrom0(); }
+        BCR = d; bcrForecast(); bcrSetup();
+        if (currentView === 'race') { bcrMoveInd(); bcrToNow(); }
       })
       .catch(function () { bcrLoading = false; sec.hidden = true; });
   }
