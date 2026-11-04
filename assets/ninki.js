@@ -3,10 +3,11 @@
    票は投票から少し時間をおいて順に開票され、結果は誰でもいつでも見られる。 */
 (function () {
   var DONE_KEY = 'pbers_ninki_vote', SEEN_KEY = 'pbers_ninki_seen';
+  var PIN_THREAD = 646;   // 開票速報の一番下に固定する掲示板のスレ
   var VER = ((document.currentScript && document.currentScript.src) || '').split('v=')[1] || '';
   var WANT = new URLSearchParams(location.search).get('c');   // 画面の切り替えでURLから消えるので、読み込みの時点で覚える
   var WANT_RESULT = location.hash === '#kaihyo';
-  var root = null, host = null, cfg = null, status = null, api = '', mode = 'vote';
+  var root = null, host = null, cfg = null, status = null, api = '', boardBase = '', mode = 'vote';
   var picks = [], query = '', filter = 'all', sending = false;
   var tiles = {}, shuffled = null;
   var result = null, resultError = false, rows = {}, showAll = false, timer = null, fetching = false, nextAt = 0;
@@ -219,13 +220,24 @@
         '<div id="kh-trend-body"><div class="kh-legend" id="kh-legend"></div>' +
         '<div class="kh-plot" id="kh-plot" role="img" tabindex="0"><div id="kh-svgbox"></div><div class="kh-tip" id="kh-tip" hidden></div></div></div></div>' +
         '<div class="ch-nums-wrap" id="kh-numswrap"><button type="button" class="ch-nums-btn" id="kh-numsbtn">' + (numsOpen ? '数値を隠す ▴' : '数値で見る ▾') + '</button><div class="ch-nums" id="kh-table"' + (numsOpen ? '' : ' hidden') + '></div></div></section>' +
-      '<p class="nk-note">投票から10分〜1時間ほどで順に開票し、結果は10分ごとに更新します。</p>';
+      '<p class="nk-note">投票から10分〜1時間ほどで順に開票し、結果は10分ごとに更新します。</p>' +
+      '<section class="kh-pin" id="kh-pin" hidden><h4>掲示板</h4><div id="kh-pin-body"></div></section>';
     box.querySelector('#kh-more').addEventListener('click', function () {
       showAll = !showAll;
       drawResult(false);
     });
     wireChart();
     drawResult(true);
+    drawPin();
+  }
+  function drawPin() {   // スレの題名とレス数は掲示板から読む。スレが消えていたら出さない。掲示板は日本版にだけあるので、海外版からも日本版へ飛ばす
+    if (!boardBase) return;
+    fetch(boardBase + '/threads?ids=' + PIN_THREAD).then(function (r) { return r.json(); }).then(function (d) {
+      var t = (d.threads || [])[0], sec = host.querySelector('#kh-pin');
+      if (!t || !sec) return;
+      sec.querySelector('#kh-pin-body').innerHTML = '<a class="db-item" href="/board/?t=' + t.id + '"><span class="db-title">' + esc(t.title) + '</span><span class="db-meta"><span class="num">' + t.posts + '</span> レス</span></a>';
+      sec.hidden = false;
+    }).catch(function () {});
   }
   function drawResult(first) {
     var r = result, box = host.querySelector('#kh');
@@ -610,7 +622,8 @@
   }
   window.PBERS_NINKI = {
     mount: function (el, boardApi) {
-      api = String(boardApi || '').replace(/\/api\/board$/, '/api/ninki');
+      boardBase = String(boardApi || '');
+      api = boardBase.replace(/\/api\/board$/, '/api/ninki');
       if (root === el && cfg) return;
       root = el;
       el.innerHTML = '<div class="nk-modes" role="group" aria-label="表示の切り替え" hidden>' +

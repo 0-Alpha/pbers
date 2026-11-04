@@ -1654,6 +1654,9 @@ section.block#dash-vote{padding:0}
 .kh-tip-r span{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .kh-tip-r b{font-weight:800}
 .kh-trend + .nk-note{margin-top:18px}
+.kh-pin{margin-top:28px}
+.kh-pin[hidden]{display:none}
+.kh-pin h4{margin:0 0 10px;font-size:15px;font-weight:900}
 @keyframes kh-draw{to{stroke-dashoffset:0}}
 @keyframes kh-pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @media(max-width:640px){
