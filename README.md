@@ -131,3 +131,13 @@ python -m http.server 8823
 - 登録者数: `"subscriberCountText":"チャンネル登録者数 …"`(**文字列形式**)。
   オブジェクト形式 `"subscriberCountText":{…}` はサイドバーの**関連チャンネル**の値なので拾わない。
 - 総再生数: `"viewCountText":"…回視聴"`。
+
+## PBers人気投票 (`/vote/`)
+
+日本版と海外版の全チャンネルから、好きなPBerを3組まで選ぶ投票。出身は使わない。参院選(`SENKYO_ON=false`で取り下げ中)とは別物。
+
+- 候補: `gen_data.py` の `build_ninki()` が `data.json` と `data_global.json` から `assets/ninki.json` を作る。引退者(`RETIRED`)と名前が取れていないチャンネルは除く。`SAME_PERSON` と `NINKI_MERGE` のチャンネルは1組にまとめる(`NINKI_MERGE` は本体の名前で出す)。
+- 画面: `assets/ninki.js`。名前の検索(ひらがな・カタカナ・全角半角を区別しない)、日本/海外の絞り込み。並びはランダムのみ。チャンネルページのボタンは `/vote/?c=チャンネルID` で、その人を選んだ状態で開く。
+- 投票: `cron-worker/worker.js` の `NINKI` と `/api/ninki/*`。D1 の `ninki_votes` に、IPから作った照合用の値と選んだチャンネルを保存する。IPそのものは保存しない。同じ回線からは1回だけ。
+- 結果: 開票速報(`/vote/#kaihyo`)で誰でもいつでも見られる。票は投票から30分〜3時間のばらつきをつけて順に開票し(`opens` 列)、結果は10分ごとに更新する。順位と票数だけを出し、当選などの区切りは設けない。`NINKI_TOP` 位までを最初に見せる。投票数の推移(上位5組と全体の折れ線)は開票した時刻で1時間ごとに区切る。
+- 締切を変えるときは `gen_data.py` の `NINKI_CLOSES`、`worker.js` の `NINKI.closes`、`assets/app.js` の `voteBanner` を揃える。

@@ -60,6 +60,9 @@ export default {
 
     // ---- 掲示板(board): スレッド + レス形式 ----
     // 公開状態は env.BOARD_PUBLIC("1"で公開)。非公開の間は管理キー(X-Board-Key=env.BOARD_KEY)所持者のみ閲覧/投稿可。
+    if (url.pathname === "/api/ninki/status" && req.method === "GET") return ninkiStatus(req, env);
+    if (url.pathname === "/api/ninki/results" && req.method === "GET") return ninkiResults(env);
+    if (url.pathname === "/api/ninki/vote" && req.method === "POST") return ninkiVote(req, env);
     if (url.pathname === "/api/senkyo/status" && req.method === "GET") return senkyoStatus(req, env);
     if (url.pathname === "/api/senkyo/vote" && req.method === "POST") return senkyoVote(req, env);
     if (url.pathname === "/api/board/config") {
@@ -744,6 +747,68 @@ async function senkyoVote(req, env) {
   await env.DB.prepare("DELETE FROM senkyo_votes WHERE voter=?1 AND NOT (" + SENKYO_VALID + ")").bind(voter).run();   // 候補者から外れた人への票は入れ直せる
   try {
     await env.DB.prepare("INSERT INTO senkyo_votes(voter,block,cand,party,pcand,created) VALUES(?1,?2,?3,?4,?5,?6)").bind(voter, block, cand, party, pcand, Date.now()).run();
+  } catch (e) { return json({ error: "voted" }, 409); }
+  return json({ ok: true });
+}
+// ---- PBers人気投票 ----
+// 結果は誰でも見られる。票は投票から少し時間をおいて順に開票するので、投票の直後に数字が動かず、誰の票かも結びつかない。
+// 二重投票は voter の主キーで防ぐ。voter はIPから作った値で、IPそのものは残さない。テーブルは初回の投票で作る。
+// 候補の一覧はサイト側(assets/ninki.json)が持つ。一覧にないIDの票はサイトで数えない
+const NINKI = {
+  closes: Date.parse("2026-11-14T00:00:00+09:00"),   // 11月13日いっぱいまで
+  max: 3,
+  delayMin: 30, delayMax: 180,   // 投票から開票までの分。この間でばらつかせる
+  bucketMs: 10 * 60 * 1000,      // 結果を更新する間隔
+  stepMs: 60 * 60 * 1000,        // 推移グラフの1区切り
+};
+function ninkiCloses(env) { return Number(env.NINKI_CLOSES) || NINKI.closes; }
+async function ninkiVoter(req, env) {
+  return await sha((req.headers.get("CF-Connecting-IP") || "0") + "|ninki|" + (env.SALT || "pbers"));
+}
+async function ninkiStatus(req, env) {
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  const closes = ninkiCloses(env), out = { closes, open: Date.now() < closes, voted: false };
+  try {
+    out.voted = !!(await env.DB.prepare("SELECT 1 AS x FROM ninki_votes WHERE voter=?1").bind(await ninkiVoter(req, env)).first());
+  } catch (e) {}   // まだ誰も投票していない(テーブルがない)
+  return json(out);
+}
+let ninkiSnap = null;   // 同じ更新回の間は集計し直さない
+async function ninkiResults(env) {
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  const bucket = Number(env.NINKI_BUCKET_MS) || NINKI.bucketMs, step = Number(env.NINKI_STEP_MS) || NINKI.stepMs, closes = ninkiCloses(env);
+  const at = Math.floor(Date.now() / bucket) * bucket;
+  if (!ninkiSnap || ninkiSnap.at !== at || ninkiSnap.closes !== closes) {
+    const snap = { closes, open: at < closes, at, next: at + bucket, total: 0, counted: 0, cands: [], trend: { step, cands: [], people: [] } };
+    try {
+      const t = await env.DB.prepare("SELECT COUNT(*) AS total, SUM(CASE WHEN opens<=?1 THEN 1 ELSE 0 END) AS counted FROM ninki_votes WHERE created<=?1").bind(at).first();
+      snap.total = (t && t.total) || 0;
+      snap.counted = (t && t.counted) || 0;
+      const c = await env.DB.prepare("SELECT cand, COUNT(*) AS n FROM (SELECT c1 AS cand FROM ninki_votes WHERE opens<=?1 UNION ALL SELECT c2 FROM ninki_votes WHERE opens<=?1 UNION ALL SELECT c3 FROM ninki_votes WHERE opens<=?1) WHERE cand<>'' GROUP BY cand").bind(at).all();
+      snap.cands = c.results || [];
+      // 推移は開票した時刻で区切る。投票した時刻は出さない
+      const tc = await env.DB.prepare("SELECT CAST(CAST(opens/?2 AS INTEGER)*?2 AS INTEGER) AS t, cand, COUNT(*) AS n FROM (SELECT opens, c1 AS cand FROM ninki_votes WHERE opens<=?1 UNION ALL SELECT opens, c2 FROM ninki_votes WHERE opens<=?1 UNION ALL SELECT opens, c3 FROM ninki_votes WHERE opens<=?1) WHERE cand<>'' GROUP BY t, cand ORDER BY t").bind(at, step).all();
+      snap.trend.cands = (tc.results || []).map((x) => [x.t, x.cand, x.n]);
+      const tp = await env.DB.prepare("SELECT CAST(CAST(opens/?2 AS INTEGER)*?2 AS INTEGER) AS t, COUNT(*) AS n FROM ninki_votes WHERE opens<=?1 GROUP BY t ORDER BY t").bind(at, step).all();
+      snap.trend.people = (tp.results || []).map((x) => [x.t, x.n]);
+    } catch (e) {}   // まだ誰も投票していない(テーブルがない)
+    ninkiSnap = snap;
+  }
+  return json(ninkiSnap);
+}
+async function ninkiVote(req, env) {
+  const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
+  if (Date.now() >= ninkiCloses(env)) return json({ error: "closed" }, 400);
+  let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
+  const picks = Array.isArray(b.picks) ? b.picks.map(String) : [];
+  if (!picks.length || picks.length > NINKI.max || new Set(picks).size !== picks.length) return json({ error: "bad_picks" }, 400);
+  if (!picks.every((id) => /^UC[\w-]{22}$/.test(id))) return json({ error: "bad_picks" }, 400);
+  await env.DB.prepare("CREATE TABLE IF NOT EXISTS ninki_votes(voter TEXT PRIMARY KEY, c1 TEXT NOT NULL, c2 TEXT NOT NULL, c3 TEXT NOT NULL, created INTEGER NOT NULL, opens INTEGER NOT NULL)").run();
+  const voter = await ninkiVoter(req, env), now = Date.now();
+  const r = new Uint32Array(1); crypto.getRandomValues(r);
+  const opens = now + (NINKI.delayMin + (r[0] / 2 ** 32) * (NINKI.delayMax - NINKI.delayMin)) * 60000;
+  try {
+    await env.DB.prepare("INSERT INTO ninki_votes(voter,c1,c2,c3,created,opens) VALUES(?1,?2,?3,?4,?5,?6)").bind(voter, picks[0], picks[1] || "", picks[2] || "", now, Math.round(opens)).run();
   } catch (e) { return json({ error: "voted" }, 409); }
   return json({ ok: true });
 }

@@ -957,20 +957,22 @@
     history.pushState({ view: 'board' }, '', pathOf('board') + '?t=' + id);
     switchTab('board', true);
   }
-  function senkyoBanner(id) {   // 参院選の入口。日本版で受付中だけ出す
-    if (!SENKYO_ON || GBASE !== '/' || Date.now() >= Date.parse('2026-11-14T00:00:00+09:00')) return '';
-    return '<a class="bd-senkyo" id="' + id + '" href="/senkyo/"><b>PBers参院選</b><span>東日本・中日本・西日本の候補者と、比例の党に投票しよう</span><em>投票する</em></a>';
+  function voteBanner(id) {   // 人気投票の入口。受付中だけ出す。締切は gen_data.py の NINKI_CLOSES と揃える
+    var closes = Date.parse('2026-11-14T00:00:00+09:00'), now = Date.now();
+    if (now >= closes + 14 * 86400000) return '';   // 受付が終わったら2週間だけ結果の入口にする
+    var live = now < closes;
+    return '<a class="bd-senkyo" id="' + id + '" href="' + GBASE + 'vote/"><b>PBers人気投票</b><span>' + (live ? '好きなPBerを3組まで選んで投票。開票速報は誰でも見られます' : '開票結果を公開しています') + '</span><em>' + (live ? '投票する' : '結果を見る') + '</em></a>';
   }
-  function wireSenkyoBanner(id) {
+  function wireVoteBanner(id) {
     var a = document.getElementById(id);
-    if (a) a.addEventListener('click', function (e) { e.preventDefault(); switchTab('senkyo'); });
+    if (a) a.addEventListener('click', function (e) { e.preventDefault(); switchTab('vote'); });
   }
-  function renderDashSenkyo() {
-    var sec = document.getElementById('dash-senkyo'), html = senkyoBanner('dash-senkyo-link');
+  function renderDashVote() {
+    var sec = document.getElementById('dash-vote'), html = voteBanner('dash-vote-link');
     if (!sec || !html) return;
-    document.getElementById('dash-senkyo-body').innerHTML = html;
+    document.getElementById('dash-vote-body').innerHTML = html;
     sec.hidden = false;
-    wireSenkyoBanner('dash-senkyo-link');
+    wireVoteBanner('dash-vote-link');
   }
   function renderDashBoard() {
     var sec = document.getElementById('dash-board'), host = document.getElementById('dash-board-list');
@@ -1393,7 +1395,7 @@
       '</form>' +
       '<div class="bd-search-wrap"><input class="bf-in bd-search" id="bd-search" maxlength="100" placeholder="🔍 スレ・書き込みを検索">' +
         '<button type="button" class="bd-sclear" id="bd-sclear" aria-label="クリア" hidden>×</button></div>' +
-      senkyoBanner('bd-senkyo') +
+      voteBanner('bd-vote') +
       '<div class="bd-sort" id="bd-sort" role="tablist">' +
         '<button type="button" class="bd-sort-b" data-sort="bump">最終レス順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="new">新着順</button>' +
@@ -1704,7 +1706,7 @@
         paint(d.threads || [], true, q);
       }).catch(function () { box.innerHTML = '<div class="board-empty">検索に失敗しました。</div>'; });
     }
-    wireSenkyoBanner('bd-senkyo');
+    wireVoteBanner('bd-vote');
     var si = document.getElementById('bd-search'), sc = document.getElementById('bd-sclear'), sTimer = null;
     si.addEventListener('input', function () {
       var q = si.value.trim(); sc.hidden = !q; sortBar.hidden = !!q;   // 検索中は並び替えを隠す
@@ -2061,7 +2063,8 @@
     videos:    document.getElementById('view-videos'),
     channels:  document.getElementById('view-channels'),
     board:     document.getElementById('view-board'),
-    senkyo:    document.getElementById('view-senkyo')
+    senkyo:    document.getElementById('view-senkyo'),
+    vote:      document.getElementById('view-vote')
   };
   var currentView = 'dashboard';
   function pathOf(v) { return v === 'dashboard' ? GBASE : GBASE + v + '/'; }   // dashboard=/ , 他は /growth/ (実体ディレクトリに一致)
@@ -2081,7 +2084,7 @@
     currentView = v;
     document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x.dataset.view === v); });
     var moreBtn = document.getElementById('tab-more-btn');   // 新聞/ニュースは「その他」内なので親を強調
-    if (moreBtn) moreBtn.classList.toggle('on', v === 'news' || v === 'paper');
+    if (moreBtn) moreBtn.classList.toggle('on', v === 'news' || v === 'paper' || v === 'vote');
     Object.keys(VIEWS).forEach(function (k) { if (VIEWS[k]) VIEWS[k].hidden = (k !== v); });
     if (!noPush && location.pathname !== pathOf(v)) history.pushState({ view: v }, '', pathOf(v));   // 実URLに反映(戻る/共有/計測)
     if (window.pbersTrackView) window.pbersTrackView(pathOf(v));   // タブごとの表示回数を計上
@@ -2100,6 +2103,7 @@
       else if (v === 'videos') renderVideos();
       else if (v === 'channels') moveTierInd();
       else if (v === 'board') renderBoard();
+      else if (v === 'vote' && window.PBERS_NINKI) window.PBERS_NINKI.mount(document.getElementById('vote-body'), BOARD_API);
       else if (v === 'senkyo' && window.PBERS_SENKYO) window.PBERS_SENKYO.mount(document.getElementById('senkyo-body'), BOARD_API, GBASE, boardKey);
     }); });
   }
@@ -2950,7 +2954,7 @@
   setupRise();
   setupRiseZoom();
   setupRiseSlider();
-  renderDashSenkyo();
+  renderDashVote();
   renderDashRise();
   setupBoard();
   setupTheme();

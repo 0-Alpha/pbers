@@ -356,6 +356,7 @@ def build_edition():
     build_barrace(colors, order)
     if not ED["sub"]:
         build_senkyo()
+        build_ninki()
     build_channel_pages(order, colors)
     # 記事(/articles/)は D1 + Pages Functions(SSR)へ移行済み。ここでは静的生成しない。
     build_view_pages()
@@ -525,7 +526,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251042">
+<link rel="stylesheet" href="/assets/style.css?v=251044">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -549,7 +550,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=251042"></script>
+<script src="/assets/channel.js?v=251044"></script>
 </body>
 </html>
 '''
@@ -634,6 +635,7 @@ def ch_header_html(d, videos, rank, total, esc, bytype_html="", growth7=None, bt
             '<p class="ch-lead">' + name + '（ポーランドボーラー）の登録者数・総再生数・投稿数と、その推移をまとめたページです。PBers調べ・毎日更新。</p>'
             '<div class="ch-actions">'
               '<a class="yt-btn" href="' + esc(d["url"]) + '" target="_blank" rel="noopener">YouTube ↗</a>'
+              + ('<a class="sh nk-ch" href="' + ed_base() + 'vote/?c=' + esc(d["id"]) + '">人気投票で選ぶ</a>' if datetime.datetime.now(datetime.timezone.utc) < datetime.datetime.fromisoformat(NINKI_CLOSES) else '')
               + ('<a class="x-btn" href="https://x.com/' + esc(x["handle"]) + '" target="_blank" rel="noopener">𝕏 @' + esc(x["handle"])
                  + ('<span class="x-fol">' + format(x["followers"], ",") + ' フォロワー</span>' if x.get("followers") else '')
                  + '</a>' if x else '') +
@@ -897,7 +899,7 @@ def build_channel_pages(order, colors):
             f.write(page)
     print("wrote %d channel pages" % total)
 
-VIEW_ROUTES = ("growth", "rising", "news", "paper", "race", "game", "videos", "channels", "board", "senkyo")
+VIEW_ROUTES = ("growth", "rising", "news", "paper", "race", "game", "videos", "channels", "board", "senkyo", "vote")
 
 # PBers参院選。候補者は全員、本人が出身を公表している(運営確認済み)。チャンネルID, 都道府県, 選挙区, 表示名(省略可)。
 # 締切と候補者は cron-worker/worker.js の SENKYO と揃えること(締切は assets/app.js の入口の表示期限も)
@@ -966,6 +968,49 @@ def build_senkyo():
     with open(os.path.join(BASE, "assets", "senkyo.json"), "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
     print("wrote assets/senkyo.json (%d candidates)" % len(cands))
+
+# PBers人気投票。候補は日本版と海外版の全チャンネル(引退者と掲載削除依頼の人を除く)で、出身は使わない。
+# 締切と票数は cron-worker/worker.js の NINKI と揃えること(締切は assets/app.js の入口の表示期限も)
+NINKI_CLOSES = "2026-11-14T00:00:00+09:00"   # 11月13日いっぱいまで
+NINKI_MAX = 3
+NINKI_TOP = 10   # 開票速報で最初に見せる順位
+# 人気投票で本体のチャンネルにまとめる別チャンネル(別チャンネル: 本体)。表示は本体の名前で、別チャンネルの名前でも探せる
+NINKI_MERGE = {
+    "UC6-_HH3SrsURgeeKQCXdsEQ": "UCRCQ3G1d0DM2krO-Fx5LOuQ",   # Uow_cb -> みかん
+    "UCybaEoEUwo4NCMfVqg1TFxw": "UC_qD8VahU0Fr3q1SKg6kYtg",   # SATTOA-BALL -> さとボール
+    "UCYs_v0vuLKeCI--nTS1a5Dw": "UCkjdTrE4hiJ4qNOV7NPGSSw",   # Dezinicht -> フヒフム
+}
+
+def build_ninki():
+    """投票ページ用の assets/ninki.json を作る。同じ人の複数チャンネルは1組にまとめる。"""
+    seen, alias = {}, {}
+    for f, ed in (("data.json", "jp"), ("data_global.json", "global")):
+        p = os.path.join(BASE, f)
+        if not os.path.exists(p):
+            continue
+        for d in json.load(open(p, encoding="utf-8")):
+            if d["id"] in RETIRED or d["id"] in seen or not d.get("name") or d["name"] == d["id"]:   # 名前が取れていないものは出さない
+                continue
+            seen[d["id"]] = {"id": d["id"], "name": d["name"], "ed": ed, "subs": int(d.get("subs") or 0),
+                             "avatar": re.sub(r"=s\d+", "=s88", d.get("avatar") or "")}
+    for a, b in SAME_PERSON:
+        if a in seen and b in seen:
+            big, small = (a, b) if seen[a]["subs"] >= seen[b]["subs"] else (b, a)
+            seen[big]["alt"] = seen[small]["name"]
+            seen[big]["name"] = seen[big]["name"] + "・" + seen[small]["name"]
+            seen[big]["subs"] = max(seen[a]["subs"], seen[b]["subs"])
+            alias[small] = big
+            del seen[small]
+    for sub, main in NINKI_MERGE.items():
+        if sub in seen and main in seen:
+            seen[main]["alt"] = (seen[main].get("alt", "") + " " + seen[sub]["name"]).strip()
+            alias[sub] = main
+            del seen[sub]
+    cands = list(seen.values())
+    closes = int(datetime.datetime.fromisoformat(NINKI_CLOSES).timestamp() * 1000)
+    with open(os.path.join(BASE, "assets", "ninki.json"), "w", encoding="utf-8") as f:
+        json.dump({"closes": closes, "max": NINKI_MAX, "top": NINKI_TOP, "alias": alias, "candidates": cands}, f, ensure_ascii=False, separators=(",", ":"))
+    print("wrote assets/ninki.json (%d candidates)" % len(cands))
 
 def build_view_pages():
     """SPAタブの実URL(/growth/ 等)への直アクセス・リロード用に index.html の複製を置く。
@@ -1117,7 +1162,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251042">
+<link rel="stylesheet" href="/assets/style.css?v=251044">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>

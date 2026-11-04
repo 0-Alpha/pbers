@@ -17,7 +17,7 @@
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251042">
+<link rel="stylesheet" href="/assets/style.css?v=251044">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -40,6 +40,7 @@
   <ul>
     <li><b>アクセス情報</b>: 閲覧されたページ、参照元、ブラウザ・端末の種類、おおよその地域など(アクセス解析のため)。</li>
     <li><b>ブラウザ内の保存データ</b>: 表示設定(ジャンルの表示切替など)や、サイト内ゲームのスコアを、お使いのブラウザの localStorage に保存します。これらは<b>お使いの端末内にのみ保存</b>され、当サイトのサーバーへ送信されません。</li>
+    <li><b>人気投票</b>: 二重投票を防ぐため、IPアドレスから作った照合用の値と、選んだチャンネルを保存します。IPアドレスそのものは保存しません。結果はチャンネルごとの票数だけを公開し、誰がどこに投票したかは公開しません。</li>
     <li><b>掲示板への投稿情報</b>: 掲示板に投稿する際、投稿内容・名前・投稿日時に加え、迷惑行為の防止および<b>発信者情報開示請求への対応</b>のため、<b>IPアドレス・ブラウザ情報(User-Agent)</b>を一定期間(約180日)サーバーに保存します。これらは<b>掲示板上には公開されません</b>（画面には日替りの識別IDのみ表示）。保存した情報は、<b>法令に基づく正当な請求(発信者情報開示請求等)があった場合や、権利侵害・不正行為への対応に必要な場合に限り</b>、必要な範囲で開示・利用することがあります。</li>
   </ul>
 
