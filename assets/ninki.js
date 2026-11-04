@@ -213,13 +213,12 @@
       '</header>' +
       '<ol class="kh-list" id="kh-list"></ol>' +
       '<button type="button" class="kh-more" id="kh-more" hidden></button>' +
-      '<section class="kh-trend"><div class="kh-trend-h"><h4>投票数の推移</h4>' +
-        '<div class="nk-seg" id="kh-chartview" role="group" aria-label="グラフの切り替え"><button type="button" data-v="top" aria-pressed="' + (chartView === 'top') + '">上位5組</button><button type="button" data-v="total" aria-pressed="' + (chartView === 'total') + '">全体</button></div></div>' +
-        '<p class="kh-trend-empty" id="kh-trend-empty" hidden>開票が始まると、ここにグラフが出ます。</p>' +
+      '<section class="kh-trend"><div class="sec-head"><h2>投票数の推移 <span class="en">History</span></h2><span class="note">開票した時刻で集計</span></div>' +
+        '<div class="controls kh-controls"><div class="toggle" id="kh-chartview" role="group" aria-label="グラフの切り替え"><button type="button" class="tg' + (chartView === 'top' ? ' on' : '') + '" data-v="top">上位5組</button><button type="button" class="tg' + (chartView === 'total' ? ' on' : '') + '" data-v="total">全体</button><span class="tg-ind" id="kh-tind"></span></div></div>' +
+        '<div class="trend"><div class="t-empty" id="kh-trend-empty" hidden>開票が始まると、ここにグラフが出ます。</div>' +
         '<div id="kh-trend-body"><div class="kh-legend" id="kh-legend"></div>' +
-        '<div class="kh-plot" id="kh-plot" role="img" tabindex="0"><div id="kh-svgbox"></div><div class="kh-tip" id="kh-tip" hidden></div></div>' +
-        '<details class="kh-table"><summary>数値で見る</summary><div id="kh-table"></div></details>' +
-        '<p class="nk-note">開票した時刻で積み上げています。投票した時刻とは違います。</p></div></section>' +
+        '<div class="kh-plot" id="kh-plot" role="img" tabindex="0"><div id="kh-svgbox"></div><div class="kh-tip" id="kh-tip" hidden></div></div></div></div>' +
+        '<div class="ch-nums-wrap" id="kh-numswrap"><button type="button" class="ch-nums-btn" id="kh-numsbtn">' + (numsOpen ? '数値を隠す ▴' : '数値で見る ▾') + '</button><div class="ch-nums" id="kh-table"' + (numsOpen ? '' : ' hidden') + '></div></div></section>' +
       '<p class="nk-note">投票から10分〜1時間ほどで順に開票し、結果は10分ごとに更新します。</p>';
     box.querySelector('#kh-more').addEventListener('click', function () {
       showAll = !showAll;
@@ -262,7 +261,7 @@
         }
         keep[id] = true;
         var el = row.el;
-        el.hidden = x.rank > shown && !showAll;   // 上位だけ先に見せる
+        el.hidden = i >= shown && !showAll;   // 同数が多くても、先に見せる行数は増やさない
         el.classList.toggle('lead', x.rank === 1);
         olist.appendChild(el);
         el.querySelector('.kh-r').textContent = x.rank;
@@ -279,7 +278,7 @@
       });
       if (!first) flip(before);
     }
-    var hiddenCount = list.filter(function (x) { return x.rank > shown; }).length, more = host.querySelector('#kh-more');
+    var hiddenCount = Math.max(0, list.length - shown), more = host.querySelector('#kh-more');
     more.hidden = !hiddenCount;
     more.textContent = showAll ? '上位だけ見る' : 'ほかの' + hiddenCount + '組も見る';
     var snap = { at: r.at };
@@ -289,7 +288,7 @@
   }
 
   /* ---- 投票数の推移。開票した時刻で積み上げた折れ線 ---- */
-  var chartView = 'top', chartModel = null, chartIdx = -1, chartRO = null, slots = {};
+  var chartView = 'top', chartModel = null, chartIdx = -1, chartRO = null, slots = {}, numsOpen = false;
   var CHART_SLOTS = 5;
   function assignSlots(ids) {   // 色はチャンネルについて回る。順位が変わっても残っている人の色は変えない
     var used = {};
@@ -314,7 +313,7 @@
     for (var x = first + step; x < at; x += step) xs.push(x);
     if (at > first) xs.push(at); else xs.unshift(first - step);
     if (chartView === 'total') {
-      return { xs: xs, unit: '人', series: [{ id: 'all', name: '開票済みの人数', slot: 0, ys: cumulative(xs, t.people, step, at) }] };
+      return { xs: xs, unit: '人', series: [{ id: 'all', name: '開票済みの人数', slot: 'all', ys: cumulative(xs, t.people, step, at) }] };
     }
     var top = ranking(r).slice(0, CHART_SLOTS), by = {};
     (t.cands || []).forEach(function (row) {
@@ -326,69 +325,72 @@
       return { id: x.c.id, name: x.c.name, slot: slots[x.c.id], ys: cumulative(xs, by[x.c.id] || [], step, at) };
     }) };
   }
-  function niceMax(max) {
-    max = Math.max(1, max);
-    var base = Math.pow(10, Math.floor(Math.log10(max))), st = [1, 2, 5, 10].map(function (m) { return m * base; }).filter(function (s) { return s >= 1 && max / s <= 4; })[0] || base * 10;
-    return { step: st, max: Math.ceil(max / st) * st };
+  function niceHalf(top) {   // 0、真ん中、上の3本の線が整数になるように、真ん中の値を選ぶ
+    var half = Math.max(1, top / 2), base = Math.pow(10, Math.floor(Math.log10(half)));
+    return [1, 2, 5, 10].map(function (m) { return m * base; }).filter(function (v) { return v >= 1 && v >= half; })[0];
   }
-  function xTicks(a, b, room) {
-    var H = 3600e3, list = [60e3, 5 * 60e3, 15 * 60e3, 30 * 60e3, H, 3 * H, 6 * H, 12 * H, 24 * H, 48 * H, 96 * H];
-    var st = list.filter(function (s) { return (b - a) / s <= room; })[0] || 192 * H, out = [];
-    var off = 9 * H;   // 区切りを日本時間に揃える
-    for (var v = Math.ceil((a + off) / st) * st - off; v <= b; v += st) out.push(v);
-    return { list: out, step: st };
-  }
-  function xLabel(v, st) {
+  function xLabel(v, days) {
     var d = new Date(v + 9 * 3600e3), H = d.getUTCHours(), M = d.getUTCMinutes();
-    if (st >= 24 * 3600e3 || (!H && !M)) return (d.getUTCMonth() + 1) + '/' + d.getUTCDate();
+    if (days || (!H && !M)) return (d.getUTCMonth() + 1) + '/' + d.getUTCDate();
     return H + ':' + ('0' + M).slice(-2);
   }
   function fullTime(v) { var d = new Date(v + 9 * 3600e3); return (d.getUTCMonth() + 1) + '月' + d.getUTCDate() + '日 ' + clockText(v); }
+  function moveToggle() {
+    var on = host.querySelector('#kh-chartview .tg.on'), ind = host.querySelector('#kh-tind');
+    if (on && ind) { ind.style.left = on.offsetLeft + 'px'; ind.style.width = on.offsetWidth + 'px'; }
+  }
   function drawChart(animate) {
     var box = host.querySelector('#kh-plot');
     if (!box || !result) return;
+    moveToggle();
     chartModel = buildChart(result);
     var legend = host.querySelector('#kh-legend'), wrap = host.querySelector('#kh-trend-body'), m = chartModel;
     wrap.hidden = !m;
     host.querySelector('#kh-trend-empty').hidden = !!m;
+    host.querySelector('#kh-numswrap').hidden = !m;
     if (!m) return;
     var w = box.clientWidth;
     if (!w) return;
-    var h = w < 520 ? 220 : 280, L = 36, R = 14, T = 12, B = 26, pw = w - L - R, ph = h - T - B;
-    var x0 = m.xs[0], x1 = m.xs[m.xs.length - 1], top = 0;
-    m.series.forEach(function (s) { s.ys.forEach(function (v) { if (v > top) top = v; }); });
-    var ny = niceMax(top);
-    var sx = function (v) { return L + (x1 === x0 ? 0 : (v - x0) / (x1 - x0)) * pw; }, sy = function (v) { return T + ph - v / ny.max * ph; };
-    m.sx = sx; m.sy = sy; m.T = T; m.ph = ph; m.w = w; m.L = L; m.R = R;
-    var svg = '<svg class="kh-svg" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true">';
-    for (var y = 0; y <= ny.max; y += ny.step) {
-      svg += '<line class="' + (y ? 'kh-grid' : 'kh-base') + '" x1="' + L + '" x2="' + (w - R) + '" y1="' + sy(y) + '" y2="' + sy(y) + '"/><text class="kh-yt num" x="' + (L - 8) + '" y="' + (sy(y) + 4) + '">' + y + '</text>';
+    var Hh = 240, L = 54, R = 16, T = 18, B = 30, pw = w - L - R, ph = Hh - T - B;
+    var xs = m.xs, n = xs.length, x0 = xs[0], x1 = xs[n - 1], top = 0, lead = m.series[0];
+    m.series.forEach(function (s) { s.ys.forEach(function (v) { if (v > top) top = v; }); if (s.ys[n - 1] > lead.ys[n - 1]) lead = s; });
+    var half = niceHalf(top), yMax = half * 2;
+    var sx = function (v) { return L + (x1 === x0 ? 0 : (v - x0) / (x1 - x0)) * pw; }, sy = function (v) { return T + ph * (1 - v / yMax); };
+    m.sx = sx; m.sy = sy; m.T = T; m.ph = ph; m.w = w;
+    var grid = '', labels = '';
+    [yMax, half, 0].forEach(function (v) {
+      grid += '<line class="t-grid" x1="' + L + '" y1="' + sy(v) + '" x2="' + (w - R) + '" y2="' + sy(v) + '"/>';
+      labels += '<text class="t-axis" x="' + (L - 8) + '" y="' + (sy(v) + 4) + '" text-anchor="end">' + v + '</text>';
+    });
+    // 横軸は最初と最後を必ず出す。最後の直前の目盛りは重なるので省く
+    var room = w < 520 ? 3 : 6, every = Math.max(1, Math.ceil((n - 1) / room)), days = x1 - x0 >= 48 * 3600e3;
+    for (var k = 0; k < n; k++) {
+      if (k !== n - 1 && (k % every !== 0 || (n - 1 - k < every * 0.6 && k !== 0))) continue;
+      var a = k === 0 ? 'start' : k === n - 1 ? 'end' : 'middle';
+      labels += '<text class="t-axis" x="' + sx(xs[k]) + '" y="' + (Hh - 10) + '" text-anchor="' + a + '">' + xLabel(xs[k], days) + '</text>';
     }
-    var xt = xTicks(x0, x1, w < 520 ? 3 : 6);
-    xt.list.forEach(function (v) {
-      var px = sx(v), anchor = px > w - R - 22 ? 'end' : px < L + 22 ? 'start' : 'middle';   // 端の時刻が切れないように
-      svg += '<text class="kh-xt num" style="text-anchor:' + anchor + '" x="' + px + '" y="' + (h - 7) + '">' + xLabel(v, xt.step) + '</text>';
-    });
+    var lines = '', dots = '', showAll = pw / Math.max(1, n - 1) >= 8;   // 点が詰まるときは最後だけ打つ
     m.series.forEach(function (s) {
-      var d = s.ys.map(function (v, i) { return (i ? 'L' : 'M') + sx(m.xs[i]).toFixed(1) + ' ' + sy(v).toFixed(1); }).join('');
-      svg += '<path class="kh-line s' + s.slot + (animate ? ' draw' : '') + '" pathLength="1" d="' + d + '"/>';
+      var d = s.ys.map(function (v, i) { return (i ? ' L' : 'M') + sx(xs[i]).toFixed(1) + ',' + sy(v).toFixed(1); }).join('');
+      lines += '<path class="t-line kh-line s' + s.slot + (animate ? ' draw' : '') + '" pathLength="1" d="' + d + '"/>';
+      s.ys.forEach(function (v, i) {
+        if (showAll || i === n - 1) dots += '<circle class="t-dot kh-end s' + s.slot + '" r="3.5" cx="' + sx(xs[i]).toFixed(1) + '" cy="' + sy(v).toFixed(1) + '"/>';
+      });
     });
-    m.series.forEach(function (s) {
-      svg += '<circle class="kh-end s' + s.slot + '" r="4" cx="' + sx(x1) + '" cy="' + sy(s.ys[s.ys.length - 1]) + '"/>';
-    });
-    svg += '<g class="kh-hover" id="kh-hover" visibility="hidden"><line class="kh-cross" y1="' + T + '" y2="' + (T + ph) + '"/>' +
-      m.series.map(function (s) { return '<circle class="kh-pt s' + s.slot + '" r="4"/>'; }).join('') + '</g></svg>';
-    box.querySelector('#kh-svgbox').innerHTML = svg;
+    var last = '<text class="t-val" x="' + sx(x1) + '" y="' + (sy(lead.ys[n - 1]) - 9) + '" text-anchor="end">' + lead.ys[n - 1] + m.unit + '</text>';
+    box.querySelector('#kh-svgbox').innerHTML = '<svg width="' + w + '" height="' + Hh + '" viewBox="0 0 ' + w + ' ' + Hh + '" aria-hidden="true">' + grid + labels + lines + dots + last +
+      '<g class="kh-hover" id="kh-hover" visibility="hidden"><line class="kh-cross" y1="' + T + '" y2="' + (T + ph) + '"/>' +
+      m.series.map(function (s) { return '<circle class="t-dot kh-pt s' + s.slot + '" r="4.5"/>'; }).join('') + '</g></svg>';
     legend.hidden = m.series.length < 2;
     legend.innerHTML = m.series.map(function (s) { return '<span class="kh-key"><i class="s' + s.slot + '"></i>' + esc(s.name) + '</span>'; }).join('');
-    host.querySelector('#kh-plot').setAttribute('aria-label', '投票数の推移。' + m.series.map(function (s) { return s.name + ' ' + s.ys[s.ys.length - 1] + m.unit; }).join('、'));
-    drawTable(m);
-    if (chartIdx >= 0) showPoint(Math.min(chartIdx, m.xs.length - 1)); else hidePoint();
+    box.setAttribute('aria-label', '投票数の推移。' + m.series.map(function (s) { return s.name + ' ' + s.ys[n - 1] + m.unit; }).join('、'));
+    if (numsOpen) drawTable(m);
+    if (chartIdx >= 0) showPoint(Math.min(chartIdx, n - 1)); else hidePoint();
   }
-  function drawTable(m) {
-    var rows = m.xs.map(function (x, i) { return i; }).reverse().slice(0, 48);
-    host.querySelector('#kh-table').innerHTML = '<div class="kh-tscroll"><table><thead><tr><th>時刻</th>' + m.series.map(function (s) { return '<th>' + esc(s.name) + '</th>'; }).join('') + '</tr></thead><tbody>' +
-      rows.map(function (i) { return '<tr><th class="num">' + fullTime(m.xs[i]) + '</th>' + m.series.map(function (s) { return '<td class="num">' + s.ys[i] + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+  function drawTable(m) {   // チャンネルページと同じ、新しい順の表
+    var rows = m.xs.map(function (x, i) { return i; }).reverse();
+    host.querySelector('#kh-table').innerHTML = '<table class="ch-table"><thead><tr><th>時刻</th>' + m.series.map(function (s) { return '<th>' + esc(s.name) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+      rows.map(function (i) { return '<tr><td>' + fullTime(m.xs[i]) + '</td>' + m.series.map(function (s) { return '<td class="num">' + s.ys[i] + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table>';
   }
   function showPoint(i) {
     var m = chartModel, g = host.querySelector('#kh-hover'), tip = host.querySelector('#kh-tip');
@@ -440,9 +442,15 @@
       var b = e.target.closest('button');
       if (!b || b.dataset.v === chartView) return;
       chartView = b.dataset.v;
-      [].slice.call(host.querySelectorAll('#kh-chartview button')).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      [].slice.call(host.querySelectorAll('#kh-chartview .tg')).forEach(function (x) { x.classList.toggle('on', x === b); });
       chartIdx = -1;
       drawChart(true);
+    });
+    host.querySelector('#kh-numsbtn').addEventListener('click', function () {
+      numsOpen = !numsOpen;
+      this.textContent = numsOpen ? '数値を隠す ▴' : '数値で見る ▾';
+      host.querySelector('#kh-table').hidden = !numsOpen;
+      if (numsOpen && chartModel) drawTable(chartModel);
     });
     if (chartRO) chartRO.disconnect();
     if (window.ResizeObserver) {
