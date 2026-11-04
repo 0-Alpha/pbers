@@ -1410,6 +1410,8 @@ footer .brand{font-size:16px}
 /* ---------- PBers参院選 ---------- */
 .bd-senkyo{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;margin-bottom:14px;padding:12px 14px;color:var(--text);text-decoration:none;background:var(--panel);border:1px solid var(--red);border-radius:10px}
 .bd-senkyo:hover{background:var(--surface)}
+section.block#dash-senkyo{padding:0}
+#dash-senkyo .bd-senkyo{margin-bottom:0}
 .bd-senkyo b{font-weight:900;font-size:15px}
 .bd-senkyo span{flex:1;min-width:190px;font-size:12.5px;color:var(--muted)}
 .bd-senkyo em{padding:5px 14px;font-style:normal;font-weight:800;font-size:12.5px;color:#fff;background:var(--red);border-radius:999px}

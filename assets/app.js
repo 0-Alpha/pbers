@@ -956,6 +956,21 @@
     history.pushState({ view: 'board' }, '', pathOf('board') + '?t=' + id);
     switchTab('board', true);
   }
+  function senkyoBanner(id) {   // 参院選の入口。日本版で受付中だけ出す
+    if (GBASE !== '/' || Date.now() >= Date.parse('2026-11-14T00:00:00+09:00')) return '';
+    return '<a class="bd-senkyo" id="' + id + '" href="/senkyo/"><b>PBers参院選</b><span>東日本・中日本・西日本の候補者と、比例の党に投票しよう</span><em>投票する</em></a>';
+  }
+  function wireSenkyoBanner(id) {
+    var a = document.getElementById(id);
+    if (a) a.addEventListener('click', function (e) { e.preventDefault(); switchTab('senkyo'); });
+  }
+  function renderDashSenkyo() {
+    var sec = document.getElementById('dash-senkyo'), html = senkyoBanner('dash-senkyo-link');
+    if (!sec || !html) return;
+    document.getElementById('dash-senkyo-body').innerHTML = html;
+    sec.hidden = false;
+    wireSenkyoBanner('dash-senkyo-link');
+  }
   function renderDashBoard() {
     var sec = document.getElementById('dash-board'), host = document.getElementById('dash-board-list');
     if (!sec || !host) return;
@@ -1377,7 +1392,7 @@
       '</form>' +
       '<div class="bd-search-wrap"><input class="bf-in bd-search" id="bd-search" maxlength="100" placeholder="🔍 スレ・書き込みを検索">' +
         '<button type="button" class="bd-sclear" id="bd-sclear" aria-label="クリア" hidden>×</button></div>' +
-      (GBASE === '/' && Date.now() < Date.parse('2026-11-14T00:00:00+09:00') ? '<a class="bd-senkyo" id="bd-senkyo" href="/senkyo/"><b>PBers参院選</b><span>東日本・中日本・西日本の候補者と、比例の党に投票しよう</span><em>投票する</em></a>' : '') +
+      senkyoBanner('bd-senkyo') +
       '<div class="bd-sort" id="bd-sort" role="tablist">' +
         '<button type="button" class="bd-sort-b" data-sort="bump">最終レス順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="new">新着順</button>' +
@@ -1688,8 +1703,7 @@
         paint(d.threads || [], true, q);
       }).catch(function () { box.innerHTML = '<div class="board-empty">検索に失敗しました。</div>'; });
     }
-    var skLink = document.getElementById('bd-senkyo');
-    if (skLink) skLink.addEventListener('click', function (e) { e.preventDefault(); switchTab('senkyo'); });
+    wireSenkyoBanner('bd-senkyo');
     var si = document.getElementById('bd-search'), sc = document.getElementById('bd-sclear'), sTimer = null;
     si.addEventListener('input', function () {
       var q = si.value.trim(); sc.hidden = !q; sortBar.hidden = !!q;   // 検索中は並び替えを隠す
@@ -2935,6 +2949,7 @@
   setupRise();
   setupRiseZoom();
   setupRiseSlider();
+  renderDashSenkyo();
   renderDashRise();
   setupBoard();
   setupTheme();
