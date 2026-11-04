@@ -169,7 +169,7 @@
     var mine = (saved() || []).map(cand).filter(Boolean);
     host.innerHTML =
       '<h3 class="nk-done">' + (mine.length ? '投票しました' : 'この回線からは投票済みです') + '</h3>' +
-      '<p class="nk-sub">' + (mine.length ? 'あなたの票は、30分から3時間ほどで開票されます。' : '同じ回線では1回だけ投票できます。') + '</p>' +
+      '<p class="nk-sub">' + (mine.length ? 'あなたの票は、10分から1時間ほどで開票されます。' : '同じ回線では1回だけ投票できます。') + '</p>' +
       (mine.length ? '<ul class="nk-mine">' + mine.map(function (c) { return '<li>' + avatar(c, 40) + '<b>' + esc(c.name) + '</b></li>'; }).join('') + '</ul>' : '') +
       '<button type="button" class="g-btn nk-toresult" data-mode="kaihyo">開票速報を見る</button>' +
       foot();
@@ -220,7 +220,7 @@
         '<div class="kh-plot" id="kh-plot" role="img" tabindex="0"><div id="kh-svgbox"></div><div class="kh-tip" id="kh-tip" hidden></div></div>' +
         '<details class="kh-table"><summary>数値で見る</summary><div id="kh-table"></div></details>' +
         '<p class="nk-note">開票した時刻で積み上げています。投票した時刻とは違います。</p></div></section>' +
-      '<p class="nk-note">投票から30分〜3時間ほどで順に開票し、結果は10分ごとに更新します。</p>';
+      '<p class="nk-note">投票から10分〜1時間ほどで順に開票し、結果は10分ごとに更新します。</p>';
     box.querySelector('#kh-more').addEventListener('click', function () {
       showAll = !showAll;
       drawResult(false);
@@ -244,7 +244,7 @@
     Object.keys(rows).forEach(function (id) { before[id] = rows[id].el.getBoundingClientRect().top; });
     var keep = {};
     if (!list.length) {
-      olist.innerHTML = '<li class="kh-none">まだ開票された票はありません。投票から30分ほどで最初の票が開きます。</li>';
+      olist.innerHTML = '<li class="kh-none">まだ開票された票はありません。投票から10分ほどで最初の票が開きます。</li>';
       rows = {};
     } else {
       var empty = olist.querySelector('.kh-none');
