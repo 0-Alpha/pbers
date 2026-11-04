@@ -9,7 +9,8 @@
 // 追加する場合はデコード済み・小文字のパスを GONE_PATHS に足す。
 const GONE_PATHS = [
   "/c/ikasumi帝国/",
-  "/c/ikasumi帝国"
+  "/c/ikasumi帝国",
+  "/assets/senkyo.json"   // 参院選の取り下げ中。キャッシュに残る候補者データを止める。再開するときは外す
 ];
 export async function onRequest(context) {
   const url = new URL(context.request.url);
