@@ -695,28 +695,34 @@ async function pollFor(req, env, tid, admin) {
 // ---- PBers参院選 ----
 // 途中経過は返さない。締切の後(または管理者)だけ得票を返す。二重投票は voter の主キーで防ぐ。テーブルは初回の投票で作る
 const SENKYO = {
-  closes: Date.parse("2026-11-18T00:00:00+09:00"),
-  cands: { "UC6BwO1hK3hHd-Hr43jokcyg": "w", "UC2fMWFGgy-ENfkqlK0CUwrg": "e", "UCXCVbJCSF4FLP_TfojbkvUA": "e", "UCfJp9c3kSkIjYFevd2G1RKg": "e", "UCVYMXYU6j0M5Gj1xwywKDyg": "e", "UCRCQ3G1d0DM2krO-Fx5LOuQ": "c", "UCGo_IzKD2-TooYrTGFt2fDA": "c", "UCa-Pej_sn8Uw_mwXLKZiuIg": "c", "UCkjdTrE4hiJ4qNOV7NPGSSw": "w", "UC_qD8VahU0Fr3q1SKg6kYtg": "w", "UCnZNY63Txhu4ot3l2lbicOA": "w", "UC1swbrz9S2VKVABS673ACgQ": "w", "UC3N1ZsVd8KkOmSryri0AesA": "w", "UCxKNMaOOdi32HNUFTOCw-8w": "w", "UCZ-zUkkdNTYAYDgkDyeb_hA": "w", "UCYmJ2rqzqNtXBm-gn438zGw": "w" },
+  closes: Date.parse("2026-11-14T00:00:00+09:00"),   // 11月13日いっぱいまで
+  removed: ["UCVYMXYU6j0M5Gj1xwywKDyg"],   // 候補者から外れた人。この人に入った票は数えず、入れた人はもう一度投票できる
+  cands: { "UC6BwO1hK3hHd-Hr43jokcyg": "w", "UC2fMWFGgy-ENfkqlK0CUwrg": "e", "UCXCVbJCSF4FLP_TfojbkvUA": "e", "UCfJp9c3kSkIjYFevd2G1RKg": "e", "UCXn5jlX_q9OtdFqDgC7fj8Q": "e", "UCRCQ3G1d0DM2krO-Fx5LOuQ": "c", "UCGo_IzKD2-TooYrTGFt2fDA": "c", "UCa-Pej_sn8Uw_mwXLKZiuIg": "c", "UCkjdTrE4hiJ4qNOV7NPGSSw": "w", "UC_qD8VahU0Fr3q1SKg6kYtg": "w", "UCnZNY63Txhu4ot3l2lbicOA": "w", "UC1swbrz9S2VKVABS673ACgQ": "w", "UC3N1ZsVd8KkOmSryri0AesA": "w", "UCxKNMaOOdi32HNUFTOCw-8w": "w", "UCZ-zUkkdNTYAYDgkDyeb_hA": "w", "UCYmJ2rqzqNtXBm-gn438zGw": "w" },
 };
 function senkyoCloses(env) { return Number(env.SENKYO_CLOSES) || SENKYO.closes; }
+const SENKYO_LIST = SENKYO.removed.map((id) => "'" + id + "'").join(",");
+const SENKYO_VALID = "cand NOT IN (" + SENKYO_LIST + ") AND pcand NOT IN (" + SENKYO_LIST + ")";
 async function senkyoVoter(req, env) {
   return await sha((req.headers.get("CF-Connecting-IP") || "0") + "|senkyo|" + (env.SALT || "pbers"));
 }
 async function senkyoStatus(req, env) {
   if (!env.DB) return json({ error: "db_unconfigured" }, 503);
-  const closes = senkyoCloses(env), open = Date.now() < closes, out = { closes, open, voted: false, results: null };
+  const closes = senkyoCloses(env), open = Date.now() < closes, out = { closes, open, voted: false, revote: false, results: null };
+  const canSee = !open && isAdmin(req, env);   // 結果は締切後も管理者だけが見られる
   const voter = await senkyoVoter(req, env);
   try {
-    out.voted = !!(await env.DB.prepare("SELECT 1 FROM senkyo_votes WHERE voter=?1").bind(voter).first());
-    if (!open || isAdmin(req, env)) {
-      const c = await env.DB.prepare("SELECT cand, COUNT(*) AS n FROM senkyo_votes GROUP BY cand").all();
-      const p = await env.DB.prepare("SELECT party, COUNT(*) AS n FROM senkyo_votes WHERE party<>'' GROUP BY party").all();
-      const pc = await env.DB.prepare("SELECT pcand AS cand, COUNT(*) AS n FROM senkyo_votes WHERE pcand<>'' GROUP BY pcand").all();
-      const t = await env.DB.prepare("SELECT COUNT(*) AS n FROM senkyo_votes").first();
+    const mine = await env.DB.prepare("SELECT cand, pcand FROM senkyo_votes WHERE voter=?1").bind(voter).first();
+    out.voted = !!mine && !SENKYO.removed.includes(mine.cand) && !SENKYO.removed.includes(mine.pcand);
+    out.revote = !!mine && !out.voted;
+    if (canSee) {
+      const c = await env.DB.prepare("SELECT cand, COUNT(*) AS n FROM senkyo_votes WHERE " + SENKYO_VALID + " GROUP BY cand").all();
+      const p = await env.DB.prepare("SELECT party, COUNT(*) AS n FROM senkyo_votes WHERE party<>'' AND " + SENKYO_VALID + " GROUP BY party").all();
+      const pc = await env.DB.prepare("SELECT pcand AS cand, COUNT(*) AS n FROM senkyo_votes WHERE pcand<>'' AND " + SENKYO_VALID + " GROUP BY pcand").all();
+      const t = await env.DB.prepare("SELECT COUNT(*) AS n FROM senkyo_votes WHERE " + SENKYO_VALID).first();
       out.results = { cands: c.results || [], parties: p.results || [], pcands: pc.results || [], total: (t && t.n) || 0 };
     }
   } catch (e) {   // まだ誰も投票していない(テーブルがない)
-    if (!open) out.results = { cands: [], parties: [], pcands: [], total: 0 };
+    if (canSee) out.results = { cands: [], parties: [], pcands: [], total: 0 };
   }
   return json(out);
 }
@@ -731,8 +737,10 @@ async function senkyoVote(req, env) {
   if (party && !["s", "m", "l"].includes(party)) return json({ error: "bad_party" }, 400);
   if (pcand && !SENKYO.cands[pcand]) return json({ error: "bad_pcand" }, 400);
   await env.DB.prepare("CREATE TABLE IF NOT EXISTS senkyo_votes(voter TEXT PRIMARY KEY, block TEXT NOT NULL, cand TEXT NOT NULL, party TEXT NOT NULL, pcand TEXT NOT NULL, created INTEGER NOT NULL)").run();
+  const voter = await senkyoVoter(req, env);
+  await env.DB.prepare("DELETE FROM senkyo_votes WHERE voter=?1 AND NOT (" + SENKYO_VALID + ")").bind(voter).run();   // 候補者から外れた人への票は入れ直せる
   try {
-    await env.DB.prepare("INSERT INTO senkyo_votes(voter,block,cand,party,pcand,created) VALUES(?1,?2,?3,?4,?5,?6)").bind(await senkyoVoter(req, env), block, cand, party, pcand, Date.now()).run();
+    await env.DB.prepare("INSERT INTO senkyo_votes(voter,block,cand,party,pcand,created) VALUES(?1,?2,?3,?4,?5,?6)").bind(voter, block, cand, party, pcand, Date.now()).run();
   } catch (e) { return json({ error: "voted" }, 409); }
   return json({ ok: true });
 }

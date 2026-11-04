@@ -525,7 +525,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251038">
+<link rel="stylesheet" href="/assets/style.css?v=251039">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -549,7 +549,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=251038"></script>
+<script src="/assets/channel.js?v=251039"></script>
 </body>
 </html>
 '''
@@ -900,8 +900,8 @@ def build_channel_pages(order, colors):
 VIEW_ROUTES = ("growth", "rising", "news", "paper", "race", "game", "videos", "channels", "board", "senkyo")
 
 # PBers参院選。候補者は全員、本人が出身を公表している(運営確認済み)。チャンネルID, 都道府県, 選挙区, 表示名(省略可)。
-# 締切と候補者は cron-worker/worker.js の SENKYO と揃えること
-SENKYO_CLOSES = "2026-11-18T00:00:00+09:00"
+# 締切と候補者は cron-worker/worker.js の SENKYO と揃えること(締切は assets/app.js の入口の表示期限も)
+SENKYO_CLOSES = "2026-11-14T00:00:00+09:00"   # 11月13日いっぱいまで
 SENKYO_PROPORTIONAL = 4
 SENKYO_BLOCKS = [
     {"id": "e", "name": "東日本", "area": "北海道・東北・関東", "seats": 2, "x": 505, "y": 292},
@@ -917,7 +917,7 @@ SENKYO_CANDIDATES = [
     ("UC2fMWFGgy-ENfkqlK0CUwrg", "北海道", "e"),   # にこちPB
     ("UCXCVbJCSF4FLP_TfojbkvUA", "宮城", "e"),   # アフガンボール
     ("UCfJp9c3kSkIjYFevd2G1RKg", "東京", "e"),   # くろまめ
-    ("UCVYMXYU6j0M5Gj1xwywKDyg", "東京", "e"),   # レイアルファ
+    ("UCXn5jlX_q9OtdFqDgC7fj8Q", "東京", "e"),   # 練乳=ソビエト共和国ぼーる
     ("UCRCQ3G1d0DM2krO-Fx5LOuQ", "静岡", "c"),   # Æž!みかんぼーる🍊
     ("UCGo_IzKD2-TooYrTGFt2fDA", "静岡", "c"),   # ゆずボール🎣
     ("UCa-Pej_sn8Uw_mwXLKZiuIg", "愛知", "c"),   # MOON-BALL
@@ -1114,7 +1114,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251038">
+<link rel="stylesheet" href="/assets/style.css?v=251039">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>

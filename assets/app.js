@@ -1377,7 +1377,7 @@
       '</form>' +
       '<div class="bd-search-wrap"><input class="bf-in bd-search" id="bd-search" maxlength="100" placeholder="🔍 スレ・書き込みを検索">' +
         '<button type="button" class="bd-sclear" id="bd-sclear" aria-label="クリア" hidden>×</button></div>' +
-      (GBASE === '/' ? '<a class="bd-senkyo" id="bd-senkyo" href="/senkyo/"><b>PBers参院選</b><span>東日本・中日本・西日本の候補者と、比例の党に投票しよう</span><em>投票する</em></a>' : '') +
+      (GBASE === '/' && Date.now() < Date.parse('2026-11-14T00:00:00+09:00') ? '<a class="bd-senkyo" id="bd-senkyo" href="/senkyo/"><b>PBers参院選</b><span>東日本・中日本・西日本の候補者と、比例の党に投票しよう</span><em>投票する</em></a>' : '') +
       '<div class="bd-sort" id="bd-sort" role="tablist">' +
         '<button type="button" class="bd-sort-b" data-sort="bump">最終レス順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="new">新着順</button>' +
@@ -2085,7 +2085,7 @@
       else if (v === 'videos') renderVideos();
       else if (v === 'channels') moveTierInd();
       else if (v === 'board') renderBoard();
-      else if (v === 'senkyo' && window.PBERS_SENKYO) window.PBERS_SENKYO.mount(document.getElementById('senkyo-body'), BOARD_API, GBASE);
+      else if (v === 'senkyo' && window.PBERS_SENKYO) window.PBERS_SENKYO.mount(document.getElementById('senkyo-body'), BOARD_API, GBASE, boardKey);
     }); });
   }
   function setupTabs() {

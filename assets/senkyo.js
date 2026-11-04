@@ -4,7 +4,7 @@
    途中経過は見せず、締切の後にサーバーが返す得票で当選者を計算して地図に出す。 */
 (function () {
   var NS = 'http://www.w3.org/2000/svg';
-  var DONE_KEY = 'pbers_senkyo_vote';
+  var DONE_KEY = 'pbers_senkyo_vote', adminKey = '';
   var host = null, cfg = null, geo = null, status = null, api = '', pick = { block: null, cand: null, prop: null }, order = {}, base = '/', sending = false;
   var view = null, moved = false, ZOOM_MAX = 6, SPREAD_AT = 2, AV_R = 9;   // SPREAD_AT 倍から、アイコンが都道府県へ分かれる
   var cavs = [], prefNames = [], centers = {}, spread = false;
@@ -22,7 +22,12 @@
   function inBlock(id) { return cfg.candidates.filter(function (c) { return c.block === id; }); }
   function party(k) { return cfg.parties[k]; }
   function dateText(ms) { var d = new Date(ms + 9 * 3600e3); return (d.getUTCMonth() + 1) + '月' + d.getUTCDate() + '日'; }
-  function saved() { try { return JSON.parse(localStorage.getItem(DONE_KEY) || 'null'); } catch (e) { return null; } }
+  function saved() {   // 候補者から外れた人に入れた票は、投票していない扱いにする
+    try {
+      var v = JSON.parse(localStorage.getItem(DONE_KEY) || 'null');
+      return v && cand(v.cand) && (!v.pcand || cand(v.pcand)) ? v : null;
+    } catch (e) { return null; }
+  }
   function save(v) { try { localStorage.setItem(DONE_KEY, JSON.stringify(v)); } catch (e) {} }
   function avatarTag(c) { return '<img src="' + esc(c.avatar) + '" alt="" loading="lazy" style="border-color:' + party(c.party).color + '">'; }
   function partyTag(k) { return '<span class="sk-ptag" style="--c:' + party(k).color + '">' + party(k).name + '</span>'; }
@@ -275,6 +280,7 @@
     var ready = pick.block && pick.cand && pick.prop;
     host.innerHTML =
       '<div class="sk-wrap"><div class="sk-form">' +
+        (status && status.revote ? head('候補者が変わったので、もう一度投票できます。前の票は数えません。') : '') +
         head(status ? '投票受付中・' + dateText(closes - 1) + 'まで。1人1回で、やり直せません。' : '投票の受付を準備中です。候補者は見られます。') +
         '<h3 class="sk-h"><b>1</b>住んでいる地方を選ぶ</h3>' +
         '<div class="sk-blocks">' + cfg.blocks.map(function (b) {
@@ -311,11 +317,11 @@
   function mapBox() { return '<div class="sk-mapbox"><div class="sk-zoom" role="group" aria-label="地図の拡大"><button type="button" data-z="in" aria-label="拡大">+</button><button type="button" data-z="out" aria-label="縮小">−</button><button type="button" data-z="reset">全体</button></div><svg class="sk-map" role="img" aria-label="選挙区と候補者の地図"></svg><p class="sk-legend">' + ['s', 'm', 'l'].map(function (k) { return partyTag(k); }).join('') + '</p></div>'; }
   function foot() { return '<p class="sk-note">自分の地方は自己申告です。候補者は出身を公表しているチャンネルです。サイト内の遊びの企画で、実際の選挙とは関係ありません。</p>'; }
   function renderVoted() {
-    var v = saved(), c = v && cand(v.cand);
+    var v = saved(), c = v && cand(v.cand), until = dateText(status.closes - 1);
     host.innerHTML =
       '<div class="sk-wrap"><div class="sk-form">' +
-        '<h3 class="sk-done">投票しました</h3>' +
-        head('結果は' + dateText(status.closes) + 'の0時に公開します。途中経過は誰にも見えません。') +
+        '<h3 class="sk-done">' + (status.open ? '投票しました' : '投票は終了しました') + '</h3>' +
+        head((status.open ? '投票は' + until + 'まで受け付けます。' : '受付は' + until + 'まででした。') + '途中経過も結果も、このサイトでは公開しません。') +
         (c ? '<div class="sk-mine"><div class="sk-mine-r"><span>選挙区</span>' + avatarTag(c) + '<b>' + esc(c.name) + '</b></div>' +
           '<div class="sk-mine-r"><span>比例</span>' + propMine(v) + '</div></div>' : '') +
         '<h3 class="sk-h">候補者</h3>' + candidateList() + foot() +
@@ -340,7 +346,7 @@
     Object.keys(R.winners).forEach(function (id) { seatOf[cand(id).party]++; });
     host.innerHTML =
       '<div class="sk-wrap"><div class="sk-form">' +
-        '<h3 class="sk-done">開票結果</h3>' + head('投票総数 ' + R.total + '票。' + n + '議席が決まりました。') +
+        '<h3 class="sk-done">開票結果</h3>' + head('投票総数 ' + R.total + '票。' + n + '議席が決まりました。管理者にだけ表示しています。') +
         '<div class="sk-seats">' + ['s', 'm', 'l'].map(function (k) {
           return '<div class="sk-seat" style="--c:' + party(k).color + '"><b class="num">' + seatOf[k] + '</b><span>' + party(k).name + '</span><small class="num">比例 ' + R.partyVotes[k] + '票</small></div>';
         }).join('') + '</div>' +
@@ -413,7 +419,7 @@
   }
   function render() {
     if (status && status.results) return renderResult();
-    if (status && status.voted) return renderVoted();
+    if (status && (status.voted || !status.open)) return renderVoted();
     var y = window.scrollY;
     renderVote();
     window.scrollTo(0, y);
@@ -422,7 +428,7 @@
     Promise.all([
       fetch(base + 'assets/senkyo.json?v=' + encodeURIComponent(window.PBERS_UPDATED || '')).then(function (r) { return r.json(); }),
       fetch(base + 'assets/senkyo_geo.json').then(function (r) { return r.json(); }),
-      fetch(api + '/status').then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
+      fetch(api + '/status', adminKey ? { headers: { 'X-Board-Key': adminKey } } : {}).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
     ]).then(function (a) {
       cfg = a[0]; geo = a[1]; status = a[2];
       render();
@@ -439,8 +445,9 @@
     setTimeout(function () { el.setAttribute(tag === 'img' ? 'src' : 'href', src); }, 1500 * Math.pow(2, n) + Math.random() * 1000);
   }
   window.PBERS_SENKYO = {
-    mount: function (el, boardApi, gbase) {
+    mount: function (el, boardApi, gbase, boardKey) {
       base = gbase || '/';
+      adminKey = boardKey || '';
       api = String(boardApi || '').replace(/\/api\/board$/, '/api/senkyo');
       if (host === el && cfg) return;
       host = el;
