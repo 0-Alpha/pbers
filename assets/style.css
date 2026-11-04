@@ -1476,7 +1476,7 @@ section.block#dash-senkyo{padding:0}
 .sk-oki{fill:var(--muted);font-family:var(--jp);font-weight:700;font-size:12px;pointer-events:none}
 @media(max-width:900px){
   .sk-wrap{grid-template-columns:minmax(0,1fr);gap:14px}
-  .sk-mapbox{position:static;order:-1}
+  .sk-mapbox{position:relative;top:auto;order:-1}
   .sk-map{max-height:none}
   .sk-name{font-size:20px}
 }
@@ -1485,7 +1485,13 @@ section.block#dash-senkyo{padding:0}
 .sk-zoom button{min-width:34px;height:34px;padding:0 9px;font-family:var(--jp);font-weight:800;font-size:13px;color:var(--text);background:var(--panel);border:1px solid var(--line-2);border-radius:8px;cursor:pointer}
 .sk-zoom button:hover{background:var(--surface)}
 .sk-zoom button:focus-visible{outline:2px solid var(--text);outline-offset:1px}
+.sk-map{touch-action:pan-y}
 .sk-map.zoomed{touch-action:none;cursor:grab}
+.sk-touchhint{display:none;margin:6px 0 0;font-size:12px;color:var(--muted);text-align:center}
+@media(pointer:coarse){
+  .sk-touchhint{display:block}
+  .sk-zoom button{min-width:44px;height:44px}
+}
 .sk-map.zoomed:active{cursor:grabbing}
 .sk-line-pref,.sk-line-block,.sk-outline,.sk-inset{vector-effect:non-scaling-stroke}
 .sk-prefname{display:none;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.65);stroke-width:.18em;stroke-linejoin:round;font-family:var(--jp);font-weight:700;font-size:var(--sk-name,12px);text-anchor:middle;pointer-events:none}

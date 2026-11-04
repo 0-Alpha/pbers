@@ -6,7 +6,7 @@
   var NS = 'http://www.w3.org/2000/svg';
   var DONE_KEY = 'pbers_senkyo_vote', adminKey = '';
   var host = null, cfg = null, geo = null, status = null, api = '', pick = { block: null, cand: null, prop: null }, order = {}, base = '/', sending = false;
-  var view = null, moved = false, ZOOM_MAX = 6, SPREAD_AT = 2, AV_R = 9;   // SPREAD_AT 倍から、アイコンが都道府県へ分かれる
+  var lastTap = null, view = null, moved = false, ZOOM_MAX = 6, SPREAD_AT = 2, AV_R = 9;   // SPREAD_AT 倍から、アイコンが都道府県へ分かれる
   var cavs = [], prefNames = [], centers = {}, spread = false;
 
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -32,7 +32,7 @@
   function avatarTag(c) { return '<img src="' + esc(c.avatar) + '" alt="" loading="lazy" style="border-color:' + party(c.party).color + '">'; }
   function partyTag(k) { return '<span class="sk-ptag" style="--c:' + party(k).color + '">' + party(k).name + '</span>'; }
 
-  /* ---- 地図の拡大。ボタン、Ctrl+ホイール(トラックパッドのピンチ)、拡大中のドラッグとピンチで動かす ---- */
+  /* ---- 地図の拡大。ボタン、ホイール、ドラッグ、スマホはピンチとダブルタップ ---- */
   function viewOf() { if (!view) { var b = geo.viewBox; view = { x: b[0], y: b[1], w: b[2], h: b[3] }; } return view; }
   function zoomLevel() { return geo.viewBox[2] / viewOf().w; }
   function applyView(svg) {
@@ -88,14 +88,16 @@
       n.el.setAttribute('x', x.toFixed(1)); n.el.setAttribute('y', y.toFixed(1));
       n.mine = mine.length > 0; n.cx = x; n.cy = y;
     });
-    var fs = 12 / unit;   // 候補者のいない県名が、動かした県名やアイコンに重なるときは隠す
+    var fs = 12 / unit, shown = prefNames.filter(function (n) { return n.mine; });   // 候補者のいない県名は、ほかの県名やアイコンに重なるときは隠す
     prefNames.forEach(function (n) {
-      var w = n.name.length * fs / 2;
-      n.el.style.visibility = on && !n.mine && (prefNames.some(function (o) {
-        return o.mine && Math.abs(o.cx - n.cx) < w + o.name.length * fs / 2 && Math.abs(o.cy - n.cy) < fs * 1.15;
+      if (n.mine) { n.el.style.visibility = ''; return; }
+      var w = n.name.length * fs / 2, hide = on && (shown.some(function (o) {
+        return Math.abs(o.cx - n.cx) < w + o.name.length * fs / 2 && Math.abs(o.cy - n.cy) < fs * 1.15;
       }) || cavs.some(function (a) {
         return Math.abs(a.x - n.cx) < w + r && Math.abs(a.y - (n.cy - fs * 0.35)) < r + fs / 2;
-      })) ? 'hidden' : '';
+      }));
+      n.el.style.visibility = hide ? 'hidden' : '';
+      if (!hide) shown.push(n);
     });
   }
   function zoomTo(svg, z, cx, cy) {   // (cx, cy) の位置が画面上で動かないように拡大する
@@ -116,12 +118,12 @@
     return p.matrixTransform(svg.getScreenCTM().inverse());
   }
   function wireZoom(svg) {
-    var pts = {}, startDist = 0, startZoom = 1, last = null;
+    var startDist = 0, startZoom = 1, anchor = null, pinching = false, last = null;
     moved = false;
     host.querySelector('.sk-zoom').addEventListener('click', function (e) {
       var b = e.target.closest('button'); if (!b) return;
-      if (b.dataset.z === 'in') zoomTo(svg, zoomLevel() * 1.6);
-      if (b.dataset.z === 'out') zoomTo(svg, zoomLevel() / 1.6);
+      if (b.dataset.z === 'in') zoomTo(svg, zoomLevel() * 2);
+      if (b.dataset.z === 'out') zoomTo(svg, zoomLevel() / 2);
       if (b.dataset.z === 'reset') zoomTo(svg, 1);
     });
     svg.addEventListener('wheel', function (e) {
@@ -132,23 +134,12 @@
       zoomTo(svg, z * Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.0018)), p.x, p.y);
     }, { passive: false });
     svg.addEventListener('pointerdown', function (e) {
-      pts[e.pointerId] = { x: e.clientX, y: e.clientY };
+      if (pinching) return;
       moved = false;
       last = { x: e.clientX, y: e.clientY };
-      var ids = Object.keys(pts);
-      if (ids.length === 2) { startDist = dist(pts[ids[0]], pts[ids[1]]); startZoom = zoomLevel(); }
     });
     svg.addEventListener('pointermove', function (e) {
-      if (!pts[e.pointerId]) return;
-      pts[e.pointerId] = { x: e.clientX, y: e.clientY };
-      var ids = Object.keys(pts);
-      if (ids.length === 2) {
-        var a = pts[ids[0]], c = pts[ids[1]], m = svgPoint(svg, (a.x + c.x) / 2, (a.y + c.y) / 2);
-        moved = true;
-        if (startDist) zoomTo(svg, startZoom * dist(a, c) / startDist, m.x, m.y);
-        return;
-      }
-      if (zoomLevel() <= 1.01 || !last) return;
+      if (pinching || zoomLevel() <= 1.01 || !last) return;
       if (!moved && Math.abs(e.clientX - last.x) + Math.abs(e.clientY - last.y) < 5) return;
       if (!moved) { try { svg.setPointerCapture(e.pointerId); } catch (x) {} }
       moved = true;
@@ -157,9 +148,43 @@
       clampView(); applyView(svg);
       last = { x: e.clientX, y: e.clientY };
     });
-    var up = function (e) { delete pts[e.pointerId]; if (Object.keys(pts).length < 2) startDist = 0; };
-    svg.addEventListener('pointerup', up);
+    var up = function () { last = null; };
+    svg.addEventListener('pointerup', function (e) {
+      up();
+      if (e.pointerType !== 'touch' || moved || pinching) return;
+      var now = Date.now(), t = lastTap;
+      lastTap = { t: now, x: e.clientX, y: e.clientY };   // 1回目のタップで地図が描き直されても続けて数える
+      if (!t || now - t.t > 350 || dist(t, lastTap) > 40) return;
+      lastTap = null;
+      moved = true;   // 続く click で地方を選ばない
+      var p = svgPoint(svg, e.clientX, e.clientY), z = zoomLevel();
+      zoomTo(svg, z >= ZOOM_MAX ? 1 : z * 2, p.x, p.y);
+    });
     svg.addEventListener('pointercancel', up);
+    // ピンチは touch で受ける。pointer のままだと、全体表示のときにブラウザの操作へ取られて途中で切れる
+    var touchMid = function (e) { return { x: (e.touches[0].clientX + e.touches[1].clientX) / 2, y: (e.touches[0].clientY + e.touches[1].clientY) / 2 }; };
+    var touchDist = function (e) { return Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY); };
+    svg.addEventListener('touchstart', function (e) {
+      if (e.touches.length !== 2) return;
+      e.preventDefault();
+      var m = touchMid(e);
+      pinching = true; moved = true; last = null; lastTap = null;
+      startDist = touchDist(e); startZoom = zoomLevel(); anchor = svgPoint(svg, m.x, m.y);
+    }, { passive: false });
+    svg.addEventListener('touchmove', function (e) {
+      if (!pinching || e.touches.length !== 2) return;
+      e.preventDefault();
+      var r = svg.getBoundingClientRect(), m = touchMid(e), b = geo.viewBox, v = viewOf();
+      var z = Math.max(1, Math.min(ZOOM_MAX, startZoom * touchDist(e) / (startDist || 1)));
+      v.w = b[2] / z; v.h = b[3] / z;   // 指の間の地点が、指の真ん中についてくるように動かす
+      v.x = anchor.x - (m.x - r.left) / r.width * v.w;
+      v.y = anchor.y - (m.y - r.top) / r.height * v.h;
+      clampView(); applyView(svg);
+    }, { passive: false });
+    var touchDone = function (e) { if (e.touches.length < 2) pinching = false; };
+    svg.addEventListener('touchend', touchDone);
+    svg.addEventListener('touchcancel', touchDone);
+    svg.addEventListener('gesturestart', function (e) { e.preventDefault(); });   // iPhone のページ拡大を止める
   }
   function dist(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
   function prefCenter(d) {   // 県名の位置。島ではなく、いちばん大きい形の中心に置く
@@ -314,7 +339,7 @@
         }).join('') + '</div></div>';
     }).join('');
   }
-  function mapBox() { return '<div class="sk-mapbox"><div class="sk-zoom" role="group" aria-label="地図の拡大"><button type="button" data-z="in" aria-label="拡大">+</button><button type="button" data-z="out" aria-label="縮小">−</button><button type="button" data-z="reset">全体</button></div><svg class="sk-map" role="img" aria-label="選挙区と候補者の地図"></svg><p class="sk-legend">' + ['s', 'm', 'l'].map(function (k) { return partyTag(k); }).join('') + '</p></div>'; }
+  function mapBox() { return '<div class="sk-mapbox"><div class="sk-zoom" role="group" aria-label="地図の拡大"><button type="button" data-z="in" aria-label="拡大">+</button><button type="button" data-z="out" aria-label="縮小">−</button><button type="button" data-z="reset">全体</button></div><svg class="sk-map" role="img" aria-label="選挙区と候補者の地図"></svg><p class="sk-touchhint">ダブルタップか2本指で拡大</p><p class="sk-legend">' + ['s', 'm', 'l'].map(function (k) { return partyTag(k); }).join('') + '</p></div>'; }
   function foot() { return '<p class="sk-note">自分の地方は自己申告です。候補者は出身を公表しているチャンネルです。サイト内の遊びの企画で、実際の選挙とは関係ありません。</p>'; }
   function renderVoted() {
     var v = saved(), c = v && cand(v.cand), until = dateText(status.closes - 1);
