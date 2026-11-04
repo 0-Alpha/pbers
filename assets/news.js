@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-05",
+    "label": "11月5日(木)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "まるぼーるch ",
+        "color": "#3e95cc",
+        "avatar": "https://yt3.googleusercontent.com/plXugBe_yne07EdTN2A5rq-5NpdGZp33xpvpmlwkItY6AH-tPC0sjllPf2WK6wcwBL2quhIOFw=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 2000万回 突破",
+        "value": 20000000
+      }
+    ]
+  },
+  {
     "date": "2026-11-04",
     "label": "11月4日(水)",
     "items": [
@@ -18,7 +35,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "みすい",
-        "color": "#3e5ccc",
+        "color": "#ad5ed4",
         "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -101,7 +118,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ハッホチャンネル",
-        "color": "#c8d45e",
+        "color": "#40cc3e",
         "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -162,34 +179,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "総再生数 400万回 突破",
         "value": 4000000
-      }
-    ]
-  },
-  {
-    "date": "2026-10-29",
-    "label": "10月29日(木)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "にこちPB",
-        "color": "#cc3e87",
-        "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 800万回 突破",
-        "value": 8000000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "アフガンボール",
-        "color": "#d45ea9",
-        "avatar": "https://yt3.googleusercontent.com/aOj-FnTWhrUAPjz49cHMeTuREL5cpUpsUWPVs1AuaeeMqVIrUHxeIOlHdCi0h8HukDZHL_ZQ0HA=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 100万回 突破",
-        "value": 1000000
       }
     ]
   }

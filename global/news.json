@@ -1,8 +1,8 @@
 {
   "site": "PBers Global",
-  "updated": "2026-11-04",
-  "generated": "2026-11-05T02:02:39+09:00",
-  "count": 2,
+  "updated": "2026-11-05",
+  "generated": "2026-11-05T06:35:28+09:00",
+  "count": 1,
   "items": [
     {
       "id": "2026-10-31/subs/くろまめ/20000",
@@ -15,18 +15,6 @@
       "value": 20000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/global/c/%E3%81%8F%E3%82%8D%E3%81%BE%E3%82%81/"
-    },
-    {
-      "id": "2026-10-29/subs/dezinichtフヒフム-海外アカウント/150000",
-      "date": "2026-10-29",
-      "channel": "Dezinicht【Æž!フヒフム 海外アカウント】",
-      "slug": "dezinichtフヒフム-海外アカウント",
-      "metric": "subs",
-      "type": "milestone",
-      "label": "登録者 15万人 突破",
-      "value": 150000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/global/c/dezinicht%E3%83%95%E3%83%92%E3%83%95%E3%83%A0-%E6%B5%B7%E5%A4%96%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88/"
     }
   ]
 }
