@@ -694,10 +694,11 @@ async function pollFor(req, env, tid, admin) {
 }
 // ---- PBers参院選 ----
 // 途中経過は返さない。締切の後(または管理者)だけ得票を返す。二重投票は voter の主キーで防ぐ。テーブルは初回の投票で作る
+const SENKYO_ON = false;   // 一旦取り下げ中。投票を受け付けない。入っている票は消さない
 const SENKYO = {
   closes: Date.parse("2026-11-14T00:00:00+09:00"),   // 11月13日いっぱいまで
-  removed: ["UCVYMXYU6j0M5Gj1xwywKDyg"],   // 候補者から外れた人。この人に入った票は数えず、入れた人はもう一度投票できる
-  cands: { "UC6BwO1hK3hHd-Hr43jokcyg": "w", "UC2fMWFGgy-ENfkqlK0CUwrg": "e", "UCXCVbJCSF4FLP_TfojbkvUA": "e", "UCfJp9c3kSkIjYFevd2G1RKg": "e", "UCXn5jlX_q9OtdFqDgC7fj8Q": "e", "UCRCQ3G1d0DM2krO-Fx5LOuQ": "c", "UCGo_IzKD2-TooYrTGFt2fDA": "c", "UCa-Pej_sn8Uw_mwXLKZiuIg": "c", "UCkjdTrE4hiJ4qNOV7NPGSSw": "w", "UC_qD8VahU0Fr3q1SKg6kYtg": "w", "UCnZNY63Txhu4ot3l2lbicOA": "w", "UC1swbrz9S2VKVABS673ACgQ": "w", "UC3N1ZsVd8KkOmSryri0AesA": "w", "UCxKNMaOOdi32HNUFTOCw-8w": "w", "UCZ-zUkkdNTYAYDgkDyeb_hA": "w", "UCYmJ2rqzqNtXBm-gn438zGw": "w" },
+  removed: ["UCVYMXYU6j0M5Gj1xwywKDyg", "UCRCQ3G1d0DM2krO-Fx5LOuQ", "UCGo_IzKD2-TooYrTGFt2fDA", "UCa-Pej_sn8Uw_mwXLKZiuIg", "UCYmJ2rqzqNtXBm-gn438zGw", "UCxKNMaOOdi32HNUFTOCw-8w", "UCfJp9c3kSkIjYFevd2G1RKg"],   // 候補者から外れた人。この人に入った票は数えず、入れた人はもう一度投票できる
+  cands: { "UC6BwO1hK3hHd-Hr43jokcyg": "w", "UC2fMWFGgy-ENfkqlK0CUwrg": "e", "UCXCVbJCSF4FLP_TfojbkvUA": "e", "UCXn5jlX_q9OtdFqDgC7fj8Q": "e", "UCkjdTrE4hiJ4qNOV7NPGSSw": "w", "UC_qD8VahU0Fr3q1SKg6kYtg": "w", "UCnZNY63Txhu4ot3l2lbicOA": "w", "UC1swbrz9S2VKVABS673ACgQ": "w", "UC3N1ZsVd8KkOmSryri0AesA": "w", "UCZ-zUkkdNTYAYDgkDyeb_hA": "w" },
 };
 function senkyoCloses(env) { return Number(env.SENKYO_CLOSES) || SENKYO.closes; }
 const SENKYO_LIST = SENKYO.removed.map((id) => "'" + id + "'").join(",");
@@ -715,7 +716,7 @@ async function senkyoStatus(req, env) {
     out.voted = !!mine && !SENKYO.removed.includes(mine.cand) && !SENKYO.removed.includes(mine.pcand);
     out.revote = !!mine && !out.voted;
     if (canSee) {
-      const c = await env.DB.prepare("SELECT cand, COUNT(*) AS n FROM senkyo_votes WHERE " + SENKYO_VALID + " GROUP BY cand").all();
+      const c = await env.DB.prepare("SELECT cand, COUNT(*) AS n FROM senkyo_votes WHERE cand<>'' AND " + SENKYO_VALID + " GROUP BY cand").all();
       const p = await env.DB.prepare("SELECT party, COUNT(*) AS n FROM senkyo_votes WHERE party<>'' AND " + SENKYO_VALID + " GROUP BY party").all();
       const pc = await env.DB.prepare("SELECT pcand AS cand, COUNT(*) AS n FROM senkyo_votes WHERE pcand<>'' AND " + SENKYO_VALID + " GROUP BY pcand").all();
       const t = await env.DB.prepare("SELECT COUNT(*) AS n FROM senkyo_votes WHERE " + SENKYO_VALID).first();
@@ -728,11 +729,13 @@ async function senkyoStatus(req, env) {
 }
 async function senkyoVote(req, env) {
   const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
-  if (Date.now() >= senkyoCloses(env)) return json({ error: "closed" }, 400);
+  if (!SENKYO_ON || Date.now() >= senkyoCloses(env)) return json({ error: "closed" }, 400);
   let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
   // 比例は非拘束名簿: 候補者名(pcand)か党名(party)のどちらか1つ。候補者の党はサイト側の集計で決まる
   const cand = String(b.cand || ""), block = String(b.block || ""), party = String(b.party || ""), pcand = String(b.pcand || "");
-  if (SENKYO.cands[cand] !== block) return json({ error: "bad_cand" }, 400);
+  // 候補者がいない選挙区(いまは中日本)は、選挙区の票なしで比例だけ入れられる
+  const noCands = ["e", "c", "w"].includes(block) && !Object.values(SENKYO.cands).includes(block);
+  if (cand ? SENKYO.cands[cand] !== block : !noCands) return json({ error: "bad_cand" }, 400);
   if (!!party === !!pcand) return json({ error: "bad_prop" }, 400);
   if (party && !["s", "m", "l"].includes(party)) return json({ error: "bad_party" }, 400);
   if (pcand && !SENKYO.cands[pcand]) return json({ error: "bad_pcand" }, 400);

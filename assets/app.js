@@ -10,6 +10,7 @@
   var boardMaint = !!window.PBERS_BOARD_MAINTENANCE;   // 整備中フラグ(trueならAPIを叩かず案内表示)
   var boardKey = '', boardPublic = false, boardEnabled = false;
   var UPDATED = window.PBERS_UPDATED || '';
+  var SENKYO_ON = false;   // 参院選は一旦取り下げ中。入口を出さず /senkyo/ はダッシュボードへ
 
   var METRICS = {
     subs:   { key: 'subs',   unit: '人', word: '登録者',   cap: '合計登録者数 / Total Subscribers', ccap: 'Subscribers' },
@@ -957,7 +958,7 @@
     switchTab('board', true);
   }
   function senkyoBanner(id) {   // 参院選の入口。日本版で受付中だけ出す
-    if (GBASE !== '/' || Date.now() >= Date.parse('2026-11-14T00:00:00+09:00')) return '';
+    if (!SENKYO_ON || GBASE !== '/' || Date.now() >= Date.parse('2026-11-14T00:00:00+09:00')) return '';
     return '<a class="bd-senkyo" id="' + id + '" href="/senkyo/"><b>PBers参院選</b><span>東日本・中日本・西日本の候補者と、比例の党に投票しよう</span><em>投票する</em></a>';
   }
   function wireSenkyoBanner(id) {
@@ -2076,7 +2077,7 @@
     if (v === 'live') v = 'race';   // 旧リンクの後方互換
     if (!VIEWS[v]) v = 'dashboard';
     if (v === 'board' && !boardEnabled) v = 'dashboard';   // 非公開かつ管理キー無しは掲示板に入れない
-    if (v === 'senkyo' && GBASE !== '/') v = 'dashboard';   // 参院選は日本版だけ
+    if (v === 'senkyo' && (!SENKYO_ON || GBASE !== '/')) v = 'dashboard';   // 参院選は日本版だけ
     currentView = v;
     document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x.dataset.view === v); });
     var moreBtn = document.getElementById('tab-more-btn');   // 新聞/ニュースは「その他」内なので親を強調
