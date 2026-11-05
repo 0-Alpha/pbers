@@ -1281,6 +1281,7 @@
   // 忍者AdMax: 元タグは document.write を使いSPAで素挿入すると白紙化するため、非同期方式(config+s.js)で描画する。
   // 複数のバナーが同時期に読み込まれると window.admaxbanner を上書きし合って競合するため、
   // s.js の読み込みを「1件ずつ直列(前のs.jsのonload後に次)」で処理するキューにする。
+  var ADS_ON = false;   // 広告はオフ。戻すときは true にして、AdSense の読み込みも HTML に戻す
   var _admaxQueue = [], _admaxBusy = false;
   function admaxEnqueue(item) { _admaxQueue.push(item); admaxPump(); }
   function admaxPump() {
@@ -1300,7 +1301,7 @@
   // 枠(#board-ad)は #board-body の外なので、スレ一覧/表示の再描画では消えない。
   var _boardAdMounted = false;
   function mountBoardAd() {
-    if (_boardAdMounted) return;
+    if (!ADS_ON || _boardAdMounted) return;
     var slot = document.getElementById('board-ad'); if (!slot) return;
     var mobile = !window.matchMedia || window.matchMedia('(max-width: 640px)').matches;
     var tag = mobile ? '20a942021ac638a96ebffdc419a46daf' : 'f3d43853a6cd1b6c280d8e74870c530a';
@@ -1593,7 +1594,7 @@
       var slice = srv ? ths : ths.slice(boardPage * PAGE_SIZE, boardPage * PAGE_SIZE + PAGE_SIZE);
       var head = isSearch ? '<div class="bd-sresult">「' + esc(q) + '」の結果 ' + ths.length + '件</div>' : '';
       var rows = slice.map(function (t) { return threadRow(t, isSearch); });
-      var listAd = rows.length > 5 && window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
+      var listAd = ADS_ON && rows.length > 5 && window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
       if (listAd) rows.splice(5, 0, '<div class="bd-list-ad-ph"></div>');   // スマホ: 5番目と6番目の間に広告
       var pager = pages > 1 ? '<div class="bd-pager">' +
           '<button type="button" class="bd-pg" data-pg="prev"' + (boardPage <= 0 ? ' disabled' : '') + '>← 前</button>' +

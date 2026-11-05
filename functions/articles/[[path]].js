@@ -51,7 +51,6 @@ function shell(o) {
     '<!-- Google tag (gtag.js) -->\n' +
     '<script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>\n' +
     "<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>\n" +
-    '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387146293155213" crossorigin="anonymous"></script>' + ld + "\n" +
     "</head>\n<body>\n" +
     '<header class="topbar"><div class="wrap">\n' +
     '  <a class="brand" href="/"><span class="dot"></span><span>PB<b>ers</b></span></a>\n' +
