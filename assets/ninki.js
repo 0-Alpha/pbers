@@ -4,6 +4,7 @@
 (function () {
   var DONE_KEY = 'pbers_ninki_vote', SEEN_KEY = 'pbers_ninki_seen';
   var PIN_THREAD = 646;   // 開票速報の一番下に固定する掲示板のスレ
+  var JUMP_MIN_VOTES = 3, JUMP_SHOWN = 8;   // 躍進ランキングに載せる最低票数と行数
   var VER = ((document.currentScript && document.currentScript.src) || '').split('v=')[1] || '';
   var WANT = new URLSearchParams(location.search).get('c');   // 画面の切り替えでURLから消えるので、読み込みの時点で覚える
   var WANT_RESULT = location.hash === '#kaihyo';
@@ -206,14 +207,15 @@
       return;
     }
     box.innerHTML =
-      '<header class="kh-board">' +
+      '<div class="kh-cols"><div class="kh-left"><header class="kh-board">' +
         '<div class="kh-title"><h3>開票速報</h3><p class="kh-state" id="kh-state"></p></div>' +
         '<div class="kh-rate"><span class="kh-rate-v num"><b id="kh-rate">0</b>%</span><span class="kh-rate-k">開票率</span></div>' +
         '<div class="kh-meter" aria-hidden="true"><i id="kh-meter"></i></div>' +
         '<p class="kh-nums num" id="kh-nums"></p>' +
       '</header>' +
       '<ol class="kh-list" id="kh-list"></ol>' +
-      '<button type="button" class="kh-more" id="kh-more" hidden></button>' +
+      '<button type="button" class="kh-more" id="kh-more" hidden></button></div>' +
+      '<aside class="kh-side"><h3>躍進ランキング</h3><p class="kh-side-d">登録者の順位より、投票の順位がどれだけ上か。票が' + JUMP_MIN_VOTES + '票以上の人だけを、開票済みの票で比べています。</p><ol class="kh-jump" id="kh-jump"></ol></aside></div>' +
       '<section class="kh-trend"><div class="sec-head"><h2>投票数の推移 <span class="en">History</span></h2><span class="note">開票した時刻で集計</span></div>' +
         '<div class="controls kh-controls"><div class="toggle" id="kh-chartview" role="group" aria-label="グラフの切り替え"><button type="button" class="tg' + (chartView === 'top' ? ' on' : '') + '" data-v="top">上位5組</button><button type="button" class="tg' + (chartView === 'total' ? ' on' : '') + '" data-v="total">全体</button><span class="tg-ind" id="kh-tind"></span></div></div>' +
         '<div class="trend"><div class="t-empty" id="kh-trend-empty" hidden>開票が始まると、ここにグラフが出ます。</div>' +
@@ -296,6 +298,7 @@
     var snap = { at: r.at };
     list.forEach(function (x) { snap[x.c.id] = x.n; });
     writeJson(SEEN_KEY, snap);
+    drawJump(list);
     drawChart(first);
   }
 
@@ -473,6 +476,29 @@
       });
       chartRO.observe(plot);
     }
+  }
+  /* 躍進: 登録者の順位と投票の順位の差。票が少ない人は1票で大きく動くので、一定の票が入った人だけを比べる */
+  function subsRanks() {
+    var ranks = {}, last = -1, rank = 0;
+    cfg.candidates.slice().sort(function (a, b) { return (b.subs || 0) - (a.subs || 0); }).forEach(function (c, i) {
+      if (c.subs !== last) { rank = i + 1; last = c.subs; }
+      ranks[c.id] = rank;
+    });
+    return ranks;
+  }
+  function drawJump(list) {
+    var el = host.querySelector('#kh-jump');
+    if (!el) return;
+    var ranks = subsRanks();
+    var up = list.filter(function (x) { return x.n >= JUMP_MIN_VOTES && ranks[x.c.id] > x.rank; }).map(function (x) {
+      return { c: x.c, n: x.n, rank: x.rank, from: ranks[x.c.id], jump: ranks[x.c.id] - x.rank, per: x.c.subs ? x.n / (x.c.subs / 10000) : 0 };
+    }).sort(function (a, b) { return b.jump - a.jump || b.n - a.n || (a.c.id < b.c.id ? -1 : 1); }).slice(0, JUMP_SHOWN);
+    if (!up.length) { el.innerHTML = '<li class="kh-jump-none">開票が進むと、ここに出ます。</li>'; return; }
+    el.innerHTML = up.map(function (x) {
+      var per = x.per >= 100 ? Math.round(x.per) : Math.round(x.per * 10) / 10;
+      return '<li class="kh-j"><span class="kh-av">' + avatar(x.c, 40) + '</span><span class="kh-j-main"><span class="kh-j-n">' + esc(x.c.name) + '</span>' +
+        '<span class="kh-j-s num">登録者' + x.from + '位 → 投票' + x.rank + '位</span><span class="kh-j-s num">' + x.n + '票・1万人あたり' + per + '票</span></span><b class="kh-j-up num">+' + x.jump + '</b></li>';
+    }).join('');
   }
   function flip(before) {
     if (!document.documentElement.animate || matchMedia('(prefers-reduced-motion: reduce)').matches) return;

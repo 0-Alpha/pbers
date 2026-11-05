@@ -1650,6 +1650,24 @@ section.block#dash-vote{padding:0}
 .kh-tip-r span{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .kh-tip-r b{font-weight:800}
 .kh-trend + .nk-note{margin-top:18px}
+/* 開票速報の右の躍進ランキング */
+.kh-cols{display:grid;grid-template-columns:minmax(0,1fr) 340px;align-items:start;gap:24px}
+.kh-side{position:sticky;top:130px;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
+.kh-side h3{margin:0;font-size:18px;font-weight:900}
+.kh-side-d{margin:6px 0 0;font-size:12px;line-height:1.6;color:var(--muted)}
+.kh-jump{margin:10px 0 0;padding:0;list-style:none}
+.kh-jump-none{padding:14px 0 4px;font-size:13px;color:var(--muted)}
+.kh-j{display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.kh-j .kh-av,.kh-j .kh-av img{width:40px;height:40px}
+.kh-j-main{display:flex;flex-direction:column;gap:2px;min-width:0}
+.kh-j-n{overflow:hidden;font-size:13.5px;font-weight:800;white-space:nowrap;text-overflow:ellipsis}
+.kh-j-s{font-size:11.5px;line-height:1.45;color:var(--muted)}
+.kh-j-up{font-size:22px;font-weight:900;color:var(--red)}
+:root:not([data-theme="light"]) .kh-j-up{color:#ff8d84}
+@media(max-width:980px){
+  .kh-cols{grid-template-columns:minmax(0,1fr)}
+  .kh-side{position:static}
+}
 .kh-pin{margin-top:28px}
 .kh-pin[hidden]{display:none}
 .kh-pin h4{margin:0 0 10px;font-size:15px;font-weight:900}
