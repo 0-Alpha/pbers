@@ -300,16 +300,11 @@
   }
 
   /* ---- 投票数の推移。開票した時刻で積み上げた折れ線 ---- */
-  var chartView = 'top', chartModel = null, chartIdx = -1, chartRO = null, slots = {}, numsOpen = false;
-  var CHART_SLOTS = 5;
-  function assignSlots(ids) {   // 色はチャンネルについて回る。順位が変わっても残っている人の色は変えない
-    var used = {};
-    Object.keys(slots).forEach(function (id) { if (ids.indexOf(id) < 0) delete slots[id]; });   // 外れた人の色は空ける。戻ったときに重ならないように
-    ids.forEach(function (id) { if (slots[id] !== undefined) used[slots[id]] = true; });
-    ids.forEach(function (id) {
-      if (slots[id] !== undefined) return;
-      for (var i = 0; i < CHART_SLOTS; i++) if (!used[i]) { slots[id] = i; used[i] = true; return; }
-    });
+  var chartView = 'top', chartModel = null, chartIdx = -1, chartRO = null, numsOpen = false;
+  var CHART_TOP = 5, SPARE_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#9085e9', '#1597a0'];
+  function nearColor(a, b) {
+    var v = function (h, i) { return parseInt(h.substr(i, 2), 16); };
+    return Math.hypot(v(a, 1) - v(b, 1), v(a, 3) - v(b, 3), v(a, 5) - v(b, 5)) < 48;
   }
   function cumulative(xs, pairs, step, at) {   // pairs は時刻の順。区切りが終わった分までを足し上げる
     var i = 0, sum = 0;
@@ -325,16 +320,20 @@
     for (var x = first + step; x < at; x += step) xs.push(x);
     if (at > first) xs.push(at); else xs.unshift(first - step);
     if (chartView === 'total') {
-      return { xs: xs, unit: '人', series: [{ id: 'all', name: '開票済みの人数', slot: 'all', ys: cumulative(xs, t.people, step, at) }] };
+      return { xs: xs, unit: '人', series: [{ id: 'all', name: '開票済みの人数', color: 'var(--sall)', ys: cumulative(xs, t.people, step, at) }] };
     }
-    var top = ranking(r).slice(0, CHART_SLOTS), by = {};
+    var top = ranking(r).slice(0, CHART_TOP), by = {};
     (t.cands || []).forEach(function (row) {
       var id = (cfg.alias && cfg.alias[row[1]]) || row[1];
       (by[id] = by[id] || []).push([row[0], row[2]]);
     });
-    assignSlots(top.map(function (x) { return x.c.id; }));
+    var picked = [];
     return { xs: xs, unit: '票', series: top.map(function (x) {
-      return { id: x.c.id, name: x.c.name, slot: slots[x.c.id], ys: cumulative(xs, by[x.c.id] || [], step, at) };
+      // 線はサイトで使っている各チャンネルの色。ほぼ同じ色の人が並ぶときだけ、見分けるために別の色にする
+      var free = function (col) { return !picked.some(function (p) { return nearColor(p, col); }); };
+      var color = x.c.color && free(x.c.color) ? x.c.color : SPARE_COLORS.filter(free)[0] || x.c.color || SPARE_COLORS[0];
+      picked.push(color);
+      return { id: x.c.id, name: x.c.name, color: color, ys: cumulative(xs, by[x.c.id] || [], step, at) };
     }) };
   }
   function niceHalf(top) {   // 0、真ん中、上の3本の線が整数になるように、真ん中の値を選ぶ
@@ -384,17 +383,17 @@
     var lines = '', dots = '', showAll = pw / Math.max(1, n - 1) >= 8;   // 点が詰まるときは最後だけ打つ
     m.series.forEach(function (s) {
       var d = s.ys.map(function (v, i) { return (i ? ' L' : 'M') + sx(xs[i]).toFixed(1) + ',' + sy(v).toFixed(1); }).join('');
-      lines += '<path class="t-line kh-line s' + s.slot + (animate ? ' draw' : '') + '" pathLength="1" d="' + d + '"/>';
+      lines += '<path class="t-line kh-line' + (animate ? ' draw' : '') + '" style="stroke:' + s.color + '" pathLength="1" d="' + d + '"/>';
       s.ys.forEach(function (v, i) {
-        if (showAll || i === n - 1) dots += '<circle class="t-dot kh-end s' + s.slot + '" r="3.5" cx="' + sx(xs[i]).toFixed(1) + '" cy="' + sy(v).toFixed(1) + '"/>';
+        if (showAll || i === n - 1) dots += '<circle class="t-dot" style="fill:' + s.color + '" r="3.5" cx="' + sx(xs[i]).toFixed(1) + '" cy="' + sy(v).toFixed(1) + '"/>';
       });
     });
     var last = '<text class="t-val" x="' + sx(x1) + '" y="' + (sy(lead.ys[n - 1]) - 9) + '" text-anchor="end">' + lead.ys[n - 1] + m.unit + '</text>';
     box.querySelector('#kh-svgbox').innerHTML = '<svg width="' + w + '" height="' + Hh + '" viewBox="0 0 ' + w + ' ' + Hh + '" aria-hidden="true">' + grid + labels + lines + dots + last +
       '<g class="kh-hover" id="kh-hover" visibility="hidden"><line class="kh-cross" y1="' + T + '" y2="' + (T + ph) + '"/>' +
-      m.series.map(function (s) { return '<circle class="t-dot kh-pt s' + s.slot + '" r="4.5"/>'; }).join('') + '</g></svg>';
+      m.series.map(function (s) { return '<circle class="t-dot kh-pt" style="fill:' + s.color + '" r="4.5"/>'; }).join('') + '</g></svg>';
     legend.hidden = m.series.length < 2;
-    legend.innerHTML = m.series.map(function (s) { return '<span class="kh-key"><i class="s' + s.slot + '"></i>' + esc(s.name) + '</span>'; }).join('');
+    legend.innerHTML = m.series.map(function (s) { return '<span class="kh-key"><i style="background:' + s.color + '"></i>' + esc(s.name) + '</span>'; }).join('');
     box.setAttribute('aria-label', '投票数の推移。' + m.series.map(function (s) { return s.name + ' ' + s.ys[n - 1] + m.unit; }).join('、'));
     if (numsOpen) drawTable(m);
     if (chartIdx >= 0) showPoint(Math.min(chartIdx, n - 1)); else hidePoint();
@@ -414,7 +413,7 @@
     g.setAttribute('visibility', 'visible');
     var order = m.series.slice().sort(function (a, b) { return b.ys[i] - a.ys[i]; });
     tip.innerHTML = '<div class="kh-tip-t num">' + fullTime(m.xs[i]) + '</div>' + order.map(function (s) {
-      return '<div class="kh-tip-r"><i class="s' + s.slot + '"></i><span>' + esc(s.name) + '</span><b class="num">' + s.ys[i] + m.unit + '</b></div>';
+      return '<div class="kh-tip-r"><i style="background:' + s.color + '"></i><span>' + esc(s.name) + '</span><b class="num">' + s.ys[i] + m.unit + '</b></div>';
     }).join('');
     tip.hidden = false;
     var tw = tip.offsetWidth, left = x + 12;

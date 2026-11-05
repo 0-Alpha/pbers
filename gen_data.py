@@ -271,6 +271,7 @@ def main():
         print("=== build edition: %s (%s) ===" % (ed["label"], ed["sub"] or "root"))
         build_edition()
     ED = EDITIONS[0]
+    build_ninki()   # 日本版と海外版の両方の色が揃ってから作る
 
 GROWTH_DAYS = 21   # カードバトルのパリイ率の元になる登録者伸び率の期間
 
@@ -311,6 +312,8 @@ def build_edition():
             continue
         colors[d["id"]] = hsl((pi * 53) % 360, 0.58, 0.60 if pi % 2 == 0 else 0.52)
         pi += 1
+    for cid, col in colors.items():
+        NINKI_COLORS.setdefault(cid, col)
 
     _slugs = {d["id"]: d["_slug"] for d in order}
     twins = {}
@@ -356,7 +359,6 @@ def build_edition():
     build_barrace(colors, order)
     if not ED["sub"]:
         build_senkyo()
-        build_ninki()
     build_channel_pages(order, colors)
     # 記事(/articles/)は D1 + Pages Functions(SSR)へ移行済み。ここでは静的生成しない。
     build_view_pages()
@@ -526,7 +528,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251048">
+<link rel="stylesheet" href="/assets/style.css?v=251049">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -550,7 +552,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=251048"></script>
+<script src="/assets/channel.js?v=251049"></script>
 </body>
 </html>
 '''
@@ -974,6 +976,7 @@ def build_senkyo():
 NINKI_CLOSES = "2026-11-14T00:00:00+09:00"   # 11月13日いっぱいまで
 NINKI_MAX = 3
 NINKI_TOP = 10   # 開票速報で最初に見せる順位
+NINKI_COLORS = {}   # 各チャンネルの色。日本版と海外版のビルドで集める
 # 人気投票で本体のチャンネルにまとめる別チャンネル(別チャンネル: 本体)。表示は本体の名前で、別チャンネルの名前でも探せる
 NINKI_MERGE = {
     "UC6-_HH3SrsURgeeKQCXdsEQ": "UCRCQ3G1d0DM2krO-Fx5LOuQ",   # Uow_cb -> みかん
@@ -991,7 +994,7 @@ def build_ninki():
         for d in json.load(open(p, encoding="utf-8")):
             if d["id"] in RETIRED or d["id"] in seen or not d.get("name") or d["name"] == d["id"]:   # 名前が取れていないものは出さない
                 continue
-            seen[d["id"]] = {"id": d["id"], "name": d["name"], "ed": ed, "subs": int(d.get("subs") or 0),
+            seen[d["id"]] = {"id": d["id"], "name": d["name"], "ed": ed, "subs": int(d.get("subs") or 0), "color": NINKI_COLORS.get(d["id"], ""),
                              "avatar": re.sub(r"=s\d+", "=s88", d.get("avatar") or "")}
     for a, b in SAME_PERSON:
         if a in seen and b in seen:
@@ -1162,7 +1165,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251048">
+<link rel="stylesheet" href="/assets/style.css?v=251049">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>

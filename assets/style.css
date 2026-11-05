@@ -1629,8 +1629,7 @@ section.block#dash-vote{padding:0}
 .kh-more{display:block;width:100%;min-height:44px;margin-top:10px;font:inherit;font-size:13.5px;font-weight:700;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:10px;cursor:pointer}
 .kh-more[hidden]{display:none}
 .kh-more:hover{background:var(--surface)}
-.kh-trend{--s0:#3987e5;--s1:#d95926;--s2:#199e70;--s3:#c98500;--s4:#d55181;--sall:#33bb74;margin-top:34px}
-:root[data-theme="light"] .kh-trend{--s0:#2a78d6;--s1:#eb6834;--s2:#1baf7a;--s3:#eda100;--s4:#e87ba4}
+.kh-trend{--sall:#33bb74;margin-top:34px}
 :root[data-theme="light"] .kh-trend .t-grid{stroke:var(--line)}
 .kh-controls{justify-content:flex-start}
 #kh-trend-body[hidden],#kh-numswrap[hidden]{display:none}
@@ -1639,13 +1638,10 @@ section.block#dash-vote{padding:0}
 .kh-legend[hidden]{display:none}
 .kh-key{display:inline-flex;align-items:center;gap:7px;min-width:0;max-width:220px}
 .kh-key i,.kh-tip-r i{flex:none;display:block;width:14px;height:3px;border-radius:2px}
-.kh-legend .s0,.kh-tip .s0{background:var(--s0)}.kh-legend .s1,.kh-tip .s1{background:var(--s1)}.kh-legend .s2,.kh-tip .s2{background:var(--s2)}.kh-legend .s3,.kh-tip .s3{background:var(--s3)}.kh-legend .s4,.kh-tip .s4{background:var(--s4)}.kh-tip .sall{background:var(--sall)}
 .kh-plot{position:relative;border-radius:6px;touch-action:pan-y;cursor:crosshair}
 .kh-plot:focus-visible{outline:2px solid var(--text);outline-offset:4px}
 .kh-plot svg{width:auto;height:auto}
-.kh-line.s0{stroke:var(--s0)}.kh-line.s1{stroke:var(--s1)}.kh-line.s2{stroke:var(--s2)}.kh-line.s3{stroke:var(--s3)}.kh-line.s4{stroke:var(--s4)}.kh-line.sall{stroke:var(--sall)}
 .kh-line.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:kh-draw 1.1s cubic-bezier(.16,1,.3,1) forwards}
-.kh-end.s0,.kh-pt.s0{fill:var(--s0)}.kh-end.s1,.kh-pt.s1{fill:var(--s1)}.kh-end.s2,.kh-pt.s2{fill:var(--s2)}.kh-end.s3,.kh-pt.s3{fill:var(--s3)}.kh-end.s4,.kh-pt.s4{fill:var(--s4)}.kh-end.sall,.kh-pt.sall{fill:var(--sall)}
 .kh-cross{stroke:var(--muted);stroke-width:1}
 .kh-tip{position:absolute;top:6px;z-index:2;min-width:150px;max-width:230px;padding:9px 11px;font-size:12px;pointer-events:none;background:var(--bg);border:1px solid var(--line);border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.28)}
 .kh-tip[hidden]{display:none}
