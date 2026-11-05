@@ -757,8 +757,8 @@ async function senkyoVote(req, env) {
 const NINKI = {
   closes: Date.parse("2026-11-14T00:00:00+09:00"),   // 11月13日いっぱいまで
   max: 3,
-  delayMin: 10, delayMax: 60,   // 投票から開票までの分。この間でばらつかせる
-  bucketMs: 10 * 60 * 1000,      // 結果を更新する間隔
+  delayMin: 5, delayMax: 30,   // 投票から開票までの分。この間でばらつかせる
+  bucketMs: 5 * 60 * 1000,       // 結果を更新する間隔
   stepMs: 60 * 60 * 1000,        // 推移グラフの1区切り
 };
 function ninkiCloses(env) { return Number(env.NINKI_CLOSES) || NINKI.closes; }

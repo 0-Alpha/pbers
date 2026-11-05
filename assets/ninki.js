@@ -171,7 +171,7 @@
     var mine = (saved() || []).map(cand).filter(Boolean);
     host.innerHTML =
       '<h3 class="nk-done">' + (mine.length ? '投票しました' : 'この回線からは投票済みです') + '</h3>' +
-      '<p class="nk-sub">' + (mine.length ? 'あなたの票は、10分から1時間ほどで開票されます。' : '同じ回線では1回だけ投票できます。') + '</p>' +
+      '<p class="nk-sub">' + (mine.length ? 'あなたの票は、5分から30分ほどで開票されます。' : '同じ回線では1回だけ投票できます。') + '</p>' +
       (mine.length ? '<ul class="nk-mine">' + mine.map(function (c) { return '<li>' + avatar(c, 40) + '<b>' + esc(c.name) + '</b></li>'; }).join('') + '</ul>' : '') +
       '<button type="button" class="g-btn nk-toresult" data-mode="kaihyo">開票速報を見る</button>' +
       foot();
@@ -225,7 +225,7 @@
         '<div id="kh-trend-body"><div class="kh-legend" id="kh-legend"></div>' +
         '<div class="kh-plot" id="kh-plot" role="img" tabindex="0"><div id="kh-svgbox"></div><div class="kh-tip" id="kh-tip" hidden></div></div></div></div>' +
         '<div class="ch-nums-wrap" id="kh-numswrap"><button type="button" class="ch-nums-btn" id="kh-numsbtn">' + (numsOpen ? '数値を隠す ▴' : '数値で見る ▾') + '</button><div class="ch-nums" id="kh-table"' + (numsOpen ? '' : ' hidden') + '></div></div></section>' +
-      '<p class="nk-note">投票から10分〜1時間ほどで順に開票し、結果は10分ごとに更新します。国内向けは日本版、海外向けは海外版に載っているチャンネルです。開票率と投票した人の数は全体の数字です。</p>' +
+      '<p class="nk-note">投票から5分〜30分ほどで順に開票し、結果は5分ごとに更新します。国内向けは日本版、海外向けは海外版に載っているチャンネルです。開票率と投票した人の数は全体の数字です。</p>' +
       '<section class="kh-pin" id="kh-pin" hidden><h4>掲示板</h4><div id="kh-pin-body"></div></section>';
     box.querySelector('#kh-more').addEventListener('click', function () {
       showAll = !showAll;
@@ -271,7 +271,7 @@
     Object.keys(rows).forEach(function (id) { before[id] = rows[id].el.getBoundingClientRect().top; });
     var keep = {};
     if (!list.length) {
-      olist.innerHTML = '<li class="kh-none">' + (r.counted ? 'この区分には、まだ開票された票がありません。' : 'まだ開票された票はありません。投票から10分ほどで最初の票が開きます。') + '</li>';
+      olist.innerHTML = '<li class="kh-none">' + (r.counted ? 'この区分には、まだ開票された票がありません。' : 'まだ開票された票はありません。投票から5分ほどで最初の票が開きます。') + '</li>';
       rows = {};
     } else {
       var empty = olist.querySelector('.kh-none');
