@@ -759,7 +759,7 @@ const NINKI = {
   max: 3,
   delayMin: 5, delayMax: 30,   // 投票から開票までの分。この間でばらつかせる
   bucketMs: 5 * 60 * 1000,       // 結果を更新する間隔
-  stepMs: 60 * 60 * 1000,        // 推移グラフの1区切り
+  stepMs: 15 * 60 * 1000,        // 推移グラフの1区切り
 };
 function ninkiCloses(env) { return Number(env.NINKI_CLOSES) || NINKI.closes; }
 async function ninkiVoter(req, env) {

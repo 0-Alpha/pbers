@@ -219,8 +219,8 @@
       '<ol class="kh-list" id="kh-list"></ol>' +
       '<button type="button" class="kh-more" id="kh-more" hidden></button></div>' +
       '<aside class="kh-side"><h3>躍進ランキング</h3><p class="kh-side-d">登録者1万人あたりの票が多い順です。票が' + JUMP_MIN_VOTES + '票以上の人だけを、開票済みの票で比べています。</p><ol class="kh-jump" id="kh-jump"></ol></aside></div>' +
-      '<section class="kh-trend"><div class="sec-head"><h2>投票数の推移 <span class="en">History</span></h2><span class="note">開票した時刻で集計</span></div>' +
-        '<div class="controls kh-controls"><div class="toggle" id="kh-chartview" role="group" aria-label="グラフの切り替え"><button type="button" class="tg' + (chartView === 'top' ? ' on' : '') + '" data-v="top">上位5組</button><button type="button" class="tg' + (chartView === 'total' ? ' on' : '') + '" data-v="total">全体</button><span class="tg-ind"></span></div></div>' +
+      '<section class="kh-trend"><div class="sec-head"><h2>投票数の推移 <span class="en">History</span></h2><span class="note" id="kh-trend-note"></span></div>' +
+        '<div class="controls kh-controls"><div class="toggle" id="kh-chartview" role="group" aria-label="グラフの切り替え"><button type="button" class="tg' + (chartView === 'top' ? ' on' : '') + '" data-v="top">上位10組</button><button type="button" class="tg' + (chartView === 'total' ? ' on' : '') + '" data-v="total">全体</button><span class="tg-ind"></span></div></div>' +
         '<div class="trend"><div class="t-empty" id="kh-trend-empty" hidden>開票が始まると、ここにグラフが出ます。</div>' +
         '<div id="kh-trend-body"><div class="kh-legend" id="kh-legend"></div>' +
         '<div class="kh-plot" id="kh-plot" role="img" tabindex="0"><div id="kh-svgbox"></div><div class="kh-tip" id="kh-tip" hidden></div></div></div></div>' +
@@ -318,11 +318,7 @@
 
   /* ---- 投票数の推移。開票した時刻で積み上げた折れ線 ---- */
   var chartView = 'top', chartModel = null, chartIdx = -1, chartRO = null, numsOpen = false;
-  var CHART_TOP = 5, SPARE_COLORS = ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#9085e9', '#1597a0'];
-  function nearColor(a, b) {
-    var v = function (h, i) { return parseInt(h.substr(i, 2), 16); };
-    return Math.hypot(v(a, 1) - v(b, 1), v(a, 3) - v(b, 3), v(a, 5) - v(b, 5)) < 48;
-  }
+  var CHART_TOP = 10;
   function cumulative(xs, pairs, step, at) {   // pairs は時刻の順。区切りが終わった分までを足し上げる
     var i = 0, sum = 0;
     return xs.map(function (x) {
@@ -345,13 +341,9 @@
       var id = (cfg.alias && cfg.alias[row[1]]) || row[1];
       (by[id] = by[id] || []).push([row[0], row[2]]);
     });
-    var picked = [];
-    return { xs: xs, unit: '票', series: top.map(function (x) {
-      // 線はサイトで使っている各チャンネルの色。ほぼ同じ色の人が並ぶときだけ、見分けるために別の色にする
-      var free = function (col) { return !picked.some(function (p) { return nearColor(p, col); }); };
-      var color = x.c.color && free(x.c.color) ? x.c.color : SPARE_COLORS.filter(free)[0] || x.c.color || SPARE_COLORS[0];
-      picked.push(color);
-      return { id: x.c.id, name: x.c.name, color: color, ys: cumulative(xs, by[x.c.id] || [], step, at) };
+    var done = cumulative(xs, t.people, step, at), all = done[done.length - 1] || 1;
+    return { xs: xs, unit: '票', small: true, progress: done.map(function (v) { return v / all; }), series: top.map(function (x) {
+      return { id: x.c.id, name: x.c.name, rank: x.rank, color: x.c.color || 'var(--sall)', ys: cumulative(xs, by[x.c.id] || [], step, at) };
     }) };
   }
   function niceHalf(top) {   // 0、真ん中、上の3本の線が整数になるように、真ん中の値を選ぶ
@@ -375,6 +367,7 @@
     if (!box || !result) return;
     moveToggle();
     chartModel = buildChart(result);
+    host.querySelector('#kh-trend-note').textContent = chartView === 'total' ? '開票した時刻で集計' : '開票が進む順に表示';
     var legend = host.querySelector('#kh-legend'), wrap = host.querySelector('#kh-trend-body'), m = chartModel;
     wrap.hidden = !m;
     host.querySelector('#kh-trend-empty').hidden = !!m;
@@ -382,6 +375,8 @@
     if (!m) return;
     var w = box.clientWidth;
     if (!w) return;
+    if (m.small) return drawSmall(m, box, legend, w, animate);
+    legend.classList.remove('kh-rangebox');
     var Hh = 240, L = 54, R = 16, T = 18, B = 30, pw = w - L - R, ph = Hh - T - B;
     var xs = m.xs, n = xs.length, x0 = xs[0], x1 = xs[n - 1], top = 0, lead = m.series[0];
     m.series.forEach(function (s) { s.ys.forEach(function (v) { if (v > top) top = v; }); if (s.ys[n - 1] > lead.ys[n - 1]) lead = s; });
@@ -418,13 +413,63 @@
     if (numsOpen) drawTable(m);
     if (chartIdx >= 0) showPoint(Math.min(chartIdx, n - 1)); else hidePoint();
   }
+  /* 上位の組を1組ずつの小さなグラフに分ける。重ならず、目盛りは全員同じなので高さをそのまま比べられる */
+  function toneClass(hex) {   // 背景に溶ける色のチャンネルは、溶けるテーマのときだけ線を濃くする
+    if (hex.charAt(0) !== '#') return '';
+    var c = function (i) { return parseInt(hex.substr(i, 2), 16) / 255; };
+    var lum = 0.2126 * c(1) + 0.7152 * c(3) + 0.0722 * c(5);
+    return lum > 0.8 ? ' pale' : lum < 0.12 ? ' deep' : '';
+  }
+  function drawSmall(m, box, legend, w, animate) {
+    var cols = w >= 640 ? 2 : 1, gap = 28, cw = Math.floor((w - gap * (cols - 1)) / cols), H = 66, T = 6, B = 3;
+    var xs = m.xs, n = xs.length, x0 = xs[0], x1 = xs[n - 1], top = 1;
+    m.series.forEach(function (s) { s.ys.forEach(function (v) { if (v > top) top = v; }); });
+    var ph = H - T - B;
+    m.top = top;
+    // 横は時刻ではなく開票の進み。票が少ない時間帯で線が平らに伸びず、開票のどの辺りで伸びたかが見える
+    var px = {};
+    xs.forEach(function (v, i) { px[v] = 4 + m.progress[i] * (cw - 10); });
+    m.sx = function (v) { return px[v]; };
+    m.sy = function (v) { return T + ph * (1 - v / top); };
+    box.querySelector('#kh-svgbox').innerHTML = '<div class="kh-sms" style="grid-template-columns:repeat(' + cols + ',minmax(0,1fr));column-gap:' + gap + 'px">' + m.series.map(function (s) {
+      var pts = [];
+      s.ys.forEach(function (v, i) { if (!i || m.progress[i] !== m.progress[i - 1]) pts.push(m.sx(xs[i]).toFixed(1) + ',' + m.sy(v).toFixed(1)); });   // 開票が進まなかった区切りは省く
+      var area = 'M' + m.sx(x0).toFixed(1) + ',' + m.sy(0).toFixed(1) + ' L' + pts.join(' L') + ' L' + m.sx(x1).toFixed(1) + ',' + m.sy(0).toFixed(1) + ' Z';
+      return '<div class="kh-sm' + toneClass(s.color) + '"><div class="kh-sm-h"><span class="kh-sm-r num">' + s.rank + '</span><span class="kh-sm-n">' + esc(s.name) + '</span><span class="kh-sm-v"><b class="num">' + s.ys[n - 1] + '</b><small>票</small></span></div>' +
+        '<svg width="' + cw + '" height="' + H + '" viewBox="0 0 ' + cw + ' ' + H + '" aria-hidden="true">' +
+        '<line class="t-grid" x1="0" x2="' + cw + '" y1="' + m.sy(top / 2) + '" y2="' + m.sy(top / 2) + '"/><line class="t-grid" x1="0" x2="' + cw + '" y1="' + m.sy(0) + '" y2="' + m.sy(0) + '"/>' +
+        '<path class="kh-area' + (animate ? ' fade' : '') + '" style="fill:' + s.color + '" d="' + area + '"/>' +
+        '<path class="t-line kh-line' + (animate ? ' draw' : '') + '" style="stroke:' + s.color + '" pathLength="1" d="M' + pts.join(' L') + '"/>' +
+        '<circle class="t-dot" style="fill:' + s.color + '" r="3.5" cx="' + m.sx(x1).toFixed(1) + '" cy="' + m.sy(s.ys[n - 1]).toFixed(1) + '"/>' +
+        '<g class="kh-sm-hover" visibility="hidden"><line class="kh-cross" y1="' + T + '" y2="' + (T + ph) + '"/><circle class="t-dot kh-pt" style="fill:' + s.color + '" r="4.5"/></g></svg></div>';
+    }).join('') + '</div>';
+    legend.hidden = false;
+    legend.classList.add('kh-rangebox');
+    legend.innerHTML = '<span class="kh-range num" id="kh-range"></span>';
+    host.querySelector('#kh-tip').hidden = true;
+    box.setAttribute('aria-label', '投票数の推移。' + m.series.map(function (s) { return s.rank + '位 ' + s.name + ' ' + s.ys[n - 1] + '票'; }).join('、'));
+    if (numsOpen) drawTable(m);
+    if (chartIdx >= 0) showPoint(Math.min(chartIdx, n - 1)); else hidePoint();
+  }
   function drawTable(m) {   // チャンネルページと同じ、新しい順の表
-    var rows = m.xs.map(function (x, i) { return i; }).reverse();
+    var rows = m.xs.map(function (x, i) { return i; }).reverse().slice(0, 96);
     host.querySelector('#kh-table').innerHTML = '<table class="ch-table"><thead><tr><th>時刻</th>' + m.series.map(function (s) { return '<th>' + esc(s.name) + '</th>'; }).join('') + '</tr></thead><tbody>' +
       rows.map(function (i) { return '<tr><td>' + fullTime(m.xs[i]) + '</td>' + m.series.map(function (s) { return '<td class="num">' + s.ys[i] + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table>';
   }
   function showPoint(i) {
     var m = chartModel, g = host.querySelector('#kh-hover'), tip = host.querySelector('#kh-tip');
+    if (m && m.small) {   // どのグラフに触れても、全員の同じ時刻を出す
+      chartIdx = i;
+      [].slice.call(host.querySelectorAll('.kh-sm')).forEach(function (el, k) {
+        var s = m.series[k], x = m.sx(m.xs[i]), h = el.querySelector('.kh-sm-hover'), c = el.querySelector('.kh-cross'), pt = el.querySelector('.kh-pt');
+        c.setAttribute('x1', x); c.setAttribute('x2', x);
+        pt.setAttribute('cx', x); pt.setAttribute('cy', m.sy(s.ys[i]));
+        h.setAttribute('visibility', 'visible');
+        el.querySelector('.kh-sm-v b').textContent = s.ys[i];
+      });
+      host.querySelector('#kh-range').textContent = fullTime(m.xs[i]) + ' 時点の票数(開票の' + Math.round(m.progress[i] * 100) + '%まで)';
+      return;
+    }
     if (!m || !g || !tip) return;
     chartIdx = i;
     var x = m.sx(m.xs[i]), cross = g.querySelector('.kh-cross');
@@ -442,6 +487,16 @@
   }
   function hidePoint() {
     chartIdx = -1;
+    var mm = chartModel, range = host.querySelector('#kh-range');
+    if (mm && mm.small && range) {
+      var end = mm.xs.length - 1;
+      [].slice.call(host.querySelectorAll('.kh-sm')).forEach(function (el, k) {
+        el.querySelector('.kh-sm-hover').setAttribute('visibility', 'hidden');
+        el.querySelector('.kh-sm-v b').textContent = mm.series[k].ys[end];
+      });
+      range.textContent = '左が開票の始め、右が今です。線が急なところほど、そのときの開票で票を集めています。全員同じ目盛りで、グラフの上が' + mm.top + '票です。';
+      return;
+    }
     var g = host.querySelector('#kh-hover'), tip = host.querySelector('#kh-tip');
     if (g) g.setAttribute('visibility', 'hidden');
     if (tip) tip.hidden = true;
@@ -451,7 +506,13 @@
     var near = function (e) {
       var m = chartModel;
       if (!m || !m.sx) return;
-      var px = e.clientX - plot.getBoundingClientRect().left, best = 0, gap = Infinity;
+      var area = plot;
+      if (m.small) {   // 小さなグラフは、触れている1枚を基準に時刻を選ぶ
+        var one = e.target.closest && e.target.closest('.kh-sm');
+        if (!one) return;
+        area = one.querySelector('svg');
+      }
+      var px = e.clientX - area.getBoundingClientRect().left, best = 0, gap = Infinity;
       m.xs.forEach(function (v, i) { var d = Math.abs(m.sx(v) - px); if (d < gap) { gap = d; best = i; } });
       showPoint(best);
     };

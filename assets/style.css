@@ -1650,6 +1650,27 @@ section.block#dash-vote{padding:0}
 .kh-tip-r span{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .kh-tip-r b{font-weight:800}
 .kh-trend + .nk-note{margin-top:18px}
+/* 投票数の推移。上位の組を1組ずつの小さなグラフに分ける */
+.kh-rangebox{margin-bottom:6px}
+.kh-range{font-size:12.5px;font-weight:500;line-height:1.6;color:var(--muted)}
+.kh-sms{display:grid}
+.kh-sm{min-width:0;padding:10px 0 8px;border-top:1px solid var(--line)}
+.kh-sm svg{display:block;width:auto;max-width:100%}
+.kh-sm-h{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}
+.kh-sm-r{flex:none;min-width:18px;font-size:13px;font-weight:900;color:var(--muted);text-align:right}
+.kh-sm-n{flex:1;min-width:0;overflow:hidden;font-size:13.5px;font-weight:800;white-space:nowrap;text-overflow:ellipsis}
+.kh-sm-v{flex:none;white-space:nowrap}
+.kh-sm-v b{font-size:17px;font-weight:900}
+.kh-sm-v small{margin-left:2px;font-size:11px;color:var(--muted)}
+.kh-area{fill-opacity:.14;stroke:none}
+:root[data-theme="light"] .kh-sm.pale .kh-line{stroke:var(--muted)!important}
+:root[data-theme="light"] .kh-sm.pale .t-dot{fill:var(--muted)!important}
+:root[data-theme="light"] .kh-sm.pale .kh-area{fill:var(--muted)!important}
+:root:not([data-theme="light"]) .kh-sm.deep .kh-line{stroke:var(--muted)!important}
+:root:not([data-theme="light"]) .kh-sm.deep .t-dot{fill:var(--muted)!important}
+:root:not([data-theme="light"]) .kh-sm.deep .kh-area{fill:var(--muted)!important}
+.kh-area.fade{animation:kh-fade .9s ease-out both}
+@keyframes kh-fade{from{fill-opacity:0}to{fill-opacity:.14}}
 /* 開票速報の右の躍進ランキング */
 #kh > .kh-controls{margin-bottom:18px}
 .kh-cols{display:grid;grid-template-columns:minmax(0,1fr) 340px;align-items:start;gap:24px}
@@ -1692,6 +1713,6 @@ section.block#dash-vote{padding:0}
 }
 @media(prefers-reduced-motion:reduce){
   .nk-t,.nk-ck,.kh-meter i,.kh-bar i{transition:none}
-  .kh-d.pop{animation:none}
+  .kh-d.pop,.kh-area.fade{animation:none}
   .kh-line.draw{animation:none;stroke-dashoffset:0}
 }
