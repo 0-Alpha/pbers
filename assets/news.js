@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-06",
+    "label": "11月6日(金)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ユラミア連邦共和国",
+        "color": "#76d45e",
+        "avatar": "https://yt3.googleusercontent.com/mYtxeemdzCSzNcfJJG51Cc-06BC3_0weqEjED2rlTyqgwPlRaI7cPdOsfaDHp0FFq5txU91giQ=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 1000万回 突破",
+        "value": 10000000
+      }
+    ]
+  },
+  {
     "date": "2026-11-05",
     "label": "11月5日(木)",
     "items": [
@@ -128,7 +145,7 @@ window.PBERS_NEWS = [
       {
         "type": "milestone",
         "kind": "videos",
-        "name": "ソビエト・カチューシャボール☭\n\n",
+        "name": "カチューシャぼーる☭\n",
         "color": "#3ecc6b",
         "avatar": "https://yt3.googleusercontent.com/mSTLKAaYdnF2X-rVOViUuqnXHJAAwprVyeUv89L-Am2kln8mXPlTnnRpkOc01N9fdCjz3du5Kw=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
@@ -142,44 +159,5 @@ window.PBERS_NEWS = [
     "date": "2026-10-31",
     "label": "10月31日(土)",
     "items": []
-  },
-  {
-    "date": "2026-10-30",
-    "label": "10月30日(金)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "【PB】ネオンボール",
-        "color": "#5ed472",
-        "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 1万人 突破",
-        "value": 10000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "Æž!みかんぼーる🍊",
-        "color": "#eba864",
-        "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 5億回 突破",
-        "value": 500000000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "カルマルボール",
-        "color": "#b23ecc",
-        "avatar": "https://yt3.googleusercontent.com/F1-8mFstIqJFQylGY8_Ge_m0Ylimx1ptiU_E7s_cCy3vwIGBXKrVtyPqamHfyQ9hKZRvCxq4OA=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 400万回 突破",
-        "value": 4000000
-      }
-    ]
   }
 ];
