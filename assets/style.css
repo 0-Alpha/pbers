@@ -1591,7 +1591,7 @@ section.block#dash-vote{padding:0}
 .nk-modes button{min-height:44px;padding:0 16px;font:inherit;font-size:14px;font-weight:800;color:var(--muted);background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;cursor:pointer}
 .nk-modes button:hover{color:var(--text)}
 .nk-modes button.on{color:var(--text);border-bottom-color:var(--red)}
-.nk-modes button:focus-visible,.kh-more:focus-visible,.nk-toresult:focus-visible,#kh-chartview .tg:focus-visible,#kh-numsbtn:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+.nk-modes button:focus-visible,.kh-more:focus-visible,.nk-toresult:focus-visible,#kh-chartview .tg:focus-visible,#kh-edview .tg:focus-visible,#kh-numsbtn:focus-visible{outline:2px solid var(--text);outline-offset:2px}
 .nk-toresult{display:block;min-height:44px;margin-top:18px;padding:0 20px}
 /* 開票速報。テレビの選挙速報のように、開票率を大きく出して順位が入れ替わる */
 .kh-empty{margin:0;padding:24px 0;font-size:14px;color:var(--muted)}
@@ -1651,6 +1651,7 @@ section.block#dash-vote{padding:0}
 .kh-tip-r b{font-weight:800}
 .kh-trend + .nk-note{margin-top:18px}
 /* 開票速報の右の躍進ランキング */
+#kh > .kh-controls{margin-bottom:18px}
 .kh-cols{display:grid;grid-template-columns:minmax(0,1fr) 340px;align-items:start;gap:24px}
 .kh-side{position:sticky;top:130px;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
 .kh-side h3{margin:0;font-size:18px;font-weight:900}
@@ -1669,6 +1670,7 @@ section.block#dash-vote{padding:0}
 @media(max-width:980px){
   .kh-cols{grid-template-columns:minmax(0,1fr)}
   .kh-side{position:static}
+  #kh-edview .tg{padding:9px 16px}
 }
 .kh-pin{margin-top:28px}
 .kh-pin[hidden]{display:none}

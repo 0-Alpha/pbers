@@ -9,7 +9,7 @@
   var WANT = new URLSearchParams(location.search).get('c');   // 画面の切り替えでURLから消えるので、読み込みの時点で覚える
   var WANT_RESULT = location.hash === '#kaihyo';
   var root = null, host = null, cfg = null, status = null, api = '', boardBase = '', mode = 'vote';
-  var picks = [], query = '', filter = 'all', sending = false;
+  var picks = [], query = '', filter = 'all', sending = false, edView = 'all';
   var tiles = {}, shuffled = null;
   var result = null, resultError = false, rows = {}, showAll = false, timer = null, fetching = false, nextAt = 0;
   var ICON_SEARCH = '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="M13.2 13.2 17 17"/></svg>';
@@ -179,13 +179,13 @@
 
   /* ---- 開票速報 ---- */
   /* サーバーの集計に同じ人のまとめを当て、順位を付ける。同数は同じ順位で、並びはIDの順にして誰が見ても同じにする */
-  function ranking(r) {
+  function ranking(r, everyone) {   // 順位は選んでいる区分(総合、国内向け、海外向け)の中で付ける
     var n = {};
     (r.cands || []).forEach(function (x) {
       var id = (cfg.alias && cfg.alias[x.cand]) || x.cand;
       n[id] = (n[id] || 0) + x.n;
     });
-    var list = cfg.candidates.filter(function (c) { return n[c.id]; }).map(function (c) { return { c: c, n: n[c.id] }; })
+    var list = cfg.candidates.filter(function (c) { return n[c.id] && (everyone || edView === 'all' || c.ed === edView); }).map(function (c) { return { c: c, n: n[c.id] }; })
       .sort(function (a, b) { return b.n - a.n || (a.c.id < b.c.id ? -1 : 1); });
     var last = -1, rank = 0;
     list.forEach(function (x, i) {
@@ -207,6 +207,9 @@
       return;
     }
     box.innerHTML =
+      '<div class="controls kh-controls"><div class="toggle" id="kh-edview" role="group" aria-label="順位の区分">' + [['all', '総合'], ['jp', '国内向け'], ['global', '海外向け']].map(function (v) {
+        return '<button type="button" class="tg' + (edView === v[0] ? ' on' : '') + '" data-ed="' + v[0] + '" aria-pressed="' + (edView === v[0]) + '">' + v[1] + '</button>';
+      }).join('') + '<span class="tg-ind"></span></div></div>' +
       '<div class="kh-cols"><div class="kh-left"><header class="kh-board">' +
         '<div class="kh-title"><h3>開票速報</h3><p class="kh-state" id="kh-state"></p></div>' +
         '<div class="kh-rate"><span class="kh-rate-v num"><b id="kh-rate">0</b>%</span><span class="kh-rate-k">開票率</span></div>' +
@@ -217,16 +220,27 @@
       '<button type="button" class="kh-more" id="kh-more" hidden></button></div>' +
       '<aside class="kh-side"><h3>躍進ランキング</h3><p class="kh-side-d">登録者1万人あたりの票が多い順です。票が' + JUMP_MIN_VOTES + '票以上の人だけを、開票済みの票で比べています。</p><ol class="kh-jump" id="kh-jump"></ol></aside></div>' +
       '<section class="kh-trend"><div class="sec-head"><h2>投票数の推移 <span class="en">History</span></h2><span class="note">開票した時刻で集計</span></div>' +
-        '<div class="controls kh-controls"><div class="toggle" id="kh-chartview" role="group" aria-label="グラフの切り替え"><button type="button" class="tg' + (chartView === 'top' ? ' on' : '') + '" data-v="top">上位5組</button><button type="button" class="tg' + (chartView === 'total' ? ' on' : '') + '" data-v="total">全体</button><span class="tg-ind" id="kh-tind"></span></div></div>' +
+        '<div class="controls kh-controls"><div class="toggle" id="kh-chartview" role="group" aria-label="グラフの切り替え"><button type="button" class="tg' + (chartView === 'top' ? ' on' : '') + '" data-v="top">上位5組</button><button type="button" class="tg' + (chartView === 'total' ? ' on' : '') + '" data-v="total">全体</button><span class="tg-ind"></span></div></div>' +
         '<div class="trend"><div class="t-empty" id="kh-trend-empty" hidden>開票が始まると、ここにグラフが出ます。</div>' +
         '<div id="kh-trend-body"><div class="kh-legend" id="kh-legend"></div>' +
         '<div class="kh-plot" id="kh-plot" role="img" tabindex="0"><div id="kh-svgbox"></div><div class="kh-tip" id="kh-tip" hidden></div></div></div></div>' +
         '<div class="ch-nums-wrap" id="kh-numswrap"><button type="button" class="ch-nums-btn" id="kh-numsbtn">' + (numsOpen ? '数値を隠す ▴' : '数値で見る ▾') + '</button><div class="ch-nums" id="kh-table"' + (numsOpen ? '' : ' hidden') + '></div></div></section>' +
-      '<p class="nk-note">投票から10分〜1時間ほどで順に開票し、結果は10分ごとに更新します。</p>' +
+      '<p class="nk-note">投票から10分〜1時間ほどで順に開票し、結果は10分ごとに更新します。国内向けは日本版、海外向けは海外版に載っているチャンネルです。開票率と投票した人の数は全体の数字です。</p>' +
       '<section class="kh-pin" id="kh-pin" hidden><h4>掲示板</h4><div id="kh-pin-body"></div></section>';
     box.querySelector('#kh-more').addEventListener('click', function () {
       showAll = !showAll;
       drawResult(false);
+    });
+    box.querySelector('#kh-edview').addEventListener('click', function (e) {
+      var b = e.target.closest('.tg');
+      if (!b || b.dataset.ed === edView) return;
+      edView = b.dataset.ed;
+      [].slice.call(box.querySelectorAll('#kh-edview .tg')).forEach(function (x) { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      showAll = false;
+      rows = {};
+      chartIdx = -1;
+      box.querySelector('#kh-list').innerHTML = '';
+      drawResult(true, true);
     });
     wireChart();
     drawResult(true);
@@ -241,13 +255,13 @@
       sec.hidden = false;
     }).catch(function () {});
   }
-  function drawResult(first) {
+  function drawResult(first, switched) {   // switched は区分を切り替えたとき。上の開票率は動かさない
     var r = result, box = host.querySelector('#kh');
     if (!box || !r || !host.querySelector('#kh-list')) return;
     var list = ranking(r), rate = r.total ? Math.floor(r.counted / r.total * 1000) / 10 : 0;
     var seen = readJson(SEEN_KEY) || {}, olist = host.querySelector('#kh-list'), shown = cfg.top;
     host.querySelector('#kh-state').textContent = resultState(r);
-    tween(host.querySelector('#kh-rate'), first ? 0 : +host.querySelector('#kh-rate').textContent, rate, first ? 900 : 500, 1);
+    tween(host.querySelector('#kh-rate'), first && !switched ? 0 : +host.querySelector('#kh-rate').textContent, rate, first ? 900 : 500, 1);
     host.querySelector('#kh-meter').style.width = rate + '%';
     host.querySelector('#kh-nums').innerHTML = '<span>投票した人 <b>' + r.total + '</b>人</span><span>開票済み <b>' + r.counted + '</b>人</span><span id="kh-next"></span>';
     tick();
@@ -257,7 +271,7 @@
     Object.keys(rows).forEach(function (id) { before[id] = rows[id].el.getBoundingClientRect().top; });
     var keep = {};
     if (!list.length) {
-      olist.innerHTML = '<li class="kh-none">まだ開票された票はありません。投票から10分ほどで最初の票が開きます。</li>';
+      olist.innerHTML = '<li class="kh-none">' + (r.counted ? 'この区分には、まだ開票された票がありません。' : 'まだ開票された票はありません。投票から10分ほどで最初の票が開きます。') + '</li>';
       rows = {};
     } else {
       var empty = olist.querySelector('.kh-none');
@@ -281,7 +295,7 @@
         el.querySelector('.kh-r').textContent = x.rank;
         el.querySelector('.kh-bar i').style.width = Math.max(2, x.n / top * 100) + '%';
         tween(el.querySelector('.kh-v b'), first ? 0 : row.n, x.n, first ? 800 + Math.min(i, 12) * 40 : 700, 0);
-        var diff = first ? (seen[id] === undefined || !seen.at ? 0 : x.n - seen[id]) : x.n - row.n;
+        var diff = switched ? 0 : first ? (seen[id] === undefined || !seen.at ? 0 : x.n - seen[id]) : x.n - row.n;
         var d = el.querySelector('.kh-d');
         if (diff > 0) { d.textContent = '+' + diff; d.classList.remove('pop'); void d.offsetWidth; d.classList.add('pop'); }
         else if (first) d.textContent = '';
@@ -296,7 +310,7 @@
     more.hidden = !hiddenCount;
     more.textContent = showAll ? '上位だけ見る' : 'ほかの' + hiddenCount + '組も見る';
     var snap = { at: r.at };
-    list.forEach(function (x) { snap[x.c.id] = x.n; });
+    ranking(r, true).forEach(function (x) { snap[x.c.id] = x.n; });   // 前回との差は区分に関係なく覚える
     writeJson(SEEN_KEY, snap);
     drawJump(list);
     drawChart(first);
@@ -326,6 +340,7 @@
       return { xs: xs, unit: '人', series: [{ id: 'all', name: '開票済みの人数', color: 'var(--sall)', ys: cumulative(xs, t.people, step, at) }] };
     }
     var top = ranking(r).slice(0, CHART_TOP), by = {};
+    if (!top.length) return null;
     (t.cands || []).forEach(function (row) {
       var id = (cfg.alias && cfg.alias[row[1]]) || row[1];
       (by[id] = by[id] || []).push([row[0], row[2]]);
@@ -350,8 +365,10 @@
   }
   function fullTime(v) { var d = new Date(v + 9 * 3600e3); return (d.getUTCMonth() + 1) + '月' + d.getUTCDate() + '日 ' + clockText(v); }
   function moveToggle() {
-    var on = host.querySelector('#kh-chartview .tg.on'), ind = host.querySelector('#kh-tind');
-    if (on && ind) { ind.style.left = on.offsetLeft + 'px'; ind.style.width = on.offsetWidth + 'px'; }
+    ['#kh-edview', '#kh-chartview'].forEach(function (sel) {
+      var on = host.querySelector(sel + ' .tg.on'), ind = host.querySelector(sel + ' .tg-ind');
+      if (on && ind) { ind.style.left = on.offsetLeft + 'px'; ind.style.width = on.offsetWidth + 'px'; }
+    });
   }
   function drawChart(animate) {
     var box = host.querySelector('#kh-plot');
