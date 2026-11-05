@@ -1662,6 +1662,8 @@ section.block#dash-vote{padding:0}
 .kh-j-main{display:flex;flex-direction:column;gap:2px;min-width:0}
 .kh-j-n{overflow:hidden;font-size:13.5px;font-weight:800;white-space:nowrap;text-overflow:ellipsis}
 .kh-j-s{font-size:11.5px;line-height:1.45;color:var(--muted)}
+.kh-j-v{white-space:nowrap;text-align:right}
+.kh-j-v small{margin-left:2px;font-size:11.5px;color:var(--muted)}
 .kh-j-up{font-size:22px;font-weight:900;color:var(--red)}
 :root:not([data-theme="light"]) .kh-j-up{color:#ff8d84}
 @media(max-width:980px){

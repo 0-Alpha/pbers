@@ -215,7 +215,7 @@
       '</header>' +
       '<ol class="kh-list" id="kh-list"></ol>' +
       '<button type="button" class="kh-more" id="kh-more" hidden></button></div>' +
-      '<aside class="kh-side"><h3>躍進ランキング</h3><p class="kh-side-d">登録者の順位より、投票の順位がどれだけ上か。票が' + JUMP_MIN_VOTES + '票以上の人だけを、開票済みの票で比べています。</p><ol class="kh-jump" id="kh-jump"></ol></aside></div>' +
+      '<aside class="kh-side"><h3>躍進ランキング</h3><p class="kh-side-d">登録者1万人あたりの票が多い順です。票が' + JUMP_MIN_VOTES + '票以上の人だけを、開票済みの票で比べています。</p><ol class="kh-jump" id="kh-jump"></ol></aside></div>' +
       '<section class="kh-trend"><div class="sec-head"><h2>投票数の推移 <span class="en">History</span></h2><span class="note">開票した時刻で集計</span></div>' +
         '<div class="controls kh-controls"><div class="toggle" id="kh-chartview" role="group" aria-label="グラフの切り替え"><button type="button" class="tg' + (chartView === 'top' ? ' on' : '') + '" data-v="top">上位5組</button><button type="button" class="tg' + (chartView === 'total' ? ' on' : '') + '" data-v="total">全体</button><span class="tg-ind" id="kh-tind"></span></div></div>' +
         '<div class="trend"><div class="t-empty" id="kh-trend-empty" hidden>開票が始まると、ここにグラフが出ます。</div>' +
@@ -477,27 +477,18 @@
       chartRO.observe(plot);
     }
   }
-  /* 躍進: 登録者の順位と投票の順位の差。票が少ない人は1票で大きく動くので、一定の票が入った人だけを比べる */
-  function subsRanks() {
-    var ranks = {}, last = -1, rank = 0;
-    cfg.candidates.slice().sort(function (a, b) { return (b.subs || 0) - (a.subs || 0); }).forEach(function (c, i) {
-      if (c.subs !== last) { rank = i + 1; last = c.subs; }
-      ranks[c.id] = rank;
-    });
-    return ranks;
-  }
+  /* 躍進: 登録者1万人あたりの票。票が少ない人は1票で大きく動くので、一定の票が入った人だけを比べる */
   function drawJump(list) {
     var el = host.querySelector('#kh-jump');
     if (!el) return;
-    var ranks = subsRanks();
-    var up = list.filter(function (x) { return x.n >= JUMP_MIN_VOTES && ranks[x.c.id] > x.rank; }).map(function (x) {
-      return { c: x.c, n: x.n, rank: x.rank, from: ranks[x.c.id], jump: ranks[x.c.id] - x.rank, per: x.c.subs ? x.n / (x.c.subs / 10000) : 0 };
-    }).sort(function (a, b) { return b.jump - a.jump || b.n - a.n || (a.c.id < b.c.id ? -1 : 1); }).slice(0, JUMP_SHOWN);
+    var up = list.filter(function (x) { return x.n >= JUMP_MIN_VOTES && x.c.subs > 0; }).map(function (x) {
+      return { c: x.c, n: x.n, rank: x.rank, per: x.n / (x.c.subs / 10000) };
+    }).sort(function (a, b) { return b.per - a.per || b.n - a.n || (a.c.id < b.c.id ? -1 : 1); }).slice(0, JUMP_SHOWN);
     if (!up.length) { el.innerHTML = '<li class="kh-jump-none">開票が進むと、ここに出ます。</li>'; return; }
     el.innerHTML = up.map(function (x) {
       var per = x.per >= 100 ? Math.round(x.per) : Math.round(x.per * 10) / 10;
       return '<li class="kh-j"><span class="kh-av">' + avatar(x.c, 40) + '</span><span class="kh-j-main"><span class="kh-j-n">' + esc(x.c.name) + '</span>' +
-        '<span class="kh-j-s num">登録者' + x.from + '位 → 投票' + x.rank + '位</span><span class="kh-j-s num">' + x.n + '票・1万人あたり' + per + '票</span></span><b class="kh-j-up num">+' + x.jump + '</b></li>';
+        '<span class="kh-j-s num">投票' + x.rank + '位・' + x.n + '票</span><span class="kh-j-s num">登録者' + subsText(x.c.subs) + '</span></span><span class="kh-j-v"><b class="kh-j-up num">' + per + '</b><small>票</small></span></li>';
     }).join('');
   }
   function flip(before) {
