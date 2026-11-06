@@ -1,18 +1,18 @@
 {
   "site": "PBers Global",
   "updated": "2026-11-06",
-  "generated": "2026-11-06T06:46:20+09:00",
+  "generated": "2026-11-07T06:01:31+09:00",
   "count": 1,
   "items": [
     {
-      "id": "2026-10-31/subs/くろまめ/20000",
-      "date": "2026-10-31",
+      "id": "2026-11-06/views/くろまめ/20000000",
+      "date": "2026-11-06",
       "channel": "くろまめ",
       "slug": "くろまめ",
-      "metric": "subs",
+      "metric": "views",
       "type": "milestone",
-      "label": "登録者 2万人 突破",
-      "value": 20000,
+      "label": "総再生数 2000万回 突破",
+      "value": 20000000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/global/c/%E3%81%8F%E3%82%8D%E3%81%BE%E3%82%81/"
     }

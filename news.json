@@ -1,9 +1,21 @@
 {
   "site": "PBers",
   "updated": "2026-11-06",
-  "generated": "2026-11-06T06:46:17+09:00",
-  "count": 11,
+  "generated": "2026-11-07T06:01:28+09:00",
+  "count": 14,
   "items": [
+    {
+      "id": "2026-11-06/subs/ぽぱい/20000",
+      "date": "2026-11-06",
+      "channel": "ぽぱい",
+      "slug": "ぽぱい",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 2万人 突破",
+      "value": 20000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%81%BD%E3%81%B1%E3%81%84/"
+    },
     {
       "id": "2026-11-06/views/ユラミア連邦共和国/10000000",
       "date": "2026-11-06",
@@ -15,6 +27,30 @@
       "value": 10000000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E3%83%A6%E3%83%A9%E3%83%9F%E3%82%A2%E9%80%A3%E9%82%A6%E5%85%B1%E5%92%8C%E5%9B%BD/"
+    },
+    {
+      "id": "2026-11-06/views/梅干しおにぎり/9000000",
+      "date": "2026-11-06",
+      "channel": "梅干しおにぎり",
+      "slug": "梅干しおにぎり",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 900万回 突破",
+      "value": 9000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E6%A2%85%E5%B9%B2%E3%81%97%E3%81%8A%E3%81%AB%E3%81%8E%E3%82%8A/"
+    },
+    {
+      "id": "2026-11-06/videos/みかんぼーる/500",
+      "date": "2026-11-06",
+      "channel": "Æž!みかんぼーる🍊",
+      "slug": "みかんぼーる",
+      "metric": "videos",
+      "type": "milestone",
+      "label": "投稿数 500本 突破",
+      "value": 500,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%81%BF%E3%81%8B%E3%82%93%E3%81%BC%E3%83%BC%E3%82%8B/"
     },
     {
       "id": "2026-11-05/views/まるぼーるch/20000000",
