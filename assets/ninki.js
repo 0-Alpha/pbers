@@ -219,6 +219,16 @@
       '<ol class="kh-list" id="kh-list"></ol>' +
       '<button type="button" class="kh-more" id="kh-more" hidden></button></div>' +
       '<aside class="kh-side"><h3>躍進ランキング</h3><p class="kh-side-d">登録者1万人あたりの票が多い順です。票が' + JUMP_MIN_VOTES + '票以上の人だけを、開票済みの票で比べています。</p><ol class="kh-jump" id="kh-jump"></ol></aside></div>' +
+      '<section class="kh-race" id="kh-race"><div class="sec-head"><h2>開票レース <span class="en">Race</span></h2><span class="note" id="khr-note"></span></div>' +
+        '<div class="controls kh-controls"><div class="vtype" id="khr-n" role="group" aria-label="表示数">' + [10, 20, 30].map(function (n) {
+          return '<button type="button" class="vt' + (race.n === n ? ' on' : '') + '" data-n="' + n + '">' + (n === 10 ? '上位10' : n) + '</button>';
+        }).join('') + '</div></div>' +
+        '<div class="t-empty" id="khr-empty" hidden>開票が始まると、ここにレースが出ます。</div>' +
+        '<div id="khr-body"><div class="bcr-stage kh-race-stage"><div class="bcr-axis" id="khr-axis"></div><div class="bcr-bars" id="khr-bars"></div><div class="bcr-date num" id="khr-date"></div></div>' +
+        '<div class="bcr-ctl"><button type="button" class="bcr-play" id="khr-play" aria-label="最初から再生"></button>' +
+        '<div class="bcr-seek-box"><input type="range" class="kh-race-seek" id="khr-seek" min="0" max="1" step="any" value="1" aria-label="開票の進み">' +
+        '<span class="kh-race-ends"><span id="khr-start"></span><span>現在</span></span></div>' +
+        '<button type="button" class="bcr-speed" id="khr-speed">' + race.speed + 'x</button></div></div></section>' +
       '<section class="kh-trend"><div class="sec-head"><h2>投票数の推移 <span class="en">History</span></h2><span class="note" id="kh-trend-note"></span></div>' +
         '<div class="controls kh-controls"><div class="toggle" id="kh-chartview" role="group" aria-label="グラフの切り替え"><button type="button" class="tg' + (chartView === 'top' ? ' on' : '') + '" data-v="top">上位10組</button><button type="button" class="tg' + (chartView === 'total' ? ' on' : '') + '" data-v="total">全体</button><span class="tg-ind"></span></div></div>' +
         '<div class="trend"><div class="t-empty" id="kh-trend-empty" hidden>開票が始まると、ここにグラフが出ます。</div>' +
@@ -243,6 +253,7 @@
       drawResult(true, true);
     });
     wireChart();
+    raceSetup();
     drawResult(true);
     drawPin();
   }
@@ -314,7 +325,178 @@
     ranking(r, true).forEach(function (x) { snap[x.c.id] = x.n; });   // 前回との差は区分に関係なく覚える
     writeJson(SEEN_KEY, snap);
     drawJump(list);
+    raceUpdate();
     drawChart(first);
+  }
+
+  /* ---- 開票レース。レースタブと同じバーチャートレースで、開票の始まりから現在までを再生する。予測はしない ----
+     再生の進みは開票済みの人数に合わせる。票が少ない夜中はすぐ過ぎ、票が多い時間はゆっくり進む */
+  var RACE_SEC = 30, RACE_SPEEDS = [1, 2, 4];   // 1x で最初から現在まで30秒
+  var race = { n: 10, u: 0, playing: false, speed: 1, rows: {}, ticks: {}, raf: 0, last: 0, m: null, end: true };
+  var RACE_ICON = {
+    play: '<svg viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></svg>',
+    pause: '<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>',
+    replay: '<svg viewBox="0 0 24 24"><path d="M12 5V1.5L7 6l5 4.5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>'
+  };
+  function raceModel(r) {
+    var t = r.trend;
+    if (!t || !t.people || !t.people.length) return null;
+    var step = t.step, first = t.people[0][0], at = r.at, xs = [first];
+    for (var x = first + step; x < at; x += step) xs.push(x);
+    if (at > first) xs.push(at); else xs.unshift(first - step);
+    var done = cumulative(xs, t.people, step, at), by = {};
+    (t.cands || []).forEach(function (row) {
+      var id = (cfg.alias && cfg.alias[row[1]]) || row[1];
+      (by[id] = by[id] || []).push([row[0], row[2]]);
+    });
+    // 開票が進んだ区切りだけを残す。最後は現在の時刻にする
+    var ks = [0];
+    for (var i = 1; i < xs.length; i++) if (done[i] > done[ks[ks.length - 1]]) ks.push(i);
+    if (ks[ks.length - 1] !== xs.length - 1) ks[ks.length - 1] = xs.length - 1;
+    if (ks.length < 2 || !done[xs.length - 1]) return null;
+    return {
+      U: done[xs.length - 1],
+      us: ks.map(function (i) { return done[i]; }),
+      ts: ks.map(function (i) { return xs[i]; }),
+      ch: cfg.candidates.filter(function (c) { return by[c.id] && (edView === 'all' || c.ed === edView); }).map(function (c) {
+        var ys = cumulative(xs, by[c.id], step, at);
+        return { c: c, v: ks.map(function (i) { return ys[i]; }) };
+      })
+    };
+  }
+  function raceH() {
+    var sm = window.innerWidth <= 560;
+    return race.n >= 30 ? (sm ? 24 : 28) : race.n >= 20 ? (sm ? 28 : 34) : (sm ? 34 : 42);
+  }
+  function raceNice(x) {   // 目盛りの間隔を 1、2、5 × 10のn乗 に丸める。票なので1より細かくしない
+    if (x <= 1) return 1;
+    var p = Math.pow(10, Math.floor(Math.log10(x))), m = x / p;
+    return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 5 ? 5 : 10) * p;
+  }
+  function raceStamp(v) { var d = new Date(v + 9 * 3600e3); return (d.getUTCMonth() + 1) + '/' + d.getUTCDate() + ' ' + clockText(v); }
+  function raceBtn() {
+    var b = host.querySelector('#khr-play'), m = race.m;
+    if (!b) return;
+    var end = m && race.u >= m.U;
+    b.innerHTML = race.playing ? RACE_ICON.pause : end ? RACE_ICON.replay : RACE_ICON.play;
+    b.setAttribute('aria-label', race.playing ? '一時停止' : end ? '最初から再生' : '再生');
+  }
+  function raceKick() { if (!race.raf) { race.last = 0; race.raf = requestAnimationFrame(raceFrame); } }
+  function raceFrame(now) {
+    race.raf = 0;
+    var m = race.m, seek = host && host.querySelector('#khr-seek');
+    if (!m || !seek || mode !== 'kaihyo') { race.playing = false; return; }
+    var dt = race.last ? Math.min((now - race.last) / 1000, 0.1) : 0;
+    race.last = now;
+    if (race.playing) {
+      race.u = Math.min(race.u + dt * m.U / RACE_SEC * race.speed, m.U);
+      if (race.u >= m.U) { race.playing = false; raceBtn(); }
+      seek.value = race.u;
+    }
+    race.end = race.u >= m.U;
+    var moving = raceDraw(dt);
+    if (race.playing || moving) race.raf = requestAnimationFrame(raceFrame);
+  }
+  function raceDraw(dt) {
+    var m = race.m, N = race.n, H = raceH(), us = m.us, j = 0;
+    while (j < us.length - 2 && us[j + 1] < race.u) j++;
+    var f = us[j + 1] > us[j] ? Math.max(0, Math.min(1, (race.u - us[j]) / (us[j + 1] - us[j]))) : 1;
+    var list = [];
+    m.ch.forEach(function (x) {
+      var v = x.v[j] + (x.v[j + 1] - x.v[j]) * f;
+      if (v > 0) list.push({ c: x.c, v: v });
+    });
+    list.sort(function (a, b) { return b.v - a.v || (a.c.id < b.c.id ? -1 : 1); });
+    var max = list.length ? Math.max(list[0].v, 1) : 1, vm = {}, want = {};
+    list.forEach(function (x, r) { vm[x.c.id] = x.v; if (r < N) want[x.c.id] = r; });
+    var bars = host.querySelector('#khr-bars'), rows = race.rows;
+    bars.style.height = (N * H) + 'px';
+    bars.style.setProperty('--h', H + 'px');
+    bars.classList.toggle('dense', N > 12);
+    list.slice(0, N).forEach(function (x) {
+      if (rows[x.c.id]) return;
+      var el = document.createElement('div');
+      el.className = 'bcr-row';
+      el.innerHTML = '<span class="bcr-rk num"></span><span class="bcr-lab"></span>' +
+        '<span class="bcr-track"><span class="bcr-bar"></span>' +
+        (x.c.avatar ? '<img class="bcr-av" src="' + esc(x.c.avatar) + '" alt="" referrerpolicy="no-referrer" decoding="async">' : '') +
+        '<span class="bcr-val num"></span></span>';
+      el.querySelector('.bcr-lab').textContent = x.c.name;
+      el.querySelector('.bcr-bar').style.background = x.c.color || 'var(--muted)';
+      if (x.c.avatar) el.querySelector('.bcr-av').style.borderColor = x.c.color || 'var(--line)';
+      bars.appendChild(el);
+      rows[x.c.id] = { el: el, y: dt ? N : want[x.c.id], v: x.v, rk: el.querySelector('.bcr-rk'), val: el.querySelector('.bcr-val') };
+    });
+    var ease = dt && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 - Math.exp(-dt * 8) : 1, moving = false;
+    Object.keys(rows).forEach(function (id) {
+      var r = rows[id], inTop = id in want, target = inTop ? want[id] : N + 0.6;
+      r.v = vm[id] != null ? vm[id] : 0;
+      r.y += (target - r.y) * ease;
+      if (Math.abs(target - r.y) < 0.004) r.y = target; else moving = true;
+      if (!inTop && r.y >= N + 0.5) { r.el.remove(); delete rows[id]; return; }
+      r.el.style.transform = 'translateY(' + (r.y * H).toFixed(1) + 'px)';
+      r.el.style.opacity = inTop ? '' : Math.max(0, Math.min(1, N + 0.5 - r.y)).toFixed(2);
+      r.el.style.setProperty('--f', Math.max(r.v / max, 0.004).toFixed(4));
+      r.rk.textContent = inTop ? want[id] + 1 : '';
+      r.val.textContent = Math.round(r.v) + '票';
+    });
+    var axis = host.querySelector('#khr-axis'), stepV = raceNice(max / 4), keep = {};
+    for (var v = stepV; v <= max * 1.0001 && v / stepV <= 8; v += stepV) {
+      var key = String(Math.round(v)), tk = race.ticks[key];
+      keep[key] = 1;
+      if (!tk) { tk = document.createElement('div'); tk.className = 'bcr-tick'; tk.innerHTML = '<span class="num"></span>'; axis.appendChild(tk); race.ticks[key] = tk; }
+      tk.style.left = (v / max * 100).toFixed(3) + '%';
+      tk.firstChild.textContent = key;
+    }
+    Object.keys(race.ticks).forEach(function (key) { if (!keep[key]) { race.ticks[key].remove(); delete race.ticks[key]; } });
+    host.querySelector('#khr-date').textContent = race.u >= m.U ? '現在' : raceStamp(m.ts[j] + (m.ts[j + 1] - m.ts[j]) * f);
+    return moving;
+  }
+  function raceSetup() {   // 開票速報を描き直すたびに呼ぶ。再生の位置と速さは残す
+    race.rows = {};
+    race.ticks = {};
+    var seek = host.querySelector('#khr-seek');
+    seek.addEventListener('input', function () { race.u = +seek.value; race.playing = false; raceBtn(); raceKick(); });
+    host.querySelector('#khr-play').addEventListener('click', function () {
+      if (!race.m) return;
+      if (race.playing) race.playing = false;
+      else { if (race.u >= race.m.U) race.u = 0; race.playing = true; }
+      raceBtn(); raceKick();
+    });
+    var sp = host.querySelector('#khr-speed');
+    sp.addEventListener('click', function () {
+      race.speed = RACE_SPEEDS[(RACE_SPEEDS.indexOf(race.speed) + 1) % RACE_SPEEDS.length];
+      sp.textContent = race.speed + 'x';
+    });
+    host.querySelector('#khr-n').addEventListener('click', function (e) {
+      var b = e.target.closest('.vt');
+      if (!b || +b.dataset.n === race.n) return;
+      [].slice.call(host.querySelectorAll('#khr-n .vt')).forEach(function (x) { x.classList.toggle('on', x === b); });
+      race.n = +b.dataset.n;
+      raceNote();
+      raceKick();
+    });
+  }
+  function raceNote() {
+    var m = race.m;
+    host.querySelector('#khr-note').textContent = m ? (dateText(m.ts[0]).replace('月', '/').replace('日', '') + ' 〜 現在 ・ 開票した順に再生 ・ 上位' + race.n) : '';
+  }
+  function raceUpdate() {   // 新しい結果が来たとき、区分を切り替えたとき。現在を見ていた人は現在のまま
+    if (!host.querySelector('#kh-race')) return;
+    var m = raceModel(result), atEnd = !race.m || race.end;
+    race.m = m;
+    host.querySelector('#khr-empty').hidden = !!m;
+    host.querySelector('#khr-body').hidden = !m;
+    if (!m) { raceNote(); return; }
+    race.u = atEnd && !race.playing ? m.U : Math.min(race.u, m.U);
+    race.end = race.u >= m.U;
+    var seek = host.querySelector('#khr-seek');
+    seek.max = m.U;
+    seek.value = race.u;
+    host.querySelector('#khr-start').textContent = raceStamp(m.ts[0]);
+    raceNote();
+    raceBtn();
+    raceKick();
   }
 
   /* ---- 投票数の推移。開票した時刻で積み上げた折れ線 ---- */
@@ -729,6 +911,7 @@
         if (b && b.dataset.mode !== mode) setMode(b.dataset.mode);
       });
       el.addEventListener('error', retryImg, true);   // error はバブリングしないのでキャプチャで拾う
+        window.addEventListener('resize', function () { if (race.m) raceKick(); });
       window.addEventListener('hashchange', function () {
         if (cfg && location.hash === '#kaihyo' && mode !== 'kaihyo') setMode('kaihyo');
       });

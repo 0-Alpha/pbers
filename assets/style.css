@@ -1716,3 +1716,12 @@ section.block#dash-vote{padding:0}
   .kh-d.pop,.kh-area.fade{animation:none}
   .kh-line.draw{animation:none;stroke-dashoffset:0}
 }
+
+/* 開票レース。見た目はレースタブのバーチャートレースと同じ */
+.kh-race{margin-top:34px}
+.kh-race .bcr-stage{margin-top:30px}
+#khr-body[hidden],#khr-empty[hidden]{display:none}
+.kh-race-seek{display:block;width:100%;margin:0;accent-color:var(--red)}
+.kh-race-ends{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;font-weight:700;font-size:11px;line-height:1.2;color:var(--muted);pointer-events:none}
+.kh-race .bcr-date{font-size:clamp(26px,4.6vw,48px)}
+.kh-race + .kh-trend{margin-top:40px}
