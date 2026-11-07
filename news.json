@@ -1,9 +1,33 @@
 {
   "site": "PBers",
-  "updated": "2026-11-06",
-  "generated": "2026-11-07T16:46:23+09:00",
-  "count": 14,
+  "updated": "2026-11-07",
+  "generated": "2026-11-08T04:41:33+09:00",
+  "count": 16,
   "items": [
+    {
+      "id": "2026-11-07/views/みすい/2000000",
+      "date": "2026-11-07",
+      "channel": "みすい",
+      "slug": "みすい",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 200万回 突破",
+      "value": 2000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%81%BF%E3%81%99%E3%81%84/"
+    },
+    {
+      "id": "2026-11-07/videos/カチューシャぼーる/400",
+      "date": "2026-11-07",
+      "channel": "カチューシャぼーる☭\n",
+      "slug": "カチューシャぼーる",
+      "metric": "videos",
+      "type": "milestone",
+      "label": "投稿数 400本 突破",
+      "value": 400,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%82%AB%E3%83%81%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A3%E3%81%BC%E3%83%BC%E3%82%8B/"
+    },
     {
       "id": "2026-11-06/subs/ぽぱい/20000",
       "date": "2026-11-06",
