@@ -773,28 +773,81 @@ async function ninkiStatus(req, env) {
   } catch (e) {}   // まだ誰も投票していない(テーブルがない)
   return json(out);
 }
-let ninkiSnap = null;   // 同じ更新回の間は集計し直さない
+let ninkiSnap = null;   // 同じ更新回の間は集計し直さない(拠点ごとのメモリ)
+let ninkiReady = false;
+// D1 は読んだ行数で課金・上限がかかる。全部の票を読み直すと、更新のたび・拠点ごとに票の数×8行ほど読むことになる。
+// そこで前回の集計を ninki_snap に保存し、次の回は「前回から今回までに開いた票」と「前回から今回までに入った票の数」だけを読む。
+// 取りこぼしや手で消した票を直すため、NINKI_FULL_MS ごとに1回だけ全部を数え直す
+const NINKI_FULL_MS = 3 * 60 * 60 * 1000;
+async function ninkiPrepare(env) {
+  if (ninkiReady) return;
+  await env.DB.prepare("CREATE TABLE IF NOT EXISTS ninki_snap(id INTEGER PRIMARY KEY, at INTEGER NOT NULL, body TEXT NOT NULL)").run();
+  await env.DB.prepare("CREATE INDEX IF NOT EXISTS ninki_votes_opens ON ninki_votes(opens)").run();
+  await env.DB.prepare("CREATE INDEX IF NOT EXISTS ninki_votes_created ON ninki_votes(created)").run();
+  ninkiReady = true;
+}
+function ninkiAdd(snap, rows, step) {   // 開いた票を集計に足す。cands と trend は {キー: 数} で持つ
+  for (const r of rows) {
+    snap.counted++;
+    const t = Math.floor(r.opens / step) * step;
+    snap.people[t] = (snap.people[t] || 0) + 1;
+    for (const c of [r.c1, r.c2, r.c3]) {
+      if (!c) continue;
+      snap.cands[c] = (snap.cands[c] || 0) + 1;
+      const k = t + "|" + c;
+      snap.tc[k] = (snap.tc[k] || 0) + 1;
+    }
+  }
+}
+function ninkiPublic(snap, bucket) {   // サイトに返す形にする
+  const tc = Object.keys(snap.tc).map((k) => { const i = k.indexOf("|"); return [Number(k.slice(0, i)), k.slice(i + 1), snap.tc[k]]; }).sort((a, b) => a[0] - b[0]);
+  return {
+    closes: snap.closes, open: snap.at < snap.closes, at: snap.at, next: snap.at + bucket, total: snap.total, counted: snap.counted,
+    cands: Object.keys(snap.cands).map((c) => ({ cand: c, n: snap.cands[c] })),
+    trend: { step: snap.step, cands: tc, people: Object.keys(snap.people).map(Number).sort((a, b) => a - b).map((t) => [t, snap.people[t]]) },
+  };
+}
 async function ninkiResults(env) {
   if (!env.DB) return json({ error: "db_unconfigured" }, 503);
   const bucket = Number(env.NINKI_BUCKET_MS) || NINKI.bucketMs, step = Number(env.NINKI_STEP_MS) || NINKI.stepMs, closes = ninkiCloses(env);
   const at = Math.floor(Date.now() / bucket) * bucket;
-  if (!ninkiSnap || ninkiSnap.at !== at || ninkiSnap.closes !== closes) {
-    const snap = { closes, open: at < closes, at, next: at + bucket, total: 0, counted: 0, cands: [], trend: { step, cands: [], people: [] } };
-    try {
-      const t = await env.DB.prepare("SELECT COUNT(*) AS total, SUM(CASE WHEN opens<=?1 THEN 1 ELSE 0 END) AS counted FROM ninki_votes WHERE created<=?1").bind(at).first();
-      snap.total = (t && t.total) || 0;
-      snap.counted = (t && t.counted) || 0;
-      const c = await env.DB.prepare("SELECT cand, COUNT(*) AS n FROM (SELECT c1 AS cand FROM ninki_votes WHERE opens<=?1 UNION ALL SELECT c2 FROM ninki_votes WHERE opens<=?1 UNION ALL SELECT c3 FROM ninki_votes WHERE opens<=?1) WHERE cand<>'' GROUP BY cand").bind(at).all();
-      snap.cands = c.results || [];
-      // 推移は開票した時刻で区切る。投票した時刻は出さない
-      const tc = await env.DB.prepare("SELECT CAST(CAST(opens/?2 AS INTEGER)*?2 AS INTEGER) AS t, cand, COUNT(*) AS n FROM (SELECT opens, c1 AS cand FROM ninki_votes WHERE opens<=?1 UNION ALL SELECT opens, c2 FROM ninki_votes WHERE opens<=?1 UNION ALL SELECT opens, c3 FROM ninki_votes WHERE opens<=?1) WHERE cand<>'' GROUP BY t, cand ORDER BY t").bind(at, step).all();
-      snap.trend.cands = (tc.results || []).map((x) => [x.t, x.cand, x.n]);
-      const tp = await env.DB.prepare("SELECT CAST(CAST(opens/?2 AS INTEGER)*?2 AS INTEGER) AS t, COUNT(*) AS n FROM ninki_votes WHERE opens<=?1 GROUP BY t ORDER BY t").bind(at, step).all();
-      snap.trend.people = (tp.results || []).map((x) => [x.t, x.n]);
-    } catch (e) {}   // まだ誰も投票していない(テーブルがない)
-    ninkiSnap = snap;
+  if (ninkiSnap && ninkiSnap.at === at && ninkiSnap.closes === closes) return json(ninkiSnap);
+  try {
+    let table = true;
+    try { await ninkiPrepare(env); } catch (e) { table = false; }   // まだ誰も投票していない(テーブルがない)
+    if (!table) {
+      ninkiSnap = ninkiPublic({ closes, at, step, total: 0, counted: 0, cands: {}, tc: {}, people: {} }, bucket);
+      return json(ninkiSnap);
+    }
+    const row = await env.DB.prepare("SELECT at, body FROM ninki_snap WHERE id=1").first();
+    let prev = null;
+    try { prev = row ? JSON.parse(row.body) : null; } catch (e) { prev = null; }
+    if (prev && prev.at === at && prev.closes === closes && prev.step === step) {   // ほかの拠点が今回の分をもう数えた
+      ninkiSnap = ninkiPublic(prev, bucket);
+      return json(ninkiSnap);
+    }
+    const full = !prev || prev.closes !== closes || prev.step !== step || prev.at > at || Math.floor(prev.at / NINKI_FULL_MS) !== Math.floor(at / NINKI_FULL_MS);
+    let snap;
+    if (full) {
+      snap = { closes, at, step, total: 0, counted: 0, cands: {}, tc: {}, people: {} };
+      const t = await env.DB.prepare("SELECT COUNT(*) AS n FROM ninki_votes WHERE created<=?1").bind(at).first();
+      snap.total = (t && t.n) || 0;
+      const r = await env.DB.prepare("SELECT c1, c2, c3, opens FROM ninki_votes WHERE opens<=?1").bind(at).all();
+      ninkiAdd(snap, r.results || [], step);
+    } else {
+      snap = Object.assign({}, prev, { at, cands: Object.assign({}, prev.cands), tc: Object.assign({}, prev.tc), people: Object.assign({}, prev.people) });
+      const t = await env.DB.prepare("SELECT COUNT(*) AS n FROM ninki_votes WHERE created>?1 AND created<=?2").bind(prev.at, at).first();
+      snap.total += (t && t.n) || 0;
+      const r = await env.DB.prepare("SELECT c1, c2, c3, opens FROM ninki_votes WHERE opens>?1 AND opens<=?2").bind(prev.at, at).all();
+      ninkiAdd(snap, r.results || [], step);
+    }
+    await env.DB.prepare("INSERT OR REPLACE INTO ninki_snap(id, at, body) VALUES(1, ?1, ?2)").bind(at, JSON.stringify(snap)).run();
+    ninkiSnap = ninkiPublic(snap, bucket);
+    return json(ninkiSnap);
+  } catch (e) {
+    // 読めないとき(上限に達したなど)は0票を返さない。サイトは前の表示を残す
+    return json({ error: "unavailable" }, 503);
   }
-  return json(ninkiSnap);
 }
 async function ninkiVote(req, env) {
   const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);

@@ -212,7 +212,7 @@
       }).join('') + '<span class="tg-ind"></span></div></div>' +
       '<div class="kh-cols"><div class="kh-left"><header class="kh-board">' +
         '<div class="kh-title"><h3>開票速報</h3><p class="kh-state" id="kh-state"></p></div>' +
-        '<div class="kh-rate"><span class="kh-rate-v num"><b id="kh-rate">0</b>%</span><span class="kh-rate-k">開票率</span></div>' +
+        '<div class="kh-rate"><span class="kh-rate-v num"><b id="kh-rate">0</b>人</span><span class="kh-rate-k">投票した人</span></div>' +
         '<div class="kh-meter" aria-hidden="true"><i id="kh-meter"></i></div>' +
         '<p class="kh-nums num" id="kh-nums"></p>' +
       '</header>' +
@@ -261,9 +261,10 @@
     var list = ranking(r), rate = r.total ? Math.floor(r.counted / r.total * 1000) / 10 : 0;
     var seen = readJson(SEEN_KEY) || {}, olist = host.querySelector('#kh-list'), shown = cfg.top;
     host.querySelector('#kh-state').textContent = resultState(r);
-    tween(host.querySelector('#kh-rate'), first && !switched ? 0 : +host.querySelector('#kh-rate').textContent, rate, first ? 900 : 500, 1);
+    // 大きく出すのは投票した人の数。開票までの待ちが短く開票率はいつも100%近くになるので、開票率は下の行に小さく出す
+    tween(host.querySelector('#kh-rate'), first && !switched ? 0 : +host.querySelector('#kh-rate').textContent.replace(/,/g, ''), r.total, first ? 900 : 500, 0);
     host.querySelector('#kh-meter').style.width = rate + '%';
-    host.querySelector('#kh-nums').innerHTML = '<span>投票した人 <b>' + r.total + '</b>人</span><span>開票済み <b>' + r.counted + '</b>人</span><span id="kh-next"></span>';
+    host.querySelector('#kh-nums').innerHTML = '<span>開票率 <b>' + rate.toFixed(1) + '</b>%</span><span>開票済み <b>' + r.counted + '</b>人</span><span id="kh-next"></span>';
     tick();
 
     // 順位が変わった行を動かすため、書き換える前の位置を覚える
