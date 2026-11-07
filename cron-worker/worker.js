@@ -762,14 +762,39 @@ const NINKI = {
   stepMs: 15 * 60 * 1000,        // 推移グラフの1区切り
 };
 function ninkiCloses(env) { return Number(env.NINKI_CLOSES) || NINKI.closes; }
+// IPv6 は1回線に /64(ほぼ無限のアドレス)が割り当てられ、端末が一時アドレスを作り替えたり
+// 手で足したりできる。アドレス丸ごとだと同じ回線から何票も入るので、IPv6 は前半 /64 で1票にする。
+// 携帯は端末ごとに別の /64 なので、他人とぶつかることはまずない。IPv4 は今まで通りアドレスそのもの。
+function ninkiNet(ip) {
+  ip = String(ip || "0").trim().toLowerCase();
+  if (!ip.includes(":")) return ip;                                   // IPv4
+  const m = ip.match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/); if (m) return m[1];   // IPv4 を IPv6 の形で書いたもの
+  const [head, tail] = ip.split("::");
+  const a = head ? head.split(":") : [];
+  const b = tail === undefined ? [] : (tail ? tail.split(":") : []);
+  const full = tail === undefined ? a : a.concat(Array(Math.max(0, 8 - a.length - b.length)).fill("0"), b);
+  return full.slice(0, 4).map((x) => (parseInt(x || "0", 16) || 0).toString(16)).join(":") + "::/64";
+}
+function ninkiIP(req) { return req.headers.get("CF-Connecting-IP") || "0"; }
 async function ninkiVoter(req, env) {
-  return await sha((req.headers.get("CF-Connecting-IP") || "0") + "|ninki|" + (env.SALT || "pbers"));
+  return await sha(ninkiNet(ninkiIP(req)) + "|ninki|" + (env.SALT || "pbers"));
+}
+// /64 にする前に IPv6 で入れた票は、アドレス丸ごとのハッシュで入っている。同じアドレスからの2票目はこちらで止める
+async function ninkiLegacyVoter(req, env) {
+  const ip = ninkiIP(req);
+  return ninkiNet(ip) === ip ? null : await sha(ip + "|ninki|" + (env.SALT || "pbers"));
+}
+async function ninkiVoted(req, env) {
+  const keys = [await ninkiVoter(req, env)], old = await ninkiLegacyVoter(req, env);
+  if (old) keys.push(old);
+  const q = keys.length === 1 ? "SELECT 1 AS x FROM ninki_votes WHERE voter=?1" : "SELECT 1 AS x FROM ninki_votes WHERE voter IN (?1, ?2)";
+  return !!(await env.DB.prepare(q).bind(...keys).first());
 }
 async function ninkiStatus(req, env) {
   if (!env.DB) return json({ error: "db_unconfigured" }, 503);
   const closes = ninkiCloses(env), out = { closes, open: Date.now() < closes, voted: false };
   try {
-    out.voted = !!(await env.DB.prepare("SELECT 1 AS x FROM ninki_votes WHERE voter=?1").bind(await ninkiVoter(req, env)).first());
+    out.voted = await ninkiVoted(req, env);
   } catch (e) {}   // まだ誰も投票していない(テーブルがない)
   return json(out);
 }
@@ -858,6 +883,7 @@ async function ninkiVote(req, env) {
   if (!picks.every((id) => /^UC[\w-]{22}$/.test(id))) return json({ error: "bad_picks" }, 400);
   await env.DB.prepare("CREATE TABLE IF NOT EXISTS ninki_votes(voter TEXT PRIMARY KEY, c1 TEXT NOT NULL, c2 TEXT NOT NULL, c3 TEXT NOT NULL, created INTEGER NOT NULL, opens INTEGER NOT NULL)").run();
   const voter = await ninkiVoter(req, env), now = Date.now();
+  if (await ninkiVoted(req, env)) return json({ error: "voted" }, 409);
   const r = new Uint32Array(1); crypto.getRandomValues(r);
   const opens = now + (NINKI.delayMin + (r[0] / 2 ** 32) * (NINKI.delayMax - NINKI.delayMin)) * 60000;
   try {
