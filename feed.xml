@@ -5,7 +5,14 @@
 <atom:link href="https://pbers.com/feed.xml" rel="self" type="application/rss+xml"/>
 <description>ポーランドボーラー(YouTube)の登録者・総再生・投稿数のマイルストーン突破ニュース</description>
 <language>ja</language>
-<lastBuildDate>Sat, 07 Nov 2026 12:00:00 +0900</lastBuildDate>
+<lastBuildDate>Sun, 08 Nov 2026 12:00:00 +0900</lastBuildDate>
+<item>
+<title>にこちPB — 総再生数 900万回 突破</title>
+<link>https://pbers.com/c/%E3%81%AB%E3%81%93%E3%81%A1pb/</link>
+<guid isPermaLink="false">2026-11-08/views/にこちpb/9000000</guid>
+<pubDate>Sun, 08 Nov 2026 12:00:00 +0900</pubDate>
+<description>にこちPB — 総再生数 900万回 突破</description>
+</item>
 <item>
 <title>みすい — 総再生数 200万回 突破</title>
 <link>https://pbers.com/c/%E3%81%BF%E3%81%99%E3%81%84/</link>
@@ -98,28 +105,5 @@
 <guid isPermaLink="false">2026-11-03/videos/某p国の球/100</guid>
 <pubDate>Tue, 03 Nov 2026 12:00:00 +0900</pubDate>
 <description>某P国の球 — 投稿数 100本 突破</description>
-</item>
-<item>
-<title>ニイソビボール — 登録者 3万人 突破</title>
-<link>https://pbers.com/c/%E3%83%8B%E3%82%A4%E3%82%BD%E3%83%93%E3%83%9C%E3%83%BC%E3%83%AB/</link>
-<guid isPermaLink="false">2026-11-01/subs/ニイソビボール/30000</guid>
-<pubDate>Sun, 01 Nov 2026 12:00:00 +0900</pubDate>
-<description>ニイソビボール — 登録者 3万人 突破</description>
-</item>
-<item>
-<title>ハッホチャンネル — 総再生数 600万回 突破</title>
-<link>https://pbers.com/c/%E3%83%8F%E3%83%83%E3%83%9B%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB/</link>
-<guid isPermaLink="false">2026-11-01/views/ハッホチャンネル/6000000</guid>
-<pubDate>Sun, 01 Nov 2026 12:00:00 +0900</pubDate>
-<description>ハッホチャンネル — 総再生数 600万回 突破</description>
-</item>
-<item>
-<title>カチューシャぼーる☭
- — 投稿数 400本 突破</title>
-<link>https://pbers.com/c/%E3%82%AB%E3%83%81%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A3%E3%81%BC%E3%83%BC%E3%82%8B/</link>
-<guid isPermaLink="false">2026-11-01/videos/カチューシャぼーる/400</guid>
-<pubDate>Sun, 01 Nov 2026 12:00:00 +0900</pubDate>
-<description>カチューシャぼーる☭
- — 投稿数 400本 突破</description>
 </item>
 </channel></rss>

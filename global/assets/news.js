@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-08",
+    "label": "11月8日(日)",
+    "items": []
+  },
+  {
     "date": "2026-11-07",
     "label": "11月7日(土)",
     "items": []
@@ -11,9 +16,9 @@ window.PBERS_NEWS = [
       {
         "type": "milestone",
         "kind": "views",
-        "name": "くろまめ",
+        "name": "Black soybean",
         "color": "#45cc3e",
-        "avatar": "https://yt3.googleusercontent.com/70c__u3YdP-yESkSKmgMEvdTRlRyTstkyoXvhznkNvwAl0uSsmME-40_DhU7Nk4_W1WUNia-Ig=s900-c-k-c0x00ffffff-no-rj",
+        "avatar": "https://yt3.googleusercontent.com/B7rvpwIPEQIdJOzy3WWKs7oraON5tVC5cDTT2rq4rXX_5t5GWpzThDulX80u0HiG8V4_qkCb0Q=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "総再生数 2000万回 突破",
@@ -39,11 +44,6 @@ window.PBERS_NEWS = [
   {
     "date": "2026-11-02",
     "label": "11月2日(月)",
-    "items": []
-  },
-  {
-    "date": "2026-11-01",
-    "label": "11月1日(日)",
     "items": []
   }
 ];

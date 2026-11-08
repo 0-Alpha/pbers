@@ -280,6 +280,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-11-07",
             "s": 440000
+          },
+          {
+            "d": "2026-11-08",
+            "s": 440000
           }
         ]
       },
@@ -287,7 +291,7 @@ window.PBERS_RACE = [
         "name": "MOON-BALL",
         "color": "#ccbb3e",
         "avatar": "https://yt3.googleusercontent.com/U-hqdhrYkj3uB3rVV0FVIjWZn_SyNY6IZQZVEjZLOsE7uQ7ZdiSHOXjJZ-4ALQyLyNmerVWydHQ=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 226000,
+        "subs": 227000,
         "history": [
           {
             "d": "2026-08-30",
@@ -560,6 +564,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-11-07",
             "s": 226000
+          },
+          {
+            "d": "2026-11-08",
+            "s": 227000
           }
         ]
       },
@@ -839,6 +847,10 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-11-07",
+            "s": 192000
+          },
+          {
+            "d": "2026-11-08",
             "s": 192000
           }
         ]

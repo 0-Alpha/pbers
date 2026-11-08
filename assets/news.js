@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-08",
+    "label": "11月8日(日)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "にこちPB",
+        "color": "#cc3e87",
+        "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 900万回 突破",
+        "value": 9000000
+      }
+    ]
+  },
+  {
     "date": "2026-11-07",
     "label": "11月7日(土)",
     "items": [
@@ -57,7 +74,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "梅干しおにぎり",
-        "color": "#c8d45e",
+        "color": "#7e3ecc",
         "avatar": "https://yt3.googleusercontent.com/QDqHs7asbi4ksXoOYv1dndpAiNp9kINp0dROM3yVar4qrEOL9E2Fg4NkE7_Md5pWUOKcF79U=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -141,7 +158,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "subs",
         "name": "カルマルボール",
-        "color": "#b23ecc",
+        "color": "#d45e81",
         "avatar": "https://yt3.googleusercontent.com/F1-8mFstIqJFQylGY8_Ge_m0Ylimx1ptiU_E7s_cCy3vwIGBXKrVtyPqamHfyQ9hKZRvCxq4OA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -176,44 +193,5 @@ window.PBERS_NEWS = [
     "date": "2026-11-02",
     "label": "11月2日(月)",
     "items": []
-  },
-  {
-    "date": "2026-11-01",
-    "label": "11月1日(日)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "ニイソビボール",
-        "color": "#5e95d4",
-        "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 3万人 突破",
-        "value": 30000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ハッホチャンネル",
-        "color": "#3e61cc",
-        "avatar": "https://yt3.googleusercontent.com/N-FtdBoBD_WQrTtkRpIU1U_3-xM0RduScMMnC7QNw_PIFmB1BFeLxCheY3c2jSCrt1YFUksyHw=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 600万回 突破",
-        "value": 6000000
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "カチューシャぼーる☭\n",
-        "color": "#3ecc6b",
-        "avatar": "https://yt3.googleusercontent.com/mSTLKAaYdnF2X-rVOViUuqnXHJAAwprVyeUv89L-Am2kln8mXPlTnnRpkOc01N9fdCjz3du5Kw=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 400本 突破",
-        "value": 400
-      }
-    ]
   }
 ];

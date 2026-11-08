@@ -1,20 +1,20 @@
 {
   "site": "PBers Global",
-  "updated": "2026-11-07",
-  "generated": "2026-11-08T04:41:36+09:00",
+  "updated": "2026-11-08",
+  "generated": "2026-11-09T04:49:15+09:00",
   "count": 1,
   "items": [
     {
-      "id": "2026-11-06/views/くろまめ/20000000",
+      "id": "2026-11-06/views/black-soybean/20000000",
       "date": "2026-11-06",
-      "channel": "くろまめ",
-      "slug": "くろまめ",
+      "channel": "Black soybean",
+      "slug": "black-soybean",
       "metric": "views",
       "type": "milestone",
       "label": "総再生数 2000万回 突破",
       "value": 20000000,
       "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/global/c/%E3%81%8F%E3%82%8D%E3%81%BE%E3%82%81/"
+      "url": "https://pbers.com/global/c/black-soybean/"
     }
   ]
 }
