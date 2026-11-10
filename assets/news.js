@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-11",
+    "label": "11月11日(水)",
+    "items": []
+  },
+  {
     "date": "2026-11-10",
     "label": "11月10日(火)",
     "items": [
@@ -130,34 +135,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "総再生数 2000万回 突破",
         "value": 20000000
-      }
-    ]
-  },
-  {
-    "date": "2026-11-04",
-    "label": "11月4日(水)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "【PB】ネオンボール",
-        "color": "#5ed472",
-        "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 700万回 突破",
-        "value": 7000000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "みすい",
-        "color": "#ad5ed4",
-        "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 200万回 突破",
-        "value": 2000000
       }
     ]
   }

@@ -1,9 +1,21 @@
 {
   "site": "PBers Global",
-  "updated": "2026-11-10",
-  "generated": "2026-11-10T09:04:01+09:00",
-  "count": 1,
+  "updated": "2026-11-11",
+  "generated": "2026-11-11T06:36:59+09:00",
+  "count": 2,
   "items": [
+    {
+      "id": "2026-11-11/views/somen-ball/60000000",
+      "date": "2026-11-11",
+      "channel": "Somen ball",
+      "slug": "somen-ball",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 6000万回 突破",
+      "value": 60000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/somen-ball/"
+    },
     {
       "id": "2026-11-06/views/black-soybean/20000000",
       "date": "2026-11-06",

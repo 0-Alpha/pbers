@@ -1,8 +1,8 @@
 {
   "site": "PBers",
-  "updated": "2026-11-10",
-  "generated": "2026-11-10T09:03:58+09:00",
-  "count": 11,
+  "updated": "2026-11-11",
+  "generated": "2026-11-11T06:36:57+09:00",
+  "count": 9,
   "items": [
     {
       "id": "2026-11-10/subs/みかんぼーる/410000",
@@ -111,30 +111,6 @@
       "value": 20000000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E3%81%BE%E3%82%8B%E3%81%BC%E3%83%BC%E3%82%8Bch/"
-    },
-    {
-      "id": "2026-11-04/views/pbネオンボール/7000000",
-      "date": "2026-11-04",
-      "channel": "【PB】ネオンボール",
-      "slug": "pbネオンボール",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 700万回 突破",
-      "value": 7000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/pb%E3%83%8D%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%AB/"
-    },
-    {
-      "id": "2026-11-04/views/みすい/2000000",
-      "date": "2026-11-04",
-      "channel": "みすい",
-      "slug": "みすい",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 200万回 突破",
-      "value": 2000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%BF%E3%81%99%E3%81%84/"
     }
   ]
 }
