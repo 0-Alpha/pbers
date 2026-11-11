@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-12",
+    "label": "11月12日(木)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "MakkoyuCB",
+        "color": "#5ed46e",
+        "avatar": "https://yt3.googleusercontent.com/EmCmPqVVu3ilFAwRmJXJAzQb_a9lOxkm977x-S6cexdCBatRFHH-x79gDOsY4G50L-gqHIlA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 300万回 突破",
+        "value": 3000000
+      }
+    ]
+  },
+  {
     "date": "2026-11-11",
     "label": "11月11日(水)",
     "items": [
@@ -52,10 +69,5 @@ window.PBERS_NEWS = [
         "value": 20000000
       }
     ]
-  },
-  {
-    "date": "2026-11-05",
-    "label": "11月5日(木)",
-    "items": []
   }
 ];

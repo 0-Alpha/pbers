@@ -1,9 +1,21 @@
 {
   "site": "PBers Global",
-  "updated": "2026-11-11",
-  "generated": "2026-11-11T06:36:59+09:00",
-  "count": 2,
+  "updated": "2026-11-12",
+  "generated": "2026-11-12T07:05:11+09:00",
+  "count": 3,
   "items": [
+    {
+      "id": "2026-11-12/views/makkoyucb/3000000",
+      "date": "2026-11-12",
+      "channel": "MakkoyuCB",
+      "slug": "makkoyucb",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 300万回 突破",
+      "value": 3000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/makkoyucb/"
+    },
     {
       "id": "2026-11-11/views/somen-ball/60000000",
       "date": "2026-11-11",

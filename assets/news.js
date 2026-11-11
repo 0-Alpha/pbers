@@ -1,5 +1,33 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-12",
+    "label": "11月12日(木)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "作",
+        "color": "#3a72d6",
+        "avatar": "https://yt3.googleusercontent.com/N5gbRgWiJl1ISH1f24FsbafsY5p66QqmiG9pVRj9s3IKGR0rgcQqv1_JlmLesNJg_4Q1bvN8zZs=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 1000万回 突破",
+        "value": 10000000
+      },
+      {
+        "type": "milestone",
+        "kind": "videos",
+        "name": "カルマルボール",
+        "color": "#d45e81",
+        "avatar": "https://yt3.googleusercontent.com/F1-8mFstIqJFQylGY8_Ge_m0Ylimx1ptiU_E7s_cCy3vwIGBXKrVtyPqamHfyQ9hKZRvCxq4OA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "投稿数 100本 突破",
+        "value": 100
+      }
+    ]
+  },
+  {
     "date": "2026-11-11",
     "label": "11月11日(水)",
     "items": []
@@ -34,7 +62,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "にこちPB",
-        "color": "#cc3e87",
+        "color": "#3e66cc",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -51,7 +79,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "みすい",
-        "color": "#ad5ed4",
+        "color": "#3e5ccc",
         "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -118,23 +146,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "投稿数 500本 突破",
         "value": 500
-      }
-    ]
-  },
-  {
-    "date": "2026-11-05",
-    "label": "11月5日(木)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "まるぼーるch ",
-        "color": "#7d5ed4",
-        "avatar": "https://yt3.googleusercontent.com/plXugBe_yne07EdTN2A5rq-5NpdGZp33xpvpmlwkItY6AH-tPC0sjllPf2WK6wcwBL2quhIOFw=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 2000万回 突破",
-        "value": 20000000
       }
     ]
   }
