@@ -296,6 +296,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-11-12",
             "s": 440000
+          },
+          {
+            "d": "2026-11-13",
+            "s": 440000
           }
         ]
       },
@@ -591,6 +595,10 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-11-12",
+            "s": 227000
+          },
+          {
+            "d": "2026-11-13",
             "s": 227000
           }
         ]
@@ -888,6 +896,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-11-12",
             "s": 192000
+          },
+          {
+            "d": "2026-11-13",
+            "s": 192000
           }
         ]
       }
@@ -943,6 +955,10 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-11-12",
+            "s": 38200
+          },
+          {
+            "d": "2026-11-13",
             "s": 38200
           }
         ]
@@ -1240,6 +1256,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-11-12",
             "s": 37900
+          },
+          {
+            "d": "2026-11-13",
+            "s": 37900
           }
         ]
       }
@@ -1251,7 +1271,7 @@ window.PBERS_RACE = [
         "name": "udonball",
         "color": "#d4895e",
         "avatar": "https://yt3.googleusercontent.com/t-XpUkPOEssGyYn9TK4JrLG9EmGIhn565-GBvVCtqkpxDXD36l6OOb6EOlWJ_Gr92W8a_ryApcg=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 6980,
+        "subs": 6990,
         "history": [
           {
             "d": "2026-08-30",
@@ -1540,6 +1560,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-11-12",
             "s": 6980
+          },
+          {
+            "d": "2026-11-13",
+            "s": 6990
           }
         ]
       },
@@ -1547,7 +1571,7 @@ window.PBERS_RACE = [
         "name": "Uow_cb",
         "color": "#a8cc3e",
         "avatar": "https://yt3.googleusercontent.com/qySgpxf-BINsr-l0hfYBS3qa40RgP0eA9XZ4YmBgqzXlAvJC5yNnEbkU-0_Q_0HejBJKX8CcWQ=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 6960,
+        "subs": 6980,
         "history": [
           {
             "d": "2026-10-31",
@@ -1592,6 +1616,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-11-12",
             "s": 6960
+          },
+          {
+            "d": "2026-11-13",
+            "s": 6980
           }
         ]
       }

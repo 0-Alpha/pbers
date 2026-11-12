@@ -1,8 +1,8 @@
 {
   "site": "PBers Global",
-  "updated": "2026-11-12",
-  "generated": "2026-11-12T07:05:11+09:00",
-  "count": 3,
+  "updated": "2026-11-13",
+  "generated": "2026-11-13T06:59:47+09:00",
+  "count": 2,
   "items": [
     {
       "id": "2026-11-12/views/makkoyucb/3000000",
@@ -27,18 +27,6 @@
       "value": 60000000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/global/c/somen-ball/"
-    },
-    {
-      "id": "2026-11-06/views/black-soybean/20000000",
-      "date": "2026-11-06",
-      "channel": "Black soybean",
-      "slug": "black-soybean",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 2000万回 突破",
-      "value": 20000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/global/c/black-soybean/"
     }
   ]
 }
