@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-14",
+    "label": "11月14日(土)",
+    "items": []
+  },
+  {
     "date": "2026-11-13",
     "label": "11月13日(金)",
     "items": [
@@ -85,34 +90,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "総再生数 900万回 突破",
         "value": 9000000
-      }
-    ]
-  },
-  {
-    "date": "2026-11-07",
-    "label": "11月7日(土)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "みすい",
-        "color": "#3e5ccc",
-        "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 200万回 突破",
-        "value": 2000000
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "カチューシャぼーる☭\n",
-        "color": "#a1d45e",
-        "avatar": "https://yt3.googleusercontent.com/tSmyaWZrktnxX7mi3Lp4JpIMaiKER9c0OhB1qjyse1ndqTYJbX2dzSenXnB0n4hvew16HyvWbA=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 400本 突破",
-        "value": 400
       }
     ]
   }

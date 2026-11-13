@@ -1,8 +1,8 @@
 {
   "site": "PBers",
-  "updated": "2026-11-13",
-  "generated": "2026-11-13T06:59:45+09:00",
-  "count": 7,
+  "updated": "2026-11-14",
+  "generated": "2026-11-14T06:45:00+09:00",
+  "count": 5,
   "items": [
     {
       "id": "2026-11-13/views/梅干しおにぎり/10000000",
@@ -63,30 +63,6 @@
       "value": 9000000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E3%81%AB%E3%81%93%E3%81%A1pb/"
-    },
-    {
-      "id": "2026-11-07/views/みすい/2000000",
-      "date": "2026-11-07",
-      "channel": "みすい",
-      "slug": "みすい",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 200万回 突破",
-      "value": 2000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%BF%E3%81%99%E3%81%84/"
-    },
-    {
-      "id": "2026-11-07/videos/カチューシャぼーる/400",
-      "date": "2026-11-07",
-      "channel": "カチューシャぼーる☭\n",
-      "slug": "カチューシャぼーる",
-      "metric": "videos",
-      "type": "milestone",
-      "label": "投稿数 400本 突破",
-      "value": 400,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%82%AB%E3%83%81%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A3%E3%81%BC%E3%83%BC%E3%82%8B/"
     }
   ]
 }
