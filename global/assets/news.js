@@ -2,7 +2,19 @@ window.PBERS_NEWS = [
   {
     "date": "2026-11-14",
     "label": "11月14日(土)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "videos",
+        "name": "Black soybean",
+        "color": "#45cc3e",
+        "avatar": "https://yt3.googleusercontent.com/Fq2WaT3jPJsd0hxzgzZO484Ah9g77GAQOaqcg0ABnIHlffSywrWJM58UljoY8RKxWPeU-AnOEA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "投稿数 100本 突破",
+        "value": 100
+      }
+    ]
   },
   {
     "date": "2026-11-13",

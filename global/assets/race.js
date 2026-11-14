@@ -1288,8 +1288,68 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "udonball",
+        "name": "Uow_cb",
         "color": "#d4895e",
+        "avatar": "https://yt3.googleusercontent.com/qySgpxf-BINsr-l0hfYBS3qa40RgP0eA9XZ4YmBgqzXlAvJC5yNnEbkU-0_Q_0HejBJKX8CcWQ=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 7010,
+        "history": [
+          {
+            "d": "2026-10-31",
+            "s": 6750
+          },
+          {
+            "d": "2026-11-01",
+            "s": 6770
+          },
+          {
+            "d": "2026-11-03",
+            "s": 6790
+          },
+          {
+            "d": "2026-11-04",
+            "s": 6810
+          },
+          {
+            "d": "2026-11-05",
+            "s": 6820
+          },
+          {
+            "d": "2026-11-06",
+            "s": 6860
+          },
+          {
+            "d": "2026-11-07",
+            "s": 6880
+          },
+          {
+            "d": "2026-11-08",
+            "s": 6900
+          },
+          {
+            "d": "2026-11-10",
+            "s": 6930
+          },
+          {
+            "d": "2026-11-11",
+            "s": 6950
+          },
+          {
+            "d": "2026-11-12",
+            "s": 6960
+          },
+          {
+            "d": "2026-11-13",
+            "s": 6980
+          },
+          {
+            "d": "2026-11-14",
+            "s": 7010
+          }
+        ]
+      },
+      {
+        "name": "udonball",
+        "color": "#a8cc3e",
         "avatar": "https://yt3.googleusercontent.com/t-XpUkPOEssGyYn9TK4JrLG9EmGIhn565-GBvVCtqkpxDXD36l6OOb6EOlWJ_Gr92W8a_ryApcg=s900-c-k-c0x00ffffff-no-rj",
         "subs": 6990,
         "history": [
@@ -1584,66 +1644,6 @@ window.PBERS_RACE = [
           {
             "d": "2026-11-13",
             "s": 6990
-          },
-          {
-            "d": "2026-11-14",
-            "s": 6990
-          }
-        ]
-      },
-      {
-        "name": "Uow_cb",
-        "color": "#a8cc3e",
-        "avatar": "https://yt3.googleusercontent.com/qySgpxf-BINsr-l0hfYBS3qa40RgP0eA9XZ4YmBgqzXlAvJC5yNnEbkU-0_Q_0HejBJKX8CcWQ=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 6990,
-        "history": [
-          {
-            "d": "2026-10-31",
-            "s": 6750
-          },
-          {
-            "d": "2026-11-01",
-            "s": 6770
-          },
-          {
-            "d": "2026-11-03",
-            "s": 6790
-          },
-          {
-            "d": "2026-11-04",
-            "s": 6810
-          },
-          {
-            "d": "2026-11-05",
-            "s": 6820
-          },
-          {
-            "d": "2026-11-06",
-            "s": 6860
-          },
-          {
-            "d": "2026-11-07",
-            "s": 6880
-          },
-          {
-            "d": "2026-11-08",
-            "s": 6900
-          },
-          {
-            "d": "2026-11-10",
-            "s": 6930
-          },
-          {
-            "d": "2026-11-11",
-            "s": 6950
-          },
-          {
-            "d": "2026-11-12",
-            "s": 6960
-          },
-          {
-            "d": "2026-11-13",
-            "s": 6980
           },
           {
             "d": "2026-11-14",

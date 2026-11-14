@@ -2,7 +2,19 @@ window.PBERS_NEWS = [
   {
     "date": "2026-11-14",
     "label": "11月14日(土)",
-    "items": []
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ポルスカ速報",
+        "color": "#d46a5e",
+        "avatar": "https://yt3.googleusercontent.com/HELcQkx-Jbh1xsZY2NINImepeGpl29LpnBm8LusJmyzCAA2g1X3R5JsQDebniGz_j0DXUWMGfA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 200万回 突破",
+        "value": 2000000
+      }
+    ]
   },
   {
     "date": "2026-11-13",
@@ -12,7 +24,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "梅干しおにぎり",
-        "color": "#cc3eb6",
+        "color": "#7d5ed4",
         "avatar": "https://yt3.googleusercontent.com/QDqHs7asbi4ksXoOYv1dndpAiNp9kINp0dROM3yVar4qrEOL9E2Fg4NkE7_Md5pWUOKcF79U=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -84,7 +96,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "にこちPB",
-        "color": "#5ed4c0",
+        "color": "#45cc3e",
         "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",

@@ -1,9 +1,21 @@
 {
   "site": "PBers",
   "updated": "2026-11-14",
-  "generated": "2026-11-14T22:52:43+09:00",
-  "count": 5,
+  "generated": "2026-11-15T05:15:05+09:00",
+  "count": 6,
   "items": [
+    {
+      "id": "2026-11-14/views/ポルスカ速報/2000000",
+      "date": "2026-11-14",
+      "channel": "ポルスカ速報",
+      "slug": "ポルスカ速報",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 200万回 突破",
+      "value": 2000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%83%9D%E3%83%AB%E3%82%B9%E3%82%AB%E9%80%9F%E5%A0%B1/"
+    },
     {
       "id": "2026-11-13/views/梅干しおにぎり/10000000",
       "date": "2026-11-13",
