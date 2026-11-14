@@ -967,6 +967,46 @@
     var a = document.getElementById(id);
     if (a) a.addEventListener('click', function (e) { e.preventDefault(); switchTab('vote'); });
   }
+  // 掲示板タブ: 運営(レイアルファ)の最新の横動画。ビルド時の PBERS_FEATURED を出し、
+  // 最新動画API(WebSub)にもっと新しい横動画があればそちらに差し替える。
+  // iframe は重いので最初はサムネだけ。押したら youtube-nocookie で読み込んで再生する
+  function featInner(f) {
+    var ch = chById(f.cid), name = ch ? ch.name : 'レイアルファ';
+    return '<div class="bd-feat-h"><b>' + esc(name) + 'の最新動画</b>' +
+        (f.published ? '<span>' + timeAgo(f.published) + '</span>' : '') + '</div>' +
+      '<div class="bd-feat-frame"><button type="button" class="bd-feat-play" data-vid="' + esc(f.vid) + '" aria-label="再生: ' + esc(f.title) + '">' +
+        '<img src="https://i.ytimg.com/vi/' + esc(f.vid) + '/hqdefault.jpg" alt="" loading="lazy">' +
+        '<span class="bd-feat-btn" aria-hidden="true"></span></button></div>' +
+      '<a class="bd-feat-t" href="https://www.youtube.com/watch?v=' + esc(f.vid) + '" target="_blank" rel="noopener">' + esc(f.title) + '</a>';
+  }
+  function featuredHTML() {
+    var f = window.PBERS_FEATURED;
+    return f && f.vid ? '<section class="bd-feat" id="bd-feat">' + featInner(f) + '</section>' : '';
+  }
+  function wireFeatured() {
+    var box = document.getElementById('bd-feat'); if (!box) return;
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('.bd-feat-play') : null; if (!b) return;
+      var fr = document.createElement('iframe');
+      fr.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(b.dataset.vid) + '?autoplay=1&rel=0';
+      fr.title = b.getAttribute('aria-label') || 'YouTube';
+      fr.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      fr.setAttribute('allowfullscreen', '');
+      b.parentNode.replaceChild(fr, b);
+    });
+    var cur = window.PBERS_FEATURED;
+    loadVideos().then(function (list) {
+      var cid = cur.cid, t0 = Date.parse(cur.published) || 0;
+      for (var i = 0; i < list.length; i++) {
+        var v = list[i];
+        if (v.cid !== cid || v.short) continue;
+        if (v.vid !== cur.vid && (Date.parse(v.published) || 0) > t0 && !box.querySelector('iframe')) {
+          box.innerHTML = featInner({ vid: v.vid, title: v.title, published: v.published, cid: cid });
+        }
+        break;   // 新しい順なので、そのチャンネルの最初の横動画だけ見る
+      }
+    });
+  }
   function renderDashVote() {
     var sec = document.getElementById('dash-vote'), html = voteBanner('dash-vote-link');
     if (!sec || !html) return;
@@ -1396,7 +1436,7 @@
       '</form>' +
       '<div class="bd-search-wrap"><input class="bf-in bd-search" id="bd-search" maxlength="100" placeholder="🔍 スレ・書き込みを検索">' +
         '<button type="button" class="bd-sclear" id="bd-sclear" aria-label="クリア" hidden>×</button></div>' +
-      voteBanner('bd-vote') +
+      featuredHTML() +
       '<div class="bd-sort" id="bd-sort" role="tablist">' +
         '<button type="button" class="bd-sort-b" data-sort="bump">最終レス順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="new">新着順</button>' +
@@ -1707,7 +1747,7 @@
         paint(d.threads || [], true, q);
       }).catch(function () { box.innerHTML = '<div class="board-empty">検索に失敗しました。</div>'; });
     }
-    wireVoteBanner('bd-vote');
+    wireFeatured();
     var si = document.getElementById('bd-search'), sc = document.getElementById('bd-sclear'), sTimer = null;
     si.addEventListener('input', function () {
       var q = si.value.trim(); sc.hidden = !q; sortBar.hidden = !!q;   // 検索中は並び替えを隠す

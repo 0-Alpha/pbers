@@ -345,6 +345,7 @@ def build_edition():
         f.write('window.PBERS_UPDATED = "%s";\n' % UPDATED)
         f.write("window.PBERS_PREDICT = " + json.dumps(compute_predict(colors), ensure_ascii=False) + ";\n")
         f.write("window.PBERS_X = " + json.dumps(x_list, ensure_ascii=False) + ";\n")
+        f.write("window.PBERS_FEATURED = " + json.dumps(featured_long() or None, ensure_ascii=False) + ";\n")
     print("wrote assets/data.js (%d channels, %d X accounts)" % (len(out), len(x_list)))
 
     build_news(colors, order)
@@ -522,7 +523,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251058">
+<link rel="stylesheet" href="/assets/style.css?v=251059">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -545,7 +546,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=251058"></script>
+<script src="/assets/channel.js?v=251059"></script>
 </body>
 </html>
 '''
@@ -1158,7 +1159,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251058">
+<link rel="stylesheet" href="/assets/style.css?v=251059">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>''' + ld + '''
@@ -1284,6 +1285,67 @@ def build_articles():
 
 
 ARTICLES_API = "https://pbers-cron.myray0629.workers.dev/api/articles/list"
+
+# 掲示板タブに埋め込む「運営(レイアルファ)の最新の横動画」。
+# チャンネルのRSS(新しい順15本)から、/shorts/<id> がリダイレクトされる動画(=横動画)の最初の1本を選ぶ。
+# 最新動画タブと同じ判定。取れなかったときは featured.json の前回分をそのまま使う。
+FEATURED_CID = "UCVYMXYU6j0M5Gj1xwywKDyg"
+FEATURED_CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "featured.json")
+_FEATURED = None
+
+def _is_short_video(vid):
+    import urllib.request, urllib.error
+    class _NoRedir(urllib.request.HTTPRedirectHandler):
+        def redirect_request(self, *a, **k):
+            return None
+    req = urllib.request.Request("https://www.youtube.com/shorts/" + vid, method="HEAD",
+                                 headers={"User-Agent": "Mozilla/5.0", "Cookie": "SOCS=CAI; CONSENT=YES+",
+                                          "Accept-Language": "en-US,en;q=0.9"})
+    try:
+        urllib.request.build_opener(_NoRedir).open(req, timeout=10)
+        return True                     # 200 = ショート
+    except urllib.error.HTTPError as e:
+        if e.code in (301, 302, 303, 307, 308):
+            return False                # /watch へ飛ばされる = 横動画
+        raise                           # 429 などは判定できないので、このビルドでは前回分を使う
+
+def featured_long():
+    global _FEATURED
+    if _FEATURED is not None:
+        return _FEATURED
+    try:
+        prev = json.load(open(FEATURED_CACHE, encoding="utf-8"))
+    except Exception:
+        prev = {}
+    try:
+        import urllib.request, html as _html
+        req = urllib.request.Request("https://www.youtube.com/feeds/videos.xml?channel_id=" + FEATURED_CID,
+                                     headers={"User-Agent": "pbers-build/1.0"})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            xml = r.read().decode("utf-8")
+        found = None
+        for ent in re.findall(r"<entry>(.*?)</entry>", xml, re.S)[:15]:
+            vid = re.search(r"<yt:videoId>([\w-]{11})</yt:videoId>", ent)
+            if not vid:
+                continue
+            vid = vid.group(1)
+            if vid == prev.get("vid"):   # 前回の横動画より新しいものに横動画がなかった
+                found = prev
+                break
+            if not _is_short_video(vid):
+                title = re.search(r"<title>(.*?)</title>", ent, re.S)
+                pub = re.search(r"<published>(.*?)</published>", ent)
+                found = {"vid": vid, "title": _html.unescape(title.group(1)) if title else "",
+                         "published": pub.group(1) if pub else "", "cid": FEATURED_CID}
+                break
+        if found and found != prev:
+            with open(FEATURED_CACHE, "w", encoding="utf-8") as f:
+                json.dump(found, f, ensure_ascii=False, indent=1)
+        _FEATURED = found or prev
+    except Exception as e:
+        print("featured fetch skipped:", e)
+        _FEATURED = prev
+    return _FEATURED
 
 def fetch_published_articles():
     """一般公開ONのとき、published 記事の (slug,date) を Worker から取得。
