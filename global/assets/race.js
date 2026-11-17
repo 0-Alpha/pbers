@@ -7,7 +7,7 @@ window.PBERS_RACE = [
         "name": "JP-BALL",
         "color": "#d45e5e",
         "avatar": "https://yt3.googleusercontent.com/UXoyWxO_MOdKJK4kLMC988Uj9LZC9pZO13VMLEVq-4C32fBkvug-FUzSiUrbAh_mSy3zOPyfCC0=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 440000,
+        "subs": 441000,
         "history": [
           {
             "d": "2026-08-30",
@@ -312,6 +312,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-11-17",
             "s": 440000
+          },
+          {
+            "d": "2026-11-18",
+            "s": 441000
           }
         ]
       },
@@ -623,6 +627,10 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-11-17",
+            "s": 227000
+          },
+          {
+            "d": "2026-11-18",
             "s": 227000
           }
         ]
@@ -936,6 +944,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-11-17",
             "s": 192000
+          },
+          {
+            "d": "2026-11-18",
+            "s": 192000
           }
         ]
       }
@@ -1007,6 +1019,10 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-11-17",
+            "s": 38200
+          },
+          {
+            "d": "2026-11-18",
             "s": 38200
           }
         ]
@@ -1319,6 +1335,10 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-11-17",
+            "s": 37900
+          },
+          {
+            "d": "2026-11-18",
             "s": 37900
           }
         ]

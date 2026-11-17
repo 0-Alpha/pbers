@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-18",
+    "label": "11月18日(水)",
+    "items": []
+  },
+  {
     "date": "2026-11-17",
     "label": "11月17日(火)",
     "items": []
@@ -50,23 +55,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "総再生数 300万回 突破",
         "value": 3000000
-      }
-    ]
-  },
-  {
-    "date": "2026-11-11",
-    "label": "11月11日(水)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "Somen ball",
-        "color": "#3ecc9a",
-        "avatar": "https://yt3.googleusercontent.com/3a_WIUPrZ8qIxGmQJhtTv9z8vOffxcS3l9TqJK0pcQhNssFX4VJgPndXd2V3o9Hk7F7ECpFP=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 6000万回 突破",
-        "value": 60000000
       }
     ]
   }

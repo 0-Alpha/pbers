@@ -1,5 +1,44 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-18",
+    "label": "11月18日(水)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "うずまき🌀",
+        "color": "#4ec3e6",
+        "avatar": "https://yt3.googleusercontent.com/LkRrW7onGMeTLMUJrz7kkIrH0s24TKAC_bpYBQGYSVDe_V_mde3xmj8zE5mVKHtXTKDArtwGaU4=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 3万人 突破",
+        "value": 30000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "練乳=ソビエト共和国ぼーる",
+        "color": "#3ecc6b",
+        "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 400万回 突破",
+        "value": 4000000
+      },
+      {
+        "type": "milestone",
+        "kind": "videos",
+        "name": "うずまき🌀",
+        "color": "#4ec3e6",
+        "avatar": "https://yt3.googleusercontent.com/LkRrW7onGMeTLMUJrz7kkIrH0s24TKAC_bpYBQGYSVDe_V_mde3xmj8zE5mVKHtXTKDArtwGaU4=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "投稿数 200本 突破",
+        "value": 200
+      }
+    ]
+  },
+  {
     "date": "2026-11-17",
     "label": "11月17日(火)",
     "items": [
@@ -18,7 +57,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "【PB】ネオンボール",
-        "color": "#d48d5e",
+        "color": "#cc3e82",
         "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -79,7 +118,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "ポルスカ速報",
-        "color": "#d46a5e",
+        "color": "#cc3ead",
         "avatar": "https://yt3.googleusercontent.com/HELcQkx-Jbh1xsZY2NINImepeGpl29LpnBm8LusJmyzCAA2g1X3R5JsQDebniGz_j0DXUWMGfA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -132,10 +171,5 @@ window.PBERS_NEWS = [
         "value": 100
       }
     ]
-  },
-  {
-    "date": "2026-11-11",
-    "label": "11月11日(水)",
-    "items": []
   }
 ];

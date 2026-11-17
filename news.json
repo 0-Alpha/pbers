@@ -1,9 +1,45 @@
 {
   "site": "PBers",
-  "updated": "2026-11-17",
-  "generated": "2026-11-17T09:01:28+09:00",
-  "count": 9,
+  "updated": "2026-11-18",
+  "generated": "2026-11-18T08:09:18+09:00",
+  "count": 12,
   "items": [
+    {
+      "id": "2026-11-18/subs/うずまき/30000",
+      "date": "2026-11-18",
+      "channel": "うずまき🌀",
+      "slug": "うずまき",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 3万人 突破",
+      "value": 30000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%81%86%E3%81%9A%E3%81%BE%E3%81%8D/"
+    },
+    {
+      "id": "2026-11-18/views/練乳ソビエト共和国ぼーる/4000000",
+      "date": "2026-11-18",
+      "channel": "練乳=ソビエト共和国ぼーる",
+      "slug": "練乳ソビエト共和国ぼーる",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 400万回 突破",
+      "value": 4000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E7%B7%B4%E4%B9%B3%E3%82%BD%E3%83%93%E3%82%A8%E3%83%88%E5%85%B1%E5%92%8C%E5%9B%BD%E3%81%BC%E3%83%BC%E3%82%8B/"
+    },
+    {
+      "id": "2026-11-18/videos/うずまき/200",
+      "date": "2026-11-18",
+      "channel": "うずまき🌀",
+      "slug": "うずまき",
+      "metric": "videos",
+      "type": "milestone",
+      "label": "投稿数 200本 突破",
+      "value": 200,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%81%86%E3%81%9A%E3%81%BE%E3%81%8D/"
+    },
     {
       "id": "2026-11-17/views/にこちpb/10000000",
       "date": "2026-11-17",
