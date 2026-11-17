@@ -5,7 +5,35 @@
 <atom:link href="https://pbers.com/feed.xml" rel="self" type="application/rss+xml"/>
 <description>ポーランドボーラー(YouTube)の登録者・総再生・投稿数のマイルストーン突破ニュース</description>
 <language>ja</language>
-<lastBuildDate>Sun, 15 Nov 2026 12:00:00 +0900</lastBuildDate>
+<lastBuildDate>Tue, 17 Nov 2026 12:00:00 +0900</lastBuildDate>
+<item>
+<title>にこちPB — 総再生数 1000万回 突破</title>
+<link>https://pbers.com/c/%E3%81%AB%E3%81%93%E3%81%A1pb/</link>
+<guid isPermaLink="false">2026-11-17/views/にこちpb/10000000</guid>
+<pubDate>Tue, 17 Nov 2026 12:00:00 +0900</pubDate>
+<description>にこちPB — 総再生数 1000万回 突破</description>
+</item>
+<item>
+<title>【PB】ネオンボール — 総再生数 800万回 突破</title>
+<link>https://pbers.com/c/pb%E3%83%8D%E3%82%AA%E3%83%B3%E3%83%9C%E3%83%BC%E3%83%AB/</link>
+<guid isPermaLink="false">2026-11-17/views/pbネオンボール/8000000</guid>
+<pubDate>Tue, 17 Nov 2026 12:00:00 +0900</pubDate>
+<description>【PB】ネオンボール — 総再生数 800万回 突破</description>
+</item>
+<item>
+<title>萱口 — 総再生数 300万回 突破</title>
+<link>https://pbers.com/c/%E8%90%B1%E5%8F%A3/</link>
+<guid isPermaLink="false">2026-11-17/views/萱口/3000000</guid>
+<pubDate>Tue, 17 Nov 2026 12:00:00 +0900</pubDate>
+<description>萱口 — 総再生数 300万回 突破</description>
+</item>
+<item>
+<title>ねとえん — 投稿数 200本 突破</title>
+<link>https://pbers.com/c/%E3%81%AD%E3%81%A8%E3%81%88%E3%82%93/</link>
+<guid isPermaLink="false">2026-11-17/videos/ねとえん/200</guid>
+<pubDate>Tue, 17 Nov 2026 12:00:00 +0900</pubDate>
+<description>ねとえん — 投稿数 200本 突破</description>
+</item>
 <item>
 <title>ひまぐれ — 総再生数 200万回 突破</title>
 <link>https://pbers.com/c/%E3%81%B2%E3%81%BE%E3%81%90%E3%82%8C/</link>
@@ -40,12 +68,5 @@
 <guid isPermaLink="false">2026-11-12/videos/カルマルボール/100</guid>
 <pubDate>Thu, 12 Nov 2026 12:00:00 +0900</pubDate>
 <description>カルマルボール — 投稿数 100本 突破</description>
-</item>
-<item>
-<title>Æž!みかんぼーる🍊 — 登録者 41万人 突破</title>
-<link>https://pbers.com/c/%E3%81%BF%E3%81%8B%E3%82%93%E3%81%BC%E3%83%BC%E3%82%8B/</link>
-<guid isPermaLink="false">2026-11-10/subs/みかんぼーる/410000</guid>
-<pubDate>Tue, 10 Nov 2026 12:00:00 +0900</pubDate>
-<description>Æž!みかんぼーる🍊 — 登録者 41万人 突破</description>
 </item>
 </channel></rss>
