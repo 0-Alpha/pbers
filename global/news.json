@@ -1,9 +1,21 @@
 {
   "site": "PBers Global",
   "updated": "2026-11-18",
-  "generated": "2026-11-18T08:09:20+09:00",
-  "count": 2,
+  "generated": "2026-11-18T19:00:53+09:00",
+  "count": 3,
   "items": [
+    {
+      "id": "2026-11-18/views/moon-ball/40000000",
+      "date": "2026-11-18",
+      "channel": "MOON-BALL",
+      "slug": "moon-ball",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 4000万回 突破",
+      "value": 40000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/moon-ball/"
+    },
     {
       "id": "2026-11-14/videos/black-soybean/100",
       "date": "2026-11-14",
