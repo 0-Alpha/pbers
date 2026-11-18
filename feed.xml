@@ -5,7 +5,14 @@
 <atom:link href="https://pbers.com/feed.xml" rel="self" type="application/rss+xml"/>
 <description>ポーランドボーラー(YouTube)の登録者・総再生・投稿数のマイルストーン突破ニュース</description>
 <language>ja</language>
-<lastBuildDate>Wed, 18 Nov 2026 12:00:00 +0900</lastBuildDate>
+<lastBuildDate>Thu, 19 Nov 2026 12:00:00 +0900</lastBuildDate>
+<item>
+<title>日独伊(PB・宇宙系) — 投稿数 500本 突破</title>
+<link>https://pbers.com/c/%E6%97%A5%E7%8B%AC%E4%BC%8Apb%E5%AE%87%E5%AE%99%E7%B3%BB/</link>
+<guid isPermaLink="false">2026-11-19/videos/日独伊pb宇宙系/500</guid>
+<pubDate>Thu, 19 Nov 2026 12:00:00 +0900</pubDate>
+<description>日独伊(PB・宇宙系) — 投稿数 500本 突破</description>
+</item>
 <item>
 <title>うずまき🌀 — 登録者 3万人 突破</title>
 <link>https://pbers.com/c/%E3%81%86%E3%81%9A%E3%81%BE%E3%81%8D/</link>
@@ -75,19 +82,5 @@
 <guid isPermaLink="false">2026-11-13/views/梅干しおにぎり/10000000</guid>
 <pubDate>Fri, 13 Nov 2026 12:00:00 +0900</pubDate>
 <description>梅干しおにぎり — 総再生数 1000万回 突破</description>
-</item>
-<item>
-<title>作 — 総再生数 1000万回 突破</title>
-<link>https://pbers.com/c/%E4%BD%9C/</link>
-<guid isPermaLink="false">2026-11-12/views/作/10000000</guid>
-<pubDate>Thu, 12 Nov 2026 12:00:00 +0900</pubDate>
-<description>作 — 総再生数 1000万回 突破</description>
-</item>
-<item>
-<title>カルマルボール — 投稿数 100本 突破</title>
-<link>https://pbers.com/c/%E3%82%AB%E3%83%AB%E3%83%9E%E3%83%AB%E3%83%9C%E3%83%BC%E3%83%AB/</link>
-<guid isPermaLink="false">2026-11-12/videos/カルマルボール/100</guid>
-<pubDate>Thu, 12 Nov 2026 12:00:00 +0900</pubDate>
-<description>カルマルボール — 投稿数 100本 突破</description>
 </item>
 </channel></rss>

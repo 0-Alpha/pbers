@@ -1,8 +1,8 @@
 {
   "site": "PBers Global",
-  "updated": "2026-11-18",
-  "generated": "2026-11-19T02:18:54+09:00",
-  "count": 3,
+  "updated": "2026-11-19",
+  "generated": "2026-11-19T07:53:58+09:00",
+  "count": 2,
   "items": [
     {
       "id": "2026-11-18/views/moon-ball/40000000",
@@ -27,18 +27,6 @@
       "value": 100,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/global/c/black-soybean/"
-    },
-    {
-      "id": "2026-11-12/views/makkoyucb/3000000",
-      "date": "2026-11-12",
-      "channel": "MakkoyuCB",
-      "slug": "makkoyucb",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 300万回 突破",
-      "value": 3000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/global/c/makkoyucb/"
     }
   ]
 }
