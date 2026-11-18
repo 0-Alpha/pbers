@@ -1018,7 +1018,7 @@
     var sec = document.getElementById('dash-board'), host = document.getElementById('dash-board-list');
     if (!sec || !host) return;
     if (boardMaint || !boardEnabled || !BOARD_API) { sec.hidden = true; return; }   // 整備中は新着欄も隠す
-    fetch(boardApi('/threads') + '?limit=5', { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {   // 5件だけ読む(D1読み取り節約)
+    fetch(boardApi('/threads') + '?limit=5&tag=-zatsudan', { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {   // 5件だけ読む(D1読み取り節約)
       var ths = (d.threads || []).slice(0, 5);
       if (!ths.length) { sec.hidden = true; return; }
       sec.hidden = false;
@@ -1150,9 +1150,15 @@
   var TAGS = {
     pb: { label: 'PB', color: '#ac1c1c' },
     unei: { label: '運営・お知らせ', color: '#8d8986' },
-    zatsudan: { label: '雑談・その他', color: '#6a6663' }
+    zatsudan: { label: '雑談', color: '#6a6663' }
   };
   var TAG_ORDER = ['pb', 'unei', 'zatsudan'];
+  // 雑談スレは掲示板タブから外し「その他 → 雑談」(/zatsudan/)に分ける。中身は同じ掲示板で、種別タグで振り分ける
+  var BOARD_TAGS = ['pb', 'unei'];
+  function isBoardV(v) { return v === 'board' || v === 'zatsudan'; }
+  function zMode() { return currentView === 'zatsudan'; }
+  function boardView() { return zMode() ? 'zatsudan' : 'board'; }
+  function inMode(t) { return (tagKey(t.tag) === 'zatsudan') === zMode(); }
   function tagKey(k) { return TAGS[k] ? k : 'pb'; }       // null/不明は pb
   function tagChip(k) { var t = TAGS[tagKey(k)]; return '<span class="th-tag" style="--tc:' + t.color + '">' + t.label + '</span>'; }
   // 広告枠プレビュー(管理者のみ): 0=なし / 3 / 5 枠。実広告ではなく配置イメージの確認用。
@@ -1222,8 +1228,10 @@
   }
   function boardHead() {
     var note = document.getElementById('board-note'), status = document.getElementById('board-status');
-    if (note) note.textContent = boardPublic
-      ? '誰でもスレッドを立てて書き込めます。荒らし・誹謗中傷・個人情報・宣伝はご遠慮ください。'
+    if (note) note.textContent = boardPublic && zMode()
+      ? 'PBerに関係ない話題はこちらへ。誰でもスレッドを立てて書き込めます。荒らし・誹謗中傷・個人情報・宣伝はご遠慮ください。'
+      : boardPublic
+      ? '誰でもスレッドを立てて書き込めます。PBerに関係ない話題は「その他 → 雑談」へ。荒らし・誹謗中傷・個人情報・宣伝はご遠慮ください。'
       : '非公開モード（管理者のみ表示・投稿）。公開すると誰でも書き込めます。';
     if (status) status.textContent = boardKey ? '管理モード' : '';
   }
@@ -1233,8 +1241,8 @@
   }
   function boardGo(threadId) {   // スレッドを開く/一覧へ戻る(URLに反映=戻る/共有に対応)
     boardThreadId = threadId || null;
-    var u = pathOf('board') + (boardThreadId ? '?t=' + boardThreadId : '');
-    if (location.pathname + location.search !== u) history.pushState({ view: 'board' }, '', u);
+    var u = pathOf(boardView()) + (boardThreadId ? '?t=' + boardThreadId : '');
+    if (location.pathname + location.search !== u) history.pushState({ view: boardView() }, '', u);
     renderBoard();
   }
   // 自分のスレ/レスに新着返信が付いたら知らせる(匿名なのでlocalStorageで「自分が関わったスレ」を記憶)
@@ -1376,8 +1384,13 @@
       }
     } catch (e) {}
   }
+  function boardTitle() {
+    var h = document.getElementById('board-h');
+    if (h) h.innerHTML = zMode() ? '雑談 <span class="en">Chat</span>' : '掲示板 <span class="en">Board</span>';
+  }
   function renderBoard() {
     var host = document.getElementById('board-body'); if (!host) return;
+    boardTitle();
     if (boardMaint) {   // 整備中: APIを叩かず案内のみ
       var note = document.getElementById('board-note'), status = document.getElementById('board-status');
       if (note) note.textContent = ''; if (status) status.textContent = '';
@@ -1397,9 +1410,9 @@
       '<form class="bt-new" id="bt-new" autocomplete="off">' +
         '<div class="bt-new-h">スレッドを立てる</div>' +
         '<input class="bf-in" id="bt-title" maxlength="60" placeholder="タイトル（60字まで）">' +
-        '<div class="bt-tagsel" id="bt-tagsel"><span class="bt-tagsel-l">種別</span>' +
-          TAG_ORDER.map(function (k) { return '<button type="button" class="bt-tg' + (k === 'pb' ? ' on' : '') + '" data-tag="' + k + '" style="--tc:' + TAGS[k].color + '">' + TAGS[k].label + '</button>'; }).join('') +
-        '</div>' +
+        (zMode() ? '' : '<div class="bt-tagsel" id="bt-tagsel"><span class="bt-tagsel-l">種別</span>' +
+          BOARD_TAGS.map(function (k) { return '<button type="button" class="bt-tg' + (k === 'pb' ? ' on' : '') + '" data-tag="' + k + '" style="--tc:' + TAGS[k].color + '">' + TAGS[k].label + '</button>'; }).join('') +
+        '</div>') +
         '<input class="bf-in bf-name" id="bt-name" maxlength="24" placeholder="名前（任意）">' +
         '<textarea class="bf-in bf-body" id="bt-body" maxlength="2000" rows="3" placeholder="最初の書き込み…"></textarea>' +
         '<div class="bf-hint">画像は <b>imgur</b> のURL（例: https://i.imgur.com/xxxx.png）を貼ると表示されます。YouTube のURLも埋め込みされます。</div>' +
@@ -1436,17 +1449,17 @@
       '</form>' +
       '<div class="bd-search-wrap"><input class="bf-in bd-search" id="bd-search" maxlength="100" placeholder="🔍 スレ・書き込みを検索">' +
         '<button type="button" class="bd-sclear" id="bd-sclear" aria-label="クリア" hidden>×</button></div>' +
-      featuredHTML() +
+      (zMode() ? '' : featuredHTML()) +
       '<div class="bd-sort" id="bd-sort" role="tablist">' +
         '<button type="button" class="bd-sort-b" data-sort="bump">最終レス順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="new">新着順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="posts">レス数順</button>' +
         '<button type="button" class="bd-sort-b" data-sort="hot">勢い順</button>' +
       '</div>' +
-      '<div class="bd-tagfilter" id="bd-tagfilter"><span class="bd-tf-l">絞り込み</span>' +
+      (zMode() ? '' : '<div class="bd-tagfilter" id="bd-tagfilter"><span class="bd-tf-l">絞り込み</span>' +
         '<button type="button" class="bd-tf on" data-tf="">すべて</button>' +
-        TAG_ORDER.map(function (k) { return '<button type="button" class="bd-tf" data-tf="' + k + '" style="--tc:' + TAGS[k].color + '">' + TAGS[k].label + '</button>'; }).join('') +
-      '</div>' +
+        BOARD_TAGS.map(function (k) { return '<button type="button" class="bd-tf" data-tf="' + k + '" style="--tc:' + TAGS[k].color + '">' + TAGS[k].label + '</button>'; }).join('') +
+      '</div>') +
       (boardKey ? '<div class="bd-admin"><button type="button" class="bd-stats-btn" id="bd-stats-btn">📊 書き込み統計（管理者）</button>' +
         '<span class="bd-adctl" id="bd-adctl">広告プレビュー: ' +
           '<button type="button" class="bd-adb" data-ad="0">なし</button>' +
@@ -1457,8 +1470,8 @@
       '<div class="board-list" id="board-threads"><div class="board-empty">読み込み中…</div></div>';
     document.getElementById('bt-name').value = boardName();
     // 種別タグの選択(デフォルトPB)
-    var tagSel = document.getElementById('bt-tagsel'), newTag = 'pb';
-    tagSel.addEventListener('click', function (e) {
+    var tagSel = document.getElementById('bt-tagsel'), newTag = zMode() ? 'zatsudan' : 'pb';
+    if (tagSel) tagSel.addEventListener('click', function (e) {
       var b = e.target.closest('.bt-tg'); if (!b) return;
       newTag = b.dataset.tag;
       tagSel.querySelectorAll('.bt-tg').forEach(function (x) { x.classList.toggle('on', x === b); });
@@ -1619,12 +1632,14 @@
     }
     function renderList() {   // 現在のスレ一覧を50件/ページで描画(サーバー側ページ送り。旧応答時はクライアント側で分割・絞り込み)
       var isSearch = curIsSearch, q = curQ, srv = !isSearch && srvPaged;
-      var ths = (!isSearch && !srv && boardTagFilter) ? curList.filter(function (t) { return tagKey(t.tag) === boardTagFilter; }) : curList;
+      var ths = curList.filter(inMode);   // 掲示板=雑談以外 / 雑談=雑談だけ(旧Workerで混ざって来ても弾く)
+      if (!isSearch && !srv && boardTagFilter) ths = ths.filter(function (t) { return tagKey(t.tag) === boardTagFilter; });
       if (!ths.length) {
         box.innerHTML = '<div class="board-empty">' +
           (isSearch ? '「' + esc(q) + '」に一致するスレッドはありません。'
            : srv && boardPage > 0 ? 'このページにスレッドはありません。'
            : boardTagFilter ? '「' + TAGS[boardTagFilter].label + '」のスレッドはありません。'
+           : zMode() ? 'まだ雑談スレッドがありません。最初のスレッドを立ててみよう。'
            : 'まだスレッドがありません。最初のスレッドを立ててみよう。') + '</div>';
         return;
       }
@@ -1684,7 +1699,7 @@
       box.innerHTML = '<div class="board-empty">読み込み中…</div>';
       var q = '?page=' + (page || 0) +
         (curSort && curSort !== 'bump' ? '&sort=' + encodeURIComponent(curSort) : '') +
-        (boardTagFilter ? '&tag=' + encodeURIComponent(boardTagFilter) : '');
+        '&tag=' + encodeURIComponent(zMode() ? 'zatsudan' : (boardTagFilter || '-zatsudan'));
       fetch(boardApi('/threads') + q, { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
         if (d.error) { box.innerHTML = '<div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; return; }
         paint(d.threads || [], false, '', d);
@@ -1897,6 +1912,11 @@
     fetch(boardApi('/thread') + '?id=' + id, { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
       if (d.error) { host.innerHTML = '<button class="th-back">← スレ一覧</button><div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; back(); return; }
       var posts = d.posts || [];
+      var wantV = tagKey(d.tag) === 'zatsudan' ? 'zatsudan' : 'board';   // 雑談スレは /zatsudan/ 側で開く(タグ変更後も追従)
+      if (wantV !== currentView && isBoardV(currentView)) {
+        currentView = wantV; markTabs(wantV); boardTitle(); boardHead();
+        history.replaceState({ view: wantV }, '', pathOf(wantV) + '?t=' + id);
+      }
       seenThread(id, d.thread.posts);                         // 閲覧=このスレは既読に
       updateBoardBadge(countNew(boardThreadsCache));          // タブの新着バッジを更新
       host.innerHTML = '<button class="th-back">← スレ一覧</button>' +
@@ -2044,13 +2064,15 @@
       applyTheme(t); refresh();
     });
   }
+  function showZatsudanMenu() { var z = document.getElementById('tmi-zatsudan'); if (z) z.hidden = false; }
   function setupBoard() {
     if (!VIEWS.board || GBASE !== '/') return;   // 海外版では無効
     if (boardMaint) {   // 整備中: タブは出す(クリックで案内表示)がAPIは一切叩かない
       boardEnabled = true;
       var tb = document.getElementById('tab-board'); if (tb) tb.hidden = false;
-      window.addEventListener('popstate', function () { if (currentView === 'board' && viewOf() === 'board') renderBoard(); });
-      if (viewOf() === 'board' && currentView !== 'board') switchTab('board', true);
+      window.addEventListener('popstate', function () { if (isBoardV(currentView) && viewOf() === currentView) renderBoard(); });
+      showZatsudanMenu();
+      if (isBoardV(viewOf()) && currentView !== viewOf()) switchTab(viewOf(), true);
       return;
     }
     if (!BOARD_API) return;   // API未設定では無効
@@ -2065,13 +2087,13 @@
     } catch (e) { boardKey = ''; }
     var tabBtn = document.getElementById('tab-board');
     boardEnabled = !!boardKey;                          // 管理キー所持なら即有効(同期)
-    if (boardEnabled && tabBtn) tabBtn.hidden = false;
-    window.addEventListener('popstate', function () { if (currentView === 'board' && viewOf() === 'board') renderBoard(); });
+    if (boardEnabled && tabBtn) { tabBtn.hidden = false; showZatsudanMenu(); }
+    window.addEventListener('popstate', function () { if (isBoardV(currentView) && viewOf() === currentView) renderBoard(); });
     fetch(boardApi('/config')).then(function (r) { return r.json(); }).then(function (c) {
       boardPublic = !!(c && c.public);
       boardEnabled = boardPublic || !!boardKey;
       tsLoad();   // 公開・非管理者ならTurnstileスクリプトを読み込む
-      if (boardEnabled && tabBtn) tabBtn.hidden = false;
+      if (boardEnabled && tabBtn) { tabBtn.hidden = false; showZatsudanMenu(); }
       renderDashBoard();   // 公開中ならダッシュボードに新着スレッドを表示
       // 自分が関わったスレがあれば、読込時に新着返信を背後でチェックしてタブにバッジを出す
       var mineIds = Object.keys(myThreads()).filter(function (k) { return +k > 0; }).slice(-50);   // 自分のスレだけ照会(全件取得しない)
@@ -2079,7 +2101,7 @@
         fetch(boardApi('/threads') + '?ids=' + mineIds.join(','), { headers: boardHeaders() }).then(function (r) { return r.json(); })
           .then(function (d) { boardThreadsCache = d.threads || []; updateBoardBadge(countNew(boardThreadsCache)); }).catch(function () {});
       }
-      if (boardEnabled && viewOf() === 'board' && currentView !== 'board') switchTab('board', true);
+      if (boardEnabled && isBoardV(viewOf()) && currentView !== viewOf()) switchTab(viewOf(), true);
     }).catch(function () {});
   }
 
@@ -2104,6 +2126,7 @@
     videos:    document.getElementById('view-videos'),
     channels:  document.getElementById('view-channels'),
     board:     document.getElementById('view-board'),
+    zatsudan:  document.getElementById('view-board'),   // 雑談 = 掲示板と同じ画面を雑談スレだけで表示
     senkyo:    document.getElementById('view-senkyo'),
     vote:      document.getElementById('view-vote')
   };
@@ -2117,16 +2140,19 @@
     if (seg === 'live') seg = 'race';   // 旧名の後方互換
     return VIEWS[seg] ? seg : 'dashboard';
   }
+  function markTabs(v) {
+    document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x.dataset.view === v); });
+    var moreBtn = document.getElementById('tab-more-btn');   // 新聞/ニュース/雑談は「その他」内なので親を強調
+    if (moreBtn) moreBtn.classList.toggle('on', v === 'news' || v === 'paper' || v === 'vote' || v === 'zatsudan');
+  }
   function switchTab(v, noPush) {
     if (v === 'live') v = 'race';   // 旧リンクの後方互換
     if (!VIEWS[v]) v = 'dashboard';
-    if (v === 'board' && !boardEnabled) v = 'dashboard';   // 非公開かつ管理キー無しは掲示板に入れない
+    if (isBoardV(v) && !boardEnabled) v = 'dashboard';   // 非公開かつ管理キー無しは掲示板に入れない
     if (v === 'senkyo' && (!SENKYO_ON || GBASE !== '/')) v = 'dashboard';   // 参院選は日本版だけ
     currentView = v;
-    document.querySelectorAll('.tab').forEach(function (x) { x.classList.toggle('on', x.dataset.view === v); });
-    var moreBtn = document.getElementById('tab-more-btn');   // 新聞/ニュースは「その他」内なので親を強調
-    if (moreBtn) moreBtn.classList.toggle('on', v === 'news' || v === 'paper' || v === 'vote');
-    Object.keys(VIEWS).forEach(function (k) { if (VIEWS[k]) VIEWS[k].hidden = (k !== v); });
+    markTabs(v);
+    Object.keys(VIEWS).forEach(function (k) { if (VIEWS[k]) VIEWS[k].hidden = (VIEWS[k] !== VIEWS[v]); });   // board と zatsudan は同じ要素
     if (!noPush && location.pathname !== pathOf(v)) history.pushState({ view: v }, '', pathOf(v));   // 実URLに反映(戻る/共有/計測)
     if (window.pbersTrackView) window.pbersTrackView(pathOf(v));   // タブごとの表示回数を計上
     window.scrollTo(0, 0);
@@ -2143,7 +2169,7 @@
       else if (v === 'game') renderGame();
       else if (v === 'videos') renderVideos();
       else if (v === 'channels') moveTierInd();
-      else if (v === 'board') renderBoard();
+      else if (isBoardV(v)) renderBoard();
       else if (v === 'vote' && window.PBERS_NINKI) window.PBERS_NINKI.mount(document.getElementById('vote-body'), BOARD_API);
       else if (v === 'senkyo' && window.PBERS_SENKYO) window.PBERS_SENKYO.mount(document.getElementById('senkyo-body'), BOARD_API, GBASE, boardKey);
     }); });
@@ -2165,7 +2191,7 @@
     if (skBack) skBack.addEventListener('click', function (e) { e.preventDefault(); switchTab('board'); });
     var initial = viewOf();   // 直アクセス/旧ハッシュ共有リンクからの復元
     // URLをクリーンなパスに正規化(#growth → /growth)。掲示板の ?t=<id>(スレ直リンク)は保持する
-    history.replaceState({ view: initial }, '', pathOf(initial) + (initial === 'board' ? location.search : ''));
+    history.replaceState({ view: initial }, '', pathOf(initial) + (isBoardV(initial) ? location.search : ''));
     if (initial !== 'dashboard') switchTab(initial, true);
   }
 

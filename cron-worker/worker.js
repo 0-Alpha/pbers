@@ -466,7 +466,12 @@ async function threadList(url, req, env) {
     return json({ public: g.pub, admin: g.admin, sort: "bump", threads: results || [] });
   }
   if (lim > 0 && lim <= 50) {
-    const { results } = await env.DB.prepare("SELECT id,title,created,bumped,posts FROM board_threads WHERE board=?1 AND hidden=0 ORDER BY bumped DESC LIMIT ?2").bind(board, lim).all();
+    // ?tag=-zatsudan: その種別を除く(トップの新着欄から雑談を外す)
+    const ex = (url.searchParams.get("tag") || "").replace(/^-/, "");
+    const exSql = (url.searchParams.get("tag") || "").startsWith("-") && TAG_SET.has(ex)
+      ? " AND NOT EXISTS (SELECT 1 FROM board_tags tg WHERE tg.thread_id=board_threads.id AND tg.tag='" + ex + "')" : "";
+    if (exSql) { try { await ensureTags(env); } catch (e) {} }
+    const { results } = await env.DB.prepare("SELECT id,title,created,bumped,posts FROM board_threads WHERE board=?1 AND hidden=0" + exSql + " ORDER BY bumped DESC LIMIT ?2").bind(board, lim).all();
     return json({ public: g.pub, admin: g.admin, sort: "bump", threads: results || [] });
   }
   const sort = url.searchParams.get("sort");
@@ -520,6 +525,9 @@ async function threadPage(url, env, g, board, sort) {
   const where = ["t.board=?1"], binds = [board];
   if (!g.admin) where.push("t.hidden=0");
   if (TAG_SET.has(tag)) { binds.push(tag); where.push("COALESCE((SELECT tg.tag FROM board_tags tg WHERE tg.thread_id=t.id),'pb')=?" + binds.length); }
+  else if (tag.startsWith("-") && TAG_SET.has(tag.slice(1))) {   // ?tag=-zatsudan: その種別を除く(掲示板タブは雑談以外)
+    binds.push(tag.slice(1)); where.push("COALESCE((SELECT tg.tag FROM board_tags tg WHERE tg.thread_id=t.id),'pb')<>?" + binds.length);
+  }
   binds.push(now); const nowP = "?" + binds.length;
   binds.push(THREAD_PER_PAGE + 1); const limP = "?" + binds.length;
   binds.push(page * THREAD_PER_PAGE); const offP = "?" + binds.length;
