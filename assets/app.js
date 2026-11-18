@@ -1231,7 +1231,7 @@
     if (note) note.textContent = boardPublic && zMode()
       ? 'PBerに関係ない話題はこちらへ。誰でもスレッドを立てて書き込めます。荒らし・誹謗中傷・個人情報・宣伝はご遠慮ください。'
       : boardPublic
-      ? '誰でもスレッドを立てて書き込めます。PBerに関係ない話題は「その他 → 雑談」へ。荒らし・誹謗中傷・個人情報・宣伝はご遠慮ください。'
+      ? '誰でもスレッドを立てて書き込めます。荒らし・誹謗中傷・個人情報・宣伝はご遠慮ください。'
       : '非公開モード（管理者のみ表示・投稿）。公開すると誰でも書き込めます。';
     if (status) status.textContent = boardKey ? '管理モード' : '';
   }
@@ -1407,6 +1407,10 @@
   }
   function renderThreadList(host) {
     host.innerHTML =
+      (zMode() ? '' : '<a class="bd-zlink" id="bd-zlink" href="' + pathOf('zatsudan') + '">' +
+        '<span class="bd-zlink-t"><b>雑談は別のページに分けました</b>' +
+        '<span>PBerに関係ない話題は「雑談」でどうぞ。これまでの雑談スレもそちらに移っています。</span></span>' +
+        '<span class="bd-zlink-go">雑談へ →</span></a>') +
       '<form class="bt-new" id="bt-new" autocomplete="off">' +
         '<div class="bt-new-h">スレッドを立てる</div>' +
         '<input class="bf-in" id="bt-title" maxlength="60" placeholder="タイトル（60字まで）">' +
@@ -1469,6 +1473,11 @@
         '<div class="bd-stats" id="bd-stats" hidden></div></div>' : '') +
       '<div class="board-list" id="board-threads"><div class="board-empty">読み込み中…</div></div>';
     document.getElementById('bt-name').value = boardName();
+    var zl = document.getElementById('bd-zlink');
+    if (zl) zl.addEventListener('click', function (e) {
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.button) return;   // 新しいタブで開く操作はそのまま
+      e.preventDefault(); switchTab('zatsudan');
+    });
     // 種別タグの選択(デフォルトPB)
     var tagSel = document.getElementById('bt-tagsel'), newTag = zMode() ? 'zatsudan' : 'pb';
     if (tagSel) tagSel.addEventListener('click', function (e) {
