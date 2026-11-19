@@ -5,6 +5,17 @@ window.PBERS_NEWS = [
     "items": [
       {
         "type": "milestone",
+        "kind": "views",
+        "name": "わーるどボール【ポーランドボール】",
+        "color": "#5e91d4",
+        "avatar": "https://yt3.googleusercontent.com/6gVVVw-moV268fxv9p9C-RAHunkNQ2F6T9_k_Kmu8hZ_CvP93ry95Q9gHkuX00mq7kifxCE7CQ=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 300万回 突破",
+        "value": 3000000
+      },
+      {
+        "type": "milestone",
         "kind": "videos",
         "name": "日独伊(PB・宇宙系)",
         "color": "#3eccad",
@@ -152,7 +163,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "梅干しおにぎり",
-        "color": "#3e95cc",
+        "color": "#5ed499",
         "avatar": "https://yt3.googleusercontent.com/QDqHs7asbi4ksXoOYv1dndpAiNp9kINp0dROM3yVar4qrEOL9E2Fg4NkE7_Md5pWUOKcF79U=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
