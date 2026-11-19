@@ -5,7 +5,7 @@ window.PBERS_DATA = [
     "views": 429785283,
     "subsLabel": "チャンネル登録者数 42.9万人",
     "viewsLabel": "429,785,283回視聴",
-    "videos": 898,
+    "videos": 899,
     "url": "https://www.youtube.com/channel/UCkjdTrE4hiJ4qNOV7NPGSSw",
     "avatar": "https://yt3.googleusercontent.com/o0-EijPjZl_g0OcDfSJdv78d6uG6Ba0RxPPeI4spBOdIZqL842tVa_BsE8_cNxZLHRwd8PmZEA=s900-c-k-c0x00ffffff-no-rj",
     "color": "#9b51e0",
@@ -46,7 +46,7 @@ window.PBERS_DATA = [
     "vLong": 3684579,
     "nShort": 347,
     "nLong": 83,
-    "g21": 3.48
+    "g21": 3.23
   },
   {
     "name": "田中MID",
@@ -210,9 +210,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "Neille / ナユ",
-    "subs": 43700,
+    "subs": 43600,
     "views": 77423079,
-    "subsLabel": "チャンネル登録者数 4.37万人",
+    "subsLabel": "チャンネル登録者数 4.36万人",
     "viewsLabel": "77,423,079回視聴",
     "videos": 195,
     "url": "https://www.youtube.com/channel/UCxKNMaOOdi32HNUFTOCw-8w",
@@ -224,7 +224,7 @@ window.PBERS_DATA = [
     "vLong": 71683,
     "nShort": 178,
     "nLong": 11,
-    "g21": 0.46
+    "g21": 0.23
   },
   {
     "name": "ニイソビボール",
@@ -242,7 +242,7 @@ window.PBERS_DATA = [
     "vLong": 317507,
     "nShort": 39,
     "nLong": 24,
-    "g21": 18.97
+    "g21": 17.75
   },
   {
     "name": "ボウコムボール",
@@ -282,9 +282,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "日帝ボール",
-    "subs": 33500,
+    "subs": 33600,
     "views": 18536871,
-    "subsLabel": "チャンネル登録者数 3.35万人",
+    "subsLabel": "チャンネル登録者数 3.36万人",
     "viewsLabel": "18,536,871回視聴",
     "videos": 28,
     "url": "https://www.youtube.com/channel/UCYNJQu0hhJFT36rCVfFpRXA",
@@ -296,7 +296,7 @@ window.PBERS_DATA = [
     "vLong": 185151,
     "nShort": 19,
     "nLong": 7,
-    "g21": 4.04
+    "g21": 4.02
   },
   {
     "name": "かにたる",
@@ -440,7 +440,7 @@ window.PBERS_DATA = [
     "vLong": 35958,
     "nShort": 9,
     "nLong": 12,
-    "g21": 14.29
+    "g21": 13.24
   },
   {
     "name": "すいかぼーる",
@@ -494,7 +494,7 @@ window.PBERS_DATA = [
     "vLong": 108253,
     "nShort": 701,
     "nLong": 191,
-    "g21": 0.0
+    "g21": -0.42
   },
   {
     "name": "マルルさん",
@@ -710,7 +710,7 @@ window.PBERS_DATA = [
     "vLong": 5094,
     "nShort": 85,
     "nLong": 7,
-    "g21": 7.51
+    "g21": 6.9
   },
   {
     "name": "カチューシャぼーる☭\n",
@@ -718,7 +718,7 @@ window.PBERS_DATA = [
     "views": 7946422,
     "subsLabel": "チャンネル登録者数 1.85万人",
     "viewsLabel": "7,946,422回視聴",
-    "videos": 416,
+    "videos": 417,
     "url": "https://www.youtube.com/channel/UCeVN-gQR83mALrvJ-fwd7Ig",
     "avatar": "https://yt3.googleusercontent.com/tSmyaWZrktnxX7mi3Lp4JpIMaiKER9c0OhB1qjyse1ndqTYJbX2dzSenXnB0n4hvew16HyvWbA=s900-c-k-c0x00ffffff-no-rj",
     "color": "#3ecc6b",
@@ -836,7 +836,7 @@ window.PBERS_DATA = [
     "vLong": 30154,
     "nShort": 80,
     "nLong": 19,
-    "g21": 1.9
+    "g21": 1.26
   },
   {
     "name": "梅干しおにぎり",
@@ -908,7 +908,7 @@ window.PBERS_DATA = [
     "vLong": 11890,
     "nShort": 118,
     "nLong": 3,
-    "g21": 2.86
+    "g21": 2.13
   },
   {
     "name": "マロー",
@@ -962,7 +962,7 @@ window.PBERS_DATA = [
     "vLong": 41688,
     "nShort": 71,
     "nLong": 22,
-    "g21": 4.69
+    "g21": 3.88
   },
   {
     "name": "なごみん",
@@ -1088,7 +1088,7 @@ window.PBERS_DATA = [
     "vLong": 763293,
     "nShort": 60,
     "nLong": 19,
-    "g21": 0.0
+    "g21": 0.81
   },
   {
     "name": "ハッホチャンネル",
@@ -1160,7 +1160,7 @@ window.PBERS_DATA = [
     "vLong": 19348,
     "nShort": 92,
     "nLong": 14,
-    "g21": 17.35
+    "g21": 14.71
   },
   {
     "name": "玄米ボール🍚",
@@ -1232,7 +1232,7 @@ window.PBERS_DATA = [
     "vLong": 96719,
     "nShort": 78,
     "nLong": 16,
-    "g21": 15.87
+    "g21": 14.55
   },
   {
     "name": "ĜÇ_Z3RØくん",
@@ -1344,9 +1344,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "あすえい",
-    "subs": 9620,
+    "subs": 9630,
     "views": 5901403,
-    "subsLabel": "チャンネル登録者数 9620人",
+    "subsLabel": "チャンネル登録者数 9630人",
     "viewsLabel": "5,901,403回視聴",
     "videos": 107,
     "url": "https://www.youtube.com/channel/UCnZNY63Txhu4ot3l2lbicOA",
@@ -1449,7 +1449,7 @@ window.PBERS_DATA = [
     "vLong": 1291341,
     "nShort": 8,
     "nLong": 42,
-    "g21": 0.12
+    "g21": 0.0
   },
   {
     "name": "レイアルファ",
@@ -1467,7 +1467,7 @@ window.PBERS_DATA = [
     "vLong": 129032,
     "nShort": 53,
     "nLong": 34,
-    "g21": 6.28
+    "g21": 6.14
   },
   {
     "name": "萱口",
@@ -1485,7 +1485,7 @@ window.PBERS_DATA = [
     "vLong": 1442,
     "nShort": 71,
     "nLong": 3,
-    "g21": 15.16
+    "g21": 14.99
   },
   {
     "name": "アスラボール　",
@@ -1521,7 +1521,7 @@ window.PBERS_DATA = [
     "vLong": 1976878,
     "nShort": 51,
     "nLong": 199,
-    "g21": 1.89
+    "g21": 1.75
   },
   {
     "name": "Russiaぼーる",
@@ -1543,9 +1543,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ゆうボール",
-    "subs": 7300,
+    "subs": 7310,
     "views": 1696285,
-    "subsLabel": "チャンネル登録者数 7300人",
+    "subsLabel": "チャンネル登録者数 7310人",
     "viewsLabel": "1,696,285回視聴",
     "videos": 27,
     "url": "https://www.youtube.com/channel/UCjwy3iaSFry_4JOWVv44lXA",
@@ -1557,7 +1557,7 @@ window.PBERS_DATA = [
     "vLong": 86734,
     "nShort": 17,
     "nLong": 10,
-    "g21": 0.27
+    "g21": 0.41
   },
   {
     "name": "から揚げボール 永遠の24歳学生",
@@ -1719,7 +1719,7 @@ window.PBERS_DATA = [
     "vLong": 958562,
     "nShort": 0,
     "nLong": 6,
-    "g21": 1.4
+    "g21": 1.22
   },
   {
     "name": "りっつんボール",
@@ -1737,7 +1737,7 @@ window.PBERS_DATA = [
     "vLong": 247712,
     "nShort": 17,
     "nLong": 12,
-    "g21": 1.6
+    "g21": 1.42
   },
   {
     "name": "みすい",
@@ -1755,7 +1755,7 @@ window.PBERS_DATA = [
     "vLong": 0,
     "nShort": 25,
     "nLong": 0,
-    "g21": 9.65
+    "g21": 9.43
   },
   {
     "name": "ヴァイマル共和国ボール 活動休止中",
@@ -1881,7 +1881,7 @@ window.PBERS_DATA = [
     "vLong": 370096,
     "nShort": 26,
     "nLong": 17,
-    "g21": 3.51
+    "g21": 3.29
   },
   {
     "name": "東トルキスタンボール",
@@ -1899,7 +1899,7 @@ window.PBERS_DATA = [
     "vLong": 249357,
     "nShort": 45,
     "nLong": 10,
-    "g21": 17.02
+    "g21": 16.74
   },
   {
     "name": "くるみボール(活動休止中)",
@@ -1935,7 +1935,7 @@ window.PBERS_DATA = [
     "vLong": 211230,
     "nShort": 65,
     "nLong": 80,
-    "g21": 2.7
+    "g21": 2.49
   },
   {
     "name": "ソラビア人民共和国連邦",
@@ -2047,9 +2047,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "ひまぐれ",
-    "subs": 4380,
+    "subs": 4390,
     "views": 2486194,
-    "subsLabel": "チャンネル登録者数 4380人",
+    "subsLabel": "チャンネル登録者数 4390人",
     "viewsLabel": "2,486,194回視聴",
     "videos": 94,
     "url": "https://www.youtube.com/channel/UC9QZ0KZuPT83qBb3iVNpT8A",
@@ -2100,6 +2100,24 @@ window.PBERS_DATA = [
     "g21": 0.0
   },
   {
+    "name": "ポルスカ速報",
+    "subs": 3940,
+    "views": 2298985,
+    "subsLabel": "チャンネル登録者数 3940人",
+    "viewsLabel": "2,298,985回視聴",
+    "videos": 97,
+    "url": "https://www.youtube.com/channel/UClv5kiCUKVqUzGApRVifHrg",
+    "avatar": "https://yt3.googleusercontent.com/HELcQkx-Jbh1xsZY2NINImepeGpl29LpnBm8LusJmyzCAA2g1X3R5JsQDebniGz_j0DXUWMGfA=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#3e8ccc",
+    "genre": "ポーランドボーラー",
+    "slug": "ポルスカ速報",
+    "vShort": 1299713,
+    "vLong": 6589,
+    "nShort": 69,
+    "nLong": 10,
+    "g21": 36.33
+  },
+  {
     "name": "Mīþ!緑ボール　[イ]",
     "subs": 3930,
     "views": 385601,
@@ -2108,32 +2126,14 @@ window.PBERS_DATA = [
     "videos": 284,
     "url": "https://www.youtube.com/channel/UC562UMBmV-_lw_T4Mqh7LKw",
     "avatar": "https://yt3.googleusercontent.com/u8aBN9IgdtDNLdPBrf2eUpD5BxWunLkp-1KZdniLvNNZr16SR9CI33SmqYJx0f1RpkitmSEH=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#3e8ccc",
+    "color": "#855ed4",
     "genre": "ポーランドボーラー",
     "slug": "mīþ緑ボール-イ",
     "vShort": 348583,
     "vLong": 11484,
     "nShort": 167,
     "nLong": 106,
-    "g21": 2.61
-  },
-  {
-    "name": "ポルスカ速報",
-    "subs": 3930,
-    "views": 2298985,
-    "subsLabel": "チャンネル登録者数 3930人",
-    "viewsLabel": "2,298,985回視聴",
-    "videos": 97,
-    "url": "https://www.youtube.com/channel/UClv5kiCUKVqUzGApRVifHrg",
-    "avatar": "https://yt3.googleusercontent.com/HELcQkx-Jbh1xsZY2NINImepeGpl29LpnBm8LusJmyzCAA2g1X3R5JsQDebniGz_j0DXUWMGfA=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#855ed4",
-    "genre": "ポーランドボーラー",
-    "slug": "ポルスカ速報",
-    "vShort": 1299713,
-    "vLong": 6589,
-    "nShort": 69,
-    "nLong": 10,
-    "g21": 37.41
+    "g21": 1.81
   },
   {
     "name": "バナナ王国",
@@ -2169,7 +2169,7 @@ window.PBERS_DATA = [
     "vLong": 456100,
     "nShort": 1,
     "nLong": 106,
-    "g21": 2.41
+    "g21": 1.86
   },
   {
     "name": "あへへへへへﾝ",
@@ -2187,7 +2187,7 @@ window.PBERS_DATA = [
     "vLong": 20223,
     "nShort": 29,
     "nLong": 5,
-    "g21": 10.78
+    "g21": 10.45
   },
   {
     "name": "ロボキチ",
@@ -2223,7 +2223,7 @@ window.PBERS_DATA = [
     "vLong": 290825,
     "nShort": 16,
     "nLong": 23,
-    "g21": 1.65
+    "g21": 1.37
   },
   {
     "name": "海ボール",
@@ -2259,7 +2259,7 @@ window.PBERS_DATA = [
     "vLong": 5488,
     "nShort": 175,
     "nLong": 52,
-    "g21": 0.0
+    "g21": -0.27
   },
   {
     "name": "YMポーランドボール",
@@ -2313,7 +2313,7 @@ window.PBERS_DATA = [
     "vLong": 49246,
     "nShort": 58,
     "nLong": 22,
-    "g21": 4.76
+    "g21": 4.45
   },
   {
     "name": "灼熱ボール",
@@ -2349,7 +2349,7 @@ window.PBERS_DATA = [
     "vLong": 9096,
     "nShort": 4,
     "nLong": 1,
-    "g21": 2.07
+    "g21": 1.77
   },
   {
     "name": "某P国の球",
@@ -2367,7 +2367,7 @@ window.PBERS_DATA = [
     "vLong": 15635,
     "nShort": 74,
     "nLong": 28,
-    "g21": 10.93
+    "g21": 10.56
   },
   {
     "name": "クロウ",
@@ -2457,7 +2457,7 @@ window.PBERS_DATA = [
     "vLong": 2494,
     "nShort": 172,
     "nLong": 7,
-    "g21": 2.93
+    "g21": 2.6
   },
   {
     "name": "クッキー&シャワーボール",
@@ -2605,9 +2605,9 @@ window.PBERS_DATA = [
   },
   {
     "name": "信州ボール",
-    "subs": 2750,
+    "subs": 2760,
     "views": 1492628,
-    "subsLabel": "チャンネル登録者数 2750人",
+    "subsLabel": "チャンネル登録者数 2760人",
     "viewsLabel": "1,492,628回視聴",
     "videos": 94,
     "url": "https://www.youtube.com/channel/UCWP-lC5-9brRl0It2Zo37EQ",
@@ -2619,7 +2619,7 @@ window.PBERS_DATA = [
     "vLong": 27120,
     "nShort": 75,
     "nLong": 18,
-    "g21": 3.38
+    "g21": 3.37
   },
   {
     "name": "ソビエトボールUSSR",
@@ -2673,7 +2673,7 @@ window.PBERS_DATA = [
     "vLong": 152856,
     "nShort": 95,
     "nLong": 7,
-    "g21": 0.77
+    "g21": 0.38
   },
   {
     "name": "DRE_Tata《ドリームボール》",
@@ -2727,7 +2727,7 @@ window.PBERS_DATA = [
     "vLong": 89592,
     "nShort": 299,
     "nLong": 114,
-    "g21": 0.0
+    "g21": 0.4
   },
   {
     "name": "Alpha_Japan",
@@ -2853,7 +2853,7 @@ window.PBERS_DATA = [
     "vLong": 3660,
     "nShort": 103,
     "nLong": 8,
-    "g21": 1.72
+    "g21": 1.28
   },
   {
     "name": "ヤギ・ソビエト",
@@ -2907,7 +2907,7 @@ window.PBERS_DATA = [
     "vLong": 1128,
     "nShort": 57,
     "nLong": 2,
-    "g21": 5.43
+    "g21": 4.95
   },
   {
     "name": "こち",
@@ -2961,7 +2961,7 @@ window.PBERS_DATA = [
     "vLong": 0,
     "nShort": 106,
     "nLong": 0,
-    "g21": 3.67
+    "g21": 3.2
   },
   {
     "name": "HuÖ~_cl",
@@ -3000,24 +3000,6 @@ window.PBERS_DATA = [
     "g21": 0.46
   },
   {
-    "name": "アズルアボールAZB",
-    "subs": 2190,
-    "views": 602239,
-    "subsLabel": "チャンネル登録者数 2190人",
-    "viewsLabel": "602,239回視聴",
-    "videos": 93,
-    "url": "https://www.youtube.com/channel/UC7MvZ-u-_W489nwETFXMANA",
-    "avatar": "https://yt3.googleusercontent.com/YMhEOc1C3jrqphDNlGLt7iPAcBTd8KHWS7SX9DqOwAoqHbvn25W-BDZHCAHcQO64ME7QBvSqpw=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#cc3e74",
-    "genre": "ポーランドボーラー",
-    "slug": "アズルアボールazb",
-    "vShort": 584319,
-    "vLong": 3264,
-    "nShort": 83,
-    "nLong": 8,
-    "g21": 1.39
-  },
-  {
     "name": "ぬしぴボール",
     "subs": 2180,
     "views": 1521836,
@@ -3026,13 +3008,31 @@ window.PBERS_DATA = [
     "videos": 187,
     "url": "https://www.youtube.com/channel/UCUBwjiIuPQvvIlOcI6IaQow",
     "avatar": "https://yt3.googleusercontent.com/_PPWWq95zjkoTUTk2J4VyQIQTXPfsiT8MQ2OjUIaEj6DjDoiTIxcwkaODIs3LJpwuglzAG24tQ=s900-c-k-c0x00ffffff-no-rj",
-    "color": "#d4995e",
+    "color": "#cc3e74",
     "genre": "ポーランドボーラー",
     "slug": "ぬしぴボール",
     "vShort": 1350266,
     "vLong": 6596,
     "nShort": 157,
     "nLong": 3,
+    "g21": 0.46
+  },
+  {
+    "name": "アズルアボールAZB",
+    "subs": 2180,
+    "views": 602239,
+    "subsLabel": "チャンネル登録者数 2180人",
+    "viewsLabel": "602,239回視聴",
+    "videos": 93,
+    "url": "https://www.youtube.com/channel/UC7MvZ-u-_W489nwETFXMANA",
+    "avatar": "https://yt3.googleusercontent.com/YMhEOc1C3jrqphDNlGLt7iPAcBTd8KHWS7SX9DqOwAoqHbvn25W-BDZHCAHcQO64ME7QBvSqpw=s900-c-k-c0x00ffffff-no-rj",
+    "color": "#d4995e",
+    "genre": "ポーランドボーラー",
+    "slug": "アズルアボールazb",
+    "vShort": 584319,
+    "vLong": 3264,
+    "nShort": 83,
+    "nLong": 8,
     "g21": 0.46
   },
   {
@@ -3069,7 +3069,7 @@ window.PBERS_DATA = [
     "vLong": 265309,
     "nShort": 12,
     "nLong": 32,
-    "g21": 0.48
+    "g21": 0.0
   },
   {
     "name": "スチロール【ポーランドボール】",
@@ -3289,7 +3289,7 @@ window.PBERS_DATA = [
   }
 ];
 window.PBERS_GENRES = [{"label": "ポーランドボーラー", "on": true}, {"label": "PBerer", "on": false}];
-window.PBERS_UPDATED = "2026-11-19";
-window.PBERS_PREDICT = {"asOfMs": 1795078800000, "subs": {"base": 3278250, "rate": 3.409383449454068e-05}, "views": {"base": 2479879440, "rate": 0.03753151460462448}};
-window.PBERS_X = [{"name": "Æž!フヒフム", "slug": "フヒフム", "color": "#9b51e0", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/o0-EijPjZl_g0OcDfSJdv78d6uG6Ba0RxPPeI4spBOdIZqL842tVa_BsE8_cNxZLHRwd8PmZEA=s900-c-k-c0x00ffffff-no-rj", "handle": "fuhifum", "followers": 6268, "posts30": 3, "medViews": 2839, "eng": 4.79}, {"name": "日本ボール", "slug": "日本ボール", "color": "#b5382f", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_ksDZG6G89NSRKsvHSZLD47tp23h6vxKiGc8yZ0cDSwhQ=s900-c-k-c0x00ffffff-no-rj", "handle": "nihonball", "followers": 6098, "posts30": 0, "medViews": 5132, "eng": 5.94}, {"name": "【PB】トレインボール", "slug": "pbトレインボール", "color": "#95d45e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/lFBxDx1bMZS5g6awXlP8XPaQZR_iDymedlodcm0NNafNhvjlbG6BF4GJ1a8ldz1Q6wV_Qsc_6g=s900-c-k-c0x00ffffff-no-rj", "handle": "Porland_Train", "followers": 3503, "posts30": 5, "medViews": 787, "eng": 1.67}, {"name": "Yukkuri ball", "slug": "yukkuri-ball", "color": "#8f2f2f", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mR5LylFOFrr-t2X5vaJbwkzfKOkvcpiNfdQw8kaFQAAw=s900-c-k-c0x00ffffff-no-rj", "handle": "BallYukkuri", "followers": 3347, "posts30": 2, "medViews": 2508, "eng": 5.47}, {"name": "さとボール", "slug": "さとボール", "color": "#e01e26", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/f__uscB73pTTt5p7rHmCpVYVZcLrsZP-lWyHAOciK2Fx-IGcXFuDN1vRJTzsBRhp8LF7g60YVQ=s900-c-k-c0x00ffffff-no-rj", "handle": "sattoa_ball", "followers": 2895, "posts30": 42, "medViews": 6499, "eng": 1.68}, {"name": "ほたて", "slug": "ほたて", "color": "#a3cc3e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/7xp7KrSaNpFTWbPZNWdCFPi79x14NHca1YBqAhyPrTOvvqOLZm9TkScMlOx2hv6_8NNOEz6tOg=s900-c-k-c0x00ffffff-no-rj", "handle": "Hotateillust", "followers": 2355, "posts30": 15, "medViews": 503, "eng": 2.89}, {"name": "すいかぼーる", "slug": "すいかぼーる", "color": "#ccd45e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/bDvE2BnwRg6dRlxeBdzO-nNMsUNBS8ZL952Aoog1ENFH0TYSZXmJ04xCq00TaYHRrW6BZpPyaJY=s900-c-k-c0x00ffffff-no-rj", "handle": "Swikaball", "followers": 1769, "posts30": 2, "medViews": 126, "eng": 3.83}, {"name": "アフガンボール", "slug": "アフガンボール", "color": "#3ecc40", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/aOj-FnTWhrUAPjz49cHMeTuREL5cpUpsUWPVs1AuaeeMqVIrUHxeIOlHdCi0h8HukDZHL_ZQ0HA=s900-c-k-c0x00ffffff-no-rj", "handle": "afghan_ball", "followers": 1438, "posts30": 12, "medViews": 155, "eng": 1.19}, {"name": "いたりぃ", "slug": "いたりぃ", "color": "#72d45e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/wWf7XHQyr1hGg9o3HAYnlWqzpOZZtOXVtWjUos40r8UYVxAFu4o8G-oGH75KRRyxCdCRd48vpOA=s900-c-k-c0x00ffffff-no-rj", "handle": "Italy_Poland", "followers": 1421, "posts30": 42, "medViews": 150, "eng": 1.47}, {"name": "ねとえん", "slug": "ねとえん", "color": "#74cc3e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj", "handle": "netoenq", "followers": 1311, "posts30": 90, "medViews": 66, "eng": 1.03}, {"name": "Æž!みかんぼーる🍊", "slug": "みかんぼーる", "color": "#eba864", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj", "handle": "mikan_ball888", "followers": 970, "posts30": 0, "medViews": null, "eng": null}, {"name": "ふかひれ牧場", "slug": "ふかひれ牧場", "color": "#d45ed4", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_lbyS-yUnTDLkuj88p4kT7eJLsTjCgGRad7f-J60xIPNRU=s900-c-k-c0x00ffffff-no-rj", "handle": "FBokujo", "followers": 860, "posts30": 0, "medViews": null, "eng": null}, {"name": "あすえいボール", "slug": "あすえいボール", "color": "#1597a0", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/GdzBkIErtDOq6jjOWLe44KdFVL45ApP5U6NeLFAoRVPBd5Xkf5tPdxRHaxt_hQw0nl8NT75So6s=s900-c-k-c0x00ffffff-no-rj", "grad": ["#00a24c", "#1f45c9"], "handle": "BAKAWATSHI", "followers": 765, "posts30": 26, "medViews": 1319, "eng": 2.04}, {"name": "あすえい", "slug": "あすえい", "color": "#5eb9d4", "genre": "PBerer", "avatar": "https://yt3.googleusercontent.com/r9hEskuTUtCEhk-VwLp2Xsy-x4DZ-dABwX2Wa5lJMOHVcrzZgLn4rwpw7gYWD4mXeOMtagh-m70=s900-c-k-c0x00ffffff-no-rj", "handle": "BAKAWATSHI", "followers": 765, "posts30": 26, "medViews": 1319, "eng": 2.04}, {"name": "ミルー帝国-はんぺん[PB]", "slug": "ミルー帝国-はんぺんpb", "color": "#cc8c3e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/Ky8R9pg8h7UvmF53F7Bv9forW3gIMrGUzI2JuRlUaX_Lzf19_45Sif5nf5BqRdQy0WDtPvGvLw=s900-c-k-c0x00ffffff-no-rj", "handle": "han_pennu", "followers": 422, "posts30": 6, "medViews": 552, "eng": 3.29}, {"name": "Sekumeball  せくめボール", "slug": "sekumeball-せくめボール", "color": "#5eb5d4", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/bL9lWsp29DejSdFemB__O0UqwLkgufQdMTMKh0ceh2gHNtK9eIndZqueRLInTnEefoJndg7trA=s900-c-k-c0x00ffffff-no-rj", "handle": "sekume498705", "followers": 401, "posts30": 14, "medViews": 229, "eng": 2.17}, {"name": "ゆうボール", "slug": "ゆうボール", "color": "#d4665e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/dDe-vpE0ub720mNouK763bXlq37V8dRRy6yQbJBUGfPobeaj40ktPUSvtcbo66HAkI9dk46oAA=s900-c-k-c0x00ffffff-no-rj", "handle": "kawoshinlove_sb", "followers": 388, "posts30": 0, "medViews": null, "eng": null}, {"name": "玄米ボール🍚", "slug": "玄米ボール", "color": "#d48d5e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/OZQ7LsHl8T-Sl5BYycGb1Rtq-ciSrxEc4HLna525rT78ok08Fyewy8ymbmVYc5YdkYyTuuDZrw=s900-c-k-c0x00ffffff-no-rj", "handle": "genmaiball_PBer", "followers": 359, "posts30": 2, "medViews": 59, "eng": 0.0}, {"name": "田中MID", "slug": "田中mid", "color": "#2f80ed", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/mnFY8X_lmtyW54Uh5ocg1QJQVTxTRKG9XDdrGAhxFZpPPJzhsGue-cMHqLBCsIRF4hBHjsLU=s900-c-k-c0x00ffffff-no-rj", "handle": "tnk_mid559", "followers": 242, "posts30": 4, "medViews": 339, "eng": 3.98}, {"name": "日帝ボール", "slug": "日帝ボール", "color": "#5e95d4", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/xXeQaK6fg2pfljWrgaMI_wG8G9HGyAgb8G_W1BU67gH5NiOQRd7-4wK7PdQlOFRUPCQKvjVHBuQ=s900-c-k-c0x00ffffff-no-rj", "handle": "nittei_ball", "followers": 232, "posts30": 0, "medViews": null, "eng": null}, {"name": "Neille / ナユ", "slug": "neille-ナユ", "color": "#e35d52", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/veRe0sqhiRVBvhNlR2GFXHTdGKFmeUDL-vDFPIeZwt_mohOji6bk-0KKfRz5v5MbjgYcuJ_0FRo=s900-c-k-c0x00ffffff-no-rj", "handle": "Sait_O_Neille", "followers": 178, "posts30": 14, "medViews": 614, "eng": 2.95}, {"name": "ドイツベルギーball🇧🇪", "slug": "ドイツベルギーball", "color": "#d45e76", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/7EsHt0eTCzIYJJwMJ02aTX42M5nCW4wQ7IC7xvwuD8tCahJmzRJx6el9mydPOB0teBnHRybAUA=s900-c-k-c0x00ffffff-no-rj", "handle": "EcYciYgFbK94569", "followers": 177, "posts30": 0, "medViews": null, "eng": null}, {"name": "マイクラ共和国ボール(tama2224)", "slug": "マイクラ共和国ボールtama2224", "color": "#d45eb1", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/psef_ue--gNaBgLl-zOqXHns6BWfEF54h8FFXb5TdVgFEFi5iBsoBWkRJTK0ZXoOunYefwoPpA=s900-c-k-c0x00ffffff-no-rj", "handle": "tama2224", "followers": 176, "posts30": 0, "medViews": null, "eng": null}, {"name": "ウィン【肉声ポーランドボール】", "slug": "ウィン肉声ポーランドボール", "color": "#d46a5e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj", "handle": "WinPolandball", "followers": 170, "posts30": 0, "medViews": null, "eng": null}, {"name": "萱口", "slug": "萱口", "color": "#5ed49d", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj", "handle": "Kaya_gu1", "followers": 133, "posts30": 31, "medViews": 124, "eng": 1.16}, {"name": "にこちPB", "slug": "にこちpb", "color": "#cc583e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj", "handle": "NikotyuuAN", "followers": 131, "posts30": 3, "medViews": 693, "eng": 1.71}, {"name": "カカポボール🦜", "slug": "カカポボール", "color": "#823ecc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/Cb2TyV7ECI33oz2rQZp7xpkRM8v9WRWFmzZ8AGqkMp-_S4t6lWG7K6elbuUqNr7n4jZUaNnZ=s900-c-k-c0x00ffffff-no-rj", "handle": "kakapo_ball0807", "followers": 124, "posts30": 0, "medViews": null, "eng": null}, {"name": "SkyBall_", "slug": "skyball", "color": "#5ed4d0", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/rnOhfYGDIGGi8LPu2l6o61fv5KbodNBlH1Tnstt3bvRb1WG8cDsJ4_lj18gvMNS1qDphXhbWmA=s900-c-k-c0x00ffffff-no-rj", "handle": "skyball0217", "followers": 124, "posts30": 16, "medViews": 162, "eng": 2.19}, {"name": "空白ボール", "slug": "空白ボール", "color": "#cc903e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj", "handle": "spaceball9314", "followers": 122, "posts30": 2, "medViews": 101, "eng": 3.96}, {"name": "レイアルファ", "slug": "レイアルファ", "color": "#db4f57", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/TVNAN6bSZZHGvc7hYhLs6Gnn95EKhcWj5GwqbWN00HAFA8SmXjUyKXQK6D4Ljl_S9A_8eaHn-Lk=s900-c-k-c0x00ffffff-no-rj", "handle": "RayAlpha0", "followers": 103, "posts30": 51, "medViews": 285, "eng": 2.71}, {"name": "天川 蒼", "slug": "天川-蒼", "color": "#d45ea9", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/63Fpi8JlajXPXsdNjqlWOkEgcXu34tmR_KAqSqvAwcRNITSlK4hCz8KpphFjAhMsUcakxNiA=s900-c-k-c0x00ffffff-no-rj", "handle": "draw1225", "followers": 102, "posts30": 11, "medViews": 80, "eng": 0.0}, {"name": "ニイソビボール", "slug": "ニイソビボール", "color": "#3ecc9a", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj", "handle": "Nisv_ball", "followers": 100, "posts30": 4, "medViews": 206, "eng": 4.23}, {"name": "から揚げボール 永遠の24歳学生", "slug": "から揚げボール-永遠の24歳学生", "color": "#ccc43e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/m_lr_JlyEJyu5EsfW2zRmvIaPoHgIEMkaxk7H71Azj8zXbatD6EUwRgUDZM3XAta6xxdBFH-Ww=s900-c-k-c0x00ffffff-no-rj", "handle": "karaageball810", "followers": 98, "posts30": 0, "medViews": null, "eng": null}, {"name": "なぽりたんぼーる!!", "slug": "なぽりたんぼーる", "color": "#5ed46e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/cgKkkofz-kGsbqVy2T6imA2bHpnVt2dT5fWXi8lePnlHa6p_KyhQCJ63Al_qjzB09nAGRrcOpg=s900-c-k-c0x00ffffff-no-rj", "handle": "jaadfxyz", "followers": 92, "posts30": 0, "medViews": null, "eng": null}, {"name": "ゆの59乗(ゆ⁵⁹)", "slug": "ゆの59乗ゆ⁵⁹", "color": "#5ed4cc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/0rSWsGfvjKWthActZxUstPL3wtvusXqN7P8GrK5OBi5uwnre_Z6gRgG-bhCJDvt-pgWDUq6R=s900-c-k-c0x00ffffff-no-rj", "handle": "yu59pow", "followers": 92, "posts30": 17, "medViews": 358, "eng": 4.74}, {"name": "おもちすたん", "slug": "おもちすたん", "color": "#cc3e79", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/fzkyIy9z3sbL_dOnQXGEnXtXSjAmsKk6gzGmSPgsA6OM5GdlXkBAmCr5wQN4llq_oF3UCpqrx6Y=s900-c-k-c0x00ffffff-no-rj", "handle": "omochi_ball", "followers": 83, "posts30": 0, "medViews": null, "eng": null}, {"name": "東トルキスタンボール", "slug": "東トルキスタンボール", "color": "#b63ecc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/W2OQUuU2k1jXKfUVPRWKakalgRNpqLru73npMGx5OH8rmzeWgrIiV1Kfll9_21Ep7ThG2-Hx=s900-c-k-c0x00ffffff-no-rj", "handle": "Tamashohsm", "followers": 73, "posts30": 10, "medViews": 115, "eng": 3.48}, {"name": "UC_IzkKwIVaYriFZS9ULlaog", "slug": "uc_izkkwivayrifzs9ullaog", "color": "#d4c45e", "genre": "ポーランドボーラー", "avatar": "", "handle": "satouMID", "followers": 72, "posts30": 17, "medViews": 212, "eng": 1.55}, {"name": "海ボール", "slug": "海ボール", "color": "#5e89d4", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/GiDz0I4WeuAoMqkY9Ry5bbsCNalYe-uARI5q2xjM7wqfORgaZpCNigm4ssQoWK6brrOIZLN48g=s900-c-k-c0x00ffffff-no-rj", "handle": "BallSea33287", "followers": 65, "posts30": 0, "medViews": null, "eng": null}, {"name": "カチューシャぼーる☭\n", "slug": "カチューシャぼーる", "color": "#3ecc6b", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/tSmyaWZrktnxX7mi3Lp4JpIMaiKER9c0OhB1qjyse1ndqTYJbX2dzSenXnB0n4hvew16HyvWbA=s900-c-k-c0x00ffffff-no-rj", "handle": "084pd", "followers": 63, "posts30": 44, "medViews": 280, "eng": 2.4}, {"name": "MIKUボール", "slug": "mikuボール", "color": "#d4b55e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/6w7QBnmhG0QOmG33OrGsxQR2cM7u-_izyc_BizYXJzvu-1MbSW2UC3X8T15rWcyY9TTgmRuYZQ=s900-c-k-c0x00ffffff-no-rj", "handle": "MIKUball_pber", "followers": 52, "posts30": 12, "medViews": 89, "eng": 2.96}, {"name": "旧食DX", "slug": "旧食dx", "color": "#533ecc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/eS59gj4sUqncdlk0_nSnxkfIKeKASy0K5CwgIpOHv4JM4KR3XSMKM_uhXloSzt8vcLds6FiJjIA=s900-c-k-c0x00ffffff-no-rj", "handle": "DX2125061761727", "followers": 51, "posts30": 0, "medViews": null, "eng": null}, {"name": "【PB】ネオンボール", "slug": "pbネオンボール", "color": "#cc3e82", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj", "handle": "NeonBall_PB", "followers": 50, "posts30": 6, "medViews": 134, "eng": 3.36}, {"name": "みすい", "slug": "みすい", "color": "#3e5ccc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj", "handle": "aamazidehima", "followers": 46, "posts30": 2, "medViews": 139, "eng": 2.78}, {"name": "ポルスカ速報", "slug": "ポルスカ速報", "color": "#855ed4", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/HELcQkx-Jbh1xsZY2NINImepeGpl29LpnBm8LusJmyzCAA2g1X3R5JsQDebniGz_j0DXUWMGfA=s900-c-k-c0x00ffffff-no-rj", "handle": "Polska_PB", "followers": 44, "posts30": 13, "medViews": 111, "eng": 2.37}, {"name": "ядc!…………………………連邦", "slug": "ядc連邦", "color": "#cc9a3e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/g13ID4VckW_VQ88oVO3M4suczdNRxKiRg_8x1mKiyCB47w4P2Z9MFFa5-fTIs8ZKWYtPQXJZuA=s900-c-k-c0x00ffffff-no-rj", "handle": "foitasa", "followers": 43, "posts30": 4, "medViews": 187, "eng": 1.6}, {"name": "セフィルぼーる‼︎", "slug": "セフィルぼーる", "color": "#815ed4", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/HSCQnokZVxhiCR-7vyTJA-4vvznf-NuT5Kal3GwnJbTMv3rvRKzEjwRPWOiLPiwoDcbij7-shQ=s900-c-k-c0x00ffffff-no-rj", "handle": "Sefil_Ball", "followers": 36, "posts30": 0, "medViews": null, "eng": null}, {"name": "ていてく", "slug": "ていてく", "color": "#d4915e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/yXzwjLvaGxqpUYtLPiq0eehCASXpPn1dhRiTBpE5Z_PcwOdTSTF1lu7uEPzHcM-2o2Jv417b5w=s900-c-k-c0x00ffffff-no-rj", "handle": "TeitekuPBer", "followers": 36, "posts30": 0, "medViews": null, "eng": null}, {"name": "TTボール", "slug": "ttボール", "color": "#6bcc3e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/Jyb_uPlk9ssENZe3msLyrrbjmcOI5zimVCAi-itbq0gbYxltaXY5IDwxqUcPzsX9-S-X5e89gx0=s900-c-k-c0x00ffffff-no-rj", "handle": "TTboru2025", "followers": 36, "posts30": 0, "medViews": null, "eng": null}, {"name": "こち", "slug": "こち", "color": "#bcd45e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/S-X6rVQMAiP07lsd0nG7nhjLHve2JvpB41u7Jk0gpbT_YB6s3pG4Fz1jcfHiaRy44IlPUAnofQs=s900-c-k-c0x00ffffff-no-rj", "handle": "koti2116", "followers": 35, "posts30": 4, "medViews": 44, "eng": 4.93}, {"name": "パワーポイントボール", "slug": "パワーポイントボール", "color": "#d4c05e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/juW0175zlu8wVi5Nzp1V9it_-O1w5S8gvypZz23u-7EIZ7H41QF_ofqQDfjB_SrUdqRZ8WOM6Q=s900-c-k-c0x00ffffff-no-rj", "handle": "powerpoint_ball", "followers": 34, "posts30": 2, "medViews": 110, "eng": 3.21}, {"name": "ぴくろす", "slug": "ぴくろす", "color": "#91d45e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/R5Hi38Yy_E05WoCxZZMME7iv1sdUgAhUTBAlkBHKmNWairzMuzn4EMJvYpL7aJycNuG4SHKeEA=s900-c-k-c0x00ffffff-no-rj", "handle": "tyurumeeen", "followers": 33, "posts30": 0, "medViews": null, "eng": null}, {"name": "わのさち【和の幸】", "slug": "わのさち和の幸", "color": "#bb3ecc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/sa2_oq5pSFp0qtqAOo0T2P_IVLq7UdddgxohTNFYpGAPKqf4x-RZJeYW9sJjtcAVWy2IMDrVpg=s900-c-k-c0x00ffffff-no-rj", "handle": "wanosati_PB", "followers": 24, "posts30": 0, "medViews": null, "eng": null}, {"name": "マスカットボール", "slug": "マスカットボール", "color": "#cc3e53", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/0LFy0gzQnjYCPHXvDJpUTOtKyZoSi6UGXTRQs1_FWE2Or_MqTKViIHNrO7cK33ob-lq5snr_xCE=s900-c-k-c0x00ffffff-no-rj", "handle": "muscatball2", "followers": 21, "posts30": 0, "medViews": null, "eng": null}, {"name": "ソビエトボールUSSR", "slug": "ソビエトボールussr", "color": "#d45ecc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/oQR3FLSbYKMQi1K_7qkk8PVfmLILRrYecaE-8XC2kKcQiazxJwzRa-yCeX6OxqgbmJ07vNTC=s900-c-k-c0x00ffffff-no-rj", "handle": "nageimo120", "followers": 21, "posts30": 1, "medViews": 24, "eng": 0.0}, {"name": "まるぼーるch ", "slug": "まるぼーるch", "color": "#cc3eb6", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/plXugBe_yne07EdTN2A5rq-5NpdGZp33xpvpmlwkItY6AH-tPC0sjllPf2WK6wcwBL2quhIOFw=s900-c-k-c0x00ffffff-no-rj", "handle": "marubooru", "followers": 18, "posts30": 0, "medViews": null, "eng": null}, {"name": "ひまぐれ", "slug": "ひまぐれ", "color": "#d4bc5e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/PFpcnuGhdq_D-oEISebsbhi2s1WWnKIWAsEnuWqeVZ5wWrOMiEaVVyn4ajXgfCiJLJSnxx_a55s=s900-c-k-c0x00ffffff-no-rj", "handle": "midorina_zasso", "followers": 15, "posts30": 6, "medViews": 48, "eng": 2.95}, {"name": "炭火焼き", "slug": "炭火焼き", "color": "#d45e85", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/gk9_UdLk_1Ljo0YtH3dFvFZfdywxlXC1l1XfJ2zA054iHW7UdOLMIYWg4VsmDK1UI2rlHaDC2HE=s900-c-k-c0x00ffffff-no-rj", "handle": "Sumisu88888888", "followers": 14, "posts30": 0, "medViews": null, "eng": null}, {"name": "Türkiye👑キプロスball", "slug": "türkiyeキプロスball", "color": "#7d5ed4", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/WBViJaIICezH_uSU7qpm3-mZ6dwuAlZ59RE4LPIFWt-jg8a2U_zJNpFKr0yPh4kcAU9ayn8j=s900-c-k-c0x00ffffff-no-rj", "handle": "Piinatsu_2gou", "followers": 14, "posts30": 0, "medViews": null, "eng": null}, {"name": "さんどいつちball!!", "slug": "さんどいつちball", "color": "#3e87cc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/xwLdIb5B7k9l-4yfeHOTrTl9kJgtGCK35VfJ0Efs83bzU_HLtR401SYql-QiqQ_ryn5BF-SSmw=s900-c-k-c0x00ffffff-no-rj", "handle": "sandoicchida", "followers": 8, "posts30": 0, "medViews": null, "eng": null}, {"name": "そあボール", "slug": "そあボール", "color": "#d46e5e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/1AOGBu24yxa959outr-59IAyQ5LVfWIiysw2FAQDMDK_urEuXXH21dF9IQFSbDSswnuYgGc=s900-c-k-c0x00ffffff-no-rj", "handle": "soa_ball", "followers": 8, "posts30": 4, "medViews": 27, "eng": 0.0}];
+window.PBERS_UPDATED = "2026-11-20";
+window.PBERS_PREDICT = {"asOfMs": 1795122000000, "subs": {"base": 3278280, "rate": 2.6625212129298055e-05}, "views": {"base": 2479879440, "rate": 0.028984056246487103}};
+window.PBERS_X = [{"name": "Æž!フヒフム", "slug": "フヒフム", "color": "#9b51e0", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/o0-EijPjZl_g0OcDfSJdv78d6uG6Ba0RxPPeI4spBOdIZqL842tVa_BsE8_cNxZLHRwd8PmZEA=s900-c-k-c0x00ffffff-no-rj", "handle": "fuhifum", "followers": 6270, "posts30": 3, "medViews": 2857, "eng": 4.77}, {"name": "日本ボール", "slug": "日本ボール", "color": "#b5382f", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_ksDZG6G89NSRKsvHSZLD47tp23h6vxKiGc8yZ0cDSwhQ=s900-c-k-c0x00ffffff-no-rj", "handle": "nihonball", "followers": 6097, "posts30": 0, "medViews": null, "eng": null}, {"name": "【PB】トレインボール", "slug": "pbトレインボール", "color": "#95d45e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/lFBxDx1bMZS5g6awXlP8XPaQZR_iDymedlodcm0NNafNhvjlbG6BF4GJ1a8ldz1Q6wV_Qsc_6g=s900-c-k-c0x00ffffff-no-rj", "handle": "Porland_Train", "followers": 3506, "posts30": 5, "medViews": 788, "eng": 1.64}, {"name": "Yukkuri ball", "slug": "yukkuri-ball", "color": "#8f2f2f", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mR5LylFOFrr-t2X5vaJbwkzfKOkvcpiNfdQw8kaFQAAw=s900-c-k-c0x00ffffff-no-rj", "handle": "BallYukkuri", "followers": 3346, "posts30": 2, "medViews": 2522, "eng": 5.43}, {"name": "さとボール", "slug": "さとボール", "color": "#e01e26", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/f__uscB73pTTt5p7rHmCpVYVZcLrsZP-lWyHAOciK2Fx-IGcXFuDN1vRJTzsBRhp8LF7g60YVQ=s900-c-k-c0x00ffffff-no-rj", "handle": "sattoa_ball", "followers": 2893, "posts30": 75, "medViews": 7996, "eng": 1.59}, {"name": "ほたて", "slug": "ほたて", "color": "#a3cc3e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/7xp7KrSaNpFTWbPZNWdCFPi79x14NHca1YBqAhyPrTOvvqOLZm9TkScMlOx2hv6_8NNOEz6tOg=s900-c-k-c0x00ffffff-no-rj", "handle": "Hotateillust", "followers": 2353, "posts30": 15, "medViews": 406, "eng": 2.58}, {"name": "すいかぼーる", "slug": "すいかぼーる", "color": "#ccd45e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/bDvE2BnwRg6dRlxeBdzO-nNMsUNBS8ZL952Aoog1ENFH0TYSZXmJ04xCq00TaYHRrW6BZpPyaJY=s900-c-k-c0x00ffffff-no-rj", "handle": "Swikaball", "followers": 1769, "posts30": 2, "medViews": 129, "eng": 3.75}, {"name": "アフガンボール", "slug": "アフガンボール", "color": "#3ecc40", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/aOj-FnTWhrUAPjz49cHMeTuREL5cpUpsUWPVs1AuaeeMqVIrUHxeIOlHdCi0h8HukDZHL_ZQ0HA=s900-c-k-c0x00ffffff-no-rj", "handle": "afghan_ball", "followers": 1435, "posts30": 12, "medViews": 160, "eng": 1.1}, {"name": "いたりぃ", "slug": "いたりぃ", "color": "#72d45e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/wWf7XHQyr1hGg9o3HAYnlWqzpOZZtOXVtWjUos40r8UYVxAFu4o8G-oGH75KRRyxCdCRd48vpOA=s900-c-k-c0x00ffffff-no-rj", "handle": "Italy_Poland", "followers": 1421, "posts30": 33, "medViews": 152, "eng": 1.09}, {"name": "ねとえん", "slug": "ねとえん", "color": "#74cc3e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj", "handle": "netoenq", "followers": 1304, "posts30": 91, "medViews": 53, "eng": 1.01}, {"name": "Æž!みかんぼーる🍊", "slug": "みかんぼーる", "color": "#eba864", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj", "handle": "mikan_ball888", "followers": 972, "posts30": 0, "medViews": null, "eng": null}, {"name": "ふかひれ牧場", "slug": "ふかひれ牧場", "color": "#d45ed4", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_lbyS-yUnTDLkuj88p4kT7eJLsTjCgGRad7f-J60xIPNRU=s900-c-k-c0x00ffffff-no-rj", "handle": "FBokujo", "followers": 861, "posts30": 0, "medViews": null, "eng": null}, {"name": "あすえいボール", "slug": "あすえいボール", "color": "#1597a0", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/GdzBkIErtDOq6jjOWLe44KdFVL45ApP5U6NeLFAoRVPBd5Xkf5tPdxRHaxt_hQw0nl8NT75So6s=s900-c-k-c0x00ffffff-no-rj", "grad": ["#00a24c", "#1f45c9"], "handle": "BAKAWATSHI", "followers": 765, "posts30": 26, "medViews": 1319, "eng": 2.04}, {"name": "あすえい", "slug": "あすえい", "color": "#5eb9d4", "genre": "PBerer", "avatar": "https://yt3.googleusercontent.com/r9hEskuTUtCEhk-VwLp2Xsy-x4DZ-dABwX2Wa5lJMOHVcrzZgLn4rwpw7gYWD4mXeOMtagh-m70=s900-c-k-c0x00ffffff-no-rj", "handle": "BAKAWATSHI", "followers": 765, "posts30": 26, "medViews": 1319, "eng": 2.04}, {"name": "ミルー帝国-はんぺん[PB]", "slug": "ミルー帝国-はんぺんpb", "color": "#cc8c3e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/Ky8R9pg8h7UvmF53F7Bv9forW3gIMrGUzI2JuRlUaX_Lzf19_45Sif5nf5BqRdQy0WDtPvGvLw=s900-c-k-c0x00ffffff-no-rj", "handle": "han_pennu", "followers": 422, "posts30": 6, "medViews": 553, "eng": 3.28}, {"name": "Sekumeball  せくめボール", "slug": "sekumeball-せくめボール", "color": "#5eb5d4", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/bL9lWsp29DejSdFemB__O0UqwLkgufQdMTMKh0ceh2gHNtK9eIndZqueRLInTnEefoJndg7trA=s900-c-k-c0x00ffffff-no-rj", "handle": "sekume498705", "followers": 401, "posts30": 14, "medViews": 229, "eng": 2.15}, {"name": "ゆうボール", "slug": "ゆうボール", "color": "#d4665e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/dDe-vpE0ub720mNouK763bXlq37V8dRRy6yQbJBUGfPobeaj40ktPUSvtcbo66HAkI9dk46oAA=s900-c-k-c0x00ffffff-no-rj", "handle": "kawoshinlove_sb", "followers": 388, "posts30": 0, "medViews": null, "eng": null}, {"name": "玄米ボール🍚", "slug": "玄米ボール", "color": "#d48d5e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/OZQ7LsHl8T-Sl5BYycGb1Rtq-ciSrxEc4HLna525rT78ok08Fyewy8ymbmVYc5YdkYyTuuDZrw=s900-c-k-c0x00ffffff-no-rj", "handle": "genmaiball_PBer", "followers": 359, "posts30": 2, "medViews": 59, "eng": 0.0}, {"name": "田中MID", "slug": "田中mid", "color": "#2f80ed", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/mnFY8X_lmtyW54Uh5ocg1QJQVTxTRKG9XDdrGAhxFZpPPJzhsGue-cMHqLBCsIRF4hBHjsLU=s900-c-k-c0x00ffffff-no-rj", "handle": "tnk_mid559", "followers": 243, "posts30": 0, "medViews": null, "eng": null}, {"name": "日帝ボール", "slug": "日帝ボール", "color": "#5e95d4", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/xXeQaK6fg2pfljWrgaMI_wG8G9HGyAgb8G_W1BU67gH5NiOQRd7-4wK7PdQlOFRUPCQKvjVHBuQ=s900-c-k-c0x00ffffff-no-rj", "handle": "nittei_ball", "followers": 232, "posts30": 0, "medViews": null, "eng": null}, {"name": "Neille / ナユ", "slug": "neille-ナユ", "color": "#e35d52", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/veRe0sqhiRVBvhNlR2GFXHTdGKFmeUDL-vDFPIeZwt_mohOji6bk-0KKfRz5v5MbjgYcuJ_0FRo=s900-c-k-c0x00ffffff-no-rj", "handle": "Sait_O_Neille", "followers": 178, "posts30": 13, "medViews": 626, "eng": 2.92}, {"name": "ドイツベルギーball🇧🇪", "slug": "ドイツベルギーball", "color": "#d45e76", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/7EsHt0eTCzIYJJwMJ02aTX42M5nCW4wQ7IC7xvwuD8tCahJmzRJx6el9mydPOB0teBnHRybAUA=s900-c-k-c0x00ffffff-no-rj", "handle": "EcYciYgFbK94569", "followers": 177, "posts30": 0, "medViews": null, "eng": null}, {"name": "マイクラ共和国ボール(tama2224)", "slug": "マイクラ共和国ボールtama2224", "color": "#d45eb1", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/psef_ue--gNaBgLl-zOqXHns6BWfEF54h8FFXb5TdVgFEFi5iBsoBWkRJTK0ZXoOunYefwoPpA=s900-c-k-c0x00ffffff-no-rj", "handle": "tama2224", "followers": 176, "posts30": 0, "medViews": null, "eng": null}, {"name": "ウィン【肉声ポーランドボール】", "slug": "ウィン肉声ポーランドボール", "color": "#d46a5e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/619nTpDrEHBQiPk2lDGFiH_kGTiL2dzcj4c1vmrfIXH_cSZEVNHoY_w36ve2eg_UFhKGzQQDY4Y=s900-c-k-c0x00ffffff-no-rj", "handle": "WinPolandball", "followers": 171, "posts30": 0, "medViews": null, "eng": null}, {"name": "にこちPB", "slug": "にこちpb", "color": "#cc583e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj", "handle": "NikotyuuAN", "followers": 132, "posts30": 3, "medViews": 695, "eng": 1.67}, {"name": "萱口", "slug": "萱口", "color": "#5ed49d", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj", "handle": "Kaya_gu1", "followers": 132, "posts30": 31, "medViews": 130, "eng": 1.16}, {"name": "SkyBall_", "slug": "skyball", "color": "#5ed4d0", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/rnOhfYGDIGGi8LPu2l6o61fv5KbodNBlH1Tnstt3bvRb1WG8cDsJ4_lj18gvMNS1qDphXhbWmA=s900-c-k-c0x00ffffff-no-rj", "handle": "skyball0217", "followers": 128, "posts30": 17, "medViews": 171, "eng": 2.06}, {"name": "カカポボール🦜", "slug": "カカポボール", "color": "#823ecc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/Cb2TyV7ECI33oz2rQZp7xpkRM8v9WRWFmzZ8AGqkMp-_S4t6lWG7K6elbuUqNr7n4jZUaNnZ=s900-c-k-c0x00ffffff-no-rj", "handle": "kakapo_ball0807", "followers": 124, "posts30": 0, "medViews": null, "eng": null}, {"name": "空白ボール", "slug": "空白ボール", "color": "#cc903e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/WeNh2IDx_Z9QdcRDdjL8fa4l-TaumGKnq_5GBb5tW63lVv9BiPxfXjCtnG6Az_UQnUUB8wQ5yes=s900-c-k-c0x00ffffff-no-rj", "handle": "spaceball9314", "followers": 122, "posts30": 2, "medViews": 106, "eng": 3.77}, {"name": "レイアルファ", "slug": "レイアルファ", "color": "#db4f57", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/TVNAN6bSZZHGvc7hYhLs6Gnn95EKhcWj5GwqbWN00HAFA8SmXjUyKXQK6D4Ljl_S9A_8eaHn-Lk=s900-c-k-c0x00ffffff-no-rj", "handle": "RayAlpha0", "followers": 103, "posts30": 51, "medViews": 302, "eng": 2.75}, {"name": "天川 蒼", "slug": "天川-蒼", "color": "#d45ea9", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/63Fpi8JlajXPXsdNjqlWOkEgcXu34tmR_KAqSqvAwcRNITSlK4hCz8KpphFjAhMsUcakxNiA=s900-c-k-c0x00ffffff-no-rj", "handle": "draw1225", "followers": 103, "posts30": 11, "medViews": 90, "eng": 0.0}, {"name": "ニイソビボール", "slug": "ニイソビボール", "color": "#3ecc9a", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/6kNTcgyQoqKpJXAdlXxlGXFoV4yBd8REYo2wnJNR9j2VbUmvtKRh4M4vfXbjazVcni6_tzWx=s900-c-k-c0x00ffffff-no-rj", "handle": "Nisv_ball", "followers": 100, "posts30": 4, "medViews": 208, "eng": 4.2}, {"name": "から揚げボール 永遠の24歳学生", "slug": "から揚げボール-永遠の24歳学生", "color": "#ccc43e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/m_lr_JlyEJyu5EsfW2zRmvIaPoHgIEMkaxk7H71Azj8zXbatD6EUwRgUDZM3XAta6xxdBFH-Ww=s900-c-k-c0x00ffffff-no-rj", "handle": "karaageball810", "followers": 98, "posts30": 0, "medViews": null, "eng": null}, {"name": "ゆの59乗(ゆ⁵⁹)", "slug": "ゆの59乗ゆ⁵⁹", "color": "#5ed4cc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/0rSWsGfvjKWthActZxUstPL3wtvusXqN7P8GrK5OBi5uwnre_Z6gRgG-bhCJDvt-pgWDUq6R=s900-c-k-c0x00ffffff-no-rj", "handle": "yu59pow", "followers": 94, "posts30": 18, "medViews": 361, "eng": 4.58}, {"name": "なぽりたんぼーる!!", "slug": "なぽりたんぼーる", "color": "#5ed46e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/cgKkkofz-kGsbqVy2T6imA2bHpnVt2dT5fWXi8lePnlHa6p_KyhQCJ63Al_qjzB09nAGRrcOpg=s900-c-k-c0x00ffffff-no-rj", "handle": "jaadfxyz", "followers": 92, "posts30": 0, "medViews": null, "eng": null}, {"name": "おもちすたん", "slug": "おもちすたん", "color": "#cc3e79", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/fzkyIy9z3sbL_dOnQXGEnXtXSjAmsKk6gzGmSPgsA6OM5GdlXkBAmCr5wQN4llq_oF3UCpqrx6Y=s900-c-k-c0x00ffffff-no-rj", "handle": "omochi_ball", "followers": 83, "posts30": 0, "medViews": null, "eng": null}, {"name": "東トルキスタンボール", "slug": "東トルキスタンボール", "color": "#b63ecc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/W2OQUuU2k1jXKfUVPRWKakalgRNpqLru73npMGx5OH8rmzeWgrIiV1Kfll9_21Ep7ThG2-Hx=s900-c-k-c0x00ffffff-no-rj", "handle": "Tamashohsm", "followers": 74, "posts30": 9, "medViews": 143, "eng": 3.5}, {"name": "UC_IzkKwIVaYriFZS9ULlaog", "slug": "uc_izkkwivayrifzs9ullaog", "color": "#d4c45e", "genre": "ポーランドボーラー", "avatar": "", "handle": "satouMID", "followers": 72, "posts30": 17, "medViews": 212, "eng": 1.55}, {"name": "海ボール", "slug": "海ボール", "color": "#5e89d4", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/GiDz0I4WeuAoMqkY9Ry5bbsCNalYe-uARI5q2xjM7wqfORgaZpCNigm4ssQoWK6brrOIZLN48g=s900-c-k-c0x00ffffff-no-rj", "handle": "BallSea33287", "followers": 65, "posts30": 0, "medViews": null, "eng": null}, {"name": "カチューシャぼーる☭\n", "slug": "カチューシャぼーる", "color": "#3ecc6b", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/tSmyaWZrktnxX7mi3Lp4JpIMaiKER9c0OhB1qjyse1ndqTYJbX2dzSenXnB0n4hvew16HyvWbA=s900-c-k-c0x00ffffff-no-rj", "handle": "084pd", "followers": 63, "posts30": 45, "medViews": 261, "eng": 2.4}, {"name": "MIKUボール", "slug": "mikuボール", "color": "#d4b55e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/6w7QBnmhG0QOmG33OrGsxQR2cM7u-_izyc_BizYXJzvu-1MbSW2UC3X8T15rWcyY9TTgmRuYZQ=s900-c-k-c0x00ffffff-no-rj", "handle": "MIKUball_pber", "followers": 52, "posts30": 10, "medViews": 88, "eng": 2.94}, {"name": "旧食DX", "slug": "旧食dx", "color": "#533ecc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/eS59gj4sUqncdlk0_nSnxkfIKeKASy0K5CwgIpOHv4JM4KR3XSMKM_uhXloSzt8vcLds6FiJjIA=s900-c-k-c0x00ffffff-no-rj", "handle": "DX2125061761727", "followers": 51, "posts30": 0, "medViews": null, "eng": null}, {"name": "【PB】ネオンボール", "slug": "pbネオンボール", "color": "#cc3e82", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj", "handle": "NeonBall_PB", "followers": 50, "posts30": 6, "medViews": 134, "eng": 3.36}, {"name": "みすい", "slug": "みすい", "color": "#3e5ccc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mEFejHxzV7lmfvxIMJz-krJvB48MIVxrO7k1o2bFtriOZWGGM439fABQ2QNGlmeMR-t5B9=s900-c-k-c0x00ffffff-no-rj", "handle": "aamazidehima", "followers": 47, "posts30": 2, "medViews": 141, "eng": 2.74}, {"name": "ポルスカ速報", "slug": "ポルスカ速報", "color": "#3e8ccc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/HELcQkx-Jbh1xsZY2NINImepeGpl29LpnBm8LusJmyzCAA2g1X3R5JsQDebniGz_j0DXUWMGfA=s900-c-k-c0x00ffffff-no-rj", "handle": "Polska_PB", "followers": 44, "posts30": 13, "medViews": 111, "eng": 2.37}, {"name": "ядc!…………………………連邦", "slug": "ядc連邦", "color": "#cc9a3e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/g13ID4VckW_VQ88oVO3M4suczdNRxKiRg_8x1mKiyCB47w4P2Z9MFFa5-fTIs8ZKWYtPQXJZuA=s900-c-k-c0x00ffffff-no-rj", "handle": "foitasa", "followers": 43, "posts30": 4, "medViews": 187, "eng": 1.6}, {"name": "セフィルぼーる‼︎", "slug": "セフィルぼーる", "color": "#815ed4", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/HSCQnokZVxhiCR-7vyTJA-4vvznf-NuT5Kal3GwnJbTMv3rvRKzEjwRPWOiLPiwoDcbij7-shQ=s900-c-k-c0x00ffffff-no-rj", "handle": "Sefil_Ball", "followers": 36, "posts30": 0, "medViews": null, "eng": null}, {"name": "ていてく", "slug": "ていてく", "color": "#d4915e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/yXzwjLvaGxqpUYtLPiq0eehCASXpPn1dhRiTBpE5Z_PcwOdTSTF1lu7uEPzHcM-2o2Jv417b5w=s900-c-k-c0x00ffffff-no-rj", "handle": "TeitekuPBer", "followers": 36, "posts30": 0, "medViews": null, "eng": null}, {"name": "TTボール", "slug": "ttボール", "color": "#6bcc3e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/Jyb_uPlk9ssENZe3msLyrrbjmcOI5zimVCAi-itbq0gbYxltaXY5IDwxqUcPzsX9-S-X5e89gx0=s900-c-k-c0x00ffffff-no-rj", "handle": "TTboru2025", "followers": 36, "posts30": 0, "medViews": null, "eng": null}, {"name": "パワーポイントボール", "slug": "パワーポイントボール", "color": "#d4c05e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/juW0175zlu8wVi5Nzp1V9it_-O1w5S8gvypZz23u-7EIZ7H41QF_ofqQDfjB_SrUdqRZ8WOM6Q=s900-c-k-c0x00ffffff-no-rj", "handle": "powerpoint_ball", "followers": 36, "posts30": 2, "medViews": 117, "eng": 3.02}, {"name": "こち", "slug": "こち", "color": "#bcd45e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/S-X6rVQMAiP07lsd0nG7nhjLHve2JvpB41u7Jk0gpbT_YB6s3pG4Fz1jcfHiaRy44IlPUAnofQs=s900-c-k-c0x00ffffff-no-rj", "handle": "koti2116", "followers": 35, "posts30": 4, "medViews": 44, "eng": 4.93}, {"name": "ぴくろす", "slug": "ぴくろす", "color": "#91d45e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/R5Hi38Yy_E05WoCxZZMME7iv1sdUgAhUTBAlkBHKmNWairzMuzn4EMJvYpL7aJycNuG4SHKeEA=s900-c-k-c0x00ffffff-no-rj", "handle": "tyurumeeen", "followers": 33, "posts30": 0, "medViews": null, "eng": null}, {"name": "わのさち【和の幸】", "slug": "わのさち和の幸", "color": "#bb3ecc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/sa2_oq5pSFp0qtqAOo0T2P_IVLq7UdddgxohTNFYpGAPKqf4x-RZJeYW9sJjtcAVWy2IMDrVpg=s900-c-k-c0x00ffffff-no-rj", "handle": "wanosati_PB", "followers": 24, "posts30": 0, "medViews": null, "eng": null}, {"name": "マスカットボール", "slug": "マスカットボール", "color": "#cc3e53", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/0LFy0gzQnjYCPHXvDJpUTOtKyZoSi6UGXTRQs1_FWE2Or_MqTKViIHNrO7cK33ob-lq5snr_xCE=s900-c-k-c0x00ffffff-no-rj", "handle": "muscatball2", "followers": 21, "posts30": 0, "medViews": null, "eng": null}, {"name": "ソビエトボールUSSR", "slug": "ソビエトボールussr", "color": "#d45ecc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/oQR3FLSbYKMQi1K_7qkk8PVfmLILRrYecaE-8XC2kKcQiazxJwzRa-yCeX6OxqgbmJ07vNTC=s900-c-k-c0x00ffffff-no-rj", "handle": "nageimo120", "followers": 21, "posts30": 1, "medViews": 24, "eng": 0.0}, {"name": "まるぼーるch ", "slug": "まるぼーるch", "color": "#cc3eb6", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/plXugBe_yne07EdTN2A5rq-5NpdGZp33xpvpmlwkItY6AH-tPC0sjllPf2WK6wcwBL2quhIOFw=s900-c-k-c0x00ffffff-no-rj", "handle": "marubooru", "followers": 18, "posts30": 0, "medViews": null, "eng": null}, {"name": "ひまぐれ", "slug": "ひまぐれ", "color": "#d4bc5e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/PFpcnuGhdq_D-oEISebsbhi2s1WWnKIWAsEnuWqeVZ5wWrOMiEaVVyn4ajXgfCiJLJSnxx_a55s=s900-c-k-c0x00ffffff-no-rj", "handle": "midorina_zasso", "followers": 15, "posts30": 6, "medViews": 48, "eng": 2.95}, {"name": "Türkiye👑キプロスball", "slug": "türkiyeキプロスball", "color": "#7d5ed4", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/WBViJaIICezH_uSU7qpm3-mZ6dwuAlZ59RE4LPIFWt-jg8a2U_zJNpFKr0yPh4kcAU9ayn8j=s900-c-k-c0x00ffffff-no-rj", "handle": "Piinatsu_2gou", "followers": 14, "posts30": 0, "medViews": null, "eng": null}, {"name": "炭火焼き", "slug": "炭火焼き", "color": "#d45e85", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/gk9_UdLk_1Ljo0YtH3dFvFZfdywxlXC1l1XfJ2zA054iHW7UdOLMIYWg4VsmDK1UI2rlHaDC2HE=s900-c-k-c0x00ffffff-no-rj", "handle": "Sumisu88888888", "followers": 13, "posts30": 0, "medViews": null, "eng": null}, {"name": "さんどいつちball!!", "slug": "さんどいつちball", "color": "#3e87cc", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/xwLdIb5B7k9l-4yfeHOTrTl9kJgtGCK35VfJ0Efs83bzU_HLtR401SYql-QiqQ_ryn5BF-SSmw=s900-c-k-c0x00ffffff-no-rj", "handle": "sandoicchida", "followers": 8, "posts30": 0, "medViews": null, "eng": null}, {"name": "そあボール", "slug": "そあボール", "color": "#d46e5e", "genre": "ポーランドボーラー", "avatar": "https://yt3.googleusercontent.com/1AOGBu24yxa959outr-59IAyQ5LVfWIiysw2FAQDMDK_urEuXXH21dF9IQFSbDSswnuYgGc=s900-c-k-c0x00ffffff-no-rj", "handle": "soa_ball", "followers": 8, "posts30": 4, "medViews": 21, "eng": 0.0}];
 window.PBERS_FEATURED = {"vid": "Jj48V0yJHsY", "title": "イギリス容疑者約束不履行で逮捕【ポーランドボール】", "published": "2026-11-13T10:17:11+00:00", "cid": "UCVYMXYU6j0M5Gj1xwywKDyg"};
