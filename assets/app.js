@@ -1245,6 +1245,32 @@
     if (location.pathname + location.search !== u) history.pushState({ view: boardView() }, '', u);
     renderBoard();
   }
+  // 読んだ位置(スレごとの最後に見たレス番号)。開き直した時に続きから読めるよう localStorage に覚える
+  var READ_KEY = 'pbers_read_pos', READ_MAX = 300, boardThreadJump = false;
+  function readPosAll() { try { return JSON.parse(localStorage.getItem(READ_KEY) || '{}') || {}; } catch (e) { return {}; } }
+  function readPosOf(id) { var r = readPosAll()[id]; return r ? r[0] : 0; }
+  function saveReadPos(id, no) {
+    var all = readPosAll();
+    all[id] = [no, Date.now()];
+    var ks = Object.keys(all);
+    if (ks.length > READ_MAX) {   // 古く開いたスレから捨てる
+      ks.sort(function (a, b) { return all[a][1] - all[b][1]; });
+      ks.slice(0, ks.length - READ_MAX).forEach(function (k) { delete all[k]; });
+    }
+    try { localStorage.setItem(READ_KEY, JSON.stringify(all)); } catch (e) {}
+  }
+  function jumpToRead(host, target) {   // 続きの位置へ移動。上の画像が後から読み込まれてずれたら合わせ直す(自分で動かしたらやめる)
+    var moved = false, stop = function () { moved = true; };
+    var go = function () { if (!moved && document.body.contains(target)) target.scrollIntoView({ block: 'start', behavior: 'instant' }); };   // html の smooth を打ち消して一瞬で
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) { window.addEventListener(ev, stop, { once: true, passive: true }); });
+    go();
+    var onLoad = function (e) { if (e.target && e.target.tagName === 'IMG') go(); };
+    host.addEventListener('load', onLoad, true);
+    setTimeout(function () {
+      host.removeEventListener('load', onLoad, true);
+      ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) { window.removeEventListener(ev, stop); });
+    }, 4000);
+  }
   // 自分のスレ/レスに新着返信が付いたら知らせる(匿名なのでlocalStorageで「自分が関わったスレ」を記憶)
   var boardThreadsCache = [];
   function myThreads() { try { return JSON.parse(localStorage.getItem('pbers_my_threads') || '{}'); } catch (e) { return {}; } }
@@ -1403,7 +1429,7 @@
     if (!boardEnabled) { host.innerHTML = '<div class="board-empty">準備中です。</div>'; return; }
     boardSyncFromUrl();
     mountBoardAd();   // 掲示板を開いた時だけ広告を1回ロード(他タブでは読み込まない)
-    if (boardThreadId) renderThread(host, boardThreadId); else renderThreadList(host);
+    if (boardThreadId) { boardThreadJump = true; renderThread(host, boardThreadId); } else renderThreadList(host);
   }
   function renderThreadList(host) {
     host.innerHTML =
@@ -1921,6 +1947,10 @@
     fetch(boardApi('/thread') + '?id=' + id, { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
       if (d.error) { host.innerHTML = '<button class="th-back">← スレ一覧</button><div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; back(); return; }
       var posts = d.posts || [];
+      var jump = boardThreadJump; boardThreadJump = false;   // 一覧/URLから開いた時だけ続きへ移動(返信・投票後の再描画では動かさない)
+      var lastNo = posts.length ? posts[posts.length - 1].no : 0;
+      var prevNo = jump ? readPosOf(id) : 0;
+      var newFrom = (prevNo && lastNo > prevNo) ? prevNo : 0;   // これより後ろが前回以降の新着
       var wantV = tagKey(d.tag) === 'zatsudan' ? 'zatsudan' : 'board';   // 雑談スレは /zatsudan/ 側で開く(タグ変更後も追従)
       if (wantV !== currentView && isBoardV(currentView)) {
         currentView = wantV; markTabs(wantV); boardTitle(); boardHead();
@@ -1937,9 +1967,11 @@
         pollHtml(d.poll) +
         sheetHtml(d.sheet) +
         '<div class="posts">' + posts.map(function (p) {
+          var mark = (newFrom && p.no > newFrom) ? '<div class="post-newmark" id="post-newmark"><span>ここから新着 ' + (lastNo - newFrom) + '件</span></div>' : '';
+          if (mark) newFrom = 0;   // 区切りは最初の1回だけ
           var del = !p.body;                                   // 本文が空=削除済み
           var canDel = !del && !!delKeyOf(id, p.no);           // 自分の投稿(削除キーを持っている)なら削除可
-          return '<div class="post' + (p.hidden ? ' bc-off' : '') + (p.admin ? ' post-adm' : '') + (del ? ' post-del' : '') + '" id="post-' + p.no + '">' +
+          return mark + '<div class="post' + (p.hidden ? ' bc-off' : '') + (p.admin ? ' post-adm' : '') + (del ? ' post-del' : '') + '" id="post-' + p.no + '">' +
             '<div class="post-head"><span class="post-no num">' + p.no + '</span>' +
               '<span class="post-name">' + esc(p.name) + '</span>' +
               (p.admin ? '<span class="post-badge">★管理人</span>' : '') +
@@ -1976,6 +2008,11 @@
         });
       })();
       resolveImgAlbums(host);   // imgurアルバムの代表画像を後から埋める
+      if (lastNo) saveReadPos(id, Math.max(lastNo, readPosOf(id)));
+      if (jump && prevNo) {   // 前に開いたスレ: 新着があればその頭へ、無ければ最後のレスへ
+        var tgt = document.getElementById('post-newmark') || document.getElementById('post-' + Math.min(prevNo, lastNo));
+        if (tgt) jumpToRead(host, tgt);
+      }
       if (d.admin) { wireHide(host); wireAdminMod(host, function () { renderThread(host, id); }); }
       host.querySelectorAll('.anchor').forEach(function (a) {
         a.addEventListener('click', function () { jumpToPost(a.dataset.no); });
