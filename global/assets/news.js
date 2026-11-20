@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-21",
+    "label": "11月21日(土)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "Black soybean",
+        "color": "#45cc3e",
+        "avatar": "https://yt3.googleusercontent.com/Fq2WaT3jPJsd0hxzgzZO484Ah9g77GAQOaqcg0ABnIHlffSywrWJM58UljoY8RKxWPeU-AnOEA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 3万人 突破",
+        "value": 30000
+      }
+    ]
+  },
+  {
     "date": "2026-11-20",
     "label": "11月20日(金)",
     "items": []
@@ -40,22 +57,5 @@ window.PBERS_NEWS = [
     "date": "2026-11-15",
     "label": "11月15日(日)",
     "items": []
-  },
-  {
-    "date": "2026-11-14",
-    "label": "11月14日(土)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "Black soybean",
-        "color": "#45cc3e",
-        "avatar": "https://yt3.googleusercontent.com/Fq2WaT3jPJsd0hxzgzZO484Ah9g77GAQOaqcg0ABnIHlffSywrWJM58UljoY8RKxWPeU-AnOEA=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 100本 突破",
-        "value": 100
-      }
-    ]
   }
 ];

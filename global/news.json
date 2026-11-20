@@ -1,9 +1,21 @@
 {
   "site": "PBers Global",
-  "updated": "2026-11-20",
-  "generated": "2026-11-20T08:00:15+09:00",
+  "updated": "2026-11-21",
+  "generated": "2026-11-21T07:34:47+09:00",
   "count": 2,
   "items": [
+    {
+      "id": "2026-11-21/subs/black-soybean/30000",
+      "date": "2026-11-21",
+      "channel": "Black soybean",
+      "slug": "black-soybean",
+      "metric": "subs",
+      "type": "milestone",
+      "label": "登録者 3万人 突破",
+      "value": 30000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/black-soybean/"
+    },
     {
       "id": "2026-11-18/views/moon-ball/40000000",
       "date": "2026-11-18",
@@ -15,18 +27,6 @@
       "value": 40000000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/global/c/moon-ball/"
-    },
-    {
-      "id": "2026-11-14/videos/black-soybean/100",
-      "date": "2026-11-14",
-      "channel": "Black soybean",
-      "slug": "black-soybean",
-      "metric": "videos",
-      "type": "milestone",
-      "label": "投稿数 100本 突破",
-      "value": 100,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/global/c/black-soybean/"
     }
   ]
 }

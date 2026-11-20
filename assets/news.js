@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-21",
+    "label": "11月21日(土)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "まるッとわかる地理の裏話",
+        "color": "#5e6ad4",
+        "avatar": "https://yt3.googleusercontent.com/OKTvYCqWkuYG-s3iq1dydM6YDas44QIY_hQxl1bPLPQbGzbLUe-ljaKZ4AoJu1kb1r2PI0GPXnI=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 2万人 突破",
+        "value": 20000
+      }
+    ]
+  },
+  {
     "date": "2026-11-20",
     "label": "11月20日(金)",
     "items": []
@@ -136,23 +153,6 @@ window.PBERS_NEWS = [
         "name": "ひまぐれ",
         "color": "#d4bc5e",
         "avatar": "https://yt3.googleusercontent.com/PFpcnuGhdq_D-oEISebsbhi2s1WWnKIWAsEnuWqeVZ5wWrOMiEaVVyn4ajXgfCiJLJSnxx_a55s=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 200万回 突破",
-        "value": 2000000
-      }
-    ]
-  },
-  {
-    "date": "2026-11-14",
-    "label": "11月14日(土)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ポルスカ速報",
-        "color": "#3e8ccc",
-        "avatar": "https://yt3.googleusercontent.com/HELcQkx-Jbh1xsZY2NINImepeGpl29LpnBm8LusJmyzCAA2g1X3R5JsQDebniGz_j0DXUWMGfA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "総再生数 200万回 突破",
