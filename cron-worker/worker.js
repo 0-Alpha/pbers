@@ -80,6 +80,7 @@ export default {
     if (url.pathname === "/api/board/hide"    && req.method === "POST") return boardHide(req, env);
     if (url.pathname === "/api/board/purge"   && req.method === "POST") return boardPurge(req, env);
     if (url.pathname === "/api/board/ban"     && req.method === "POST") return boardBan(req, env);
+    if (url.pathname === "/api/board/bans"    && req.method === "GET")  return boardBans(req, env);
     if (url.pathname === "/api/board/imgur"   && req.method === "GET")  return imgurResolve(url, env);
 
     // ---- 記事(articles): note風エディタで直打ち保存 / Pages FunctionsがSSRで読む ----
@@ -427,8 +428,9 @@ function floodBody(body) {
   if (s.length < 30) return false;
   return new Set(Array.from(s)).size <= 2;
 }
-async function autoBanIp(env, iph, days) {   // IPを自動ban(既定3日で自動失効)
-  try { await env.PBERS_KV.put("bban:" + iph, "1", days > 0 ? { expirationTtl: days * 86400 } : undefined); } catch (e) {}
+async function autoBanIp(env, iph, days) {   // IPを自動ban(既定3日で自動失効)。metadata は ban一覧(管理者)用
+  const meta = { metadata: { t: Date.now(), d: days, r: "auto" } };
+  try { await env.PBERS_KV.put("bban:" + iph, "1", days > 0 ? { expirationTtl: days * 86400, ...meta } : meta); } catch (e) {}
 }
 async function urlSpamRecord(env, tokens, tid) {   // このスレでのURL出現を記録(TTL付き)
   const now = Date.now();
@@ -1102,10 +1104,45 @@ async function boardBan(req, env) {
   // 期間: days(日数)。既定3日、0で無期限。モバイルのIP使い回しによる巻き込み防止のため自動失効が既定。
   const days = (b.days === 0 || b.days === "0") ? 0 : (parseInt(b.days, 10) || 3);
   try {
-    if (on) await env.PBERS_KV.put("bban:" + iph, "1", days > 0 ? { expirationTtl: days * 86400 } : undefined);
+    const meta = { metadata: { t: Date.now(), d: days, r: "manual", uid: clean(b.uid, 8) || "" } };
+    if (on) await env.PBERS_KV.put("bban:" + iph, "1", days > 0 ? { expirationTtl: days * 86400, ...meta } : meta);
     else await env.PBERS_KV.delete("bban:" + iph);
   } catch (e) { return json({ error: "kv" }, 500); }
   return json({ ok: true, banned: on, iph, days: on ? days : 0 });
+}
+// 管理者: ban一覧。KV の bban:* を並べ、各IPハッシュの最後の書き込み(ID・名前・スレ)を添えて誰のbanか分かるようにする。
+// IPそのものは返さない。解除は /api/board/ban に {iph, on:false}。
+async function boardBans(req, env) {
+  if (!env.DB) return json({ error: "db_unconfigured" }, 503);
+  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  const keys = [];
+  let cursor;
+  try {
+    for (let i = 0; i < 5; i++) {
+      const r = await env.PBERS_KV.list({ prefix: "bban:", cursor });
+      keys.push(...r.keys);
+      if (r.list_complete) break;
+      cursor = r.cursor;
+    }
+  } catch (e) { return json({ error: "kv" }, 500); }
+  const rows = keys.map((k) => ({ iph: k.name.slice(5), exp: k.expiration ? k.expiration * 1000 : 0, meta: k.metadata || null }));
+  const last = {};
+  try { await env.DB.prepare("CREATE INDEX IF NOT EXISTS idx_board_posts_iph ON board_posts(ip_hash, created)").run(); } catch (e) {}
+  for (let i = 0; i < rows.length; i += 80) {   // D1のバインド上限に収まるよう分割
+    const part = rows.slice(i, i + 80).map((r) => r.iph);
+    const ph = part.map((_, j) => "?" + (j + 1)).join(",");
+    try {
+      const { results } = await env.DB.prepare(
+        "SELECT x.ip_hash, x.uid, x.name, x.created, x.thread_id, x.no, substr(x.body,1,80) AS body, x.cnt," +
+        " (SELECT t.title FROM board_threads t WHERE t.id=x.thread_id) AS title FROM (" +
+        "SELECT p.*, ROW_NUMBER() OVER (PARTITION BY p.ip_hash ORDER BY p.created DESC) AS rn, COUNT(*) OVER (PARTITION BY p.ip_hash) AS cnt" +
+        " FROM board_posts p WHERE p.ip_hash IN (" + ph + ")) x WHERE x.rn=1").bind(...part).all();
+      for (const r of (results || [])) last[r.ip_hash] = r;
+    } catch (e) {}
+  }
+  rows.forEach((r) => { r.last = last[r.iph] || null; });
+  rows.sort((a, b) => (a.exp ? 1 : 0) - (b.exp ? 1 : 0) || ((b.last && b.last.created) || 0) - ((a.last && a.last.created) || 0));
+  return json({ ok: true, bans: rows });
 }
 /* ページ表示回数: D1テーブル pageviews(page TEXT PRIMARY KEY, count INTEGER)。
  * ?page=<パス>&hit=1 で加算(重複はクライアント側でその日1回に制御)。?hit無しは閲覧のみ。 */

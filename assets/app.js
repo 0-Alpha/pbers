@@ -1491,12 +1491,13 @@
         BOARD_TAGS.map(function (k) { return '<button type="button" class="bd-tf" data-tf="' + k + '" style="--tc:' + TAGS[k].color + '">' + TAGS[k].label + '</button>'; }).join('') +
       '</div>') +
       (boardKey ? '<div class="bd-admin"><button type="button" class="bd-stats-btn" id="bd-stats-btn">📊 書き込み統計（管理者）</button>' +
+        '<button type="button" class="bd-stats-btn" id="bd-bans-btn">🚫 ban一覧・解除（管理者）</button>' +
         '<span class="bd-adctl" id="bd-adctl">広告プレビュー: ' +
           '<button type="button" class="bd-adb" data-ad="0">なし</button>' +
           '<button type="button" class="bd-adb" data-ad="3">3枠</button>' +
           '<button type="button" class="bd-adb" data-ad="5">5枠</button>' +
         '</span>' +
-        '<div class="bd-stats" id="bd-stats" hidden></div></div>' : '') +
+        '<div class="bd-stats" id="bd-stats" hidden></div><div class="bd-stats" id="bd-bans" hidden></div></div>' : '') +
       '<div class="board-list" id="board-threads"><div class="board-empty">読み込み中…</div></div>';
     document.getElementById('bt-name').value = boardName();
     var zl = document.getElementById('bd-zlink');
@@ -1788,6 +1789,55 @@
           '<div class="bs-tablewrap"><table class="bs-table"><thead><tr><th>#</th><th>ID(IP)</th><th>24h</th><th>3日</th><th>7日</th><th>7日比</th><th>使用ID(uid)</th></tr></thead><tbody>' +
           body + '</tbody></table></div>' +
           '<div class="bs-note">※ IP由来のハッシュで同一人物を推定（日替りIDは別集計）。40%以上は色付き。</div>';
+      }).catch(function () { panel.innerHTML = '<div class="board-empty">通信に失敗しました。</div>'; });
+    });
+    // 管理者専用: ban一覧と解除。IPは出さず、そのIPの最後の書き込み(ID・名前・スレ)で誰か判断する
+    var bansBtn = document.getElementById('bd-bans-btn');
+    if (bansBtn) bansBtn.addEventListener('click', function () {
+      var panel = document.getElementById('bd-bans');
+      if (!panel.hidden) { panel.hidden = true; return; }
+      panel.hidden = false; panel.innerHTML = '<div class="board-empty">読み込み中…</div>';
+      fetch(boardApi('/bans'), { headers: boardHeaders() }).then(function (r) { return r.json(); }).then(function (d) {
+        if (!d.ok) { panel.innerHTML = '<div class="board-empty">' + esc(boardErr(d.error)) + '</div>'; return; }
+        var bans = d.bans || [];
+        if (!bans.length) { panel.innerHTML = '<div class="board-empty">banされている回線はありません。</div>'; return; }
+        var forever = bans.filter(function (b) { return !b.exp; }).length;
+        panel.innerHTML = '<div class="bs-sum">ban中 <b>' + bans.length + '</b>回線（うち無期限 <b>' + forever + '</b>）</div>' +
+          '<div class="bn-list">' + bans.map(function (b) {
+            var L = b.last, m = b.meta || {};
+            var why = m.r === 'auto' ? '自動（名前）' : m.r === 'manual' ? '手動' : '';
+            return '<div class="bn-row" data-iph="' + esc(b.iph) + '">' +
+              '<div class="bn-main">' +
+                '<div class="bn-top"><span class="bn-exp' + (b.exp ? '' : ' bn-forever') + '">' + (b.exp ? bWhen(b.exp) + ' まで' : '無期限') + '</span>' +
+                  (why ? '<span class="bn-why">' + why + (m.t ? ' ・ ' + bWhen(m.t) : '') + '</span>' : '') + '</div>' +
+                (L ? '<div class="bn-who">最後の書き込み: <b>' + esc(L.name || '名無し') + '</b>' + (L.uid ? ' <span class="num">ID:' + esc(L.uid) + '</span>' : '') +
+                      ' ・ ' + bWhen(L.created) + ' ・ 計' + L.cnt + '件</div>' +
+                     '<a class="bn-th" href="' + pathOf('board') + '?t=' + L.thread_id + '">' + esc(L.title || 'スレ#' + L.thread_id) + ' &gt;&gt;' + L.no + '</a>' +
+                     (L.body ? '<div class="bn-body">' + esc(L.body) + '</div>' : '')
+                   : '<div class="bn-who">このIPの書き込みは残っていません</div>') +
+              '</div>' +
+              '<button type="button" class="bmod bn-un">解除</button></div>';
+          }).join('') + '</div>' +
+          '<div class="bs-note">※ banは回線(IP)単位。表示しているのはそのIPから最後に書かれたレス。</div>';
+        panel.querySelectorAll('.bn-un').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var row = btn.closest('.bn-row');
+            if (!confirm('このbanを解除しますか？')) return;
+            btn.disabled = true;
+            fetch(boardApi('/ban'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
+              body: JSON.stringify({ iph: row.dataset.iph, on: false }) })
+              .then(function (r) { return r.json(); }).then(function (r) {
+                if (r.ok) { row.classList.add('bn-done'); btn.textContent = '解除しました'; }
+                else { btn.disabled = false; alert(boardErr(r.error)); }
+              }).catch(function () { btn.disabled = false; alert('通信に失敗しました'); });
+          });
+        });
+        panel.querySelectorAll('.bn-th').forEach(function (a) {
+          a.addEventListener('click', function (e) {
+            if (e.ctrlKey || e.metaKey || e.shiftKey || e.button) return;
+            e.preventDefault(); boardGo(+a.getAttribute('href').split('?t=')[1]);
+          });
+        });
       }).catch(function () { panel.innerHTML = '<div class="board-empty">通信に失敗しました。</div>'; });
     });
     function doSearch(q) {

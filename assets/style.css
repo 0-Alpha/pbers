@@ -1754,3 +1754,19 @@ section.block#dash-vote{padding:0}
 /* ---- 掲示板: 前回の続き(ここから新着) ---- */
 .post-newmark{display:flex;align-items:center;gap:10px;margin:6px 0 2px;scroll-margin-top:120px;color:var(--red);font-size:12.5px;font-weight:800}
 .post-newmark::before,.post-newmark::after{content:"";flex:1;height:2px;background:var(--red);opacity:.55}
+
+/* ---- 掲示板: ban一覧(管理者) ---- */
+#bd-bans-btn{margin-left:8px}
+.bn-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.bn-row{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+.bn-row.bn-done{opacity:.45}
+.bn-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;font-size:13px}
+.bn-top{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.bn-exp{font-weight:800}
+.bn-forever{color:var(--red)}
+.bn-why,.bn-who{color:var(--muted);font-size:12.5px}
+.bn-who b{color:var(--text)}
+.bn-th{color:var(--text);font-weight:700;text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bn-th:hover{text-decoration:underline}
+.bn-body{color:var(--muted);font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bn-un{flex:none}
