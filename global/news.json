@@ -1,8 +1,8 @@
 {
   "site": "PBers Global",
   "updated": "2026-11-21",
-  "generated": "2026-11-21T10:49:56+09:00",
-  "count": 2,
+  "generated": "2026-11-22T06:03:21+09:00",
+  "count": 4,
   "items": [
     {
       "id": "2026-11-21/subs/black-soybean/30000",
@@ -15,6 +15,30 @@
       "value": 30000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/global/c/black-soybean/"
+    },
+    {
+      "id": "2026-11-21/views/áíšaispoaporu/100000000",
+      "date": "2026-11-21",
+      "channel": "áíš!aispoaporu",
+      "slug": "áíšaispoaporu",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 1億回 突破",
+      "value": 100000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/%C3%A1%C3%AD%C5%A1aispoaporu/"
+    },
+    {
+      "id": "2026-11-21/views/operajp/1000000",
+      "date": "2026-11-21",
+      "channel": "OperaJP",
+      "slug": "operajp",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 100万回 突破",
+      "value": 1000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/operajp/"
     },
     {
       "id": "2026-11-18/views/moon-ball/40000000",

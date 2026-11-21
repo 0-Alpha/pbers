@@ -1,18 +1,45 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-22",
+    "label": "11月22日(日)",
+    "items": []
+  },
+  {
     "date": "2026-11-21",
     "label": "11月21日(土)",
     "items": [
       {
         "type": "milestone",
         "kind": "subs",
+        "name": "Æž!フヒフム",
+        "color": "#9b51e0",
+        "avatar": "https://yt3.googleusercontent.com/o0-EijPjZl_g0OcDfSJdv78d6uG6Ba0RxPPeI4spBOdIZqL842tVa_BsE8_cNxZLHRwd8PmZEA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 43万人 突破",
+        "value": 430000
+      },
+      {
+        "type": "milestone",
+        "kind": "subs",
         "name": "まるッとわかる地理の裏話",
-        "color": "#5e6ad4",
+        "color": "#3ec9cc",
         "avatar": "https://yt3.googleusercontent.com/OKTvYCqWkuYG-s3iq1dydM6YDas44QIY_hQxl1bPLPQbGzbLUe-ljaKZ4AoJu1kb1r2PI0GPXnI=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "登録者 2万人 突破",
         "value": 20000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "カチューシャぼーる☭\n",
+        "color": "#a1d45e",
+        "avatar": "https://yt3.googleusercontent.com/tSmyaWZrktnxX7mi3Lp4JpIMaiKER9c0OhB1qjyse1ndqTYJbX2dzSenXnB0n4hvew16HyvWbA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 800万回 突破",
+        "value": 8000000
       }
     ]
   },
@@ -68,7 +95,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "練乳=ソビエト共和国ぼーる",
-        "color": "#a1d45e",
+        "color": "#cc8c3e",
         "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -129,7 +156,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "videos",
         "name": "ねとえん",
-        "color": "#74cc3e",
+        "color": "#5ed499",
         "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -142,22 +169,5 @@ window.PBERS_NEWS = [
     "date": "2026-11-16",
     "label": "11月16日(月)",
     "items": []
-  },
-  {
-    "date": "2026-11-15",
-    "label": "11月15日(日)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "ひまぐれ",
-        "color": "#d4bc5e",
-        "avatar": "https://yt3.googleusercontent.com/PFpcnuGhdq_D-oEISebsbhi2s1WWnKIWAsEnuWqeVZ5wWrOMiEaVVyn4ajXgfCiJLJSnxx_a55s=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 200万回 突破",
-        "value": 2000000
-      }
-    ]
   }
 ];

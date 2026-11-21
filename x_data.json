@@ -13,17 +13,17 @@
     "protected": false,
     "posts30": 2,
     "sample": 3,
-    "med_views": 2887,
-    "med_likes": 132,
-    "eng": 4.74,
+    "med_views": 2925,
+    "med_likes": 133,
+    "eng": 4.72,
     "top": {
       "url": "https://x.com/fuhifum/status/2112800843242275053",
-      "views": 3611,
-      "likes": 152,
+      "views": 3641,
+      "likes": 153,
       "created": 1792565949,
       "text": "3日くらいかけて架空世界の夜空シミュレーター作ってた\n歳差運動と自転周期の変化を導入するのが難しかった\nGeminiと相談してプログラム書いてもらいながら3日だ"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "tnk_mid559",
@@ -37,65 +37,71 @@
     "avatar": "https://pbs.twimg.com/profile_images/2053057750897426432/0-ZmEW58_200x200.jpg",
     "joined": "Tue Jun 03 11:22:12 +0000 2025",
     "protected": false,
-    "posts30": 0,
-    "sample": 0,
-    "med_views": null,
-    "med_likes": null,
-    "eng": null,
-    "top": null,
-    "fetched": 1795213213
+    "posts30": 4,
+    "sample": 4,
+    "med_views": 357,
+    "med_likes": 13,
+    "eng": 3.83,
+    "top": {
+      "url": "https://x.com/tnk_mid559/status/2114709610049544360",
+      "views": 462,
+      "likes": 18,
+      "created": 1793021035,
+      "text": "英検二級に挑戦する"
+    },
+    "fetched": 1795294770
   },
   {
     "handle": "sattoa_ball",
     "cid": "UC_qD8VahU0Fr3q1SKg6kYtg",
     "name": "さとボール",
-    "followers": 2893,
+    "followers": 2894,
     "following": 160,
-    "posts": 1515,
+    "posts": 1516,
     "likes": 20,
-    "media": 390,
+    "media": 391,
     "avatar": "https://pbs.twimg.com/profile_images/2113498442773467136/Yr6boTDW_200x200.jpg",
     "joined": "Wed Nov 16 10:27:17 +0000 2022",
     "protected": false,
     "posts30": 75,
-    "sample": 75,
-    "med_views": 7996,
-    "med_likes": 118,
+    "sample": 74,
+    "med_views": 7876,
+    "med_likes": 114,
     "eng": 1.59,
     "top": {
       "url": "https://x.com/sattoa_ball/status/2118672438754156864",
-      "views": 644779,
+      "views": 646565,
       "likes": 4421,
       "created": 1793965847,
       "text": "2026年の新語・流行語大賞、ノミネート30語に全く納得がいかねぇから勝手に30語選び直してみた"
     },
-    "fetched": 1795128319
+    "fetched": 1795294770
   },
   {
     "handle": "Sait_O_Neille",
     "cid": "UCxKNMaOOdi32HNUFTOCw-8w",
     "name": "Neille / ナユ",
-    "followers": 177,
+    "followers": 179,
     "following": 16,
-    "posts": 186,
-    "likes": 1331,
+    "posts": 188,
+    "likes": 1338,
     "media": 11,
     "avatar": "https://pbs.twimg.com/profile_images/2059560942787231744/EoiDkD4u_200x200.jpg",
     "joined": "Thu Apr 09 08:02:33 +0000 2026",
     "protected": false,
     "posts30": 13,
     "sample": 14,
-    "med_views": 657,
+    "med_views": 659,
     "med_likes": 15,
-    "eng": 2.81,
+    "eng": 2.8,
     "top": {
       "url": "https://x.com/Sait_O_Neille/status/2114994565921095698",
-      "views": 416405,
+      "views": 416406,
       "likes": 2719,
       "created": 1793088973,
       "text": "日本には、0～100までいます。\n\nドイツには、10～90までいます。\n\nアメリカには、-100～200までいます。\n\n中国には、-5000～50000までいま"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "Swikaball",
@@ -104,24 +110,24 @@
     "followers": 1770,
     "following": 1673,
     "posts": 2828,
-    "likes": 124527,
+    "likes": 124524,
     "media": 255,
     "avatar": "https://pbs.twimg.com/profile_images/1563739240206192640/myMqg21F_200x200.jpg",
     "joined": "Fri Jun 10 14:16:59 +0000 2022",
     "protected": false,
     "posts30": 2,
     "sample": 2,
-    "med_views": 135,
+    "med_views": 137,
     "med_likes": 5,
-    "eng": 3.6,
+    "eng": 3.55,
     "top": {
       "url": "https://x.com/Swikaball/status/2115867508846805084",
-      "views": 147,
+      "views": 149,
       "likes": 7,
       "created": 1793297099,
       "text": "太平洋の島々を眺めてたらこの全部には一生かけても行けないことを理解してしまって人生の短さを恨んだ"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "nittei_ball",
@@ -141,7 +147,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "BallYukkuri",
@@ -157,17 +163,17 @@
     "protected": false,
     "posts30": 2,
     "sample": 2,
-    "med_views": 2545,
+    "med_views": 2570,
     "med_likes": 114,
-    "eng": 5.37,
+    "eng": 5.32,
     "top": {
       "url": "https://x.com/BallYukkuri/status/2115774944802116065",
-      "views": 3420,
+      "views": 3442,
       "likes": 166,
       "created": 1793275030,
       "text": "お久しぶりでございます。\n長らく活動休止をしたため、ご心配をおかけしてしまい申し訳ありませんでした。\n精神状態はなんとか落ち着いたため、動画投稿は少しですが再開"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "tama2224",
@@ -187,13 +193,13 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "Sumisu88888888",
     "cid": "UCKCAWr6aCfgm9lLWmM7yEKQ",
     "name": "炭火焼き",
-    "followers": 13,
+    "followers": 14,
     "following": 11,
     "posts": 0,
     "likes": 0,
@@ -207,33 +213,33 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "084pd",
     "cid": "UCeVN-gQR83mALrvJ-fwd7Ig",
     "name": "カチューシャぼーる☭",
     "followers": 66,
-    "following": 95,
-    "posts": 125,
-    "likes": 193,
+    "following": 96,
+    "posts": 128,
+    "likes": 203,
     "media": 6,
     "avatar": "https://pbs.twimg.com/profile_images/2119760683403542528/yf10bSnF_200x200.jpg",
     "joined": "Tue Aug 25 11:09:28 +0000 2026",
     "protected": false,
-    "posts30": 45,
-    "sample": 43,
-    "med_views": 250,
+    "posts30": 47,
+    "sample": 44,
+    "med_views": 251,
     "med_likes": 6,
     "eng": 2.4,
     "top": {
       "url": "https://x.com/084pd/status/2112480672686424102",
-      "views": 778,
+      "views": 779,
       "likes": 11,
       "created": 1792489615,
       "text": "明日告白するわ"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "jaadfxyz",
@@ -253,33 +259,33 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "Hotateillust",
     "cid": "UCAUMzXLzsiUdYFG-1DELB3w",
     "name": "ほたて",
-    "followers": 2352,
-    "following": 557,
-    "posts": 3824,
-    "likes": 34890,
-    "media": 803,
+    "followers": 2351,
+    "following": 559,
+    "posts": 3829,
+    "likes": 34945,
+    "media": 804,
     "avatar": "https://pbs.twimg.com/profile_images/2107111000092946432/2b1IJ1OX_200x200.jpg",
     "joined": "Sun Apr 17 11:07:50 +0000 2022",
     "protected": false,
-    "posts30": 14,
-    "sample": 3,
-    "med_views": 446,
-    "med_likes": 9,
-    "eng": 2.31,
+    "posts30": 15,
+    "sample": 2,
+    "med_views": 443,
+    "med_likes": 5,
+    "eng": 1.35,
     "top": {
-      "url": "https://x.com/Hotateillust/status/2122711875486187941",
-      "views": 657,
-      "likes": 31,
-      "created": 1794928923,
-      "text": "何度でも言ってやる。\nマホロアソウルのイケメンポイントは目玉だが、マホソの一番のえっちポイントは羽だ。\n元の柔らかいマホロアや細身でころころしたマスクラと違い、"
+      "url": "https://x.com/Hotateillust/status/2123079605192130580",
+      "views": 589,
+      "likes": 6,
+      "created": 1795016597,
+      "text": "「…そうだ。あんたはもう、一人じゃない」\n勝手に夢幻3、第9話。超重要回です。\n遠く輝く遥かな星よ | ほたてちゃん #pixiv https://www.pi"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "muscatball2",
@@ -299,7 +305,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "marubooru",
@@ -319,7 +325,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "MIKUball_pber",
@@ -333,11 +339,11 @@
     "avatar": "https://pbs.twimg.com/profile_images/1958896027144265732/hiJe-mhN_200x200.jpg",
     "joined": "Fri Aug 22 14:15:56 +0000 2025",
     "protected": false,
-    "posts30": 10,
-    "sample": 14,
-    "med_views": 86,
+    "posts30": 9,
+    "sample": 12,
+    "med_views": 87,
     "med_likes": 2,
-    "eng": 2.92,
+    "eng": 2.93,
     "top": {
       "url": "https://x.com/MIKUball_pber/status/2114661629640294715",
       "views": 545,
@@ -345,7 +351,7 @@
       "created": 1793009595,
       "text": "悲報\nMIKUボール、英検準二級の合否結果を見ようとして、個人番号や暗証番号を正確に入力したのにも関わらず見れない大事件発生()"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "han_pennu",
@@ -354,24 +360,24 @@
     "followers": 419,
     "following": 569,
     "posts": 379,
-    "likes": 994,
+    "likes": 993,
     "media": 146,
     "avatar": "https://pbs.twimg.com/profile_images/1870851567047540737/GuZHIbdg_200x200.jpg",
     "joined": "Sun Nov 03 11:52:23 +0000 2024",
     "protected": false,
     "posts30": 6,
     "sample": 6,
-    "med_views": 555,
+    "med_views": 556,
     "med_likes": 16,
-    "eng": 3.27,
+    "eng": 3.26,
     "top": {
       "url": "https://x.com/han_pennu/status/2117513350364229805",
-      "views": 689,
+      "views": 691,
       "likes": 21,
       "created": 1793689498,
       "text": "奇作。\n音源作りから動画編集まで8時間40分で作りました。\n\n重音テト『国々々々々々家』/個々々々々々人-U.K. family ver.\n\nhttps://y"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "spaceball9314",
@@ -380,24 +386,24 @@
     "followers": 122,
     "following": 39,
     "posts": 346,
-    "likes": 398,
+    "likes": 397,
     "media": 146,
     "avatar": "https://pbs.twimg.com/profile_images/1942152647064080384/l3mfPLgK_200x200.jpg",
     "joined": "Wed Dec 04 09:24:57 +0000 2024",
     "protected": false,
     "posts30": 2,
-    "sample": 1,
-    "med_views": 111,
-    "med_likes": 3,
-    "eng": 3.6,
+    "sample": 2,
+    "med_views": 90,
+    "med_likes": 2,
+    "eng": 1.7,
     "top": {
       "url": "https://x.com/spaceball9314/status/2121560442481017062",
-      "views": 111,
-      "likes": 3,
+      "views": 147,
+      "likes": 4,
       "created": 1794654400,
       "text": "赤ずきんの奈良さん。#47ts_FA"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "genmaiball_PBer",
@@ -406,7 +412,7 @@
     "followers": 360,
     "following": 68,
     "posts": 2210,
-    "likes": 2203,
+    "likes": 2202,
     "media": 337,
     "avatar": "https://pbs.twimg.com/profile_images/2093736639965396992/nGCi3HLF_200x200.jpg",
     "joined": "Wed Jan 11 09:42:31 +0000 2023",
@@ -423,7 +429,7 @@
       "created": 1794381880,
       "text": "YMM4でプラグインって入れたことないな\n入れたら効率化するのかしら"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "FBokujo",
@@ -443,7 +449,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "BAKAWATSHI",
@@ -476,7 +482,7 @@
     "cid": "UCYmJ2rqzqNtXBm-gn438zGw",
     "name": "みすい",
     "followers": 47,
-    "following": 18,
+    "following": 19,
     "posts": 38,
     "likes": 39,
     "media": 3,
@@ -495,16 +501,16 @@
       "created": 1793715494,
       "text": "水曜が早帰りなのは全国共通なの"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "WinPolandball",
     "cid": "UCh3VbVye4ZnUM0bWM_Y809A",
     "name": "ウィン 趣味用アカウント",
-    "followers": 173,
+    "followers": 174,
     "following": 220,
     "posts": 103,
-    "likes": 4770,
+    "likes": 4876,
     "media": 7,
     "avatar": "https://pbs.twimg.com/profile_images/2072650972132966400/MGIeYNrI_200x200.jpg",
     "joined": "Thu Jul 02 11:40:56 +0000 2026",
@@ -515,15 +521,15 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "draw1225",
     "cid": "UCSmEHeb7jyz5cCBzwHRYZ_w",
     "name": "天川 蒼",
     "followers": 103,
-    "following": 683,
-    "posts": 2642,
+    "following": 684,
+    "posts": 2641,
     "likes": 2210,
     "media": 109,
     "avatar": "https://pbs.twimg.com/profile_images/2120077263429566464/DiBQJSjK_200x200.jpg",
@@ -536,47 +542,47 @@
     "eng": 0.0,
     "top": {
       "url": "https://x.com/draw1225/status/2122322785582354777",
-      "views": 1204,
+      "views": 1212,
       "likes": 3,
       "created": 1794836157,
       "text": "この子PB界隈に来て欲しいって思ってしまった。あと、FGO界隈にも\n#月曜から夜ふかし"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "Italy_Poland",
     "cid": "UC4XJouYnuo5B4eKy2yWhkHg",
     "name": "至至至至至至至李",
-    "followers": 1421,
+    "followers": 1420,
     "following": 80,
-    "posts": 10067,
-    "likes": 32598,
+    "posts": 10071,
+    "likes": 32641,
     "media": 1067,
     "avatar": "https://pbs.twimg.com/profile_images/1828381622632099840/8QwkYv4k_200x200.jpg",
     "joined": "Thu Mar 17 05:53:06 +0000 2022",
     "protected": false,
-    "posts30": 49,
-    "sample": 37,
-    "med_views": 149,
+    "posts30": 54,
+    "sample": 43,
+    "med_views": 178,
     "med_likes": 2,
-    "eng": 1.36,
+    "eng": 1.33,
     "top": {
       "url": "https://x.com/Italy_Poland/status/2121891200886095937",
-      "views": 255450,
-      "likes": 7853,
+      "views": 255558,
+      "likes": 7852,
       "created": 1794733259,
       "text": "日帝は植民地で飢餓を引き起こしたゴミ\n↑なんと、内地でも起きてる。"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "kakapo_ball0807",
     "cid": "UCq7LWvE7EDAvLZ_5jctGQ3w",
     "name": "カカポボール🦜@絵柄参考❌",
-    "followers": 124,
-    "following": 1092,
-    "posts": 1610,
-    "likes": 17243,
+    "followers": 123,
+    "following": 1090,
+    "posts": 1616,
+    "likes": 17262,
     "media": 15,
     "avatar": "https://pbs.twimg.com/profile_images/1891424569459900416/txX7ypyl_200x200.jpg",
     "joined": "Fri Jan 31 07:16:01 +0000 2025",
@@ -587,7 +593,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "Sefil_Ball",
@@ -595,8 +601,8 @@
     "name": "セフィルぼーる！！",
     "followers": 36,
     "following": 73,
-    "posts": 2789,
-    "likes": 3000,
+    "posts": 2795,
+    "likes": 3008,
     "media": 12,
     "avatar": "https://pbs.twimg.com/profile_images/2082159235560083456/_WKlDNP5_200x200.jpg",
     "joined": "Fri Dec 27 22:44:40 +0000 2024",
@@ -607,13 +613,13 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "kawoshinlove_sb",
     "cid": "UCjwy3iaSFry_4JOWVv44lXA",
     "name": "ゆうぼーるxy",
-    "followers": 388,
+    "followers": 387,
     "following": 82,
     "posts": 2326,
     "likes": 1461,
@@ -627,33 +633,33 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795128319
+    "fetched": 1795294770
   },
   {
     "handle": "afghan_ball",
     "cid": "UCXCVbJCSF4FLP_TfojbkvUA",
     "name": "アフガンボール",
-    "followers": 1435,
-    "following": 2198,
-    "posts": 6876,
-    "likes": 32153,
+    "followers": 1438,
+    "following": 2199,
+    "posts": 6881,
+    "likes": 32199,
     "media": 455,
     "avatar": "https://pbs.twimg.com/profile_images/1618154365038264320/Zw18AQe8_200x200.jpg",
     "joined": "Thu Aug 26 08:45:54 +0000 2021",
     "protected": false,
     "posts30": 12,
-    "sample": 9,
-    "med_views": 160,
+    "sample": 7,
+    "med_views": 162,
     "med_likes": 2,
-    "eng": 1.1,
+    "eng": 1.23,
     "top": {
-      "url": "https://x.com/afghan_ball/status/2120807562241007990",
-      "views": 360,
-      "likes": 10,
-      "created": 1794474900,
-      "text": "新宿へ行こうとして新百合ヶ丘から電車に乗って寝過ごしたら千葉の我孫子に居た？\n\nそんなバカな話があるか"
+      "url": "https://x.com/afghan_ball/status/2122740790145536283",
+      "views": 9938,
+      "likes": 195,
+      "created": 1794935817,
+      "text": "PS3、発売20周年おめでとう！\n私の家では今でも現役バリバリです"
     },
-    "fetched": 1795128319
+    "fetched": 1795294770
   },
   {
     "handle": "karaageball810",
@@ -673,7 +679,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "Nisv_ball",
@@ -682,24 +688,24 @@
     "followers": 100,
     "following": 56,
     "posts": 534,
-    "likes": 1247,
+    "likes": 1248,
     "media": 130,
     "avatar": "https://pbs.twimg.com/profile_images/2039551146294222848/MXL-A3ZF_200x200.jpg",
     "joined": "Thu Mar 20 04:01:40 +0000 2025",
     "protected": false,
     "posts30": 4,
     "sample": 4,
-    "med_views": 217,
+    "med_views": 221,
     "med_likes": 8,
-    "eng": 4.09,
+    "eng": 4.06,
     "top": {
       "url": "https://x.com/Nisv_ball/status/2114275354907193492",
-      "views": 657,
+      "views": 658,
       "likes": 25,
       "created": 1792917500,
       "text": "誕生日だぁぁぁぁーー！！！風船上がった！"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "DX2125061761727",
@@ -719,7 +725,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "TeitekuPBer",
@@ -739,25 +745,25 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "Kaya_gu1",
     "cid": "UCfl1W6sL5-es_rWqA7bGbRQ",
     "name": "萱口",
-    "followers": 132,
-    "following": 263,
-    "posts": 1080,
-    "likes": 9035,
+    "followers": 133,
+    "following": 265,
+    "posts": 1084,
+    "likes": 9069,
     "media": 89,
     "avatar": "https://pbs.twimg.com/profile_images/2099156192572674048/CdmPDhcD_200x200.jpg",
     "joined": "Tue Oct 01 08:07:51 +0000 2024",
     "protected": false,
-    "posts30": 30,
+    "posts30": 28,
     "sample": 22,
-    "med_views": 117,
+    "med_views": 115,
     "med_likes": 1,
-    "eng": 1.09,
+    "eng": 1.01,
     "top": {
       "url": "https://x.com/Kaya_gu1/status/2120822807546458380",
       "views": 464,
@@ -765,33 +771,33 @@
       "created": 1794478534,
       "text": "ちょっと前に思いついたカスみたいなこと言っていい？"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "sekume498705",
     "cid": "UCOWqMzG_N3gzH1yGENiUFiA",
     "name": "Sekumeballせくめボール🇬🇷🇮🇱",
-    "followers": 401,
-    "following": 927,
-    "posts": 2387,
-    "likes": 12505,
+    "followers": 403,
+    "following": 928,
+    "posts": 2388,
+    "likes": 12527,
     "media": 272,
     "avatar": "https://pbs.twimg.com/profile_images/2113954336460111873/SgWRGs70_200x200.jpg",
     "joined": "Mon Sep 29 07:30:55 +0000 2025",
     "protected": false,
-    "posts30": 14,
+    "posts30": 15,
     "sample": 14,
-    "med_views": 231,
+    "med_views": 232,
     "med_likes": 4,
-    "eng": 2.11,
+    "eng": 2.09,
     "top": {
       "url": "https://x.com/sekume498705/status/2119473440570900529",
-      "views": 460774,
+      "views": 460909,
       "likes": 8225,
       "created": 1794156820,
       "text": "俺「三月なのかのフィギュアください」\n店員「転売対策の為、三月なのかのセリフを1つ言ってください」\n俺:「トマホークは人工兵器/金正恩の娘の父親は朝鮮人」\n店員"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "BallSea33287",
@@ -811,7 +817,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "TTboru2025",
@@ -831,7 +837,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "omochi_ball",
@@ -839,8 +845,8 @@
     "name": "おもちすたん",
     "followers": 83,
     "following": 95,
-    "posts": 149,
-    "likes": 454,
+    "posts": 151,
+    "likes": 468,
     "media": 11,
     "avatar": "https://pbs.twimg.com/profile_images/1894523342373244929/Kp1IhxYK_200x200.jpg",
     "joined": "Mon Nov 25 10:42:04 +0000 2024",
@@ -851,7 +857,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "sandoicchida",
@@ -871,7 +877,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "nageimo120",
@@ -897,7 +903,7 @@
       "created": 1792747934,
       "text": "GHQは日本人から体力と氣力、そして精神力を奪った。\n私たちは立ち上がる。日本は救える。"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "soa_ball",
@@ -905,32 +911,32 @@
     "name": "そあボール",
     "followers": 9,
     "following": 2,
-    "posts": 41,
+    "posts": 42,
     "likes": 192,
     "media": 5,
     "avatar": "https://pbs.twimg.com/profile_images/2041901109720313856/ZtqhZqQG_200x200.jpg",
     "joined": "Sat May 17 05:55:25 +0000 2025",
     "protected": false,
-    "posts30": 8,
-    "sample": 3,
-    "med_views": 31,
+    "posts30": 9,
+    "sample": 4,
+    "med_views": 33,
     "med_likes": 0,
-    "eng": 0.0,
+    "eng": 1.43,
     "top": {
       "url": "https://x.com/soa_ball/status/2119715537496461495",
-      "views": 41,
+      "views": 42,
       "likes": 0,
       "created": 1794214541,
       "text": "大丈夫かいろいろと"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "powerpoint_ball",
     "cid": "UCRYpyKZD_7HkForFFW-7Dfw",
     "name": "パワーポイントボール",
     "followers": 38,
-    "following": 50,
+    "following": 51,
     "posts": 69,
     "likes": 4,
     "media": 64,
@@ -939,43 +945,43 @@
     "protected": false,
     "posts30": 2,
     "sample": 2,
-    "med_views": 121,
+    "med_views": 122,
     "med_likes": 2,
-    "eng": 2.93,
+    "eng": 2.9,
     "top": {
       "url": "https://x.com/powerpoint_ball/status/2121753298881671601",
-      "views": 146,
+      "views": 148,
       "likes": 2,
       "created": 1794700381,
       "text": "ジャスミン茶のみたい"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "Tamashohsm",
     "cid": "UC9jmzFCXGdLiR75vcdxDH6A",
     "name": "東トルキスタンボール",
-    "followers": 72,
-    "following": 119,
-    "posts": 281,
-    "likes": 412,
-    "media": 14,
+    "followers": 74,
+    "following": 120,
+    "posts": 294,
+    "likes": 429,
+    "media": 16,
     "avatar": "https://pbs.twimg.com/profile_images/2107084208128823296/zsbuViO__200x200.jpg",
     "joined": "Fri Jun 12 05:06:56 +0000 2026",
     "protected": false,
-    "posts30": 20,
+    "posts30": 18,
     "sample": 12,
-    "med_views": 183,
-    "med_likes": 5,
-    "eng": 4.03,
+    "med_views": 141,
+    "med_likes": 4,
+    "eng": 4.02,
     "top": {
-      "url": "https://x.com/Tamashohsm/status/2121611428562113016",
-      "views": 391,
-      "likes": 8,
-      "created": 1794666556,
-      "text": "すまん、CP厨でもある"
+      "url": "https://x.com/Tamashohsm/status/2121796426455998486",
+      "views": 383,
+      "likes": 22,
+      "created": 1794710663,
+      "text": "有名な方の中ならこの人達がとても好き（5人制限）"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "tyurumeeen",
@@ -995,7 +1001,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "Piinatsu_2gou",
@@ -1015,7 +1021,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "NeonBall_PB",
@@ -1061,7 +1067,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "koti2116",
@@ -1087,13 +1093,13 @@
       "created": 1794067732,
       "text": "揺れたあああああああああああああああああ\n緊急地震速報怖いね"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "foitasa",
     "cid": "UCtcoS9W_dfVbV6IbNE4klMA",
     "name": "フォイタスア王国共和連邦",
-    "followers": 43,
+    "followers": 44,
     "following": 207,
     "posts": 142,
     "likes": 467,
@@ -1102,10 +1108,10 @@
     "joined": "Sun Oct 11 08:09:36 +0000 2026",
     "protected": false,
     "posts30": 4,
-    "sample": 3,
-    "med_views": 188,
-    "med_likes": 3,
-    "eng": 1.6,
+    "sample": 4,
+    "med_views": 166,
+    "med_likes": 2,
+    "eng": 1.42,
     "top": {
       "url": "https://x.com/foitasa/status/2115781111351853269",
       "views": 280,
@@ -1113,7 +1119,7 @@
       "created": 1793276500,
       "text": "ひゃ…ひゃく？"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "EcYciYgFbK94569",
@@ -1133,7 +1139,7 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "yu59pow",
@@ -1141,25 +1147,25 @@
     "name": "ゆ⁵⁹",
     "followers": 94,
     "following": 5,
-    "posts": 33,
+    "posts": 34,
     "likes": 65,
     "media": 14,
     "avatar": "https://pbs.twimg.com/profile_images/2095280984061317120/9IjDnh_Z_200x200.jpg",
     "joined": "Wed Sep 02 22:36:48 +0000 2026",
     "protected": false,
-    "posts30": 18,
-    "sample": 15,
-    "med_views": 374,
+    "posts30": 19,
+    "sample": 17,
+    "med_views": 355,
     "med_likes": 12,
-    "eng": 4.49,
+    "eng": 4.65,
     "top": {
       "url": "https://x.com/yu59pow/status/2118628837160329489",
-      "views": 1906,
-      "likes": 189,
+      "views": 1907,
+      "likes": 188,
       "created": 1793955451,
       "text": "この2つの動画とっとと消したいのに消したら上級者機能使えなくなるから消せない"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "Polska_PB",
@@ -1167,97 +1173,103 @@
     "name": "ポルスカ速報",
     "followers": 43,
     "following": 80,
-    "posts": 291,
-    "likes": 2047,
+    "posts": 292,
+    "likes": 2075,
     "media": 38,
     "avatar": "https://pbs.twimg.com/profile_images/2100830296262443008/Yz00384L_200x200.jpg",
     "joined": "Fri Sep 18 06:11:17 +0000 2026",
     "protected": false,
-    "posts30": 0,
-    "sample": 0,
-    "med_views": null,
-    "med_likes": null,
-    "eng": null,
-    "top": null,
-    "fetched": 1795213213
+    "posts30": 10,
+    "sample": 14,
+    "med_views": 111,
+    "med_likes": 3,
+    "eng": 2.3,
+    "top": {
+      "url": "https://x.com/Polska_PB/status/2122920336912261625",
+      "views": 647,
+      "likes": 3,
+      "created": 1794978624,
+      "text": "suicaの新キャラクターB案勝利おめでとう！！！！！！\n本当に嬉しすぎる！！！"
+    },
+    "fetched": 1795294770
   },
   {
     "handle": "skyball0217",
     "cid": "UCMKBmiOKY6TogzLTS2loFfQ",
     "name": "すかいぼーる",
-    "followers": 141,
-    "following": 269,
-    "posts": 455,
+    "followers": 145,
+    "following": 275,
+    "posts": 479,
     "likes": 0,
     "media": 35,
     "avatar": "https://pbs.twimg.com/profile_images/2091436149013413888/4JA46U7J_200x200.jpg",
     "joined": "Sun Feb 15 10:55:10 +0000 2026",
     "protected": false,
     "posts30": 18,
-    "sample": 23,
-    "med_views": 179,
-    "med_likes": 3,
-    "eng": 2.04,
+    "sample": 16,
+    "med_views": 220,
+    "med_likes": 5,
+    "eng": 2.67,
     "top": {
       "url": "https://x.com/skyball0217/status/2119437296273650097",
-      "views": 717,
+      "views": 724,
       "likes": 22,
       "created": 1794148203,
       "text": "丸のやつ（？）作った"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "satouMID",
     "cid": "UC_IzkKwIVaYriFZS9ULlaog",
     "name": "佐藤mid",
     "followers": 74,
-    "following": 86,
-    "posts": 788,
-    "likes": 231,
-    "media": 83,
+    "following": 90,
+    "posts": 819,
+    "likes": 237,
+    "media": 88,
     "avatar": "https://pbs.twimg.com/profile_images/2121207054086111232/i9kjdLLE_200x200.jpg",
     "joined": "Sun Sep 20 17:39:37 +0000 2026",
     "protected": false,
-    "posts30": 22,
-    "sample": 10,
-    "med_views": 137,
+    "posts30": 34,
+    "sample": 14,
+    "med_views": 156,
     "med_likes": 1,
-    "eng": 0.68,
+    "eng": 0.75,
     "top": {
-      "url": "https://x.com/satouMID/status/2122601420629360807",
-      "views": 338,
+      "url": "https://x.com/satouMID/status/2122993621553332527",
+      "views": 623,
       "likes": 0,
-      "created": 1794902589,
-      "text": "すでになってる定期"
+      "created": 1794996097,
+      "text": "チン凸して良いよって言ってなに言っとん\nその代わり俺にチン凸して良いよ！"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "midorina_zasso",
     "cid": "UC9QZ0KZuPT83qBb3iVNpT8A",
     "name": "ひまぐれ",
     "followers": 17,
-    "following": 27,
-    "posts": 17,
-    "likes": 176,
+    "following": 28,
+    "posts": 19,
+    "likes": 207,
     "media": 1,
     "avatar": "https://pbs.twimg.com/profile_images/2106022567815573504/Ewu7SLKn_200x200.jpg",
     "joined": "Sat Jun 07 10:53:04 +0000 2025",
     "protected": false,
-    "posts30": 7,
+    "posts30": 8,
     "sample": 6,
-    "med_views": 52,
+    "med_views": 56,
     "med_likes": 1,
-    "eng": 2.8,
+    "eng": 2.72,
     "top": {
       "url": "https://x.com/midorina_zasso/status/2121998953373983210",
-      "views": 192,
+      "views": 203,
       "likes": 5,
       "created": 1794758949,
       "text": "みかんぼーる様の再生数低下\nフヒフム様の投稿頻度低下\n界隈のtop2の現状がこれなの\nまずくねぇか"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "ast_aosuto",
@@ -1266,24 +1278,24 @@
     "followers": 83,
     "following": 169,
     "posts": 49,
-    "likes": 944,
+    "likes": 963,
     "media": 8,
     "avatar": "https://pbs.twimg.com/profile_images/2096873380209434624/aWkv1bsR_200x200.jpg",
     "joined": "Sat Mar 07 00:20:31 +0000 2026",
     "protected": false,
     "posts30": 1,
     "sample": 2,
-    "med_views": 145,
+    "med_views": 147,
     "med_likes": 3,
-    "eng": 2.07,
+    "eng": 2.03,
     "top": {
       "url": "https://x.com/ast_aosuto/status/2121880149415387408",
-      "views": 145,
+      "views": 148,
       "likes": 4,
       "created": 1794730624,
       "text": "思うんだが、そもそもPB界隈という枠組み自体いらなくね？"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "aispoaporu",
@@ -1291,31 +1303,31 @@
     "name": "Æž!áíš!/ぽる〜ちゃん@スウェーデン愛好家❤🇸🇪🍀＠雑多垢🫠",
     "followers": 1254,
     "following": 672,
-    "posts": 19749,
-    "likes": 32351,
+    "posts": 19741,
+    "likes": 32349,
     "media": 1389,
     "avatar": "https://pbs.twimg.com/profile_images/2109187936856276992/sBH8bh_0_200x200.jpg",
     "joined": "Tue Nov 01 07:56:12 +0000 2022",
     "protected": false,
     "posts30": 1,
     "sample": 1,
-    "med_views": 389,
+    "med_views": 390,
     "med_likes": 21,
-    "eng": 5.91,
+    "eng": 5.9,
     "top": {
       "url": "https://x.com/aispoaporu/status/2117457708026917066",
-      "views": 389,
+      "views": 390,
       "likes": 21,
       "created": 1793676232,
       "text": "Xに登録した日を覚えていますか？(2022/11/1) #MyXAnniversary"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "mikan_ball888",
     "cid": "UCRCQ3G1d0DM2krO-Fx5LOuQ",
     "name": "みかんぼーる",
-    "followers": 970,
+    "followers": 971,
     "following": 109,
     "posts": 60,
     "likes": 86,
@@ -1329,13 +1341,13 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "NikotyuuAN",
     "cid": "UC2fMWFGgy-ENfkqlK0CUwrg",
     "name": "にこちゅうAN",
-    "followers": 134,
+    "followers": 133,
     "following": 32,
     "posts": 159,
     "likes": 345,
@@ -1347,15 +1359,15 @@
     "sample": 3,
     "med_views": 698,
     "med_likes": 4,
-    "eng": 1.6,
+    "eng": 1.57,
     "top": {
       "url": "https://x.com/NikotyuuAN/status/2119258488212001085",
-      "views": 2980,
+      "views": 2986,
       "likes": 42,
       "created": 1794105572,
       "text": "釣り垢流石に皆から心配されて\n自分も不安だし申し訳ない気持ちになったのでアカウントとめました\nやっといてごめんなさいは意味わからないと思います\n私は嫌な相手には"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "RayAlpha0",
@@ -1363,17 +1375,17 @@
     "name": "レイアルファ",
     "followers": 102,
     "following": 173,
-    "posts": 295,
-    "likes": 292,
-    "media": 49,
+    "posts": 301,
+    "likes": 301,
+    "media": 50,
     "avatar": "https://pbs.twimg.com/profile_images/2120503652498771969/fHXKzaM6_200x200.jpg",
     "joined": "Tue Aug 06 01:45:53 +0000 2024",
     "protected": false,
-    "posts30": 51,
-    "sample": 51,
-    "med_views": 269,
+    "posts30": 52,
+    "sample": 50,
+    "med_views": 261,
     "med_likes": 7,
-    "eng": 2.77,
+    "eng": 2.7,
     "top": {
       "url": "https://x.com/RayAlpha0/status/2116363547592843284",
       "views": 1186,
@@ -1381,14 +1393,14 @@
       "created": 1793415364,
       "text": "PBersに「あすえいボール」chが追加され5位へと急ランクイン。特別記念としてカラーをグラデーションに。"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "Porland_Train",
     "cid": "UCm8lBcDz0RVa28FkJu-0nsA",
     "name": "【PB】トレインボール",
-    "followers": 3505,
-    "following": 4539,
+    "followers": 3502,
+    "following": 4537,
     "posts": 14372,
     "likes": 26767,
     "media": 1542,
@@ -1397,17 +1409,17 @@
     "protected": false,
     "posts30": 5,
     "sample": 5,
-    "med_views": 789,
+    "med_views": 792,
     "med_likes": 8,
-    "eng": 1.89,
+    "eng": 1.87,
     "top": {
       "url": "https://x.com/Porland_Train/status/2120453982678397156",
-      "views": 50382,
-      "likes": 1168,
+      "views": 50401,
+      "likes": 1169,
       "created": 1794390600,
       "text": "【この投稿は2026/3/22に設定された予約投稿です】\n\n2026/11/11は何が流行っていますか？\n\n3/22はTomです"
     },
-    "fetched": 1795213213
+    "fetched": 1795294770
   },
   {
     "handle": "netoenq",
@@ -1415,28 +1427,34 @@
     "name": "ねとえん",
     "followers": 1299,
     "following": 1049,
-    "posts": 395,
-    "likes": 29677,
-    "media": 103,
+    "posts": 408,
+    "likes": 29761,
+    "media": 105,
     "avatar": "https://pbs.twimg.com/profile_images/2108337539199471617/LNsmk_Ly_200x200.jpg",
     "joined": "Wed Jan 29 15:07:09 +0000 2025",
     "protected": false,
-    "posts30": 0,
-    "sample": 0,
-    "med_views": null,
-    "med_likes": null,
-    "eng": null,
-    "top": null,
-    "fetched": 1795213213
+    "posts30": 85,
+    "sample": 44,
+    "med_views": 52,
+    "med_likes": 0,
+    "eng": 0.93,
+    "top": {
+      "url": "https://x.com/netoenq/status/2121883146035868114",
+      "views": 356,
+      "likes": 8,
+      "created": 1794731339,
+      "text": "The shop is out of everything! #ポーランドボール #Countryballs"
+    },
+    "fetched": 1795294770
   },
   {
     "handle": "nihonball",
     "cid": "UC0kY7Nwjt8qkErtdxl3iuIw",
     "name": "日本ボール",
-    "followers": 6097,
+    "followers": 6094,
     "following": 32,
-    "posts": 1450,
-    "likes": 2705,
+    "posts": 1451,
+    "likes": 2707,
     "media": 255,
     "avatar": "https://pbs.twimg.com/profile_images/1383335677316648968/y6tj6Eva_200x200.jpg",
     "joined": "Mon Sep 21 13:25:06 +0000 2020",
@@ -1447,6 +1465,6 @@
     "med_likes": null,
     "eng": null,
     "top": null,
-    "fetched": 1795213213
+    "fetched": 1795294770
   }
 ]
