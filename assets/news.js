@@ -1,5 +1,44 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-23",
+    "label": "11月23日(月)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "なるほど地理",
+        "color": "#d45e5e",
+        "avatar": "https://yt3.googleusercontent.com/gNv7_1OO5KoHNGHTucUfub1OS8J0Q48iz0hDl49mNXF3ZugBFYxEJckd0zeLUC3lxnitdxI9=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 3.5億回 突破",
+        "value": 350000000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "こゆまる_koyumaru908",
+        "color": "#cc3e87",
+        "avatar": "https://yt3.googleusercontent.com/7E1EME20oj2j5h8bBf7K618lZ7fAEN6hB6j_l8zaxWbyH-8VK49BLcM0uS38ZvsRtELNy8Hp5g=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 900万回 突破",
+        "value": 9000000
+      },
+      {
+        "type": "milestone",
+        "kind": "videos",
+        "name": "ポルスカ速報",
+        "color": "#6bcc3e",
+        "avatar": "https://yt3.googleusercontent.com/HELcQkx-Jbh1xsZY2NINImepeGpl29LpnBm8LusJmyzCAA2g1X3R5JsQDebniGz_j0DXUWMGfA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "投稿数 100本 突破",
+        "value": 100
+      }
+    ]
+  },
+  {
     "date": "2026-11-22",
     "label": "11月22日(日)",
     "items": []
@@ -23,7 +62,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "subs",
         "name": "まるッとわかる地理の裏話",
-        "color": "#3ec9cc",
+        "color": "#5ed46e",
         "avatar": "https://yt3.googleusercontent.com/OKTvYCqWkuYG-s3iq1dydM6YDas44QIY_hQxl1bPLPQbGzbLUe-ljaKZ4AoJu1kb1r2PI0GPXnI=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -34,7 +73,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "カチューシャぼーる☭\n",
-        "color": "#a1d45e",
+        "color": "#3ecc6b",
         "avatar": "https://yt3.googleusercontent.com/tSmyaWZrktnxX7mi3Lp4JpIMaiKER9c0OhB1qjyse1ndqTYJbX2dzSenXnB0n4hvew16HyvWbA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -95,7 +134,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "練乳=ソビエト共和国ぼーる",
-        "color": "#cc8c3e",
+        "color": "#a1d45e",
         "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -164,10 +203,5 @@ window.PBERS_NEWS = [
         "value": 200
       }
     ]
-  },
-  {
-    "date": "2026-11-16",
-    "label": "11月16日(月)",
-    "items": []
   }
 ];
