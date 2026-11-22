@@ -49,7 +49,7 @@ powerpoint_ball    UCRYpyKZD_7HkForFFW-7Dfw
 Tamashohsm         UC9jmzFCXGdLiR75vcdxDH6A  # 概要欄本文から
 tyurumeeen         UC8RiqSKxCmtZYEk_fLze0pQ
 Piinatsu_2gou      UC-5VUpfrG3wSzqK9fPDAWAA
-NeonBall_PB        UCtYX3q7PyNWFbykXddPJEdA
+Neon_PBer          UCtYX3q7PyNWFbykXddPJEdA  # 2026-11-23 NeonBall_PB から変更
 wanosati_PB        UCxlk07RCg2SOYcNsp7oz1Tw
 koti2116           UCr_foG7TtZJ9ONb6G8D0VlA
 foitasa            UCtcoS9W_dfVbV6IbNE4klMA
@@ -67,3 +67,4 @@ RayAlpha0          UCVYMXYU6j0M5Gj1xwywKDyg  # レイアルファ(PBers管理者
 Porland_Train      UCm8lBcDz0RVa28FkJu-0nsA  # トレインボール(2026-11-01 追加。10/31の一括時は一時的な404で除外していた)
 netoenq            UCrRZolgBJ0K-yGqFKGbUVkw  # ねとえん(2026-11-01 追加)
 nihonball          UC0kY7Nwjt8qkErtdxl3iuIw  # 日本ボール(2026-11-01 追加)
+Natoriumani                                   # 2026-11-23 追加。YouTubeチャンネル無し(Xだけ)

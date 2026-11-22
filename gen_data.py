@@ -337,7 +337,8 @@ def build_edition():
         "name": d["name"], "slug": d["_slug"], "color": colors[d["id"]], "genre": genre_of(d["id"]),
         "avatar": d["avatar"], **({"grad": GRAD[d["id"]]} if d["id"] in GRAD else {}),
         **x_map[d["id"]],
-    } for d in order if (x_map.get(d["id"]) or {}).get("followers")], key=lambda x: -x["followers"])
+    } for d in order if (x_map.get(d["id"]) or {}).get("followers")] + ([] if ED["sub"] else load_x_only()),
+        key=lambda x: -x["followers"])
 
     with open(ed_out("assets", "data.js"), "w", encoding="utf-8") as f:
         f.write("window.PBERS_DATA = " + json.dumps(out, ensure_ascii=False, indent=2) + ";\n")
@@ -523,7 +524,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251122">
+<link rel="stylesheet" href="/assets/style.css?v=251123">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -546,7 +547,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=251122"></script>
+<script src="/assets/channel.js?v=251123"></script>
 </body>
 </html>
 '''
@@ -688,6 +689,32 @@ def load_x():
             out[parts[1]] = {"handle": st.get("handle") or parts[0].lstrip("@"),
                              "followers": st.get("followers"), "posts30": st.get("posts30"),
                              "medViews": st.get("med_views"), "eng": st.get("eng")}
+    return out
+
+X_ONLY_COLOR = "#8a8f98"   # YouTubeチャンネルの無いXアカウントの色(チャンネル色が無いので共通の灰色)
+
+def load_x_only():
+    """x_accounts.txt でチャンネルIDの無い行(Xだけで活動している人)を、X円グラフ用に返す。日本版だけで使う。
+    名前とアイコンは X のプロフィール(x_data.json)から。チャンネルページは無いので slug は持たない。"""
+    acc_path, data_path = os.path.join(BASE, "x_accounts.txt"), os.path.join(BASE, "x_data.json")
+    if not os.path.exists(acc_path) or not os.path.exists(data_path):
+        return []
+    try:
+        stats = {d["handle"].lower(): d for d in json.load(open(data_path, encoding="utf-8"))}
+    except Exception:
+        return []
+    out = []
+    with open(acc_path, encoding="utf-8") as f:
+        for line in f:
+            parts = line.split("#", 1)[0].split()
+            if len(parts) != 1:
+                continue
+            st = stats.get(parts[0].lstrip("@").lower())
+            if not st or not st.get("followers"):
+                continue
+            out.append({"name": st.get("name") or st["handle"], "color": X_ONLY_COLOR, "avatar": st.get("avatar") or "",
+                        "xOnly": True, "handle": st["handle"], "followers": st["followers"], "posts30": st.get("posts30"),
+                        "medViews": st.get("med_views"), "eng": st.get("eng")})
     return out
 
 def load_summons(bt_map):
@@ -1159,7 +1186,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251122">
+<link rel="stylesheet" href="/assets/style.css?v=251123">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>''' + ld + '''

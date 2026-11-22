@@ -1030,32 +1030,6 @@
     "fetched": 1795381724
   },
   {
-    "handle": "NeonBall_PB",
-    "cid": "UCtYX3q7PyNWFbykXddPJEdA",
-    "name": "ネオンボール",
-    "followers": 50,
-    "following": 37,
-    "posts": 61,
-    "likes": 393,
-    "media": 22,
-    "avatar": "https://pbs.twimg.com/profile_images/2107408099841863680/TloCstCF_200x200.jpg",
-    "joined": "Mon Jun 15 00:11:20 +0000 2026",
-    "protected": false,
-    "posts30": 6,
-    "sample": 7,
-    "med_views": 134,
-    "med_likes": 4,
-    "eng": 3.36,
-    "top": {
-      "url": "https://x.com/NeonBall_PB/status/2113884977398259884",
-      "views": 355,
-      "likes": 4,
-      "created": 1792824427,
-      "text": "唐突の質問コーナー！📝\nこのツイートのリプ欄に質問していってね！(1人何個でもおけです！)\n📅期限は10月31日まで📅\nたくさんの質問待ってます🔥\n※できるだけ"
-    },
-    "fetched": 1794079856
-  },
-  {
     "handle": "wanosati_PB",
     "cid": "UCxlk07RCg2SOYcNsp7oz1Tw",
     "name": "わのさち【和の幸】",
@@ -1472,5 +1446,57 @@
     "eng": null,
     "top": null,
     "fetched": 1795381724
+  },
+  {
+    "handle": "Neon_PBer",
+    "cid": "UCtYX3q7PyNWFbykXddPJEdA",
+    "name": "ネオン",
+    "followers": 1021,
+    "following": 1573,
+    "posts": 740,
+    "likes": 39195,
+    "media": 109,
+    "avatar": "https://pbs.twimg.com/profile_images/2104976358954971136/1q0hgA0W_200x200.jpg",
+    "joined": "Thu Oct 05 09:05:05 +0000 2023",
+    "protected": false,
+    "posts30": 6,
+    "sample": 5,
+    "med_views": 149,
+    "med_likes": 5,
+    "eng": 4.03,
+    "top": {
+      "url": "https://x.com/Neon_PBer/status/2120473326946766954",
+      "views": 271,
+      "likes": 8,
+      "created": 1794395212,
+      "text": "サークルのやつ作ってみた"
+    },
+    "fetched": 1795389985
+  },
+  {
+    "handle": "Natoriumani",
+    "cid": "",
+    "name": "Æž! Ṅatrium ball",
+    "followers": 326,
+    "following": 263,
+    "posts": 1837,
+    "likes": 9680,
+    "media": 111,
+    "avatar": "https://pbs.twimg.com/profile_images/2121546724934303744/uuDESKDn_200x200.jpg",
+    "joined": "Tue Jan 07 00:03:38 +0000 2025",
+    "protected": false,
+    "posts30": 17,
+    "sample": 14,
+    "med_views": 988,
+    "med_likes": 22,
+    "eng": 2.78,
+    "top": {
+      "url": "https://x.com/Natoriumani/status/2122821798698025013",
+      "views": 92506,
+      "likes": 1911,
+      "created": 1794955131,
+      "text": "Discord垢ban2回目で今これ"
+    },
+    "fetched": 1795389985
   }
 ]

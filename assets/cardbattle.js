@@ -120,7 +120,7 @@
     channels.forEach(function (d) { shown[d.slug] = true; });
     /* もう片方がジャンル設定で隠れていても、カードとして選べるようにする */
     var hidden = (window.PBERS_DATA || []).filter(function (d) { return !shown[d.slug] && channels.some(function (x) { return x.twin === d.slug; }); });
-    (window.PBERS_X || []).forEach(function (x) { X[x.slug] = x.followers; XP[x.slug] = x.posts30 || 0; });
+    (window.PBERS_X || []).forEach(function (x) { if (!x.slug) return; X[x.slug] = x.followers; XP[x.slug] = x.posts30 || 0; });
     var list = channels.concat(hidden).filter(function (d) { return d.subs && d.views && d.videos; }).map(function (d) {
       var def = X[d.slug] || 0, red = def / (def + DEF_K), sp = splitAtk(d);
       var g = d.g21 == null ? null : d.g21, par = g > 0 ? PARRY_MAX * g / (g + PARRY_K) : 0;
