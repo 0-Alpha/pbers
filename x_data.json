@@ -1498,5 +1498,31 @@
       "text": "Discord垢ban2回目で今これ"
     },
     "fetched": 1795389985
+  },
+  {
+    "handle": "OPcalciumYT",
+    "cid": null,
+    "name": "ばかわたしYT",
+    "followers": 169,
+    "following": 14,
+    "posts": 237,
+    "likes": 78,
+    "media": 40,
+    "avatar": "https://pbs.twimg.com/profile_images/2123412361340170240/QI5tBJR8_200x200.jpg",
+    "joined": "Wed Feb 18 14:11:18 +0000 2026",
+    "protected": false,
+    "posts30": 89,
+    "sample": 85,
+    "med_views": 443,
+    "med_likes": 7,
+    "eng": 1.7,
+    "top": {
+      "url": "https://x.com/OPcalciumYT/status/2121522584257024278",
+      "views": 4133,
+      "likes": 36,
+      "created": 1794645374,
+      "text": "みかんぼーる最近露骨に再生回数落ちてきて嬉しすぎる（しかもこの動画の中ではブラックジョークが一番再生されているという事実）"
+    },
+    "fetched": 1795438914
   }
 ]

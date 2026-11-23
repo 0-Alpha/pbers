@@ -68,3 +68,4 @@ Porland_Train      UCm8lBcDz0RVa28FkJu-0nsA  # トレインボール(2026-11-01 
 netoenq            UCrRZolgBJ0K-yGqFKGbUVkw  # ねとえん(2026-11-01 追加)
 nihonball          UC0kY7Nwjt8qkErtdxl3iuIw  # 日本ボール(2026-11-01 追加)
 Natoriumani                                   # 2026-11-23 追加。YouTubeチャンネル無し(Xだけ)
+OPcalciumYT                                   # 2026-11-23 追加。表示名「ばかわたしYT」(PB界隈への意見垢)。YouTube対応なし(Xだけ)
