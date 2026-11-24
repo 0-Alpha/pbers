@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-24",
+    "label": "11月24日(火)",
+    "items": []
+  },
+  {
     "date": "2026-11-23",
     "label": "11月23日(月)",
     "items": []
@@ -74,10 +79,5 @@ window.PBERS_NEWS = [
         "value": 40000000
       }
     ]
-  },
-  {
-    "date": "2026-11-17",
-    "label": "11月17日(火)",
-    "items": []
   }
 ];

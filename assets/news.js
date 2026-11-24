@@ -1,5 +1,44 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-24",
+    "label": "11月24日(火)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "subs",
+        "name": "Æž!みかんぼーる🍊",
+        "color": "#eba864",
+        "avatar": "https://yt3.googleusercontent.com/bfqlU3pRffP-Nauyf2Ax_Ayok7ZW_riXTZKwZqsnyjvPidGhHJV4l-Eo6BMxHLj75thRFuiU=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "登録者 42万人 突破",
+        "value": 420000
+      },
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "ユウセイボール",
+        "color": "#493ecc",
+        "avatar": "https://yt3.googleusercontent.com/QuiygLmPIaWkzgG4vgYIzG564el3e6V1RkTHJK-21aKdyOb0sDCC6sHzdKVlU4NVv1Pz3p_Ogg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 700万回 突破",
+        "value": 7000000
+      },
+      {
+        "type": "milestone",
+        "kind": "videos",
+        "name": "日独伊(PB・宇宙系)",
+        "color": "#3eccad",
+        "avatar": "https://yt3.googleusercontent.com/Jg2CdqVSVzclmM_vs9-GNwk633H0cPab831yuKZHMNJS82r4XEWa_jDXar6Sb7BpTeKWIsCTkg=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "投稿数 500本 突破",
+        "value": 500
+      }
+    ]
+  },
+  {
     "date": "2026-11-23",
     "label": "11月23日(月)",
     "items": [
@@ -73,7 +112,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "カチューシャぼーる☭\n",
-        "color": "#3ecc6b",
+        "color": "#a1d45e",
         "avatar": "https://yt3.googleusercontent.com/tSmyaWZrktnxX7mi3Lp4JpIMaiKER9c0OhB1qjyse1ndqTYJbX2dzSenXnB0n4hvew16HyvWbA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -134,7 +173,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "練乳=ソビエト共和国ぼーる",
-        "color": "#a1d45e",
+        "color": "#d45e85",
         "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -147,56 +186,6 @@ window.PBERS_NEWS = [
         "name": "うずまき🌀",
         "color": "#4ec3e6",
         "avatar": "https://yt3.googleusercontent.com/LkRrW7onGMeTLMUJrz7kkIrH0s24TKAC_bpYBQGYSVDe_V_mde3xmj8zE5mVKHtXTKDArtwGaU4=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 200本 突破",
-        "value": 200
-      }
-    ]
-  },
-  {
-    "date": "2026-11-17",
-    "label": "11月17日(火)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "にこちPB",
-        "color": "#cc583e",
-        "avatar": "https://yt3.googleusercontent.com/9tDy1r6vDMq4rdXDHBssW5eTn_CT1meScQS_Tyu5EizfS9m3LiuYtwAYoWjbMNeDqxzfKXZxyg=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 1000万回 突破",
-        "value": 10000000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "【PB】ネオンボール",
-        "color": "#cc3e82",
-        "avatar": "https://yt3.googleusercontent.com/KApLNBMj4wHMP_pJREAlVrrONimoKQnqO1M6xF8JiwrlMRdOWLaJWC4EznPPUJo95WW6nhnw-A=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 800万回 突破",
-        "value": 8000000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "萱口",
-        "color": "#5ed49d",
-        "avatar": "https://yt3.googleusercontent.com/H8FOz73KBUbeFp_oi1Hezj3J6juPGoznDx2zIEm8WOjT7BUXzVaJE4x7n-pFTTadI4TJbUgyBQ=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 300万回 突破",
-        "value": 3000000
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "ねとえん",
-        "color": "#5ed499",
-        "avatar": "https://yt3.googleusercontent.com/70PXZjxfgWp-3vLN2mvlkcLHVbpZzZC1oHrRvS4RGzpC65PVDzBkz7BnDUbA5I3LMcwTtPz1VQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
         "label": "投稿数 200本 突破",
