@@ -1,9 +1,21 @@
 {
   "site": "PBers Global",
-  "updated": "2026-11-25",
-  "generated": "2026-11-25T09:10:08+09:00",
-  "count": 3,
+  "updated": "2026-11-26",
+  "generated": "2026-11-26T08:58:04+09:00",
+  "count": 4,
   "items": [
+    {
+      "id": "2026-11-26/views/dotto-edit/9000000",
+      "date": "2026-11-26",
+      "channel": "Dotto edit",
+      "slug": "dotto-edit",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 900万回 突破",
+      "value": 9000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/global/c/dotto-edit/"
+    },
     {
       "id": "2026-11-21/subs/black-soybean/30000",
       "date": "2026-11-21",

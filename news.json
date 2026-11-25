@@ -1,9 +1,33 @@
 {
   "site": "PBers",
-  "updated": "2026-11-25",
-  "generated": "2026-11-25T09:10:05+09:00",
+  "updated": "2026-11-26",
+  "generated": "2026-11-26T08:58:01+09:00",
   "count": 12,
   "items": [
+    {
+      "id": "2026-11-26/videos/フヒフム/900",
+      "date": "2026-11-26",
+      "channel": "Æž!フヒフム",
+      "slug": "フヒフム",
+      "metric": "videos",
+      "type": "milestone",
+      "label": "投稿数 900本 突破",
+      "value": 900,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%83%95%E3%83%92%E3%83%95%E3%83%A0/"
+    },
+    {
+      "id": "2026-11-26/videos/ひまぐれ/100",
+      "date": "2026-11-26",
+      "channel": "ひまぐれ",
+      "slug": "ひまぐれ",
+      "metric": "videos",
+      "type": "milestone",
+      "label": "投稿数 100本 突破",
+      "value": 100,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%81%B2%E3%81%BE%E3%81%90%E3%82%8C/"
+    },
     {
       "id": "2026-11-25/views/カルマルボール/5000000",
       "date": "2026-11-25",
@@ -123,30 +147,6 @@
       "value": 8000000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E3%82%AB%E3%83%81%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A3%E3%81%BC%E3%83%BC%E3%82%8B/"
-    },
-    {
-      "id": "2026-11-19/views/わーるどボールポーランドボール/3000000",
-      "date": "2026-11-19",
-      "channel": "わーるどボール【ポーランドボール】",
-      "slug": "わーるどボールポーランドボール",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 300万回 突破",
-      "value": 3000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%82%8F%E3%83%BC%E3%82%8B%E3%81%A9%E3%83%9C%E3%83%BC%E3%83%AB%E3%83%9D%E3%83%BC%E3%83%A9%E3%83%B3%E3%83%89%E3%83%9C%E3%83%BC%E3%83%AB/"
-    },
-    {
-      "id": "2026-11-19/videos/日独伊pb宇宙系/500",
-      "date": "2026-11-19",
-      "channel": "日独伊(PB・宇宙系)",
-      "slug": "日独伊pb宇宙系",
-      "metric": "videos",
-      "type": "milestone",
-      "label": "投稿数 500本 突破",
-      "value": 500,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E6%97%A5%E7%8B%AC%E4%BC%8Apb%E5%AE%87%E5%AE%99%E7%B3%BB/"
     }
   ]
 }

@@ -1,5 +1,33 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-26",
+    "label": "11月26日(木)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "videos",
+        "name": "Æž!フヒフム",
+        "color": "#9b51e0",
+        "avatar": "https://yt3.googleusercontent.com/o0-EijPjZl_g0OcDfSJdv78d6uG6Ba0RxPPeI4spBOdIZqL842tVa_BsE8_cNxZLHRwd8PmZEA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "投稿数 900本 突破",
+        "value": 900
+      },
+      {
+        "type": "milestone",
+        "kind": "videos",
+        "name": "ひまぐれ",
+        "color": "#d45ed0",
+        "avatar": "https://yt3.googleusercontent.com/PFpcnuGhdq_D-oEISebsbhi2s1WWnKIWAsEnuWqeVZ5wWrOMiEaVVyn4ajXgfCiJLJSnxx_a55s=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "投稿数 100本 突破",
+        "value": 100
+      }
+    ]
+  },
+  {
     "date": "2026-11-25",
     "label": "11月25日(水)",
     "items": [
@@ -142,33 +170,5 @@ window.PBERS_NEWS = [
     "date": "2026-11-20",
     "label": "11月20日(金)",
     "items": []
-  },
-  {
-    "date": "2026-11-19",
-    "label": "11月19日(木)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "わーるどボール【ポーランドボール】",
-        "color": "#5e91d4",
-        "avatar": "https://yt3.googleusercontent.com/6gVVVw-moV268fxv9p9C-RAHunkNQ2F6T9_k_Kmu8hZ_CvP93ry95Q9gHkuX00mq7kifxCE7CQ=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 300万回 突破",
-        "value": 3000000
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "日独伊(PB・宇宙系)",
-        "color": "#3eccad",
-        "avatar": "https://yt3.googleusercontent.com/Jg2CdqVSVzclmM_vs9-GNwk633H0cPab831yuKZHMNJS82r4XEWa_jDXar6Sb7BpTeKWIsCTkg=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 500本 突破",
-        "value": 500
-      }
-    ]
   }
 ];
