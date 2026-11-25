@@ -1,5 +1,10 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-25",
+    "label": "11月25日(水)",
+    "items": []
+  },
+  {
     "date": "2026-11-24",
     "label": "11月24日(火)",
     "items": []
@@ -62,22 +67,5 @@ window.PBERS_NEWS = [
     "date": "2026-11-19",
     "label": "11月19日(木)",
     "items": []
-  },
-  {
-    "date": "2026-11-18",
-    "label": "11月18日(水)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "MOON-BALL",
-        "color": "#ccbb3e",
-        "avatar": "https://yt3.googleusercontent.com/U-hqdhrYkj3uB3rVV0FVIjWZn_SyNY6IZQZVEjZLOsE7uQ7ZdiSHOXjJZ-4ALQyLyNmerVWydHQ=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 4000万回 突破",
-        "value": 40000000
-      }
-    ]
   }
 ];

@@ -5,7 +5,14 @@
 <atom:link href="https://pbers.com/feed.xml" rel="self" type="application/rss+xml"/>
 <description>ポーランドボーラー(YouTube)の登録者・総再生・投稿数のマイルストーン突破ニュース</description>
 <language>ja</language>
-<lastBuildDate>Tue, 24 Nov 2026 12:00:00 +0900</lastBuildDate>
+<lastBuildDate>Wed, 25 Nov 2026 12:00:00 +0900</lastBuildDate>
+<item>
+<title>カルマルボール — 総再生数 500万回 突破</title>
+<link>https://pbers.com/c/%E3%82%AB%E3%83%AB%E3%83%9E%E3%83%AB%E3%83%9C%E3%83%BC%E3%83%AB/</link>
+<guid isPermaLink="false">2026-11-25/views/カルマルボール/5000000</guid>
+<pubDate>Wed, 25 Nov 2026 12:00:00 +0900</pubDate>
+<description>カルマルボール — 総再生数 500万回 突破</description>
+</item>
 <item>
 <title>Æž!みかんぼーる🍊 — 登録者 42万人 突破</title>
 <link>https://pbers.com/c/%E3%81%BF%E3%81%8B%E3%82%93%E3%81%BC%E3%83%BC%E3%82%8B/</link>
@@ -84,26 +91,5 @@
 <guid isPermaLink="false">2026-11-19/videos/日独伊pb宇宙系/500</guid>
 <pubDate>Thu, 19 Nov 2026 12:00:00 +0900</pubDate>
 <description>日独伊(PB・宇宙系) — 投稿数 500本 突破</description>
-</item>
-<item>
-<title>うずまき🌀 — 登録者 3万人 突破</title>
-<link>https://pbers.com/c/%E3%81%86%E3%81%9A%E3%81%BE%E3%81%8D/</link>
-<guid isPermaLink="false">2026-11-18/subs/うずまき/30000</guid>
-<pubDate>Wed, 18 Nov 2026 12:00:00 +0900</pubDate>
-<description>うずまき🌀 — 登録者 3万人 突破</description>
-</item>
-<item>
-<title>練乳=ソビエト共和国ぼーる — 総再生数 400万回 突破</title>
-<link>https://pbers.com/c/%E7%B7%B4%E4%B9%B3%E3%82%BD%E3%83%93%E3%82%A8%E3%83%88%E5%85%B1%E5%92%8C%E5%9B%BD%E3%81%BC%E3%83%BC%E3%82%8B/</link>
-<guid isPermaLink="false">2026-11-18/views/練乳ソビエト共和国ぼーる/4000000</guid>
-<pubDate>Wed, 18 Nov 2026 12:00:00 +0900</pubDate>
-<description>練乳=ソビエト共和国ぼーる — 総再生数 400万回 突破</description>
-</item>
-<item>
-<title>うずまき🌀 — 投稿数 200本 突破</title>
-<link>https://pbers.com/c/%E3%81%86%E3%81%9A%E3%81%BE%E3%81%8D/</link>
-<guid isPermaLink="false">2026-11-18/videos/うずまき/200</guid>
-<pubDate>Wed, 18 Nov 2026 12:00:00 +0900</pubDate>
-<description>うずまき🌀 — 投稿数 200本 突破</description>
 </item>
 </channel></rss>

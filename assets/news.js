@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-25",
+    "label": "11月25日(水)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "カルマルボール",
+        "color": "#a3cc3e",
+        "avatar": "https://yt3.googleusercontent.com/F1-8mFstIqJFQylGY8_Ge_m0Ylimx1ptiU_E7s_cCy3vwIGBXKrVtyPqamHfyQ9hKZRvCxq4OA=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 500万回 突破",
+        "value": 5000000
+      }
+    ]
+  },
+  {
     "date": "2026-11-24",
     "label": "11月24日(火)",
     "items": [
@@ -151,45 +168,6 @@ window.PBERS_NEWS = [
         "genre": "ポーランドボーラー",
         "label": "投稿数 500本 突破",
         "value": 500
-      }
-    ]
-  },
-  {
-    "date": "2026-11-18",
-    "label": "11月18日(水)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "うずまき🌀",
-        "color": "#4ec3e6",
-        "avatar": "https://yt3.googleusercontent.com/LkRrW7onGMeTLMUJrz7kkIrH0s24TKAC_bpYBQGYSVDe_V_mde3xmj8zE5mVKHtXTKDArtwGaU4=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 3万人 突破",
-        "value": 30000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "練乳=ソビエト共和国ぼーる",
-        "color": "#d45e85",
-        "avatar": "https://yt3.googleusercontent.com/At-LCv6FLwkd9vLAme8rbQv5tm2m6DjUNI8JaKNS3cVG2QIA6AqLtj9XttRVn9hq54ZHXuIA-w=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 400万回 突破",
-        "value": 4000000
-      },
-      {
-        "type": "milestone",
-        "kind": "videos",
-        "name": "うずまき🌀",
-        "color": "#4ec3e6",
-        "avatar": "https://yt3.googleusercontent.com/LkRrW7onGMeTLMUJrz7kkIrH0s24TKAC_bpYBQGYSVDe_V_mde3xmj8zE5mVKHtXTKDArtwGaU4=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "投稿数 200本 突破",
-        "value": 200
       }
     ]
   }

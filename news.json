@@ -1,9 +1,21 @@
 {
   "site": "PBers",
-  "updated": "2026-11-24",
-  "generated": "2026-11-24T11:24:48+09:00",
-  "count": 14,
+  "updated": "2026-11-25",
+  "generated": "2026-11-25T09:10:05+09:00",
+  "count": 12,
   "items": [
+    {
+      "id": "2026-11-25/views/カルマルボール/5000000",
+      "date": "2026-11-25",
+      "channel": "カルマルボール",
+      "slug": "カルマルボール",
+      "metric": "views",
+      "type": "milestone",
+      "label": "総再生数 500万回 突破",
+      "value": 5000000,
+      "genre": "ポーランドボーラー",
+      "url": "https://pbers.com/c/%E3%82%AB%E3%83%AB%E3%83%9E%E3%83%AB%E3%83%9C%E3%83%BC%E3%83%AB/"
+    },
     {
       "id": "2026-11-24/subs/みかんぼーる/420000",
       "date": "2026-11-24",
@@ -135,42 +147,6 @@
       "value": 500,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/c/%E6%97%A5%E7%8B%AC%E4%BC%8Apb%E5%AE%87%E5%AE%99%E7%B3%BB/"
-    },
-    {
-      "id": "2026-11-18/subs/うずまき/30000",
-      "date": "2026-11-18",
-      "channel": "うずまき🌀",
-      "slug": "うずまき",
-      "metric": "subs",
-      "type": "milestone",
-      "label": "登録者 3万人 突破",
-      "value": 30000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%86%E3%81%9A%E3%81%BE%E3%81%8D/"
-    },
-    {
-      "id": "2026-11-18/views/練乳ソビエト共和国ぼーる/4000000",
-      "date": "2026-11-18",
-      "channel": "練乳=ソビエト共和国ぼーる",
-      "slug": "練乳ソビエト共和国ぼーる",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 400万回 突破",
-      "value": 4000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E7%B7%B4%E4%B9%B3%E3%82%BD%E3%83%93%E3%82%A8%E3%83%88%E5%85%B1%E5%92%8C%E5%9B%BD%E3%81%BC%E3%83%BC%E3%82%8B/"
-    },
-    {
-      "id": "2026-11-18/videos/うずまき/200",
-      "date": "2026-11-18",
-      "channel": "うずまき🌀",
-      "slug": "うずまき",
-      "metric": "videos",
-      "type": "milestone",
-      "label": "投稿数 200本 突破",
-      "value": 200,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/c/%E3%81%86%E3%81%9A%E3%81%BE%E3%81%8D/"
     }
   ]
 }
