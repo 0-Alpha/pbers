@@ -344,6 +344,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-11-26",
             "s": 441000
+          },
+          {
+            "d": "2026-11-27",
+            "s": 441000
           }
         ]
       },
@@ -687,6 +691,10 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-11-26",
+            "s": 228000
+          },
+          {
+            "d": "2026-11-27",
             "s": 228000
           }
         ]
@@ -1032,6 +1040,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-11-26",
             "s": 192000
+          },
+          {
+            "d": "2026-11-27",
+            "s": 192000
           }
         ]
       }
@@ -1135,6 +1147,10 @@ window.PBERS_RACE = [
           },
           {
             "d": "2026-11-26",
+            "s": 38200
+          },
+          {
+            "d": "2026-11-27",
             "s": 38200
           }
         ]
@@ -1480,6 +1496,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-11-26",
             "s": 38100
+          },
+          {
+            "d": "2026-11-27",
+            "s": 38100
           }
         ]
       }
@@ -1488,8 +1508,52 @@ window.PBERS_RACE = [
   {
     "members": [
       {
-        "name": "AJ ball",
+        "name": "Komainu / 狛戌 CB",
         "color": "#5e6ad4",
+        "avatar": "https://yt3.googleusercontent.com/aFocYQbA44E_npd4XDQbhuO4SKRJo8N1lItKPxX2Xouf1qPbt0vI3a85D3H0HzutBQZ5EoU9N0U=s900-c-k-c0x00ffffff-no-rj",
+        "subs": 3570,
+        "history": [
+          {
+            "d": "2026-11-18",
+            "s": 3240
+          },
+          {
+            "d": "2026-11-19",
+            "s": 3320
+          },
+          {
+            "d": "2026-11-20",
+            "s": 3350
+          },
+          {
+            "d": "2026-11-21",
+            "s": 3440
+          },
+          {
+            "d": "2026-11-23",
+            "s": 3480
+          },
+          {
+            "d": "2026-11-24",
+            "s": 3500
+          },
+          {
+            "d": "2026-11-25",
+            "s": 3520
+          },
+          {
+            "d": "2026-11-26",
+            "s": 3540
+          },
+          {
+            "d": "2026-11-27",
+            "s": 3570
+          }
+        ]
+      },
+      {
+        "name": "AJ ball",
+        "color": "#ad3ecc",
         "avatar": "https://yt3.googleusercontent.com/oBocVfsRI4xNymEO3_9zK8GmSus753e0k0d_Dm9TN5IXzxVHK7Nlea4VDStGfUaeRAX5cMc5=s900-c-k-c0x00ffffff-no-rj",
         "subs": 3560,
         "history": [
@@ -1828,46 +1892,10 @@ window.PBERS_RACE = [
           {
             "d": "2026-11-26",
             "s": 3560
-          }
-        ]
-      },
-      {
-        "name": "Komainu / 狛戌 CB",
-        "color": "#ad3ecc",
-        "avatar": "https://yt3.googleusercontent.com/aFocYQbA44E_npd4XDQbhuO4SKRJo8N1lItKPxX2Xouf1qPbt0vI3a85D3H0HzutBQZ5EoU9N0U=s900-c-k-c0x00ffffff-no-rj",
-        "subs": 3540,
-        "history": [
-          {
-            "d": "2026-11-18",
-            "s": 3240
           },
           {
-            "d": "2026-11-19",
-            "s": 3320
-          },
-          {
-            "d": "2026-11-20",
-            "s": 3350
-          },
-          {
-            "d": "2026-11-21",
-            "s": 3440
-          },
-          {
-            "d": "2026-11-23",
-            "s": 3480
-          },
-          {
-            "d": "2026-11-24",
-            "s": 3500
-          },
-          {
-            "d": "2026-11-25",
-            "s": 3520
-          },
-          {
-            "d": "2026-11-26",
-            "s": 3540
+            "d": "2026-11-27",
+            "s": 3560
           }
         ]
       }
