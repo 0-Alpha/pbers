@@ -1,8 +1,8 @@
 {
   "site": "PBers Global",
-  "updated": "2026-11-27",
-  "generated": "2026-11-27T09:02:05+09:00",
-  "count": 4,
+  "updated": "2026-11-28",
+  "generated": "2026-11-28T08:46:48+09:00",
+  "count": 1,
   "items": [
     {
       "id": "2026-11-26/views/dotto-edit/9000000",
@@ -15,42 +15,6 @@
       "value": 9000000,
       "genre": "ポーランドボーラー",
       "url": "https://pbers.com/global/c/dotto-edit/"
-    },
-    {
-      "id": "2026-11-21/subs/black-soybean/30000",
-      "date": "2026-11-21",
-      "channel": "Black soybean",
-      "slug": "black-soybean",
-      "metric": "subs",
-      "type": "milestone",
-      "label": "登録者 3万人 突破",
-      "value": 30000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/global/c/black-soybean/"
-    },
-    {
-      "id": "2026-11-21/views/áíšaispoaporu/100000000",
-      "date": "2026-11-21",
-      "channel": "áíš!aispoaporu",
-      "slug": "áíšaispoaporu",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 1億回 突破",
-      "value": 100000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/global/c/%C3%A1%C3%AD%C5%A1aispoaporu/"
-    },
-    {
-      "id": "2026-11-21/views/operajp/1000000",
-      "date": "2026-11-21",
-      "channel": "OperaJP",
-      "slug": "operajp",
-      "metric": "views",
-      "type": "milestone",
-      "label": "総再生数 100万回 突破",
-      "value": 1000000,
-      "genre": "ポーランドボーラー",
-      "url": "https://pbers.com/global/c/operajp/"
     }
   ]
 }

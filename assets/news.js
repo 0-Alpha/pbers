@@ -1,5 +1,22 @@
 window.PBERS_NEWS = [
   {
+    "date": "2026-11-28",
+    "label": "11月28日(土)",
+    "items": [
+      {
+        "type": "milestone",
+        "kind": "views",
+        "name": "某P国の球",
+        "color": "#3e58cc",
+        "avatar": "https://yt3.googleusercontent.com/XrXLTRaii_TN3m_FTr8J_fMlh1VJfhmf43mY2JzU4iNTLMMtYQR0xvyge9r5Tokxl0TNVW-wn30=s900-c-k-c0x00ffffff-no-rj",
+        "icon": "🎉",
+        "genre": "ポーランドボーラー",
+        "label": "総再生数 300万回 突破",
+        "value": 3000000
+      }
+    ]
+  },
+  {
     "date": "2026-11-27",
     "label": "11月27日(金)",
     "items": []
@@ -23,7 +40,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "videos",
         "name": "ひまぐれ",
-        "color": "#3ecc74",
+        "color": "#5e62d4",
         "avatar": "https://yt3.googleusercontent.com/PFpcnuGhdq_D-oEISebsbhi2s1WWnKIWAsEnuWqeVZ5wWrOMiEaVVyn4ajXgfCiJLJSnxx_a55s=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -40,7 +57,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "カルマルボール",
-        "color": "#a3cc3e",
+        "color": "#d48d5e",
         "avatar": "https://yt3.googleusercontent.com/F1-8mFstIqJFQylGY8_Ge_m0Ylimx1ptiU_E7s_cCy3vwIGBXKrVtyPqamHfyQ9hKZRvCxq4OA=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -79,7 +96,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "videos",
         "name": "日独伊(PB・宇宙系)",
-        "color": "#3eccad",
+        "color": "#5e85d4",
         "avatar": "https://yt3.googleusercontent.com/Jg2CdqVSVzclmM_vs9-GNwk633H0cPab831yuKZHMNJS82r4XEWa_jDXar6Sb7BpTeKWIsCTkg=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
@@ -131,44 +148,5 @@ window.PBERS_NEWS = [
     "date": "2026-11-22",
     "label": "11月22日(日)",
     "items": []
-  },
-  {
-    "date": "2026-11-21",
-    "label": "11月21日(土)",
-    "items": [
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "Æž!フヒフム",
-        "color": "#9b51e0",
-        "avatar": "https://yt3.googleusercontent.com/o0-EijPjZl_g0OcDfSJdv78d6uG6Ba0RxPPeI4spBOdIZqL842tVa_BsE8_cNxZLHRwd8PmZEA=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 43万人 突破",
-        "value": 430000
-      },
-      {
-        "type": "milestone",
-        "kind": "subs",
-        "name": "まるッとわかる地理の裏話",
-        "color": "#5ed46e",
-        "avatar": "https://yt3.googleusercontent.com/OKTvYCqWkuYG-s3iq1dydM6YDas44QIY_hQxl1bPLPQbGzbLUe-ljaKZ4AoJu1kb1r2PI0GPXnI=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "登録者 2万人 突破",
-        "value": 20000
-      },
-      {
-        "type": "milestone",
-        "kind": "views",
-        "name": "カチューシャぼーる☭\n",
-        "color": "#cc8c3e",
-        "avatar": "https://yt3.googleusercontent.com/tSmyaWZrktnxX7mi3Lp4JpIMaiKER9c0OhB1qjyse1ndqTYJbX2dzSenXnB0n4hvew16HyvWbA=s900-c-k-c0x00ffffff-no-rj",
-        "icon": "🎉",
-        "genre": "ポーランドボーラー",
-        "label": "総再生数 800万回 突破",
-        "value": 8000000
-      }
-    ]
   }
 ];
