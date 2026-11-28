@@ -5,7 +5,7 @@ window.PBERS_RACE = [
     "members": [
       {
         "name": "JP-BALL",
-        "color": "#d45e5e",
+        "color": "#2d63aa",
         "avatar": "https://yt3.googleusercontent.com/UXoyWxO_MOdKJK4kLMC988Uj9LZC9pZO13VMLEVq-4C32fBkvug-FUzSiUrbAh_mSy3zOPyfCC0=s900-c-k-c0x00ffffff-no-rj",
         "subs": 441000,
         "history": [
@@ -357,7 +357,7 @@ window.PBERS_RACE = [
       },
       {
         "name": "MOON-BALL",
-        "color": "#ccbb3e",
+        "color": "#2b30ab",
         "avatar": "https://yt3.googleusercontent.com/U-hqdhrYkj3uB3rVV0FVIjWZn_SyNY6IZQZVEjZLOsE7uQ7ZdiSHOXjJZ-4ALQyLyNmerVWydHQ=s900-c-k-c0x00ffffff-no-rj",
         "subs": 228000,
         "history": [
@@ -709,7 +709,7 @@ window.PBERS_RACE = [
       },
       {
         "name": "OperaJP",
-        "color": "#79d45e",
+        "color": "#b32425",
         "avatar": "https://yt3.googleusercontent.com/IZb5E7nvH7_juX1t_m9wZnPHzENshaq6qPoKGCkfy-P1CF9TWQsUH4wCA0-Q2JYpHzxR8316DA=s900-c-k-c0x00ffffff-no-rj",
         "subs": 192000,
         "history": [
@@ -1065,7 +1065,7 @@ window.PBERS_RACE = [
     "members": [
       {
         "name": "F丸",
-        "color": "#cc583e",
+        "color": "#439b3b",
         "avatar": "https://yt3.googleusercontent.com/Eb7oF7_gJoeiQyuS-21ATyVE_gLBpI3G7VsWd-yeL9LWPjYxsJ-kmBr4a0Ji03bMbK6-D5gZ=s900-c-k-c0x00ffffff-no-rj",
         "subs": 38200,
         "history": [
@@ -1417,7 +1417,7 @@ window.PBERS_RACE = [
       },
       {
         "name": "SATTOA−BALL",
-        "color": "#ccd45e",
+        "color": "#3ba4cd",
         "avatar": "https://yt3.googleusercontent.com/LKRBB8zQXcehQDCN_vYXQUf37fqreQnua7WCjduk6hOxvdQyZjpaZ0MjQ4FTltVK2Gr1c5fbSn4=s900-c-k-c0x00ffffff-no-rj",
         "subs": 38200,
         "history": [

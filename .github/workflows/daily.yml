@@ -39,7 +39,9 @@ jobs:
         run: python fetch_x.py
 
       - name: Rebuild site data
-        run: python gen_data.py
+        run: |
+          pip install -q pillow || true   # アイコンから色を取る(icon_color.py)。無くても既定色で続行
+          python gen_data.py
 
       - name: Commit & push if changed
         run: |

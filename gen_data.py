@@ -2,6 +2,7 @@
 """data.json -> assets/data.js（登録者数・総再生数・投稿数・固有色つき）
    history.csv -> assets/news.js（直近7日のマイルストーン突破ニュース）"""
 import json, colorsys, re, os, csv, datetime, urllib.parse, statistics
+import icon_color   # FIXED に無いチャンネルの色をアイコンの主成分から決める
 
 BASE = os.path.dirname(os.path.abspath(__file__))   # works on Windows and on CI (Linux)
 JST = datetime.timezone(datetime.timedelta(hours=9))
@@ -304,8 +305,13 @@ def build_edition():
         if d["id"] in FIXED:
             colors[d["id"]] = FIXED[d["id"]]
             continue
+        ic = icon_color.color_for(d["id"], d.get("avatar"))   # アイコンでいちばん多い色(白黒は80%以上の時だけ)
+        if ic:
+            colors[d["id"]] = ic
+            continue
         colors[d["id"]] = hsl((pi * 53) % 360, 0.58, 0.60 if pi % 2 == 0 else 0.52)
         pi += 1
+    icon_color.save()
     for cid, col in colors.items():
         NINKI_COLORS.setdefault(cid, col)
 

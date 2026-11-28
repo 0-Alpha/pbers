@@ -17,7 +17,7 @@ window.PBERS_NEWS = [
         "type": "milestone",
         "kind": "views",
         "name": "Dotto edit",
-        "color": "#a55ed4",
+        "color": "#2eac2a",
         "avatar": "https://yt3.googleusercontent.com/2tzadDOT5LXLSGWtWna4kvAUl__O0G2II67NQfuamve633NvIEAz_YVPiFMO38mB4DAnyhqQ=s900-c-k-c0x00ffffff-no-rj",
         "icon": "🎉",
         "genre": "ポーランドボーラー",
