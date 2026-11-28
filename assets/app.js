@@ -1277,7 +1277,23 @@
   function saveMyThreads(o) { try { localStorage.setItem('pbers_my_threads', JSON.stringify(o)); } catch (e) {} }
   function markMine(id, seenPosts) { var m = myThreads(); m[id] = { seen: seenPosts }; saveMyThreads(m); }
   function seenThread(id, posts) { var m = myThreads(); if (m[id]) { m[id].seen = posts; saveMyThreads(m); } }   // 閲覧=既読化
-  function newFor(id, posts) { var m = myThreads(); return m[id] ? Math.max(0, (posts || 0) - (m[id].seen || 0)) : 0; }
+  function newFor(id, posts) { var m = myThreads(); return (m[id] && !m[id].off) ? Math.max(0, (posts || 0) - (m[id].seen || 0)) : 0; }
+  // スレごとの通知オン/オフ。off:1 は「通知を外した」印(返信し直しても勝手に戻さない)。関わっていないスレもオンにできる
+  function notifOn(id) { var m = myThreads(); return !!(m[id] && !m[id].off); }
+  function setNotif(id, on, posts) {
+    var m = myThreads();
+    if (on) m[id] = { seen: posts || 0 };          // オンにした時点までは既読扱い
+    else m[id] = { seen: (m[id] && m[id].seen) || posts || 0, off: 1 };
+    saveMyThreads(m);
+    if (on && !boardThreadsCache.some(function (x) { return x.id === id; })) boardThreadsCache.push({ id: id, posts: posts || 0 });
+    updateBoardBadge(countNew(boardThreadsCache));
+  }
+  function notifBtnHtml(id) {
+    var on = notifOn(id);
+    return '<button type="button" class="th-notif' + (on ? ' on' : '') + '" id="th-notif" aria-pressed="' + on + '" title="' +
+      (on ? 'このスレに新着レスが付いたら掲示板タブに件数を出します。押すと外します' : '押すと、このスレの新着レスを掲示板タブに件数で知らせます') + '">' +
+      (on ? '🔔 新着通知オン' : '🔕 新着通知オフ') + '</button>';
+  }
   function countNew(threads) { var t = 0; (threads || []).forEach(function (x) { t += newFor(x.id, x.posts); }); return t; }
   function updateBoardBadge(n) {
     var tab = document.getElementById('tab-board'); if (!tab) return;
@@ -2007,9 +2023,11 @@
         history.replaceState({ view: wantV }, '', pathOf(wantV) + '?t=' + id);
       }
       seenThread(id, d.thread.posts);                         // 閲覧=このスレは既読に
+      var thPosts = d.thread.posts;
       updateBoardBadge(countNew(boardThreadsCache));          // タブの新着バッジを更新
       host.innerHTML = '<button class="th-back">← スレ一覧</button>' +
         '<h3 class="th-h">' + tagChip(d.tag) + ' ' + esc(d.thread.title) + '</h3>' +
+        '<div class="th-notif-row">' + notifBtnHtml(id) + '</div>' +
         ((boardKey || delKeyOf(id, 1)) ? '<div class="th-tagedit" id="th-tagedit"><span class="th-tagedit-l">タグ変更（スレ主のみ）</span>' +   // スレ主=1レス目の削除キー所持者
           TAG_ORDER.map(function (k) { return '<button type="button" class="th-tagb' + (tagKey(d.tag) === k ? ' on' : '') + '" data-tag="' + k + '" style="--tc:' + TAGS[k].color + '">' + TAGS[k].label + '</button>'; }).join('') +
           '<span class="th-tagedit-msg" id="th-tagedit-msg"></span></div>' : '') +
@@ -2074,6 +2092,12 @@
           document.getElementById('bt-reply').scrollIntoView({ block: 'center' });
           rb.focus();
         });
+      });
+      var notifRow = host.querySelector('.th-notif-row');
+      if (notifRow) notifRow.addEventListener('click', function (e) {   // このスレの新着通知を付け外し(この端末だけ)
+        if (!e.target.closest('.th-notif')) return;
+        setNotif(id, !notifOn(id), thPosts);
+        notifRow.innerHTML = notifBtnHtml(id);
       });
       var tagEdit = document.getElementById('th-tagedit');
       if (tagEdit) tagEdit.addEventListener('click', function (e) {   // スレのタグ変更(スレ主/管理者)
@@ -2192,7 +2216,8 @@
       if (boardEnabled && tabBtn) { tabBtn.hidden = false; showZatsudanMenu(); }
       renderDashBoard();   // 公開中ならダッシュボードに新着スレッドを表示
       // 自分が関わったスレがあれば、読込時に新着返信を背後でチェックしてタブにバッジを出す
-      var mineIds = Object.keys(myThreads()).filter(function (k) { return +k > 0; }).slice(-50);   // 自分のスレだけ照会(全件取得しない)
+      var myT = myThreads();
+      var mineIds = Object.keys(myT).filter(function (k) { return +k > 0 && !myT[k].off; }).slice(-50);   // 自分のスレだけ照会(全件取得しない)
       if (boardEnabled && mineIds.length) {
         fetch(boardApi('/threads') + '?ids=' + mineIds.join(','), { headers: boardHeaders() }).then(function (r) { return r.json(); })
           .then(function (d) { boardThreadsCache = d.threads || []; updateBoardBadge(countNew(boardThreadsCache)); }).catch(function () {});
@@ -2773,7 +2798,7 @@
      日ごとの値を線形補間してバーを伸ばし、順位の入れ替わりは表示位置を目標順位へ指数的に寄せて動かす。
      実績の後ろに予測の日付と値を足す。最初は現在で止まり、過去から再生しても現在で一度止まる。 */
   var BCR = null, bcrLoading = false;
-  var bcr = { metric: 'subs', n: 12, pos: 0, playing: false, speed: 1, rows: {}, ticks: {}, raf: 0, last: 0 };
+  var bcr = { metric: 'subs', n: 12, skip: 0, pos: 0, playing: false, speed: 1, rows: {}, ticks: {}, raf: 0, last: 0, exKey: '' };
   var BCR_SPEEDS = [1, 2, 4], BCR_DPS = 2, BCR_FC_DPS = 4;   // 1x = 実績は1秒で2日、予測は1秒で4日進む
   var BCR_RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var BCR_ICON = {
@@ -2784,11 +2809,11 @@
   function bcrN() { return bcr.n; }
   function bcrH() {   // 表示数が多いほど1行を詰める
     var sm = window.innerWidth <= 560;
-    return bcr.n >= 30 ? (sm ? 24 : 28) : bcr.n >= 20 ? (sm ? 28 : 34) : (sm ? 34 : 42);
+    return bcr.n >= 100 ? (sm ? 17 : 20) : bcr.n >= 50 ? (sm ? 20 : 24) : bcr.n >= 30 ? (sm ? 24 : 28) : bcr.n >= 20 ? (sm ? 28 : 34) : (sm ? 34 : 42);
   }
   function bcrNote() {
     var d0 = BCR.dates[0].split('-'), d1 = BCR.dates[bcr.now].split('-'), d2 = BCR.dates[bcrLast()].split('-');
-    setText('bcr-note', (+d0[1]) + '/' + (+d0[2]) + ' 〜 ' + (+d1[1]) + '/' + (+d1[2]) + (bcrLast() > bcr.now ? '(' + (+d2[1]) + '/' + (+d2[2]) + ' まで予測)' : '') + ' ・ 上位' + bcrN() + ' ・ 毎日更新');
+    setText('bcr-note', (+d0[1]) + '/' + (+d0[2]) + ' 〜 ' + (+d1[1]) + '/' + (+d1[2]) + (bcrLast() > bcr.now ? '(' + (+d2[1]) + '/' + (+d2[2]) + ' まで予測)' : '') + ' ・ 上位' + bcrN() + (bcr.skip ? '(上位' + bcr.skip + 'を除外)' : '') + ' ・ 毎日更新');
   }
   function bcrLast() { return BCR.dates.length - 1; }
   function bcrFmt(v) { return bcr.metric === 'views' ? jp(Math.round(v)) : fmt(Math.round(v)); }
@@ -2842,8 +2867,25 @@
     var moving = bcrDraw(dt);
     if (bcr.playing || moving) bcr.raf = requestAnimationFrame(bcrFrame);
   }
+  // 上位除外: 「現在」の日付で選んだ指標の上位 skip 組を外す(再生中に顔ぶれが入れ替わらないよう固定)
+  function bcrExclude() {
+    var arr = BCR[bcr.metric], vis = BCR.ch.map(function (c) { return genreVisible(c) ? 1 : 0; }).join('');
+    var key = bcr.metric + '|' + bcr.skip + '|' + vis;
+    if (key === bcr.exKey) return bcr.ex;
+    bcr.exKey = key; bcr.ex = {};
+    var names = [];
+    if (bcr.skip) {
+      BCR.ch.map(function (c, k) { return { k: k, v: genreVisible(c) ? arr[k][bcr.now] : null }; })
+        .filter(function (t) { return t.v != null; })
+        .sort(function (x, y) { return y.v - x.v; })
+        .slice(0, bcr.skip).forEach(function (t) { bcr.ex[t.k] = 1; names.push(BCR.ch[t.k].name); });
+    }
+    var el = document.getElementById('bcr-ex');
+    if (el) { el.hidden = !names.length; el.textContent = names.length ? '除外中: ' + names.join('、') : ''; }
+    return bcr.ex;
+  }
   function bcrDraw(dt) {
-    var N = bcrN(), H = bcrH(), L = bcrLast();
+    var N = bcrN(), H = bcrH(), L = bcrLast(), ex = bcrExclude();
     var i = Math.min(Math.floor(bcr.pos), L), j = Math.min(i + 1, L), f = bcr.pos - i, arr = BCR[bcr.metric];
     var list = [];
     BCR.ch.forEach(function (c, k) {
@@ -2854,11 +2896,15 @@
       list.push({ k: k, v: a + (b - a) * f });
     });
     list.sort(function (x, y) { return y.v - x.v; });
+    var rank = {};   // 順位の数字は除外前の本当の順位で出す
+    list.forEach(function (t, r) { rank[t.k] = r + 1; });
+    list = list.filter(function (t) { return !ex[t.k]; });
     var max = list.length ? list[0].v : 1, vm = {}, want = {};
     list.forEach(function (t, r) { vm[t.k] = t.v; if (r < N) want[t.k] = r; });
     var bars = document.getElementById('bcr-bars'), rows = bcr.rows;
     bars.style.height = (N * H) + 'px'; bars.style.setProperty('--h', H + 'px');
     bars.classList.toggle('dense', N > 12);
+    bars.classList.toggle('xdense', N >= 50);
     Object.keys(want).forEach(function (k) {
       if (rows[k]) return;
       var c = BCR.ch[k], el = document.createElement('a');
@@ -2885,7 +2931,7 @@
       r.el.style.setProperty('--f', Math.max(r.v / max, 0.004).toFixed(4));
       var base = bcr.pos > bcr.now ? arr[k][bcr.now] : null;   // 現在から伸びた分を濃くする
       r.el.style.setProperty('--g', base != null && r.v > base ? ((r.v - base) / r.v).toFixed(4) : '0');
-      r.rk.textContent = inTop ? want[k] + 1 : '';
+      r.rk.textContent = inTop ? rank[k] : '';
       r.val.textContent = bcrFmt(r.v);
     });
     // 目盛り(最大値に合わせて間隔が変わる)
@@ -2912,6 +2958,12 @@
       b.addEventListener('click', function () {
         document.querySelectorAll('#bcr-n .vt').forEach(function (x) { x.classList.toggle('on', x === b); });
         bcr.n = +b.dataset.n; bcrNote(); bcrKick();   // 再生位置はそのまま、行の高さと本数だけ変える
+      });
+    });
+    document.querySelectorAll('#bcr-skip .vt').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.querySelectorAll('#bcr-skip .vt').forEach(function (x) { x.classList.toggle('on', x === b); });
+        bcr.skip = +b.dataset.skip; bcrNote(); bcrKick();
       });
     });
     seek.addEventListener('input', function () { bcr.pos = +seek.value; bcr.playing = false; bcrBtn(); bcrKick(); });

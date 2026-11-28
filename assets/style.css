@@ -1770,3 +1770,22 @@ section.block#dash-vote{padding:0}
 .bn-th:hover{text-decoration:underline}
 .bn-body{color:var(--muted);font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bn-un{flex:none}
+
+/* ---- 掲示板: スレごとの新着通知オン/オフ ---- */
+.th-notif-row{margin:-10px 0 12px}
+.th-notif{border:1px solid var(--line);background:transparent;color:var(--muted,#8d8986);border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:700;cursor:pointer}
+.th-notif.on{border-color:var(--red);color:var(--red)}
+.th-notif:hover{background:var(--panel)}
+
+/* ---- バーチャートレース: 50/100本と上位除外 ---- */
+.vt-l{align-self:center;padding:0 4px 0 9px;font-family:var(--jp);font-weight:700;font-size:12px;color:var(--muted);white-space:nowrap}
+.bcr-ex{margin:12px 0 0;font-size:12.5px;line-height:1.6;color:var(--muted)}
+.bcr-bars.xdense .bcr-lab{font-size:11.5px}
+.bcr-bars.xdense .bcr-val{font-size:11px}
+.bcr-bars.xdense .bcr-rk{font-size:10px}
+.bcr-bars.xdense .bcr-bar{height:calc(var(--h) - 4px);border-radius:0 4px 4px 0}
+.bcr-bars.xdense .bcr-av{width:calc(var(--h) - 2px);height:calc(var(--h) - 2px);margin-left:calc((var(--h) - 2px) / -2);border-width:1px}
+@media(max-width:560px){
+  .bcr-bars.xdense .bcr-lab,.bcr-bars.xdense .bcr-val{font-size:9.5px}
+  .bcr-bars.xdense .bcr-rk{font-size:8.5px}
+}

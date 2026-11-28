@@ -415,7 +415,7 @@ def build_race(colors):
         f.write("window.PBERS_RACE = " + json.dumps(out, ensure_ascii=False, indent=2) + ";\n")
     print("wrote assets/race.js (%d races incl. TOP3)" % len(out))
 
-BARRACE_TOP = 30   # 1日でもこの順位以内に入ったチャンネルだけ収録(ファイルを軽くするため)
+BARRACE_TOP = 115   # 1日でもこの順位以内に入ったチャンネルだけ収録(表示は最大100本+上位除外ぶん)
 BARRACE_EXCLUDE = {   # バーチャートレースに出さないチャンネル
     "UCD9mEEJypdqQZeSeTotItbg",   # カルノ ムックル教: 2026-08-30を最後に取得できず名前がIDのまま出ていた(2026-11-28 除外)
 }
@@ -527,7 +527,7 @@ CH_TPL = '''<!doctype html>
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251123">
+<link rel="stylesheet" href="/assets/style.css?v=251128">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>
@@ -550,7 +550,7 @@ CH_TPL = '''<!doctype html>
 </div></footer>
 <script>window.CH = {{CH}};</script>
 <script>window.CH_HISTORY = {{HIST}};</script>
-<script src="/assets/channel.js?v=251123"></script>
+<script src="/assets/channel.js?v=251128"></script>
 </body>
 </html>
 '''
@@ -1189,7 +1189,7 @@ def _art_head(title, desc, canonical, jsonld="", robots="index,follow"):
 (function(){var API=window.PBERS_VIEWS_API;if(!API)return;window.pbersTrackView=function(path){path=path||location.pathname;var hit=0;try{var k='vc:'+path+':'+new Date().toISOString().slice(0,10);if(!localStorage.getItem(k)){hit=1;localStorage.setItem(k,'1');}}catch(e){}fetch(API+'?page='+encodeURIComponent(path)+'&hit='+hit).then(function(r){return r.json();}).then(function(d){var el=document.getElementById('view-count'),n=document.getElementById('view-count-n');if(el&&n&&d&&typeof d.count==='number'){n.textContent=d.count.toLocaleString('en-US');el.hidden=false;}}).catch(function(){});};addEventListener('load',function(){window.pbersTrackView(location.pathname);});})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/assets/style.css?v=251123">
+<link rel="stylesheet" href="/assets/style.css?v=251128">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJS843Z72S"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RJS843Z72S');</script>''' + ld + '''
