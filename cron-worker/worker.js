@@ -4,6 +4,8 @@
  *
  * 必要な設定(Cloudflareダッシュボード):
  *   KV binding : PBERS_KV
+ *   R2 binding : BOARD_IMG (任意。掲示板の画像アップロード用。無ければ添付ボタンを出さない)
+ *   Variable   : IMG_BASE  (任意。R2バケットのカスタムドメイン例 https://img.pbers.com 。未設定ならこのWorker経由で配信)
  *   Secrets    : GH_TOKEN, RUN_KEY, HUB_SECRET
  *   Variable   : CALLBACK_URL = https://<このworker>.workers.dev/yt
  *   Cron       : 0 3,9,15,21 * * *  (= JST 12/18/0/6時。統計＋購読更新)
@@ -25,6 +27,7 @@ export default {
       try { await subscribeBatch(env); } catch (e) {}   // 購読のリース更新(1回30件ずつ、cursorで巡回)
       try { await backupBoard(env); } catch (e) {}      // 掲示板の日次バックアップ(その日未実施なら1回)
       try { await purgeOldIps(env); } catch (e) {}      // 保管期間を過ぎたIP/UAを削除
+      try { await imgSweep(env); } catch (e) {}         // 投稿に使われなかったアップロード画像を削除
     })());
   },
 
@@ -66,8 +69,11 @@ export default {
     if (url.pathname === "/api/senkyo/status" && req.method === "GET") return senkyoStatus(req, env);
     if (url.pathname === "/api/senkyo/vote" && req.method === "POST") return senkyoVote(req, env);
     if (url.pathname === "/api/board/config") {
-      return json({ public: env.BOARD_PUBLIC === "1" });
+      return json({ public: env.BOARD_PUBLIC === "1", img: !!env.BOARD_IMG });
     }
+    if (url.pathname === "/api/board/upload" && req.method === "POST") return imgUpload(req, env);
+    if (url.pathname === "/api/board/img/delete" && req.method === "POST") return imgDelete(req, env);
+    if (url.pathname.startsWith("/api/board/img/") && req.method === "GET") return imgServe(url, env);
     if (url.pathname === "/api/board/threads" && req.method === "GET")  return threadList(url, req, env);
     if (url.pathname === "/api/board/threads" && req.method === "POST") return threadCreate(req, env);
     if (url.pathname === "/api/board/thread"  && req.method === "GET")  return threadShow(url, req, env);
@@ -615,6 +621,7 @@ async function threadCreate(req, env) {
   try { await ensureTags(env); await env.DB.prepare("INSERT OR REPLACE INTO board_tags(thread_id,tag) VALUES(?1,?2)").bind(tid, tag).run(); } catch (e) {}
   if (b.poll) { try { await createPoll(env, tid, b.poll, now); } catch (e) {} }   // スレ主のアンケート添付(任意)
   if (b.sheet) { try { await createSheet(env, tid, b.sheet, now); } catch (e) {} }  // スレ主の表添付(任意)
+  await imgMarkPosted(env, body);
   if (!g.admin && spamToks.length) await urlSpamRecord(env, spamToks, tid);       // 同一URL連投カウントに記録
   return json({ ok: true, id: tid, del: await delkeyFor(env, tid, 1, now) });    // del=OP(1レス目)の自己削除キー
 }
@@ -980,6 +987,7 @@ async function postCreate(req, env) {
     "INSERT INTO board_posts(thread_id,no,name,body,uid,created,ip_hash,hidden,admin,ip,ua) VALUES(?1,?2,?3,?4,?5,?6,?7,0,?8,?9,?10)")
     .bind(tid, no, name, body, uid, now, iph, g.admin ? 1 : 0, ip, ua).run();
   await env.DB.prepare("UPDATE board_threads SET posts=?2, bumped=?3 WHERE id=?1").bind(tid, no, now).run();
+  await imgMarkPosted(env, body);
   if (!g.admin && spamToks.length) await urlSpamRecord(env, spamToks, tid);       // 同一URL連投カウントに記録
   return json({ ok: true, no, del: await delkeyFor(env, tid, no, now) });        // del=このレスの自己削除キー
 }
@@ -1008,16 +1016,18 @@ async function postDelete(req, env) {
   let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
   const tid = parseInt(b.thread, 10), no = parseInt(b.no, 10);
   if (!tid || !no) return json({ error: "bad_id" }, 400);
-  const p = await env.DB.prepare("SELECT no,body,created,hidden FROM board_posts WHERE thread_id=?1 AND no=?2").bind(tid, no).first();
+  const p = await env.DB.prepare("SELECT no,body,created,hidden,ip_hash FROM board_posts WHERE thread_id=?1 AND no=?2").bind(tid, no).first();
   if (!p) return json({ error: "not_found" }, 404);
   if (g.admin && b.hard) {                                                       // 管理者: 行ごと完全削除(取り消し不可)
     await env.DB.prepare("DELETE FROM board_posts WHERE thread_id=?1 AND no=?2").bind(tid, no).run();
+    await imgDropIn(env, [p.body]);
     return json({ ok: true, hard: true });
   }
   if (!p.body) return json({ ok: true });                                        // 既に削除済み(冪等)
   const expected = await delkeyFor(env, tid, no, p.created);
   if (!g.admin && String(b.token || "") !== expected) return json({ error: "forbidden" }, 403);
   await env.DB.prepare("UPDATE board_posts SET body='' WHERE thread_id=?1 AND no=?2").bind(tid, no).run();
+  await imgDropIn(env, [p.body], g.admin ? null : p.ip_hash);                     // 他人の画像URLを貼っただけなら消さない
   return json({ ok: true });
 }
 async function boardHide(req, env) {
@@ -1028,6 +1038,10 @@ async function boardHide(req, env) {
   if (b.kind === "thread") {
     const id = parseInt(b.id, 10); if (!id) return json({ error: "bad_id" }, 400);
     if (b.hard) {                                                                // スレを完全削除(レス・タグ・投票も一緒に)
+      try {
+        const { results: bs } = await env.DB.prepare("SELECT body FROM board_posts WHERE thread_id=?1").bind(id).all();
+        await imgDropIn(env, (bs || []).map((r) => r.body));
+      } catch (e) {}
       await env.DB.prepare("DELETE FROM board_posts WHERE thread_id=?1").bind(id).run();
       await env.DB.prepare("DELETE FROM board_threads WHERE id=?1").bind(id).run();
       try { await env.DB.prepare("DELETE FROM board_tags WHERE thread_id=?1").bind(id).run(); } catch (e) {}
@@ -1054,13 +1068,14 @@ async function boardPurge(req, env) {
   if (!uid) return json({ error: "no_uid" }, 400);
   const contains = clean(b.contains, 200);
   const exclude = Array.isArray(b.exclude) ? b.exclude.map(String) : [];
-  let sql = "SELECT thread_id,no FROM board_posts WHERE uid=?1", binds = [uid];
+  let sql = "SELECT thread_id,no,body FROM board_posts WHERE uid=?1", binds = [uid];
   if (contains) { sql += " AND body LIKE ?2 ESCAPE '\\'"; binds.push("%" + likeEsc(contains) + "%"); }
   const { results } = await env.DB.prepare(sql).bind(...binds).all();
   let deleted = 0; const hit = new Set();
   for (const r of (results || [])) {
     if (exclude.indexOf(r.thread_id + ":" + r.no) !== -1) continue;
     await env.DB.prepare("DELETE FROM board_posts WHERE thread_id=?1 AND no=?2").bind(r.thread_id, r.no).run();
+    await imgDropIn(env, [r.body]);
     deleted++; hit.add(r.thread_id);
   }
   let hiddenThreads = 0;                                                         // OP(1レス目)が消えたスレは非表示に
@@ -1071,6 +1086,129 @@ async function boardPurge(req, env) {
   return json({ ok: true, deleted, hiddenThreads });
 }
 // 管理者: IP出禁。uid か ip_hash を指定。uid からは投稿のip_hashを解決してban。on=false で解除。
+/* ---- 掲示板の画像アップロード(R2) ----
+ * POST /api/board/upload        本文=画像バイナリ(webp/png/jpeg/gif, 4MBまで) → { ok, url }
+ * GET  /api/board/img/<名前>     R2から配信(IMG_BASE 未設定時の配信先)
+ * POST /api/board/img/delete    管理者: { url } の画像を削除
+ * 台帳は D1 board_images。投稿に使われなかった画像は cron で24時間後に消す。
+ * IPは開示請求用に内部保存のみ(IP_RETENTION_DAYS で消す)。EXIF(位置情報)はブラウザ側で描き直して除去している。 */
+const IMG_MAX = 4 * 1024 * 1024;
+const IMG_PER_HOUR = 30;      // 1回線あたり1時間のアップロード上限
+const IMG_PER_DAY = 1500;     // サイト全体の1日上限(R2の無料枠を守る)
+const IMG_EXT = { "image/webp": "webp", "image/png": "png", "image/jpeg": "jpg", "image/gif": "gif" };
+const IMG_NAME_RE = /^[A-Za-z0-9_-]{16}\.(webp|png|jpg|gif)$/;
+// 本文中の自前画像URLから R2 上の名前を拾う(配信元がカスタムドメインでもWorkerでも)
+const IMG_URL_RE = /https:\/\/(?:img\.pbers\.com\/b|pbers-cron\.myray0629\.workers\.dev\/api\/board\/img)\/([A-Za-z0-9_-]{16}\.(?:webp|png|jpg|gif))/g;
+function imgNamesIn(text) {
+  const out = new Set(); let m; IMG_URL_RE.lastIndex = 0;
+  while ((m = IMG_URL_RE.exec(String(text || "")))) out.add(m[1]);
+  return [...out].slice(0, 20);
+}
+function imgSniff(u) {   // 中身(先頭バイト)で種類を判定。拡張子やContent-Typeは信用しない
+  if (u.length > 12 && u[0] === 0x52 && u[1] === 0x49 && u[2] === 0x46 && u[3] === 0x46 && u[8] === 0x57 && u[9] === 0x45 && u[10] === 0x42 && u[11] === 0x50) return "image/webp";
+  if (u.length > 8 && u[0] === 0x89 && u[1] === 0x50 && u[2] === 0x4e && u[3] === 0x47) return "image/png";
+  if (u.length > 3 && u[0] === 0xff && u[1] === 0xd8 && u[2] === 0xff) return "image/jpeg";
+  if (u.length > 6 && u[0] === 0x47 && u[1] === 0x49 && u[2] === 0x46 && u[3] === 0x38) return "image/gif";
+  return null;
+}
+function imgUrlFor(env, name) {
+  const base = String(env.IMG_BASE || "").replace(/\/+$/, "");
+  return base ? base + "/b/" + name : "https://pbers-cron.myray0629.workers.dev/api/board/img/" + name;
+}
+function imgPh(n) { return Array.from({ length: n }, (_, i) => "?" + (i + 1)).join(","); }
+let _imgReady = false;
+async function ensureImgs(env) {
+  if (_imgReady) return;
+  await env.DB.batch([
+    env.DB.prepare("CREATE TABLE IF NOT EXISTS board_images(name TEXT PRIMARY KEY, created INTEGER NOT NULL, size INTEGER, type TEXT, uid TEXT, ip_hash TEXT, ip TEXT, posted INTEGER DEFAULT 0)"),
+    env.DB.prepare("CREATE INDEX IF NOT EXISTS idx_board_images_sweep ON board_images(posted, created)"),
+  ]);
+  _imgReady = true;
+}
+async function imgUpload(req, env) {
+  if (!env.BOARD_IMG) return json({ error: "img_unconfigured" }, 503);
+  const g = await guard(req, env, { write: true }); if (g.err) return json({ error: g.err }, g.status);
+  if ((parseInt(req.headers.get("Content-Length"), 10) || 0) > IMG_MAX) return json({ error: "img_big" }, 413);
+  const buf = new Uint8Array(await req.arrayBuffer());
+  if (!buf.length) return json({ error: "img_empty" }, 400);
+  if (buf.length > IMG_MAX) return json({ error: "img_big" }, 413);
+  const type = imgSniff(buf);
+  if (!type) return json({ error: "img_type" }, 415);
+  const ip = req.headers.get("CF-Connecting-IP") || "0";
+  const iph = await sha(ip + "|" + (env.SALT || "pbers"));
+  if (!g.admin) {   // 回数制限(1時間の固定窓。KVのTTLで自然に戻る)
+    const hk = "iu:" + iph + ":" + Math.floor(Date.now() / 3600000), dk = "iu:all:" + ymdJST();
+    const [hn, dn] = await Promise.all([env.PBERS_KV.get(hk), env.PBERS_KV.get(dk)]);
+    if ((parseInt(hn, 10) || 0) >= IMG_PER_HOUR) return json({ error: "img_many" }, 429);
+    if ((parseInt(dn, 10) || 0) >= IMG_PER_DAY) return json({ error: "img_full" }, 429);
+    await Promise.all([
+      env.PBERS_KV.put(hk, String((parseInt(hn, 10) || 0) + 1), { expirationTtl: 3700 }),
+      env.PBERS_KV.put(dk, String((parseInt(dn, 10) || 0) + 1), { expirationTtl: 90000 }),
+    ]);
+  }
+  const rnd = new Uint8Array(12); crypto.getRandomValues(rnd);   // 12バイト → base64urlで16文字(推測不能)
+  const name = btoa(String.fromCharCode(...rnd)).replace(/\+/g, "-").replace(/\//g, "_") + "." + IMG_EXT[type];
+  await env.BOARD_IMG.put("b/" + name, buf, { httpMetadata: { contentType: type, cacheControl: "public, max-age=31536000, immutable" } });
+  await ensureImgs(env);
+  const uid = (await sha(ip + "|" + ymdJST() + "|" + (env.SALT || "pbers"))).slice(0, 6);
+  await env.DB.prepare("INSERT INTO board_images(name,created,size,type,uid,ip_hash,ip,posted) VALUES(?1,?2,?3,?4,?5,?6,?7,0)")
+    .bind(name, Date.now(), buf.length, type, uid, iph, ip).run();
+  return json({ ok: true, url: imgUrlFor(env, name) });
+}
+async function imgServe(url, env) {
+  const name = url.pathname.slice("/api/board/img/".length);
+  if (!env.BOARD_IMG || !IMG_NAME_RE.test(name)) return new Response("not found", { status: 404, headers: CORS });
+  const o = await env.BOARD_IMG.get("b/" + name);
+  if (!o) return new Response("not found", { status: 404, headers: { ...CORS, "Cache-Control": "public, max-age=300" } });
+  return new Response(o.body, { headers: {
+    ...CORS,
+    "Content-Type": (o.httpMetadata && o.httpMetadata.contentType) || "application/octet-stream",
+    "Cache-Control": "public, max-age=31536000, immutable",
+    "X-Content-Type-Options": "nosniff",
+    "Content-Security-Policy": "default-src 'none'",
+    "ETag": o.httpEtag,
+  } });
+}
+async function imgMarkPosted(env, body) {   // 投稿に使われた画像は掃除の対象から外す
+  const names = imgNamesIn(body); if (!names.length) return;
+  try {
+    await ensureImgs(env);
+    await env.DB.prepare("UPDATE board_images SET posted=1 WHERE name IN (" + imgPh(names.length) + ")").bind(...names).run();
+  } catch (e) {}
+}
+// 本文群に含まれる自前画像を R2 と台帳から消す。onlyIph を渡すとその回線が上げた画像だけ消す(本人削除用)
+async function imgDropIn(env, bodies, onlyIph) {
+  if (!env.BOARD_IMG || !env.DB) return;
+  let names = [...new Set([].concat(...bodies.map(imgNamesIn)))].slice(0, 500);
+  if (!names.length) return;
+  try {
+    await ensureImgs(env);
+    const { results } = await env.DB.prepare("SELECT name,ip_hash FROM board_images WHERE name IN (" + imgPh(names.length) + ")").bind(...names).all();
+    names = (results || []).filter((r) => !onlyIph || r.ip_hash === onlyIph).map((r) => r.name);
+    if (!names.length) return;
+    await env.BOARD_IMG.delete(names.map((n) => "b/" + n));
+    await env.DB.prepare("DELETE FROM board_images WHERE name IN (" + imgPh(names.length) + ")").bind(...names).run();
+  } catch (e) {}
+}
+async function imgDelete(req, env) {
+  if (!isAdmin(req, env)) return json({ error: "forbidden" }, 403);
+  if (!env.BOARD_IMG) return json({ error: "img_unconfigured" }, 503);
+  let b; try { b = await req.json(); } catch { return json({ error: "bad_json" }, 400); }
+  const names = imgNamesIn(b.url).slice(0, 1);
+  if (!names.length) return json({ error: "bad_id" }, 400);
+  await env.BOARD_IMG.delete("b/" + names[0]);
+  try { await ensureImgs(env); await env.DB.prepare("DELETE FROM board_images WHERE name=?1").bind(names[0]).run(); } catch (e) {}
+  return json({ ok: true });
+}
+async function imgSweep(env) {   // 上げたまま投稿されなかった画像(24時間以上前)を消す。1回100件まで
+  if (!env.BOARD_IMG || !env.DB) return;
+  await ensureImgs(env);
+  const { results } = await env.DB.prepare("SELECT name FROM board_images WHERE posted=0 AND created < ?1 LIMIT 100").bind(Date.now() - 86400000).all();
+  const names = (results || []).map((r) => r.name);
+  if (!names.length) return;
+  await env.BOARD_IMG.delete(names.map((n) => "b/" + n));
+  await env.DB.prepare("DELETE FROM board_images WHERE name IN (" + imgPh(names.length) + ")").bind(...names).run();
+}
 // imgurアルバム(/a/ ・/gallery/)の代表画像(og:image=1枚目)を解決して返す。結果はKVにキャッシュ。
 // クライアントはCORSでアルバムページを取れないのでWorker側で取得する。
 async function imgurResolve(url, env) {
@@ -1206,6 +1344,7 @@ async function purgeOldIps(env) {
   if (!env.DB) return;
   const cutoff = Date.now() - IP_RETENTION_DAYS * 86400000;
   await env.DB.prepare("UPDATE board_posts SET ip=NULL, ua=NULL WHERE ip IS NOT NULL AND created < ?1").bind(cutoff).run();
+  try { await env.DB.prepare("UPDATE board_images SET ip=NULL WHERE ip IS NOT NULL AND created < ?1").bind(cutoff).run(); } catch (e) {}
 }
 // 管理照会(RUN_KEY保護): 特定レスの IP/UA/日時 を返す。開示請求対応・むやみに使わない
 async function boardLookup(url, env) {

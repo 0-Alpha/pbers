@@ -8,7 +8,7 @@
   // 記事(新聞)API。掲示板と同じWorker。/api/board -> /api/articles
   var ARTICLES_API = window.PBERS_ARTICLES_API || BOARD_API.replace(/\/api\/board$/, '/api/articles');
   var boardMaint = !!window.PBERS_BOARD_MAINTENANCE;   // 整備中フラグ(trueならAPIを叩かず案内表示)
-  var boardKey = '', boardPublic = false, boardEnabled = false;
+  var boardKey = '', boardPublic = false, boardEnabled = false, boardImgOn = false;
   var UPDATED = window.PBERS_UPDATED || '';
   var SENKYO_ON = false;   // 参院選は一旦取り下げ中。入口を出さず /senkyo/ はダッシュボードへ
 
@@ -1216,9 +1216,17 @@
       no_title: 'タイトルを入力してください', not_found: 'スレッドが見つかりません', forbidden: '権限がありません',
       voted: 'すでに投票済みです', closed: 'このアンケートは終了しました', no_poll: 'アンケートが見つかりません',
       no_choice: '選択してください', single_only: '1つだけ選択してください',
+      img_big: '画像が大きすぎます（4MBまで）', img_type: 'この形式の画像は添付できません（PNG・JPEG・GIF・WebP）',
+      img_many: '画像のアップロードが多すぎます。しばらく待ってからどうぞ', img_full: '今日の画像アップロード枠がいっぱいです。明日またどうぞ',
+      img_unconfigured: '画像アップロードは準備中です', img_empty: '画像を読み込めませんでした', img_decode: 'この画像は読み込めませんでした',
+      too_long: '本文が長すぎます（画像のぶんも含めて2000字まで）',
       url_spam: '同じURLが短時間に貼られすぎています。しばらく待つか、別の内容で投稿してください。', banned: '現在この回線からは投稿できません',
       flood: '同じ文字・絵文字の連投はできません。内容のある投稿をお願いします。' })[code]
       || '通信エラーが発生しました';
+  }
+  function boardHintHtml() {
+    return boardImgOn ? 'imgur の画像URL・YouTube のURLを貼っても表示されます。'
+      : '画像は <b>imgur</b> のURL（例: https://i.imgur.com/xxxx.png）、動画は YouTube のURLを貼ると表示されます。';
   }
   function boardHeaders(extra) { var h = extra || {}; if (boardKey) h['X-Board-Key'] = boardKey; return h; }
   function boardApi(p) { return BOARD_API + p; }
@@ -1461,7 +1469,7 @@
         '</div>') +
         '<input class="bf-in bf-name" id="bt-name" maxlength="24" placeholder="名前（任意）">' +
         '<textarea class="bf-in bf-body" id="bt-body" maxlength="2000" rows="3" placeholder="最初の書き込み…"></textarea>' +
-        '<div class="bf-hint">画像は <b>imgur</b> のURL（例: https://i.imgur.com/xxxx.png）を貼ると表示されます。YouTube のURLも埋め込みされます。</div>' +
+        '<div class="bf-hint" id="bt-hint"></div>' +
         '<button type="button" class="bt-poll-toggle" id="bt-poll-toggle">＋ アンケートを作成</button>' +
         '<div class="bt-poll" id="bt-poll" hidden>' +
           '<input class="bf-in" id="bp-q" maxlength="140" placeholder="質問（例：一番好きなPBerは？）">' +
@@ -1529,6 +1537,8 @@
       tagSel.querySelectorAll('.bt-tg').forEach(function (x) { x.classList.toggle('on', x === b); });
     });
     var tsNew = tsMount(document.getElementById('bt-new'));
+    var attNew = attachMount(document.getElementById('bt-new'), document.getElementById('bt-body'), document.getElementById('bt-msg'));
+    document.getElementById('bt-hint').innerHTML = boardHintHtml();
     // アンケート入力欄: 開閉・選択肢の追加(最大10)
     var pollWrap = document.getElementById('bt-poll'), pollToggle = document.getElementById('bt-poll-toggle');
     pollToggle.addEventListener('click', function () {
@@ -1630,6 +1640,9 @@
       var name = document.getElementById('bt-name').value;
       var msg = document.getElementById('bt-msg'), send = document.getElementById('bt-send');
       if (!title) { msg.textContent = 'タイトルを入力してください'; return; }
+      if (attNew.busy()) { msg.textContent = '画像をアップロード中です。少し待ってね'; return; }
+      body = withAttach(body, attNew);
+      if (body === null) { msg.textContent = boardErr('too_long'); return; }
       if (!body) { msg.textContent = '本文を入力してください'; return; }
       var poll = collectPoll();
       if (!pollWrap.hidden && !poll) { msg.textContent = 'アンケートは質問と選択肢2つ以上が必要です'; return; }
@@ -1668,7 +1681,8 @@
     }
     function threadRow(t, isSearch) {
       var nn = newFor(t.id, t.posts);
-      var sn = (isSearch && t.snippet) ? '<div class="th-snip">' + esc(String(t.snippet).slice(0, 80)) + (String(t.snippet).length > 80 ? '…' : '') + '</div>' : '';
+      var snT = isSearch && t.snippet ? String(t.snippet).replace(OWN_IMG_RE, '[画像]') : '';
+      var sn = snT ? '<div class="th-snip">' + esc(snT.slice(0, 80)) + (snT.length > 80 ? '…' : '') + '</div>' : '';
       return '<div class="th' + (t.hidden ? ' bc-off' : '') + '" data-id="' + t.id + '">' +
         '<div class="th-main"><div class="th-title">' + esc(t.title) +
           (t.admin ? ' <span class="th-badge">★管理人</span>' : '') +
@@ -1911,7 +1925,17 @@
         '<button type="button" class="yt-play" aria-label="再生"></button></div>';
     }).join('') + '</div>';
   }
-  // 本文中の imgur 画像URL(最大4件)を直リンクに正規化。信頼できる imgur のみ許可(自前ホストなし)。
+  // 掲示板にアップロードされた画像(R2)。配信元はカスタムドメインかWorker。名前は推測不能な16文字
+  var OWN_IMG_RE = /https:\/\/(?:img\.pbers\.com\/b|pbers-cron\.myray0629\.workers\.dev\/api\/board\/img)\/[A-Za-z0-9_-]{16}\.(?:webp|png|jpg|gif)/g;
+  function ownImgUrls(text) {
+    var out = [], seen = {};
+    (String(text || '').match(OWN_IMG_RE) || []).forEach(function (u) { if (!seen[u] && out.length < 4) { seen[u] = 1; out.push(u); } });
+    return out;
+  }
+  function stripOwnImgs(text) {   // 添付画像のURLは本文に出さない(画像として下に出る)
+    return String(text || '').replace(OWN_IMG_RE, '').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+  }
+  // 本文中の imgur 画像URL(最大4件)を直リンクに正規化。信頼できる imgur のみ許可。
   function imgurUrls(text) {
     var re = /https?:\/\/(?:i\.)?imgur\.com\/(?!a\/|gallery\/|t\/|user\/)([A-Za-z0-9]{5,12})(\.(?:jpe?g|png|gif|gifv|webp))?/gi;
     var out = [], seen = {}, m;
@@ -1924,11 +1948,137 @@
   }
   // Discord風: imgur画像をインライン表示(遅延読込・高さ制限、クリックで原寸を新規タブ)。
   function imgEmbeds(body) {
-    var us = imgurUrls(body); if (!us.length) return '';
+    var own = ownImgUrls(body), us = own.concat(imgurUrls(body)).slice(0, 4); if (!us.length) return '';
     return '<div class="img-embeds">' + us.map(function (u) {
-      return '<a class="img-embed" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">' +
-        '<img loading="lazy" src="' + esc(u) + '" alt="" onerror="this.closest(\'.img-embed\').style.display=\'none\'"></a>';
+      var mine = own.indexOf(u) !== -1;
+      return '<span class="img-wrap"><a class="img-embed" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">' +
+        '<img loading="lazy" src="' + esc(u) + '" alt="" onerror="this.closest(\'.img-wrap\').style.display=\'none\'"></a>' +
+        (mine && boardKey ? '<button type="button" class="bmod img-del" data-url="' + esc(u) + '">画像削除</button>' : '') + '</span>';
     }).join('') + '</div>';
+  }
+  // ---- 画像の添付(Cloudflare R2 へ直接アップロード) ----
+  // ブラウザで描き直してから送る: EXIF(撮影場所など)が消え、長辺2048pxに縮む。GIFはアニメを残すためそのまま
+  var IMG_SIDE = 2048, IMG_LIMIT = 4 * 1024 * 1024, IMG_PER_POST = 4;
+  function imgCanvasBlob(c, type, q) {
+    return new Promise(function (ok) { c.toBlob(function (b) { ok(b); }, type, q); });
+  }
+  function imgDecode(file) {
+    if (window.createImageBitmap) {
+      return createImageBitmap(file, { imageOrientation: 'from-image' }).catch(function () { return createImageBitmap(file); }).catch(function () { return imgDecodeTag(file); });
+    }
+    return imgDecodeTag(file);
+  }
+  function imgDecodeTag(file) {
+    return new Promise(function (ok, ng) {
+      var u = URL.createObjectURL(file), im = new Image();
+      im.onload = function () { ok(im); setTimeout(function () { URL.revokeObjectURL(u); }, 0); };
+      im.onerror = function () { URL.revokeObjectURL(u); ng('img_decode'); };
+      im.src = u;
+    });
+  }
+  function prepImage(file) {
+    if (file.type === 'image/gif') return file.size <= IMG_LIMIT ? Promise.resolve(file) : Promise.reject('img_big');
+    return imgDecode(file).then(function (bm) {
+      var w = bm.width || bm.naturalWidth, h = bm.height || bm.naturalHeight;
+      if (!w || !h) throw 'img_decode';
+      var k = Math.min(1, IMG_SIDE / Math.max(w, h));
+      var c = document.createElement('canvas');
+      c.width = Math.max(1, Math.round(w * k)); c.height = Math.max(1, Math.round(h * k));
+      var x = c.getContext('2d'); x.imageSmoothingQuality = 'high'; x.drawImage(bm, 0, 0, c.width, c.height);
+      if (bm.close) bm.close();
+      // PNG(絵・ドット絵が多い)は劣化させない。重い時だけ WebP に
+      var first = file.type === 'image/png' ? imgCanvasBlob(c, 'image/png') : Promise.resolve(null);
+      return first.then(function (b) {
+        if (b && b.size <= 1.5 * 1024 * 1024) return b;
+        return imgCanvasBlob(c, 'image/webp', 0.88).then(function (b2) {
+          if (b2 && b2.type === 'image/webp' && b2.size <= IMG_LIMIT) return b2;
+          var j = document.createElement('canvas'); j.width = c.width; j.height = c.height;   // WebP非対応ブラウザ: 白背景でJPEG
+          var jx = j.getContext('2d'); jx.fillStyle = '#fff'; jx.fillRect(0, 0, j.width, j.height); jx.drawImage(c, 0, 0);
+          return imgCanvasBlob(j, 'image/jpeg', 0.86);
+        });
+      });
+    }).then(function (b) {
+      if (!b) throw 'img_decode';
+      if (b.size > IMG_LIMIT) throw 'img_big';
+      return b;
+    });
+  }
+  // 投稿欄に添付ボタン・サムネ列を付ける。貼り付け(Ctrl+V)・ドラッグ&ドロップでも追加できる
+  function attachMount(form, ta, msgEl) {
+    var items = [];
+    var api = {
+      urls: function () { return items.filter(function (it) { return it.url; }).map(function (it) { return it.url; }); },
+      busy: function () { return items.some(function (it) { return !it.url && !it.err; }); },
+      clear: function () { items = []; draw(); }
+    };
+    if (!boardImgOn) return api;
+    var box = document.createElement('div'); box.className = 'bf-att';
+    box.innerHTML = '<div class="bf-att-list"></div>' +
+      '<div class="bf-att-row"><button type="button" class="bf-att-btn">' +
+        '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M19 5v14H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Zm-4.86 8.86-3 3.87L9 13.14 6 17h12l-3.86-5.14Z"/></svg>' +
+        '<span>画像を添付</span></button>' +
+      '<span class="bf-att-note">' + IMG_PER_POST + '枚まで・貼り付けやドラッグでもOK</span>' +
+      '<input type="file" accept="image/png,image/jpeg,image/gif,image/webp" multiple hidden></div>';
+    ta.insertAdjacentElement('afterend', box);
+    var list = box.querySelector('.bf-att-list'), inp = box.querySelector('input'), btn = box.querySelector('.bf-att-btn');
+    function draw() {
+      list.innerHTML = items.map(function (it, i) {
+        return '<span class="bf-att-it' + (it.url ? '' : it.err ? ' err' : ' up') + '">' +
+          '<img src="' + it.prev + '" alt="">' +
+          (it.url || it.err ? '' : '<span class="bf-att-sp" aria-label="アップロード中"></span>') +
+          '<button type="button" class="bf-att-x" data-i="' + i + '" aria-label="この画像を外す">×</button></span>';
+      }).join('');
+      list.hidden = !items.length;
+      btn.disabled = items.length >= IMG_PER_POST;
+    }
+    function add(files) {
+      files = [].slice.call(files || []).filter(function (f) { return /^image\//.test(f.type); });
+      if (!files.length) return;
+      var room = IMG_PER_POST - items.length;
+      if (files.length > room) { msgEl.textContent = '画像は1回の書き込みに' + IMG_PER_POST + '枚までです'; files = files.slice(0, Math.max(0, room)); }
+      files.forEach(function (f) {
+        var it = { prev: URL.createObjectURL(f) };
+        items.push(it); draw();
+        prepImage(f).then(function (blob) {
+          return fetch(boardApi('/upload'), { method: 'POST', headers: boardHeaders({ 'Content-Type': blob.type }), body: blob })
+            .then(function (r) { return r.json(); });
+        }).then(function (d) {
+          if (d && d.ok && d.url) { it.url = d.url; }
+          else { it.err = 1; msgEl.textContent = boardErr(d && d.error); }
+          draw();
+        }).catch(function (e) {
+          it.err = 1; msgEl.textContent = typeof e === 'string' ? boardErr(e) : '画像の送信に失敗しました'; draw();
+        });
+      });
+    }
+    btn.addEventListener('click', function () { inp.click(); });
+    inp.addEventListener('change', function () { add(inp.files); inp.value = ''; });
+    list.addEventListener('click', function (e) {
+      var x = e.target.closest('.bf-att-x'); if (!x) return;
+      var it = items.splice(+x.dataset.i, 1)[0];
+      if (it) URL.revokeObjectURL(it.prev);
+      draw();
+    });
+    ta.addEventListener('paste', function (e) {
+      var fs = e.clipboardData && e.clipboardData.files;
+      if (fs && fs.length) { e.preventDefault(); add(fs); }
+    });
+    form.addEventListener('dragover', function (e) {
+      if (e.dataTransfer && [].indexOf.call(e.dataTransfer.types || [], 'Files') !== -1) { e.preventDefault(); form.classList.add('bf-drop'); }
+    });
+    form.addEventListener('dragleave', function (e) { if (!form.contains(e.relatedTarget)) form.classList.remove('bf-drop'); });
+    form.addEventListener('drop', function (e) {
+      form.classList.remove('bf-drop');
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) { e.preventDefault(); add(e.dataTransfer.files); }
+    });
+    draw();
+    return api;
+  }
+  // 本文と添付画像URLをまとめる。戻り値 null は長すぎ
+  function withAttach(body, att) {
+    var us = att.urls(); if (!us.length) return body;
+    var out = (body ? body + '\n' : '') + us.join('\n');
+    return out.length > 2000 ? null : out;
   }
   // imgurアルバム(/a/・/gallery/)の代表画像(1枚目)。CORSで直接取れないのでWorkerに解決させ、後で埋める。
   function imgurAlbumIds(text) {
@@ -2052,12 +2202,12 @@
                 (p.uid ? '<button type="button" class="bmod bc-purge" data-uid="' + esc(p.uid) + '">ID一括</button><button type="button" class="bmod bc-ban" data-uid="' + esc(p.uid) + '">ban</button>' : '') : '') +
             '</div>' +
             (del ? '<div class="post-body post-del-body">削除されました</div>'
-                 : '<div class="post-body">' + linkAnchors(linkUrls(esc(p.body))).replace(/\n/g, '<br>') + '</div>' +
+                 : (stripOwnImgs(p.body) ? '<div class="post-body">' + linkAnchors(linkUrls(esc(stripOwnImgs(p.body)))).replace(/\n/g, '<br>') + '</div>' : '') +
                    ytEmbeds(p.body) + imgEmbeds(p.body) + imgAlbumEmbeds(p.body) + postMentions(p.body)) +
           '</div>';
         }).join('') + '</div>' +
         '<form class="bt-reply" id="bt-reply" autocomplete="off">' +
-          '<div class="bf-hint">画像は <b>imgur</b> のURL、動画は YouTube のURLを貼ると表示されます。</div>' +
+          '<div class="bf-hint" id="rp-hint"></div>' +
           '<input class="bf-in bf-name" id="rp-name" maxlength="24" placeholder="名前（任意）">' +
           '<textarea class="bf-in bf-body" id="rp-body" maxlength="2000" rows="3" placeholder="返信を書く…"></textarea>' +
           '<div class="bf-actions"><span class="bf-msg" id="rp-msg"></span>' +
@@ -2082,6 +2232,16 @@
         if (tgt) jumpToRead(host, tgt);
       }
       if (d.admin) { wireHide(host); wireAdminMod(host, function () { renderThread(host, id); }); }
+      host.querySelectorAll('.img-del').forEach(function (b) {   // 管理者: アップロード画像だけ消す(レスは残る)
+        b.addEventListener('click', function () {
+          if (!confirm('この画像をサーバーから削除しますか？（取り消せません）')) return;
+          b.disabled = true;
+          fetch(boardApi('/img/delete'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }), body: JSON.stringify({ url: b.dataset.url }) })
+            .then(function (r) { return r.json(); }).then(function (r) {
+              if (r.ok) b.closest('.img-wrap').remove(); else { b.disabled = false; alert(boardErr(r.error)); }
+            }).catch(function () { b.disabled = false; alert('通信に失敗しました'); });
+        });
+      });
       host.querySelectorAll('.anchor').forEach(function (a) {
         a.addEventListener('click', function () { jumpToPost(a.dataset.no); });
       });
@@ -2149,11 +2309,16 @@
       });
       document.getElementById('rp-name').value = boardName();
       var tsRep = tsMount(document.getElementById('bt-reply'));
+      var attRep = attachMount(document.getElementById('bt-reply'), document.getElementById('rp-body'), document.getElementById('rp-msg'));
+      document.getElementById('rp-hint').innerHTML = boardHintHtml();
       document.getElementById('bt-reply').addEventListener('submit', function (e) {
         e.preventDefault();
         var body = document.getElementById('rp-body').value.trim();
         var name = document.getElementById('rp-name').value;
         var msg = document.getElementById('rp-msg'), send = document.getElementById('rp-send');
+        if (attRep.busy()) { msg.textContent = '画像をアップロード中です。少し待ってね'; return; }
+        body = withAttach(body, attRep);
+        if (body === null) { msg.textContent = boardErr('too_long'); return; }
         if (!body) { msg.textContent = '本文を入力してください'; return; }
         send.disabled = true; msg.textContent = '送信中…';
         fetch(boardApi('/posts'), { method: 'POST', headers: boardHeaders({ 'Content-Type': 'application/json' }),
@@ -2211,6 +2376,7 @@
     window.addEventListener('popstate', function () { if (isBoardV(currentView) && viewOf() === currentView) renderBoard(); });
     fetch(boardApi('/config')).then(function (r) { return r.json(); }).then(function (c) {
       boardPublic = !!(c && c.public);
+      boardImgOn = !!(c && c.img);   // Worker に R2(BOARD_IMG) が付いている時だけ画像添付を出す
       boardEnabled = boardPublic || !!boardKey;
       tsLoad();   // 公開・非管理者ならTurnstileスクリプトを読み込む
       if (boardEnabled && tabBtn) { tabBtn.hidden = false; showZatsudanMenu(); }
