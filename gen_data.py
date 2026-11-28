@@ -416,6 +416,9 @@ def build_race(colors):
     print("wrote assets/race.js (%d races incl. TOP3)" % len(out))
 
 BARRACE_TOP = 30   # 1日でもこの順位以内に入ったチャンネルだけ収録(ファイルを軽くするため)
+BARRACE_EXCLUDE = {   # バーチャートレースに出さないチャンネル
+    "UCD9mEEJypdqQZeSeTotItbg",   # カルノ ムックル教: 2026-08-30を最後に取得できず名前がIDのまま出ていた(2026-11-28 除外)
+}
 # バーチャートレースの予測。過去の記録で30〜60日先を答え合わせして、誤差が小さかった組み合わせを使う。
 # 指標ごとに (傾きを測る日数(0は全期間), 1日ごとの減衰)。今後の伸び = 傾き × Σ 減衰^t
 FC_DAYS = 91
@@ -435,7 +438,7 @@ def build_barrace(colors, order):
        登録者/総再生数/投稿数を全日付ぶん assets/barrace.json に出力(レースタブを開いた時だけ読み込む)。
        記録の途中で欠けた日は直前の値で埋める。記録開始前は null(バーを出さない)。"""
     series, _names = load_history()
-    shown = [d for d in order if d["id"] in colors]
+    shown = [d for d in order if d["id"] in colors and d["id"] not in BARRACE_EXCLUDE]
     reps = {d["id"]: daily_reps(series.get(d["id"], {}).keys()) for d in shown}
     days = sorted({day for r in reps.values() for day in r})
     if not days:
