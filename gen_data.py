@@ -416,9 +416,21 @@ def build_race(colors):
     print("wrote assets/race.js (%d races incl. TOP3)" % len(out))
 
 BARRACE_TOP = 115   # 1日でもこの順位以内に入ったチャンネルだけ収録(表示は最大100本+上位除外ぶん)
-BARRACE_EXCLUDE = {   # バーチャートレースに出さないチャンネル
-    "UCD9mEEJypdqQZeSeTotItbg",   # カルノ ムックル教: 2026-08-30を最後に取得できず名前がIDのまま出ていた(2026-11-28 除外)
-}
+BARRACE_EXCLUDE = set()   # バーチャートレースに出さないチャンネル(手動)。消えたチャンネルは下の gone_ids で自動除外
+GONE_DAYS = 3   # この日数より長く登録者が取れていないチャンネルは「削除/停止されたっぽい」とみなす
+
+def gone_ids(series, order):
+    """今回も取得に失敗していて(登録者なし)、最後に取れた日から GONE_DAYS 日より経ったチャンネル。
+       一時的な取得失敗では外さない。"""
+    lim = (ASOF - datetime.timedelta(days=GONE_DAYS)).isoformat()
+    out = set()
+    for d in order:
+        if d.get("subs") is not None:
+            continue
+        ok = [t for t, v in series.get(d["id"], {}).items() if v["subs"] is not None]
+        if not ok or day_of(max(ok)) < lim:
+            out.add(d["id"])
+    return out
 # バーチャートレースの予測。過去の記録で30〜60日先を答え合わせして、誤差が小さかった組み合わせを使う。
 # 指標ごとに (傾きを測る日数(0は全期間), 1日ごとの減衰)。今後の伸び = 傾き × Σ 減衰^t
 FC_DAYS = 91
@@ -438,7 +450,8 @@ def build_barrace(colors, order):
        登録者/総再生数/投稿数を全日付ぶん assets/barrace.json に出力(レースタブを開いた時だけ読み込む)。
        記録の途中で欠けた日は直前の値で埋める。記録開始前は null(バーを出さない)。"""
     series, _names = load_history()
-    shown = [d for d in order if d["id"] in colors and d["id"] not in BARRACE_EXCLUDE]
+    gone = gone_ids(series, order)
+    shown = [d for d in order if d["id"] in colors and d["id"] not in BARRACE_EXCLUDE and d["id"] not in gone]
     reps = {d["id"]: daily_reps(series.get(d["id"], {}).keys()) for d in shown}
     days = sorted({day for r in reps.values() for day in r})
     if not days:
@@ -494,7 +507,7 @@ def build_barrace(colors, order):
                  "slope": {m: [round(rate(vals[d["id"]][m], m), 3) for d in sel] for m in metrics}}
     with open(ed_out("assets", "barrace.json"), "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
-    print("wrote assets/barrace.json (%d channels x %d days)" % (len(sel), len(days)))
+    print("wrote assets/barrace.json (%d channels x %d days, %d gone excluded)" % (len(sel), len(days), len(gone)))
 
 CH_TPL = '''<!doctype html>
 <html lang="ja">
